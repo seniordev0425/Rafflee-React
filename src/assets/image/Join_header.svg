@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1366" height="47" viewBox="0 0 1366 47">
+  <defs>
+    <linearGradient id="linear-gradient" y1="0.5" x2="2.386" y2="0.5" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#0091ff"/>
+      <stop offset="1" stop-color="#e253e1"/>
+    </linearGradient>
+    <clipPath id="clip-path">
+      <rect id="Retângulo_603" data-name="Retângulo 603" width="187" height="47" transform="translate(-5145 -19713)" fill="#fff" stroke="#707070" stroke-width="1"/>
+    </clipPath>
+    <clipPath id="clip-path-2">
+      <rect id="Retângulo_604" data-name="Retângulo 604" width="187" height="47" fill="#fff" stroke="#707070" stroke-width="1"/>
+    </clipPath>
+  </defs>
+  <g id="Annoucement_Bar" data-name="Annoucement Bar" transform="translate(6324 19713)">
+    <g id="Top_Bar_" data-name="Top Bar " transform="translate(-6324 -19713)">
+      <rect id="Top_Bar_Text" data-name="Top Bar Text" width="1366" height="47" fill="url(#linear-gradient)"/>
+    </g>
+    <g id="Grupo_de_máscara_34" data-name="Grupo de máscara 34" clip-path="url(#clip-path)">
+      <g id="Grupo_278" data-name="Grupo 278" transform="translate(-4065.968 -18648.992)">
+        <path id="Caminho_270" data-name="Caminho 270" d="M-980.062-1045.437a33.435,33.435,0,0,1-44.985,14.565,33.436,33.436,0,0,1-14.566-44.985" fill="#283c80" opacity="0.25"/>
+        <path id="Caminho_271" data-name="Caminho 271" d="M-1070.032-1016.306a33.435,33.435,0,0,1,44.985-14.566,33.435,33.435,0,0,1,14.566,44.985" fill="#283c80" opacity="0.25"/>
+        <path id="Caminho_262" data-name="Caminho 262" d="M-851.093-1045.732l-21.323-14.756c-.01.013-.018.028-.028.043a6.186,6.186,0,0,1-8.621,1.5h0a6.186,6.186,0,0,1-1.523-8.577l-19.445-13.457a11.384,11.384,0,0,0-15.839,2.882h0l-11.632,16.806c.014.01.029.018.043.027a6.188,6.188,0,0,1,1.5,8.621,6.186,6.186,0,0,1-8.577,1.523l-55.016,79.5a11.384,11.384,0,0,0,2.883,15.839l50.941,35.254a11.383,11.383,0,0,0,15.839-2.882h0l52.376-75.68,2.64-3.815,7.04-10.173.862-1.245,10.769-15.561a11.384,11.384,0,0,0-2.879-15.84Z" fill="#283c80" opacity="0.25"/>
+        <path id="star" d="M-908.351-1047.34l-1.282,6.826,4.892,4.933-6.886.885-3.173,6.177-2.974-6.278-6.858-1.109,5.05-4.767-1.066-6.861,6.1,3.326Z" fill="#283c80" opacity="0.25"/>
+        <path id="Subtração_10" data-name="Subtração 10" d="M-945.655-1074.061a4.45,4.45,0,0,1,4.444,4.457,4.449,4.449,0,0,1-.8,2.543l-41.355,59.066h-10.867l44.93-64.168A4.455,4.455,0,0,1-945.655-1074.061Z" fill="#283c80" opacity="0.05" style="isolation: isolate"/>
+      </g>
+    </g>
+    <g id="Grupo_de_máscara_35" data-name="Grupo de máscara 35" transform="translate(-6324 -19713)" clip-path="url(#clip-path-2)">
+      <g id="Grupo_279" data-name="Grupo 279" transform="translate(-45.849 -18.999)">
+        <path id="Caminho_272" data-name="Caminho 272" d="M-1043.28-1045.437a33.435,33.435,0,0,0,44.985,14.565,33.436,33.436,0,0,0,14.566-44.985" transform="translate(1177.158 1083.007)" fill="#283c80" opacity="0.25"/>
+        <path id="Caminho_273" data-name="Caminho 273" d="M-1006.814-1016.306a33.435,33.435,0,0,0-44.985-14.566,33.435,33.435,0,0,0-14.566,44.985" transform="translate(1230.663 1083.007)" fill="#283c80" opacity="0.25"/>
+        <path id="Caminho_262-2" data-name="Caminho 262" d="M-988.674-1045.732l21.323-14.756c.01.013.018.028.028.043a6.186,6.186,0,0,0,8.621,1.5h0a6.186,6.186,0,0,0,1.523-8.577l19.445-13.457a11.384,11.384,0,0,1,15.839,2.882h0l11.632,16.806c-.014.01-.029.018-.043.027a6.188,6.188,0,0,0-1.5,8.621,6.186,6.186,0,0,0,8.577,1.523l55.016,79.5a11.384,11.384,0,0,1-2.883,15.839l-50.941,35.254a11.383,11.383,0,0,1-15.839-2.882h0l-52.376-75.68-2.64-3.815-7.04-10.173-.862-1.245-10.769-15.561a11.384,11.384,0,0,1,2.879-15.84Z" transform="translate(993.583 1083.007)" fill="#283c80" opacity="0.25"/>
+        <path id="star-2" data-name="star" d="M-921.022-1047.34l1.282,6.826-4.892,4.933,6.886.885,3.173,6.177,2.974-6.278,6.858-1.109-5.05-4.767,1.066-6.861-6.1,3.326Z" transform="translate(983.19 1083.007)" fill="#283c80" opacity="0.25"/>
+        <path id="Subtração_10-2" data-name="Subtração 10" d="M-989.791-1074.061a4.45,4.45,0,0,0-4.444,4.457,4.449,4.449,0,0,0,.8,2.543l41.355,59.066h10.867l-44.93-64.168A4.455,4.455,0,0,0-989.791-1074.061Z" transform="translate(1089.263 1083.007)" fill="#283c80" opacity="0.05" style="isolation: isolate"/>
+      </g>
+    </g>
+  </g>
+</svg>

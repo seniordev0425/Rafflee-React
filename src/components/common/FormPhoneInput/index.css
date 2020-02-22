@@ -1,0 +1,23 @@
+.react-tel-input {
+  width: auto;
+}
+
+.react-tel-input input[type="tel"] {
+  padding-top: .375rem;
+  padding-bottom: .375rem;
+  padding-right: .75rem;
+  border: 1px solid #ced4da;
+  box-shadow: none;
+  line-height: 1.5;
+  height: auto;
+}
+
+.react-tel-input.text-f-sm input[type="tel"] {
+  font-size: .82rem;
+  font-size: var(--f-text-sm);
+}
+
+.react-tel-input .selected-flag {
+  border: 0;
+  height: 30px;
+}
