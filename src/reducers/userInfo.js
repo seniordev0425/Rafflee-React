@@ -1,5 +1,6 @@
 const initialFeedState = {
-    myInfo: null
+    myInfo: null,
+    token: null
 }
 
 function UserInfo(state = initialFeedState, action){
@@ -8,6 +9,11 @@ function UserInfo(state = initialFeedState, action){
             return {
                 ...state,
                 myInfo: action.data
+            }
+        case 'setToken':
+            return {
+                ...state,
+                token: action.data
             }
         default:
             return state

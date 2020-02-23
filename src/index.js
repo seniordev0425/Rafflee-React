@@ -10,8 +10,9 @@ import Home from './screens/Home'
 import * as serviceWorker from './serviceWorker'
 
 import 'bootstrap/dist/css/bootstrap.css'
-import './assets/css/app.css'
 import 'antd/dist/antd.css'
+import './assets/css/app.css'
+import './utils/carousel_lib/scss/main.scss'
 
 
 

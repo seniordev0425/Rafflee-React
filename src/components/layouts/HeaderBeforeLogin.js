@@ -1,6 +1,9 @@
 import React, {useState} from 'react'
 import {Button} from 'antd'
+import {Row, Col} from 'reactstrap'
 import LoginSignupBaseModal from '../modals/LoginSignupBaseModal'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons'
 
 
 function HeaderBeforeLogin(){
@@ -15,18 +18,28 @@ function HeaderBeforeLogin(){
         setIsLogin(val)
         setModal(!modal)
         setCompanyStatus(false)
-        console.log(isLogin)
-        
     }
     const switch_login_signin = (val) => {
         setIsLogin(val)
     }
     return(
         <>
-            <Button type="link" className="no-border-btn" style={{marginRight:30}}>Deals</Button>
+        <Row>
+            <Col>
+                <Button type="link" className="no-border-btn">Deals</Button>
+            </Col>
+            <Col>
+                <Button className="white-btn" style={{width: 140}} onClick={()=>toggle(false)}>Sign In</Button>
+            </Col>
+            <Col>
+                <Button type="primary" className="ant-blue-btn" style={{width: 140}} onClick={()=>toggle(true)}>Log In</Button>
+            </Col>
+            <Col>
+                <FontAwesomeIcon icon={faQuestionCircle} style={{fontSize: "1.9rem",color: "#0091ff", cursor:"pointer"}}/>
+            </Col>
+        </Row>
             
-            <Button className="white-btn" style={{width: 140, marginRight:30}} onClick={()=>toggle(false)}>Sign In</Button>
-            <Button type="primary" className="ant-blue-btn" style={{width: 140, marginRight:30}} onClick={()=>toggle(true)}>Log In</Button>
+           
             <LoginSignupBaseModal modal={modal} isLogin={isLogin ? true : false} switch_login_signin={switch_login_signin} toggle={toggle} companyStatus={companyStatus} showCompanyModal={showCompanyModal}/>
             
         </>

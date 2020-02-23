@@ -8,7 +8,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: grey;
     font-family: sofiapro;
     background-image: url('../image/Join_header.svg');
     background-size: cover;
@@ -74,6 +73,15 @@
     font-family: 'sofiapro';
     
 }
+.bootstrap-blue-btn {
+    width: 100%;
+    height: 40px;
+    background: #0091FF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 10px #0091FF29;
+    border-radius: 6px;
+    font-family: 'sofiapro';
+    font-size: 1.1rem;
+}
 .ant-blue-btn {
     background-color:#0091ff !important;
     border-radius:6px !important;
@@ -81,6 +89,7 @@
     height:40px !important;
     font-family: 'sofiapro' !important;
 }
+
 .white-btn {
     color: #0091ff !important;
     border: 1px solid #0091ff !important;
@@ -209,4 +218,188 @@ h2 span {
     position: fixed;
     right: 10px;
 
+}
+.logout-icon {
+    width: 16px;
+}
+.banner {
+    width: 100%;
+    height: 420px;
+    font-family: sofiapro;
+    background-image: url('../image/Banner.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+.banner-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+.banner-text-blue {
+    font-size: 30px;
+    color: #0091ff;
+
+}
+.banner-text-green {
+    font-size: 30px;
+    color: #06CBC7;
+    font-weight: bold;
+}
+.banner-text-purple {
+    font-size: 30px;
+    color: #936EEA;
+    font-weight: bold;
+}
+.banner-search {
+    height: 55px;
+    margin-top: 30px;
+}
+.banner-search-input {
+    height: 100%;
+    border: 0px;
+    border-radius: 5px 0px 0px 5px;
+    box-shadow: 0px 3px 10px #0091FF29;
+}
+.banner-search-btn {
+    height: 100%;
+    border: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0px 5px 5px 0px;
+    box-shadow: 0px 3px 10px #0091FF29;
+    background-color: #7778ED;
+    cursor: pointer;
+}
+.banner-search-icon {
+    color: white;
+    font-size: 1.2rem;
+}
+.hot-new-text {
+    font-size: 29px;
+    color:#0091ff;
+    text-align: center;
+    margin-top: 30px;
+    font-weight: bold;
+}
+.premium-prize-text {
+    font-size: 20px;
+    color: #7E9AA8;
+    text-align: center;
+    margin-top: 15px;
+}
+.campaign-card {
+    height: 100%;
+    border-radius: 8px;
+}
+.campaign-card-body {
+    padding: 12%;
+}
+.campaign-card-img {
+    display: flex;
+    justify-content: center;
+}
+.campaign-card-title {
+    font-size: 22px;
+    color: #0091ff;
+    text-align: center;
+    margin-top: 30px;
+    font-weight: bold;
+}
+.campaign-card-text {
+    text-align: center;
+    font-size: 0.8rem;
+    height: 30%;
+}
+.campaign-card-star {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-color: white;
+    right: -8px;
+    top: -8px;
+}
+.find-deal-text {
+    font-size: 29px;
+    color:#7778ED;
+    text-align: center;
+    margin-top: 30px;
+    font-weight: bold;
+}
+.menubar-container {
+    background: #e9f7ff78 0% 0% no-repeat padding-box;
+    border-top: 1.5px solid #0091ff6b;
+    border-bottom: 1.5px solid #0091ff6b;
+}
+.menubar {
+    font-size: 1.1rem;
+    border-bottom: 0px;
+    line-height: 4.5rem;
+    font-weight: bold;
+    background: none;
+}
+.promotion-list-item-container {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid #cccccc;
+
+}
+.promotion-list-item-img {
+    display: flex;
+    align-items: center;
+}
+.promotion-list-item-img img {
+    width: 7vw;
+    height: 7vw;
+    border-radius: 6px;
+}
+.promotion-list-item-title {
+    font-size: 22px;
+    color: #0091ff;
+    font-weight: bold;
+}
+.promotion-list-item-text {
+    font-size: 1.1rem;
+    margin-top: 20px;
+}
+.promotion-list-item-btn {
+    width: 200px;   
+}
+.promotion-list-item-star {
+    height: 100%;
+    width: 40px;
+    float: right;
+    background: #7778ED;
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+}
+.promotion-list-more-btn {
+    width: 200px;
+    margin: 40px auto;
+}
+.footer-link-container {
+    background: #f4f4f4;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+.footer-link-bold {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #222A41;
+}
+.footer-link {
+    font-size: 0.9rem;
+    color: #222A41;
+}
+.logout-icon {
+    color: #0091ff;
+    font-size: 1.1rem;
+    cursor: pointer;
 }

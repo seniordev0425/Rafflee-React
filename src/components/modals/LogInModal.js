@@ -13,7 +13,8 @@ import {
     maxLength
 } from '../../utils/validation'
 
-function LogInModal(){
+function LogInModal(props){
+    const {dispatch} = props
 
     const [submitting, setSubmitting] = useState(false)
 
@@ -37,16 +38,17 @@ function LogInModal(){
         fetch("https://rafflee.io/api/login/", requestOptions)
         .then(response => response.text())
         .then(result => {
-            console.log(result)
             setSubmitting(false)
             var json_rlt = JSON.parse(result)
-            if (json_rlt.status == 200){
+            if (json_rlt.token){
                 localStorage.setItem('token', json_rlt.token)
                 localStorage.setItem('company', json_rlt.company)
                 localStorage.setItem('myInfo', JSON.stringify(values))
+                dispatch({type: "setToken", data: json_rlt.token})
+                dispatch({type: "setMyInfo", data: values})
             }
             if (json_rlt.status == 400 && json_rlt.msg == 'MSG_USER_NOT_ACTIVE'){
-                localStorage.setItem('myInfo', JSON.stringify(values))
+                // localStorage.setItem('myInfo', JSON.stringify(values))
             }
         })
         .catch(error => console.log('error', error));
@@ -99,4 +101,10 @@ function LogInModal(){
     );
 }
 
-export default LogInModal;
+function mapStateToProps(state) {
+    return {
+        myInfo: state.userInfo.myInfo,
+        token: state.userInfo.token
+    }
+}
+export default connect(mapStateToProps)(LogInModal);

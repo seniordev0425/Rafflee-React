@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react'
+import { connect } from "react-redux";
+import { Link } from 'react-router-dom';
 import {Row} from 'reactstrap'
 import Sidebar from "react-sidebar";
 import images from '../../utils/images'
@@ -17,9 +19,10 @@ function Header(props){
     }
     
     useEffect(() => {
+        // console.log('token = ' + props.token)
         setHideNav(window.innerWidth <= 750)
         window.addEventListener('resize', resize)
-        console.log('really:' + hideNav)
+        
     })
     const resize = () => {
         setHideNav(window.innerWidth <=750)
@@ -27,7 +30,7 @@ function Header(props){
     return(
         <div className="header-container">
             <div style={{width: "100%", height: 40}}>
-                <img src={images.logo} />
+                <Link to="/"> <img src={images.logo} /> </Link>
                 <div className="header-right-part">
                 {hideNav ? (
                     <Sidebar
@@ -44,7 +47,8 @@ function Header(props){
                 
                     </Sidebar>
                 ) : (
-                    <HeaderBeforeLogin/>
+                    props.token ? <HeaderAfterLogin/> : <HeaderBeforeLogin/>
+                    
                 )}
                 
                 </div>
@@ -53,5 +57,10 @@ function Header(props){
         </div>
     )
 }
-
-export default Header;
+function mapStateToProps(state) {
+    return {
+        myInfo: state.userInfo.myInfo,
+        token: state.userInfo.token
+    }
+}
+export default connect(mapStateToProps)(Header);
