@@ -19,14 +19,18 @@ function JoinHeader(props){
     }
     return(
         <>
-            <div className="join-header">
-                Rafflee is  tool that everyone wants.  
-                <Button color="link" className="join-now-button" onClick={toggle}> Join now</Button>
+            {!props.myInfo &&
+            <>
+                <div className="join-header">
+                    Rafflee is  tool that everyone wants.  
+                    <Button color="link" className="join-now-button" onClick={toggle}> Join now</Button>
                 
-            </div>
-            
-            <LoginSignupBaseModal modal={modal} isLogin={isLogin} switch_login_signin={switch_login_signin} toggle={toggle} companyStatus={companyStatus} showCompanyModal={showCompanyModal}/>
-        </>
+                </div>
+                
+                <LoginSignupBaseModal modal={modal} isLogin={isLogin} switch_login_signin={switch_login_signin} toggle={toggle} companyStatus={companyStatus} showCompanyModal={showCompanyModal}/>
+            </>
+            }
+           </>
     );
 }
 function mapStateToProps(state) {

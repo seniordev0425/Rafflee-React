@@ -1,6 +1,10 @@
 const images = {
-    sign_up_google_logo: require('../assets/image/sign_up_google_ico.png'),
-    sign_up_fb_logo: require('../assets/image/sign_up_google_ico.png'),
+    google_icon: require('../assets/image/google_icon.png'),
+    fb_icon: require('../assets/image/google_icon.png'),
+    twitter_icon: require('../assets/image/twitter_icon.png'),
+    twitch_icon: require('../assets/image/twitch_icon.png'),
+    youtube_icon: require('../assets/image/youtube_icon.png'),
+    instagram_icon: require('../assets/image/google_icon.png'),
     logo: require('../assets/image/logo.png'),
     logout_icon: require('../assets/image/logout_icon.png'),
     profile_img: require('../assets/image/profile_img.png'),

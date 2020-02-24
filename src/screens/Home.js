@@ -7,19 +7,18 @@ import Header from '../components/layouts/Header'
 import Banner from '../components/layouts/Banner'
 import Carousel from '../components/layouts/Carousel'
 import CurrentPromotionList from '../components/layouts/CurrentPromotionLIst'
-import FooterLink from '../components/layouts/Footer/FooterLink'
-import Footer from '../components/layouts/Footer/Footer'
+import FooterLink from '../components/layouts/footer/FooterLink'
+import Footer from '../components/layouts/footer/Footer'
 
 
 function Home(props){
     const {history} = props
-    console.log('myInfo' + props.myInfo)
     useEffect(() => {
         document.title = "Home"
     });
     return (
         <div style={{fontFamily:"sofiapro"}}>
-            {props.myInfo ? (<></>) : (<JoinHeader/>)}
+            <JoinHeader/>
             
             <Header/>
             <Banner/>

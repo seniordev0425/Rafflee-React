@@ -5,6 +5,7 @@ import { Row, Col } from 'reactstrap';
 import images from '../../utils/images'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
+import { Link } from 'react-router-dom';
 
 
 
@@ -24,7 +25,7 @@ function HeaderAfterLogin(props){
                 <Button type="link" className="no-border-btn" style={{marginRight:30}}>Deals</Button>
             </Col>
             <Col>
-                <Button className="white-btn" style={{width: 140}}>Account</Button>
+            <Link to="/user-account"><Button className="white-btn" style={{width: 140}}>Account</Button></Link>
             </Col>
             <Col>
                 <Button type="primary" className="ant-blue-btn" style={{width: 140}}>Dashboard</Button>

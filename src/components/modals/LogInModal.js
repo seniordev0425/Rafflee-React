@@ -4,6 +4,8 @@ import {Link} from 'react-router-dom'
 import {Form as FinalForm, Field} from 'react-final-form'
 import {Form, FormGroup, Button, Input} from 'reactstrap'
 import FormInput from '../common/FormInput'
+import FormCheckbox from '../common/FormCheckbox'
+import ForgotPassword from './ForgotPassword'
 
 import {
     composeValidators, 
@@ -17,6 +19,9 @@ function LogInModal(props){
     const {dispatch} = props
 
     const [submitting, setSubmitting] = useState(false)
+    const [openForgotModal, setOpenForgotModal] = useState(false)
+
+    const handleForgotModal = () => setOpenForgotModal(!openForgotModal)
 
     const onSubmit = (values) => {
         setSubmitting(true)
@@ -82,7 +87,15 @@ function LogInModal(props){
 
                             />
                         </FormGroup>
-                        
+                        <FormGroup>
+                           
+                            <Field
+                                name="remember"
+                                component={FormCheckbox}
+                            />
+                            <span> Remember Me</span>
+                            <span className="policy-button float-right" onClick={handleForgotModal}>Forgot Password?</span>
+                        </FormGroup>
                         <Button
                             type="submit"
                             size="lg"
@@ -95,7 +108,12 @@ function LogInModal(props){
                         </Button>
 
                     </Form>
+
                 )}
+            />
+            <ForgotPassword
+                open={openForgotModal}
+                onToggle={handleForgotModal}
             />
         </div>
     );

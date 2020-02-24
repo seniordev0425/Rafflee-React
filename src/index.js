@@ -7,6 +7,7 @@ import {Provider} from 'react-redux'
 import AppReducer from './reducers/index'
 
 import Home from './screens/Home'
+import UserAccount from './screens/UserAccount'
 import * as serviceWorker from './serviceWorker'
 
 import 'bootstrap/dist/css/bootstrap.css'
@@ -24,6 +25,7 @@ ReactDOM.render(
         <Router history={history}>
             <Switch>
                 <Route exact path="/" component={Home} />
+                <Route exact path="/user-account" component={UserAccount} />
             </Switch>
         </Router>
     </Provider>, 

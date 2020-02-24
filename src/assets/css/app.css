@@ -2,6 +2,10 @@
     font-family: 'sofiapro';
     src: local('sofiapro'), url(../font/sofiapro.otf) format('opentype')
 }
+.row {
+    margin-left: 0px;
+    margin-right: 0px;
+}
 .join-header {
     width: 100%;
     height: 55px;
@@ -9,7 +13,7 @@
     justify-content: center;
     align-items: center;
     font-family: sofiapro;
-    background-image: url('../image/Join_header.svg');
+    background-image: url('../image/Join_header.png');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
@@ -195,6 +199,98 @@ h2 span {
     background: #3B5999 0% 0% no-repeat padding-box;
     border-radius: 0px 6px 6px 0px;
 }
+.twitter-icon-container1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    background: #E2F0FC 0% 0% no-repeat padding-box;
+    border-radius: 6px 0px 0px 6px;
+}
+.twitter-icon-container1 img {
+    width: 1.5rem;
+}
+.twitter-icon-container2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    color: white;
+    text-align: center;
+    background: #0091ff 0% 0% no-repeat padding-box;
+    border-radius: 0px 6px 6px 0px;
+}
+.twitch-icon-container1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    background: #6422FF 0% 0% no-repeat padding-box;
+    border-radius: 6px 0px 0px 6px;
+}
+.twitch-icon-container1 img {
+    width: 1.5rem;
+}
+.twitch-icon-container2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    color: white;
+    text-align: center;
+    background: #4103A2 0% 0% no-repeat padding-box;
+    border-radius: 0px 6px 6px 0px;
+}
+.youtube-icon-container1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    background: #FFDDDD 0% 0% no-repeat padding-box;
+    border-radius: 6px 0px 0px 6px;
+}
+.youtube-icon-container1 img {
+    width: 3.5rem;
+}
+.youtube-icon-container2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    color: white;
+    text-align: center;
+    background: #F01212 0% 0% no-repeat padding-box;
+    border-radius: 0px 6px 6px 0px;
+}
+.instagram-icon-container1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    background: #481E64 0% 0% no-repeat padding-box;
+    border-radius: 6px 0px 0px 6px;
+}
+.instagram-icon-container1 img {
+    width: 1.2rem;
+}
+.instagram-icon-container2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    color: white;
+    text-align: center;
+    background: #7E3AAC 0% 0% no-repeat padding-box;
+    border-radius: 0px 6px 6px 0px;
+}
 .selected-flag {
     height: 100% !important;
 }
@@ -264,6 +360,7 @@ h2 span {
 }
 .banner-search-btn {
     height: 100%;
+    width: 55px;
     border: 0px;
     display: flex;
     justify-content: center;
@@ -402,4 +499,28 @@ h2 span {
     color: #0091ff;
     font-size: 1.1rem;
     cursor: pointer;
+}
+.float-right {
+    float: right;
+}
+.float-left {
+    float: left;
+}
+.pointer {
+    cursor: pointer;
+}
+.ant-date-picker {
+    width: 100%;
+}
+.ant-date-picker input {
+    height: 50px;
+    padding-left: 2.5rem;
+}
+.user-account-page-input {
+    width: 50%;
+}
+@media (max-width: 575px) {
+    .user-account-page-input {
+        width: 100%;
+    }
 }
