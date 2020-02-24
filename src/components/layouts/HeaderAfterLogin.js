@@ -25,14 +25,15 @@ function HeaderAfterLogin(props){
                 <Button type="link" className="no-border-btn" style={{marginRight:30}}>Deals</Button>
             </Col>
             <Col>
-            <Link to="/user-account"><Button className="white-btn" style={{width: 140}}>Account</Button></Link>
+                <Link to="/user-account"><Button className="white-btn" style={{width: 140}}>Account</Button></Link>
             </Col>
             <Col>
-                <Button type="primary" className="ant-blue-btn" style={{width: 140}}>Dashboard</Button>
+                <Link to="/dashboard"><Button type="primary" className="ant-blue-btn" style={{width: 140}}>Dashboard</Button></Link>
             </Col>
-            <Col onClick={logOut}>
+            <Col onClick={logOut} className="pointer">
                 <Button type="link" className="no-border-btn">Logout</Button>
-                <FontAwesomeIcon icon={faSignOutAlt} className="logout-icon"/>
+                <img src={images.logout_icon} className="logout-icon"/>
+                
             </Col>
         </Row>     
         </>

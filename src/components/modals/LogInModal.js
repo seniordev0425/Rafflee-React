@@ -48,9 +48,9 @@ function LogInModal(props){
             if (json_rlt.token){
                 localStorage.setItem('token', json_rlt.token)
                 localStorage.setItem('company', json_rlt.company)
-                localStorage.setItem('myInfo', JSON.stringify(values))
                 dispatch({type: "setToken", data: json_rlt.token})
-                dispatch({type: "setMyInfo", data: values})
+                dispatch({type: "setCompany", data: true})
+                
             }
             if (json_rlt.status == 400 && json_rlt.msg == 'MSG_USER_NOT_ACTIVE'){
                 // localStorage.setItem('myInfo', JSON.stringify(values))
@@ -122,7 +122,8 @@ function LogInModal(props){
 function mapStateToProps(state) {
     return {
         myInfo: state.userInfo.myInfo,
-        token: state.userInfo.token
+        token: state.userInfo.token,
+        company: state.userInfo.company,
     }
 }
 export default connect(mapStateToProps)(LogInModal);

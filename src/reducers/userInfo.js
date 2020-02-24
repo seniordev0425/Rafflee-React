@@ -1,6 +1,7 @@
 const initialFeedState = {
-    myInfo: null,
-    token: null
+    myInfo: null,   //account information. object
+    token: null,    //token information. string
+    company: false  //is company?
 }
 
 function UserInfo(state = initialFeedState, action){
@@ -14,6 +15,11 @@ function UserInfo(state = initialFeedState, action){
             return {
                 ...state,
                 token: action.data
+            }
+        case 'setCompany':
+            return {
+                ...state,
+                company: action.data
             }
         default:
             return state

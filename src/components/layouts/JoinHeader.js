@@ -19,7 +19,7 @@ function JoinHeader(props){
     }
     return(
         <>
-            {!props.myInfo &&
+            {!props.token &&
             <>
                 <div className="join-header">
                     Rafflee is  tool that everyone wants.  
@@ -35,7 +35,8 @@ function JoinHeader(props){
 }
 function mapStateToProps(state) {
     return {
-        myInfo: state.userInfo.myInfo
+        myInfo: state.userInfo.myInfo,
+        token: state.userInfo.token,
     }
 }
 export default connect(mapStateToProps)(JoinHeader);

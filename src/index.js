@@ -5,7 +5,7 @@ import {createStore} from 'redux';
 import {Router, Route, Switch} from 'react-router-dom'
 import {Provider} from 'react-redux'
 import AppReducer from './reducers/index'
-
+import Routes from './routes/Routes'
 import Home from './screens/Home'
 import UserAccount from './screens/UserAccount'
 import * as serviceWorker from './serviceWorker'
@@ -23,10 +23,7 @@ const store = createStore(AppReducer)
 ReactDOM.render(
     <Provider store={store}>
         <Router history={history}>
-            <Switch>
-                <Route exact path="/" component={Home} />
-                <Route exact path="/user-account" component={UserAccount} />
-            </Switch>
+            <Routes/>      
         </Router>
     </Provider>, 
     document.getElementById('root')

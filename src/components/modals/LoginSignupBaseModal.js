@@ -18,7 +18,7 @@ function LoginSignupBaseModal(props){
     // console.log('status:' + status)
     return (
         <>
-            <Modal isOpen={modal && !props.myInfo} toggle={toggle} style={{top: 165}}>
+            <Modal isOpen={modal && !props.token} toggle={toggle} style={{top: 165}}>
                     <ModalHeader toggle={toggle} style={{borderBottom: 'none'}}></ModalHeader>
                     <ModalBody className="modal-body-padding">
                         {companyStatus == true ? (<CompanyModal/>): (
@@ -59,7 +59,8 @@ LoginSignupBaseModal.propTypes = {
 
 function mapStateToProps(state) {
     return {
-        myInfo: state.userInfo.myInfo
+        myInfo: state.userInfo.myInfo,
+        token: state.userInfo.token,
     }
 }
 

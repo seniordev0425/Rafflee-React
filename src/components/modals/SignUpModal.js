@@ -48,8 +48,8 @@ function SignUpModal(props){
             setSubmitting(false)
             var json_rlt = JSON.parse(result)
             if (json_rlt.status == 200){
-                localStorage.setItem('myInfo', JSON.stringify(values))
-                dispatch({type: "setMyInfo", data: values})
+                // localStorage.setItem('myInfo', JSON.stringify(values))
+                // dispatch({type: "setMyInfo", data: values})
                 
             }
             
