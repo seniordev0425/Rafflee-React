@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
-import {Row} from 'reactstrap'
+import {Row, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem} from 'reactstrap'
+import { Menu, Dropdown, Icon } from 'antd'
 import Sidebar from "react-sidebar";
 import images from '../../utils/images'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -11,19 +12,15 @@ import HeaderBeforeLogin from './HeaderBeforeLogin'
 import HeaderAfterLogin from './HeaderAfterLogin'
 import SidebarContent from './SidebarContent'
 function Header(props){
-    const [sidebarOpen, SetSidebarOpen] = useState(false)
     const [hideNav, setHideNav] = useState(false)
-    const onSetSidebarOpen = (val) => {
-        
-        SetSidebarOpen(val)
-    }
     
     useEffect(() => {
-        // console.log('token = ' + props.token)
         setHideNav(window.innerWidth <= 750)
         window.addEventListener('resize', resize)
-        
-    })
+        return ()=>{
+            window.removeEventListener('resize', resize)
+        }
+    },[])
     const resize = () => {
         setHideNav(window.innerWidth <=750)
     }
@@ -33,19 +30,7 @@ function Header(props){
                 <Link to="/"> <img src={images.logo} /> </Link>
                 <div className="header-right-part">
                 {hideNav ? (
-                    <Sidebar
-                        sidebar={<SidebarContent/>}
-                        open={sidebarOpen}
-                        onSetOpen={onSetSidebarOpen}
-                        styles={{ sidebar: { background: "white", width: 200 } }}
-                   
-                    >
-                        <span className="side-bar-menu" onClick={()=>SetSidebarOpen(true)}>
-                            <FontAwesomeIcon icon={faBars} aria-hidden="true" size="lg"/>
-                        </span>
-                        
-                
-                    </Sidebar>
+                   props.token ? <HeaderAfterLogin/> : <HeaderBeforeLogin/>
                 ) : (
                     props.token ? <HeaderAfterLogin/> : <HeaderBeforeLogin/>
                     

@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { connect } from "react-redux";
 import {Button, Modal, ModalHeader, ModalBody} from 'reactstrap'
 import LoginSignupBaseModal from '../modals/LoginSignupBaseModal'
@@ -17,9 +17,22 @@ function JoinHeader(props){
     const switch_login_signin = (val) => {
         setIsLogin(val)
     }
+    const [hide, setHide] = useState(false)
+    
+    useEffect(() => {
+        setHide(window.innerWidth <= 750)
+        window.addEventListener('resize', resize)
+        return ()=>{
+            window.removeEventListener('resize', resize)
+        }  
+        
+    },[])
+    const resize = () => {
+        setHide(window.innerWidth <=750)
+    }
     return(
         <>
-            {!props.token &&
+            {(!props.token && !hide) &&
             <>
                 <div className="join-header">
                     Rafflee is  tool that everyone wants.  

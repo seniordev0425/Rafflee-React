@@ -525,3 +525,54 @@ h2 span {
         width: 100%;
     }
 }
+.flag-select img {
+    position: initial;
+}
+.flag-select {
+    padding: 0px !important;
+}
+.selected--flag--option {
+    padding: 0px !important;
+}
+.upload-image-container {
+
+    border-radius: 10px;
+}
+.chooseFileButton {
+    background: #0091ff !important;
+}
+.chooseFileButton:hover {
+    background: #0091ff !important;
+}
+.blue-link-btn {
+    padding: 0px;
+    font-size: 1.1rem;
+    color: #0091ff !important;
+}
+.green-dot {
+    height: 20px;
+    width: 20px;
+    float: right;
+    background-color: #03D54B;
+    box-shadow: 0px 3px 6px #03D54B29;
+    border-radius: 50%;
+    display: inline-block;
+}
+.red-dot {
+    height: 20px;
+    width: 20px;
+    float: right;
+    background-color: #D50303;
+    box-shadow: 0px 3px 6px #03D54B29;
+    border-radius: 50%;
+    display: inline-block;
+}
+.loading-bar {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -100px;
+    margin-left: -100px;
+    width: 200px;
+    height: 200px;
+}

@@ -12,6 +12,7 @@ import * as serviceWorker from './serviceWorker'
 
 import 'bootstrap/dist/css/bootstrap.css'
 import 'antd/dist/antd.css'
+import 'react-flags-select/css/react-flags-select.css'
 import './assets/css/app.css'
 import './utils/carousel_lib/scss/main.scss'
 
