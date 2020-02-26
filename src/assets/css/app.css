@@ -67,13 +67,25 @@
     border: 1px solid #DEE6E9 !important;
     border-radius: 6px !important;
     padding-left: 2.5rem !important;
-    height: 150px !important;
     font-size: 1rem !important
+}
+.company-contact-form-text-area:focus {
+    box-shadow: none !important;
 }
 .blue-btn {
     width: 100%;
     height: 50px;
     background: #0091FF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 6px 15px #0091FF26 !important;
+    border-radius: 6px;
+    opacity: 1;
+    font-family: 'sofiapro';
+    
+}
+.red-btn {
+    width: 100%;
+    height: 50px;
+    background: #f01212 0% 0% no-repeat padding-box;
     box-shadow: 0px 6px 15px #0091FF26 !important;
     border-radius: 6px;
     opacity: 1;
@@ -520,11 +532,12 @@ h2 span {
 .user-account-page-input {
     width: 50%;
 }
-@media (max-width: 575px) {
+@media (max-width: 1200px) {
     .user-account-page-input {
         width: 100%;
     }
 }
+
 .flag-select img {
     position: initial;
 }
@@ -575,4 +588,25 @@ h2 span {
     margin-left: -100px;
     width: 200px;
     height: 200px;
+}
+.inline-div-active 
+{
+    display: inline-flex;
+    height: 50px;
+    align-items: center;
+    padding-left: 15px;
+    padding-right: 15px;
+    border: 1px solid;
+    border-radius: 6px;
+    color: #0091ff;
+}
+.inline-div-inactive {
+    display: inline-flex;
+    height: 50px;
+    align-items: center;
+    padding-left: 15px;
+    padding-right: 15px;
+    border: 1px solid;
+    border-radius: 6px;
+    color: #D0D0CF;
 }

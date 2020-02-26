@@ -5,6 +5,7 @@ import {Form as FinalForm, Field} from 'react-final-form'
 import {Form, FormGroup, Button, Input, Row} from 'reactstrap'
 import FormInput from '../common/FormInput'
 import FormPhoneInput from '../common/FormPhoneInput'
+import {companyContact} from '../../apis/apiCalls'
 
 import {
     composeValidators, 
@@ -22,24 +23,8 @@ function CompanyModal(){
 
     const onSubmit = (values) => {
         setSubmitting(true)
-        
-        var myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
 
-        var urlencoded = new URLSearchParams();
-        urlencoded.append("email", values.email);
-        urlencoded.append("phone_number", values.phonenumber.phone_number);
-        urlencoded.append("company_name", values.company_name);
-        urlencoded.append("message", values.message);
-
-        var requestOptions = {
-            method: 'POST',
-            headers: myHeaders,
-            body: urlencoded,
-            redirect: 'follow'
-        };
-
-        fetch("https://rafflee.io/api/company/contact-form/", requestOptions)
+        companyContact(values)
         .then(response => response.text())
         .then(result => {
             setSubmitting(false)

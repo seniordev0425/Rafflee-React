@@ -5,7 +5,7 @@ import {Form as FinalForm, Field} from 'react-final-form'
 import {Form, FormGroup, Button, Input} from 'reactstrap'
 import FormInput from '../common/FormInput'
 import {Switch} from 'antd'
-import {ApiRoute} from '../../utils/constants'
+import {signUp} from '../../apis/apiCalls'
 
 import {
     composeValidators, 
@@ -24,27 +24,11 @@ function SignUpModal(props){
     
     const onSubmit = (values) => {
         setSubmitting(true)
-        var myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
-        myHeaders.append("Authorization", "Basic cmFmZmxlZTpKM1N1aXNMM1A0c3NXb3JkUg==");
 
-        var urlencoded = new URLSearchParams();
-        urlencoded.append("username", values.username);
-        urlencoded.append("email", values.email);
-        urlencoded.append("password1", values.password1);
-        urlencoded.append("password2", values.password2);
-
-        var requestOptions = {
-            method: 'POST',
-            headers: myHeaders,
-            body: urlencoded,
-            redirect: 'follow'
-        };
-
-        fetch("https://rafflee.io/api/account/register/", requestOptions)
+        signUp(values)
         .then(response => response.text())
         .then(result => {
-            // console.log(result)
+            console.log('signup result' + result)
             setSubmitting(false)
             var json_rlt = JSON.parse(result)
             if (json_rlt.status == 200){

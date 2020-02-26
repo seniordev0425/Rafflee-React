@@ -1,22 +1,35 @@
 import React, {useState, useEffect} from 'react'
 import { connect } from "react-redux";
+import {compose} from 'redux'
+import {withRouter} from 'react-router-dom'
 import {Button, Menu} from 'antd'
 import { Row, Col, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import images from '../../utils/images'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'
+import {logOut} from '../../apis/apiCalls'
 
 
 
 function HeaderAfterLogin(props){
-    const {dispatch} = props
-    const logOut = () => {
-        localStorage.removeItem('token')
-        localStorage.removeItem('company')
-        localStorage.removeItem('myInfo')
-        dispatch({type: "setToken", data: null})
-        dispatch({type: "setCompany", data: null})
+    const {dispatch, history} = props
+    const log_Out = () => {
+        logOut(localStorage.getItem('token'))
+        .then(response => response.text())
+        .then(result => {
+            var json_rlt = JSON.parse(result)
+            if (json_rlt.status == 200){
+                localStorage.removeItem('token')
+                localStorage.removeItem('company')
+                localStorage.removeItem('myInfo')
+                dispatch({type: "setToken", data: null})
+                dispatch({type: "setCompany", data: null})
+                history.push('/')
+                
+            }
+        })
+        .catch(error => console.log('error', error));   
     }
 
     const [hide, setHide] = useState(false)
@@ -47,7 +60,7 @@ function HeaderAfterLogin(props){
                 <Col>
                     <Link to="/dashboard"><Button type="primary" className="ant-blue-btn" style={{width: 140}}>Dashboard</Button></Link>
                 </Col>
-                <Col onClick={logOut} className="pointer">
+                <Col onClick={log_Out} className="pointer">
                     <Button type="link" className="no-border-btn">Logout</Button>
                     <img src={images.logout_icon} className="logout-icon"/>
                     
@@ -77,4 +90,4 @@ function mapStateToProps(state) {
         company: state.userInfo.company,
     }
 }
-export default connect(mapStateToProps)(HeaderAfterLogin);
+export default compose(withRouter, connect(mapStateToProps))(HeaderAfterLogin);

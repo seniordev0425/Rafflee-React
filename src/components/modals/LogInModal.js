@@ -6,6 +6,7 @@ import {Form, FormGroup, Button, Input} from 'reactstrap'
 import FormInput from '../common/FormInput'
 import FormCheckbox from '../common/FormCheckbox'
 import ForgotPassword from './ForgotPassword'
+import {logIn} from '../../apis/apiCalls'
 
 import {
     composeValidators, 
@@ -26,30 +27,17 @@ function LogInModal(props){
     const onSubmit = (values) => {
         setSubmitting(true)
         
-        var myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
-
-        var urlencoded = new URLSearchParams();
-        urlencoded.append("username", values.username);
-        urlencoded.append("password", values.password);
-
-        var requestOptions = {
-            method: 'POST',
-            headers: myHeaders,
-            body: urlencoded,
-            redirect: 'follow'
-        };
-
-        fetch("https://rafflee.io/api/login/", requestOptions)
+        logIn(values)
         .then(response => response.text())
         .then(result => {
             setSubmitting(false)
+            console.log(result)
             var json_rlt = JSON.parse(result)
             if (json_rlt.token){
                 localStorage.setItem('token', json_rlt.token)
                 localStorage.setItem('company', json_rlt.company)
                 dispatch({type: "setToken", data: json_rlt.token})
-                dispatch({type: "setCompany", data: true})
+                dispatch({type: "setCompany", data: json_rlt.company})
                 
             }
             if (json_rlt.status == 400 && json_rlt.msg == 'MSG_USER_NOT_ACTIVE'){
@@ -84,7 +72,6 @@ function LogInModal(props){
                                 type="password"
                                 placeholder="Password"
                                 validate={required('Password required')}
-
                             />
                         </FormGroup>
                         <FormGroup>
