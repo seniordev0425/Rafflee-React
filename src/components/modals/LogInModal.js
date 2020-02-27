@@ -7,6 +7,7 @@ import FormInput from '../common/FormInput'
 import FormCheckbox from '../common/FormCheckbox'
 import ForgotPassword from './ForgotPassword'
 import {logIn} from '../../apis/apiCalls'
+import {openNotification} from '../../utils/notification'
 
 import {
     composeValidators, 
@@ -31,14 +32,13 @@ function LogInModal(props){
         .then(response => response.text())
         .then(result => {
             setSubmitting(false)
-            console.log(result)
             var json_rlt = JSON.parse(result)
             if (json_rlt.token){
                 localStorage.setItem('token', json_rlt.token)
                 localStorage.setItem('company', json_rlt.company)
                 dispatch({type: "setToken", data: json_rlt.token})
                 dispatch({type: "setCompany", data: json_rlt.company})
-                
+                openNotification('success', 'Success', '')
             }
             if (json_rlt.status == 400 && json_rlt.msg == 'MSG_USER_NOT_ACTIVE'){
                 // localStorage.setItem('myInfo', JSON.stringify(values))

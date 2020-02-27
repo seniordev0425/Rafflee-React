@@ -60,9 +60,8 @@ function HeaderBeforeLogin(){
         ) : (
             <ButtonDropdown isOpen={dropdownOpen} toggle={dropDownToggle}>
                 <DropdownToggle caret>
-                    Button Dropdown
                 </DropdownToggle>
-                <DropdownMenu>
+                <DropdownMenu style={{left:-115}}>
                     <DropdownItem>Deals</DropdownItem>
                     <DropdownItem onClick={()=>toggle(false)}>Sign In</DropdownItem>
                     <DropdownItem onClick={()=>toggle(false)}>Log In</DropdownItem>

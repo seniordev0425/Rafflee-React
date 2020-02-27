@@ -28,7 +28,6 @@ function SignUpModal(props){
         signUp(values)
         .then(response => response.text())
         .then(result => {
-            console.log('signup result' + result)
             setSubmitting(false)
             var json_rlt = JSON.parse(result)
             if (json_rlt.status == 200){

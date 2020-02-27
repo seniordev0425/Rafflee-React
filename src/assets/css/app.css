@@ -413,23 +413,33 @@ h2 span {
     border-radius: 8px;
 }
 .campaign-card-body {
-    padding: 12%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 6px;
+    border: 1px solid rgba(126, 154, 168, 0.28);
+    padding: 20px;
+    text-align: center;
+    
 }
 .campaign-card-img {
     display: flex;
     justify-content: center;
 }
+.campaign-card-img img {
+    width: 100px;
+    height: 100px;
+    border-radius: 6px;
+}
 .campaign-card-title {
     font-size: 22px;
     color: #0091ff;
     text-align: center;
-    margin-top: 30px;
     font-weight: bold;
 }
 .campaign-card-text {
     text-align: center;
     font-size: 0.8rem;
-    height: 30%;
 }
 .campaign-card-star {
     display: flex;
@@ -439,8 +449,8 @@ h2 span {
     width: 50px;
     height: 50px;
     background-color: white;
-    right: -8px;
-    top: -8px;
+    right: 15px;
+    top: 10px;
 }
 .find-deal-text {
     font-size: 29px;
@@ -618,4 +628,15 @@ h2 span {
 }
 .ant-checkbox-inner {
     border-color: #d9d9d9 !important;
+}
+
+.btn-secondary:not(:disabled):not(.disabled):active, .btn-secondary:not(:disabled):not(.disabled).active, .show > .btn-secondary.dropdown-toggle {
+    color: #fff;
+    background-color: #0091ff;
+    border-color: #0091ff;
+    box-shadow: none;
+}
+.btn-secondary {
+    background-color: #0091ff;
+    border-color: #0091ff;
 }

@@ -69,13 +69,13 @@ function HeaderAfterLogin(props){
         ) : (
             <ButtonDropdown isOpen={dropdownOpen} toggle={dropDownToggle}>
                 <DropdownToggle caret>
-                    Button Dropdown
+                    
                 </DropdownToggle>
-                <DropdownMenu>
+                <DropdownMenu style={{left:-115}}>
                     <DropdownItem>Deals</DropdownItem>
                     <DropdownItem><Link to="/user-account">Account</Link></DropdownItem>
                     <DropdownItem><Link to="/dashboard">Dashboard</Link></DropdownItem>
-                    <DropdownItem onClick={logOut}><Link to="/user-account">Logout</Link></DropdownItem>
+                    <DropdownItem onClick={log_Out}><Link to="/">Logout</Link></DropdownItem>
                 </DropdownMenu>
             </ButtonDropdown>
         )}

@@ -11,11 +11,7 @@ import {Button, Container, Row, Col, Modal, ModalHeader, ModalBody} from 'reacts
 function LoginSignupBaseModal(props){
 
     const {isLogin, switch_login_signin,  modal, toggle, companyStatus, showCompanyModal} = props
-    // const [status, setStatus] = useState(isLogin)
-    
-    
-    // const switch_login_signin = (val) => setStatus(val)
-    // console.log('status:' + status)
+ 
     return (
         <>
             <Modal isOpen={modal && !props.token} toggle={toggle} style={{top: 165}}>

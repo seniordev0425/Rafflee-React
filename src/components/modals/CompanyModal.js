@@ -6,7 +6,7 @@ import {Form, FormGroup, Button, Input, Row} from 'reactstrap'
 import FormInput from '../common/FormInput'
 import FormPhoneInput from '../common/FormPhoneInput'
 import {companyContact} from '../../apis/apiCalls'
-
+import {openNotification} from '../../utils/notification'
 import {
     composeValidators, 
     required, 
@@ -30,7 +30,7 @@ function CompanyModal(){
             setSubmitting(false)
             var json_rlt = JSON.parse(result)
             if (json_rlt.status == 200)
-                alert('Successfully Submitted')
+                openNotification('success', 'Successfully submitted.')
             
         })
         .catch(error => console.log('error', error));
