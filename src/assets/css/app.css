@@ -2,6 +2,9 @@
     font-family: 'sofiapro';
     src: local('sofiapro'), url(../font/sofiapro.otf) format('opentype')
 }
+body {
+    color: #222A41;
+}
 .row {
     margin-left: 0px;
     margin-right: 0px;
@@ -103,6 +106,12 @@
     border-radius: 6px;
     font-family: 'sofiapro';
     font-size: 1.1rem;
+}
+@media (max-width: 450px){
+    .promotion-list-item-btn {
+        width: 140px !important;
+        font-size: 0.8rem;
+    }
 }
 .ant-blue-btn {
     background-color:#0091ff !important;
@@ -577,6 +586,8 @@ h2 span {
     padding: 0px;
     font-size: 1.1rem;
     color: #0091ff !important;
+    text-decoration: underline;
+    cursor: pointer;
 }
 .green-dot {
     height: 20px;
@@ -640,3 +651,20 @@ h2 span {
     background-color: #0091ff;
     border-color: #0091ff;
 }
+.view-profile-link {
+    color: #454540;
+    opacity: 50%;
+    text-decoration: underline;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+.congratulation-modal {
+    max-width: 80%;
+    margin: auto;
+    top: 50px;
+}
+.space-between {
+    display: flex;
+    justify-content: space-between;
+}
+

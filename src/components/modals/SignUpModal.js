@@ -6,6 +6,7 @@ import {Form, FormGroup, Button, Input} from 'reactstrap'
 import FormInput from '../common/FormInput'
 import {Switch} from 'antd'
 import {signUp} from '../../apis/apiCalls'
+import {openNotification} from '../../utils/notification'
 
 import {
     composeValidators, 
@@ -14,7 +15,6 @@ import {
     minLength, 
     maxLength
 } from '../../utils/validation'
-// import { Input } from 'semantic-ui-react'
 
 function SignUpModal(props){
 
@@ -31,9 +31,7 @@ function SignUpModal(props){
             setSubmitting(false)
             var json_rlt = JSON.parse(result)
             if (json_rlt.status == 200){
-                // localStorage.setItem('myInfo', JSON.stringify(values))
-                // dispatch({type: "setMyInfo", data: values})
-                
+                openNotification('success', 'SignUp Success!', 'We sent a confirm link to your email. Please check your email inbox.')
             }
             
         })

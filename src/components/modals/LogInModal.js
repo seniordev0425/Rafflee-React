@@ -38,7 +38,7 @@ function LogInModal(props){
                 localStorage.setItem('company', json_rlt.company)
                 dispatch({type: "setToken", data: json_rlt.token})
                 dispatch({type: "setCompany", data: json_rlt.company})
-                openNotification('success', 'Success', '')
+                openNotification('success', 'Login Success', '')
             }
             if (json_rlt.status == 400 && json_rlt.msg == 'MSG_USER_NOT_ACTIVE'){
                 // localStorage.setItem('myInfo', JSON.stringify(values))

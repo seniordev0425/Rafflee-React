@@ -19,6 +19,7 @@ const images = {
     my_analytics: require('../assets/image/my_analytics.svg'),
     my_analytics_blue: require('../assets/image/my_analytics_blue.svg'),
     loading_icon: require('../assets/image/loading.gif'),
+    video_player: require('../assets/image/video_player.png'),
 }
 
 export default images;
