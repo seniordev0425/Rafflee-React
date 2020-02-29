@@ -361,7 +361,8 @@ h2 span {
 }
 .banner {
     width: 100%;
-    height: 420px;
+    height: 25vw;
+    min-height: 250px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -539,7 +540,7 @@ h2 span {
     width: 200px;   
 }
 .promotion-list-item-star {
-    height: 100%;
+    height: 40px;
     width: 40px;
     float: right;
     background: #7778ED;
@@ -704,4 +705,119 @@ h2 span {
     display: flex;
     justify-content: space-between;
 }
+.collapse-panel-body {
+    background: #EFF9FF !important;
+    box-shadow: none !important;
+}
+.collapse-panel-summary {
+    height: 70px;
+}
+.MuiIconButton-label {
+    color: #0091ff !important;
+}
+.MuiExpansionPanelDetails-root {
+    padding: 8px 45px 25px 55px !important;
+    display: block !important;
+}
+.MuiExpansionPanelSummary-root {
+    padding: 0px 45px 0px 55px !important;
+}
+@media (max-width: 500px) {
+    .MuiExpansionPanelDetails-root {
+        padding: 8px 25px 25px 35px !important;
+        display: block !important;
+    }
+    .MuiExpansionPanelSummary-root {
+        padding: 0px 25px 0px 35px !important;
+    }
+}
+.collapse-twitter-icon {
+    height: 40px;
+    width: 50px;
+    border-radius: 6px;
+    position: absolute;
+    top: 16px;
+    left: 13px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #E2F0FC;
+}
+.collapse-twitter-icon img {
+    width: 20px;
+}
+.collapse-fb-icon {
+    height: 40px;
+    width: 50px;
+    border-radius: 6px;
+    position: absolute;
+    top: 16px;
+    left: 13px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #2A3E6A;
+    color: white;
+    font-weight: bolder;
+    font-size: 1.4rem;
+}
+.collapse-youtube-icon {
+    height: 40px;
+    width: 50px;
+    border-radius: 6px;
+    position: absolute;
+    top: 16px;
+    left: 13px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #FFDDDD;
+}
+.collapse-other-icon {
+    height: 40px;
+    width: 50px;
+    border-radius: 6px;
+    position: absolute;
+    top: 16px;
+    left: 13px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #22B9A7;
+    color: white;
+    font-weight: bolder;
+    font-size: 1.4rem;
+}
+.dotted-left-border {
+    background-image: linear-gradient(#8ACDFF 33%, #ffffff 3%);
+    background-position: left;
+    background-size: 3px 21px;
+    background-repeat: repeat-y;
+}
+.top-half-circle {
+    width: 50px;
+    height: 25px;
+    background-color: white;
+    border-top-left-radius: 110px;
+    border-top-right-radius: 110px;
+    border: 3px solid #8ACDFF;
+    border-bottom: 0;
+    position: absolute;
+    bottom: -2px;
+    left: -25px;
+}
+.bottom-half-circle {
+    width: 50px;
+    height: 25px;
+    background-color: white;
+    border-bottom-left-radius: 110px;
+    border-bottom-right-radius: 110px;
+    border: 3px solid #8ACDFF;
+    border-top: 0;
+    position: absolute;
+    top: -2px;
+    left: -25px;
+}
+
+
 
