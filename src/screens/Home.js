@@ -81,6 +81,7 @@ function Home(props){
             <CurrentPromotionList
                 highlightedPromotions={highlightedPromotions}
                 newPromotions={newPromotions}
+                hotPromotions={hotPromotions}
                 bestOfferPromotions={bestOfferPromotions}/>
             <FooterLink/>
             <Footer/>
