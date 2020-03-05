@@ -1,17 +1,16 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { connect } from "react-redux";
 import {Link} from 'react-router-dom'
 import {Form as FinalForm, Field} from 'react-final-form'
 import PropTypes from 'prop-types'
 import {Form, FormGroup, Button, Input, Row, Col} from 'reactstrap'
 import ImageUploader from 'react-images-upload'
-import {Switch, DatePicker, Checkbox, Radio} from 'antd'
+import {Switch, DatePicker, Checkbox, Radio, Select} from 'antd'
 import FormInput from '../../common/FormInput'
-import FormPhoneInput from '../../common/FormPhoneInput'
+import WinningItem from './WinningItem'
 import CheckBoxButtonWithString from '../../common/Buttons/CheckBoxButtonWithString'
 import images from '../../../utils/images'
-
-import WinningItem from './WinningItem'
+import {getCategories} from '../../../apis/apiCalls'
 
 import {
     composeValidators, 
@@ -25,6 +24,9 @@ import {
 function FirstLayout(props){
     const {gotoPollCreate, gotoFinalLayout, pollCreated} = props
 
+    const {Option} = Select
+    const [children, setChildren] = useState([])
+    const [categories, setCategories] = useState([])
     const [distribution, setDistribution] = useState('direct')
     const [winningArr, setWinningArr] = useState([{name: '', number_of_people: '', description: ''}])
     const [startDate, setStartDate] = useState('')
@@ -59,6 +61,21 @@ function FirstLayout(props){
             follow: false
         },
     })
+
+    useEffect(() => {
+        getCategories()
+        .then(response => response.text())
+        .then(result => {
+            var json_rlt = JSON.parse(result)
+            if (json_rlt.status == 200){
+                let temp = []
+                for (let i = 0; i < json_rlt.result_data.length; i ++)
+                    temp.push(<Option key={json_rlt.result_data[i].name}>{json_rlt.result_data[i].name}</Option>)
+                setChildren(temp)
+            }
+        })
+        .catch(error => console.log('error', error));
+    },[])
 
     const handleActions = (category, action) => {
         let newActions = {...socialActions}
@@ -129,11 +146,20 @@ function FirstLayout(props){
         result.winnings_start_date = winStartDate
         result.winnings_expiration_date = winEndDate
         result.social_actions = socialActions
+        result.categories = categories
 
         gotoFinalLayout(result)
-        
-
     }
+
+    const handleChange = (val) => {
+        let temp = []
+        val.map((item) => 
+            temp.push({name: item})
+        )
+        setCategories(temp)
+        
+    }
+
     return(
             <FinalForm
                 onSubmit={onSubmit}
@@ -194,24 +220,7 @@ function FirstLayout(props){
                                         </div>
                                     </Col>
                                 </Row>
-                                <Row>
-                                    <Col xs="12" sm="6">
-                                        <div className="mt-4">
-                                            <FormGroup>
-                                                <div className="footer-link-bold mb-3">Number of eligible people</div>
-                                                <Field
-                                                    name="eligible_number"
-                                                    component={FormInput}
-                                                    className="company-contact-form-text-area"
-                                                    type="number"
-                                                    placeholder=""
-                                                    className="custom-form-control"
-                                                    validate={required('Put your Description')}
-                                                />
-                                            </FormGroup>  
-                                        </div>
-                                    </Col>
-                                </Row>
+                               
                                 <Row>
                                     <Col xs="12" sm="6">
                                         <div className="mt-4 half-width">
@@ -287,11 +296,24 @@ function FirstLayout(props){
                                         </Radio.Group>
                                         
                                     </Col>
-                                    
                                 </Row>
                                 <Row>
-                            <Col><div className="footer-link-bold mt-3">Actions</div></Col>
-                        </Row>
+                                    <Col xs="12" sm="6">
+                                        <div className="footer-link-bold mb-3 mt-4">Categories</div>
+                                        <Select
+                                            mode="multiple"
+                                            style={{ width: '100%' }}
+                                            placeholder="Please select categories"
+                                            onChange={handleChange}
+                                        >
+                                            {children}
+                                        </Select>
+                                        
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col><div className="footer-link-bold mt-3">Actions</div></Col>
+                                </Row>
                             </Col>
                         </Row>
                         <Row className="mt-3 pt-3 pb-3">

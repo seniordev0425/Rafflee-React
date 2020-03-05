@@ -12,14 +12,14 @@ import Footer from '../components/layouts/footer/Footer'
 import {getHotPromotions, getHighlightedPromotions, getNewPromotions, getBestOfferPromotions} from '../apis/apiCalls'
 
 
-function Home(props){
+function Deals(props){
     const [hotPromotions, setHotPromotions] = useState([])
     const [highlightedPromotions, sethighlightedPromotions] = useState([])
     const [newPromotions, setNewPromotions] = useState([])
     const [bestOfferPromotions, setBestOfferPromotions] = useState([])
 
     useEffect(() => {
-        document.title = "Home"
+        document.title = "Deals"
         getHotPromotions()
         .then(response => response.text())
         .then(result => {
@@ -63,18 +63,9 @@ function Home(props){
     return (
         <div style={{fontFamily:"sofiapro"}}>
             <JoinHeader/>
+            
             <Header/>
-            <Banner/>
-            <div className="hot-new-text">
-                Hot new contest everyday.
-            </div>
-            <div className="premium-prize-text">
-                Premium prizes & giveaways chosen by Rafflee.
-            </div>
-            {hotPromotions.length && <Carousel hotPromotions={hotPromotions}/>}
-            <div className="find-deal-text">
-                Find the deal you have been looking for.
-            </div>
+            
             <CurrentPromotionList
                 highlightedPromotions={highlightedPromotions}
                 newPromotions={newPromotions}
@@ -82,6 +73,8 @@ function Home(props){
                 bestOfferPromotions={bestOfferPromotions}/>
             <FooterLink/>
             <Footer/>
+            
+
         </div>
     );
 }
@@ -92,4 +85,4 @@ function mapStateToProps(state) {
         token: state.userInfo.token
     }
 }
-export default compose(withRouter, connect(mapStateToProps))(Home);
+export default compose(withRouter, connect(mapStateToProps))(Deals);

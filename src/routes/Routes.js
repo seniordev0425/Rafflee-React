@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react'
 import ReactDOM from 'react-dom'
-import {withRouter} from 'react-router-dom'
+import {withRouter, Redirect} from 'react-router-dom'
 import {compose} from 'redux'
 import {createBrowserHistory} from 'history'
 import {createStore} from 'redux';
 import { connect } from "react-redux";
 import {Router, Route, Switch} from 'react-router-dom'
 import Home from '../screens/Home'
+import Deals from '../screens/Deals'
 import UserAccount from '../screens/UserAccount'
 import Dashboard from '../screens/Dashboard'
 import CampaignDetail from '../screens/CampaignDetail'
+import Activated from '../screens/Activated'
 
 import Loading from '../components/common/Loading'
 import ScrollToTop from '../components/common/ScrollToTop'
@@ -80,6 +82,8 @@ function Routes(props){
                 <Route exact path="/user-account" component={UserAccount} />
                 <Route exact path="/dashboard/:menu" component={Dashboard} />
                 <Route exact path="/campaign-detail/:id" component={CampaignDetail} />
+                <Route exact path="/deals" component={Deals} />
+                <Route exact path="/activated" component={Activated} />
                 <Route component={NotFound} />
             </Switch>
         </ScrollToTop>

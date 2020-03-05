@@ -147,7 +147,7 @@ function UserAccountForm(props){
 
                                 <div className="mt-4 half-width">
                                     <FormGroup>
-                                        {imgBase64Data && (<img src={imgBase64Data}/>)}
+                                        {imgBase64Data && (<img className="profile-img" src={imgBase64Data}/>)}
                                         <ImageUploader
                                             buttonText='Upload Image'
                                             onChange={onDrop}
@@ -216,7 +216,8 @@ function UserAccountForm(props){
                                                     validate={requiredPhoneObj(' Please enter your phone number')}
                                                 />
                                             </div>
-                                            <div style={{width: "25%"}}>
+                                            {props.myInfo && !props.myInfo.phone_number_verification && (
+                                                <div style={{width: "25%"}}>
                                                 <Button
                                                         color="primary"
                                                         className="blue-btn mt-1"
@@ -227,6 +228,8 @@ function UserAccountForm(props){
                                                         Verify
                                                 </Button>
                                             </div>
+                                            )}
+                                            
                                         </div>
                                         
                                         
@@ -397,6 +400,7 @@ function UserAccountForm(props){
             <PhoneVerificationModal
                 open={openVerificationModal}
                 onToggle={handleVerificationModal}
+                phone_number={initialPhoneNum}
             />
         </>
     )

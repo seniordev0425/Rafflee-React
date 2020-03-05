@@ -14,22 +14,22 @@ import {
     minLength, 
     maxLength
 } from '../../utils/validation'
-import {deleteAccountRequest} from '../../apis/apiCalls'
+import {verifyPhoneNumber} from '../../apis/apiCalls'
 
 function PhoneVerificationModal(props) {
-    const { open, onToggle } = props
+    const { open, onToggle, phone_number } = props
     const [submitting, setSubmitting] = useState(false)
 
     const onSubmit = (values) => {
         setSubmitting(true)    
-        deleteAccountRequest(values)
+        verifyPhoneNumber(values.verify_code, phone_number)
           .then(response => response.text())
           .then(result => {
               setSubmitting(false)
               var json_rlt = JSON.parse(result)
               if (json_rlt.status == 200){
-                
-                
+                openNotification('success', '', 'Verified!')
+                onToggle()
               }
           })
           .catch(error => console.log('error', error));
@@ -45,10 +45,10 @@ function PhoneVerificationModal(props) {
                         <Form onSubmit={handleSubmit}>
                             <FormGroup>
                                 <Field
-                                    name="password"
+                                    name="verify_code"
                                     component={FormInput}
                                     className="custom-form-control"
-                                    type="password"
+                                    type="number"
                                     validate={required('Password required')}
                                 />
                             </FormGroup>
@@ -56,12 +56,12 @@ function PhoneVerificationModal(props) {
                             <Button
                                 type="submit"
                                 size="lg"
-                                color="danger"
-                                className="red-btn"
+                                color="primary"
+                                className="blue-btn"
                                 disabled={submitting}
                                 style={{marginTop: '20px'}}
                             >
-                                Delete Account
+                                Verify Code
                             </Button>
 
                         </Form>

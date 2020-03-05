@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import {Menu} from 'antd'
 import {Row, Col} from 'reactstrap'
 import PropTypes from 'prop-types'
@@ -6,26 +6,93 @@ import {Button} from 'reactstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSlidersH } from '@fortawesome/free-solid-svg-icons'
 import PromotionListItem from './PromotionListItem'
+import CategoryFilter from '../../common/CategoryFilter'
+import {getCategories} from '../../../apis/apiCalls'
 
 function CurrentPromotionList(props){
 
     const {highlightedPromotions, newPromotions, bestOfferPromotions, hotPromotions} = props
     const [currentMenu, setCurrentMenu] = useState('highlight')
-
-    const changeMenu = (val) => {
-        setCurrentMenu(val)
-    }
+    const [openCategory, setOpenCategory] = useState(false)
+    const [categories, setCategories] = useState([])
+    const [allChecked, setAllChecked] = useState(true)
 
     const promotionList = {
         highlight: highlightedPromotions,
         new: newPromotions,
         hot: hotPromotions,
         bestoffer: bestOfferPromotions
+    } 
+
+    useEffect(() => {
+        getCategories()
+        .then(response => response.text())
+        .then(result => {
+            var json_rlt = JSON.parse(result)
+            if (json_rlt.status == 200){
+                let temp = []
+                json_rlt.result_data.map((item) => 
+                    temp.push({name: item.name, checked: true})
+                )
+                setCategories(temp)
+            }
+        })
+        .catch(error => console.log('error', error))
+    },[])
+
+    const changeMenu = (val) => {
+        setCurrentMenu(val)
+        setOpenCategory(false)
+    }
+
+    const toggleCategory = () => setOpenCategory(!openCategory)
+
+    const handleChange = (e) => {
+        let itemVal = e.target.value
+        let checked = e.target.checked
+        let tempArr = [...categories]
+        if (itemVal === "all") {
+            setAllChecked(checked)
+            tempArr = tempArr.map(item => ({...item, checked: checked}))
+            setCategories(tempArr)
+        }
+        else {
+            tempArr = tempArr.map(item => 
+                item.name === itemVal ? {...item, checked: checked} : item
+            )
+            setCategories(tempArr)
+            setAllChecked(tempArr.every(item => item.checked))
+        }
+    }
+
+    const filter = (list) => {
+        if (allChecked)
+            return list
+
+        let tempArr = []
+        let flag = false
+        for (let i = 0; i < list.length; i ++){
+            if (!list[i].categories) continue
+            flag = false
+            for (let j = 0; j < list[i].categories.length; j ++){
+                if (flag) break
+                for (let k = 0; k < categories.length; k ++){
+                    if (list[i].categories[j] == categories[k].name && categories[k].checked)
+                    {
+                        tempArr.push(list[i])
+                        flag = true
+                        break
+                    }
+                }
+            }
+        }
+        return tempArr
+        
     }
 
     const renderPromotionList = () => {
         return(
-            promotionList[currentMenu].map((item, index) => 
+            filter(promotionList[currentMenu]).map((item, index) => 
                 <div key={index} className="promotion-list-item-container">        
                     <PromotionListItem item={item}/>
                 </div>
@@ -38,28 +105,29 @@ function CurrentPromotionList(props){
             <Row>
                 <Col xs="12" sm={{size: 10, offset: 1}}>
                     <Menu mode="horizontal" className="menubar" selectedKeys={[currentMenu]}>
-                        <Menu.Item key="highlight" className="mr-5" onClick={() => changeMenu('highlight')}>
+                        <Menu.Item key="highlight" className="menu-item-mr" onClick={() => changeMenu('highlight')}>
                             Highlights
                         </Menu.Item>
-                        <Menu.Item key="new" className="mr-5" onClick={() => changeMenu('new')}>
+                        <Menu.Item key="new" className="menu-item-mr" onClick={() => changeMenu('new')}>
                             New
                         </Menu.Item>
-                        <Menu.Item key="hot" className="mr-5" onClick={() => changeMenu('hot')}>
+                        <Menu.Item key="hot" className="menu-item-mr" onClick={() => changeMenu('hot')}>
                             Hot
                         </Menu.Item>
-                        <Menu.Item key="bestoffer" className="mr-5" onClick={() => changeMenu('bestoffer')}>
+                        <Menu.Item key="bestoffer" className="menu-item-mr" onClick={() => changeMenu('bestoffer')}>
                             End Soon
                         </Menu.Item>
-                        <Menu.Item key="categories" className="float-right">
+                        <Menu.Item key="categories" className="menu-bar-settings-icon" onClick={toggleCategory}>
                             <FontAwesomeIcon icon={faSlidersH}/>
                         </Menu.Item>
                     </Menu>
                 </Col>
             </Row>
         </div>
+        {openCategory && <CategoryFilter categories={categories} allChecked={allChecked} handleChange={handleChange}/>}
         {renderPromotionList()}
                 
-        {promotionList[currentMenu].length > 10 && (
+        {filter(promotionList[currentMenu]).length > 10 && (
             <div className="promotion-list-more-btn">
                 <Button
                     size="lg"
@@ -71,7 +139,7 @@ function CurrentPromotionList(props){
             </div>
         )}
               
-        {promotionList[currentMenu].length < 1 && (
+        {filter(promotionList[currentMenu]).length < 1 && (
             <div className="empty-result mt-5 mb-5">
                 <span className="promotion-list-item-title">There is no result to display.</span>
             </div>

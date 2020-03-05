@@ -163,7 +163,7 @@ function CompanyAccountForm(props){
                                 </div>
                                 <div className="mt-4 half-width">
                                     <FormGroup>
-                                        {imgBase64Data && (<img src={imgBase64Data}/>)}
+                                        {imgBase64Data && (<img className="profile-img" src={imgBase64Data}/>)}
                                         <ImageUploader
                                             buttonText='Upload Image'
                                             onChange={onDrop}
@@ -226,17 +226,14 @@ function CompanyAccountForm(props){
                                 <div className="mt-4 half-width">
                                     <div className="footer-link-bold mb-3">Facebook</div>
                                     <FaceBookConnectBtn/>
-
                                 </div>
                                 <div className="mt-4 half-width">
                                     <div className="footer-link-bold mb-3">Twitter</div>
                                     <TwitterConnectBtn/>
-
                                 </div>
                                 <div className="mt-4 half-width">
                                     <div className="footer-link-bold mb-3">Twitch</div>
                                     <TwitchConnectBtn/>
-
                                 </div>
                             </Col>
                             <Col xs="12" sm="6">
@@ -244,14 +241,12 @@ function CompanyAccountForm(props){
                                     <div className="mt-4 half-width">
                                         <div className="footer-link-bold mb-3">Youtube</div>
                                         <YoutubeConnectBtn/>
-
                                     </div>
                                 </Row>
                                 <Row style={{justifyContent:"flex-end"}}>
                                     <div className="mt-4 half-width">
                                         <div className="footer-link-bold mb-3">Instagram</div>
                                         <InstagramConnectBtn/>
-
                                     </div>
                                 </Row>
                                 <Row style={{justifyContent:"flex-end"}}>
@@ -262,6 +257,7 @@ function CompanyAccountForm(props){
                                             color="primary"
                                             className="blue-btn mt-2"
                                             style={{width:"45%", marginRight:"5%"}}
+                                            disabled={submitting}
                                         >
                                             Update
                                         </Button>
@@ -274,14 +270,10 @@ function CompanyAccountForm(props){
                                         >
                                             Delete
                                         </Button>
-
                                     </div>
-                                </Row>
-                                
+                                </Row>                                
                             </Col>
-                        </Row>
-                        
-                        
+                        </Row>                                              
                     </Form>
                 )}
                 

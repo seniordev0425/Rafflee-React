@@ -11,7 +11,7 @@ import images from '../../utils/images'
 
 function CustomCollapsePanel(props) {
 
-    const {type} = props
+    const {type, title, participate} = props
 
     const renderIcons = () => {
         switch(type){
@@ -43,7 +43,7 @@ function CustomCollapsePanel(props) {
                 aria-label="Expand"
                 id="panel1a-header"
                 >
-                <span className="promotion-list-item-title">Tweet about the giveaway</span>
+                <span className="promotion-list-item-title">{title}</span>
                 </ExpansionPanelSummary>
                 <ExpansionPanelDetails>
                     <div>
@@ -55,7 +55,7 @@ function CustomCollapsePanel(props) {
                     <div className="mt-3">
                         <Checkbox>Would you like to receive informations about this company by email?</Checkbox>
                     </div>
-                    <Button className="btn blue-btn mt-3" color="primary" style={{width: 170, height: 38}}>PARTICIPATE</Button>
+                    <Button className="btn blue-btn mt-3 participate-btn-size" color="primary" onClick={participate}>PARTICIPATE</Button>
                 </ExpansionPanelDetails>
             </ExpansionPanel>
             {renderIcons()}

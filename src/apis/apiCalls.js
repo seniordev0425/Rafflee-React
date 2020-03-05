@@ -152,7 +152,7 @@ export const updateUserProfile = (values, birth_date, img, country) => {
         method: 'POST',
         body: formdata,
         headers: myHeaders,
-        redirect: 'follow'
+        redirect: 'follow',
     };
     return fetch(ApiRoute + "account/profile/update/", requestOptions)
 }
@@ -186,7 +186,7 @@ export const updateCompanyProfile = (values, country, img) => {
         method: 'POST',
         body: formdata,
         headers: myHeaders,
-        redirect: 'follow'
+        redirect: 'follow',
     };
     return fetch(ApiRoute + "company/profile/update/", requestOptions)
 }
@@ -271,6 +271,25 @@ export const sendSmsToUser = (values) => {
     return fetch(ApiRoute + "account/number/send-sms/", requestOptions)
 }
 
+export const verifyPhoneNumber = (code, phone) => {
+    var myHeaders = new Headers();
+    myHeaders.append("Authorization", "JWT " + localStorage.getItem('token'));
+    myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+
+    var urlencoded = new URLSearchParams();
+    urlencoded.append("number", "+" + phone.phone_country + phone.phone_number);
+    urlencoded.append("code", code);
+
+    var requestOptions = {
+    method: 'POST',
+    headers: myHeaders,
+    body: urlencoded,
+    redirect: 'follow'
+    };
+
+    return fetch(ApiRoute + "account/number/verification/", requestOptions)
+}
+
 export const createCampaign = (firstFormData, poll) => {
     var myHeaders = new Headers();
     myHeaders.append("Authorization", "JWT " + localStorage.getItem('token'));
@@ -289,18 +308,14 @@ export const createCampaign = (firstFormData, poll) => {
     if (poll)
          formdata.append("poll", JSON.stringify(poll));
     else formdata.append("poll", "false");
-
-    // let twitter = JSON.stringify({"comment": false,"like": false,"retweet": false, "follow": false})
-    // let facebook = JSON.stringify({"comment": false, "like": false,"follow": false})
-    // let instagram = JSON.stringify({"comment": false,"like": false, "follow": false})
-    // let youtube = JSON.stringify({"like": false,"follow": false})
-    // let twitch = JSON.stringify({"comment": false,"like": false,"follow": false})
-
     formdata.append("twitter", JSON.stringify(firstFormData.social_actions.twitter));
     formdata.append("facebook",  JSON.stringify(firstFormData.social_actions.facebook));
     formdata.append("instagram",  JSON.stringify(firstFormData.social_actions.instagram));
     formdata.append("youtube",  JSON.stringify(firstFormData.social_actions.youtube));
     formdata.append("twitch",  JSON.stringify(firstFormData.social_actions.twitch));
+    if (firstFormData.categories)
+         formdata.append("categories",  JSON.stringify(firstFormData.categories));
+    else formdata.append("categories",  "false");
     
     var requestOptions = {
     method: 'POST',
@@ -309,10 +324,44 @@ export const createCampaign = (firstFormData, poll) => {
     redirect: 'follow'
     };
 
-    return fetch(ApiRoute + "campaign/create/", requestOptions)
-    
+    return fetch(ApiRoute + "campaign/create/", requestOptions) 
 }
 
+export const getCategories = () => {
+    var requestOptions = {
+        method: 'GET',
+        redirect: 'follow'
+    };
+      
+    return fetch(ApiRoute + "categories/", requestOptions)
+}
+
+export const getCampaignData = (id) => {
+    var requestOptions = {
+        method: 'GET',
+        redirect: 'follow'
+    };
+      
+    return fetch(ApiRoute + `campaign/${id}/`, requestOptions)
+}
+
+export const campaignParticipate = (id) => {
+    var myHeaders = new Headers();
+    myHeaders.append("Authorization", "JWT " + localStorage.getItem('token'));
+    myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+
+    var urlencoded = new URLSearchParams();
+    urlencoded.append("promotion_id", id);
+
+    var requestOptions = {
+    method: 'POST',
+    headers: myHeaders,
+    body: urlencoded,
+    redirect: 'follow'
+    };
+
+    return fetch(ApiRoute + "campaign/participate/", requestOptions)
+}
 
 
 

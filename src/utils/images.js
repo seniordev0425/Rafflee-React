@@ -12,7 +12,6 @@ const images = {
     trans_star: require('../assets/image/trans_star.svg'),
     user_icon: require('../assets/image/user_icon.png'),
     company_icon: require('../assets/image/company_icon.svg'),
-    logout_icon: require('../assets/image/logout_icon.png'),
     my_campaign: require('../assets/image/my_campaign.svg'),
     my_campaign_blue: require('../assets/image/my_campaign_blue.svg'),
     my_bills: require('../assets/image/my_bills.svg'),
@@ -29,6 +28,11 @@ const images = {
     my_circle_icon_blue: require('../assets/image/star_blue.svg'),
     loading_icon: require('../assets/image/loading.gif'),
     video_player: require('../assets/image/video_player.png'),
+    campaign: require('../assets/image/campaign.png'),
+    award: require('../assets/image/award.png'),
+    clock: require('../assets/image/clock.png'),
+    user: require('../assets/image/user.png'),
+    entry: require('../assets/image/entry.svg'),
 }
 
 export default images;

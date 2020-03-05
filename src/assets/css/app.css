@@ -790,7 +790,7 @@ h2 span {
     font-size: 1.4rem;
 }
 .dotted-left-border {
-    background-image: linear-gradient(#8ACDFF 33%, #ffffff 3%);
+    background-image: linear-gradient(#8ACDFF 33%, #ffffff00 3%);
     background-position: left;
     background-size: 3px 21px;
     background-repeat: repeat-y;
@@ -804,7 +804,7 @@ h2 span {
     border: 3px solid #8ACDFF;
     border-bottom: 0;
     position: absolute;
-    bottom: -2px;
+    bottom: -3px;
     left: -25px;
 }
 .bottom-half-circle {
@@ -816,7 +816,7 @@ h2 span {
     border: 3px solid #8ACDFF;
     border-top: 0;
     position: absolute;
-    top: -2px;
+    top: -3px;
     left: -25px;
 }
 .remove-winning-icon {
@@ -833,6 +833,75 @@ h2 span {
     display: flex;
     justify-content: center;
 }
+.menu-item-mr {
+    margin-right: 3rem;
+}
+@media (max-width: 700px) {
+    .menu-item-mr {
+        margin-right: 0px;
+    }
+}
+.menu-bar-settings-icon {
+    float: right;
+}
+@media (max-width: 700px) {
+    .menu-bar-settings-icon {
+        float: none;
+    }
+}
+.categry-container {
+    background: white;
+    width: 230px;
+    position: absolute;
+    right: 10vw;
+    z-index: 10;
+    box-shadow: 0px 5px 10px #0000001A;
+    border: 1px solid #0091FF;
+    border-radius: 6px;
+}
+.category-item {
+    color: #7E9AA8;
+    padding: 10px 21px;
+    border-bottom: 1px solid #7e9aa81f;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1rem;
+}
+.category-item label {
+    margin-bottom: 0px;
+}
+.campaign-main-panel {
+    margin-left: 15px;
+    margin-right: 15px; 
+    padding: 0px; 
+    border: 3px solid #8ACDFF; 
+    background: #8acdff08;
+}
+.campaign-main-panel .left img {
+    width: 100%;
+    height: 100%;
+}
+.campaign-main-panel .right .div-item {
+    padding-bottom: 35px;
+    border-bottom: 1px solid #00000014;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+.campaign-main-panel .right {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.participate-btn-size {
+    width: 170px;
+    height: 38px;
+}
+.profile-img {
+    width: 100px;
+    height: 120px;
+}
+
 
 
 

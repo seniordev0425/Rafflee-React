@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import {withRouter, Link} from 'react-router-dom'
 import {Button, Menu} from 'antd'
 import {Row, Col, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem} from 'reactstrap'
 import LoginSignupBaseModal from '../../modals/LoginSignupBaseModal'
@@ -22,11 +23,13 @@ function HeaderBeforeLogin(){
         setModal(!modal)
         setCompanyStatus(false)
     }
+
     const switch_login_signin = (val) => {
         setIsLogin(val)
     }
     
     const [hide, setHide] = useState(false)
+
     useEffect(() => {
         
         setHide(window.innerWidth <= 850)
@@ -37,15 +40,17 @@ function HeaderBeforeLogin(){
         }
            
     },[])
+
     const resize = () => {
         setHide(window.innerWidth <=750)
     }
+
     return(
         <>
         {!hide ? (
             <Row>
                 <Col>
-                    <Button type="link" className="no-border-btn">Deals</Button>
+                    <Link to="/deals"><Button type="link" className="no-border-btn">Deals</Button></Link>
                 </Col>
                 <Col>
                     <Button className="white-btn" style={{width: 140}} onClick={()=>toggle(false)}>Sign In</Button>
@@ -62,7 +67,7 @@ function HeaderBeforeLogin(){
                 <DropdownToggle caret>
                 </DropdownToggle>
                 <DropdownMenu style={{left:-115}}>
-                    <DropdownItem>Deals</DropdownItem>
+                    <DropdownItem><Link to="/deals">Deals</Link></DropdownItem>
                     <DropdownItem onClick={()=>toggle(false)}>Sign In</DropdownItem>
                     <DropdownItem onClick={()=>toggle(false)}>Log In</DropdownItem>
                 </DropdownMenu>
