@@ -14,7 +14,7 @@ import {getHotPromotions, getHighlightedPromotions, getNewPromotions, getBestOff
 
 function Home(props){
     const [hotPromotions, setHotPromotions] = useState([])
-    const [highlightedPromotions, sethighlightedPromotions] = useState([])
+    const [highlightedPromotions, setHighlightedPromotions] = useState([])
     const [newPromotions, setNewPromotions] = useState([])
     const [bestOfferPromotions, setBestOfferPromotions] = useState([])
 
@@ -35,10 +35,21 @@ function Home(props){
         .then(result => {
             var json_rlt = JSON.parse(result)
             if (json_rlt.status == 200){                
-                sethighlightedPromotions(json_rlt.result_data)
+                setHighlightedPromotions(json_rlt.result_data)
             }
         })
         .catch(error => console.log('error', error));
+
+        // getHighlightedPromotions()
+        // .then(response => {
+        //     if (response.ok) {
+        //         var json_rlt = JSON.parse(response.text())
+        //         setHighlightedPromotions(json_rlt.result_data)
+        //     }
+        //     else {
+        //         return Promise.reject(response)
+        //     }
+        // })
 
         getNewPromotions()
         .then(response => response.text())

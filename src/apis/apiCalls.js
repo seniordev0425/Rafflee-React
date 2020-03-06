@@ -1,4 +1,4 @@
-import {ApiRoute} from '../utils/constants'
+import {APIROUTE} from '../utils/constants'
 
 export const verifyToken = (token) => {
     var myHeaders = new Headers();
@@ -13,7 +13,7 @@ export const verifyToken = (token) => {
         body: urlencoded,
         redirect: 'follow'
     };
-    return fetch(ApiRoute + "token/verify/", requestOptions)
+    return fetch(APIROUTE + "token/verify/", requestOptions)
 }
 
 export const logIn = (values) => {
@@ -30,7 +30,7 @@ export const logIn = (values) => {
         body: urlencoded,
         redirect: 'follow'
     };
-    return fetch(ApiRoute + "login/", requestOptions)
+    return fetch(APIROUTE + "login/", requestOptions)
 }
 
 export const signUp = (values) => {
@@ -50,7 +50,7 @@ export const signUp = (values) => {
         body: urlencoded,
         redirect: 'follow'
     };
-    return fetch(ApiRoute + "account/register/", requestOptions)
+    return fetch(APIROUTE + "account/register/", requestOptions)
 }
 
 export const resetPasswordRequest = (values) => {
@@ -66,7 +66,7 @@ export const resetPasswordRequest = (values) => {
       body: urlencoded,
       redirect: 'follow'
     };
-    return fetch(ApiRoute + "account/password/reset/email/", requestOptions)
+    return fetch(APIROUTE + "account/password/reset/email/", requestOptions)
 }
 
 export const deleteAccountRequest = (values) => {
@@ -84,7 +84,7 @@ export const deleteAccountRequest = (values) => {
     redirect: 'follow'
     };
 
-    return fetch(ApiRoute + "account/profile/delete/", requestOptions)
+    return fetch(APIROUTE + "account/profile/delete/", requestOptions)
 }
   
 
@@ -104,7 +104,7 @@ export const companyContact = (values) => {
         body: urlencoded,
         redirect: 'follow'
     };
-    return fetch(ApiRoute + "company/contact-form/", requestOptions)
+    return fetch(APIROUTE + "company/contact-form/", requestOptions)
 }
 
 export const logOut = (token) => {
@@ -116,19 +116,19 @@ export const logOut = (token) => {
         headers: myHeaders,
         redirect: 'follow'
     };
-    return fetch(ApiRoute + "logout/", requestOptions)
+    return fetch(APIROUTE + "logout/", requestOptions)
 }
 
-export const getUserProfile = (token) => {
+export const getUserProfile = () => {
     var myHeaders = new Headers();
-    myHeaders.append("Authorization", "JWT " + token);
+    myHeaders.append("Authorization", "JWT " + localStorage.getItem('token'));
 
     var requestOptions = {
         method: 'GET',
         headers: myHeaders,
         redirect: 'follow'
     };
-    return fetch(ApiRoute + "account/profile/", requestOptions)
+    return fetch(APIROUTE + "account/profile/", requestOptions)
 }
 
 export const updateUserProfile = (values, birth_date, img, country) => {
@@ -154,7 +154,7 @@ export const updateUserProfile = (values, birth_date, img, country) => {
         headers: myHeaders,
         redirect: 'follow',
     };
-    return fetch(ApiRoute + "account/profile/update/", requestOptions)
+    return fetch(APIROUTE + "account/profile/update/", requestOptions)
 }
 
 export const getCompanyProfile = (token) => {
@@ -166,7 +166,7 @@ export const getCompanyProfile = (token) => {
         headers: myHeaders,
         redirect: 'follow'
     };
-    return fetch(ApiRoute + "company/profile/", requestOptions)
+    return fetch(APIROUTE + "company/profile/", requestOptions)
 }
 
 export const updateCompanyProfile = (values, country, img) => {
@@ -188,7 +188,7 @@ export const updateCompanyProfile = (values, country, img) => {
         headers: myHeaders,
         redirect: 'follow',
     };
-    return fetch(ApiRoute + "company/profile/update/", requestOptions)
+    return fetch(APIROUTE + "company/profile/update/", requestOptions)
 }
 
 export const getHighlightedPromotions = () => {
@@ -197,7 +197,7 @@ export const getHighlightedPromotions = () => {
         redirect: 'follow'
     };
       
-    return fetch(ApiRoute + "homepage/highlights/", requestOptions)
+    return fetch(APIROUTE + "homepage/highlights/", requestOptions)
 }
 
 export const getHotPromotions = () => {
@@ -206,7 +206,7 @@ export const getHotPromotions = () => {
         redirect: 'follow'
     };
       
-    return fetch(ApiRoute + "homepage/hot/", requestOptions)
+    return fetch(APIROUTE + "homepage/hot/", requestOptions)
 }
 
 export const getNewPromotions = () => {
@@ -215,7 +215,7 @@ export const getNewPromotions = () => {
         redirect: 'follow'
     };
       
-    return fetch(ApiRoute + "homepage/new/", requestOptions)
+    return fetch(APIROUTE + "homepage/new/", requestOptions)
 }
 
 export const getBestOfferPromotions = () => {
@@ -224,7 +224,7 @@ export const getBestOfferPromotions = () => {
         redirect: 'follow'
     };
       
-    return fetch(ApiRoute + "homepage/end-soon/", requestOptions)
+    return fetch(APIROUTE + "homepage/end-soon/", requestOptions)
 }
 
 export const getMyCampaigns = () => {
@@ -237,7 +237,7 @@ export const getMyCampaigns = () => {
     redirect: 'follow'
     };
 
-    return fetch(ApiRoute + "company/campaign/", requestOptions)
+    return fetch(APIROUTE + "company/campaign/", requestOptions)
 }
 
 export const getMyBills = () => {
@@ -250,7 +250,7 @@ export const getMyBills = () => {
     redirect: 'follow'
     };
 
-    return fetch(ApiRoute + "company/bills/", requestOptions)
+    return fetch(APIROUTE + "company/bills/", requestOptions)
 }
 
 export const sendSmsToUser = (values) => {
@@ -268,7 +268,7 @@ export const sendSmsToUser = (values) => {
       redirect: 'follow'
     };
     
-    return fetch(ApiRoute + "account/number/send-sms/", requestOptions)
+    return fetch(APIROUTE + "account/number/send-sms/", requestOptions)
 }
 
 export const verifyPhoneNumber = (code, phone) => {
@@ -287,7 +287,7 @@ export const verifyPhoneNumber = (code, phone) => {
     redirect: 'follow'
     };
 
-    return fetch(ApiRoute + "account/number/verification/", requestOptions)
+    return fetch(APIROUTE + "account/number/verification/", requestOptions)
 }
 
 export const createCampaign = (firstFormData, poll) => {
@@ -324,7 +324,7 @@ export const createCampaign = (firstFormData, poll) => {
     redirect: 'follow'
     };
 
-    return fetch(ApiRoute + "campaign/create/", requestOptions) 
+    return fetch(APIROUTE + "campaign/create/", requestOptions) 
 }
 
 export const getCategories = () => {
@@ -333,7 +333,7 @@ export const getCategories = () => {
         redirect: 'follow'
     };
       
-    return fetch(ApiRoute + "categories/", requestOptions)
+    return fetch(APIROUTE + "categories/", requestOptions)
 }
 
 export const getCampaignData = (id) => {
@@ -342,7 +342,7 @@ export const getCampaignData = (id) => {
         redirect: 'follow'
     };
       
-    return fetch(ApiRoute + `campaign/${id}/`, requestOptions)
+    return fetch(APIROUTE + `campaign/${id}/`, requestOptions)
 }
 
 export const campaignParticipate = (id) => {
@@ -360,7 +360,71 @@ export const campaignParticipate = (id) => {
     redirect: 'follow'
     };
 
-    return fetch(ApiRoute + "campaign/participate/", requestOptions)
+    return fetch(APIROUTE + "campaign/participate/", requestOptions)
+}
+
+export const getCampaignParticipants = (id) => {
+    var myHeaders = new Headers();
+    myHeaders.append("Authorization", "JWT " + localStorage.getItem('token'));
+
+    var requestOptions = {
+        method: 'GET',
+        headers: myHeaders,
+        redirect: 'follow'
+    };
+      
+    return  fetch(APIROUTE + `campaign/participants/${id}/`, requestOptions)
+}
+
+export const getCampaignWinnings = (id) => {
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+    myHeaders.append("Authorization", "JWT " + localStorage.getItem('token'));
+
+    var requestOptions = {
+    method: 'GET',
+    headers: myHeaders,
+    redirect: 'follow'
+    };
+
+    return fetch(APIROUTE + `campaign/live/get-winnings/${id}/`, requestOptions)
+}
+
+export const drawCampaign = (id, drawType, winningType) => {
+    var myHeaders = new Headers();
+    var urlencoded = new URLSearchParams();
+    myHeaders.append("Authorization", "JWT " + localStorage.getItem('token'));
+
+    if (drawType === 'draw_by_gift' || drawType === 'draw_all_by_gift'){
+        myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+        urlencoded.append("winning_name", winningType);
+        
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: urlencoded,
+            redirect: 'follow'
+        };
+    }
+    else {
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            redirect: 'follow'
+        };
+    }
+    
+    var endpoint = ''
+    if (drawType === 'draw_by_gift')
+        endpoint = 'campaign/live/pick/'
+    else if (drawType === 'draw_all_by_gift')
+        endpoint = 'campaign/live/all/'
+    else if (drawType === 'draw')
+        endpoint = 'campaign/live/'
+    else if (drawType === 'draw_all')
+        endpoint = 'campaign/live/finish/'
+    
+    return fetch(APIROUTE + endpoint + id + '/', requestOptions)
 }
 
 

@@ -29,10 +29,13 @@ import {
     requiredPhoneObj
 } from '../../../utils/validation'
 import PhoneVerificationModal from '../../modals/PhoneVerificationModal';
+import Loading from '../../common/Loading';
 
 function UserAccountForm(props){
 
     const userFlag = useRef(null)
+
+    const [isLoading, setIsLoading] = useState(false)
     
     const [isVerify, setIsVerify] = useState(false)
 
@@ -57,10 +60,16 @@ function UserAccountForm(props){
     const handleDeleteModal = () => setOpenDeleteModal(!openDeleteModal)
     const handleVerificationModal = () => setOpenVerificationModal(!openVerificationModal)
 
+    // const abortController = new AbortController()
+    // const signal = abortController.signal
+
     useEffect(() => {
-        getUserProfile(props.token)
+        setIsLoading(true)
+
+        getUserProfile()
         .then(response => response.text())
         .then(result => {
+            setIsLoading(false)
             var json_rlt = JSON.parse(result)
             if (json_rlt.msg == 'USER_INFORMATION_RETRIEVED'){
                 var tmpNum = {}
@@ -78,6 +87,10 @@ function UserAccountForm(props){
             }
         })
         .catch(error => console.log('error', error));
+
+        // return function cleanup() {
+        //     abortController.abort()
+        // }
     }, [])
 
     const onSubmit = (values) => {
@@ -136,6 +149,9 @@ function UserAccountForm(props){
         setIsVerify(false)
     }
 
+    if (isLoading)
+        return <Loading/>
+        
     return (
         <>
             <FinalForm
@@ -230,12 +246,8 @@ function UserAccountForm(props){
                                             </div>
                                             )}
                                             
-                                        </div>
-                                        
-                                        
-                                    </FormGroup>
-
-                                    
+                                        </div>                                       
+                                    </FormGroup>                             
                                 </div>
                                 <div className="mt-4 half-width">
                                     <FormGroup>

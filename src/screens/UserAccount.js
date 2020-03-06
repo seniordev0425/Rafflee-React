@@ -17,13 +17,11 @@ function UserAccount(props){
     const {history} = props
     useEffect(() => {
         document.title = "UserAccount"
-    });
+    },[]);
     return (
         <div style={{fontFamily:"sofiapro"}}>
             <JoinHeader/>
             <Header/>
-
-
             <div className="menubar-container">
                 <Row>
                     <Col xs={{size: 10, offset: 1}}>
@@ -44,12 +42,8 @@ function UserAccount(props){
                     </Col>
                 </Row>
             </div>
-
-
             <FooterLink/>
             <Footer/>
-            
-
         </div>
     );
 }

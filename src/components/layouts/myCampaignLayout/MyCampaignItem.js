@@ -7,7 +7,6 @@ function MyCampaignItem(props){
 
     const {item, goToLivePage, goToParticipatePage} = props
     return(
-
         <div>
             <Row>
                 <Col xs="12" sm={{size: 10, offset: 1}}>
@@ -28,8 +27,10 @@ function MyCampaignItem(props){
                                     Live Page
                                 </Button>
                             </div>
-                            <div className="mt-2" onClick={() => goToParticipatePage(item.pk)}>
-                                <span className="footer-link-bold pointer">View Participants (5)</span>
+                            <div className="mt-2">
+                                <span className="footer-link-bold pointer"  onClick={() => goToParticipatePage(item.pk)}>
+                                    View Participants ({item.number_of_participants})
+                                </span>
                             </div>
                             
                         </Col>

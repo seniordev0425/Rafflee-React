@@ -26,10 +26,12 @@ import {
     maxLength,
     requiredPhoneObj
 } from '../../../utils/validation'
+import Loading from '../../common/Loading';
 
 function CompanyAccountForm(props){
 
     const userFlag = useRef(null)
+    const [isLoading, setIsLoading] = useState(false)
     const [submitting, setSubmitting] = useState(false)
 
     const [initialPhoneNum, setInitialPhoneNum] = useState({phone_number:null, phone_country:null})
@@ -43,9 +45,11 @@ function CompanyAccountForm(props){
     const handleDeleteModal = () => setOpenDeleteModal(!openDeleteModal)
 
     useEffect(() => {
+        setIsLoading(true)
         getCompanyProfile(props.token)
         .then(response => response.text())
         .then(result => {
+            setIsLoading(false)
             var json_rlt = JSON.parse(result)
             if (json_rlt.msg == 'COMPANY_INFORMATION_RETRIEVED'){
                 var tmpNum = {}
@@ -69,7 +73,6 @@ function CompanyAccountForm(props){
         updateCompanyProfile(values, countryName, imgFormData)
         .then(response => response.text())
         .then(result => {
-            console.log(result)
             setSubmitting(false)
             var json_rlt = JSON.parse(result)
             if (json_rlt.status == 200){
@@ -94,6 +97,9 @@ function CompanyAccountForm(props){
             file_read.readAsDataURL(picture[0])
         }
     }
+
+    if (isLoading)
+        return <Loading/>
 
     return (
         <>

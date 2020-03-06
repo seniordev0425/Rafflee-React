@@ -1,1 +1,2 @@
-export const ApiRoute = 'https://rafflee.io/api/';
+export const APIROUTE = 'https://rafflee.io/api/';
+export const NUMBER_PER_PAGE = 5;

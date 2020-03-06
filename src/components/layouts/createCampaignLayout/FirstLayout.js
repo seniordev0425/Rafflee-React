@@ -220,7 +220,21 @@ function FirstLayout(props){
                                         </div>
                                     </Col>
                                 </Row>
-                               
+                                <Row>
+                                    <Col xs="12">
+                                        <div className="footer-link-bold mb-3 mt-4">Categories</div>
+                                        <Select
+                                            mode="multiple"
+                                            className="w-100"
+                                            placeholder="Please select categories"
+                                            onChange={handleChange}
+                                            size="large"
+                                        >
+                                            {children}
+                                        </Select>
+                                        
+                                    </Col>
+                                </Row>
                                 <Row>
                                     <Col xs="12" sm="6">
                                         <div className="mt-4 half-width">
@@ -248,13 +262,7 @@ function FirstLayout(props){
                                             </FormGroup>
                                         </div>
                                     </Col>
-                                </Row>
-                                
-                                    {renderWinningItems()}
-                                
-                                <Row>
-                                    <Col><span className="pointer" onClick={addWinning}>Add More <span style={{fontSize:"1.3rem", fontWeight:"bold"}}> +</span></span></Col>
-                                </Row>
+                                </Row>                               
                                 <Row>
                                     <Col xs="12" sm="6">
                                         <div className="mt-4 half-width">
@@ -283,9 +291,13 @@ function FirstLayout(props){
                                         </div>
                                     </Col>
                                 </Row>
+                                {renderWinningItems()}
+                                <Row>
+                                    <Col><span className="pointer" onClick={addWinning}>Add More <span style={{fontSize:"1.3rem", fontWeight:"bold"}}> +</span></span></Col>
+                                </Row>
                                 <Row>
                                     <Col xs="12">
-                                        <div className="footer-link-bold mb-3">Results</div>
+                                        <div className="footer-link-bold mb-3 mt-3">Results</div>
                                         <Radio.Group onChange={onChangeDistribution} value={distribution}>
                                             <Radio value="direct"/>
                                             <div className={distribution == ('direct') ? "inline-div-active ml-3" : "inline-div-inactive ml-3"}>Direct  </div>
@@ -297,20 +309,7 @@ function FirstLayout(props){
                                         
                                     </Col>
                                 </Row>
-                                <Row>
-                                    <Col xs="12" sm="6">
-                                        <div className="footer-link-bold mb-3 mt-4">Categories</div>
-                                        <Select
-                                            mode="multiple"
-                                            style={{ width: '100%' }}
-                                            placeholder="Please select categories"
-                                            onChange={handleChange}
-                                        >
-                                            {children}
-                                        </Select>
-                                        
-                                    </Col>
-                                </Row>
+                               
                                 <Row>
                                     <Col><div className="footer-link-bold mt-3">Actions</div></Col>
                                 </Row>

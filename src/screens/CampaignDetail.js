@@ -60,7 +60,7 @@ function CampaignDetail(props){
         campaignParticipate(match.params.id)
         .then(response =>  response.text())
         .then(result => {
-            // console.log(result)
+            console.log(result)
             var json_rlt = JSON.parse(result)
             if (json_rlt.status == 200){
                 openNotification('success', 'Success', 'Successfully participated')

@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import {Menu} from 'antd'
+import { Menu, Pagination } from 'antd'
 import {Row, Col} from 'reactstrap'
 import PropTypes from 'prop-types'
 import {Button} from 'reactstrap'
@@ -8,6 +8,8 @@ import { faSlidersH } from '@fortawesome/free-solid-svg-icons'
 import PromotionListItem from './PromotionListItem'
 import CategoryFilter from '../../common/CategoryFilter'
 import {getCategories} from '../../../apis/apiCalls'
+import { NUMBER_PER_PAGE } from '../../../utils/constants'
+
 
 function CurrentPromotionList(props){
 
@@ -16,6 +18,9 @@ function CurrentPromotionList(props){
     const [openCategory, setOpenCategory] = useState(false)
     const [categories, setCategories] = useState([])
     const [allChecked, setAllChecked] = useState(true)
+    
+    const [minValue, setMinValue] = useState(0)
+    const [maxValue, setMaxValue] = useState(NUMBER_PER_PAGE)
 
     const promotionList = {
         highlight: highlightedPromotions,
@@ -87,12 +92,16 @@ function CurrentPromotionList(props){
             }
         }
         return tempArr
-        
+    }
+
+    const handlePagination = (value) => {
+        setMinValue((value - 1) * NUMBER_PER_PAGE)
+        setMaxValue((value) * NUMBER_PER_PAGE) 
     }
 
     const renderPromotionList = () => {
         return(
-            filter(promotionList[currentMenu]).map((item, index) => 
+            filter(promotionList[currentMenu]).slice(minValue, maxValue).map((item, index) => 
                 <div key={index} className="promotion-list-item-container">        
                     <PromotionListItem item={item}/>
                 </div>
@@ -126,24 +135,20 @@ function CurrentPromotionList(props){
         </div>
         {openCategory && <CategoryFilter categories={categories} allChecked={allChecked} handleChange={handleChange}/>}
         {renderPromotionList()}
-                
-        {filter(promotionList[currentMenu]).length > 10 && (
-            <div className="promotion-list-more-btn">
-                <Button
-                    size="lg"
-                    color="primary"
-                    className="bootstrap-blue-btn"
-                >
-                        SEE MORE
-                </Button>
-            </div>
-        )}
               
         {filter(promotionList[currentMenu]).length < 1 && (
             <div className="empty-result mt-5 mb-5">
                 <span className="promotion-list-item-title">There is no result to display.</span>
             </div>
         )}
+
+        <Pagination
+            defaultCurrent={1}
+            defaultPageSize={NUMBER_PER_PAGE}
+            onChange={handlePagination}
+            total={filter(promotionList[currentMenu]).length}
+            className="py-5 d-flex justify-content-center"
+        />
         
            
         </>

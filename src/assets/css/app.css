@@ -4,6 +4,7 @@
 }
 body {
     color: #222A41;
+    font-family: sofiapro;
 }
 .row {
     margin-left: 0px;
@@ -900,6 +901,9 @@ h2 span {
 .profile-img {
     width: 100px;
     height: 120px;
+}
+.ant-pagination-item-link .anticon {
+    vertical-align: 0.08rem;
 }
 
 
