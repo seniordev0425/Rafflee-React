@@ -8,6 +8,7 @@ import {getCampaignParticipants, getCampaignWinnings, drawCampaign} from '../../
 import Loading from '../../common/Loading'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSlidersH, faSearch } from '@fortawesome/free-solid-svg-icons'
+import { openNotification } from '../../../utils/notification'
 
 function LivePageLayout(props){
 
@@ -22,11 +23,8 @@ function LivePageLayout(props){
     const [drawType, setDrawType] = useState('draw_by_gift')
     const [winningType, setWinningType] = useState('')
     const [winnerArr, setWinnerArr] = useState([])
-    
     const [isLoading, setIsLoading] = useState(false)
     
-
-
     useEffect(() => {
         setIsLoading(true)
 
@@ -61,9 +59,9 @@ function LivePageLayout(props){
     const renderParticipants = () => {
         return (
             (participants || []).map((item, index) => 
-                <Row key={index} className="pt-3 pb-3" style={!(index % 2) && {background:"rgba(191, 232, 254, 0.25)"}}>
+                <Row key={index} className="pt-3 pb-3" style={!(index % 2) ? {background:"rgba(191, 232, 254, 0.25)"} : {background:"white"}}>
                     <Col xs={{size: 10, offset: 1}} className="pl-4 pr-4">
-                        <div className="float-left" style={{fontSize:"1.1rem"}}>{item}</div>
+                        <div className="float-left" style={{fontSize:"1.1rem"}}>{item.username}</div>
                         <div className="float-right view-profile-link">View Profile</div>
                     </Col>
                 </Row>
@@ -80,17 +78,20 @@ function LivePageLayout(props){
     }
 
     const onSubmit = () => {
+        console.log(id, drawType, winningType)
         drawCampaign(id, drawType, winningType)
         .then(response => response.text())
         .then(result => {
+            console.log(result)
             var json_rlt = JSON.parse(result)
-            console.log(json_rlt)
             if (json_rlt.status === 200){
                 if (drawType === 'draw_by_gift' || drawType === 'draw')
-                    setWinnerArr([{username: json_rlt.username, winning: json_rlt.winning, picture_profile: json_rlt.picture_profile}])
-                else setWinnerArr(json_rlt.result_data)
-                
+                    setWinnerArr([{username: json_rlt.winner.username, winning: json_rlt.winner.winning, picture_profile: json_rlt.winner.picture_profile}])
+                else setWinnerArr(json_rlt.winners)
+
+                onToggle()
             }
+            else openNotification('warning', 'All winning object are distributed.')
         })
         .catch(error => console.log('error', error));
     }
@@ -138,7 +139,6 @@ function LivePageLayout(props){
                                 </Select>
                                 </>
                             )}
-                            
                         </Col>
                         <Col xs="12" sm="4">
                             <Button
@@ -154,7 +154,7 @@ function LivePageLayout(props){
                 </Col>
             </Row>
 
-            <Congratulation open={open} onToggle={onToggle}/>
+            <Congratulation open={open} onToggle={onToggle} winnerArr={winnerArr}/>
         </>
     )
 }

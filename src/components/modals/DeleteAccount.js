@@ -28,7 +28,7 @@ function DeleteAccount(props) {
               setSubmitting(false)
               var json_rlt = JSON.parse(result)
               if (json_rlt.status == 200){
-                dispatch({type: "setToken", data: null})
+                dispatch({type: "LOG_IN_SUCCESS", data: {token: null, company: false}})
                 if (localStorage.length) localStorage.clear() 
                 history.push('/')
                 openNotification('success', 'Account was deleted.', '')

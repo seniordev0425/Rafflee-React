@@ -226,6 +226,9 @@ h2 span {
     height: 50px;
     background: #2A3E6A 0% 0% no-repeat padding-box;
     border-radius: 6px 0px 0px 6px;
+    font-size: 1.9rem;
+    color: white;
+    font-weight: bold;
 }
 .fb-icon-container1 img {
     width: 1.2rem;
@@ -355,7 +358,6 @@ h2 span {
     font-size: 2rem;
     position: fixed;
     right: 10px;
-
 }
 .logout-icon {
     width: 20px !important;
@@ -634,8 +636,8 @@ h2 span {
     display: inline-block;
 }
 .red-dot {
-    height: 20px;
-    width: 20px;
+    height: 14px;
+    width: 14px;
     float: right;
     background-color: #D50303;
     box-shadow: 0px 3px 6px #03D54B29;
@@ -702,6 +704,37 @@ h2 span {
     max-width: 80%;
     margin: auto;
     top: 50px;
+    
+}
+.congratulation-modal .modal-content {
+    background-image: url('../image/congratulation.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+.congratulation-header {
+    font-size: 40px;
+    color: #0091ff;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+}
+.congratulation-number {
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+.congratulation-item {
+    background: white;
+    box-shadow: 0px 8px 10px #F3F6F9CC;
+    border: 1px solid #e6ebee47;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    padding: 10px 30px;
+    width: 90%;
+    margin: auto;
 }
 .space-between {
     display: flex;
@@ -904,6 +937,14 @@ h2 span {
 }
 .ant-pagination-item-link .anticon {
     vertical-align: 0.08rem;
+}
+.reset-password-form {
+    width: 350px;
+    margin: auto;
+    margin-top: 100px;
+}
+.ant-notification {
+    z-index: 100000 !important;
 }
 
 

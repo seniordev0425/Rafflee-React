@@ -1,16 +1,50 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import {Form as FinalForm, Field} from 'react-final-form'
-import {Form, FormGroup, Button, Input, Modal, ModalHeader, ModalBody} from 'reactstrap'
-import FormInput from '../common/FormInput'
+import { Button, Modal, ModalHeader, ModalBody} from 'reactstrap'
+import images  from '../../utils/images'
 
 function Congratulation(props) {
-  const { open, onToggle } = props
+  const { open, onToggle, winnerArr } = props
   
+  const renderWinners = () => {
+    return(
+      winnerArr.map((item, index) => 
+        <div key={index} className="congratulation-item my-5">
+          <div style={{position: "absolute", left: "6%"}}>
+            <img src={'data:image/png;base64,' + item.picture_profile} alt="" width="50"/>
+            <span className="ml-3">{item.username}</span>
+          </div>
+          <div className="d-flex align-items-center">
+            {item.winning}
+          </div>
+          <div className="d-flex align-items-center">
+            
+          </div>
+        </div>
+      )
+    )
+  }
   return <Modal isOpen={open} toggle={onToggle} className="congratulation-modal">
-            <ModalHeader toggle={onToggle}>Congratulation</ModalHeader>
+            
             <ModalBody>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                <div className="congratulation-header">Congratulations!</div>
+                <div className="congratulation-number">#000000001</div>
+                {renderWinners()}
+                <div className="d-flex justify-content-center">
+                  <Button
+                    color="primary"
+                    className="blue-btn"
+                    style={{width: 180}}
+                    onClick={onToggle}
+                  >
+                  PICK ANOTHER
+                  </Button>
+                </div>
+                <div className="d-flex justify-content-center my-5">
+                  <span className="promotion-list-item-title mr-3" style={{fontSize: 17}}>Powered by: </span>
+                  <img src={images.logo} width="70" height="22" alt="logo"/>
+                </div>
+
             </ModalBody>
         </Modal>
 }

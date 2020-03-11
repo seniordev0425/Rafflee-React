@@ -16,42 +16,7 @@ export const verifyToken = (token) => {
     return fetch(APIROUTE + "token/verify/", requestOptions)
 }
 
-export const logIn = (values) => {
-    var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
 
-    var urlencoded = new URLSearchParams();
-    urlencoded.append("username", values.username);
-    urlencoded.append("password", values.password);
-
-    var requestOptions = {
-        method: 'POST',
-        headers: myHeaders,
-        body: urlencoded,
-        redirect: 'follow'
-    };
-    return fetch(APIROUTE + "login/", requestOptions)
-}
-
-export const signUp = (values) => {
-    var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
-    myHeaders.append("Authorization", "Basic cmFmZmxlZTpKM1N1aXNMM1A0c3NXb3JkUg==");
-
-    var urlencoded = new URLSearchParams();
-    urlencoded.append("username", values.username);
-    urlencoded.append("email", values.email);
-    urlencoded.append("password1", values.password1);
-    urlencoded.append("password2", values.password2);
-
-    var requestOptions = {
-        method: 'POST',
-        headers: myHeaders,
-        body: urlencoded,
-        redirect: 'follow'
-    };
-    return fetch(APIROUTE + "account/register/", requestOptions)
-}
 
 export const resetPasswordRequest = (values) => {
     var myHeaders = new Headers();
@@ -67,6 +32,27 @@ export const resetPasswordRequest = (values) => {
       redirect: 'follow'
     };
     return fetch(APIROUTE + "account/password/reset/email/", requestOptions)
+}
+
+export const resetPassword = (values, token, id) => {
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+
+    var urlencoded = new URLSearchParams();
+    urlencoded.append("token", token);
+    urlencoded.append("id", id);
+    urlencoded.append("password", values.password);
+    urlencoded.append("password_confirmation", values.password_confirmation);
+
+    console.log(urlencoded)
+    var requestOptions = {
+    method: 'POST',
+    headers: myHeaders,
+    body: urlencoded,
+    redirect: 'follow'
+    };
+
+    return fetch(APIROUTE + "account/password/reset/", requestOptions)
 }
 
 export const deleteAccountRequest = (values) => {
@@ -88,207 +74,164 @@ export const deleteAccountRequest = (values) => {
 }
   
 
-export const companyContact = (values) => {
-    var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+// export const companyContact = (values) => {
+//     var myHeaders = new Headers();
+//     myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
 
-    var urlencoded = new URLSearchParams();
-    urlencoded.append("email", values.email);
-    urlencoded.append("phone_number", values.phonenumber.phone_number);
-    urlencoded.append("company_name", values.company_name);
-    urlencoded.append("message", values.message);
+//     var urlencoded = new URLSearchParams();
+//     urlencoded.append("email", values.email);
+//     urlencoded.append("phone_number", values.phonenumber.phone_number);
+//     urlencoded.append("company_name", values.company_name);
+//     urlencoded.append("message", values.message);
 
-    var requestOptions = {
-        method: 'POST',
-        headers: myHeaders,
-        body: urlencoded,
-        redirect: 'follow'
-    };
-    return fetch(APIROUTE + "company/contact-form/", requestOptions)
-}
+//     var requestOptions = {
+//         method: 'POST',
+//         headers: myHeaders,
+//         body: urlencoded,
+//         redirect: 'follow'
+//     };
+//     return fetch(APIROUTE + "company/contact-form/", requestOptions)
+// }
 
-export const logOut = (token) => {
-    var myHeaders = new Headers();
-    myHeaders.append("Authorization", "JWT " + token);
+// export const logOut = (token) => {
+//     var myHeaders = new Headers();
+//     myHeaders.append("Authorization", "JWT " + token);
 
-    var requestOptions = {
-        method: 'POST',
-        headers: myHeaders,
-        redirect: 'follow'
-    };
-    return fetch(APIROUTE + "logout/", requestOptions)
-}
+//     var requestOptions = {
+//         method: 'POST',
+//         headers: myHeaders,
+//         redirect: 'follow'
+//     };
+//     return fetch(APIROUTE + "logout/", requestOptions)
+// }
 
-export const getUserProfile = () => {
-    var myHeaders = new Headers();
-    myHeaders.append("Authorization", "JWT " + localStorage.getItem('token'));
+// export const updateUserProfile = (values, birth_date, img, country) => {
+//     var myHeaders = new Headers()
+//     myHeaders.append("Authorization", "JWT " + localStorage.getItem('token'));
 
-    var requestOptions = {
-        method: 'GET',
-        headers: myHeaders,
-        redirect: 'follow'
-    };
-    return fetch(APIROUTE + "account/profile/", requestOptions)
-}
+//     var formdata = new FormData();
+//     formdata.append("profile_picture", img);
+//     formdata.append("phone_number", values.phonenumber.phone_number);
+//     formdata.append("prefix_number", values.phonenumber.phone_country);
+//     formdata.append("country", country);
+//     formdata.append("region", values.postal_code);
+//     formdata.append("birth_date", birth_date);
+//     formdata.append("first_name", values.first_name);
+//     formdata.append("last_name", values.last_name);
+//     formdata.append("address", values.address);
+//     formdata.append("city", values.street);
+//     formdata.append("gender", values.gender);
 
-export const updateUserProfile = (values, birth_date, img, country) => {
-    var myHeaders = new Headers()
-    myHeaders.append("Authorization", "JWT " + localStorage.getItem('token'));
+//     var requestOptions = {
+//         method: 'POST',
+//         body: formdata,
+//         headers: myHeaders,
+//         redirect: 'follow',
+//     };
+//     return fetch(APIROUTE + "account/profile/update/", requestOptions)
+// }
 
-    var formdata = new FormData();
-    formdata.append("profile_picture", img);
-    formdata.append("phone_number", values.phonenumber.phone_number);
-    formdata.append("prefix_number", values.phonenumber.phone_country);
-    formdata.append("country", country);
-    formdata.append("region", values.postal_code);
-    formdata.append("birth_date", birth_date);
-    formdata.append("first_name", values.first_name);
-    formdata.append("last_name", values.last_name);
-    formdata.append("address", values.address);
-    formdata.append("city", values.street);
-    formdata.append("gender", values.gender);
+// export const updateCompanyProfile = (values, country, img) => {
+//     var myHeaders = new Headers()
+//     myHeaders.append("Authorization", "JWT " + localStorage.getItem('token'));
 
-    var requestOptions = {
-        method: 'POST',
-        body: formdata,
-        headers: myHeaders,
-        redirect: 'follow',
-    };
-    return fetch(APIROUTE + "account/profile/update/", requestOptions)
-}
+//     var formdata = new FormData();
+//     formdata.append("logo", img);
+//     formdata.append("phone_number", values.phonenumber.phone_number);
+//     formdata.append("prefix_number", values.phonenumber.phone_country);
+//     formdata.append("country", country);
+//     formdata.append("region", values.postal_code);
+//     formdata.append("address", values.address);
+//     formdata.append("city", values.street);
 
-export const getCompanyProfile = (token) => {
-    var myHeaders = new Headers();
-    myHeaders.append("Authorization", "JWT " + token);
+//     var requestOptions = {
+//         method: 'POST',
+//         body: formdata,
+//         headers: myHeaders,
+//         redirect: 'follow',
+//     };
+//     return fetch(APIROUTE + "company/profile/update/", requestOptions)
+// }
 
-    var requestOptions = {
-        method: 'GET',
-        headers: myHeaders,
-        redirect: 'follow'
-    };
-    return fetch(APIROUTE + "company/profile/", requestOptions)
-}
-
-export const updateCompanyProfile = (values, country, img) => {
-    var myHeaders = new Headers()
-    myHeaders.append("Authorization", "JWT " + localStorage.getItem('token'));
-
-    var formdata = new FormData();
-    formdata.append("logo", img);
-    formdata.append("phone_number", values.phonenumber.phone_number);
-    formdata.append("prefix_number", values.phonenumber.phone_country);
-    formdata.append("country", country);
-    formdata.append("region", values.postal_code);
-    formdata.append("address", values.address);
-    formdata.append("city", values.street);
-
-    var requestOptions = {
-        method: 'POST',
-        body: formdata,
-        headers: myHeaders,
-        redirect: 'follow',
-    };
-    return fetch(APIROUTE + "company/profile/update/", requestOptions)
-}
-
-export const getHighlightedPromotions = () => {
-    var requestOptions = {
-        method: 'GET',
-        redirect: 'follow'
-    };
+// export const getHighlightedPromotions = () => {
+//     var requestOptions = {
+//         method: 'GET',
+//         redirect: 'follow'
+//     };
       
-    return fetch(APIROUTE + "homepage/highlights/", requestOptions)
-}
+//     return fetch(APIROUTE + "homepage/highlights/", requestOptions)
+// }
 
-export const getHotPromotions = () => {
-    var requestOptions = {
-        method: 'GET',
-        redirect: 'follow'
-    };
+// export const getHotPromotions = () => {
+//     var requestOptions = {
+//         method: 'GET',
+//         redirect: 'follow'
+//     };
       
-    return fetch(APIROUTE + "homepage/hot/", requestOptions)
-}
+//     return fetch(APIROUTE + "homepage/hot/", requestOptions)
+// }
 
-export const getNewPromotions = () => {
-    var requestOptions = {
-        method: 'GET',
-        redirect: 'follow'
-    };
+// export const getNewPromotions = () => {
+//     var requestOptions = {
+//         method: 'GET',
+//         redirect: 'follow'
+//     };
       
-    return fetch(APIROUTE + "homepage/new/", requestOptions)
-}
+//     return fetch(APIROUTE + "homepage/new/", requestOptions)
+// }
 
-export const getBestOfferPromotions = () => {
-    var requestOptions = {
-        method: 'GET',
-        redirect: 'follow'
-    };
+// export const getBestOfferPromotions = () => {
+//     var requestOptions = {
+//         method: 'GET',
+//         redirect: 'follow'
+//     };
       
-    return fetch(APIROUTE + "homepage/end-soon/", requestOptions)
-}
+//     return fetch(APIROUTE + "homepage/end-soon/", requestOptions)
+// }
 
-export const getMyCampaigns = () => {
-    var myHeaders = new Headers();
-    myHeaders.append("Authorization", "JWT " + localStorage.getItem('token'));
+// export const getMyCampaigns = () => {
+//     var myHeaders = new Headers();
+//     myHeaders.append("Authorization", "JWT " + localStorage.getItem('token'));
 
-    var requestOptions = {
-    method: 'GET',
-    headers: myHeaders,
-    redirect: 'follow'
-    };
+//     var requestOptions = {
+//     method: 'GET',
+//     headers: myHeaders,
+//     redirect: 'follow'
+//     };
 
-    return fetch(APIROUTE + "company/campaign/", requestOptions)
-}
+//     return fetch(APIROUTE + "company/campaign/", requestOptions)
+// }
 
-export const getMyBills = () => {
-    var myHeaders = new Headers();
-    myHeaders.append("Authorization", "JWT " + localStorage.getItem('token'));
+// export const getMyBills = () => {
+//     var myHeaders = new Headers();
+//     myHeaders.append("Authorization", "JWT " + localStorage.getItem('token'));
 
-    var requestOptions = {
-    method: 'GET',
-    headers: myHeaders,
-    redirect: 'follow'
-    };
+//     var requestOptions = {
+//     method: 'GET',
+//     headers: myHeaders,
+//     redirect: 'follow'
+//     };
 
-    return fetch(APIROUTE + "company/bills/", requestOptions)
-}
+//     return fetch(APIROUTE + "company/bills/", requestOptions)
+// }
 
-export const sendSmsToUser = (values) => {
-    var myHeaders = new Headers();
-    myHeaders.append("Authorization", "JWT " + localStorage.getItem('token'));
-    myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+// export const sendSmsToUser = (values) => {
+//     var myHeaders = new Headers();
+//     myHeaders.append("Authorization", "JWT " + localStorage.getItem('token'));
+//     myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
     
-    var urlencoded = new URLSearchParams();
-    urlencoded.append("number", "+" + values.phonenumber.phone_country + values.phonenumber.phone_number);
+//     var urlencoded = new URLSearchParams();
+//     urlencoded.append("number", "+" + values.phonenumber.phone_country + values.phonenumber.phone_number);
     
-    var requestOptions = {
-      method: 'POST',
-      headers: myHeaders,
-      body: urlencoded,
-      redirect: 'follow'
-    };
+//     var requestOptions = {
+//       method: 'POST',
+//       headers: myHeaders,
+//       body: urlencoded,
+//       redirect: 'follow'
+//     };
     
-    return fetch(APIROUTE + "account/number/send-sms/", requestOptions)
-}
-
-export const verifyPhoneNumber = (code, phone) => {
-    var myHeaders = new Headers();
-    myHeaders.append("Authorization", "JWT " + localStorage.getItem('token'));
-    myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
-
-    var urlencoded = new URLSearchParams();
-    urlencoded.append("number", "+" + phone.phone_country + phone.phone_number);
-    urlencoded.append("code", code);
-
-    var requestOptions = {
-    method: 'POST',
-    headers: myHeaders,
-    body: urlencoded,
-    redirect: 'follow'
-    };
-
-    return fetch(APIROUTE + "account/number/verification/", requestOptions)
-}
+//     return fetch(APIROUTE + "account/number/send-sms/", requestOptions)
+// }
 
 export const createCampaign = (firstFormData, poll) => {
     var myHeaders = new Headers();
@@ -336,32 +279,32 @@ export const getCategories = () => {
     return fetch(APIROUTE + "categories/", requestOptions)
 }
 
-export const getCampaignData = (id) => {
-    var requestOptions = {
-        method: 'GET',
-        redirect: 'follow'
-    };
+// export const getCampaignData = (id) => {
+//     var requestOptions = {
+//         method: 'GET',
+//         redirect: 'follow'
+//     };
       
-    return fetch(APIROUTE + `campaign/${id}/`, requestOptions)
-}
+//     return fetch(APIROUTE + `campaign/${id}/`, requestOptions)
+// }
 
-export const campaignParticipate = (id) => {
-    var myHeaders = new Headers();
-    myHeaders.append("Authorization", "JWT " + localStorage.getItem('token'));
-    myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+// export const campaignParticipate = (id) => {
+//     var myHeaders = new Headers();
+//     myHeaders.append("Authorization", "JWT " + localStorage.getItem('token'));
+//     myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
 
-    var urlencoded = new URLSearchParams();
-    urlencoded.append("promotion_id", id);
+//     var urlencoded = new URLSearchParams();
+//     urlencoded.append("promotion_id", id);
 
-    var requestOptions = {
-    method: 'POST',
-    headers: myHeaders,
-    body: urlencoded,
-    redirect: 'follow'
-    };
+//     var requestOptions = {
+//     method: 'POST',
+//     headers: myHeaders,
+//     body: urlencoded,
+//     redirect: 'follow'
+//     };
 
-    return fetch(APIROUTE + "campaign/participate/", requestOptions)
-}
+//     return fetch(APIROUTE + "campaign/participate/", requestOptions)
+// }
 
 export const getCampaignParticipants = (id) => {
     var myHeaders = new Headers();
@@ -427,6 +370,18 @@ export const drawCampaign = (id, drawType, winningType) => {
     return fetch(APIROUTE + endpoint + id + '/', requestOptions)
 }
 
+// export const getParticipateHistory = () => {
+//     var myHeaders = new Headers();
+//     myHeaders.append("Authorization", "JWT " + localStorage.getItem('token'));
+
+//     var requestOptions = {
+//     method: 'GET',
+//     headers: myHeaders,
+//     redirect: 'follow'
+//     };
+
+//     return fetch(APIROUTE + "campaign/user/historical/", requestOptions)  
+// }
 
 
 

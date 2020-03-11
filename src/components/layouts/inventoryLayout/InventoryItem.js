@@ -1,9 +1,20 @@
 import React from 'react'
-import {Row, Col} from 'reactstrap'
+import { useSelector, useDispatch } from 'react-redux'
+import { Row, Col } from 'reactstrap'
 import images from '../../../utils/images'
-import {Button} from 'reactstrap'
+import { Button } from 'reactstrap'
+import { updateFavorite } from '../../../actions/userInfo'
 
 function InventoryItem(props){
+    const {item} = props
+    const dispatch = useDispatch()
+
+    const update = () => {
+        var body = {
+            promotion_id: item.pk
+        }
+        dispatch(updateFavorite(body, 'inventory'))
+    }
 
     return(
 
@@ -15,8 +26,8 @@ function InventoryItem(props){
                             <img src={images.profile_img}/>
                         </Col>
                         <Col sm="10" xs="9" lg="11">
-                            <div className="promotion-list-item-title">Buy 1 get 1 Free on Valentines Krispy Kreme donuts</div>
-                            <div className="promotion-list-item-text">Buy one free on Valentine's donuts on the 5th of Feb.</div>
+                            <div className="promotion-list-item-title">{item.campaign_name}</div>
+                            <div className="promotion-list-item-text">{item.description}</div>
                             <div style={{marginTop:"20px", height:"40px"}}>
                                 <Button
                                     size="lg"
@@ -25,8 +36,8 @@ function InventoryItem(props){
                                 >
                                         ALREADY WON
                                 </Button>
-                                <div className="promotion-list-item-star">
-                                    <img src={images.trans_star}/>
+                                <div className="promotion-list-item-star" onClick={update}>
+                                    <img src={item.favorite ? images.trans_star_favorite : images.trans_star}/>
                                 </div>
                             </div>
                             

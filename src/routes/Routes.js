@@ -1,24 +1,24 @@
 import React, { useState, useEffect } from 'react'
-import ReactDOM from 'react-dom'
-import {withRouter, Redirect} from 'react-router-dom'
-import {compose} from 'redux'
-import {createBrowserHistory} from 'history'
-import {createStore} from 'redux';
+import { useSelector } from 'react-redux'
+import { withRouter, Redirect } from 'react-router-dom'
+import { compose } from 'redux'
+
 import { connect } from "react-redux";
-import {Router, Route, Switch} from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import Home from '../screens/Home'
 import Deals from '../screens/Deals'
 import UserAccount from '../screens/UserAccount'
 import Dashboard from '../screens/Dashboard'
 import CampaignDetail from '../screens/CampaignDetail'
-import Activated from '../screens/Activated'
+import ProfileActivated from '../screens/ProfileActivated'
+import ResetPassword from '../screens/ResetPassword'
 
 import Loading from '../components/common/Loading'
 import ScrollToTop from '../components/common/ScrollToTop'
 import NotFound from '../components/common/NotFound'
-import {openNotification} from '../utils/notification'
+import { openNotification } from '../utils/notification'
 
-import {verifyToken} from '../apis/apiCalls'
+import { verifyToken } from '../apis/apiCalls'
 
 function Routes(props){
     const {dispatch, history} = props
@@ -29,7 +29,6 @@ function Routes(props){
     const handleOnline = () => setOnline(navigator.onLine)
     const handleOffline = () => setOnline(navigator.onLine)
 
-
     useEffect(() => {
         const _handleOnline = handleOnline
         const _handleOffline = handleOffline
@@ -38,6 +37,7 @@ function Routes(props){
 
         const token = localStorage.getItem('token')
         const company = localStorage.getItem('company')
+
         if (!token) {
             return
         }
@@ -47,8 +47,7 @@ function Routes(props){
         .then(result => {
             var json_rlt = JSON.parse(result)
             if (json_rlt.token){
-                dispatch({type: "setToken", data: token})
-                dispatch({type: "setCompany", data: company == "true"})
+                dispatch({type: "LOG_IN_SUCCESS", data: {token: token, company: company === 'true'}})
             }
             else {
                 localStorage.removeItem('token')
@@ -83,7 +82,8 @@ function Routes(props){
                 <Route exact path="/dashboard/:menu" component={Dashboard} />
                 <Route exact path="/campaign-detail/:id" component={CampaignDetail} />
                 <Route exact path="/deals" component={Deals} />
-                <Route exact path="/activated" component={Activated} />
+                <Route exact path="/profile/activate/:id/:token" component={ProfileActivated} />
+                <Route exact path="/reset-password/:token/:id" component={ResetPassword} />
                 <Route component={NotFound} />
             </Switch>
         </ScrollToTop>

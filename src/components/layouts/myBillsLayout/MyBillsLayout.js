@@ -1,34 +1,24 @@
 import React, {useState, useEffect} from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import { Pagination } from 'antd'
 import MyBillsItem from './MyBillsItem'
 import Loading from '../../common/Loading'
 
-import {getMyBills} from '../../../apis/apiCalls'
+import { getMyBills } from '../../../actions/userInfo'
 import { NUMBER_PER_PAGE } from '../../../utils/constants'
-import { min } from 'moment'
 
 function MyBillsLayout(){
 
-    const [isLoading, setIsLoading] = useState(false)
-    const [billsList, setBillsList] = useState([])
+    const isLoading = useSelector(state=>state.userInfo.GET_MY_BILLS_SUCCESS)
+    const billsList = useSelector(state=>state.userInfo.myBills)
+    const dispatch = useDispatch()
     
     const [minValue, setMinValue] = useState(0)
     const [maxValue, setMaxValue] = useState(NUMBER_PER_PAGE)
 
 
     useEffect(() => {
-        setIsLoading(true)
-
-        getMyBills()
-        .then(response => response.text())
-        .then(result => {
-            setIsLoading(false)
-            var json_rlt = JSON.parse(result)
-            if (json_rlt.status == 200){       
-                setBillsList(json_rlt.result_data)
-            }
-        })
-        .catch(error => console.log('error', error));
+        dispatch(getMyBills())
     },[])
 
     const handlePagination = (value) => {

@@ -24,7 +24,7 @@ function Header(props){
     return(
         <div className="header-container">
             <div style={{width: "100%", height: 40}}>
-                <Link to="/"> <img src={images.logo} /> </Link>
+                <Link to="/"> <img src={images.logo} alt="logo"/> </Link>
                 <div className="header-right-part">
                 {hideNav ? (
                    props.token ? <HeaderAfterLogin/> : <HeaderBeforeLogin/>

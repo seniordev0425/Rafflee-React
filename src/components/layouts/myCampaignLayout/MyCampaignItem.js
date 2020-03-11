@@ -15,7 +15,9 @@ function MyCampaignItem(props){
                             <img src={images.profile_img}/>
                         </Col>
                         <Col sm="10" xs="9" lg="11">
-                            <div className="promotion-list-item-title">{item.campaign_name}<span className="green-dot"></span></div>
+                            <div className="promotion-list-item-title">{item.campaign_name}
+                                <span className={Date.parse(item.end_date) > Date.now() ? "green-dot" : "red-dot"}></span>
+                            </div>
                             <div className="promotion-list-item-text">{item.description}</div>
                             <div className="mt-2">
                                 <Button

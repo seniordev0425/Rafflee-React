@@ -1,20 +1,21 @@
-import React, {useState} from 'react'
-import { connect } from "react-redux";
+import React, { useState } from 'react'
+import { useSelector } from "react-redux";
 import PropTypes from 'prop-types'
 import LogInModal from './LogInModal'
 import SignUpModal from './SignUpModal'
 import CompanyModal from './CompanyModal'
 import FaceBookSignBtn from '../common/Buttons/FaceBookSignBtn'
 import GoogleSignBtn from '../common/Buttons/GoogleSignBtn'
-import {Button, Container, Row, Col, Modal, ModalHeader, ModalBody} from 'reactstrap'
+import { Row, Col, Modal, ModalHeader, ModalBody} from 'reactstrap'
 
 function LoginSignupBaseModal(props){
 
     const {isLogin, switch_login_signin,  modal, toggle, companyStatus, showCompanyModal} = props
+    const token = useSelector(state=>state.userInfo.token)
  
     return (
         <>
-            <Modal isOpen={modal && !props.token} toggle={toggle} style={{top: 165}}>
+            <Modal isOpen={modal && !token} toggle={toggle} style={{top: 165}}>
                     <ModalHeader toggle={toggle} style={{borderBottom: 'none'}}></ModalHeader>
                     <ModalBody className="modal-body-padding">
                         {companyStatus == true ? (<CompanyModal/>): (
@@ -24,7 +25,7 @@ function LoginSignupBaseModal(props){
                                     <div className="modal-signin-btn" style={isLogin ? {opacity: 0.25} : {opacity: 1}} onClick={()=>switch_login_signin(false)}>Sign In</div>
                                 </Row>
                                 
-                                <div style={{marginTop: "2rem"}}>{isLogin ? (<LogInModal/>) : (<SignUpModal showCompanyModal={showCompanyModal}/>)}</div>
+                                <div style={{marginTop: "2rem"}}>{isLogin ? (<LogInModal toggle={toggle}/>) : (<SignUpModal toggle={toggle} showCompanyModal={showCompanyModal}/>)}</div>
                                 
                                 <div className="or-divider-container">
                                     <h2><span className="or-divider-text">OR</span></h2>
@@ -53,11 +54,6 @@ LoginSignupBaseModal.propTypes = {
     showCompanyModal: PropTypes.func
 }
 
-function mapStateToProps(state) {
-    return {
-        myInfo: state.userInfo.myInfo,
-        token: state.userInfo.token,
-    }
-}
 
-export default connect(mapStateToProps)(LoginSignupBaseModal);
+
+export default LoginSignupBaseModal;

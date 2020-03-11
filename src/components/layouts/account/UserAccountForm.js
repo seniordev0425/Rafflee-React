@@ -1,24 +1,21 @@
-import React, {useState, useEffect, useRef} from 'react'
-import { connect } from "react-redux";
-import {Link} from 'react-router-dom'
-import {Form as FinalForm, Field} from 'react-final-form'
-import {Form, FormGroup, Button, Input, Row, Col} from 'reactstrap'
+import React, { useState, useEffect } from 'react'
+import { useSelector, useDispatch } from "react-redux";
+import { Form as FinalForm, Field } from 'react-final-form'
+import { Form, FormGroup, Button, Row, Col } from 'reactstrap'
 import ImageUploader from 'react-images-upload'
 import ReactFlagsSelect from 'react-flags-select'
-import {getCode, getName} from 'country-list'
+import { getCode, getName } from 'country-list'
 import DeleteAccount from '../../modals/DeleteAccount'
 import FormInput from '../../common/FormInput'
 import FormPhoneInput from '../../common/FormPhoneInput'
-import {Switch, DatePicker} from 'antd'
+import { DatePicker } from 'antd'
 import FaceBookConnectBtn from '../../common/Buttons/FaceBookConnectBtn'
 import TwitterConnectBtn from '../../common/Buttons/TwitterConnectBtn'
 import TwitchConnectBtn from '../../common/Buttons/TwitchConnectBtn'
 import YoutubeConnectBtn from '../../common/Buttons/YoutubeConnectBtn'
 import InstagramConnectBtn from '../../common/Buttons/InstagramConnectBtn'
-import {getUserProfile, updateUserProfile, sendSmsToUser} from '../../../apis/apiCalls'
-import {openNotification} from '../../../utils/notification'
+import { getUserProfile, sendSms, updateUserProfile } from '../../../actions/userInfo'
 import moment from 'moment'
-
 
 import {
     composeValidators, 
@@ -33,15 +30,17 @@ import Loading from '../../common/Loading';
 
 function UserAccountForm(props){
 
-    const userFlag = useRef(null)
+    const userProfile = useSelector(state=>state.userInfo.userProfile)
+    const isLoading = useSelector(state=>state.userInfo.GET_USER_PROFILE_SUCCESS)
+    const isUpdating = useSelector(state=>state.userInfo.UPDATE_USER_PROFILE_SUCCESS)
+    const isSendingSms = useSelector(state=>state.userInfo.SEND_SMS_SUCCESS)
+    const toggleVerificationModal = useSelector(state=>state.userInfo.TOGGLE_VERIFICATION_MODAL)
 
-    const [isLoading, setIsLoading] = useState(false)
+    const dispatch = useDispatch()
     
     const [isVerify, setIsVerify] = useState(false)
 
     const [countryName, setCountryName] = useState('')
-
-    const [submitting, setSubmitting] = useState(false)
 
     const [initialPhoneNum, setInitialPhoneNum] = useState({phone_number:null, phone_country:null})
 
@@ -51,8 +50,6 @@ function UserAccountForm(props){
 
     const [imgBase64Data, setImgBase64Data] = useState('')
 
-    const {dispatch} = props
-
     const [openDeleteModal, setOpenDeleteModal] = useState(false)
 
     const [openVerificationModal, setOpenVerificationModal] = useState(false)
@@ -60,66 +57,54 @@ function UserAccountForm(props){
     const handleDeleteModal = () => setOpenDeleteModal(!openDeleteModal)
     const handleVerificationModal = () => setOpenVerificationModal(!openVerificationModal)
 
-    // const abortController = new AbortController()
-    // const signal = abortController.signal
+
+    const { country_code, national_number, profile_picture, birth_date, country } = userProfile
 
     useEffect(() => {
-        setIsLoading(true)
+        dispatch(getUserProfile())
+    },[])
+    
+    useEffect(() => {
+        if (toggleVerificationModal){
+            handleVerificationModal()
+            dispatch({type: 'API_SUCCESS', name: 'TOGGLE_VERIFICATION_MODAL', data: false})
+        }
+    }, [toggleVerificationModal])
+    
+    useEffect(() => {
+        var tmpNum = {}
+        tmpNum.phone_country = country_code
+        tmpNum.phone_number = national_number
+        setInitialPhoneNum(tmpNum)
 
-        getUserProfile()
-        .then(response => response.text())
-        .then(result => {
-            setIsLoading(false)
-            var json_rlt = JSON.parse(result)
-            if (json_rlt.msg == 'USER_INFORMATION_RETRIEVED'){
-                var tmpNum = {}
-                tmpNum.phone_country = json_rlt.user_informations.country_code
-                tmpNum.phone_number = json_rlt.user_informations.national_number
-
-                if (json_rlt.user_informations.profile_picture != '') setImgBase64Data('data:image/png;base64,' + json_rlt.user_informations.profile_picture)
-                if (json_rlt.user_informations.birth_date) setInitialDate(json_rlt.user_informations.birth_date)
-                if (json_rlt.user_informations.country != '') userFlag.current.updateSelected(getCode(json_rlt.user_informations.country))
-
-                setCountryName(json_rlt.user_informations.country)
-                setInitialPhoneNum(tmpNum)
-                
-                dispatch({type: "setMyInfo", data: json_rlt.user_informations})
-            }
-        })
-        .catch(error => console.log('error', error));
-
-        // return function cleanup() {
-        //     abortController.abort()
-        // }
-    }, [])
+        if (profile_picture) setImgBase64Data('data:image/png;base64,' + profile_picture)
+        if (birth_date) setInitialDate(birth_date)
+        setCountryName(country)
+        
+    }, [userProfile])
 
     const onSubmit = (values) => {
         if (isVerify){
-            sendSmsToUser(values)
-            .then(response => response.text())
-            .then(result => {
-                var json_rlt = JSON.parse(result)
-                if (json_rlt.status == 200){
-                    handleVerificationModal()
-                }
-            })
-            .catch(error => console.log('error', error));
-            
+            var body = {
+                number: `+${values.phonenumber.phone_country}${values.phonenumber.phone_number}`
+            }
+            dispatch(sendSms(body))
         }
         else {
-            setSubmitting(true)
-            updateUserProfile(values, initialDate, imgFormData, countryName)
-            .then(response => response.text())
-            .then(result => {
-                setSubmitting(false)
-                var json_rlt = JSON.parse(result)
-                if (json_rlt.status == 200){
-                    openNotification('success', 'Success', 'Successfully Updated')
-                }
-            })
-            .catch(error => console.log('error', error));
+            var formdata = new FormData()
+            formdata.append("profile_picture", imgFormData)
+            formdata.append("phone_number", values.phonenumber.phone_number)
+            formdata.append("prefix_number", values.phonenumber.phone_country)
+            formdata.append("country", countryName)
+            formdata.append("region", values.postal_code)
+            formdata.append("birth_date", initialDate)
+            formdata.append("first_name", values.first_name)
+            formdata.append("last_name", values.last_name)
+            formdata.append("address", values.address)
+            formdata.append("city", values.street)
+            formdata.append("gender", values.gender)
+            dispatch(updateUserProfile(formdata))
         }
-        
     }
 
     const onChangeInitialDate = (date, dateString) => {
@@ -156,7 +141,7 @@ function UserAccountForm(props){
         <>
             <FinalForm
                 onSubmit={onSubmit}
-                render={({handleSubmit, pristine, values}) => (
+                render={({handleSubmit}) => (
                     <Form onSubmit={handleSubmit}>
                         <Row>
                             <Col xs="12" sm="6">
@@ -181,7 +166,7 @@ function UserAccountForm(props){
                                     <FormGroup>
                                         <div className="footer-link-bold mb-3">First Name</div>
                                         <Field
-                                            defaultValue={props.myInfo ? props.myInfo.firstname : ''}
+                                            defaultValue={ userProfile.firstname }
                                             name="first_name"
                                             component={FormInput}
                                             className="custom-form-control"
@@ -196,7 +181,7 @@ function UserAccountForm(props){
                                         <div className="footer-link-bold mb-3">Last Name</div>
                                         <Field
                                             name="last_name"
-                                            defaultValue={props.myInfo ? props.myInfo.lastname : ''}
+                                            defaultValue={ userProfile.lastname }
                                             component={FormInput}
                                             className="custom-form-control"
                                             type="text"
@@ -210,7 +195,7 @@ function UserAccountForm(props){
                                         <div className="footer-link-bold mb-3">Gender</div>
                                         <Field
                                             name="gender"
-                                            defaultValue={props.myInfo ? props.myInfo.gender : ''}
+                                            defaultValue={ userProfile.gender }
                                             component={FormInput}
                                             className="custom-form-control"
                                             type="text"
@@ -232,13 +217,14 @@ function UserAccountForm(props){
                                                     validate={requiredPhoneObj(' Please enter your phone number')}
                                                 />
                                             </div>
-                                            {props.myInfo && !props.myInfo.phone_number_verification && (
+                                            {!userProfile.phone_number_verification && (
                                                 <div style={{width: "25%"}}>
                                                 <Button
                                                         color="primary"
                                                         className="blue-btn mt-1"
                                                         style={{width: "100%", height: 40}}
                                                         onClick={sendSMS}
+                                                        disabled={isSendingSms}
                                                         type="submit"
                                                     >
                                                         Verify
@@ -254,7 +240,7 @@ function UserAccountForm(props){
                                         <div className="footer-link-bold mb-3">Country</div>
                                         <ReactFlagsSelect
                                             onSelect={onSelectFlag}
-                                            ref={userFlag}
+                                            defaultCountry={getCode(country || 'France')}
                                             searchable={true}
                                             className="menu-flags"
                                             name="country"
@@ -277,7 +263,7 @@ function UserAccountForm(props){
                                         <div className="footer-link-bold mb-3">Email</div>
                                         <Field
                                             name="email"
-                                            defaultValue={props.myInfo ? props.myInfo.email : ''}
+                                            defaultValue={ userProfile.email }
                                             component={FormInput}
                                             className="custom-form-control"
                                             type="email"
@@ -296,7 +282,7 @@ function UserAccountForm(props){
                                         <div className="footer-link-bold mb-3">Address</div>
                                         <Field
                                             name="address"
-                                            defaultValue={props.myInfo ? props.myInfo.address : ''}
+                                            defaultValue={ userProfile.address }
                                             component={FormInput}
                                             className="custom-form-control"
                                             type="text"
@@ -309,7 +295,7 @@ function UserAccountForm(props){
                                     <FormGroup>
                                         <Field
                                             name="street"
-                                            defaultValue={props.myInfo ? props.myInfo.city : ''}
+                                            defaultValue={ userProfile.city }
                                             component={FormInput}
                                             className="custom-form-control"
                                             type="text"
@@ -322,7 +308,7 @@ function UserAccountForm(props){
                                     <FormGroup>
                                         <Field
                                             name="postal_code"
-                                            defaultValue={props.myInfo ? props.myInfo.region : ''}
+                                            defaultValue={ userProfile.region }
                                             component={FormInput}
                                             className="custom-form-control"
                                             type="text"
@@ -381,7 +367,7 @@ function UserAccountForm(props){
                                             className="blue-btn mt-2"
                                             style={{width:"45%", marginRight:"5%"}}
                                             onClick={submit}
-                                            disabled={submitting}
+                                            disabled={isUpdating}
                                         >
                                             Update
                                         </Button>
@@ -418,11 +404,4 @@ function UserAccountForm(props){
     )
 }
 
-function mapStateToProps(state) {
-    return {
-        myInfo: state.userInfo.myInfo,
-        token: state.userInfo.token,
-        company: state.userInfo.company,
-    }
-}
-export default connect(mapStateToProps)(UserAccountForm);
+export default UserAccountForm;

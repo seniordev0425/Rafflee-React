@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import {connect} from 'react-redux'
-import {compose} from 'redux'
-import {withRouter, Link} from 'react-router-dom'
-import {Row, Col} from 'reactstrap'
-import {Menu} from 'antd'
+import { connect, useSelector, useDispatch } from 'react-redux'
+import { compose } from 'redux'
+import { withRouter, Link } from 'react-router-dom'
+import { Row, Col } from 'reactstrap'
+import { Menu } from 'antd'
 import JoinHeader from '../components/layouts/HeaderLayout/JoinHeader'
 import Header from '../components/layouts/HeaderLayout/Header'
 import FooterLink from '../components/layouts/footer/FooterLink'
@@ -16,11 +16,15 @@ import CreateCampaignLayout from '../components/layouts/createCampaignLayout/Cre
 
 import InventoryLayout from '../components/layouts/inventoryLayout/InventoryLayout'
 import ParticipationHistoryLayout from '../components/layouts/participationHistoryLayout/ParticipationHistoryLayout'
+import MyFollowingLayout from '../components/layouts/myFollowingLayout/MyFollowingLayout'
 
 
 
 function Dashboard(props){
     const {history, match} = props
+    const userInventory = useSelector(state=>state.userInfo.userInventory)
+    const userParticipationHistory = useSelector(state=>state.userInfo.userParticipationHistory)
+    const myFollowing = useSelector(state=>state.userInfo.myFollowing)
 
     useEffect(() => {
         document.title = "Dashboard"
@@ -38,6 +42,8 @@ function Dashboard(props){
                 return <InventoryLayout/>
             case 'participation-history':
                 return <ParticipationHistoryLayout/>
+            case 'following':
+                return <MyFollowingLayout/>
             default:
                 return <MyCampaignLayout/>;
         }
@@ -81,19 +87,19 @@ function Dashboard(props){
                             <Menu.Item key="inventory">
                                 <Link to="/dashboard/inventory">
                                     <img src={match.params.menu == 'inventory' ? images.inventory_icon_blue : images.inventory_icon}/>
-                                    <span className="ml-3"> Inventory</span>
+                        <span className="ml-3"> Inventory {`(${(userInventory || []).length})`}</span>
                                 </Link>                               
                             </Menu.Item>
                             <Menu.Item key="participation-history">
                                 <Link to="/dashboard/participation-history">
                                     <img src={match.params.menu == 'participation-history' ? images.ph_icon_blue : images.ph_icon}/>
-                                    <span className="ml-3"> Participation of Historical</span>
+                                    <span className="ml-3"> Participation of Historical {`(${(userParticipationHistory || []).length})`}</span>
                                 </Link>
                             </Menu.Item>
                             <Menu.Item key="following">
                                 <Link to="/dashboard/following">
                                     <img src={match.params.menu == 'following' ? images.following_icon_blue : images.following_icon}/>
-                                    <span className="ml-3"> Following</span>
+                                    <span className="ml-3"> Following {`(${(myFollowing || []).length})`}</span>
                                 </Link>
                             </Menu.Item>
                             <Menu.Item key="my-circle">

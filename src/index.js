@@ -1,10 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import {createBrowserHistory} from 'history'
-import {createStore} from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import {Router, Route, Switch} from 'react-router-dom'
 import {Provider} from 'react-redux'
 import AppReducer from './reducers/index'
+import apiMiddleware from './middleware/api'
 import Routes from './routes/Routes'
 import Home from './screens/Home'
 import UserAccount from './screens/UserAccount'
@@ -19,7 +20,7 @@ import './utils/carousel_lib/scss/main.scss'
 
 
 const history = createBrowserHistory()
-const store = createStore(AppReducer)
+const store = createStore(AppReducer, applyMiddleware(apiMiddleware))
 
 ReactDOM.render(
     <Provider store={store}>

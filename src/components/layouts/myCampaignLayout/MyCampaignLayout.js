@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import { Pagination } from 'antd'
 import MyCampaignItem from './MyCampaignItem'
 import Loading from '../../common/Loading'
 
-import {getMyCampaigns} from '../../../apis/apiCalls'
+import { getMyCampaigns } from '../../../actions/userInfo'
 import LivePageLayout from './LivePageLayout'
 import ParticipantListLayout from './ParticipantListLayout'
 import { NUMBER_PER_PAGE } from '../../../utils/constants'
 
 function MyCampaignLayout(){
 
-    const [isLoading, setIsLoading] = useState(false)
-    const [campaignList, setCampaignList] = useState([])
+    const isLoading = useSelector(state=>state.userInfo.GET_MY_CAMPAIGNS_SUCCESS)
+    const campaignList = useSelector(state=>state.userInfo.myCampaigns)
+    const dispatch = useDispatch()
 
     const [live_page_id, setLivePageId] = useState(null)
     const [participant_id, setParticipantId] = useState(null)
@@ -19,21 +21,8 @@ function MyCampaignLayout(){
     const [minValue, setMinValue] = useState(0)
     const [maxValue, setMaxValue] = useState(NUMBER_PER_PAGE)
 
-
-
     useEffect(() => {
-        setIsLoading(true)
-
-        getMyCampaigns()
-        .then(response => response.text())
-        .then(result => {
-            setIsLoading(false)
-            var json_rlt = JSON.parse(result)
-            if (json_rlt.status == 200){       
-                setCampaignList(json_rlt.result_data)
-            }
-        })
-        .catch(error => console.log('error', error));
+        dispatch(getMyCampaigns())
     },[])
 
     const goToLivePage = (val) => {
@@ -76,7 +65,7 @@ function MyCampaignLayout(){
 
     return(
         <>
-            {live_page_id ? (<LivePageLayout id={live_page_id} goBack={goToLivePage}/>) : (participant_id ? <ParticipantListLayout goBack={goToParticipatePage}/> :  renderMyCampaignList())}
+            {live_page_id ? (<LivePageLayout id={live_page_id} goBack={goToLivePage}/>) : (participant_id ? <ParticipantListLayout id={participant_id} goBack={goToParticipatePage}/> :  renderMyCampaignList())}
         </>
     )
 }

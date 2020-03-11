@@ -14,7 +14,7 @@ import {
 import {resetPasswordRequest} from '../../apis/apiCalls'
 
 function ForgotPassword(props) {
-  const { open, onToggle } = props
+  const { open, onToggle, toggle } = props
   const [submitting, setSubmitting] = useState(false)
 
   const onSubmit = (values) => {
@@ -24,7 +24,8 @@ function ForgotPassword(props) {
           .then(result => {
               var json_rlt = JSON.parse(result)
               if (json_rlt.status == 200){
-                  onToggle();
+                  onToggle()
+                //   toggle()
                   openNotification('success', 'Success', 'Confirm your Email to reset a password.')
               }
           })

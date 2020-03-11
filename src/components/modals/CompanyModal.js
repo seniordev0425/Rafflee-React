@@ -1,12 +1,11 @@
-import React, {useState} from 'react'
-import { connect } from "react-redux";
-import {Link} from 'react-router-dom'
-import {Form as FinalForm, Field} from 'react-final-form'
-import {Form, FormGroup, Button, Input, Row} from 'reactstrap'
+import React, { useState } from 'react'
+import { useSelector, useDispatch } from "react-redux";
+import { Form as FinalForm, Field } from 'react-final-form'
+import { Form, FormGroup, Button, Row } from 'reactstrap'
 import FormInput from '../common/FormInput'
 import FormPhoneInput from '../common/FormPhoneInput'
-import {companyContact} from '../../apis/apiCalls'
-import {openNotification} from '../../utils/notification'
+import { companyContact } from '../../actions/userInfo'
+import { openNotification } from '../../utils/notification'
 import {
     composeValidators, 
     required, 
@@ -19,21 +18,17 @@ import {
 
 function CompanyModal(){
 
-    const [submitting, setSubmitting] = useState(false)
+    const isLoading = useSelector(state=>state.userInfo.COMPANY_CONTACT_SUCCESS)
+    const dispatch = useDispatch()
 
     const onSubmit = (values) => {
-        setSubmitting(true)
-
-        companyContact(values)
-        .then(response => response.text())
-        .then(result => {
-            setSubmitting(false)
-            var json_rlt = JSON.parse(result)
-            if (json_rlt.status == 200)
-                openNotification('success', 'Successfully submitted.')
-            
-        })
-        .catch(error => console.log('error', error));
+        var body = {
+            email: values.email,
+            phone_number: values.phonenumber.phone_number,
+            company_name: values.company_name,
+            message: values.message
+        }
+        dispatch(companyContact(body))
     }
     return(
         
@@ -93,7 +88,7 @@ function CompanyModal(){
                             size="lg"
                             color="primary"
                             className="blue-btn"
-                            disabled={submitting}
+                            disabled={isLoading}
                             style={{marginTop: '20px'}}
                         >
                             SEND MESSAGE

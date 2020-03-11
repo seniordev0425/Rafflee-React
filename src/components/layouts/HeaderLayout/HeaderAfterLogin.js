@@ -1,32 +1,22 @@
-import React, {useState, useEffect} from 'react'
-import { connect } from "react-redux";
-import {compose} from 'redux'
-import {withRouter, Link} from 'react-router-dom'
-import {Button, Menu} from 'antd'
+import React, { useState, useEffect } from 'react'
+import { connect, useDispatch } from "react-redux";
+import { compose } from 'redux'
+import { withRouter, Link } from 'react-router-dom'
+import { Button, Menu } from 'antd'
 import { Row, Col, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import images from '../../../utils/images'
-import {logOut} from '../../../apis/apiCalls'
+import { logOut } from '../../../actions/userInfo'
 
 
 
 function HeaderAfterLogin(props){
-    const {dispatch, history} = props
+    
+    const {history} = props
+    const dispatch = useDispatch()
+
     const log_Out = () => {
-        logOut(localStorage.getItem('token'))
-        .then(response => response.text())
-        .then(result => {
-            var json_rlt = JSON.parse(result)
-            if (json_rlt.status == 200){
-                localStorage.removeItem('token')
-                localStorage.removeItem('company')
-                localStorage.removeItem('myInfo')
-                dispatch({type: "setToken", data: null})
-                dispatch({type: "setCompany", data: null})
-                history.push('/')
-                
-            }
-        })
-        .catch(error => console.log('error', error));   
+        dispatch(logOut())
+        history.push('/')
     }
 
     const [hide, setHide] = useState(false)

@@ -1,13 +1,12 @@
 import React, {useState} from 'react'
-import { connect } from "react-redux";
-import {Link} from 'react-router-dom'
+import { connect, useSelector, useDispatch } from "react-redux";
 import {Form as FinalForm, Field} from 'react-final-form'
-import {Form, FormGroup, Button, Input} from 'reactstrap'
+import {Form, FormGroup, Button} from 'reactstrap'
 import FormInput from '../common/FormInput'
 import FormCheckbox from '../common/FormCheckbox'
 import ForgotPassword from './ForgotPassword'
-import {logIn} from '../../apis/apiCalls'
-import {openNotification} from '../../utils/notification'
+import { logIn } from '../../actions/userInfo'
+
 
 import {
     composeValidators, 
@@ -18,33 +17,22 @@ import {
 } from '../../utils/validation'
 
 function LogInModal(props){
-    const {dispatch} = props
+    
+    const { toggle } = props
 
-    const [submitting, setSubmitting] = useState(false)
+    const isLoading = useSelector(state=>state.userInfo.LOG_IN_SUCCESS)
+    const dispatch = useDispatch()
+
     const [openForgotModal, setOpenForgotModal] = useState(false)
 
     const handleForgotModal = () => setOpenForgotModal(!openForgotModal)
 
     const onSubmit = (values) => {
-        setSubmitting(true)
-        
-        logIn(values)
-        .then(response => response.text())
-        .then(result => {
-            setSubmitting(false)
-            var json_rlt = JSON.parse(result)
-            if (json_rlt.token){
-                localStorage.setItem('token', json_rlt.token)
-                localStorage.setItem('company', json_rlt.company)
-                dispatch({type: "setToken", data: json_rlt.token})
-                dispatch({type: "setCompany", data: json_rlt.company})
-                openNotification('success', 'Login Success', '')
-            }
-            if (json_rlt.status == 400 && json_rlt.msg == 'MSG_USER_NOT_ACTIVE'){
-                // localStorage.setItem('myInfo', JSON.stringify(values))
-            }
-        })
-        .catch(error => console.log('error', error));
+        var body = {
+            username: values.username,
+            password: values.password
+        }
+        dispatch(logIn(body))
     }
     return(
         
@@ -88,7 +76,7 @@ function LogInModal(props){
                             size="lg"
                             color="primary"
                             className="blue-btn"
-                            disabled={submitting}
+                            disabled={isLoading}
                             style={{marginTop: '20px'}}
                         >
                             LOGIN
@@ -101,6 +89,7 @@ function LogInModal(props){
             <ForgotPassword
                 open={openForgotModal}
                 onToggle={handleForgotModal}
+                toggle={toggle}
             />
         </div>
     );

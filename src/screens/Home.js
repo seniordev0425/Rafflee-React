@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import {connect} from 'react-redux'
-import {compose} from 'redux'
-import {withRouter} from 'react-router-dom'
+import { connect, useSelector, useDispatch } from 'react-redux'
+import { compose } from 'redux'
+import { withRouter } from 'react-router-dom'
 import JoinHeader from '../components/layouts/HeaderLayout/JoinHeader'
 import Header from '../components/layouts/HeaderLayout/Header'
 import Banner from '../components/layouts/Banner'
@@ -9,68 +9,38 @@ import Carousel from '../components/layouts/hotPromotionLayout/Carousel'
 import CurrentPromotionList from '../components/layouts/currentPromotionLayout/CurrentPromotionLIst'
 import FooterLink from '../components/layouts/footer/FooterLink'
 import Footer from '../components/layouts/footer/Footer'
-import {getHotPromotions, getHighlightedPromotions, getNewPromotions, getBestOfferPromotions} from '../apis/apiCalls'
+import { getHotPromotions, getHighlightedPromotions, getNewPromotions, getBestPromotions } from '../actions/homepage'
+import Loading from '../components/common/Loading'
 
 
 function Home(props){
-    const [hotPromotions, setHotPromotions] = useState([])
-    const [highlightedPromotions, setHighlightedPromotions] = useState([])
-    const [newPromotions, setNewPromotions] = useState([])
-    const [bestOfferPromotions, setBestOfferPromotions] = useState([])
+
+    const hotPromotions = useSelector(state=>state.homepage.hotPromotions)
+    const highlightedPromotions = useSelector(state=>state.homepage.highlightedPromotions)
+    const newPromotions = useSelector(state=>state.homepage.newPromotions)
+    const bestOfferPromotions = useSelector(state=>state.homepage.bestOfferPromotions)
+
+    const isLoading_1 = useSelector(state=>state.userInfo.GET_HOT_PROMOTIONS_SUCCESS)
+    const isLoading_2 = useSelector(state=>state.userInfo.GET_HIGHLIGHTED_PROMOTIONS_SUCCESS)
+    const isLoading_3 = useSelector(state=>state.userInfo.GET_NEW_PROMOTIONS_SUCCESS)
+    const isLoading_4 = useSelector(state=>state.userInfo.GET_BEST_PROMOTIONS_SUCCESS)
+
+    const token = useSelector(state=>state.userInfo.token)
+    const dispatch = useDispatch()
 
     useEffect(() => {
         document.title = "Home"
-        getHotPromotions()
-        .then(response => response.text())
-        .then(result => {
-            var json_rlt = JSON.parse(result)
-            if (json_rlt.status == 200){       
-                setHotPromotions(json_rlt.result_data)
-            }
-        })
-        .catch(error => console.log('error', error));
 
-        getHighlightedPromotions()
-        .then(response => response.text())
-        .then(result => {
-            var json_rlt = JSON.parse(result)
-            if (json_rlt.status == 200){                
-                setHighlightedPromotions(json_rlt.result_data)
-            }
-        })
-        .catch(error => console.log('error', error));
+        dispatch(getHotPromotions({token: token}))
+        dispatch(getHighlightedPromotions({token: token}))
+        dispatch(getNewPromotions({token: token}))
+        dispatch(getBestPromotions({token: token}))
 
-        // getHighlightedPromotions()
-        // .then(response => {
-        //     if (response.ok) {
-        //         var json_rlt = JSON.parse(response.text())
-        //         setHighlightedPromotions(json_rlt.result_data)
-        //     }
-        //     else {
-        //         return Promise.reject(response)
-        //     }
-        // })
+    },[token]);
 
-        getNewPromotions()
-        .then(response => response.text())
-        .then(result => {
-            var json_rlt = JSON.parse(result)
-            if (json_rlt.status == 200){
-                setNewPromotions(json_rlt.result_data)
-            }
-        })
-        .catch(error => console.log('error', error));
+    // if (isLoading_1 || isLoading_2 || isLoading_3 || isLoading_4)
+    //     return <Loading/>
 
-        getBestOfferPromotions()
-        .then(response => response.text())
-        .then(result => {
-            var json_rlt = JSON.parse(result)
-            if (json_rlt.status == 200){
-                setBestOfferPromotions(json_rlt.result_data)
-            }
-        })
-        .catch(error => console.log('error', error));
-    },[]);
     return (
         <div style={{fontFamily:"sofiapro"}}>
             <JoinHeader/>
@@ -87,10 +57,7 @@ function Home(props){
                 Find the deal you have been looking for.
             </div>
             <CurrentPromotionList
-                highlightedPromotions={highlightedPromotions}
-                newPromotions={newPromotions}
-                hotPromotions={hotPromotions}
-                bestOfferPromotions={bestOfferPromotions}/>
+                />
             <FooterLink/>
             <Footer/>
         </div>

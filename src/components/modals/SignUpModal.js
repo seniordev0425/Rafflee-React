@@ -1,12 +1,10 @@
-import React, {useState} from 'react'
-import { connect } from "react-redux";
-import {Link} from 'react-router-dom'
-import {Form as FinalForm, Field} from 'react-final-form'
-import {Form, FormGroup, Button, Input} from 'reactstrap'
+import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from "react-redux";
+import { Form as FinalForm, Field } from 'react-final-form'
+import { Form, FormGroup, Button, Input } from 'reactstrap'
 import FormInput from '../common/FormInput'
-import {Switch} from 'antd'
-import {signUp} from '../../apis/apiCalls'
-import {openNotification} from '../../utils/notification'
+import { Switch } from 'antd'
+import { signUp } from '../../actions/userInfo'
 
 import {
     composeValidators, 
@@ -18,24 +16,30 @@ import {
 
 function SignUpModal(props){
 
-    const {dispatch, showCompanyModal} = props
+    const { showCompanyModal, toggle } = props
+
+    const isLoading = useSelector(state=>state.userInfo.SIGN_UP_SUCCESS)
+    const signUpSuccess = useSelector(state=>state.userInfo.signUpSuccess)
+
+    const dispatch = useDispatch()
     const [agree, setAgree] = useState(false)
-    const [submitting, setSubmitting] = useState(false)
+
+    useEffect(() => {
+        if (signUpSuccess){
+            dispatch({type: 'SIGN_UP_SUCCESS', data: false})
+            toggle()
+        } 
+    },[signUpSuccess])
     
     const onSubmit = (values) => {
-        setSubmitting(true)
+        var body = {
+            username: values.username,
+            email: values.email,
+            password1: values.password1,
+            password2: values.password2
+        }
 
-        signUp(values)
-        .then(response => response.text())
-        .then(result => {
-            setSubmitting(false)
-            var json_rlt = JSON.parse(result)
-            if (json_rlt.status == 200){
-                openNotification('success', 'SignUp Success!', 'We sent a confirm link to your email. Please check your email inbox.')
-            }
-            
-        })
-        .catch(error => console.log('error', error));
+        dispatch(signUp(body))
     }
     
     return(
@@ -102,7 +106,7 @@ function SignUpModal(props){
                             size="lg"
                             color="primary"
                             className="blue-btn"
-                            disabled={submitting || !agree}
+                            disabled={isLoading || !agree}
                             style={{marginTop: '20px'}}
                         >
                             CREATE ACCOUNT
@@ -117,9 +121,5 @@ function SignUpModal(props){
         </div>
     );
 }
-function mapStateToProps(state) {
-    return {
-        myInfo: state.userInfo.myInfo
-    }
-}
-export default connect(mapStateToProps)(SignUpModal);
+
+export default SignUpModal;

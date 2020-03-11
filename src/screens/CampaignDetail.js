@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { connect } from 'react-redux'
-import { compose } from 'redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom'
 import { Row, Col, Button } from 'reactstrap'
 
@@ -11,31 +10,27 @@ import Footer from '../components/layouts/footer/Footer'
 import images from '../utils/images'
 
 import CustomCollapsePanel from '../components/common/CustomCollapsePanel'
-import {getCampaignData, campaignParticipate} from '../apis/apiCalls'
 import Loading from '../components/common/Loading'
 import moment from 'moment'
 import { openNotification } from '../utils/notification'
+import { campaignParticipate, getCampaignData, updateFavorite } from '../actions/campaign'
 
 function CampaignDetail(props){
     const { history, match } = props
-    const [campaignData, setCampaignData] = useState({})
-    const [isLoading, setIsLoading] = useState(false)
+
+    const isLoading = useSelector(state=>state.userInfo.GET_CAMPAIGN_DATA_SUCCESS)
+    const campaignData = useSelector(state=>state.campaign.campaignData)
+    const token = useSelector(state=>state.userInfo.token)
+    const company = useSelector(state=>state.userInfo.company)
+
+    const dispatch = useDispatch()
 
     useEffect(() => {
         document.title = "Campaign Detail"
-        setIsLoading(true)
-
-        getCampaignData(match.params.id)
-        .then(response => response.text())
-        .then(result => {
-            setIsLoading(false)
-            var json_rlt = JSON.parse(result)
-            if (json_rlt.status == 200){
-                setCampaignData(json_rlt.result_data)
-            }
-        })
-        .catch(error => console.log('error', error))
-
+        var body = {
+            token: token
+        }
+        dispatch(getCampaignData(match.params.id, body))
     },[])
 
     const renderWinnings = () => {
@@ -53,20 +48,21 @@ function CampaignDetail(props){
         const diff = endDate.diff(currentDate)
         const diffDuration = moment.duration(diff)
 
-        return diffDuration.days()
+        return diffDuration.days() > 0 ? diffDuration.days() : 0
     }
 
     const participate = () => {
-        campaignParticipate(match.params.id)
-        .then(response =>  response.text())
-        .then(result => {
-            console.log(result)
-            var json_rlt = JSON.parse(result)
-            if (json_rlt.status == 200){
-                openNotification('success', 'Success', 'Successfully participated')
-            }
-        })
-        .catch(error => console.log('error', error))
+        var body = {
+            promotion_id: match.params.id
+        }
+        dispatch(campaignParticipate(body))
+    }
+
+    const update = () => {
+        var body = {
+            promotion_id: match.params.id
+        }
+        dispatch(updateFavorite(body, 'campaign_detail'))
     }
 
     if (isLoading) {
@@ -77,7 +73,6 @@ function CampaignDetail(props){
         <div style={{fontFamily:"sofiapro"}}>
             <JoinHeader/>
             <Header/>
-
             <Row style={{borderTop:"2px solid #7e9aa817"}}>
                 <Col xs="12" sm={{size: 10, offset: 1}}>
                     <Row className="my-5">
@@ -88,11 +83,12 @@ function CampaignDetail(props){
                             <div className="promotion-list-item-title">{campaignData.campaign_name}</div>
                             <div style={{marginTop:"20px", display:"flex", justifyContent:"space-between"}}>
                                 <div style={{width: "70%", fontSize:"1.1rem"}}>{campaignData.description}</div>
-                                <div className="promotion-list-item-star">
-                                    <img src={images.trans_star}/>
-                                </div>
+                                {(token && !company) && (
+                                    <div className="promotion-list-item-star" onClick={update}>
+                                        <img src={campaignData.favorite ? images.trans_star_favorite : images.trans_star}/>
+                                    </div>
+                                )}
                             </div>
-                            
                         </Col>
                     </Row>
 
@@ -115,7 +111,7 @@ function CampaignDetail(props){
                             
                             <div className="div-item promotion-list-item-title">
                                 <div className="menubar">
-                                    PRIZE ENDS IN
+                                    {Date.parse(campaignData.end_date) > Date.now() ? "PRIZE ENDS IN" : "PRIZE ENDED"}
                                 </div>
                                 <img src={images.clock} width="30"/>
                                 <span className="ml-3">{calcRemainingDates()} days</span>
@@ -160,20 +156,10 @@ function CampaignDetail(props){
 
                 </Col>
             </Row>
-
             <FooterLink/>
             <Footer/>
-            
-
         </div>
     );
 }
 
-function mapStateToProps(state) {
-    return {
-        myInfo: state.userInfo.myInfo,
-        token: state.userInfo.token,
-        company: state.userInfo.company
-    }
-}
-export default compose(withRouter, connect(mapStateToProps))(CampaignDetail);
+export default withRouter(CampaignDetail);

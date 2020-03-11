@@ -1,4 +1,5 @@
 import React from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import { Row, Col, Button } from 'reactstrap'
 import { Checkbox, Tooltip } from 'antd'
 
@@ -12,6 +13,8 @@ import images from '../../utils/images'
 function CustomCollapsePanel(props) {
 
     const {type, title, participate} = props
+
+    const isLoading = useSelector(state=>state.userInfo.CAMPAIGN_PARTICIPATE_SUCCESS)
 
     const renderIcons = () => {
         switch(type){
@@ -55,7 +58,7 @@ function CustomCollapsePanel(props) {
                     <div className="mt-3">
                         <Checkbox>Would you like to receive informations about this company by email?</Checkbox>
                     </div>
-                    <Button className="btn blue-btn mt-3 participate-btn-size" color="primary" onClick={participate}>PARTICIPATE</Button>
+                    <Button className="btn blue-btn mt-3 participate-btn-size" color="primary" onClick={participate} disabled={isLoading}>PARTICIPATE</Button>
                 </ExpansionPanelDetails>
             </ExpansionPanel>
             {renderIcons()}

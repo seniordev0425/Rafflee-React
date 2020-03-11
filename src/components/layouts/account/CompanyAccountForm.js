@@ -1,10 +1,9 @@
-import React, {useState, useEffect, useRef} from 'react'
-import { connect } from "react-redux";
-import {Link} from 'react-router-dom'
-import {Form as FinalForm, Field} from 'react-final-form'
-import {Form, FormGroup, Button, Input, Row, Col} from 'reactstrap'
+import React, { useState, useEffect } from 'react'
+import { useSelector, useDispatch } from "react-redux";
+import { Form as FinalForm, Field } from 'react-final-form'
+import { Form, FormGroup, Button, Row, Col } from 'reactstrap'
 import ReactFlagsSelect from 'react-flags-select'
-import {getCode, getName} from 'country-list'
+import { getCode, getName } from 'country-list'
 import ImageUploader from 'react-images-upload'
 import DeleteAccount from '../../modals/DeleteAccount'
 import FormInput from '../../common/FormInput'
@@ -14,8 +13,9 @@ import TwitterConnectBtn from '../../common/Buttons/TwitterConnectBtn'
 import TwitchConnectBtn from '../../common/Buttons/TwitchConnectBtn'
 import YoutubeConnectBtn from '../../common/Buttons/YoutubeConnectBtn'
 import InstagramConnectBtn from '../../common/Buttons/InstagramConnectBtn'
-import {getCompanyProfile, updateCompanyProfile} from '../../../apis/apiCalls'
-import {openNotification} from '../../../utils/notification'
+import { updateCompanyProfile } from '../../../actions/userInfo'
+import { getCompanyProfile } from '../../../actions/userInfo'
+
 
 
 import {
@@ -30,56 +30,45 @@ import Loading from '../../common/Loading';
 
 function CompanyAccountForm(props){
 
-    const userFlag = useRef(null)
-    const [isLoading, setIsLoading] = useState(false)
-    const [submitting, setSubmitting] = useState(false)
+    const companyProfile = useSelector(state=>state.userInfo.companyProfile)
+    const isLoading = useSelector(state=>state.userInfo.GET_COMPANY_PROFILE_SUCCESS)
+    const isUpdating = useSelector(state=>state.userInfo.UPDATE_COMPANY_PROFILE_SUCCESS)
+
+    const dispatch = useDispatch()
 
     const [initialPhoneNum, setInitialPhoneNum] = useState({phone_number:null, phone_country:null})
     const [countryName, setCountryName] = useState('')
     const [imgBase64Data, setImgBase64Data] = useState('')
     const [imgFormData, setImgFormData] = useState([])
-    
-    const {dispatch} = props
-
     const [openDeleteModal, setOpenDeleteModal] = useState(false)
     const handleDeleteModal = () => setOpenDeleteModal(!openDeleteModal)
 
+    const { logo, country_code, national_number, country } = companyProfile
+
     useEffect(() => {
-        setIsLoading(true)
-        getCompanyProfile(props.token)
-        .then(response => response.text())
-        .then(result => {
-            setIsLoading(false)
-            var json_rlt = JSON.parse(result)
-            if (json_rlt.msg == 'COMPANY_INFORMATION_RETRIEVED'){
-                var tmpNum = {}
-                tmpNum.phone_country = json_rlt.user_informations.country_code
-                tmpNum.phone_number = json_rlt.user_informations.national_number
-                setInitialPhoneNum(tmpNum)
+        dispatch(getCompanyProfile())
+    },[])
 
-                if (json_rlt.user_informations.logo != '') setImgBase64Data('data:image/png;base64,' + json_rlt.user_informations.logo)
-                if (json_rlt.user_informations.country != '') userFlag.current.updateSelected(getCode(json_rlt.user_informations.country))
+    useEffect(() => {
+        var tmpNum = {}
+        tmpNum.phone_country = country_code
+        tmpNum.phone_number = national_number
+        setInitialPhoneNum(tmpNum)
 
-                setCountryName(json_rlt.user_informations.country)
-
-                dispatch({type: "setMyInfo", data: json_rlt.user_informations})
-            }
-        })
-        .catch(error => console.log('error', error));
-    }, [])
+        if (logo != '') setImgBase64Data('data:image/png;base64,' + logo)
+        setCountryName(country)
+    }, [companyProfile])
 
     const onSubmit = (values) => {
-        setSubmitting(true)
-        updateCompanyProfile(values, countryName, imgFormData)
-        .then(response => response.text())
-        .then(result => {
-            setSubmitting(false)
-            var json_rlt = JSON.parse(result)
-            if (json_rlt.status == 200){
-                openNotification('success', 'Success', 'Successfully Updated')
-            }
-        })
-        .catch(error => console.log('error', error));
+        var formdata = new FormData()
+        formdata.append("logo", imgFormData)
+        formdata.append("phone_number", values.phonenumber.phone_number)
+        formdata.append("prefix_number", values.phonenumber.phone_country)
+        formdata.append("country", countryName)
+        formdata.append("region", values.postal_code)
+        formdata.append("address", values.address)
+        formdata.append("city", values.street)
+        dispatch(updateCompanyProfile(formdata))
     }
 
     const onSelectFlag = (countryCode) => {
@@ -109,64 +98,6 @@ function CompanyAccountForm(props){
                     <Form onSubmit={handleSubmit}>
                         <Row>
                             <Col xs="12" sm="6">
-                                <div className="mt-4 half-width" >
-                                    <FormGroup>
-                                        <div className="footer-link-bold mb-3">Admin Email</div>
-                                        <Field
-                                            name="email"
-                                            defaultValue={props.myInfo ? props.myInfo.email : ''}
-                                            component={FormInput}
-                                            className="custom-form-control"
-                                            type="email"
-                                            placeholder="name@example.com"
-                                            validate={composeValidators(
-                                                required('Enter a valid email address'),
-                                                isEmail('Enter a valid email address')
-                                            )}
-                                        />
-                                    </FormGroup>
-                                </div>
-                            
-                                <div className="mt-4 half-width">
-                                    <FormGroup>
-                                        <div className="footer-link-bold mb-3">Phone Number</div>
-                                        <Field
-                                            name="phonenumber"
-                                            defaultValue={initialPhoneNum}  
-                                            component={FormPhoneInput}
-                                            className="custom-form-control"
-                                            validate={requiredPhoneObj('Please enter your phone number')}
-                                        />
-                                    </FormGroup>
-                                </div>
-                        
-                                <div className="mt-4 half-width">
-                                    <FormGroup>
-                                        <div className="footer-link-bold mb-3">Company Name</div>
-                                        <Field
-                                            name="company_name"
-                                            defaultValue={props.myInfo ? props.myInfo.company_name : ''}
-                                            component={FormInput}
-                                            className="custom-form-control"
-                                            type="text"
-                                            placeholder="Company Name"
-                                            validate={required('Company Name is required')}
-                                        />
-                                    </FormGroup>
-                                    
-                                </div>
-                                <div className="mt-4 half-width">
-                                    <FormGroup>
-                                        <div className="footer-link-bold mb-3">Country</div>
-                                        <ReactFlagsSelect
-                                            onSelect={onSelectFlag}
-                                            ref={userFlag}
-                                            searchable={true}
-                                            className="menu-flags"
-                                            name="country"
-                                        />
-                                    </FormGroup>  
-                                </div>
                                 <div className="mt-4 half-width">
                                     <FormGroup>
                                         {imgBase64Data && (<img className="profile-img" src={imgBase64Data}/>)}
@@ -183,6 +114,65 @@ function CompanyAccountForm(props){
                                         />
                                     </FormGroup>  
                                 </div>
+                                <div className="mt-4 half-width" >
+                                    <FormGroup>
+                                        <div className="footer-link-bold mb-3">Admin Email</div>
+                                        <Field
+                                            name="email"
+                                            defaultValue={ companyProfile.email }
+                                            component={ FormInput }
+                                            className="custom-form-control"
+                                            type="email"
+                                            placeholder="name@example.com"
+                                            validate={composeValidators(
+                                                required('Enter a valid email address'),
+                                                isEmail('Enter a valid email address')
+                                            )}
+                                        />
+                                    </FormGroup>
+                                </div>
+                            
+                                <div className="mt-4 half-width">
+                                    <FormGroup>
+                                        <div className="footer-link-bold mb-3">Phone Number</div>
+                                        <Field
+                                            name="phonenumber"
+                                            defaultValue={ initialPhoneNum }  
+                                            component={ FormPhoneInput }
+                                            className="custom-form-control"
+                                            validate={ requiredPhoneObj('Please enter your phone number') }
+                                        />
+                                    </FormGroup>
+                                </div>
+                        
+                                <div className="mt-4 half-width">
+                                    <FormGroup>
+                                        <div className="footer-link-bold mb-3">Company Name</div>
+                                        <Field
+                                            name="company_name"
+                                            defaultValue={ companyProfile.company_name }
+                                            component={ FormInput }
+                                            className="custom-form-control"
+                                            type="text"
+                                            placeholder="Company Name"
+                                            validate={ required('Company Name is required') }
+                                        />
+                                    </FormGroup>
+                                    
+                                </div>
+                                <div className="mt-4 half-width">
+                                    <FormGroup>
+                                        <div className="footer-link-bold mb-3">Country</div>
+                                        <ReactFlagsSelect
+                                            onSelect={ onSelectFlag }
+                                            defaultCountry={ getCode(country || 'France') }
+                                            searchable={true}
+                                            className="menu-flags"
+                                            name="country"
+                                        />
+                                    </FormGroup>  
+                                </div>
+                                
                             </Col>
                             <Col xs="12" sm="6">
                                 <div className="mt-4" style={{width: "100%"}}>
@@ -190,12 +180,12 @@ function CompanyAccountForm(props){
                                         <div className="footer-link-bold mb-3">Address</div>
                                         <Field
                                             name="address"
-                                            defaultValue={props.myInfo ? props.myInfo.address : ''}
-                                            component={FormInput}
+                                            defaultValue={ companyProfile.address }
+                                            component={ FormInput }
                                             className="custom-form-control"
                                             type="text"
                                             placeholder="Address"
-                                            validate={required('Address is required')}
+                                            validate={ required('Address is required') }
                                         />
                                     </FormGroup>
                                 </div>
@@ -203,12 +193,12 @@ function CompanyAccountForm(props){
                                     <FormGroup>
                                         <Field
                                             name="street"
-                                            defaultValue={props.myInfo ? props.myInfo.city : ''}
-                                            component={FormInput}
+                                            defaultValue={ companyProfile.city }
+                                            component={ FormInput }
                                             className="custom-form-control"
                                             type="text"
                                             placeholder="City"
-                                            validate={required('Street is required')}
+                                            validate={ required('Street is required') }
                                         />
                                     </FormGroup>
                                 </div>
@@ -216,12 +206,12 @@ function CompanyAccountForm(props){
                                     <FormGroup>
                                         <Field
                                             name="postal_code"
-                                            defaultValue={props.myInfo ? props.myInfo.region : ''}
-                                            component={FormInput}
+                                            defaultValue={ companyProfile.region }
+                                            component={ FormInput }
                                             className="custom-form-control"
                                             type="text"
                                             placeholder="Region"
-                                            validate={required('Postal code is required')}
+                                            validate={ required('Postal code is required') }
                                         />
                                     </FormGroup>
                                 </div>
@@ -263,7 +253,7 @@ function CompanyAccountForm(props){
                                             color="primary"
                                             className="blue-btn mt-2"
                                             style={{width:"45%", marginRight:"5%"}}
-                                            disabled={submitting}
+                                            disabled={isUpdating}
                                         >
                                             Update
                                         </Button>
@@ -291,11 +281,5 @@ function CompanyAccountForm(props){
         </>
     )
 }
-function mapStateToProps(state) {
-    return {
-        myInfo: state.userInfo.myInfo,
-        token: state.userInfo.token,
-        company: state.userInfo.company,
-    }
-}
-export default connect(mapStateToProps)(CompanyAccountForm);
+
+export default CompanyAccountForm;
