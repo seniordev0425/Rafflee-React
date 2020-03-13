@@ -50,7 +50,7 @@ function HeaderBeforeLogin(){
         {!hide ? (
             <Row>
                 <Col>
-                    <Link to="/deals"><Button type="link" className="no-border-btn">Deals</Button></Link>
+                    <Link to="/deals"><Button type="link" className="no-border-btn">Campaigns</Button></Link>
                 </Col>
                 <Col>
                     <Button className="white-btn" style={{width: 140}} onClick={()=>toggle(false)}>Sign In</Button>
@@ -67,7 +67,7 @@ function HeaderBeforeLogin(){
                 <DropdownToggle caret>
                 </DropdownToggle>
                 <DropdownMenu style={{left:-115}}>
-                    <DropdownItem><Link to="/deals">Deals</Link></DropdownItem>
+                    <DropdownItem><Link to="/deals">Campaigns</Link></DropdownItem>
                     <DropdownItem onClick={()=>toggle(false)}>Sign In</DropdownItem>
                     <DropdownItem onClick={()=>toggle(false)}>Log In</DropdownItem>
                 </DropdownMenu>

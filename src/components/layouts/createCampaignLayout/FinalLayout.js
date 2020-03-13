@@ -32,6 +32,7 @@ function FinalLayout(props){
         .then(response => response.text())
         .then(result => {
             setSubmitting(false)
+            console.log(result)
             var json_rlt = JSON.parse(result)
             if (json_rlt.status == 200){
                 openNotification('success', 'Success', 'New campaign created successfully!')

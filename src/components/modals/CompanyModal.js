@@ -46,7 +46,7 @@ function CompanyModal(){
                                 component={FormInput}
                                 className="custom-form-control"
                                 type="email"
-                                placeholder="Contact Address"
+                                placeholder="Email Address"
                                 validate={required('Contact Address required')}
 
                             />

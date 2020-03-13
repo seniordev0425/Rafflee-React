@@ -77,7 +77,7 @@ function CampaignDetail(props){
                 <Col xs="12" sm={{size: 10, offset: 1}}>
                     <Row className="my-5">
                         <Col sm="2" xs="3" lg="1" className="promotion-list-item-img">
-                            <img src={images.profile_img}/>
+                            <img src={campaignData.campaign_image ? `data:image/png;base64,${campaignData.campaign_image}` : images.profile_img}/>
                         </Col>
                         <Col sm="10" xs="9" lg="11">
                             <div className="promotion-list-item-title">{campaignData.campaign_name}</div>

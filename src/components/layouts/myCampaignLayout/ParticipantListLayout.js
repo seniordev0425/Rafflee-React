@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import {Link} from 'react-router-dom'
-import {Row, Col, Button} from 'reactstrap'
-import { getCampaignParticipants } from '../../../apis/apiCalls'
+import { useSelector, useDispatch } from 'react-redux'
+import { Row, Col } from 'reactstrap'
+import { getCampaignParticipants } from '../../../actions/campaign'
 import images from '../../../utils/images'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSlidersH, faSearch } from '@fortawesome/free-solid-svg-icons'
@@ -11,22 +11,13 @@ import Loading from '../../common/Loading'
 function ParticipantListLayout(props){
     const {goBack, id} = props
 
-    const [isLoading, setIsLoading] = useState(false)
-    const [participantsNumber, setParticipantsNumber] = useState(0)
-    const [participants, setParticipants] = useState([])
+    const participants = useSelector(state=>state.campaign.participants)
+    const isFetchingParticipants = useSelector(state=>state.userInfo.GET_CAMPAIGN_PARTICIPANTS_SUCCESS)
+
+    const dispatch = useDispatch()
 
     useEffect(() => {
-        setIsLoading(true)
-
-        getCampaignParticipants(id)
-        .then(response => response.text())
-        .then(result => {
-            setIsLoading(false)
-            var json_rlt = JSON.parse(result)
-            setParticipantsNumber(json_rlt.number_of_participants)
-            setParticipants(json_rlt.participants)
-        })
-        .catch(error => console.log('error', error));
+        dispatch(getCampaignParticipants(id))
     },[])
 
     const renderParticipants = () => {
@@ -43,7 +34,7 @@ function ParticipantListLayout(props){
         )
     }
 
-    if (isLoading) {
+    if (isFetchingParticipants) {
         return <Loading/>
     }
 
@@ -77,7 +68,7 @@ function ParticipantListLayout(props){
             </Row>
             <Row className="mt-3 mb-3">
                 <Col xs={{size: 10, offset: 1}} className="pl-4 pr-4">
-                    <div className="float-left" style={{fontSize:"1.1rem", fontWeight:"bold"}}>Participants ({participantsNumber})</div>
+                    <div className="float-left" style={{fontSize:"1.1rem", fontWeight:"bold"}}>Participants ({participants.length})</div>
                     <div className="float-right">
                         <FontAwesomeIcon icon={faSearch}/>
                         <FontAwesomeIcon icon={faSlidersH} className="ml-3"/>

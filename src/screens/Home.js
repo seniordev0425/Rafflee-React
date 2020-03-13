@@ -54,7 +54,7 @@ function Home(props){
             </div>
             {hotPromotions.length && <Carousel hotPromotions={hotPromotions}/>}
             <div className="find-deal-text">
-                Find the deal you have been looking for.
+                Find the campaign you have been looking for.
             </div>
             <CurrentPromotionList
                 />

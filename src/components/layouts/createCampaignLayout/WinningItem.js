@@ -29,7 +29,7 @@ function WinningItem(props){
             <Col xs="12" sm="4">
                 <div className="mt-4 half-width">
                     <FormGroup>
-                        <div className="footer-link-bold mb-3">Name of Winnings</div>
+                        <div className="footer-link-bold mb-3">Name of Prizes</div>
                         <Input
                             name={"name" + id}
                             value={item.name}
@@ -45,7 +45,7 @@ function WinningItem(props){
             <Col xs="12" sm="4">
                 <div className="mt-4 full-width">
                     <FormGroup>
-                        <div className="footer-link-bold mb-3">Type of Winnings</div>
+                        <div className="footer-link-bold mb-3">Type of Prizes</div>
                         <Input
                             name={"winning_type" + id}
                             value={item.description}

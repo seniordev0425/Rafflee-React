@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from "react-redux";
 import { Form as FinalForm, Field } from 'react-final-form'
+import { OnChange } from 'react-final-form-listeners'
 import { Form, FormGroup, Button, Row, Col } from 'reactstrap'
 import ImageUploader from 'react-images-upload'
 import ReactFlagsSelect from 'react-flags-select'
 import { getCode, getName } from 'country-list'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 import DeleteAccount from '../../modals/DeleteAccount'
 import FormInput from '../../common/FormInput'
 import FormPhoneInput from '../../common/FormPhoneInput'
@@ -31,6 +34,7 @@ import Loading from '../../common/Loading';
 function UserAccountForm(props){
 
     const userProfile = useSelector(state=>state.userInfo.userProfile)
+    const phone_number_verified = useSelector(state=>state.userInfo.phone_number_verified)
     const isLoading = useSelector(state=>state.userInfo.GET_USER_PROFILE_SUCCESS)
     const isUpdating = useSelector(state=>state.userInfo.UPDATE_USER_PROFILE_SUCCESS)
     const isSendingSms = useSelector(state=>state.userInfo.SEND_SMS_SUCCESS)
@@ -38,11 +42,13 @@ function UserAccountForm(props){
 
     const dispatch = useDispatch()
     
-    const [isVerify, setIsVerify] = useState(false)
+    // const [isVerify, setIsVerify] = useState(false)
 
     const [countryName, setCountryName] = useState('')
 
     const [initialPhoneNum, setInitialPhoneNum] = useState({phone_number:null, phone_country:null})
+
+    const [verifyPhoneNumber, setVerifyPhoneNumber] = useState('')
 
     const [initialDate, setInitialDate] = useState('1901-01-01')
 
@@ -76,6 +82,7 @@ function UserAccountForm(props){
         tmpNum.phone_country = country_code
         tmpNum.phone_number = national_number
         setInitialPhoneNum(tmpNum)
+        setVerifyPhoneNumber(tmpNum)
 
         if (profile_picture) setImgBase64Data('data:image/png;base64,' + profile_picture)
         if (birth_date) setInitialDate(birth_date)
@@ -84,27 +91,21 @@ function UserAccountForm(props){
     }, [userProfile])
 
     const onSubmit = (values) => {
-        if (isVerify){
-            var body = {
-                number: `+${values.phonenumber.phone_country}${values.phonenumber.phone_number}`
-            }
-            dispatch(sendSms(body))
-        }
-        else {
-            var formdata = new FormData()
-            formdata.append("profile_picture", imgFormData)
-            formdata.append("phone_number", values.phonenumber.phone_number)
-            formdata.append("prefix_number", values.phonenumber.phone_country)
-            formdata.append("country", countryName)
-            formdata.append("region", values.postal_code)
-            formdata.append("birth_date", initialDate)
-            formdata.append("first_name", values.first_name)
-            formdata.append("last_name", values.last_name)
-            formdata.append("address", values.address)
-            formdata.append("city", values.street)
-            formdata.append("gender", values.gender)
-            dispatch(updateUserProfile(formdata))
-        }
+       
+        var formdata = new FormData()
+        formdata.append("profile_picture", imgFormData)
+        formdata.append("phone_number", values.phonenumber.phone_number)
+        formdata.append("prefix_number", values.phonenumber.phone_country)
+        formdata.append("country", countryName)
+        formdata.append("region", values.postal_code)
+        formdata.append("birth_date", initialDate)
+        formdata.append("first_name", values.first_name)
+        formdata.append("last_name", values.last_name)
+        formdata.append("address", values.address)
+        formdata.append("city", values.street)
+        formdata.append("gender", values.gender)
+        dispatch(updateUserProfile(formdata))
+        
     }
 
     const onChangeInitialDate = (date, dateString) => {
@@ -128,10 +129,13 @@ function UserAccountForm(props){
     }
 
     const sendSMS = () => {
-        setIsVerify(true)
-    }
-    const submit = () => {
-        setIsVerify(false)
+        // console.log(verifyPhoneNumber)
+        var body = {
+            number: `+${verifyPhoneNumber.phone_country}${verifyPhoneNumber.phone_number}`
+        }
+        // dispatch({type: 'API_SUCCESS', name: 'TOGGLE_VERIFICATION_MODAL', data: true})
+        
+        dispatch(sendSms(body))
     }
 
     if (isLoading)
@@ -216,21 +220,29 @@ function UserAccountForm(props){
                                                     className="custom-form-control"
                                                     validate={requiredPhoneObj(' Please enter your phone number')}
                                                 />
+                                                <OnChange name="phonenumber">
+                                                    {(value) => {
+                                                        setVerifyPhoneNumber(value)
+                                                    }}
+                                                </OnChange>
                                             </div>
-                                            {!userProfile.phone_number_verification && (
-                                                <div style={{width: "25%"}}>
-                                                <Button
+                                            
+                                            <div className="d-flex justify-content-end align-items-center w-25">
+                                                {!phone_number_verified
+                                                    ?
+                                                    <Button
                                                         color="primary"
                                                         className="blue-btn mt-1"
                                                         style={{width: "100%", height: 40}}
                                                         onClick={sendSMS}
                                                         disabled={isSendingSms}
-                                                        type="submit"
                                                     >
-                                                        Verify
-                                                </Button>
+                                                    Verify
+                                                    </Button>
+                                                    :
+                                                    <FontAwesomeIcon icon={faCheckCircle} className="phone-verified-icon"/>
+                                                }
                                             </div>
-                                            )}
                                             
                                         </div>                                       
                                     </FormGroup>                             
@@ -366,7 +378,6 @@ function UserAccountForm(props){
                                             color="primary"
                                             className="blue-btn mt-2"
                                             style={{width:"45%", marginRight:"5%"}}
-                                            onClick={submit}
                                             disabled={isUpdating}
                                         >
                                             Update
@@ -398,7 +409,7 @@ function UserAccountForm(props){
             <PhoneVerificationModal
                 open={openVerificationModal}
                 onToggle={handleVerificationModal}
-                phone_number={initialPhoneNum}
+                phone_number={verifyPhoneNumber}
             />
         </>
     )

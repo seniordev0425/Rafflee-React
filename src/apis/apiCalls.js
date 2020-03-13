@@ -306,69 +306,69 @@ export const getCategories = () => {
 //     return fetch(APIROUTE + "campaign/participate/", requestOptions)
 // }
 
-export const getCampaignParticipants = (id) => {
-    var myHeaders = new Headers();
-    myHeaders.append("Authorization", "JWT " + localStorage.getItem('token'));
+// export const getCampaignParticipants = (id) => {
+//     var myHeaders = new Headers();
+//     myHeaders.append("Authorization", "JWT " + localStorage.getItem('token'));
 
-    var requestOptions = {
-        method: 'GET',
-        headers: myHeaders,
-        redirect: 'follow'
-    };
+//     var requestOptions = {
+//         method: 'GET',
+//         headers: myHeaders,
+//         redirect: 'follow'
+//     };
       
-    return  fetch(APIROUTE + `campaign/participants/${id}/`, requestOptions)
-}
+//     return  fetch(APIROUTE + `campaign/participants/${id}/`, requestOptions)
+// }
 
-export const getCampaignWinnings = (id) => {
-    var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
-    myHeaders.append("Authorization", "JWT " + localStorage.getItem('token'));
+// export const getCampaignWinnings = (id) => {
+//     var myHeaders = new Headers();
+//     myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+//     myHeaders.append("Authorization", "JWT " + localStorage.getItem('token'));
 
-    var requestOptions = {
-    method: 'GET',
-    headers: myHeaders,
-    redirect: 'follow'
-    };
+//     var requestOptions = {
+//     method: 'GET',
+//     headers: myHeaders,
+//     redirect: 'follow'
+//     };
 
-    return fetch(APIROUTE + `campaign/live/get-winnings/${id}/`, requestOptions)
-}
+//     return fetch(APIROUTE + `campaign/live/get-winnings/${id}/`, requestOptions)
+// }
 
-export const drawCampaign = (id, drawType, winningType) => {
-    var myHeaders = new Headers();
-    var urlencoded = new URLSearchParams();
-    myHeaders.append("Authorization", "JWT " + localStorage.getItem('token'));
+// export const drawCampaign = (id, drawType, winningType) => {
+//     var myHeaders = new Headers();
+//     var urlencoded = new URLSearchParams();
+//     myHeaders.append("Authorization", "JWT " + localStorage.getItem('token'));
 
-    if (drawType === 'draw_by_gift' || drawType === 'draw_all_by_gift'){
-        myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
-        urlencoded.append("winning_name", winningType);
+//     if (drawType === 'draw_by_gift' || drawType === 'draw_all_by_gift'){
+//         myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+//         urlencoded.append("winning_name", winningType);
         
-        var requestOptions = {
-            method: 'POST',
-            headers: myHeaders,
-            body: urlencoded,
-            redirect: 'follow'
-        };
-    }
-    else {
-        var requestOptions = {
-            method: 'POST',
-            headers: myHeaders,
-            redirect: 'follow'
-        };
-    }
+//         var requestOptions = {
+//             method: 'POST',
+//             headers: myHeaders,
+//             body: urlencoded,
+//             redirect: 'follow'
+//         };
+//     }
+//     else {
+//         var requestOptions = {
+//             method: 'POST',
+//             headers: myHeaders,
+//             redirect: 'follow'
+//         };
+//     }
     
-    var endpoint = ''
-    if (drawType === 'draw_by_gift')
-        endpoint = 'campaign/live/pick/'
-    else if (drawType === 'draw_all_by_gift')
-        endpoint = 'campaign/live/all/'
-    else if (drawType === 'draw')
-        endpoint = 'campaign/live/'
-    else if (drawType === 'draw_all')
-        endpoint = 'campaign/live/finish/'
+//     var endpoint = ''
+//     if (drawType === 'draw_by_gift')
+//         endpoint = 'campaign/live/pick/'
+//     else if (drawType === 'draw_all_by_gift')
+//         endpoint = 'campaign/live/all/'
+//     else if (drawType === 'draw')
+//         endpoint = 'campaign/live/'
+//     else if (drawType === 'draw_all')
+//         endpoint = 'campaign/live/finish/'
     
-    return fetch(APIROUTE + endpoint + id + '/', requestOptions)
-}
+//     return fetch(APIROUTE + endpoint + id + '/', requestOptions)
+// }
 
 // export const getParticipateHistory = () => {
 //     var myHeaders = new Headers();

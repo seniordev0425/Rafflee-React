@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import { Form as FinalForm, Field } from 'react-final-form'
+import { OnChange } from 'react-final-form-listeners'
 import { Form, FormGroup, Button, Input } from 'reactstrap'
 import FormInput from '../common/FormInput'
 import { Switch } from 'antd'
@@ -24,6 +25,12 @@ function SignUpModal(props){
     const dispatch = useDispatch()
     const [agree, setAgree] = useState(false)
 
+    const [containSpecial, setContainSpecial] = useState(false)
+    const [containLowercase, setContainLowercase] = useState(false)
+    const [containCapital, setContainCapital] = useState(false)
+    const [containNumber, setContainNumber] = useState(false)
+    const [containEnoughLen, setContainEnoughLen] = useState(false)
+
     useEffect(() => {
         if (signUpSuccess){
             dispatch({type: 'SIGN_UP_SUCCESS', data: false})
@@ -32,6 +39,7 @@ function SignUpModal(props){
     },[signUpSuccess])
     
     const onSubmit = (values) => {
+        if (!containCapital || !containSpecial || !containLowercase || !containCapital || !containNumber) return
         var body = {
             username: values.username,
             email: values.email,
@@ -40,6 +48,18 @@ function SignUpModal(props){
         }
 
         dispatch(signUp(body))
+    }
+
+    const validatePassword = (val) => {
+        let specialFormat = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/
+        let lowercaseFormat = /[a-z]/
+        let uppercaseFormat = /[A-Z]/
+        let numberFormat = /\d/
+        setContainSpecial(specialFormat.test(val))
+        setContainLowercase(lowercaseFormat.test(val))
+        setContainCapital(uppercaseFormat.test(val))
+        setContainNumber(numberFormat.test(val))
+        setContainEnoughLen(val.length >= 8)
     }
     
     return(
@@ -82,6 +102,11 @@ function SignUpModal(props){
                                 validate={required('Password required')}
 
                             />
+                            <OnChange name="password1">
+                                {(value) => {
+                                    validatePassword(value)
+                                }}
+                            </OnChange>
                         </FormGroup>
                         <FormGroup>
                             <Field
@@ -91,9 +116,24 @@ function SignUpModal(props){
                                 type="password"
                                 placeholder="Confirm Password"
                                 validate={required('Confirm Password')}
-                                
                             />
-                        </FormGroup>
+                            
+                            <div className="mt-3" style={containSpecial ? {color: "green"} : {color: "#dc3545"}}>
+                                Password must contain a special character
+                            </div>
+                            <div className="mt-2" style={containLowercase ? {color: "green"} : {color: "#dc3545"}}>
+                                Password must contain lowercase letter
+                            </div>
+                            <div className="mt-2" style={containCapital ? {color: "green"} : {color: "#dc3545"}}>
+                                Password must contain a capital letter
+                            </div>
+                            <div className="mt-2" style={containNumber ? {color: "green"} : {color: "#dc3545"}}>
+                                Password must contain a number
+                            </div>
+                            <div className="mt-2" style={containEnoughLen ? {color: "green"} : {color: "#dc3545"}}>
+                                Password must have a minimum length of 8
+                            </div>
+                        </FormGroup>                        
                         <FormGroup>
                             <Switch onChange={() => setAgree(!agree)} />
                             <span className="agree-container">I agree to the 

@@ -20,6 +20,8 @@ const initialFeedState = {
         region: ''
     },
 
+    phone_number_verified: false,
+
     companyProfile: {
         city: '',
         national_number: '',
@@ -70,7 +72,8 @@ function UserInfo(state = initialFeedState, action){
         case 'GET_USER_PROFILE_SUCCESS': 
             return {
                 ...state,
-                userProfile: action.data
+                userProfile: action.data,
+                phone_number_verified: action.data.phone_number_verification
             }
         case 'GET_COMPANY_PROFILE_SUCCESS': 
             return {
@@ -91,10 +94,8 @@ function UserInfo(state = initialFeedState, action){
         case 'VERIFY_PHONE_NUMBER_SUCCESS':
             return {
                 ...state,
-                userProfile: {
-                    ...state.userProfile,
-                    phone_number_verification: true
-                }
+                phone_number_verified: true,
+                VERIFY_PHONE_NUMBER_SUCCESS: action.flag
             }
         case 'GET_USER_INVENTORY_SUCCESS':
             return {

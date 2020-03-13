@@ -9,6 +9,7 @@ function CreateCampaignLayout(){
     const [pollCreated, setPollCreated] = useState(false)
     const [poll, setPoll] = useState(null)
     const [firstFormData, setFirstFormData] = useState(null)
+    const [firstFormTempData, setFirstFormTempData] = useState({})
 
 
     useEffect(() => {
@@ -22,23 +23,27 @@ function CreateCampaignLayout(){
         setCurrentLayout('first')
     }
 
-    const gotoPollCreate = () => {
+    const gotoPollCreate = (data) => {
         setCurrentLayout('create poll')
+        setFirstFormTempData(data)
+        // console.log(data)
     }
 
     const gotoFinalLayout = (result) => {
+        console.log(result)
         setFirstFormData(result)
         setCurrentLayout('final')
     }
 
     const createNewPromotion = () => {
         setCurrentLayout('first')
+        setFirstFormTempData({})
         setPollCreated(false)
     }
     const renderLayout = () => {
         switch(currentLayout){
             case 'first':
-                return <FirstLayout gotoPollCreate={gotoPollCreate} gotoFinalLayout={gotoFinalLayout} pollCreated={pollCreated}/>
+                return <FirstLayout gotoPollCreate={gotoPollCreate} gotoFinalLayout={gotoFinalLayout} pollCreated={pollCreated} firstFormTempData={firstFormTempData}/>
             case 'create poll':
                 return <CreatePollLayout gotoFirstLayout={gotoFirstLayout}/>
             case 'final':

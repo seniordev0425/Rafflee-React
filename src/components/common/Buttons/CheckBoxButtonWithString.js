@@ -1,9 +1,9 @@
-import React, {useState} from 'react'
-import {Checkbox} from 'antd'
+import React, { useState } from 'react'
+import { Checkbox } from 'antd'
 
 function CheckBoxButtonWithString(props){
-    const {btnString, handleActions} = props
-    const[checked, setChecked] = useState(false)
+    const {btnString, handleActions, value} = props
+    const[checked, setChecked] = useState(value)
     const onChangeChecked = () => {
         setChecked(!checked)
         handleActions()

@@ -198,7 +198,6 @@ function onSuccessSendSms(data) {
 }
 /////////////////////////////////////////////// VERIFY-PHONE-NUMBER-ACTION
 export function verifyPhoneNumber(params) {
-  console.log(params)
   return apiAction({
       url: APIROUTE + "account/number/verification/",
       method: 'POST',
@@ -206,13 +205,13 @@ export function verifyPhoneNumber(params) {
       accessToken: localStorage.getItem('token'),
       onSuccess: onSuccessVerifyPhoneNumber,
       onFailure: onFailed,
-      label: 'VERIFY_PHONE_NUMBER_SUCCESS',
+      label: 'VERIFY_PHONE_NUMBER_REQUEST',
   });
 }
 function onSuccessVerifyPhoneNumber(data) {
   return {
       type: 'VERIFY_PHONE_NUMBER_SUCCESS',
-      data: ''
+      flag: true
   }
 }
 /////////////////////////////////////////////// GET-USER-INVENTORY-ACTION

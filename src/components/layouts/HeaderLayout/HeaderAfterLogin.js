@@ -39,7 +39,7 @@ function HeaderAfterLogin(props){
         {!hide ? (
             <Row>
                 <Col>
-                    <Link to="/deals"><Button type="link" className="no-border-btn" style={{marginRight:30}}>Deals</Button></Link>
+                    <Link to="/deals"><Button type="link" className="no-border-btn" style={{marginRight:30}}>Campaigns</Button></Link>
                 </Col>
                 <Col>
                     <Link to="/user-account"><Button className="white-btn" style={{width: 140}}>Account</Button></Link>
@@ -62,7 +62,7 @@ function HeaderAfterLogin(props){
                     
                 </DropdownToggle>
                 <DropdownMenu style={{left:-115}}>
-                    <DropdownItem><Link to="/deals">Deals</Link></DropdownItem>
+                    <DropdownItem><Link to="/deals">Campaigns</Link></DropdownItem>
                     <DropdownItem><Link to="/user-account">Account</Link></DropdownItem>
                     <DropdownItem><Link to={props.company ? "/dashboard/my-campaign" : "/dashboard/inventory"}>Dashboard</Link></DropdownItem>
                     <DropdownItem onClick={log_Out}><Link to="/">Logout</Link></DropdownItem>

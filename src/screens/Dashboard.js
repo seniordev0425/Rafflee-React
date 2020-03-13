@@ -93,7 +93,7 @@ function Dashboard(props){
                             <Menu.Item key="participation-history">
                                 <Link to="/dashboard/participation-history">
                                     <img src={match.params.menu == 'participation-history' ? images.ph_icon_blue : images.ph_icon}/>
-                                    <span className="ml-3"> Participation of Historical {`(${(userParticipationHistory || []).length})`}</span>
+                                    <span className="ml-3"> Rafflee history {`(${(userParticipationHistory || []).length})`}</span>
                                 </Link>
                             </Menu.Item>
                             <Menu.Item key="following">

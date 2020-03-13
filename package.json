@@ -22,6 +22,7 @@
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-final-form": "^6.3.5",
+    "react-final-form-listeners": "^1.0.2",
     "react-flags-select": "^1.1.10",
     "react-images-upload": "^1.2.8",
     "react-redux": "^7.2.0",

@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react'
-import { connect } from "react-redux";
-import {Link} from 'react-router-dom'
 import {Form as FinalForm, Field} from 'react-final-form'
+import { OnChange } from 'react-final-form-listeners'
 import PropTypes from 'prop-types'
 import {Form, FormGroup, Button, Input, Row, Col} from 'reactstrap'
 import ImageUploader from 'react-images-upload'
@@ -11,6 +10,7 @@ import WinningItem from './WinningItem'
 import CheckBoxButtonWithString from '../../common/Buttons/CheckBoxButtonWithString'
 import images from '../../../utils/images'
 import {getCategories} from '../../../apis/apiCalls'
+import moment from 'moment'
 
 import {
     composeValidators, 
@@ -22,19 +22,22 @@ import {
 } from '../../../utils/validation'
 
 function FirstLayout(props){
-    const {gotoPollCreate, gotoFinalLayout, pollCreated} = props
+    const {gotoPollCreate, gotoFinalLayout, pollCreated, firstFormTempData} = props
 
+    let tempCategories = [];
+    ((firstFormTempData || {}).categories || []).map((item) => tempCategories.push({name: item}))
+    
     const {Option} = Select
     const [children, setChildren] = useState([])
-    const [categories, setCategories] = useState([])
-    const [distribution, setDistribution] = useState('direct')
-    const [winningArr, setWinningArr] = useState([{name: '', number_of_people: '', description: ''}])
-    const [startDate, setStartDate] = useState('')
-    const [endDate, setEndDate] = useState('')
-    const [winStartDate, setWinStartDate] = useState('')
-    const [winEndDate, setWinEndDate] = useState('')
+    const [categories, setCategories] = useState(tempCategories)
+    const [distribution, setDistribution] = useState((firstFormTempData || {}).distribution ? (firstFormTempData || {}).distribution :  'direct')
+    const [winningArr, setWinningArr] = useState((firstFormTempData || {}).winningArr ? (firstFormTempData || {}).winningArr :  [{name: '', number_of_people: '', description: ''}])
+    const [startDate, setStartDate] = useState((firstFormTempData || {}).startDate ?(firstFormTempData || {}).startDate : '')
+    const [endDate, setEndDate] = useState((firstFormTempData || {}).endDate ?(firstFormTempData || {}).endDate : '')
+    const [winStartDate, setWinStartDate] = useState((firstFormTempData || {}).winStartDate ?(firstFormTempData || {}).winStartDate : '')
+    const [winEndDate, setWinEndDate] = useState((firstFormTempData || {}).winEndDate ?(firstFormTempData || {}).winEndDate : '')
     const [imgFormData, setImgFormData] = useState([])
-    const [socialActions, setSocialActions] = useState({
+    const [socialActions, setSocialActions] = useState((firstFormTempData || {}).socialActions ? firstFormTempData.socialActions : {
         twitter: {
             comment: false,
             like: false,
@@ -62,6 +65,9 @@ function FirstLayout(props){
         },
     })
 
+    const [tempData, setTempData] = useState(firstFormTempData)
+
+
     useEffect(() => {
         getCategories()
         .then(response => response.text())
@@ -81,26 +87,32 @@ function FirstLayout(props){
         let newActions = {...socialActions}
         newActions[category][action] = !newActions[category][action]
         setSocialActions(newActions)
+        setTempData({...tempData, socialActions: socialActions})
     }
 
     const onChangeStartDate = (date, dateString) => {
         setStartDate(dateString)
+        setTempData({...tempData, startDate: dateString})
     }
 
     const onChangeEndDate = (date, dateString) => {
         setEndDate(dateString)
+        setTempData({...tempData, endDate: dateString})
     }
 
     const onChangeWinStartDate = (date, dateString) => {
         setWinStartDate(dateString)
+        setTempData({...tempData, winStartDate: dateString})
     }
 
     const onChangeWinEndDate = (date, dateString) => {
         setWinEndDate(dateString)
+        setTempData({...tempData, winEndDate: dateString})
     }
     
     const onChangeDistribution = (e) => {
         setDistribution(e.target.value)
+        setTempData({...tempData, distribution: e.target.value})
     }
 
     const setWinningVal = (e, id, type) => {
@@ -108,6 +120,7 @@ function FirstLayout(props){
         let newArr = [...winningArr]
         newArr[id][type] = e.target.value
         setWinningArr(newArr)
+        setTempData({...tempData, winningArr: winningArr})
     }
 
     const renderWinningItems = () => {
@@ -120,11 +133,14 @@ function FirstLayout(props){
 
     const removeWinning = (id) => {
         setWinningArr(winningArr.filter((item, i) => (i !== id)))
+        setTempData({...tempData, winningArr: winningArr.filter((item, i) => (i !== id))})
     }
 
     const addWinning = () => {
         let newWinning = {name: '', number_of_people: '', description: ''}
         setWinningArr([...winningArr, newWinning])
+        setTempData({...tempData, winningArr: winningArr})
+        
     }
 
     const setPromotionPicture = (picture) => {
@@ -157,13 +173,18 @@ function FirstLayout(props){
             temp.push({name: item})
         )
         setCategories(temp)
+        setTempData({...tempData, categories: val})
         
+    }
+
+    const createPoll = () => {
+        gotoPollCreate(tempData)
     }
 
     return(
             <FinalForm
                 onSubmit={onSubmit}
-                render={({handleSubmit, pristine, values}) => (
+                render={({handleSubmit}) => (
                     <Form onSubmit={handleSubmit}>
                         <Row>
                             <Col xs={{size:"10", offset:"1"}} className="pl-0 pr-0">
@@ -174,12 +195,18 @@ function FirstLayout(props){
                                                 <div className="footer-link-bold mb-3">Campaign Name</div>
                                                 <Field
                                                     name="campaign_name"
+                                                    defaultValue={(firstFormTempData || {}).campaign_name ? (firstFormTempData || {}).campaign_name : ''}
                                                     component={FormInput}
                                                     className="custom-form-control"
                                                     type="text"
                                                     placeholder="Campaign Name"
                                                     validate={required('Campaign Name is required')}
                                                 />
+                                                <OnChange name="campaign_name">
+                                                    {(value) => {
+                                                        setTempData({...tempData, campaign_name: value})
+                                                    }}
+                                                </OnChange>
                                             </FormGroup>
                                         </div>
                                     </Col>
@@ -209,6 +236,7 @@ function FirstLayout(props){
                                                 <div className="footer-link-bold mb-3">Short Description</div>
                                                 <Field
                                                     name="description"
+                                                    defaultValue={(firstFormTempData || {}).description ? (firstFormTempData || {}).description : ''}
                                                     component={FormInput}
                                                     className="company-contact-form-text-area"
                                                     type="textarea"
@@ -216,6 +244,11 @@ function FirstLayout(props){
                                                     placeholder=""
                                                     validate={required('Put your Description')}
                                                 />
+                                                <OnChange name="description">
+                                                    {(value) => {
+                                                        setTempData({...tempData, description: value})
+                                                    }}
+                                                </OnChange>
                                             </FormGroup>  
                                         </div>
                                     </Col>
@@ -224,6 +257,7 @@ function FirstLayout(props){
                                     <Col xs="12">
                                         <div className="footer-link-bold mb-3 mt-4">Categories</div>
                                         <Select
+                                            defaultValue={(firstFormTempData || {}).categories ? (firstFormTempData || {}).categories : []}
                                             mode="multiple"
                                             className="w-100"
                                             placeholder="Please select categories"
@@ -239,8 +273,9 @@ function FirstLayout(props){
                                     <Col xs="12" sm="6">
                                         <div className="mt-4 half-width">
                                             <FormGroup>
-                                                <div className="footer-link-bold mb-3">Deal Starts</div>
+                                                <div className="footer-link-bold mb-3">Campaign Starts</div>
                                                 <DatePicker
+                                                    defaultValue={(firstFormTempData || {}).startDate ? moment((firstFormTempData || {}).startDate, 'YYYY-MM-DD') : null}
                                                     onChange={onChangeStartDate}
                                                     placeholder="YYYY-MM-DD"
                                                     className="ant-date-picker"
@@ -252,8 +287,9 @@ function FirstLayout(props){
                                     <Col xs="12" sm="6">
                                         <div className="mt-4 half-width float-right">
                                             <FormGroup>
-                                                <div className="footer-link-bold mb-3">Deal Ends</div>
+                                                <div className="footer-link-bold mb-3">Campaign Ends</div>
                                                 <DatePicker
+                                                    defaultValue={(firstFormTempData || {}).endDate ? moment((firstFormTempData || {}).endDate, 'YYYY-MM-DD') : null}
                                                     onChange={onChangeEndDate}
                                                     placeholder="YYYY-MM-DD"
                                                     className="ant-date-picker"
@@ -267,8 +303,9 @@ function FirstLayout(props){
                                     <Col xs="12" sm="6">
                                         <div className="mt-4 half-width">
                                             <FormGroup>
-                                                <div className="footer-link-bold mb-3">Validity Start Date of the Winnings (for coupons only)</div>
+                                                <div className="footer-link-bold mb-3">Validity Start Date of the Prizes (for coupons only)</div>
                                                 <DatePicker
+                                                    defaultValue={(firstFormTempData || {}).winStartDate ? moment((firstFormTempData || {}).winStartDate, 'YYYY-MM-DD') : null}
                                                     onChange={onChangeWinStartDate}
                                                     placeholder="YYYY-MM-DD"
                                                     className="ant-date-picker"
@@ -280,8 +317,9 @@ function FirstLayout(props){
                                     <Col xs="12" sm="6">
                                         <div className="mt-4 half-width float-right">
                                             <FormGroup>
-                                                <div className="footer-link-bold mb-3">Validity Expiration Date of the Winnings (for coupons only)</div>
+                                                <div className="footer-link-bold mb-3">Validity Expiration Date of the Prizes (for coupons only)</div>
                                                 <DatePicker
+                                                    defaultValue={(firstFormTempData || {}).winEndDate ? moment((firstFormTempData || {}).winEndDate, 'YYYY-MM-DD') : null}
                                                     onChange={onChangeWinEndDate}
                                                     placeholder="YYYY-MM-DD"
                                                     className="ant-date-picker"
@@ -321,9 +359,21 @@ function FirstLayout(props){
                                     f
                                 </div>
                                 <div>
-                                <CheckBoxButtonWithString btnString="LIKE" handleActions={() => handleActions("facebook", "like")}/>
-                                <CheckBoxButtonWithString btnString="FOLLOW" handleActions={(val) => handleActions("facebook", "follow")}/>
-                                <CheckBoxButtonWithString btnString="MESSAGE" handleActions={(val) => handleActions("facebook", "comment")}/>
+                                <CheckBoxButtonWithString 
+                                    value={socialActions.facebook.like}
+                                    btnString="LIKE" 
+                                    handleActions={() => handleActions("facebook", "like")}
+                                />
+                                <CheckBoxButtonWithString 
+                                    value={socialActions.facebook.follow}
+                                    btnString="FOLLOW" 
+                                    handleActions={() => handleActions("facebook", "follow")}
+                                />
+                                <CheckBoxButtonWithString 
+                                    value={socialActions.facebook.comment}
+                                    btnString="MESSAGE" 
+                                    handleActions={() => handleActions("facebook", "comment")}
+                                />
                                 </div>
                             </Col>
                         </Row>
@@ -333,10 +383,26 @@ function FirstLayout(props){
                                     <img src={images.twitter_icon}/>
                                 </div>
                                 <div>
-                                <CheckBoxButtonWithString btnString="LIKE" handleActions={() => handleActions("twitter", "like")}/>
-                                <CheckBoxButtonWithString btnString="FOLLOW" handleActions={() => handleActions("twitter", "follow")}/>
-                                <CheckBoxButtonWithString btnString="MESSAGE" handleActions={() => handleActions("twitter", "comment")}/>
-                                <CheckBoxButtonWithString btnString="RETWEET" handleActions={() => handleActions("twitter", "retweet")}/>
+                                <CheckBoxButtonWithString 
+                                    value={socialActions.twitter.like}
+                                    btnString="LIKE" 
+                                    handleActions={() => handleActions("twitter", "like")}
+                                />
+                                <CheckBoxButtonWithString 
+                                    value={socialActions.twitter.follow}
+                                    btnString="FOLLOW" 
+                                    handleActions={() => handleActions("twitter", "follow")}
+                                />
+                                <CheckBoxButtonWithString 
+                                    value={socialActions.twitter.comment}
+                                    btnString="MESSAGE" 
+                                    handleActions={() => handleActions("twitter", "comment")}
+                                />
+                                <CheckBoxButtonWithString 
+                                    value={socialActions.twitter.retweet}
+                                    btnString="RETWEET" 
+                                    handleActions={() => handleActions("twitter", "retweet")}
+                                />
                                 </div>
                             </Col>
                         </Row>
@@ -346,8 +412,16 @@ function FirstLayout(props){
                                     <img src={images.youtube_icon}/>
                                 </div>
                                 <div>
-                                <CheckBoxButtonWithString btnString="LIKE" handleActions={() => handleActions("youtube", "like")}/>
-                                <CheckBoxButtonWithString btnString="FOLLOW" handleActions={() => handleActions("youtube", "follow")}/>
+                                <CheckBoxButtonWithString 
+                                    value={socialActions.youtube.like}
+                                    btnString="LIKE" 
+                                    handleActions={() => handleActions("youtube", "like")}
+                                />
+                                <CheckBoxButtonWithString 
+                                    value={socialActions.youtube.follow}
+                                    btnString="FOLLOW" 
+                                    handleActions={() => handleActions("youtube", "follow")}
+                                />
                                 </div>
                             </Col>
                         </Row>
@@ -357,9 +431,21 @@ function FirstLayout(props){
                                     <img src={images.instagram_icon}/>
                                 </div>
                                 <div>
-                                <CheckBoxButtonWithString btnString="LIKE" handleActions={() => handleActions("instagram", "like")}/>
-                                <CheckBoxButtonWithString btnString="FOLLOW" handleActions={() => handleActions("instagram", "follow")}/>
-                                <CheckBoxButtonWithString btnString="MESSAGE" handleActions={() => handleActions("instagram", "comment")}/>
+                                <CheckBoxButtonWithString 
+                                    value={socialActions.instagram.like}
+                                    btnString="LIKE" 
+                                    handleActions={() => handleActions("instagram", "like")}
+                                />
+                                <CheckBoxButtonWithString 
+                                    value={socialActions.instagram.follow}
+                                    btnString="FOLLOW" 
+                                    handleActions={() => handleActions("instagram", "follow")}
+                                />
+                                <CheckBoxButtonWithString 
+                                    value={socialActions.instagram.comment}
+                                    btnString="MESSAGE" 
+                                    handleActions={() => handleActions("instagram", "comment")}
+                                />
                                 </div>
                             </Col>
                         </Row>
@@ -369,9 +455,21 @@ function FirstLayout(props){
                                     <img src={images.twitch_icon}/>
                                 </div>
                                 <div>
-                                <CheckBoxButtonWithString btnString="LIKE" handleActions={() => handleActions("twitch", "like")}/>
-                                <CheckBoxButtonWithString btnString="FOLLOW" handleActions={() => handleActions("twitch", "follow")}/>
-                                <CheckBoxButtonWithString btnString="MESSAGE" handleActions={() => handleActions("twitch", "comment")}/>
+                                <CheckBoxButtonWithString 
+                                    value={socialActions.twitch.like}
+                                    btnString="LIKE" 
+                                    handleActions={() => handleActions("twitch", "like")}
+                                />
+                                <CheckBoxButtonWithString 
+                                    value={socialActions.twitch.follow}
+                                    btnString="FOLLOW" 
+                                    handleActions={() => handleActions("twitch", "follow")}
+                                />
+                                <CheckBoxButtonWithString 
+                                    value={socialActions.twitch.comment}
+                                    btnString="MESSAGE" 
+                                    handleActions={() => handleActions("twitch", "comment")}
+                                />
                                 </div>
                             </Col>
                         </Row>
@@ -381,7 +479,7 @@ function FirstLayout(props){
                                     ?
                                 </div>
                                 {!pollCreated ? (
-                                    <div className='inline-div-inactive pointer' onClick={() => gotoPollCreate()}>
+                                    <div className='inline-div-inactive pointer' onClick={createPoll}>
                                         CREATE POLL
                                     </div>
                                 ) : (

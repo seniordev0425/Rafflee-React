@@ -20,6 +20,7 @@ function Carousel(props){
         <CampaignCard 
             description={item.description}
             campaign_name={item.campaign_name}
+            campaign_image={item.campaign_image}
             pk={item.pk}
         />)
 

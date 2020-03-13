@@ -10,8 +10,8 @@ function Congratulation(props) {
     return(
       winnerArr.map((item, index) => 
         <div key={index} className="congratulation-item my-5">
-          <div style={{position: "absolute", left: "6%"}}>
-            <img src={'data:image/png;base64,' + item.picture_profile} alt="" width="50"/>
+          <div style={{position: "absolute", left: "6%", marginTop: -6, marginLeft: 23}}>
+            <img src={'data:image/png;base64,' + item.picture_profile} alt="" width="35" height="35"/>
             <span className="ml-3">{item.username}</span>
           </div>
           <div className="d-flex align-items-center">

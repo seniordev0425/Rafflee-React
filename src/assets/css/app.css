@@ -732,7 +732,7 @@ h2 span {
     border-radius: 8px;
     display: flex;
     justify-content: center;
-    padding: 10px 30px;
+    padding: 20px 30px;
     width: 90%;
     margin: auto;
 }
@@ -945,6 +945,13 @@ h2 span {
 }
 .ant-notification {
     z-index: 100000 !important;
+    right: calc(50% - 192px) !important;
+    margin-right: 0px !important;
+
+}
+.phone-verified-icon {
+    color: #0091ff;
+    font-size: 1.5rem;
 }
 
 

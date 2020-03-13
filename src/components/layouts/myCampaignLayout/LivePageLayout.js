@@ -1,56 +1,49 @@
 import React, { useState, useEffect } from 'react'
-import {Link} from 'react-router-dom'
-import {Row, Col, Button} from 'reactstrap'
+import { useSelector, useDispatch } from 'react-redux'
+import { Row, Col, Button } from 'reactstrap'
 import { Select } from 'antd'
 import images from '../../../utils/images'
 import Congratulation from '../../modals/Congratulation'
-import {getCampaignParticipants, getCampaignWinnings, drawCampaign} from '../../../apis/apiCalls'
 import Loading from '../../common/Loading'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSlidersH, faSearch } from '@fortawesome/free-solid-svg-icons'
-import { openNotification } from '../../../utils/notification'
+import { getCampaignParticipants, getCampaignWinnings, drawCampaign } from '../../../actions/campaign'
 
 function LivePageLayout(props){
 
     const {id, goBack} = props
 
-    const { Option } = Select
+    const participants = useSelector(state=>state.campaign.participants)
+    const campaignWinnings = useSelector(state=>state.campaign.campaignWinnings)
+    const winnerArr = useSelector(state=>state.campaign.winnerArr)
+    const isFetchingParticipants = useSelector(state=>state.userInfo.GET_CAMPAIGN_PARTICIPANTS_SUCCESS)
+    const isFetchingWinnings = useSelector(state=>state.userInfo.GET_CAMPAIGN_WINNINGS_SUCCESS)
+    const isDrawing = useSelector(state=>state.userInfo.DRAW_CAMPAIGN_SUCCESS)
+    const toggleWinnersModal = useSelector(state=>state.campaign.TOGGLE_WINNERS_MODAL)
 
-    const [children, setChildren] = useState([])
-    const [participantsNumber, setParticipantsNumber] = useState(0)
-    const [participants, setParticipants] = useState([])
+    const dispatch = useDispatch()
+
     const [open, setOpen] = useState(false)
     const [drawType, setDrawType] = useState('draw_by_gift')
     const [winningType, setWinningType] = useState('')
-    const [winnerArr, setWinnerArr] = useState([])
-    const [isLoading, setIsLoading] = useState(false)
+    
+    const { Option } = Select
     
     useEffect(() => {
-        setIsLoading(true)
-
-        getCampaignParticipants(id)
-        .then(response => response.text())
-        .then(result => {
-            setIsLoading(false)
-            var json_rlt = JSON.parse(result)
-            setParticipantsNumber(json_rlt.number_of_participants)
-            setParticipants(json_rlt.participants)
-        })
-        .catch(error => console.log('error', error));
-
-        getCampaignWinnings(id)
-        .then(response => response.text())
-        .then(result => {
-            var json_rlt = JSON.parse(result)
-            let temp = []
-            for (let i = 0; i < json_rlt.result_data.length; i ++)
-                temp.push(<Option key={i} value={json_rlt.result_data[i].name}>{json_rlt.result_data[i].name}</Option>)
-            setChildren(temp)
-        })
-        .catch(error => console.log('error', error));
-
+        dispatch(getCampaignParticipants(id))
+        dispatch(getCampaignWinnings(id))
     },[])
 
+    useEffect(() => {
+        if (toggleWinnersModal){
+            onToggle()
+            dispatch({type: 'DRAW_CAMPAIGN_SUCCESS', data: winnerArr, flag: false})
+        } 
+    }, [toggleWinnersModal])
+
+    useEffect(() => {
+        setWinningType(campaignWinnings.length ? campaignWinnings[0].name : '')
+    }, [campaignWinnings])
 
     const onToggle = () => {
         setOpen(!open)
@@ -58,13 +51,21 @@ function LivePageLayout(props){
 
     const renderParticipants = () => {
         return (
-            (participants || []).map((item, index) => 
+            (participants).map((item, index) => 
                 <Row key={index} className="pt-3 pb-3" style={!(index % 2) ? {background:"rgba(191, 232, 254, 0.25)"} : {background:"white"}}>
                     <Col xs={{size: 10, offset: 1}} className="pl-4 pr-4">
                         <div className="float-left" style={{fontSize:"1.1rem"}}>{item.username}</div>
                         <div className="float-right view-profile-link">View Profile</div>
                     </Col>
                 </Row>
+            )
+        )
+    }
+
+    const renderWinnings = () => {
+        return (
+            campaignWinnings.map((item, index) => 
+                <Option key={index} value={item.name}>{item.name}</Option>
             )
         )
     }
@@ -78,25 +79,10 @@ function LivePageLayout(props){
     }
 
     const onSubmit = () => {
-        console.log(id, drawType, winningType)
-        drawCampaign(id, drawType, winningType)
-        .then(response => response.text())
-        .then(result => {
-            console.log(result)
-            var json_rlt = JSON.parse(result)
-            if (json_rlt.status === 200){
-                if (drawType === 'draw_by_gift' || drawType === 'draw')
-                    setWinnerArr([{username: json_rlt.winner.username, winning: json_rlt.winner.winning, picture_profile: json_rlt.winner.picture_profile}])
-                else setWinnerArr(json_rlt.winners)
-
-                onToggle()
-            }
-            else openNotification('warning', 'All winning object are distributed.')
-        })
-        .catch(error => console.log('error', error));
+        dispatch(drawCampaign(id, drawType, winningType))
     }
 
-    if (isLoading) {
+    if (isFetchingParticipants || isFetchingWinnings) {
         return <Loading/>
     }
 
@@ -110,7 +96,7 @@ function LivePageLayout(props){
             </Row>
             <Row className="mt-5 mb-3">
                 <Col xs={{size: 10, offset: 1}} className="pl-4 pr-4">
-                    <div className="float-left" style={{fontSize:"1.1rem", fontWeight:"bold"}}>Participants ({participantsNumber})</div>
+                    <div className="float-left" style={{fontSize:"1.1rem", fontWeight:"bold"}}>Participants ({participants.length})</div>
                     <div className="float-right">
                         <FontAwesomeIcon icon={faSearch}/>
                         <FontAwesomeIcon icon={faSlidersH} className="ml-3"/>
@@ -133,9 +119,15 @@ function LivePageLayout(props){
                         <Col xs="12" sm="4">
                             {(drawType === 'draw_by_gift' || drawType === 'draw_all_by_gift') && (
                                 <>
-                                <span className="footer-link-bold mr-3">Winning Type: </span>
-                                <Select onChange={handleWinningType} size="large" style={{width: 180}}>
-                                    {children}
+                                <span className="footer-link-bold mr-3">Prize Type: </span>
+                                <Select 
+                                    onChange={handleWinningType} 
+                                    value={winningType}
+                                    size="large" 
+                                    style={{width: 180}} 
+                                    
+                                >
+                                    {renderWinnings()}
                                 </Select>
                                 </>
                             )}
@@ -146,6 +138,7 @@ function LivePageLayout(props){
                                 className="blue-btn float-right"
                                 style={{width: 160}}
                                 onClick={onSubmit}
+                                disabled={isDrawing}
                             >
                                 Draw
                             </Button>

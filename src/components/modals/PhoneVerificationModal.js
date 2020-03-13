@@ -21,8 +21,8 @@ import { resendSms, verifyPhoneNumber } from '../../actions/userInfo'
 function PhoneVerificationModal(props) {
     const { open, onToggle, phone_number } = props
 
-    const isVerifying = useSelector(state=>state.userInfo.VERIFY_PHONE_NUMBER_SUCCESS)
-    const isVerified = useSelector(state=>state.userInfo.userProfile.phone_number_verification)
+    const isVerifying = useSelector(state=>state.userInfo.VERIFY_PHONE_NUMBER_REQUEST)
+    const isVerified = useSelector(state=>state.userInfo.VERIFY_PHONE_NUMBER_SUCCESS)
 
     const dispatch = useDispatch()
 
@@ -30,21 +30,28 @@ function PhoneVerificationModal(props) {
 
 
     useEffect(() => {
-        if (isVerified)
+        if (isVerified) {
             onToggle()
+            dispatch({type: 'VERIFY_PHONE_NUMBER_SUCCESS',flag: false})
+        }
+            
     },[isVerified])
 
     const onSubmit = () => {
+        
         var body = {
             number: `+${phone_number.phone_country}${phone_number.phone_number}`,
             code: verifyCode
         }
+        // console.log(phone_number)
+        // dispatch({type: 'VERIFY_PHONE_NUMBER_SUCCESS',flag: true})
+
         dispatch(verifyPhoneNumber(body))
     }
 
     const resendCode = () => {
         var body = {
-            number: `+${phone_number.phone_country}${phone_number.phone_number}`
+            number: phone_number
         }
         dispatch(resendSms(body))
     }
