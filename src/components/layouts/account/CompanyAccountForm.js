@@ -65,9 +65,9 @@ function CompanyAccountForm(props){
         formdata.append("phone_number", values.phonenumber.phone_number)
         formdata.append("prefix_number", values.phonenumber.phone_country)
         formdata.append("country", countryName)
-        formdata.append("region", values.postal_code)
-        formdata.append("address", values.address)
-        formdata.append("city", values.street)
+        formdata.append("region", values.postal_code !== undefined ? values.postal_code : '')
+        formdata.append("address", values.address !== undefined ? values.address : '')
+        formdata.append("city", values.street !== undefined ? values.street : '')
         dispatch(updateCompanyProfile(formdata))
     }
 
@@ -140,7 +140,6 @@ function CompanyAccountForm(props){
                                             defaultValue={ initialPhoneNum }  
                                             component={ FormPhoneInput }
                                             className="custom-form-control"
-                                            validate={ requiredPhoneObj('Please enter your phone number') }
                                         />
                                     </FormGroup>
                                 </div>
@@ -185,7 +184,6 @@ function CompanyAccountForm(props){
                                             className="custom-form-control"
                                             type="text"
                                             placeholder="Address"
-                                            validate={ required('Address is required') }
                                         />
                                     </FormGroup>
                                 </div>
@@ -198,7 +196,6 @@ function CompanyAccountForm(props){
                                             className="custom-form-control"
                                             type="text"
                                             placeholder="City"
-                                            validate={ required('Street is required') }
                                         />
                                     </FormGroup>
                                 </div>
@@ -211,7 +208,6 @@ function CompanyAccountForm(props){
                                             className="custom-form-control"
                                             type="text"
                                             placeholder="Region"
-                                            validate={ required('Postal code is required') }
                                         />
                                     </FormGroup>
                                 </div>

@@ -13,6 +13,34 @@ body {
 .color-blue {
     color:#0091ff;
 }
+.font-size-8 {
+    font-size: 0.8rem;
+}
+.font-size-9 {
+    font-size: 0.9rem;
+}
+.font-size-10 {
+    font-size: 1rem;
+}
+.font-size-11 {
+    font-size: 1.1rem;
+}
+.font-size-12 {
+    font-size: 1.2rem;
+}
+.font-size-13 {
+    font-size: 1.3rem;
+}
+.font-size-14 {
+    font-size: 1.4rem;
+}
+.font-size-20 {
+    font-size: 2rem;
+}
+.default-border {
+    border: 1px solid rgba(126, 154, 168, 0.15);
+    border-radius: 6px;
+}
 .join-header {
     width: 100%;
     height: 55px;
@@ -348,7 +376,7 @@ h2 span {
     height: 100px;
 }
 .header-container img {
-    width: 125px;
+    width: 150px;
    
 }
 .header-right-part {
@@ -953,7 +981,50 @@ h2 span {
     color: #0091ff;
     font-size: 1.5rem;
 }
+.analytics-menu {
+    color: #1890ff;
 
+}
+.analytics-menuitem {
+    font-weight:  normal;
+    border-bottom: none !important;
+}
+.underline {
+    text-decoration: underline;
+}
+.followers-container {
+    display: flex;
+    justify-content: space-between;
+}
+.follower-div {
+    width: 27%;
+    border: 1px solid rgba(126, 154, 168, 0.15);
+    border-radius: 6px;
+    padding: 20px;
+}
+@media (max-width: 1200px) {
+    .follower-div {
+        width: 32%;
+    }
+}
+@media (max-width: 800px) {
+    .follower-div {
+        width: 100%;
+        margin-top: 20px;
+    }
+    .followers-container {
+        display: block;
+    }
+}
+.audience-bottom-div {
+    width: 45%;
+}
+@media (max-width: 800px) {
+    .audience-bottom-div {
+        margin-top: 20px;
+        width: 100%;
+    }
+}
 
 
 

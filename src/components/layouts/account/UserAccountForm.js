@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Form as FinalForm, Field } from 'react-final-form'
 import { OnChange } from 'react-final-form-listeners'
 import { Form, FormGroup, Button, Row, Col } from 'reactstrap'
+import { Select } from 'antd'
 import ImageUploader from 'react-images-upload'
 import ReactFlagsSelect from 'react-flags-select'
 import { getCode, getName } from 'country-list'
@@ -10,6 +11,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 import DeleteAccount from '../../modals/DeleteAccount'
 import FormInput from '../../common/FormInput'
+import FormSelect from '../../common/FormSelect'
 import FormPhoneInput from '../../common/FormPhoneInput'
 import { DatePicker } from 'antd'
 import FaceBookConnectBtn from '../../common/Buttons/FaceBookConnectBtn'
@@ -42,7 +44,7 @@ function UserAccountForm(props){
 
     const dispatch = useDispatch()
     
-    // const [isVerify, setIsVerify] = useState(false)
+    const { Option } = Select
 
     const [countryName, setCountryName] = useState('')
 
@@ -54,6 +56,8 @@ function UserAccountForm(props){
 
     const [imgFormData, setImgFormData] = useState([])
 
+    const [genderState, setGenderState] = useState('')
+
     const [imgBase64Data, setImgBase64Data] = useState('')
 
     const [openDeleteModal, setOpenDeleteModal] = useState(false)
@@ -64,7 +68,7 @@ function UserAccountForm(props){
     const handleVerificationModal = () => setOpenVerificationModal(!openVerificationModal)
 
 
-    const { country_code, national_number, profile_picture, birth_date, country } = userProfile
+    const { country_code, national_number, profile_picture, birth_date, country, gender } = userProfile
 
     useEffect(() => {
         dispatch(getUserProfile())
@@ -87,23 +91,24 @@ function UserAccountForm(props){
         if (profile_picture) setImgBase64Data('data:image/png;base64,' + profile_picture)
         if (birth_date) setInitialDate(birth_date)
         setCountryName(country)
+        setGenderState(gender)
         
     }, [userProfile])
 
     const onSubmit = (values) => {
-       
+        console.log(genderState)
         var formdata = new FormData()
         formdata.append("profile_picture", imgFormData)
         formdata.append("phone_number", values.phonenumber.phone_number)
         formdata.append("prefix_number", values.phonenumber.phone_country)
         formdata.append("country", countryName)
-        formdata.append("region", values.postal_code)
         formdata.append("birth_date", initialDate)
         formdata.append("first_name", values.first_name)
         formdata.append("last_name", values.last_name)
-        formdata.append("address", values.address)
-        formdata.append("city", values.street)
-        formdata.append("gender", values.gender)
+        formdata.append("address", values.address !== undefined ? values.address : '')
+        formdata.append("city", values.street !== undefined ? values.street : '')
+        formdata.append("region", values.postal_code !== undefined ? values.postal_code : '')
+        formdata.append("gender", genderState)
         dispatch(updateUserProfile(formdata))
         
     }
@@ -197,15 +202,15 @@ function UserAccountForm(props){
                                 <div className="mt-4 half-width">
                                     <FormGroup>
                                         <div className="footer-link-bold mb-3">Gender</div>
-                                        <Field
-                                            name="gender"
-                                            defaultValue={ userProfile.gender }
-                                            component={FormInput}
-                                            className="custom-form-control"
-                                            type="text"
-                                            placeholder="Gender"
-                                            validate={required('Gender is required')}
-                                        />
+                                        <Select 
+                                            defaultValue={gender ? gender : 'male'} 
+                                            onChange={val => setGenderState(val)} 
+                                            size="large" 
+                                            style={{width: 180}}
+                                        >
+                                            <Option value="male">Male</Option>
+                                            <Option value="female">Female</Option>
+                                        </Select>
                                     </FormGroup>
                                 </div>
                                 <div className="mt-4 half-width">
@@ -218,7 +223,6 @@ function UserAccountForm(props){
                                                     defaultValue={initialPhoneNum}                    
                                                     component={FormPhoneInput}
                                                     className="custom-form-control"
-                                                    validate={requiredPhoneObj(' Please enter your phone number')}
                                                 />
                                                 <OnChange name="phonenumber">
                                                     {(value) => {
@@ -299,7 +303,6 @@ function UserAccountForm(props){
                                             className="custom-form-control"
                                             type="text"
                                             placeholder="Address"
-                                            validate={required('Address is required')}
                                         />
                                     </FormGroup>
                                 </div>
@@ -312,7 +315,6 @@ function UserAccountForm(props){
                                             className="custom-form-control"
                                             type="text"
                                             placeholder="City"
-                                            validate={required('Street is required')}
                                         />
                                     </FormGroup>
                                 </div>
@@ -325,7 +327,6 @@ function UserAccountForm(props){
                                             className="custom-form-control"
                                             type="text"
                                             placeholder="Region"
-                                            validate={required('Postal code is required')}
                                         />
                                     </FormGroup>
                                 </div>

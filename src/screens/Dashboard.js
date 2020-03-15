@@ -12,6 +12,7 @@ import images from '../utils/images'
 
 import MyCampaignLayout from '../components/layouts/myCampaignLayout/MyCampaignLayout'
 import MyBillsLayout from '../components/layouts/myBillsLayout/MyBillsLayout'
+import AnalyticsLayout from '../components/layouts/analytics'
 import CreateCampaignLayout from '../components/layouts/createCampaignLayout/CreateCampaignLayout'
 
 import InventoryLayout from '../components/layouts/inventoryLayout/InventoryLayout'
@@ -36,6 +37,8 @@ function Dashboard(props){
                 return <MyCampaignLayout/>;
             case 'my-bills' :
                 return <MyBillsLayout/>;
+            case 'analytics':
+                return <AnalyticsLayout/>
             case 'create-campaign' :
                 return <CreateCampaignLayout/>;
             case 'inventory':
@@ -55,7 +58,7 @@ function Dashboard(props){
 
             <div className="menubar-container">
                 <Row>
-                    <Col xs={{size: 10, offset: 1}}>
+                    <Col sm={{size: 10, offset: 1}} xs="12">
                         {props.company ? (
                         <Menu mode="horizontal" className="menubar" selectedKeys={[match.params.menu]}>
                             <Menu.Item key="my-campaign">

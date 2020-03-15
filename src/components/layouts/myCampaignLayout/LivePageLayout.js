@@ -125,7 +125,6 @@ function LivePageLayout(props){
                                     value={winningType}
                                     size="large" 
                                     style={{width: 180}} 
-                                    
                                 >
                                     {renderWinnings()}
                                 </Select>
