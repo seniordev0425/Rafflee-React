@@ -12,6 +12,7 @@ import Dashboard from '../screens/Dashboard'
 import CampaignDetail from '../screens/CampaignDetail'
 import ProfileActivated from '../screens/ProfileActivated'
 import ResetPassword from '../screens/ResetPassword'
+import SearchResult from '../screens/SearchResult'
 
 import Loading from '../components/common/Loading'
 import ScrollToTop from '../components/common/ScrollToTop'
@@ -84,6 +85,7 @@ function Routes(props){
                 <Route exact path="/deals" component={Deals} />
                 <Route exact path="/profile/activate/:id/:token" component={ProfileActivated} />
                 <Route exact path="/reset-password/:token/:id" component={ResetPassword} />
+                <Route exact path="/search-result" component={SearchResult} />
                 <Route component={NotFound} />
             </Switch>
         </ScrollToTop>

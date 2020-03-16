@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { connect, useSelector, useDispatch } from 'react-redux'
 import { compose } from 'redux'
 import { withRouter } from 'react-router-dom'
+import ReactCursorPosition from 'react-cursor-position'
 import JoinHeader from '../components/layouts/HeaderLayout/JoinHeader'
 import Header from '../components/layouts/HeaderLayout/Header'
 import Banner from '../components/layouts/Banner'
@@ -52,7 +53,9 @@ function Home(props){
             <div className="premium-prize-text">
                 Premium prizes & giveaways chosen by Rafflee.
             </div>
-            {hotPromotions.length && <Carousel hotPromotions={hotPromotions}/>}
+            {hotPromotions.length && 
+                <Carousel hotPromotions={hotPromotions}/>
+            }
             <div className="find-deal-text">
                 Find the campaign you have been looking for.
             </div>

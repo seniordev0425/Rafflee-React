@@ -1,13 +1,19 @@
 const initialFeedState = {
+    allPromotions: [],
     hotPromotions: [],
     highlightedPromotions: [],
     newPromotions: [],
-    bestOfferPromotions: []
-    
+    bestOfferPromotions: [],
+    categories: []
 }
 
 function Homepage(state = initialFeedState, action){
     switch(action.type){
+        case 'GET_ALL_PROMOTIONS_SUCCESS':
+            return {
+                ...state,
+                allPromotions: action.data
+            }
         case 'GET_HOT_PROMOTIONS_SUCCESS':
             return {
                 ...state,
@@ -27,6 +33,11 @@ function Homepage(state = initialFeedState, action){
             return {
                 ...state,
                 bestOfferPromotions: action.data
+            }
+        case 'GET_CATEGORIES_SUCCESS':
+            return {
+                ...state,
+                categories: action.data
             }
         case 'UPDATE_FAVORITE_SUCCESS':
             if (action.arrname === 'hot') {
@@ -53,10 +64,18 @@ function Homepage(state = initialFeedState, action){
                     )
                 }
             }
-            else {
+            else if (action.arrname === 'bestOffer') {
                 return {
                     ...state,
                     bestOfferPromotions: state.bestOfferPromotions.map(promotion => promotion.pk === action.id ?
+                        {...promotion, favorite: !promotion.favorite} : promotion
+                    )
+                }
+            }
+            else if (action.arrname === 'all') {
+                return {
+                    ...state,
+                    allPromotions: state.allPromotions.map(promotion => promotion.pk === action.id ?
                         {...promotion, favorite: !promotion.favorite} : promotion
                     )
                 }

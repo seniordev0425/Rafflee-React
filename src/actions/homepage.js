@@ -10,6 +10,23 @@ function onFailed(error) {
     error: error    
   }
 }
+/////////////////////////////////////////////// GET_ALL_PROMOTIONS_ACTION
+export function getAllPromotions(params) {
+    return apiAction({
+        url: APIROUTE + "campaign/all-campaigns/",
+        method: 'POST',
+        data: qs.stringify(params),
+        onSuccess: onSuccessGetAllPromotions,
+        onFailure: onFailed,
+        label: 'GET_ALL_PROMOTIONS_SUCCESS',
+    });
+}
+function onSuccessGetAllPromotions(data) {
+    return {
+        type: 'GET_ALL_PROMOTIONS_SUCCESS',
+        data: data.result_data
+    }
+}
 /////////////////////////////////////////////// GET_HOT_PROMOTIONS_ACTION
 export function getHotPromotions(params) {
     return apiAction({
@@ -95,6 +112,21 @@ function onSuccessUpdateFavorite(data, name) {
         type: 'UPDATE_FAVORITE_SUCCESS',
         arrname: name,
         id: data.promotion_id
+    }
+}
+/////////////////////////////////////////////// GET_CATEGORIES_ACTION
+export function getCategories() {
+    return apiAction({
+        url: APIROUTE + "categories/",
+        onSuccess: onSuccessGetCategories,
+        onFailure: onFailed,
+        label: 'GET_CATEGORIES',
+    });
+}
+function onSuccessGetCategories(data) {
+    return {
+        type: 'GET_CATEGORIES_SUCCESS',
+        data: data.result_data
     }
 }
 
