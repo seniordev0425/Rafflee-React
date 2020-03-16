@@ -4,6 +4,7 @@ import { Row, Col } from 'reactstrap'
 import OverView from './OverView'
 import Audience from './Audience'
 import Engagement from './Engagement'
+import Following from './Following'
 import images from '../../../utils/images'
 
 function AnalyticsLayout() {
@@ -22,7 +23,7 @@ function AnalyticsLayout() {
             case 'clicks':
                 return <OverView/>
             case 'following':
-                return <OverView/>
+                return <Following/>
         }
     }
     return(

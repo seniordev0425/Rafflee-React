@@ -1,11 +1,26 @@
 import React from 'react'
 import { Row, Col } from 'reactstrap'
 import { Progress } from 'antd'
-import { MapsComponent, LayersDirective, LayerDirective, MarkersDirective, MarkerDirective, Marker, Inject } from '@syncfusion/ej2-react-maps'
 import AudienceSplineChart from './AudienceSplineChart'
+import MapChart from './MapChart'
 
 function Audience() {
     return (
+        <>
+        <Row className="my-5">
+            <Col xs="12" sm={{size: 10, offset: 1}} className="px-4 ">
+                <div className="followers-container default-border">
+                    <div className="audience-bottom-div p-4">
+                        <div className="font-size-13 font-weight-bold">Demographics</div>
+                        <MapChart/>
+                    </div>
+                    <div className="audience-bottom-div p-4">
+                        <div/>
+                    </div>
+                </div>
+                
+            </Col>
+        </Row>
         <Row className="my-5">
             <Col xs="12" sm={{size: 10, offset: 1}} className="px-4 followers-container">
                 <div className="default-border audience-bottom-div p-4 d-flex justify-content-between flex-column">
@@ -40,6 +55,7 @@ function Audience() {
                 </div>
             </Col>
         </Row>
+        </>
     )
 }
 

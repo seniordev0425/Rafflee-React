@@ -1025,6 +1025,10 @@ h2 span {
         width: 100%;
     }
 }
+.ant-progress-inner {
+    background: #0091ff1c !important;
+}
+
 
 
 
