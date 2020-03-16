@@ -17,9 +17,9 @@ function FollowingPieChart() {
     })
 
     return(
-        <div className="default-border p-4">
+        <div>
             <div className="d-flex mb-4">
-                <div className="font-size-11 font-weight-bold">Engagement Score By Day</div>
+                <div className="font-size-11 font-weight-bold">Following Data</div>
             </div>            
             <Doughnut data={data.dataLine} height={210} options={{responsive: true, legend: false, cutoutPercentage: 70}}/>
         </div>

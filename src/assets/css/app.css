@@ -13,6 +13,12 @@ body {
 .color-blue {
     color:#0091ff;
 }
+.color-green {
+    color: #0DCDE1;
+}
+.color-purple {
+    color: #7479EE;
+}
 .font-size-8 {
     font-size: 0.8rem;
 }
