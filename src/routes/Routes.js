@@ -29,13 +29,13 @@ function Routes(props){
 
     const handleOnline = () => setOnline(navigator.onLine)
     const handleOffline = () => setOnline(navigator.onLine)
-
+    
     useEffect(() => {
         const _handleOnline = handleOnline
         const _handleOffline = handleOffline
         window.addEventListener('online', _handleOnline)
         window.addEventListener('offline', _handleOffline)
-
+    
         const token = localStorage.getItem('token')
         const company = localStorage.getItem('company')
 

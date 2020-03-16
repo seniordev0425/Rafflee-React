@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { connect, useSelector, useDispatch } from 'react-redux'
 import { compose } from 'redux'
 import { withRouter } from 'react-router-dom'
-import ReactCursorPosition from 'react-cursor-position'
 import JoinHeader from '../components/layouts/HeaderLayout/JoinHeader'
 import Header from '../components/layouts/HeaderLayout/Header'
 import Banner from '../components/layouts/Banner'
@@ -56,11 +55,10 @@ function Home(props){
             {hotPromotions.length && 
                 <Carousel hotPromotions={hotPromotions}/>
             }
-            <div className="find-deal-text">
+            <div className="find-deal-text mb-4">
                 Find the campaign you have been looking for.
             </div>
-            <CurrentPromotionList
-                />
+            <CurrentPromotionList/>
             <FooterLink/>
             <Footer/>
         </div>

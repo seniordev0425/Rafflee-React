@@ -1,14 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {createBrowserHistory} from 'history'
+import { createBrowserHistory } from 'history'
 import { createStore, applyMiddleware } from 'redux';
-import {Router, Route, Switch} from 'react-router-dom'
-import {Provider} from 'react-redux'
+import { Router } from 'react-router-dom'
+import { Provider } from 'react-redux'
 import AppReducer from './reducers/index'
 import apiMiddleware from './middleware/api'
 import Routes from './routes/Routes'
-import Home from './screens/Home'
-import UserAccount from './screens/UserAccount'
 import * as serviceWorker from './serviceWorker'
 
 import 'bootstrap/dist/css/bootstrap.css'
@@ -25,7 +23,7 @@ const store = createStore(AppReducer, applyMiddleware(apiMiddleware))
 ReactDOM.render(
     <Provider store={store}>
         <Router history={history}>
-            <Routes/>      
+            <Routes/> 
         </Router>
     </Provider>, 
     document.getElementById('root')

@@ -139,7 +139,7 @@ function CurrentPromotionList(props){
 
     return(
         <>
-            <div className="menubar-container" style={{marginTop: "30px"}}>
+            <div className="menubar-container">
                 <Row>
                     <Col xs="12" sm={{size: 10, offset: 1}}>
                         <Menu mode="horizontal" className="menubar" selectedKeys={[currentMenu]}>
