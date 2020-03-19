@@ -41,8 +41,8 @@ function UserAccountForm(props){
     const phone_number_verified = useSelector(state=>state.userInfo.phone_number_verified)
     const isLoading = useSelector(state=>state.userInfo.GET_USER_PROFILE_SUCCESS)
     const isUpdating = useSelector(state=>state.userInfo.UPDATE_USER_PROFILE_SUCCESS)
-    const isSendingSms = useSelector(state=>state.userInfo.SEND_SMS_SUCCESS)
-    const toggleVerificationModal = useSelector(state=>state.userInfo.TOGGLE_VERIFICATION_MODAL)
+    const isSendingSms = useSelector(state=>state.userInfo.SEND_SMS)
+    const toggleVerificationModal = useSelector(state=>state.userInfo.SUCCESS_SEND_SMS)
 
     const dispatch = useDispatch()
     
@@ -79,7 +79,7 @@ function UserAccountForm(props){
     useEffect(() => {
         if (toggleVerificationModal){
             handleVerificationModal()
-            dispatch({type: 'API_SUCCESS', name: 'TOGGLE_VERIFICATION_MODAL', data: false})
+            dispatch({type: 'INIT_STATE', state: 'SUCCESS_SEND_SMS', data: false})
         }
     }, [toggleVerificationModal])
     

@@ -7,7 +7,8 @@ const successMessages = {
         participate: "Successfully Participated!",
         deleteAccount: "Account was deleted.",
         resetPasswordRequest: "Confirm your Email to reset a password.",
-        resetPassword: "Password Updated!"
+        resetPassword: "Password Updated!",
+        createCampaign: "New campaign created successfully!"
     },
 
 

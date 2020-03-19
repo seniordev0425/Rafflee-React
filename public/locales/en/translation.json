@@ -15,6 +15,7 @@
     },
 
     "menubar": {
+        "all": "All",
         "highlights": "Highlights",
         "new": "New",
         "hot": "Hot",
@@ -204,6 +205,10 @@
     "profile_activated_page": {
         "successfully_activated": "Your account has been activated",
         "goto_login": "Go to Homepage and Login!"
+    },
+
+    "search_result_page": {
+        "search": "Search"
     },
 
     "signin_modal": {

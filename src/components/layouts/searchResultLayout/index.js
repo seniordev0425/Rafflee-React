@@ -1,58 +1,153 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { withRouter } from 'react-router-dom'
-import { Pagination } from 'antd'
-import { Input } from 'reactstrap'
-
+import { Menu, Pagination } from 'antd'
+import { Row, Col, Input } from 'reactstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import { faSlidersH } from '@fortawesome/free-solid-svg-icons'
 import PromotionListItem from '../currentPromotionLayout/PromotionListItem'
+import CategoryFilter from '../../common/CategoryFilter'
 import { NUMBER_PER_PAGE } from '../../../utils/constants'
-import { getAllPromotions, getCategories } from '../../../actions/homepage'
+import { getHotPromotions, getHighlightedPromotions, getNewPromotions, getBestPromotions, getCategories, getAllPromotions } from '../../../actions/homepage'
 import Loading from '../../common/Loading'
 
+import { useTranslation } from 'react-i18next'
+
 function SearchResultLayout(props){
+    const { t } = useTranslation()
 
     const { searchKey } = props
+
+    const [currentKey, setCurrentKey] = useState(searchKey)
+
     const allPromotions = useSelector(state=>state.homepage.allPromotions)
-    // const categories = useSelector(state=>state.homepage.categories)
-    const isFetchingAll = useSelector(state=>state.userInfo.GET_ALL_PROMOTIONS_SUCCESS)
-    const isFetchingCategories = useSelector(state=>state.userInfo.GET_CATEGORIES)
+    const hotPromotions = useSelector(state=>state.homepage.hotPromotions)
+    const highlightedPromotions = useSelector(state=>state.homepage.highlightedPromotions)
+    const newPromotions = useSelector(state=>state.homepage.newPromotions)
+    const bestOfferPromotions = useSelector(state=>state.homepage.bestOfferPromotions)
+    const categoryArr = useSelector(state=>state.homepage.categories)
+
+    const isLoading_1 = useSelector(state=>state.userInfo.GET_HOT_PROMOTIONS_SUCCESS)
+    const isLoading_2 = useSelector(state=>state.userInfo.GET_HIGHLIGHTED_PROMOTIONS_SUCCESS)
+    const isLoading_3 = useSelector(state=>state.userInfo.GET_NEW_PROMOTIONS_SUCCESS)
+    const isLoading_4 = useSelector(state=>state.userInfo.GET_BEST_PROMOTIONS_SUCCESS)
+    const isLoading_5 = useSelector(state=>state.userInfo.GET_ALL_PROMOTIONS_SUCCESS)
+    const isLoading_6 = useSelector(state=>state.userInfo.GET_CATEGORIES)
+
     const token = useSelector(state=>state.userInfo.token)
 
     const dispatch = useDispatch()
+
+    const [currentMenu, setCurrentMenu] = useState('all')
+    const [openCategory, setOpenCategory] = useState(false)
+    const [categories, setCategories] = useState([])
+    const [allChecked, setAllChecked] = useState(true)
     
-    const [currentKey, setCurrentKey] = useState(searchKey)
-    const [tempKey, setTempKey] = useState(searchKey)
     const [minValue, setMinValue] = useState(0)
     const [maxValue, setMaxValue] = useState(NUMBER_PER_PAGE)
 
+    const promotionList = {
+        all: allPromotions,
+        highlight: highlightedPromotions,
+        new: newPromotions,
+        hot: hotPromotions,
+        bestoffer: bestOfferPromotions
+    } 
+
     useEffect(() => {
         dispatch(getCategories())
-    }, [])
+        dispatch(getAllPromotions({token: token}))
+    },[])
 
     useEffect(() => {
-        dispatch(getAllPromotions({token: token}))
+        let temp = []
+        categoryArr.map((item) => 
+            temp.push({name: item.name, checked: true})
+        )
+        setCategories(temp)
+    }, [categoryArr])
+
+    useEffect(() => {
+        setMinValue(0)
+        setMaxValue(NUMBER_PER_PAGE)
+    }, [currentMenu])
+
+    useEffect(() => {
+        if (currentMenu === 'all')
+            dispatch(getAllPromotions({token: token}))
+        else if (currentMenu === 'highlight')
+            dispatch(getHighlightedPromotions({token: token}))
+        else if (currentMenu === 'new')
+            dispatch(getNewPromotions({token: token}))
+        else if (currentMenu === 'bestoffer')
+            dispatch(getBestPromotions({token: token}))
+        else if (currentMenu === 'hot')
+            dispatch(getHotPromotions({token: token}))
     }, [token])
 
-    const filter = (list) => {
+    const changeMenu = (val) => {
+        setCurrentMenu(val)
+        setOpenCategory(false)    
+        if (val === 'all')
+            dispatch(getAllPromotions({token: token}))
+        else if (val === 'highlight')
+            dispatch(getHighlightedPromotions({token: token}))
+        else if (val === 'new')
+            dispatch(getNewPromotions({token: token}))
+        else if (val === 'bestoffer')
+            dispatch(getBestPromotions({token: token}))
+        else if (val === 'hot')
+            dispatch(getHotPromotions({token: token}))
+    }
 
+    const toggleCategory = () => setOpenCategory(!openCategory)
+
+    const handleChange = (e) => {
+        let itemVal = e.target.value
+        let checked = e.target.checked
+        let tempArr = [...categories]
+        if (itemVal === "all") {
+            setAllChecked(checked)
+            tempArr = tempArr.map(item => ({...item, checked: checked}))
+            setCategories(tempArr)
+        }
+        else {
+            tempArr = tempArr.map(item => 
+                item.name === itemVal ? {...item, checked: checked} : item
+            )
+            setCategories(tempArr)
+            setAllChecked(tempArr.every(item => item.checked))
+        }
+    }
+
+    const filter = (list) => {
         let tempArr = []
-        let flag = false
-        for (let i = 0; i < list.length; i ++){
+        for (let i = 0; i < list.length; i ++) {
             if (list[i].campaign_name.toLowerCase().includes(currentKey.toLowerCase()) || list[i].description.toLowerCase().includes(currentKey.toLowerCase())) {
                 tempArr.push(list[i])
-                continue
             }
-            if (!list[i].categories) continue
-            for (let j = 0; j < list[i].categories.length; j ++){
-                if (list[i].categories[j].toLowerCase().includes(currentKey.toLowerCase())) {
-                    tempArr.push(list[i])
-                    break
+        }
+
+        if (allChecked)
+            return tempArr
+
+        let resultArr = []
+        let flag = false
+        for (let i = 0; i < tempArr.length; i ++) {
+            if (!tempArr[i].categories) continue
+            flag = false
+            for (let j = 0; j < tempArr[i].categories.length; j ++){
+                if (flag) break
+                for (let k = 0; k < categories.length; k ++){
+                    if (tempArr[i].categories[j] === categories[k].name && categories[k].checked)
+                    {
+                        resultArr.push(tempArr[i])
+                        flag = true
+                        break
+                    }
                 }
             }
         }
-        return tempArr
+        return resultArr
     }
 
     const handlePagination = (value) => {
@@ -60,54 +155,68 @@ function SearchResultLayout(props){
         setMaxValue((value) * NUMBER_PER_PAGE) 
     }
 
-    const handleOnKeyPress = (e) => {
-        if (e.key === 'Enter') {
-            gotoSearchResult()
-        }
-    }
-
     const renderPromotionList = () => {
         return(
-            filter(allPromotions).slice(minValue, maxValue).map((item, index) => 
+            filter(promotionList[currentMenu]).slice(minValue, maxValue).map((item, index) => 
                 <div key={index} className="promotion-list-item-container">        
-                    <PromotionListItem item={item} menuname="all"/>
+                    <PromotionListItem item={item} menuname={currentMenu}/>
                 </div>
             )
         )
     }
 
-    const gotoSearchResult = () => {
-        dispatch(getAllPromotions({token: token}))
-        setCurrentKey(tempKey)
-    }
-
     return(
-        <>         
-            <div className="menubar-container mt-0 py-3 d-flex justify-content-center" style={{marginTop: "30px"}}>
+        <>
+            <div className="menubar-container">
+                <Row>
+                    <Col xs="12" sm={{size: 10, offset: 1}}>
+                        <Menu mode="horizontal" className="menubar" selectedKeys={[currentMenu]}>
+                            <Menu.Item key="all" className="menu-item-mr" onClick={() => changeMenu('all')}>
+                                {t('menubar.all')}
+                            </Menu.Item>
+                            <Menu.Item key="highlight" className="menu-item-mr" onClick={() => changeMenu('highlight')}>
+                                {t('menubar.highlights')}
+                            </Menu.Item>
+                            <Menu.Item key="new" className="menu-item-mr" onClick={() => changeMenu('new')}>
+                                {t('menubar.new')}
+                            </Menu.Item>
+                            <Menu.Item key="hot" className="menu-item-mr" onClick={() => changeMenu('hot')}>
+                                {t('menubar.hot')}
+                            </Menu.Item>
+                            <Menu.Item key="bestoffer" className="menu-item-mr" onClick={() => changeMenu('bestoffer')}>
+                                {t('menubar.endsoon')}
+                            </Menu.Item>
+                            <Menu.Item key="categories" className="menu-bar-settings-icon" onClick={toggleCategory}>
+                                <FontAwesomeIcon icon={faSlidersH}/>
+                            </Menu.Item>
+                        </Menu>
+                    </Col>
+                </Row>
+            </div>
+            {openCategory && <CategoryFilter categories={categories} allChecked={allChecked} handleChange={handleChange}/>}
+            
+            <div className="mt-0 py-3 d-flex justify-content-center" style={{borderBottom: "1px solid #cccccc"}}>
                 <div className="banner-search mt-0">
+                    <span className="font-size-13 font-weight-bold mt-2 mr-4 color-blue">{t('search_result_page.search')}:</span>
                     <Input 
-                        onChange={(e) => setTempKey(e.target.value)}
-                        onKeyPress={handleOnKeyPress}
-                        placeholder="Search for name, description, categories..." 
+                        onChange={(e) => setCurrentKey(e.target.value)}
+                        placeholder="Search for name, description, company..." 
                         className="banner-search-input" 
-                        value={tempKey} 
-                        
+                        value={currentKey} 
                     />
-                    <div className="banner-search-btn" onClick={gotoSearchResult}>
-                        <FontAwesomeIcon icon={faSearch} className="banner-search-icon"/>
-                    </div>
                 </div>
             </div> 
-            {(isFetchingAll || isFetchingCategories)
+
+            {(isLoading_1 || isLoading_2 || isLoading_3 || isLoading_4 || isLoading_5 || isLoading_6) 
                 ?
                 <Loading/>
-                :
+                : 
                 <>
                     {renderPromotionList()}
 
-                    {filter(allPromotions).length < 1 && (
+                    {filter(promotionList[currentMenu]).length < 1 && (
                         <div className="empty-result mt-5 mb-5">
-                            <span className="promotion-list-item-title">There is no result to display.</span>
+                            <span className="promotion-list-item-title">{t('empty_result_to_display')}</span>
                         </div>
                     )}
 
@@ -115,12 +224,12 @@ function SearchResultLayout(props){
                         defaultCurrent={1}
                         defaultPageSize={NUMBER_PER_PAGE}
                         onChange={handlePagination}
-                        total={filter(allPromotions).length}
+                        total={filter(promotionList[currentMenu]).length}
                         className="py-5 d-flex justify-content-center"
-                    />   
+                    />     
                 </>
             }
-                        
+            
         </>
     )
 }

@@ -1,7 +1,7 @@
 // inspired by https://leanpub.com/redux-book
 import axios from "axios";
 import { API } from "../actions/types";
-import { accessDenied, apiError, apiStart, apiEnd } from "../actions/api";
+import { accessDenied, apiError, apiStart, apiEnd, apiSuccess } from "../actions/api";
 
 const apiMiddleware = ({ dispatch }) => next => action => {
   next(action);
@@ -44,6 +44,7 @@ const apiMiddleware = ({ dispatch }) => next => action => {
     .then(({ data }) => {
       console.log(data)
       dispatch(onSuccess(data));
+      dispatch(apiSuccess(label));
     })
     .catch(error => {
       console.log(error.response)

@@ -112,7 +112,7 @@ export function companyContact(params) {
 function onSuccessCompanyContact(data) {
   openNotification('success', successMessages[localStorage.getItem('i18nextLng')].companySendMessage)
   return {
-      type: 'API_SUCCESS',
+      type: '',
       data: ''
   }
 }
@@ -216,14 +216,14 @@ export function sendSms(params) {
       accessToken: sessionStorage.getItem('token'),
       onSuccess: onSuccessSendSms,
       onFailure: onFailed,
-      label: 'SEND_SMS_SUCCESS',
+      label: 'SEND_SMS',
+      requireErrorMessage: true
   });
 }
 function onSuccessSendSms(data) {
   return {
-      type: 'API_SUCCESS',
-      name: 'TOGGLE_VERIFICATION_MODAL',
-      data: true
+      type: '',
+      data: ''
   }
 }
 /////////////////////////////////////////////// VERIFY-PHONE-NUMBER-ACTION
@@ -335,7 +335,7 @@ export function profileActivate(id, token) {
 }
 function onSuccessProfileActivate(data) {
   return {
-      type: 'API_SUCCESS',
+      type: '',
       data: ''
   }
 }

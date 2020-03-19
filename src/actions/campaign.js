@@ -29,7 +29,7 @@ export function campaignParticipate(params) {
 function onSuccessCampaignParticipate(data) {
   openNotification('success', successMessages[localStorage.getItem('i18nextLng')].participate)
   return {
-      type: 'API_SUCCESS',
+      type: '',
       data: ''
   }
 }
@@ -144,6 +144,27 @@ function onSuccessUpdateFavorite(data, name) {
       arrname: name,
       id: data.promotion_id,
       result: data.msg
+  }
+}
+/////////////////////////////////////////////// CREATE_CAMPAIGN_ACTION
+export function createCampaign(params) {
+  return apiAction({
+     url: APIROUTE + "campaign/create/",
+     method: 'POST',
+     data: params,
+     accessToken: sessionStorage.getItem('token'),
+     onSuccess: onSuccessCreateCampaign,
+     onFailure: onFailed,
+     label: 'CREATE_CAMPAIGN',
+     requireErrorMessage: true
+     
+ });
+}
+function onSuccessCreateCampaign(data) {
+  openNotification('success', successMessages[localStorage.getItem('i18nextLng')].createCampaign)
+  return {
+     type: '',
+     data: ''
   }
 }
 

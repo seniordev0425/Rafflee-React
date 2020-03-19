@@ -48,6 +48,7 @@ function CurrentPromotionList(props){
 
     useEffect(() => {
         dispatch(getCategories())
+        dispatch(getHighlightedPromotions({token: token}))
     },[])
 
     useEffect(() => {
@@ -62,6 +63,17 @@ function CurrentPromotionList(props){
         setMinValue(0)
         setMaxValue(NUMBER_PER_PAGE)
     }, [currentMenu])
+
+    useEffect(() => {
+        if (currentMenu === 'highlight')
+            dispatch(getHighlightedPromotions({token: token}))
+        else if (currentMenu === 'new')
+            dispatch(getNewPromotions({token: token}))
+        else if (currentMenu === 'bestoffer')
+            dispatch(getBestPromotions({token: token}))
+        else if (currentMenu === 'hot')
+            dispatch(getHotPromotions({token: token}))
+    }, [token])
 
     const changeMenu = (val) => {
         setCurrentMenu(val)

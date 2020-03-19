@@ -233,42 +233,42 @@ export const verifyToken = (token) => {
 //     return fetch(APIROUTE + "account/number/send-sms/", requestOptions)
 // }
 
-export const createCampaign = (firstFormData, poll) => {
-    var myHeaders = new Headers();
-    myHeaders.append("Authorization", "JWT " + sessionStorage.getItem('token'));
+// export const createCampaign = (firstFormData, poll) => {
+//     var myHeaders = new Headers();
+//     myHeaders.append("Authorization", "JWT " + sessionStorage.getItem('token'));
 
-    var formdata = new FormData();
-    formdata.append("promotion_picture", firstFormData.promotion_picture);
-    formdata.append("promotion_name", firstFormData.promotion_name);
-    formdata.append("promotion_description", firstFormData.promotion_description);
-    formdata.append("promotion", firstFormData.promotion);
-    formdata.append("distribution", firstFormData.distribution);
-    formdata.append("start_date", firstFormData.start_date);
-    formdata.append("end_date", firstFormData.end_date);
-    formdata.append("winnings_start_date", firstFormData.winnings_start_date);
-    formdata.append("winnings_expiration_date", firstFormData.winnings_expiration_date);
-    formdata.append("winnings", JSON.stringify(firstFormData.winnings));
-    if (poll)
-         formdata.append("poll", JSON.stringify(poll));
-    else formdata.append("poll", "false");
-    formdata.append("twitter", JSON.stringify(firstFormData.social_actions.twitter));
-    formdata.append("facebook",  JSON.stringify(firstFormData.social_actions.facebook));
-    formdata.append("instagram",  JSON.stringify(firstFormData.social_actions.instagram));
-    formdata.append("youtube",  JSON.stringify(firstFormData.social_actions.youtube));
-    formdata.append("twitch",  JSON.stringify(firstFormData.social_actions.twitch));
-    if (firstFormData.categories)
-         formdata.append("categories",  JSON.stringify(firstFormData.categories));
-    else formdata.append("categories",  "false");
+//     var formdata = new FormData();
+//     formdata.append("promotion_picture", firstFormData.promotion_picture);
+//     formdata.append("promotion_name", firstFormData.promotion_name);
+//     formdata.append("promotion_description", firstFormData.promotion_description);
+//     formdata.append("promotion", firstFormData.promotion);
+//     formdata.append("distribution", firstFormData.distribution);
+//     formdata.append("start_date", firstFormData.start_date);
+//     formdata.append("end_date", firstFormData.end_date);
+//     formdata.append("winnings_start_date", firstFormData.winnings_start_date);
+//     formdata.append("winnings_expiration_date", firstFormData.winnings_expiration_date);
+//     formdata.append("winnings", JSON.stringify(firstFormData.winnings));
+//     if (poll)
+//          formdata.append("poll", JSON.stringify(poll));
+//     else formdata.append("poll", "false");
+//     formdata.append("twitter", JSON.stringify(firstFormData.social_actions.twitter));
+//     formdata.append("facebook",  JSON.stringify(firstFormData.social_actions.facebook));
+//     formdata.append("instagram",  JSON.stringify(firstFormData.social_actions.instagram));
+//     formdata.append("youtube",  JSON.stringify(firstFormData.social_actions.youtube));
+//     formdata.append("twitch",  JSON.stringify(firstFormData.social_actions.twitch));
+//     if (firstFormData.categories)
+//          formdata.append("categories",  JSON.stringify(firstFormData.categories));
+//     else formdata.append("categories",  "false");
     
-    var requestOptions = {
-    method: 'POST',
-    headers: myHeaders,
-    body: formdata,
-    redirect: 'follow'
-    };
+//     var requestOptions = {
+//     method: 'POST',
+//     headers: myHeaders,
+//     body: formdata,
+//     redirect: 'follow'
+//     };
 
-    return fetch(APIROUTE + "campaign/create/", requestOptions) 
-}
+//     return fetch(APIROUTE + "campaign/create/", requestOptions) 
+// }
 
 // export const getCategories = () => {
 //     var requestOptions = {

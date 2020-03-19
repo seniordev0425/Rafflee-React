@@ -45,6 +45,11 @@ const initialFeedState = {
 
 function UserInfo(state = initialFeedState, action){
     switch(action.type){
+        case 'INIT_STATE':
+            return {
+                ...state,
+                [action.state]: action.data 
+            }
         case 'API_START':
             return {
                 ...state,
@@ -59,7 +64,7 @@ function UserInfo(state = initialFeedState, action){
         case 'API_SUCCESS':
             return {
                 ...state,
-                [action.name]: action.data
+                [action.payload]: true 
             }
         case 'API_ERROR':
             return {

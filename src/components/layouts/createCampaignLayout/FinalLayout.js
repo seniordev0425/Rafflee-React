@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import { Form as FinalForm, Field } from 'react-final-form'
 import { Form, FormGroup, Button, Row, Col } from 'reactstrap'
 import FormInput from '../../common/FormInput'
-import { createCampaign } from '../../../apis/apiCalls'
-import { openNotification } from '../../../utils/notification'
+import { createCampaign } from '../../../actions/campaign'
 import { useTranslation } from 'react-i18next'
 
 import { required } from '../../../utils/validation'
@@ -13,23 +13,45 @@ function FinalLayout(props){
 
     const {poll, firstFormData, createNewPromotion} = props
 
-    const [submitting, setSubmitting] = useState(false)
+    const isLoading = useSelector(state=>state.userInfo.CREATE_CAMPAIGN)
+    const SUCCESS_CREATE_CAMPAIGN = useSelector(state=>state.userInfo.SUCCESS_CREATE_CAMPAIGN)
+    
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        if (SUCCESS_CREATE_CAMPAIGN) {
+            createNewPromotion()
+            dispatch({type: 'INIT_STATE', state: 'SUCCESS_CREATE_CAMPAIGN', data: false})
+        }
+    }, [SUCCESS_CREATE_CAMPAIGN])
 
     const onSubmit = () => {
-        setSubmitting(true)
-        createCampaign(firstFormData, poll)
-        .then(response => response.text())
-        .then(result => {
-            setSubmitting(false)
-            console.log(result)
-            var json_rlt = JSON.parse(result)
-            if (json_rlt.status === 200){
-                openNotification('success', 'Success', 'New campaign created successfully!')
-            }
-            createNewPromotion()
-        })
-        .catch(error => console.log('error', error));
+        var formdata = new FormData();
+        formdata.append("promotion_picture", firstFormData.promotion_picture);
+        formdata.append("promotion_name", firstFormData.promotion_name);
+        formdata.append("promotion_description", firstFormData.promotion_description);
+        formdata.append("promotion", firstFormData.promotion);
+        formdata.append("distribution", firstFormData.distribution);
+        formdata.append("start_date", firstFormData.start_date);
+        formdata.append("end_date", firstFormData.end_date);
+        formdata.append("winnings_start_date", firstFormData.winnings_start_date);
+        formdata.append("winnings_expiration_date", firstFormData.winnings_expiration_date);
+        formdata.append("winnings", JSON.stringify(firstFormData.winnings));
+        if (poll)
+            formdata.append("poll", JSON.stringify(poll));
+        else formdata.append("poll", "false");
+        formdata.append("twitter", JSON.stringify(firstFormData.social_actions.twitter));
+        formdata.append("facebook",  JSON.stringify(firstFormData.social_actions.facebook));
+        formdata.append("instagram",  JSON.stringify(firstFormData.social_actions.instagram));
+        formdata.append("youtube",  JSON.stringify(firstFormData.social_actions.youtube));
+        formdata.append("twitch",  JSON.stringify(firstFormData.social_actions.twitch));
+        if (firstFormData.categories)
+            formdata.append("categories",  JSON.stringify(firstFormData.categories));
+        else formdata.append("categories",  "false");
+
+        dispatch(createCampaign(formdata))
     }
+    
     return(
         <FinalForm
             onSubmit={onSubmit}
@@ -114,7 +136,7 @@ function FinalLayout(props){
                                                 </div>
                                             </Row>
                                             <Row>
-                                                <Button className="btn blue-btn mt-3" color="primary" style={{width:200}} disabled={submitting} onClick={onSubmit}>
+                                                <Button className="btn blue-btn mt-3" color="primary" style={{width:200}} disabled={isLoading} onClick={onSubmit}>
                                                     {t('button_group.create_campaign')}
                                                 </Button>
                                             </Row>
