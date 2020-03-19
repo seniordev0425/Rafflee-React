@@ -1,16 +1,18 @@
 import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { Row, Col, Button } from 'reactstrap'
-import { Checkbox, Tooltip } from 'antd'
+import { useSelector } from 'react-redux'
+import { Button } from 'reactstrap'
+import { Checkbox } from 'antd'
 
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import images from '../../utils/images'
 
+import { useTranslation } from 'react-i18next'
+
 function CustomCollapsePanel(props) {
+    const { t } = useTranslation()
 
     const {type, title, participate} = props
 
@@ -58,7 +60,9 @@ function CustomCollapsePanel(props) {
                     <div className="mt-3">
                         <Checkbox>Would you like to receive informations about this company by email?</Checkbox>
                     </div>
-                    <Button className="btn blue-btn mt-3 participate-btn-size" color="primary" onClick={participate} disabled={isLoading}>PARTICIPATE</Button>
+                    <Button className="btn blue-btn mt-3 participate-btn-size" color="primary" onClick={participate} disabled={isLoading}>
+                        {t('button_group.participate')}
+                    </Button>
                 </ExpansionPanelDetails>
             </ExpansionPanel>
             {renderIcons()}

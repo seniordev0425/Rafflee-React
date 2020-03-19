@@ -16,7 +16,6 @@ function MyBillsLayout(){
     const [minValue, setMinValue] = useState(0)
     const [maxValue, setMaxValue] = useState(NUMBER_PER_PAGE)
 
-
     useEffect(() => {
         dispatch(getMyBills())
     },[])

@@ -1,29 +1,31 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Menu, Pagination } from 'antd'
-import {Row, Col} from 'reactstrap'
-import PropTypes from 'prop-types'
-import {Button} from 'reactstrap'
+import { Row, Col } from 'reactstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSlidersH } from '@fortawesome/free-solid-svg-icons'
 import PromotionListItem from './PromotionListItem'
 import CategoryFilter from '../../common/CategoryFilter'
-import { getCategories } from '../../../apis/apiCalls'
 import { NUMBER_PER_PAGE } from '../../../utils/constants'
-import { getHotPromotions, getHighlightedPromotions, getNewPromotions, getBestPromotions } from '../../../actions/homepage'
+import { getHotPromotions, getHighlightedPromotions, getNewPromotions, getBestPromotions, getCategories } from '../../../actions/homepage'
 import Loading from '../../common/Loading'
 
+import { useTranslation } from 'react-i18next'
+
 function CurrentPromotionList(props){
+    const { t } = useTranslation()
 
     const hotPromotions = useSelector(state=>state.homepage.hotPromotions)
     const highlightedPromotions = useSelector(state=>state.homepage.highlightedPromotions)
     const newPromotions = useSelector(state=>state.homepage.newPromotions)
     const bestOfferPromotions = useSelector(state=>state.homepage.bestOfferPromotions)
+    const categoryArr = useSelector(state=>state.homepage.categories)
 
     const isLoading_1 = useSelector(state=>state.userInfo.GET_HOT_PROMOTIONS_SUCCESS)
     const isLoading_2 = useSelector(state=>state.userInfo.GET_HIGHLIGHTED_PROMOTIONS_SUCCESS)
     const isLoading_3 = useSelector(state=>state.userInfo.GET_NEW_PROMOTIONS_SUCCESS)
     const isLoading_4 = useSelector(state=>state.userInfo.GET_BEST_PROMOTIONS_SUCCESS)
+    const isLoading_5 = useSelector(state=>state.userInfo.GET_CATEGORIES)
 
     const token = useSelector(state=>state.userInfo.token)
 
@@ -45,20 +47,16 @@ function CurrentPromotionList(props){
     } 
 
     useEffect(() => {
-        getCategories()
-        .then(response => response.text())
-        .then(result => {
-            var json_rlt = JSON.parse(result)
-            if (json_rlt.status == 200){
-                let temp = []
-                json_rlt.result_data.map((item) => 
-                    temp.push({name: item.name, checked: true})
-                )
-                setCategories(temp)
-            }
-        })
-        .catch(error => console.log('error', error))
+        dispatch(getCategories())
     },[])
+
+    useEffect(() => {
+        let temp = []
+        categoryArr.map((item) => 
+            temp.push({name: item.name, checked: true})
+        )
+        setCategories(temp)
+    }, [categoryArr])
 
     useEffect(() => {
         setMinValue(0)
@@ -110,7 +108,7 @@ function CurrentPromotionList(props){
             for (let j = 0; j < list[i].categories.length; j ++){
                 if (flag) break
                 for (let k = 0; k < categories.length; k ++){
-                    if (list[i].categories[j] == categories[k].name && categories[k].checked)
+                    if (list[i].categories[j] === categories[k].name && categories[k].checked)
                     {
                         tempArr.push(list[i])
                         flag = true
@@ -144,16 +142,16 @@ function CurrentPromotionList(props){
                     <Col xs="12" sm={{size: 10, offset: 1}}>
                         <Menu mode="horizontal" className="menubar" selectedKeys={[currentMenu]}>
                             <Menu.Item key="highlight" className="menu-item-mr" onClick={() => changeMenu('highlight')}>
-                                Highlights
+                                {t('menubar.highlights')}
                             </Menu.Item>
                             <Menu.Item key="new" className="menu-item-mr" onClick={() => changeMenu('new')}>
-                                New
+                                {t('menubar.new')}
                             </Menu.Item>
                             <Menu.Item key="hot" className="menu-item-mr" onClick={() => changeMenu('hot')}>
-                                Hot
+                                {t('menubar.hot')}
                             </Menu.Item>
                             <Menu.Item key="bestoffer" className="menu-item-mr" onClick={() => changeMenu('bestoffer')}>
-                                End Soon
+                                {t('menubar.endsoon')}
                             </Menu.Item>
                             <Menu.Item key="categories" className="menu-bar-settings-icon" onClick={toggleCategory}>
                                 <FontAwesomeIcon icon={faSlidersH}/>
@@ -164,7 +162,7 @@ function CurrentPromotionList(props){
             </div>
             {openCategory && <CategoryFilter categories={categories} allChecked={allChecked} handleChange={handleChange}/>}
             
-            {(isLoading_1 || isLoading_2 || isLoading_3 || isLoading_4) 
+            {(isLoading_1 || isLoading_2 || isLoading_3 || isLoading_4 || isLoading_5) 
                 ?
                 <Loading/>
                 : 
@@ -173,7 +171,7 @@ function CurrentPromotionList(props){
 
                     {filter(promotionList[currentMenu]).length < 1 && (
                         <div className="empty-result mt-5 mb-5">
-                            <span className="promotion-list-item-title">There is no result to display.</span>
+                            <span className="promotion-list-item-title">{t('empty_result_to_display')}</span>
                         </div>
                     )}
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Button, Col, Container, Row } from 'reactstrap'
 import { Link, withRouter } from 'react-router-dom'
@@ -6,7 +6,10 @@ import { profileActivate } from '../actions/userInfo'
 import Header from '../components/layouts/HeaderLayout/Header'
 import Loading from '../components/common/Loading'
 
+import { useTranslation } from 'react-i18next'
+
 function ProfileActivated(props) {
+  const { t } = useTranslation()
 
   const {match} = props
 
@@ -27,8 +30,8 @@ function ProfileActivated(props) {
         <section className="py-5 px-sm-5 px-4">
           <Row className="mt-5">
             <Col className="text-center mx-auto">
-              <h1 className="h4 mb-4 congratulation-header">Your account has been activated</h1>
-              <Button tag={Link} to="/" color="primary" className="mt-5">Go to Homepage and Login!</Button>
+              <h1 className="h4 mb-4 congratulation-header">{t('profile_activated_page.successfully_activated')}</h1>
+              <Button tag={Link} to="/" color="primary" className="mt-5">{t('profile_activated_page.goto_login')}</Button>
             </Col>
           </Row>
         </section>

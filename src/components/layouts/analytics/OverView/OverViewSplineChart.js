@@ -1,14 +1,17 @@
 import React, { useState } from 'react'
-import { Line, Bar } from 'react-chartjs-2'
+import { Line } from 'react-chartjs-2'
+
+import { useTranslation } from 'react-i18next'
 
 function SplineChart() {
+    const { t } = useTranslation()
     
     const [data, setData] = useState({
         dataLine: {
             labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
             datasets: [
                 {
-                label: "Views",
+                label: t('analytics_page.views'),
                 fill: true,
                 lineTension: 0.3,
                 backgroundColor: "rgba(255, 255,255, .3)",
@@ -30,7 +33,7 @@ function SplineChart() {
                 data: [65, 59, 80, 81, 56, 55, 40, 38, 49, 22, 14, 56]
                 },
                 {
-                label: "Clicks",
+                label: t('analytics_page.clicks'),
                 fill: true,
                 lineTension: 0.3,
                 backgroundColor: "rgba(30, 30, 30, .05)",
@@ -56,13 +59,13 @@ function SplineChart() {
     return (
         <div className="default-border p-4">
             <div className="d-flex justify-content-between mb-4">
-                <div className="font-size-11 font-weight-bold">Total Views & Clicks</div>
+                <div className="font-size-11 font-weight-bold">{t('analytics_page.total_views_clicks')}</div>
                 <div>
                     <div className="font-size-9 font-weight-bold">
                         <span style={{width: 10, height: 10, background: "#0091ff", borderRadius: 3, display: "inline-block"}}/>
-                        <span className="ml-2 mr-5 font-size-8">Views</span>
+                        <span className="ml-2 mr-5 font-size-8">{t('analytics_page.views')}</span>
                         <span style={{width: 10, height: 10, background: "rgba(30, 30, 30, .05)", borderRadius: 3, display: "inline-block"}}/>
-                        <span className="ml-2 font-size-8">Clicks</span>
+                        <span className="ml-2 font-size-8">{t('analytics_page.clicks')}</span>
                     </div>
                 </div>
             </div>

@@ -31,7 +31,6 @@ const MapChart = () => {
                 key={geo.rsmKey}
                 geography={geo}
                 fill="#f1f3fd"
-                
               />
             ))
         }

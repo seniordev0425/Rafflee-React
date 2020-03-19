@@ -16,7 +16,10 @@ import {
     maxLength
 } from '../../utils/validation'
 
+import { useTranslation } from 'react-i18next'
+
 function LogInModal(props){
+    const { t } = useTranslation()
     
     const { toggle } = props
 
@@ -30,9 +33,10 @@ function LogInModal(props){
     const onSubmit = (values) => {
         var body = {
             username: values.username,
-            password: values.password
+            password: values.password,
         }
-        dispatch(logIn(body))
+        var rememberMe = values.remember
+        dispatch(logIn(body, rememberMe))
     }
     return(
         
@@ -47,8 +51,8 @@ function LogInModal(props){
                                 component={FormInput}
                                 className="custom-form-control"
                                 type="text"
-                                placeholder="Username"
-                                validate={required('Username required')}
+                                placeholder={t('signin_modal.username')}
+                                validate={required(t('signin_modal.username_required'))}
 
                             />
                         </FormGroup>
@@ -58,8 +62,8 @@ function LogInModal(props){
                                 component={FormInput}
                                 className="custom-form-control"
                                 type="password"
-                                placeholder="Password"
-                                validate={required('Password required')}
+                                placeholder={t('signin_modal.password')}
+                                validate={required(t('signin_modal.password_required'))}
                             />
                         </FormGroup>
                         <FormGroup>
@@ -67,9 +71,10 @@ function LogInModal(props){
                             <Field
                                 name="remember"
                                 component={FormCheckbox}
+                                type="checkbox"
                             />
-                            <span> Remember Me</span>
-                            <span className="policy-button float-right" onClick={handleForgotModal}>Forgot Password?</span>
+                            <span> {t('login_modal.remember_me')}</span>
+                            <span className="policy-button float-right" onClick={handleForgotModal}>{t('login_modal.forgot_password')}</span>
                         </FormGroup>
                         <Button
                             type="submit"
@@ -79,7 +84,7 @@ function LogInModal(props){
                             disabled={isLoading}
                             style={{marginTop: '20px'}}
                         >
-                            LOGIN
+                            {t('button_group.log_in')}
                         </Button>
 
                     </Form>

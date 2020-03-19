@@ -6,10 +6,13 @@ import { Button, Menu } from 'antd'
 import { Row, Col, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import images from '../../../utils/images'
 import { logOut } from '../../../actions/userInfo'
+import  SelectLanguage from './SelectLanguage'
+import { useTranslation } from 'react-i18next'
 
 
 
 function HeaderAfterLogin(props){
+    const { t } = useTranslation()
     
     const {history} = props
     const dispatch = useDispatch()
@@ -25,47 +28,41 @@ function HeaderAfterLogin(props){
     const dropDownToggle = () => setOpen(!dropdownOpen);
 
     useEffect(() => {
-        setHide(window.innerWidth <= 750)
+        setHide(window.innerWidth <= 1000)
         window.addEventListener('resize', resize)
         return ()=>{
             window.removeEventListener('resize', resize)
         }      
     },[])
     const resize = () => {
-        setHide(window.innerWidth <=850)
+        setHide(window.innerWidth <= 1000)
     }
     return(
         <>
         {!hide ? (
             <Row>
-                <Col>
-                    <Link to="/deals"><Button type="link" className="no-border-btn" style={{marginRight:30}}>Campaigns</Button></Link>
-                </Col>
-                <Col>
-                    <Link to="/user-account"><Button className="white-btn" style={{width: 140}}>Account</Button></Link>
-                </Col>
-                <Col>
-                    <Link to={props.company ? "/dashboard/my-campaign" : "/dashboard/inventory"}>
-                        <Button type="primary" className="ant-blue-btn" style={{width: 140}}>Dashboard
-                        </Button>
-                    </Link>
-                </Col>
-                <Col onClick={log_Out} className="pointer">
-                    <Button type="link" className="no-border-btn">Logout</Button>
+                <Link to="/deals"><Button type="link" className="no-border-btn mr-3">{t('header.campaigns')}</Button></Link>
+                <Link to="/user-account"><Button className="white-btn mr-3" style={{width: 140}}>{t('header.account')}</Button></Link>
+                <Link to={props.company ? "/dashboard/my-campaign" : "/dashboard/inventory"}>
+                    <Button type="primary" className="ant-blue-btn mr-3" style={{width: 140}}>{t('header.dashboard')}</Button>
+                </Link>
+                <div onClick={log_Out} className="pointer mr-3">
+                    <Button type="link" className="no-border-btn">{t('header.log_out')}</Button>
                     <img src={images.logout_icon} className="logout-icon"/>
-                    
-                </Col>
+                </div>
+                <SelectLanguage/>
             </Row>   
         ) : (
-            <ButtonDropdown isOpen={dropdownOpen} toggle={dropDownToggle}>
-                <DropdownToggle caret>
+            <ButtonDropdown isOpen={dropdownOpen} toggle={() => void 0}>
+                <DropdownToggle caret onClick={dropDownToggle}>
                     
                 </DropdownToggle>
                 <DropdownMenu style={{left:-115}}>
-                    <DropdownItem><Link to="/deals">Campaigns</Link></DropdownItem>
+                    <DropdownItem><Link to="/deals">{t('header.campaigns')}</Link></DropdownItem>
                     <DropdownItem><Link to="/user-account">Account</Link></DropdownItem>
-                    <DropdownItem><Link to={props.company ? "/dashboard/my-campaign" : "/dashboard/inventory"}>Dashboard</Link></DropdownItem>
-                    <DropdownItem onClick={log_Out}><Link to="/">Logout</Link></DropdownItem>
+                    <DropdownItem><Link to={props.company ? "/dashboard/my-campaign" : "/dashboard/inventory"}>{t('header.dashboard')}</Link></DropdownItem>
+                    <DropdownItem onClick={log_Out}><Link to="/">{t('header.log_out')}</Link></DropdownItem>
+                    <DropdownItem><SelectLanguage/></DropdownItem> 
                 </DropdownMenu>
             </ButtonDropdown>
         )}

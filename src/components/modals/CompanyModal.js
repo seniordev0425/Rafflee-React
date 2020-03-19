@@ -5,18 +5,16 @@ import { Form, FormGroup, Button, Row } from 'reactstrap'
 import FormInput from '../common/FormInput'
 import FormPhoneInput from '../common/FormPhoneInput'
 import { companyContact } from '../../actions/userInfo'
-import { openNotification } from '../../utils/notification'
 import {
-    composeValidators, 
     required, 
-    isEmail, 
-    minLength, 
-    maxLength,
     requiredPhoneObj
 } from '../../utils/validation'
 
+import { useTranslation } from 'react-i18next'
+
 
 function CompanyModal(){
+    const { t } = useTranslation()
 
     const isLoading = useSelector(state=>state.userInfo.COMPANY_CONTACT_SUCCESS)
     const dispatch = useDispatch()
@@ -34,7 +32,7 @@ function CompanyModal(){
         
         <div style={{fontFamily:"sofiapro"}}>
             <Row style={{margin: 0}}>
-                <div className="modal-company-btn">Company Form</div>
+                <div className="modal-company-btn">{t('company_modal.company_form')}</div>
             </Row>
             <FinalForm
                 onSubmit={onSubmit}
@@ -46,8 +44,8 @@ function CompanyModal(){
                                 component={FormInput}
                                 className="custom-form-control"
                                 type="email"
-                                placeholder="Email Address"
-                                validate={required('Contact Address required')}
+                                placeholder={t('company_modal.email')}
+                                validate={required(t('company_modal.email_required'))}
 
                             />
                         </FormGroup>
@@ -56,7 +54,7 @@ function CompanyModal(){
                                 name="phonenumber"
                                 component={FormPhoneInput}
                                 className="custom-form-control"
-                                validate={requiredPhoneObj('Please enter your phone number')}
+                                validate={requiredPhoneObj(t('company_modal.phone_number_required'))}
                             />
                         </FormGroup>
                         <FormGroup>
@@ -65,8 +63,8 @@ function CompanyModal(){
                                 component={FormInput}
                                 className="custom-form-control"
                                 type="text"
-                                placeholder="Company Name"
-                                validate={required('Company Name required')}
+                                placeholder={t('company_modal.company_name')}
+                                validate={required(t('company_modal.company_name_required'))}
 
                             />
                         </FormGroup>
@@ -77,8 +75,8 @@ function CompanyModal(){
                                 className="company-contact-form-text-area"
                                 type="textarea"
                                 row={10}
-                                placeholder="Your Message"
-                                validate={required('Put your message')}
+                                placeholder={t('company_modal.your_message')}
+                                validate={required(t('company_modal.your_message_required'))}
 
                             />
                         </FormGroup>
@@ -91,10 +89,10 @@ function CompanyModal(){
                             disabled={isLoading}
                             style={{marginTop: '20px'}}
                         >
-                            SEND MESSAGE
+                        {t('button_group.send_message')}
                         </Button>
                         <div className="company-question-button-container">
-                            Need help? Contact us <span className="company-question-button">here.</span>
+                            {t('company_modal.need_help')} {t('company_modal.contact_us')} <span className="company-question-button">{t('company_modal.here')}</span>
                         </div>
 
                     </Form>

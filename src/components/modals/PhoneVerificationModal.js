@@ -1,24 +1,17 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import { connect, useSelector, useDispatch } from "react-redux";
 import { compose } from 'redux'
 import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import ReactCodeInput from 'react-verification-code-input'
-import { Form as FinalForm, Field } from 'react-final-form'
-import { Form, FormGroup, Button, Input, Modal, ModalHeader, ModalBody } from 'reactstrap'
-import FormInput from '../common/FormInput'
-import { openNotification } from '../../utils/notification'
-import {
-    composeValidators, 
-    required, 
-    isEmail, 
-    minLength, 
-    maxLength
-} from '../../utils/validation'
-
+import { Button, Modal, ModalHeader, ModalBody } from 'reactstrap'
 import { resendSms, verifyPhoneNumber } from '../../actions/userInfo'
 
+import { useTranslation } from 'react-i18next'
+
 function PhoneVerificationModal(props) {
+    const { t } = useTranslation()
+
     const { open, onToggle, phone_number } = props
 
     const isVerifying = useSelector(state=>state.userInfo.VERIFY_PHONE_NUMBER_REQUEST)
@@ -61,7 +54,7 @@ function PhoneVerificationModal(props) {
     }
     return (<Modal isOpen={open} toggle={onToggle}>
             <ModalHeader className="modal-login-btn" style={{borderBottom: 'none'}}>
-                <div className="modal-login-btn">Enter Verification Code</div>
+                <div className="modal-login-btn">{t('phone_verify_modal.enter_code')}</div>
             </ModalHeader>
             <ModalBody>
                 <ReactCodeInput 
@@ -77,12 +70,12 @@ function PhoneVerificationModal(props) {
                         disabled={isVerifying}
                         type="submit"
                     >
-                        Verify
+                        {t('button_group.verify')}
                     </Button>
                 </div>
                 <div className="blue-link-btn d-flex justify-content-center mt-4">
                     <span onClick={resendCode}>
-                        Resend verification code
+                        {t('phone_verify_modal.resend_code')}
                     </span>  
                 </div>
                 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { withRouter } from 'react-router-dom'
 import JoinHeader from '../components/layouts/HeaderLayout/JoinHeader'
 import Header from '../components/layouts/HeaderLayout/Header'

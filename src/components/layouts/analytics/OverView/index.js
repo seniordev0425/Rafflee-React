@@ -5,7 +5,11 @@ import ColorBar from '../../../common/ColorBar'
 import OverViewSplineChart from './OverViewSplineChart'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch, faSlidersH } from '@fortawesome/free-solid-svg-icons'
+
+import { useTranslation } from 'react-i18next'
+
 function OverView() {
+    const { t } = useTranslation()
     return (
         <>
         <Row>
@@ -13,7 +17,7 @@ function OverView() {
                 <div className="follower-div">
                     <div>
                         <img src={images.instagram_icon} width="30px" height="30px"/>
-                        <span className="font-weight-bold font-size-11 ml-3">Instagram Followers</span>
+                        <span className="font-weight-bold font-size-11 ml-3">{t('analytics_page.instagram_followers')}</span>
                     </div>
                     <div className="d-flex justify-content-between mt-3">
                         <span className="font-weight-bold font-size-20">+3939</span>
@@ -24,7 +28,7 @@ function OverView() {
                 <div className="follower-div">
                     <div>
                         <img src={images.twitter_icon} width="30px" height="30px"/>
-                        <span className="font-weight-bold font-size-11 ml-3">Twitter Followers</span>
+                        <span className="font-weight-bold font-size-11 ml-3">{t('analytics_page.twitter_followers')}</span>
                     </div>
                     <div className="d-flex justify-content-between mt-3">
                         <span className="font-weight-bold font-size-20">+124</span>
@@ -35,7 +39,7 @@ function OverView() {
                 <div className="follower-div">
                     <div>
                         <img src={images.youtube_icon} width="30px" height="30px"/>
-                        <span className="font-weight-bold font-size-11 ml-3">Youtube Followers</span>
+                        <span className="font-weight-bold font-size-11 ml-3">{t('analytics_page.youtube_followers')}</span>
                     </div>
                     <div className="d-flex justify-content-between mt-3">
                         <span className="font-weight-bold font-size-20">+373</span>
@@ -54,7 +58,7 @@ function OverView() {
             <Col xs="12" sm={{size: 10, offset: 1}} className="px-4">
                 <div className="default-border">
                     <Row className="justify-content-between p-4">
-                        <div className="float-left font-weight-bold font-size-11">Most Active Users</div>
+                        <div className="float-left font-weight-bold font-size-11">{t('analytics_page.most_active_users')}</div>
                         <div className="float-right">
                             <FontAwesomeIcon icon={faSearch}/>
                             <FontAwesomeIcon icon={faSlidersH} className="ml-3"/>
@@ -63,12 +67,12 @@ function OverView() {
                     <Row className="justify-content-between p-4" style={{background:"rgba(191, 232, 254, 0.25)"}}>
                         <div className="font-size-11">Joe Fishman</div>
                         <div className="font-size-11">Joe24@gmail.com</div>
-                        <div className="view-profile-link">View Profile</div>
+                        <div className="view-profile-link">{t('analytics_page.view_profile')}</div>
                     </Row>
                     <Row className="justify-content-between p-4">
                         <div className="font-size-11">Joe Fishman</div>
                         <div className="font-size-11">Joe24@gmail.com</div>
-                        <div className="view-profile-link">View Profile</div>
+                        <div className="view-profile-link">{t('analytics_page.view_profile')}</div>
                     </Row>
                 </div>
             </Col>

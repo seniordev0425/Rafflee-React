@@ -6,7 +6,10 @@ import images from '../../../utils/images'
 import { Button } from 'reactstrap'
 import { updateFavorite } from '../../../actions/homepage'
 
+import { useTranslation } from 'react-i18next'
+
 function PromotionListItem(props){
+    const { t } = useTranslation()
 
     const{ item, menuname } = props
     const token = useSelector(state=>state.userInfo.token)
@@ -40,7 +43,7 @@ function PromotionListItem(props){
                                         color="primary"
                                         className="bootstrap-blue-btn promotion-list-item-btn"
                                     >
-                                            SEE CAMPAIGN
+                                            {t('button_group.see_campaign')}
                                     </Button>
                                 </Link>
                                 {(token && !company) && (

@@ -65,7 +65,12 @@ function MyCampaignLayout(){
 
     return(
         <>
-            {live_page_id ? (<LivePageLayout id={live_page_id} goBack={goToLivePage}/>) : (participant_id ? <ParticipantListLayout id={participant_id} goBack={goToParticipatePage}/> :  renderMyCampaignList())}
+            {live_page_id 
+                ? 
+                (<LivePageLayout id={live_page_id} goBack={goToLivePage}/>)
+                : 
+                (participant_id ? <ParticipantListLayout id={participant_id} goBack={goToParticipatePage}/> :  renderMyCampaignList())
+            }
         </>
     )
 }

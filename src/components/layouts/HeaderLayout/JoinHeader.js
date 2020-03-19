@@ -3,7 +3,12 @@ import { connect } from "react-redux";
 import {Button, Modal, ModalHeader, ModalBody} from 'reactstrap'
 import LoginSignupBaseModal from '../../modals/LoginSignupBaseModal'
 
+import { useTranslation } from 'react-i18next'
+
+
+
 function JoinHeader(props){
+    const { t } = useTranslation()
     
     const [modal, setModal] = useState(false)
     const [companyStatus, setCompanyStatus] = useState(false)
@@ -20,7 +25,7 @@ function JoinHeader(props){
     const [hide, setHide] = useState(false)
     
     useEffect(() => {
-        setHide(window.innerWidth <= 850)
+        setHide(window.innerWidth <= 1000)
         window.addEventListener('resize', resize)
         return ()=>{
             window.removeEventListener('resize', resize)
@@ -28,15 +33,15 @@ function JoinHeader(props){
         
     },[])
     const resize = () => {
-        setHide(window.innerWidth <=750)
+        setHide(window.innerWidth <= 1000)
     }
     return(
         <>
             {(!props.token && !hide) &&
             <>
                 <div className="join-header">
-                    Rafflee is  tool that everyone wants.  
-                    <Button color="link" className="join-now-button" onClick={toggle}> Join now</Button>
+                    {t('header.join_header_text')}  
+                    <Button color="link" className="join-now-button" onClick={toggle}> {t('header.join_now')}</Button>
                 
                 </div>
                 

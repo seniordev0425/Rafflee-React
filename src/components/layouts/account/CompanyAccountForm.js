@@ -28,7 +28,10 @@ import {
 } from '../../../utils/validation'
 import Loading from '../../common/Loading';
 
+import { useTranslation } from 'react-i18next'
+
 function CompanyAccountForm(props){
+    const { t } = useTranslation()
 
     const companyProfile = useSelector(state=>state.userInfo.companyProfile)
     const isLoading = useSelector(state=>state.userInfo.GET_COMPANY_PROFILE_SUCCESS)
@@ -55,7 +58,7 @@ function CompanyAccountForm(props){
         tmpNum.phone_number = national_number
         setInitialPhoneNum(tmpNum)
 
-        if (logo != '') setImgBase64Data('data:image/png;base64,' + logo)
+        if (logo !== '') setImgBase64Data('data:image/png;base64,' + logo)
         setCountryName(country)
     }, [companyProfile])
 
@@ -102,7 +105,7 @@ function CompanyAccountForm(props){
                                     <FormGroup>
                                         {imgBase64Data && (<img className="profile-img" src={imgBase64Data}/>)}
                                         <ImageUploader
-                                            buttonText='Upload Image'
+                                            buttonText={t('button_group.upload_image')}
                                             onChange={onDrop}
                                             withPreview={true}
                                             className="upload-image-container"
@@ -116,7 +119,7 @@ function CompanyAccountForm(props){
                                 </div>
                                 <div className="mt-4 half-width" >
                                     <FormGroup>
-                                        <div className="footer-link-bold mb-3">Admin Email</div>
+                                        <div className="footer-link-bold mb-3">{t('account_page.admin_email')}</div>
                                         <Field
                                             name="email"
                                             defaultValue={ companyProfile.email }
@@ -125,8 +128,8 @@ function CompanyAccountForm(props){
                                             type="email"
                                             placeholder="name@example.com"
                                             validate={composeValidators(
-                                                required('Enter a valid email address'),
-                                                isEmail('Enter a valid email address')
+                                                required(t('account_page.enter_valid_email')),
+                                                isEmail(t('account_page.enter_valid_email'))
                                             )}
                                         />
                                     </FormGroup>
@@ -134,7 +137,7 @@ function CompanyAccountForm(props){
                             
                                 <div className="mt-4 half-width">
                                     <FormGroup>
-                                        <div className="footer-link-bold mb-3">Phone Number</div>
+                                        <div className="footer-link-bold mb-3">{t('account_page.phone_number')}</div>
                                         <Field
                                             name="phonenumber"
                                             defaultValue={ initialPhoneNum }  
@@ -146,7 +149,7 @@ function CompanyAccountForm(props){
                         
                                 <div className="mt-4 half-width">
                                     <FormGroup>
-                                        <div className="footer-link-bold mb-3">Company Name</div>
+                                        <div className="footer-link-bold mb-3">{t('account_page.company_name')}</div>
                                         <Field
                                             name="company_name"
                                             defaultValue={ companyProfile.company_name }
@@ -154,14 +157,14 @@ function CompanyAccountForm(props){
                                             className="custom-form-control"
                                             type="text"
                                             placeholder="Company Name"
-                                            validate={ required('Company Name is required') }
+                                            validate={ required(t('account_page.company_name_required')) }
                                         />
                                     </FormGroup>
                                     
                                 </div>
                                 <div className="mt-4 half-width">
                                     <FormGroup>
-                                        <div className="footer-link-bold mb-3">Country</div>
+                                        <div className="footer-link-bold mb-3">{t('account_page.country')}</div>
                                         <ReactFlagsSelect
                                             onSelect={ onSelectFlag }
                                             defaultCountry={ getCode(country || 'France') }
@@ -176,14 +179,14 @@ function CompanyAccountForm(props){
                             <Col xs="12" sm="6">
                                 <div className="mt-4" style={{width: "100%"}}>
                                     <FormGroup>
-                                        <div className="footer-link-bold mb-3">Address</div>
+                                        <div className="footer-link-bold mb-3">{t('account_page.address')}</div>
                                         <Field
                                             name="address"
                                             defaultValue={ companyProfile.address }
                                             component={ FormInput }
                                             className="custom-form-control"
                                             type="text"
-                                            placeholder="Address"
+                                            placeholder={t('account_page.address')}
                                         />
                                     </FormGroup>
                                 </div>
@@ -195,7 +198,7 @@ function CompanyAccountForm(props){
                                             component={ FormInput }
                                             className="custom-form-control"
                                             type="text"
-                                            placeholder="City"
+                                            placeholder={t('account_page.city')}
                                         />
                                     </FormGroup>
                                 </div>
@@ -207,7 +210,7 @@ function CompanyAccountForm(props){
                                             component={ FormInput }
                                             className="custom-form-control"
                                             type="text"
-                                            placeholder="Region"
+                                            placeholder={t('account_page.region')}
                                         />
                                     </FormGroup>
                                 </div>
@@ -251,7 +254,7 @@ function CompanyAccountForm(props){
                                             style={{width:"45%", marginRight:"5%"}}
                                             disabled={isUpdating}
                                         >
-                                            Update
+                                            {t('button_group.update')}
                                         </Button>
                                         <Button
                                             size="lg"
@@ -260,7 +263,7 @@ function CompanyAccountForm(props){
                                             onClick={handleDeleteModal}
                                             style={{width:"45%", marginLeft:"5%"}}
                                         >
-                                            Delete
+                                            {t('button_group.delete')}
                                         </Button>
                                     </div>
                                 </Row>                                

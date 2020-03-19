@@ -1,45 +1,47 @@
-import React, {useState} from 'react'
-import { connect } from "react-redux";
-import {compose} from 'redux'
-import {withRouter} from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import { connect, useSelector, useDispatch } from "react-redux";
+import { compose } from 'redux'
+import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import {Form as FinalForm, Field} from 'react-final-form'
-import {Form, FormGroup, Button, Input, Modal, ModalHeader, ModalBody} from 'reactstrap'
+import { Form, FormGroup, Button, Modal, ModalHeader, ModalBody } from 'reactstrap'
 import FormInput from '../common/FormInput'
-import {openNotification} from '../../utils/notification'
+import { openNotification } from '../../utils/notification'
 import {
-    composeValidators, 
     required, 
-    isEmail, 
-    minLength, 
-    maxLength
 } from '../../utils/validation'
-import {deleteAccountRequest} from '../../apis/apiCalls'
+
+import { deleteAccount } from '../../actions/userInfo'
+
+import { useTranslation } from 'react-i18next'
 
 function DeleteAccount(props) {
-    const { open, onToggle, dispatch, history } = props
-    const [submitting, setSubmitting] = useState(false)
+    const { t } = useTranslation()
+
+    const { open, onToggle, history } = props
+
+    const isLoading = useSelector(state=>state.userInfo.DELETE_ACCOUNT)
+    const DELETE_ACCOUNT_SUCCESS = useSelector(state=>state.userInfo.DELETE_ACCOUNT_SUCCESS)
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        if (DELETE_ACCOUNT_SUCCESS) {
+            dispatch({type: "LOG_IN_SUCCESS", data: {token: '', company: false}})
+            dispatch({type: 'DELETE_ACCOUNT_SUCCESS', flag: false})
+            localStorage.removeItem('token')
+            localStorage.removeItem('company')
+            sessionStorage.clear()
+            history.push('/')
+        }
+    }, [DELETE_ACCOUNT_SUCCESS])
 
     const onSubmit = (values) => {
-        setSubmitting(true)    
-        deleteAccountRequest(values)
-          .then(response => response.text())
-          .then(result => {
-              setSubmitting(false)
-              var json_rlt = JSON.parse(result)
-              if (json_rlt.status == 200){
-                dispatch({type: "LOG_IN_SUCCESS", data: {token: null, company: false}})
-                if (localStorage.length) localStorage.clear() 
-                history.push('/')
-                openNotification('success', 'Account was deleted.', '')
-                
-              }
-          })
-          .catch(error => console.log('error', error));
+        dispatch(deleteAccount({password: values.password}))
     }
+
     return (<Modal isOpen={open} toggle={onToggle}>
             <ModalHeader className="modal-login-btn" style={{borderBottom: 'none'}}>
-                <div className="modal-login-btn">Delete Account</div>
+                <div className="modal-login-btn">{t('delete_account_modal.delete_account')}</div>
             </ModalHeader>
             <ModalBody>
                 <FinalForm
@@ -52,7 +54,8 @@ function DeleteAccount(props) {
                                     component={FormInput}
                                     className="custom-form-control"
                                     type="password"
-                                    validate={required('Password required')}
+                                    placeholder={t('delete_account_modal.password')}
+                                    validate={required(t('delete_account_modal.password_required'))}
                                 />
                             </FormGroup>
                             
@@ -61,10 +64,10 @@ function DeleteAccount(props) {
                                 size="lg"
                                 color="danger"
                                 className="red-btn"
-                                disabled={submitting}
+                                disabled={isLoading}
                                 style={{marginTop: '20px'}}
                             >
-                                Delete Account
+                                {t('button_group.delete_account')}
                             </Button>
 
                         </Form>

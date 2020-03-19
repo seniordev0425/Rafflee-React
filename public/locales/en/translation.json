@@ -1,0 +1,270 @@
+{
+    "header": {
+        "join_header_text": "Rafflee is tool that everyone wants.",
+        "join_now": "Join now",
+        "campaigns": "Campaigns",
+        "sign_in": "Sign In",
+        "log_in": "Log In",
+        "account": "Account",
+        "dashboard": "Dashboard",
+        "log_out": "Logout"
+    },
+
+    "banner": {
+        "search_placeholder": "Search..."
+    },
+
+    "menubar": {
+        "highlights": "Highlights",
+        "new": "New",
+        "hot": "Hot",
+        "endsoon": "End Soon",
+        "user_profile": "Profile",
+        "company_profile": "Company Profile",
+        "inventory": "Inventory",
+        "rafflee_history": "Rafflee history",
+        "following": "Following",
+        "my_circle": "My Circle",
+        "my_campaign": "My Campaign",
+        "my_bills": "My Bills",
+        "analytics": "Analytics",
+        "create_campaign": "Create Campaign",
+        "overview": "Overview",
+        "audience": "Audience",
+        "engagement": "Engagement",
+        "clicks": "Clicks"
+    },
+
+    "empty_result_to_display": "There is no result to display.",
+
+    "button_group": {
+        "see_campaign": "SEE CAMPAIGN",
+        "verify": "Verify",
+        "update": "Update",
+        "delete": "Delete",
+        "upload_image": "Upload Image",
+        "create_account": "CREATE ACCOUNT",
+        "log_in": "LOGIN",
+        "send_message": "SEND MESSAGE",
+        "reset_password": "Reset Password",
+        "delete_account": "Delete Account",
+        "pick_another": "PICK ANOTHER",
+        "participate": "PARTICIPATE",
+        "already_won": "ALREADY WON",
+        "draw": "Draw",
+        "download_pdf": "DOWNLOAD PDF",
+        "next": "NEXT",
+        "create_poll":"CREATE POLL",
+        "create_campaign":"Create Campaign",
+        "reset": "RESET"
+    },
+
+    "homepage": {
+        "hot_new_contest_everyday": "Hot new contest everyday.",
+        "premium_prizes_giveaways": "Premium prizes & giveaways chosen by Rafflee.",
+        "find_campaign": "Find the campaign you have been looking for."
+    },
+
+    "account_page": {
+        "first_name": "First Name",
+        "last_name": "Last Name",
+        "gender": "Gender",
+        "phone_number": "Phone Number",
+        "country": "Country",
+        "birth_date": "Birth Date",
+        "email": "Email",
+        "admin_email": "Admin Email",
+        "company_name": "Company Name",
+        "address": "Address",
+        "city": "City",
+        "region": "Region",
+        "male": "Male",
+        "female": "Female",
+        "first_name_required": "First name is required",
+        "last_name_required": "Last name is required",
+        "company_name_required": "Company name is required",
+        "enter_valid_email": "Enter a valid email address"
+    },
+
+    "campaign_detail_page": {
+        "giveaways": "GIVEAWAYS",
+        "prize_ends_in": "PRIZE ENDS IN",
+        "prize_ended": "PRIZE ENDED",
+        "your_entries": "YOUR ENTRIES",
+        "maximum_participants": "MAXIMUM PARTICIPANTS",
+        "days": "days",
+        "entries": "Entries",
+        "participants": "Participants"
+    },
+
+    "my_campaign_page": {
+        "live_page": "Live Page",
+        "view_participants": "View Participants",
+        "back_to_campaign_page": "Back to Campaign Page",
+        "participants": "Participants",
+        "view_profile": "View Profile",
+        "draw_type": "Draw Type",
+        "draw_by_gift": "DRAW BY GIFT",
+        "draw_all_by_gift": "DRAW ALL BY GIFT",
+        "draw": "DRAW",
+        "draw_all": "DRAW ALL",
+        "prize_type": "Prize Type",
+        "campaign_analytics":"Campaign Analytics",
+        "generated_likes": "Generated Likes",
+        "earned_followers": "Earned Followers",
+        "tweets_generated": "Tweets Generated",
+        "buy_data": "Buy Data"
+        
+    },
+
+    "my_bills_page": {
+        "emission_date": "Emission Date",
+        "total":"Total"
+    },
+
+    "analytics_page": {
+        "instagram_followers": "Instagram Followers",
+        "twitter_followers": "Twitter Followers",
+        "youtube_followers": "Youtube Followers",
+        "total_views_clicks": "Total Views & Clicks",
+        "views": "Views",
+        "clicks":"Clicks",
+        "most_active_users": "Most Active Users",
+        "view_profile":"View Profile",
+        "demographics": "Demographics",
+        "active_clients": "Active Clients",
+        "users": "Users",
+        "male": "Male",
+        "female": "Female",
+        "unknown": "Unknown",
+        "audience_growth": "Audience Growth",
+        "campaigns_engagement": "Campaigns Engagement",
+        "brand_engagement": "Brand Engagement",
+        "engagement_score_by_day": "Engagement Score By Day",
+        "campaign_followers": "Campaign Followers",
+        "circle_followers": "Circle Followers",
+        "lost_followers": "Lost Followers",
+        "following_base": "Following Base",
+        "following_data": "Following Data",
+        "campaign": "Campaign",
+        "circle": "Circle",
+        "lost": "Lost"
+    },
+
+    "create_campaign_page": {
+        "campaign_name": "Campaign Name",
+        "campaign_name_required": "Campaign Name is required",
+        "short_description": "Short Description",
+        "short_description_required": "Short Description is required",
+        "upload_image":"Upload Image",
+        "categories": "Categories",
+        "categories_placeholder": "Please select categories",
+        "campaign_starts": "Campaign Starts",
+        "campaign_ends": "Campaign Ends",
+        "winning_starts": "Validity Start Date of the Prizes (for coupons only)",
+        "winning_ends": "Validity Expiration Date of the Prizes (for coupons only)",
+        "name_of_prizes": "Name of Prizes",
+        "type_of_prizes": "Type of Prizes",
+        "number_of_people": "Number of People",
+        "add_more": "Add more",
+        "results": "Results",
+        "direct": "Direct",
+        "live_draw": "Live Draw",
+        "end_date": "End Date",
+        "actions": "Actions",
+        "like": "LIKE",
+        "follow": "FOLLOW",
+        "retweet": "RETWEET",
+        "message": "MESSAGE",
+        "create_poll": "CREATE POLL",
+        "poll_created": "POLL CREATED",
+        "back_to_create_campaign": "Back to Create Campaign",
+        "ask_question": "Ask Question",
+        "type_here": "Type Here",
+        "question_required": "Question is required",
+        "choose_at_least_two_answer": "AND CHOOSE AT LEAST TWO ANSWERS",
+        "choose_answer": "Choose an Answer",
+        "allow_multiple_choices": "Allow Multiple Choices",
+        "allow_multiple_votes": "Allow Multiple Votes from one IP",
+        "name": "Name",
+        "name_required": "Name is required",
+        "ccv": "CCV",
+        "ccv_required": "CCV is required",
+        "card_number": "Card Number",
+        "card_number_required": "Card Number is required",
+        "date": "Date",
+        "date_required": "Date is required",
+        "campaign_total": "Campaign Total",
+        "campaign":"Campaign",
+        "iva": "IVA",
+        "total": "Total",
+        "must_have_one_at_least": "Must have one answer at least"
+    },
+
+    "profile_activated_page": {
+        "successfully_activated": "Your account has been activated",
+        "goto_login": "Go to Homepage and Login!"
+    },
+
+    "signin_modal": {
+        "username": "Username",
+        "password": "Password",
+        "confirm_password": "Confirm Password",
+        "password_special_alert": "Password must contain a special character.",
+        "password_lowercase_alert": "Password must contain lowercase letter.",
+        "password_capital_alert": "Password must contain a capital letter.",
+        "password_number_alert": "Password must contain a number.",
+        "password_length_alert": "Password must have a minimum length of 8",
+        "i_agree": "I agree to the",
+        "terms_of_use": "Terms of Use",
+        "and": "and",
+        "privacy_policy": "Privacy Policy",
+        "are_you_company": "Are you a company?",
+        "or": "OR",
+        "enter_valid_email": "Enter a valid email address",
+        "username_required": "Username is required",
+        "password_required": "Password is required",
+        "confirm_password_required": "Confirm Password required"
+    },
+
+    "login_modal": {
+        "remember_me": "Remember Me",
+        "forgot_password": "Forgot Password"
+    },
+
+    "company_modal": {
+        "company_form": "Company Form",
+        "email": "Email Address",
+        "email_required": "Email Address is required",
+        "phone_number_required": "Phone number is required",
+        "company_name": "Company Name",
+        "company_name_required": "Company Name is required",
+        "your_message": "Your Message",
+        "your_message_required": "Write your message",
+        "need_help": "Need help?",
+        "contact_us": "Contact us",
+        "here": "here."
+    },
+
+    "forgot_password_modal": {
+        "forgot_password": "Forgot Password?"
+    },
+
+    "phone_verify_modal": {
+        "enter_code": "Enter Verification Code",
+        "resend_code": "Resend verification code"
+    },
+
+    "delete_account_modal": {
+        "delete_account": "Delete Account",
+        "password": "Password",
+        "password_required": "Password is required"
+    },
+
+    "congratulation_modal": {
+        "congratulations": "Congratulations!",
+        "powered_by": "Powered by: "
+    }
+    
+    
+}

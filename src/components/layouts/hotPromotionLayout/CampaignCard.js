@@ -3,7 +3,11 @@ import { Button } from 'reactstrap'
 import { Link } from 'react-router-dom'
 import images from '../../../utils/images'
 
+import { useTranslation } from 'react-i18next'
+
 function CampaignCard(props){
+    const { t } = useTranslation()
+
     const {description, campaign_name, pk, campaign_image} = props
     return(
         <div className="item campaign-card-body">
@@ -16,7 +20,7 @@ function CampaignCard(props){
             <div>
                 <Link to={"/campaign-detail/" + pk}>
                     <Button size="lg" color="primary" className="bootstrap-blue-btn">
-                        SEE CAMPAIGN
+                        {t('button_group.see_campaign')}
                     </Button>
                 </Link>
             </div>

@@ -64,7 +64,7 @@ function Homepage(state = initialFeedState, action){
                     )
                 }
             }
-            else if (action.arrname === 'bestOffer') {
+            else if (action.arrname === 'bestoffer') {
                 return {
                     ...state,
                     bestOfferPromotions: state.bestOfferPromotions.map(promotion => promotion.pk === action.id ?

@@ -26,7 +26,6 @@ function CreateCampaignLayout(){
     const gotoPollCreate = (data) => {
         setCurrentLayout('create poll')
         setFirstFormTempData(data)
-        // console.log(data)
     }
 
     const gotoFinalLayout = (result) => {

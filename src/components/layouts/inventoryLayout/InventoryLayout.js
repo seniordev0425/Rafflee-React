@@ -6,7 +6,10 @@ import { getUserInventory, getParticipationHistory, getFollowing } from '../../.
 import Loading from '../../common/Loading'
 import { NUMBER_PER_PAGE } from '../../../utils/constants'
 
+import { useTranslation } from 'react-i18next'
+
 function InventoryLayout(){
+    const { t } = useTranslation()
 
     const isLoading = useSelector(state=>state.userInfo.GET_USER_INVENTORY_SUCCESS)
     const userInventory = useSelector(state=>state.userInfo.userInventory)
@@ -46,7 +49,7 @@ function InventoryLayout(){
             {renderInventoryList()}      
             {userInventory.length < 1 && (
                 <div className="empty-result mt-5 mb-5">
-                    <span className="promotion-list-item-title">There is no result to display.</span>
+                    <span className="promotion-list-item-title">{t('empty_result_to_display')}</span>
                 </div>
             )}  
             <Pagination

@@ -1,39 +1,39 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import PropTypes from 'prop-types'
-import {Form as FinalForm, Field} from 'react-final-form'
-import {Form, FormGroup, Button, Input, Modal, ModalHeader, ModalBody} from 'reactstrap'
+import { Form as FinalForm, Field } from 'react-final-form'
+import { Form, FormGroup, Button, Modal, ModalHeader, ModalBody } from 'reactstrap'
 import FormInput from '../common/FormInput'
-import {openNotification} from '../../utils/notification'
 import {
     composeValidators, 
     required, 
     isEmail, 
-    minLength, 
-    maxLength
 } from '../../utils/validation'
-import {resetPasswordRequest} from '../../apis/apiCalls'
+import { resetPasswordRequest } from '../../actions/userInfo'
+import { useTranslation } from 'react-i18next'
 
 function ForgotPassword(props) {
-  const { open, onToggle, toggle } = props
-  const [submitting, setSubmitting] = useState(false)
+    const { t } = useTranslation()
+    
+    const { open, onToggle, toggle } = props
+    const isLoading = useSelector(state=>state.userInfo.RESET_PASSWORD_REQUEST)
+    const RESET_PASSWORD_REQUEST_SUCCESS = useSelector(state=>state.userInfo.RESET_PASSWORD_REQUEST_SUCCESS)
+    const dispatch = useDispatch()
 
-  const onSubmit = (values) => {
-        setSubmitting(true)    
-        resetPasswordRequest(values)
-          .then(response => response.text())
-          .then(result => {
-              var json_rlt = JSON.parse(result)
-              if (json_rlt.status == 200){
-                  onToggle()
-                //   toggle()
-                  openNotification('success', 'Success', 'Confirm your Email to reset a password.')
-              }
-          })
-          .catch(error => console.log('error', error));
-  }
-  return <Modal isOpen={open} toggle={onToggle}>
+    useEffect(() => {
+        if (RESET_PASSWORD_REQUEST_SUCCESS) {
+            dispatch({type: 'RESET_PASSWORD_REQUEST_SUCCESS', flag: false})
+            onToggle()
+        }
+    }, [RESET_PASSWORD_REQUEST_SUCCESS])
+
+    const onSubmit = (values) => {
+        dispatch(resetPasswordRequest({email: values.email}))
+    }
+
+    return <Modal isOpen={open} toggle={onToggle}>
             <ModalHeader className="modal-login-btn" style={{borderBottom: 'none'}}>
-                <div className="modal-login-btn">Forgot Password?</div>
+                <div className="modal-login-btn">{t('forgot_password_modal.forgot_password')}</div>
             </ModalHeader>
             <ModalBody>
                 <FinalForm
@@ -48,25 +48,22 @@ function ForgotPassword(props) {
                                     type="email"
                                     placeholder="name@example.com"
                                     validate={composeValidators(
-                                        required('Enter a valid email address'),
-                                        isEmail('Enter a valid email address')
+                                        required(t('signin_modal.enter_valid_email')),
+                                        isEmail(t('signin_modal.enter_valid_email'))
                                     )}
                                 />
                             </FormGroup>
-                            
                             <Button
                                 type="submit"
                                 size="lg"
                                 color="primary"
                                 className="blue-btn"
-                                disabled={submitting}
+                                disabled={isLoading}
                                 style={{marginTop: '20px'}}
                             >
-                                Reset Password
+                                {t('button_group.reset_password')}
                             </Button>
-
                         </Form>
-
                     )}
                 />
             </ModalBody>

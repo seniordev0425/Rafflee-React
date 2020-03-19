@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Row, Col } from 'reactstrap'
 import { getCampaignParticipants } from '../../../actions/campaign'
@@ -7,8 +7,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSlidersH, faSearch } from '@fortawesome/free-solid-svg-icons'
 import Loading from '../../common/Loading'
 
+import { useTranslation } from 'react-i18next'
 
 function ParticipantListLayout(props){
+    const { t } = useTranslation()
+
     const {goBack, id} = props
 
     const participants = useSelector(state=>state.campaign.participants)
@@ -27,7 +30,7 @@ function ParticipantListLayout(props){
                     <Col xs={{size: 10, offset: 1}} className="pl-4 pr-4 space-between">
                         <div style={{fontSize:"1.1rem"}}>{item.username}</div>
                         <div style={{fontSize:"1.1rem"}}>{item.email}</div>
-                        <div className="view-profile-link">View Profile</div>
+                        <div className="view-profile-link">{t('my_campaign_page.view_profile')}</div>
                     </Col>
                 </Row>
             )
@@ -42,7 +45,7 @@ function ParticipantListLayout(props){
         <>
             <Row className="mt-4 mb-3">
                 <Col xs={{size: 10, offset: 1}} className="pl-4 pr-4">
-                    <div className="float-left blue-link-btn" onClick={() => goBack(null)}>Back to Campaign Page</div>
+                    <div className="float-left blue-link-btn" onClick={() => goBack(null)}>{t('my_campaign_page.back_to_campaign_page')}</div>
                 </Col>
             </Row>
             <Row className="mt-5 mb-5">
@@ -52,7 +55,7 @@ function ParticipantListLayout(props){
                             <img src={images.profile_img}/>
                         </Col>
                         <Col sm="10" xs="9">
-                            <div className="promotion-list-item-text">Campaign Analytics</div>
+                            <div className="promotion-list-item-text">{t('my_campaign_page.campaign_analytics')}</div>
                             <div className="promotion-list-item-title">Ultimate Edition (Digital Code)</div>
                             
                         </Col>
@@ -61,14 +64,14 @@ function ParticipantListLayout(props){
             </Row>
             <Row className="pt-3 pb-3" style={{background:"rgba(191, 232, 254, 0.25)"}}>
                 <Col xs={{size: 10, offset: 1}} className="pl-4 pr-4 space-between">
-                    <div style={{fontSize:"1.1rem"}}>Generated Likes</div>
-                    <div style={{fontSize:"1.1rem"}}>Earned Followers</div>
-                    <div style={{fontSize:"1.1rem"}}>Tweets Generated</div>
+                    <div style={{fontSize:"1.1rem"}}>{t('my_campaign_page.generated_likes')}</div>
+                    <div style={{fontSize:"1.1rem"}}>{t('my_campaign_page.earned_followers')}</div>
+                    <div style={{fontSize:"1.1rem"}}>{t('my_campaign_page.tweets_generated')}</div>
                 </Col>
             </Row>
             <Row className="mt-3 mb-3">
                 <Col xs={{size: 10, offset: 1}} className="pl-4 pr-4">
-                    <div className="float-left" style={{fontSize:"1.1rem", fontWeight:"bold"}}>Participants ({participants.length})</div>
+                    <div className="float-left" style={{fontSize:"1.1rem", fontWeight:"bold"}}>{t('my_campaign_page.participants')} ({participants.length})</div>
                     <div className="float-right">
                         <FontAwesomeIcon icon={faSearch}/>
                         <FontAwesomeIcon icon={faSlidersH} className="ml-3"/>
@@ -78,8 +81,7 @@ function ParticipantListLayout(props){
             {renderParticipants()}
             <Row className="pt-3 pb-3">
                 <Col xs={{size: 10, offset: 1}} className="pl-4 pr-4">
-                    <div className="policy-button float-right" style={{fontSize:"1.1rem"}}>Buy Data</div>
-                    
+                    <div className="policy-button float-right" style={{fontSize:"1.1rem"}}>{t('my_campaign_page.buy_data')}</div> 
                 </Col>
             </Row>
         </>

@@ -24,7 +24,8 @@ function Carousel(props){
             campaign_name={item.campaign_name}
             campaign_image={item.campaign_image}
             pk={item.pk}
-        />)
+        />
+    )
 
     return(
         <div className="app" style={{maxWidth: galleryItems.length * 400}}>

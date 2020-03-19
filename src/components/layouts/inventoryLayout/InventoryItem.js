@@ -1,11 +1,15 @@
 import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { Row, Col } from 'reactstrap'
 import images from '../../../utils/images'
 import { Button } from 'reactstrap'
 import { updateFavorite } from '../../../actions/userInfo'
 
+import { useTranslation } from 'react-i18next'
+
 function InventoryItem(props){
+    const { t } = useTranslation()
+
     const {item} = props
     const dispatch = useDispatch()
 
@@ -34,7 +38,7 @@ function InventoryItem(props){
                                     color="#06CBC7"
                                     className="bootstrap-green-btn promotion-list-item-btn"
                                 >
-                                        ALREADY WON
+                                    {t('button_group.already_won')}
                                 </Button>
                                 <div className="promotion-list-item-star" onClick={update}>
                                     <img src={item.favorite ? images.trans_star_favorite : images.trans_star}/>

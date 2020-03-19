@@ -1,9 +1,12 @@
 import React from 'react'
-import {Row, Col} from 'reactstrap'
+import { Row, Col } from 'reactstrap'
 import images from '../../../utils/images'
-import {Button} from 'reactstrap'
+import { Button } from 'reactstrap'
+
+import { useTranslation } from 'react-i18next'
 
 function MyCampaignItem(props){
+    const { t } = useTranslation()
 
     const {item, goToLivePage, goToParticipatePage} = props
     return(
@@ -26,12 +29,12 @@ function MyCampaignItem(props){
                                     className="blue-link-btn"
                                     onClick = {() => goToLivePage(item.pk)}
                                 >
-                                    Live Page
+                                    {t('my_campaign_page.live_page')}
                                 </Button>
                             </div>
                             <div className="mt-2">
                                 <span className="footer-link-bold pointer"  onClick={() => goToParticipatePage(item.pk)}>
-                                    View Participants ({item.number_of_participants})
+                                    {t('my_campaign_page.view_participants')} ({item.number_of_participants})
                                 </span>
                             </div>
                             

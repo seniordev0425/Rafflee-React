@@ -15,7 +15,7 @@ function SearchResultLayout(props){
 
     const { searchKey } = props
     const allPromotions = useSelector(state=>state.homepage.allPromotions)
-    const categories = useSelector(state=>state.homepage.categories)
+    // const categories = useSelector(state=>state.homepage.categories)
     const isFetchingAll = useSelector(state=>state.userInfo.GET_ALL_PROMOTIONS_SUCCESS)
     const isFetchingCategories = useSelector(state=>state.userInfo.GET_CATEGORIES)
     const token = useSelector(state=>state.userInfo.token)

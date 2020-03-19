@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux";
+import { withRouter } from 'react-router'
 import { Form as FinalForm, Field } from 'react-final-form'
 import { OnChange } from 'react-final-form-listeners'
 import { Form, FormGroup, Button, Input } from 'reactstrap'
@@ -11,13 +12,14 @@ import {
     composeValidators, 
     required, 
     isEmail, 
-    minLength, 
-    maxLength
 } from '../../utils/validation'
 
-function SignUpModal(props){
+import { useTranslation } from 'react-i18next'
 
-    const { showCompanyModal, toggle } = props
+function SignUpModal(props){
+    const { t } = useTranslation()
+
+    const { showCompanyModal, toggle, history } = props
 
     const isLoading = useSelector(state=>state.userInfo.SIGN_UP_SUCCESS)
     const signUpSuccess = useSelector(state=>state.userInfo.signUpSuccess)
@@ -66,7 +68,7 @@ function SignUpModal(props){
         <div>
             <FinalForm
                 onSubmit={onSubmit}
-                render={({handleSubmit, pristine, values}) => (
+                render={({handleSubmit}) => (
                     <Form onSubmit={handleSubmit}>
                         <FormGroup>
                             <Field
@@ -76,8 +78,8 @@ function SignUpModal(props){
                                 type="email"
                                 placeholder="name@example.com"
                                 validate={composeValidators(
-                                    required('Enter a valid email address'),
-                                    isEmail('Enter a valid email address')
+                                    required(t('signin_modal.enter_valid_email')),
+                                    isEmail(t('signin_modal.enter_valid_email'))
                                 )}
                             />
                         </FormGroup>
@@ -87,8 +89,8 @@ function SignUpModal(props){
                                 component={FormInput}
                                 className="custom-form-control"
                                 type="text"
-                                placeholder="Username"
-                                validate={required('Username required')}
+                                placeholder={t('signin_modal.username')}
+                                validate={required(t('signin_modal.username_required'))}
 
                             />
                         </FormGroup>
@@ -98,8 +100,8 @@ function SignUpModal(props){
                                 component={FormInput}
                                 className="custom-form-control"
                                 type="password"
-                                placeholder="Password"
-                                validate={required('Password required')}
+                                placeholder={t('signin_modal.password')}
+                                validate={required(t('signin_modal.password_required'))}
 
                             />
                             <OnChange name="password1">
@@ -114,31 +116,31 @@ function SignUpModal(props){
                                 component={FormInput}
                                 className="custom-form-control"
                                 type="password"
-                                placeholder="Confirm Password"
-                                validate={required('Confirm Password')}
+                                placeholder={t('signin_modal.confirm_password')}
+                                validate={required(t('signin_modal.confirm_password_required'))}
                             />
                             
                             <div className="mt-3" style={containSpecial ? {color: "green"} : {color: "#dc3545"}}>
-                                Password must contain a special character
+                                {t('signin_modal.password_special_alert')}
                             </div>
                             <div className="mt-2" style={containLowercase ? {color: "green"} : {color: "#dc3545"}}>
-                                Password must contain lowercase letter
+                                {t('signin_modal.password_lowercase_alert')}
                             </div>
                             <div className="mt-2" style={containCapital ? {color: "green"} : {color: "#dc3545"}}>
-                                Password must contain a capital letter
+                                {t('signin_modal.password_capital_alert')}
                             </div>
                             <div className="mt-2" style={containNumber ? {color: "green"} : {color: "#dc3545"}}>
-                                Password must contain a number
+                                {t('signin_modal.password_number_alert')}
                             </div>
                             <div className="mt-2" style={containEnoughLen ? {color: "green"} : {color: "#dc3545"}}>
-                                Password must have a minimum length of 8
+                                {t('signin_modal.password_length_alert')}
                             </div>
                         </FormGroup>                        
                         <FormGroup>
                             <Switch onChange={() => setAgree(!agree)} />
-                            <span className="agree-container">I agree to the 
-                                <span className="policy-button">Terms of Use</span> and 
-                                <span className="policy-button">Privacy Policy</span>
+                            <span className="agree-container">{t('signin_modal.i_agree')} 
+                                <span className="policy-button" onClick={() => history.push('/general-conditions')}>{t('signin_modal.terms_of_use')}</span> {t('signin_modal.and')} 
+                                <span className="policy-button" onClick={() => history.push('/privacy-policy')}>{t('signin_modal.privacy_policy')}</span>
                             </span>
                         </FormGroup>
                         <Button
@@ -149,10 +151,10 @@ function SignUpModal(props){
                             disabled={isLoading || !agree}
                             style={{marginTop: '20px'}}
                         >
-                            CREATE ACCOUNT
+                            {t('button_group.create_account')}
                         </Button>
                         <div className="company-question-button-container" onClick={showCompanyModal}>
-                            <span className="company-question-button">Are you a company?</span>
+                            <span className="company-question-button">{t('signin_modal.are_you_company')}</span>
                         </div>
 
                     </Form>
@@ -162,4 +164,4 @@ function SignUpModal(props){
     );
 }
 
-export default SignUpModal;
+export default withRouter(SignUpModal);

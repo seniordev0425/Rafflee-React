@@ -1,22 +1,24 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { withRouter, Link } from 'react-router-dom'
-import { Row, Col, Button } from 'reactstrap'
+import { withRouter } from 'react-router-dom'
+import { Row, Col } from 'reactstrap'
+import moment from 'moment'
 
 import JoinHeader from '../components/layouts/HeaderLayout/JoinHeader'
 import Header from '../components/layouts/HeaderLayout/Header'
 import FooterLink from '../components/layouts/footer/FooterLink'
 import Footer from '../components/layouts/footer/Footer'
 import images from '../utils/images'
-
 import CustomCollapsePanel from '../components/common/CustomCollapsePanel'
 import Loading from '../components/common/Loading'
-import moment from 'moment'
-import { openNotification } from '../utils/notification'
 import { campaignParticipate, getCampaignData, updateFavorite } from '../actions/campaign'
 
+import { useTranslation } from 'react-i18next'
+
 function CampaignDetail(props){
-    const { history, match } = props
+    const { t } = useTranslation()
+
+    const { match } = props
 
     const isLoading = useSelector(state=>state.userInfo.GET_CAMPAIGN_DATA_SUCCESS)
     const campaignData = useSelector(state=>state.campaign.campaignData)
@@ -97,7 +99,7 @@ function CampaignDetail(props){
                             <img src={images.campaign} />
                         </Col>
                         <Col className="px-0 center">
-                            <div className="mt-5 menubar ml-5">GIVEAWAYS</div>
+                            <div className="mt-5 menubar ml-5">{t('campaign_detail_page.giveaways')}</div>
                             <div style={{display: "flex"}} className="ml-5">
                                 <img src={images.award} width="30" height="40"/>
                                 <div className="ml-4">
@@ -111,24 +113,24 @@ function CampaignDetail(props){
                             
                             <div className="div-item promotion-list-item-title">
                                 <div className="menubar">
-                                    {Date.parse(campaignData.end_date) > Date.now() ? "PRIZE ENDS IN" : "PRIZE ENDED"}
+                                    {Date.parse(campaignData.end_date) > Date.now() ? t('campaign_detail_page.prize_ends_in') : t('campaign_detail_page.prize_ended')}
                                 </div>
                                 <img src={images.clock} width="30"/>
-                                <span className="ml-3">{calcRemainingDates()} days</span>
+                                <span className="ml-3">{calcRemainingDates()} {t('campaign_detail_page.days')}</span>
                             </div>
                             <div className="div-item promotion-list-item-title">
                                 <div className="menubar">
-                                    YOUR ENTRIES
+                                    {t('campaign_detail_page.your_entries')}
                                 </div>
                                 <img src={images.entry} width="30"/>
-                                <span className="ml-3">0 Entries</span>
+                                <span className="ml-3">0 {t('campaign_detail_page.entries')}</span>
                             </div>
                             <div className="div-item promotion-list-item-title">
                                 <div className="menubar">
-                                    MAXIMUM PARTICIPANT
+                                    {t('campaign_detail_page.maximum_participants')}
                                 </div>
                                 <img src={images.user} width="30"/>
-                                <span className="ml-3">{campaignData.number_of_eligible_people} Participants</span>
+                                <span className="ml-3">{campaignData.number_of_eligible_people} {t('campaign_detail_page.participants')}</span>
                             </div>
                         </Col>
                     </Row>

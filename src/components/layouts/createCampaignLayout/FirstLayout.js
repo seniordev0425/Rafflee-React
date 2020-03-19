@@ -1,27 +1,24 @@
-import React, {useState, useEffect} from 'react'
-import {Form as FinalForm, Field} from 'react-final-form'
+import React, { useState, useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { Form as FinalForm, Field } from 'react-final-form'
 import { OnChange } from 'react-final-form-listeners'
 import PropTypes from 'prop-types'
-import {Form, FormGroup, Button, Input, Row, Col} from 'reactstrap'
+import { Form, FormGroup, Button, Row, Col } from 'reactstrap'
 import ImageUploader from 'react-images-upload'
-import {Switch, DatePicker, Checkbox, Radio, Select} from 'antd'
+import { DatePicker, Radio, Select} from 'antd'
 import FormInput from '../../common/FormInput'
 import WinningItem from './WinningItem'
 import CheckBoxButtonWithString from '../../common/Buttons/CheckBoxButtonWithString'
 import images from '../../../utils/images'
-import {getCategories} from '../../../apis/apiCalls'
+import { getCategories } from '../../../actions/homepage'
 import moment from 'moment'
+import { required } from '../../../utils/validation'
 
-import {
-    composeValidators, 
-    required, 
-    isEmail, 
-    minLength, 
-    maxLength,
-    requiredPhoneObj
-} from '../../../utils/validation'
+import { useTranslation } from 'react-i18next'
 
 function FirstLayout(props){
+    const { t } = useTranslation()
+
     const {gotoPollCreate, gotoFinalLayout, pollCreated, firstFormTempData} = props
 
     let tempCategories = [];
@@ -67,21 +64,21 @@ function FirstLayout(props){
 
     const [tempData, setTempData] = useState(firstFormTempData)
 
+    const categoryArr = useSelector(state=>state.homepage.categories)
+    const dispatch = useDispatch()
+
 
     useEffect(() => {
-        getCategories()
-        .then(response => response.text())
-        .then(result => {
-            var json_rlt = JSON.parse(result)
-            if (json_rlt.status == 200){
-                let temp = []
-                for (let i = 0; i < json_rlt.result_data.length; i ++)
-                    temp.push(<Option key={json_rlt.result_data[i].name}>{json_rlt.result_data[i].name}</Option>)
-                setChildren(temp)
-            }
-        })
-        .catch(error => console.log('error', error));
+        dispatch(getCategories())
     },[])
+
+    useEffect(() => {
+        let temp = []
+        categoryArr.map((item) => 
+            temp.push(<Option key={item.name}>{item.name}</Option>)
+        )
+        setChildren(temp)
+    }, [categoryArr])
 
     const handleActions = (category, action) => {
         let newActions = {...socialActions}
@@ -192,15 +189,15 @@ function FirstLayout(props){
                                     <Col xs="12" sm="6">
                                         <div className="mt-4 half-width">
                                             <FormGroup>
-                                                <div className="footer-link-bold mb-3">Campaign Name</div>
+                                                <div className="footer-link-bold mb-3">{t('create_campaign_page.campaign_name')}</div>
                                                 <Field
                                                     name="campaign_name"
                                                     defaultValue={(firstFormTempData || {}).campaign_name ? (firstFormTempData || {}).campaign_name : ''}
                                                     component={FormInput}
                                                     className="custom-form-control"
                                                     type="text"
-                                                    placeholder="Campaign Name"
-                                                    validate={required('Campaign Name is required')}
+                                                    placeholder={t('create_campaign_page.campaign_name')}
+                                                    validate={required(t('create_campaign_page.campaign_name_required'))}
                                                 />
                                                 <OnChange name="campaign_name">
                                                     {(value) => {
@@ -213,9 +210,9 @@ function FirstLayout(props){
                                     <Col xs="12" sm={{size: "4", offset: "2"}}>
                                         <div className="mt-4 half-width float-right">
                                             <FormGroup>
-                                                <div className="footer-link-bold mb-3">Upload Image</div>
+                                                <div className="footer-link-bold mb-3">{t('create_campaign_page.upload_image')}</div>
                                                 <ImageUploader
-                                                    buttonText='Upload Image'
+                                                    buttonText={t('create_campaign_page.upload_image')}
                                                     onChange={setPromotionPicture}
                                                     withPreview={true}
                                                     className="upload-image-container"
@@ -233,7 +230,7 @@ function FirstLayout(props){
                                     <Col xs="12">
                                         <div className="mt-4">
                                             <FormGroup>
-                                                <div className="footer-link-bold mb-3">Short Description</div>
+                                                <div className="footer-link-bold mb-3">{t('create_campaign_page.short_description')}</div>
                                                 <Field
                                                     name="description"
                                                     defaultValue={(firstFormTempData || {}).description ? (firstFormTempData || {}).description : ''}
@@ -242,7 +239,7 @@ function FirstLayout(props){
                                                     type="textarea"
                                                     row={5}
                                                     placeholder=""
-                                                    validate={required('Put your Description')}
+                                                    validate={required(t('create_campaign_page.short_description_required'))}
                                                 />
                                                 <OnChange name="description">
                                                     {(value) => {
@@ -255,12 +252,12 @@ function FirstLayout(props){
                                 </Row>
                                 <Row>
                                     <Col xs="12">
-                                        <div className="footer-link-bold mb-3 mt-4">Categories</div>
+                                        <div className="footer-link-bold mb-3 mt-4">{t('create_campaign_page.categories')}</div>
                                         <Select
                                             defaultValue={(firstFormTempData || {}).categories ? (firstFormTempData || {}).categories : []}
                                             mode="multiple"
                                             className="w-100"
-                                            placeholder="Please select categories"
+                                            placeholder={t('create_campaign_page.categories_placeholder')}
                                             onChange={handleChange}
                                             size="large"
                                         >
@@ -273,7 +270,7 @@ function FirstLayout(props){
                                     <Col xs="12" sm="6">
                                         <div className="mt-4 half-width">
                                             <FormGroup>
-                                                <div className="footer-link-bold mb-3">Campaign Starts</div>
+                                                <div className="footer-link-bold mb-3">{t('create_campaign_page.campaign_starts')}</div>
                                                 <DatePicker
                                                     defaultValue={(firstFormTempData || {}).startDate ? moment((firstFormTempData || {}).startDate, 'YYYY-MM-DD') : null}
                                                     onChange={onChangeStartDate}
@@ -287,7 +284,7 @@ function FirstLayout(props){
                                     <Col xs="12" sm="6">
                                         <div className="mt-4 half-width float-right">
                                             <FormGroup>
-                                                <div className="footer-link-bold mb-3">Campaign Ends</div>
+                                                <div className="footer-link-bold mb-3">{t('create_campaign_page.campaign_ends')}</div>
                                                 <DatePicker
                                                     defaultValue={(firstFormTempData || {}).endDate ? moment((firstFormTempData || {}).endDate, 'YYYY-MM-DD') : null}
                                                     onChange={onChangeEndDate}
@@ -303,7 +300,7 @@ function FirstLayout(props){
                                     <Col xs="12" sm="6">
                                         <div className="mt-4 half-width">
                                             <FormGroup>
-                                                <div className="footer-link-bold mb-3">Validity Start Date of the Prizes (for coupons only)</div>
+                                                <div className="footer-link-bold mb-3">{t('create_campaign_page.winning_starts')}</div>
                                                 <DatePicker
                                                     defaultValue={(firstFormTempData || {}).winStartDate ? moment((firstFormTempData || {}).winStartDate, 'YYYY-MM-DD') : null}
                                                     onChange={onChangeWinStartDate}
@@ -317,7 +314,7 @@ function FirstLayout(props){
                                     <Col xs="12" sm="6">
                                         <div className="mt-4 half-width float-right">
                                             <FormGroup>
-                                                <div className="footer-link-bold mb-3">Validity Expiration Date of the Prizes (for coupons only)</div>
+                                                <div className="footer-link-bold mb-3">{t('create_campaign_page.winning_ends')}</div>
                                                 <DatePicker
                                                     defaultValue={(firstFormTempData || {}).winEndDate ? moment((firstFormTempData || {}).winEndDate, 'YYYY-MM-DD') : null}
                                                     onChange={onChangeWinEndDate}
@@ -331,25 +328,31 @@ function FirstLayout(props){
                                 </Row>
                                 {renderWinningItems()}
                                 <Row>
-                                    <Col><span className="pointer" onClick={addWinning}>Add More <span style={{fontSize:"1.3rem", fontWeight:"bold"}}> +</span></span></Col>
+                                    <Col><span className="pointer" onClick={addWinning}>{t('create_campaign_page.add_more')} <span style={{fontSize:"1.3rem", fontWeight:"bold"}}> +</span></span></Col>
                                 </Row>
                                 <Row>
                                     <Col xs="12">
-                                        <div className="footer-link-bold mb-3 mt-3">Results</div>
+                                        <div className="footer-link-bold mb-3 mt-3">{t('create_campaign_page.results')}</div>
                                         <Radio.Group onChange={onChangeDistribution} value={distribution}>
                                             <Radio value="direct"/>
-                                            <div className={distribution == ('direct') ? "inline-div-active ml-3" : "inline-div-inactive ml-3"}>Direct  </div>
+                                            <div className={distribution === ('direct') ? "inline-div-active ml-3" : "inline-div-inactive ml-3"}>
+                                                {t('create_campaign_page.direct')}
+                                            </div>
                                             <Radio value="live_draw" className="ml-3"/>
-                                            <div className={distribution == ('live_draw') ? "inline-div-active ml-3" : "inline-div-inactive ml-3"}>Live Draw</div>
+                                            <div className={distribution === ('live_draw') ? "inline-div-active ml-3" : "inline-div-inactive ml-3"}>
+                                                {t('create_campaign_page.live_draw')}
+                                            </div>
                                             <Radio value="end_promotion" className="ml-3"/>
-                                            <div className={distribution == ('end_promotion') ? "inline-div-active ml-3" : "inline-div-inactive ml-3"}>End Date</div>
+                                            <div className={distribution === ('end_promotion') ? "inline-div-active ml-3" : "inline-div-inactive ml-3"}>
+                                                {t('create_campaign_page.end_date')}
+                                            </div>
                                         </Radio.Group>
                                         
                                     </Col>
                                 </Row>
                                
                                 <Row>
-                                    <Col><div className="footer-link-bold mt-3">Actions</div></Col>
+                                    <Col><div className="footer-link-bold mt-3">{t('create_campaign_page.actions')}</div></Col>
                                 </Row>
                             </Col>
                         </Row>
@@ -361,17 +364,17 @@ function FirstLayout(props){
                                 <div>
                                 <CheckBoxButtonWithString 
                                     value={socialActions.facebook.like}
-                                    btnString="LIKE" 
+                                    btnString={t('create_campaign_page.like')} 
                                     handleActions={() => handleActions("facebook", "like")}
                                 />
                                 <CheckBoxButtonWithString 
                                     value={socialActions.facebook.follow}
-                                    btnString="FOLLOW" 
+                                    btnString={t('create_campaign_page.follow')} 
                                     handleActions={() => handleActions("facebook", "follow")}
                                 />
                                 <CheckBoxButtonWithString 
                                     value={socialActions.facebook.comment}
-                                    btnString="MESSAGE" 
+                                    btnString={t('create_campaign_page.message')} 
                                     handleActions={() => handleActions("facebook", "comment")}
                                 />
                                 </div>
@@ -385,22 +388,22 @@ function FirstLayout(props){
                                 <div>
                                 <CheckBoxButtonWithString 
                                     value={socialActions.twitter.like}
-                                    btnString="LIKE" 
+                                    btnString={t('create_campaign_page.like')} 
                                     handleActions={() => handleActions("twitter", "like")}
                                 />
                                 <CheckBoxButtonWithString 
                                     value={socialActions.twitter.follow}
-                                    btnString="FOLLOW" 
+                                    btnString={t('create_campaign_page.follow')} 
                                     handleActions={() => handleActions("twitter", "follow")}
                                 />
                                 <CheckBoxButtonWithString 
                                     value={socialActions.twitter.comment}
-                                    btnString="MESSAGE" 
+                                    btnString={t('create_campaign_page.message')} 
                                     handleActions={() => handleActions("twitter", "comment")}
                                 />
                                 <CheckBoxButtonWithString 
                                     value={socialActions.twitter.retweet}
-                                    btnString="RETWEET" 
+                                    btnString={t('create_campaign_page.retweet')} 
                                     handleActions={() => handleActions("twitter", "retweet")}
                                 />
                                 </div>
@@ -414,12 +417,12 @@ function FirstLayout(props){
                                 <div>
                                 <CheckBoxButtonWithString 
                                     value={socialActions.youtube.like}
-                                    btnString="LIKE" 
+                                    btnString={t('create_campaign_page.like')} 
                                     handleActions={() => handleActions("youtube", "like")}
                                 />
                                 <CheckBoxButtonWithString 
                                     value={socialActions.youtube.follow}
-                                    btnString="FOLLOW" 
+                                    btnString={t('create_campaign_page.follow')} 
                                     handleActions={() => handleActions("youtube", "follow")}
                                 />
                                 </div>
@@ -433,17 +436,17 @@ function FirstLayout(props){
                                 <div>
                                 <CheckBoxButtonWithString 
                                     value={socialActions.instagram.like}
-                                    btnString="LIKE" 
+                                    btnString={t('create_campaign_page.like')} 
                                     handleActions={() => handleActions("instagram", "like")}
                                 />
                                 <CheckBoxButtonWithString 
                                     value={socialActions.instagram.follow}
-                                    btnString="FOLLOW" 
+                                    btnString={t('create_campaign_page.follow')} 
                                     handleActions={() => handleActions("instagram", "follow")}
                                 />
                                 <CheckBoxButtonWithString 
                                     value={socialActions.instagram.comment}
-                                    btnString="MESSAGE" 
+                                    btnString={t('create_campaign_page.message')} 
                                     handleActions={() => handleActions("instagram", "comment")}
                                 />
                                 </div>
@@ -457,17 +460,17 @@ function FirstLayout(props){
                                 <div>
                                 <CheckBoxButtonWithString 
                                     value={socialActions.twitch.like}
-                                    btnString="LIKE" 
+                                    btnString={t('create_campaign_page.like')} 
                                     handleActions={() => handleActions("twitch", "like")}
                                 />
                                 <CheckBoxButtonWithString 
                                     value={socialActions.twitch.follow}
-                                    btnString="FOLLOW" 
+                                    btnString={t('create_campaign_page.follow')} 
                                     handleActions={() => handleActions("twitch", "follow")}
                                 />
                                 <CheckBoxButtonWithString 
                                     value={socialActions.twitch.comment}
-                                    btnString="MESSAGE" 
+                                    btnString={t('create_campaign_page.message')} 
                                     handleActions={() => handleActions("twitch", "comment")}
                                 />
                                 </div>
@@ -480,11 +483,11 @@ function FirstLayout(props){
                                 </div>
                                 {!pollCreated ? (
                                     <div className='inline-div-inactive pointer' onClick={createPoll}>
-                                        CREATE POLL
+                                        {t('create_campaign_page.create_poll')} 
                                     </div>
                                 ) : (
                                     <div className='inline-div-active'>
-                                        POLL CREATED
+                                        {t('create_campaign_page.poll_created')} 
                                     </div>
                                 )}
                                 
@@ -492,7 +495,7 @@ function FirstLayout(props){
                         </Row>
                         <Row className="mt-3 mb-5">
                             <Col xs="12" sm={{size: 10, offset: 1}} >
-                                <Button type="submit" className="btn blue-btn float-right" color="primary" style={{width:200}}>NEXT</Button>
+                                <Button type="submit" className="btn blue-btn float-right" color="primary" style={{width:200}}>{t('button_group.next')} </Button>
                             </Col>
                             
                         </Row>

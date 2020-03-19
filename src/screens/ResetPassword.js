@@ -1,46 +1,42 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { compose } from 'redux'
-import { connect } from "react-redux";
-import { Link, withRouter } from 'react-router-dom'
+import { connect, useSelector, useDispatch } from "react-redux";
+import { withRouter } from 'react-router-dom'
 import { Form as FinalForm, Field } from 'react-final-form'
-import { Form, FormGroup, Button, Input } from 'reactstrap'
+import { Form, FormGroup, Button } from 'reactstrap'
 import FormInput from '../components/common/FormInput'
-import FormCheckbox from '../components/common/FormCheckbox'
-import { resetPassword } from '../apis/apiCalls'
-import { openNotification } from '../utils/notification'
-
+import { resetPassword } from '../actions/userInfo'
 import Header from '../components/layouts/HeaderLayout/Header'
+import { required } from '../utils/validation'
 
-import {
-    composeValidators, 
-    required, 
-    isEmail, 
-    minLength, 
-    maxLength
-} from '../utils/validation'
+import { useTranslation } from 'react-i18next'
 
 function ResetPassword(props){
+    const { t } = useTranslation()
+
     const { match, history } = props
 
-    const [submitting, setSubmitting] = useState(false)
+    const isLoading = useSelector(state=>state.userInfo.RESET_PASSWORD)
+    const RESET_PASSWORD_SUCCESS = useSelector(state=>state.userInfo.RESET_PASSWORD_SUCCESS)
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        if (RESET_PASSWORD_SUCCESS) {
+            dispatch({type: 'RESET_PASSWORD_SUCCESS', flag: false})
+            history.push('/')
+        }
+    }, [RESET_PASSWORD_SUCCESS])
 
     const onSubmit = (values) => {
-        setSubmitting(true)
-        
-        resetPassword(values, match.params.token, match.params.id)
-        .then(response => response.text())
-        .then(result => {
-            console.log(result)
-            setSubmitting(false)
-            var json_rlt = JSON.parse(result)
-            if (json_rlt.status === 200){
-                
-                openNotification('success', 'Success', 'Password Updated!')
-                history.push('/')
-            }
-        })
-        .catch(error => console.log('error', error));
+        var body = {
+            token: match.params.token,
+            id: match.params.id,
+            password: values.password,
+            password_confirmation: values.password_confirmation
+        }
+        dispatch(resetPassword(body))
     }
+
     return(
         <>
         <Header/>
@@ -55,8 +51,8 @@ function ResetPassword(props){
                                 component={FormInput}
                                 className="custom-form-control"
                                 type="password"
-                                placeholder="Password"
-                                validate={required('Password required')}
+                                placeholder={t('signin_modal.password')}
+                                validate={required(t('signin_modal.password_required'))}
                             />
                         </FormGroup>
                         <FormGroup>
@@ -65,8 +61,8 @@ function ResetPassword(props){
                                 component={FormInput}
                                 className="custom-form-control"
                                 type="password"
-                                placeholder="Confirm Password"
-                                validate={required('Confirm password required')}
+                                placeholder={t('signin_modal.confirm_password')}
+                                validate={required(t('signin_modal.confirm_password_required'))}
                             />
                         </FormGroup>
                         <Button
@@ -74,14 +70,12 @@ function ResetPassword(props){
                             size="lg"
                             color="primary"
                             className="blue-btn"
-                            disabled={submitting}
+                            disabled={isLoading}
                             style={{marginTop: '20px'}}
                         >
-                            RESET
+                            {t('button_group.reset')}
                         </Button>
-
                     </Form>
-
                 )}
             />
         </div>

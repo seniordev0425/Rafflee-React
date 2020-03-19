@@ -12,8 +12,11 @@ import Footer from '../components/layouts/footer/Footer'
 import { getHotPromotions, getHighlightedPromotions, getNewPromotions, getBestPromotions } from '../actions/homepage'
 import Loading from '../components/common/Loading'
 
+import { useTranslation } from 'react-i18next'
+
 
 function Home(props){
+    const { t } = useTranslation()
 
     const hotPromotions = useSelector(state=>state.homepage.hotPromotions)
     const highlightedPromotions = useSelector(state=>state.homepage.highlightedPromotions)
@@ -47,16 +50,16 @@ function Home(props){
             <Header/>
             <Banner/>
             <div className="hot-new-text">
-                Hot new contest everyday.
+                {t('homepage.hot_new_contest_everyday')}
             </div>
             <div className="premium-prize-text">
-                Premium prizes & giveaways chosen by Rafflee.
+                {t('homepage.premium_prizes_giveaways')}
             </div>
             {hotPromotions.length && 
                 <Carousel hotPromotions={hotPromotions}/>
             }
             <div className="find-deal-text mb-4">
-                Find the campaign you have been looking for.
+                {t('homepage.find_campaign')}
             </div>
             <CurrentPromotionList/>
             <FooterLink/>

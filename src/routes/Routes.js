@@ -13,6 +13,8 @@ import CampaignDetail from '../screens/CampaignDetail'
 import ProfileActivated from '../screens/ProfileActivated'
 import ResetPassword from '../screens/ResetPassword'
 import SearchResult from '../screens/SearchResult'
+import PrivacyPolicy from '../screens/PrivacyPolicy'
+import GeneralConditions from '../screens/GeneralConditions'
 
 import Loading from '../components/common/Loading'
 import ScrollToTop from '../components/common/ScrollToTop'
@@ -36,32 +38,63 @@ function Routes(props){
         window.addEventListener('online', _handleOnline)
         window.addEventListener('offline', _handleOffline)
     
-        const token = localStorage.getItem('token')
-        const company = localStorage.getItem('company')
+        const token = sessionStorage.getItem('token')
+        const company = sessionStorage.getItem('company') 
 
-        if (!token) {
+        const rememberToken = localStorage.getItem('token')
+        const rememberCompany= localStorage.getItem('company')
+
+        if (!token && !rememberToken) {
             return
         }
 
-        verifyToken(token)
-        .then(response => response.text())
-        .then(result => {
-            var json_rlt = JSON.parse(result)
-            if (json_rlt.token){
-                dispatch({type: "LOG_IN_SUCCESS", data: {token: token, company: company === 'true'}})
-            }
-            else {
+        if (token) {
+            verifyToken(token)
+            .then(response => response.text())
+            .then(result => {
+                var json_rlt = JSON.parse(result)
+                if (json_rlt.token){
+                    dispatch({type: "LOG_IN_SUCCESS", data: {token: token, company: company === 'true'}})
+                }
+                else {
+                    sessionStorage.clear()
+                    localStorage.removeItem('token')
+                    localStorage.removeItem('company')
+                    history.push('/')
+                }
+                setAuthLoading(false)
+            })
+            .catch(error => {
+                sessionStorage.clear()
+                setAuthLoading(false)
+            });
+            return
+        }
+
+        if (rememberToken) {
+            verifyToken(rememberToken)
+            .then(response => response.text())
+            .then(result => {
+                var json_rlt = JSON.parse(result)
+                if (json_rlt.token){
+                    dispatch({type: "LOG_IN_SUCCESS", data: {token: rememberToken, company: rememberCompany === 'true'}})
+                    sessionStorage.setItem('token', rememberToken)
+                    sessionStorage.setItem('company', rememberCompany)
+                }
+                else {
+                    localStorage.removeItem('token')
+                    localStorage.removeItem('company')
+                    history.push('/')
+                }
+                setAuthLoading(false)
+            })
+            .catch(error => {
                 localStorage.removeItem('token')
                 localStorage.removeItem('company')
-                history.push('/')
-            }
-            setAuthLoading(false)
-        })
-        .catch(error => {
-            localStorage.removeItem('token')
-            localStorage.removeItem('company')
-            setAuthLoading(false)
-        });
+                setAuthLoading(false)
+            });
+        }
+        
 
         return () => {
             window.removeEventListener('online', _handleOnline)
@@ -69,7 +102,7 @@ function Routes(props){
         };
     }, [])
 
-    if (authLoading && localStorage.getItem('token') && !props.token) {
+    if (authLoading && sessionStorage.getItem('token') && !props.token) {
         return <Loading/>
     }
     return (
@@ -86,6 +119,8 @@ function Routes(props){
                 <Route exact path="/profile/activate/:id/:token" component={ProfileActivated} />
                 <Route exact path="/reset-password/:token/:id" component={ResetPassword} />
                 <Route exact path="/search-result" component={SearchResult} />
+                <Route exact path="/general-conditions" component={GeneralConditions} />
+                <Route exact path="/privacy-policy" component={PrivacyPolicy} />
                 <Route component={NotFound} />
             </Switch>
         </ScrollToTop>

@@ -16,7 +16,8 @@ const apiMiddleware = ({ dispatch }) => next => action => {
     onSuccess,
     onFailure,
     label,
-    headers
+    headers,
+    requireErrorMessage
   } = action.payload;
   const dataOrParams = ["GET", "DELETE"].includes(method) ? "params" : "data";
 
@@ -27,6 +28,7 @@ const apiMiddleware = ({ dispatch }) => next => action => {
     if (label === 'SIGN_UP_SUCCESS')axios.defaults.headers.common["Authorization"] = accessToken;
     else axios.defaults.headers.common["Authorization"] = `JWT ${accessToken}`;
   }
+  else axios.defaults.headers.common["Authorization"] = null;
     
   if (label) {
     dispatch(apiStart(label));
@@ -45,12 +47,10 @@ const apiMiddleware = ({ dispatch }) => next => action => {
     })
     .catch(error => {
       console.log(error.response)
-      // dispatch(apiError(error));
-      dispatch(onFailure(error));
-
-      // if (error.response && error.response.status === 403) {
-      //   dispatch(accessDenied(window.location.pathname));
-      // }
+      if (requireErrorMessage) {
+        if (error.response && error.response.data && error.response.data.msg) dispatch(onFailure(error.response.data.msg));
+        else dispatch(onFailure(''));
+      }
     })
     .finally(() => {
       if (label) {

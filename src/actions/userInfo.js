@@ -1,31 +1,38 @@
 import { APIROUTE } from '../utils/constants'
 import { API } from "./types";
 import { openNotification } from '../utils/notification'
+import successMessages from '../utils/messages/success'
 
 const qs = require('querystring')
 
 function onFailed(error) {
-  // openNotification('warning', 'SignUp Failed', 'password doesnt match')
+  openNotification('warning', error)
   return {
     type: 'API_FAILED',
     error: error    
   }
 }
 /////////////////////////////////////////////// LOGIN-ACTION
-export function logIn(params) {
+export function logIn(params, rememberMe) {
   return apiAction({
       url: APIROUTE + "login/",
       method: 'POST',
       data: qs.stringify(params),
-      onSuccess: onSuccessLogIn,
+      onSuccess: (data) => onSuccessLogIn(data, rememberMe),
       onFailure: onFailed,
       label: 'LOG_IN_SUCCESS',
+      requireErrorMessage: true
+
   });
 }
-function onSuccessLogIn(data) {
-  openNotification('success', 'Login Success')
-  localStorage.setItem('token', data.token)
-  localStorage.setItem('company', data.company)
+function onSuccessLogIn(data, rememberMe) {
+  openNotification('success', successMessages[localStorage.getItem('i18nextLng')].logIn)
+  sessionStorage.setItem('token', data.token)
+  sessionStorage.setItem('company', data.company)
+  if (rememberMe) {
+    localStorage.setItem('token', data.token)
+    localStorage.setItem('company', data.company)
+  }
   return {
       type: 'LOG_IN_SUCCESS',
       data: data
@@ -36,17 +43,39 @@ export function logOut(params) {
   return apiAction({
       url: APIROUTE + "logout/",
       method: 'POST',
-      accessToken: localStorage.getItem('token'),
+      accessToken: sessionStorage.getItem('token'),
       onSuccess: onSuccessLogOut,
       onFailure: onFailed,
       label: 'LOG_IN_SUCCESS',
   });
 }
 function onSuccessLogOut(data) {
-  if (localStorage.length) localStorage.clear() 
+  sessionStorage.clear() 
+  localStorage.removeItem('token')
+  localStorage.removeItem('company')
   return {
       type: 'LOG_IN_SUCCESS',
       data: {token: null, company: false}
+  }
+}
+/////////////////////////////////////////////// DELETE-ACCOUNT-ACTION
+export function deleteAccount(params) {
+  return apiAction({
+      url: APIROUTE + "account/profile/delete/",
+      method: 'POST',
+      data: qs.stringify(params),
+      accessToken: sessionStorage.getItem('token'),
+      onSuccess: onSuccessDeleteAccount,
+      onFailure: onFailed,
+      label: 'DELETE_ACCOUNT',
+      requireErrorMessage: true
+  });
+}
+function onSuccessDeleteAccount(data) {
+  openNotification('success', successMessages[localStorage.getItem('i18nextLng')].deleteAccount)
+  return {
+      type: 'DELETE_ACCOUNT_SUCCESS',
+      flag: true 
   }
 }
 /////////////////////////////////////////////// SIGNUP-ACTION
@@ -59,10 +88,11 @@ export function signUp(params) {
     onSuccess: onSuccessSignUp,
     onFailure: onFailed,
     label: 'SIGN_UP_SUCCESS',
+    requireErrorMessage: true
   });
 }
 function onSuccessSignUp(data) {
-  openNotification('success', 'SignUp Success!', 'We sent a confirm link to your email. Please check your email inbox.')
+  openNotification('success', successMessages[localStorage.getItem('i18nextLng')].signUp)
   return {
       type: 'SIGN_UP_SUCCESS',
       data: true
@@ -80,7 +110,7 @@ export function companyContact(params) {
   });
 }
 function onSuccessCompanyContact(data) {
-  openNotification('success', 'Successfully submitted')
+  openNotification('success', successMessages[localStorage.getItem('i18nextLng')].companySendMessage)
   return {
       type: 'API_SUCCESS',
       data: ''
@@ -90,7 +120,7 @@ function onSuccessCompanyContact(data) {
 export function getUserProfile() {
     return apiAction({
         url: APIROUTE + "account/profile/",
-        accessToken: localStorage.getItem('token'),
+        accessToken: sessionStorage.getItem('token'),
         onSuccess: onSuccessGetUserProfile,
         onFailure: onFailed,
         label: 'GET_USER_PROFILE_SUCCESS',
@@ -108,7 +138,7 @@ export function updateUserProfile(params) {
      url: APIROUTE + "account/profile/update/",
      method: 'POST',
      data: params,
-     accessToken: localStorage.getItem('token'),
+     accessToken: sessionStorage.getItem('token'),
      onSuccess: onSuccessUpdateUserProfile,
      onFailure: onFailed,
      label: 'UPDATE_USER_PROFILE_SUCCESS',
@@ -116,7 +146,7 @@ export function updateUserProfile(params) {
  });
 }
 function onSuccessUpdateUserProfile(data) {
-  openNotification('success', 'Success', 'Successfully Updated.')
+  openNotification('success', successMessages[localStorage.getItem('i18nextLng')].accountUpdate)
  return {
      type: 'UPDATE_USER_PROFILE_SUCCESS',
      data: ''
@@ -126,7 +156,7 @@ function onSuccessUpdateUserProfile(data) {
 export function getCompanyProfile() {
   return apiAction({
      url: APIROUTE + "company/profile/",
-     accessToken: localStorage.getItem('token'),
+     accessToken: sessionStorage.getItem('token'),
      onSuccess: onSuccessGetCompanyProfile,
      onFailure: onFailed,
      label: 'GET_COMPANY_PROFILE_SUCCESS',
@@ -145,7 +175,7 @@ export function updateCompanyProfile(params) {
      url: APIROUTE + "company/profile/update/",
      method: 'POST',
      data: params,
-     accessToken: localStorage.getItem('token'),
+     accessToken: sessionStorage.getItem('token'),
      onSuccess: onSuccessUpdateCompanyProfile,
      onFailure: onFailed,
      label: 'UPDATE_COMPANY_PROFILE_SUCCESS',
@@ -153,7 +183,7 @@ export function updateCompanyProfile(params) {
  });
 }
 function onSuccessUpdateCompanyProfile(data) {
-  openNotification('success', 'Success', 'Successfully Updated.')
+  openNotification('success', successMessages[localStorage.getItem('i18nextLng')].accountUpdate)
  return {
      type: 'UPDATE_COMPANY_PROFILE_SUCCESS',
      data: ''
@@ -165,7 +195,7 @@ export function resendSms(params) {
       url: APIROUTE + "account/number/send-sms/",
       method: 'POST',
       data: qs.stringify(params),
-      accessToken: localStorage.getItem('token'),
+      accessToken: sessionStorage.getItem('token'),
       onSuccess: onSuccessResendSms,
       onFailure: onFailed,
       label: 'RESEND_SMS_SUCCESS',
@@ -183,7 +213,7 @@ export function sendSms(params) {
       url: APIROUTE + "account/number/send-sms/",
       method: 'POST',
       data: qs.stringify(params),
-      accessToken: localStorage.getItem('token'),
+      accessToken: sessionStorage.getItem('token'),
       onSuccess: onSuccessSendSms,
       onFailure: onFailed,
       label: 'SEND_SMS_SUCCESS',
@@ -202,7 +232,7 @@ export function verifyPhoneNumber(params) {
       url: APIROUTE + "account/number/verification/",
       method: 'POST',
       data: qs.stringify(params),
-      accessToken: localStorage.getItem('token'),
+      accessToken: sessionStorage.getItem('token'),
       onSuccess: onSuccessVerifyPhoneNumber,
       onFailure: onFailed,
       label: 'VERIFY_PHONE_NUMBER_REQUEST',
@@ -218,7 +248,7 @@ function onSuccessVerifyPhoneNumber(data) {
 export function getUserInventory() {
   return apiAction({
       url: APIROUTE + "campaign/user/in-progress/",
-      accessToken: localStorage.getItem('token'),
+      accessToken: sessionStorage.getItem('token'),
       onSuccess: onSuccessGetUserInventory,
       onFailure: onFailed,
       label: 'GET_USER_INVENTORY_SUCCESS',
@@ -234,7 +264,7 @@ function onSuccessGetUserInventory(data) {
 export function getParticipationHistory() {
   return apiAction({
       url: APIROUTE + "campaign/user/historical/",
-      accessToken: localStorage.getItem('token'),
+      accessToken: sessionStorage.getItem('token'),
       onSuccess: onSuccessGetParticipationHistory,
       onFailure: onFailed,
       label: 'GET_PARTICIPATION_HISTORY_SUCCESS',
@@ -250,7 +280,7 @@ function onSuccessGetParticipationHistory(data) {
 export function getFollowing() {
   return apiAction({
       url: APIROUTE + "favorites/",
-      accessToken: localStorage.getItem('token'),
+      accessToken: sessionStorage.getItem('token'),
       onSuccess: onSuccessGetFollowing,
       onFailure: onFailed,
       label: 'GET_FOLLOWING_SUCCESS',
@@ -266,7 +296,7 @@ function onSuccessGetFollowing(data) {
 export function getMyCampaigns() {
   return apiAction({
       url: APIROUTE + "company/campaign/",
-      accessToken: localStorage.getItem('token'),
+      accessToken: sessionStorage.getItem('token'),
       onSuccess: onSuccessGetMyCampaigns,
       onFailure: onFailed,
       label: 'GET_MY_CAMPAIGNS_SUCCESS',
@@ -282,7 +312,7 @@ function onSuccessGetMyCampaigns(data) {
 export function getMyBills() {
   return apiAction({
       url: APIROUTE + "company/bills/",
-      accessToken: localStorage.getItem('token'),
+      accessToken: sessionStorage.getItem('token'),
       onSuccess: onSuccessGetMyBills,
       onFailure: onFailed,
       label: 'GET_MY_BILLS_SUCCESS',
@@ -309,13 +339,13 @@ function onSuccessProfileActivate(data) {
       data: ''
   }
 }
-/////////////////////////////////////////////// UPDATE-DASHBOARD-FAVORITE-SUCCESS
+/////////////////////////////////////////////// UPDATE-DASHBOARD-FAVORITE-ACTION
 export function updateFavorite(params, name) {
   return apiAction({
       url: APIROUTE + "favorites/update/",
       method: 'POST',
       data: qs.stringify(params),
-      accessToken: localStorage.getItem('token'),
+      accessToken: sessionStorage.getItem('token'),
       onSuccess: (data) => onSuccessUpdateFavorite(data, name),
       onFailure: onFailed,
       label: 'UPDATE_DASHBOARD_FAVORITE_SUCCESS',
@@ -329,7 +359,44 @@ function onSuccessUpdateFavorite(data, name) {
       result: data.msg
   }
 }
-
+/////////////////////////////////////////////// RESET-PASSWORD-REQUEST-ACTION
+export function resetPasswordRequest(params) {
+  return apiAction({
+      url: APIROUTE + "account/password/reset/email/",
+      method: 'POST',
+      data: qs.stringify(params),
+      onSuccess: onSuccessResetPasswordRequest,
+      onFailure: onFailed,
+      label: 'RESET_PASSWORD_REQUEST',
+      requireErrorMessage: true
+  });
+}
+function onSuccessResetPasswordRequest(data) {
+  openNotification('success', successMessages[localStorage.getItem('i18nextLng')].resetPasswordRequest)
+  return {
+      type: 'RESET_PASSWORD_REQUEST_SUCCESS',
+      flag: true
+  }
+}
+/////////////////////////////////////////////// RESET-PASSWORD-ACTION
+export function resetPassword(params) {
+  return apiAction({
+      url: APIROUTE + "account/password/reset/",
+      method: 'POST',
+      data: qs.stringify(params),
+      onSuccess: onSuccessResetPassword,
+      onFailure: onFailed,
+      label: 'RESET_PASSWORD',
+      requireErrorMessage: true
+  });
+}
+function onSuccessResetPassword(data) {
+  openNotification('success', successMessages[localStorage.getItem('i18nextLng')].resetPassword)
+  return {
+      type: 'RESET_PASSWORD_SUCCESS',
+      flag: true
+  }
+}
 
 function apiAction({
     url = "",
@@ -339,7 +406,8 @@ function apiAction({
     onSuccess = () => {},
     onFailure = () => {},
     label = "",
-    headersOverride = null
+    headersOverride = null,
+    requireErrorMessage = false
   }) {
     return {
       type: API,
@@ -351,7 +419,8 @@ function apiAction({
         onSuccess,
         onFailure,
         label,
-        headersOverride
+        headersOverride,
+        requireErrorMessage
       }
     };
 }

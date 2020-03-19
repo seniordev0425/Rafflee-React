@@ -1,27 +1,12 @@
-import React, {useState} from 'react'
-import { connect } from "react-redux";
-import {Link} from 'react-router-dom'
-import {Form as FinalForm, Field} from 'react-final-form'
-import PropTypes from 'prop-types'
-import {Form, FormGroup, Button, Input, Row, Col} from 'reactstrap'
-
-import FormInput from '../../common/FormInput'
-import FormPhoneInput from '../../common/FormPhoneInput'
-import CheckBoxButtonWithString from '../../common/Buttons/CheckBoxButtonWithString'
-import images from '../../../utils/images'
-import {
-    composeValidators, 
-    required, 
-    isEmail, 
-    minLength, 
-    maxLength,
-    requiredPhoneObj
-} from '../../../utils/validation'
-
+import React from 'react'
+import {FormGroup, Input, Row, Col} from 'reactstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 
+import { useTranslation } from 'react-i18next'
+
 function WinningItem(props){
+    const { t } = useTranslation()
 
     const {id, item, removeWinning, setWinningVal} = props
     return(
@@ -29,7 +14,7 @@ function WinningItem(props){
             <Col xs="12" sm="4">
                 <div className="mt-4 half-width">
                     <FormGroup>
-                        <div className="footer-link-bold mb-3">Name of Prizes</div>
+                        <div className="footer-link-bold mb-3">{t('create_campaign_page.name_of_prizes')}</div>
                         <Input
                             name={"name" + id}
                             value={item.name}
@@ -45,7 +30,7 @@ function WinningItem(props){
             <Col xs="12" sm="4">
                 <div className="mt-4 full-width">
                     <FormGroup>
-                        <div className="footer-link-bold mb-3">Type of Prizes</div>
+                        <div className="footer-link-bold mb-3">{t('create_campaign_page.type_of_prizes')}</div>
                         <Input
                             name={"winning_type" + id}
                             value={item.description}
@@ -60,7 +45,7 @@ function WinningItem(props){
             <Col xs="12" sm="4" style={{display: "flex", justifyContent: "space-between"}}>
                 <div className="mt-4 half-width">
                     <FormGroup>
-                        <div className="footer-link-bold mb-3">Number of People</div>
+                        <div className="footer-link-bold mb-3">{t('create_campaign_page.number_of_people')}</div>
                         <Input
                             name={"number" + id}
                             value={item.number_of_people}

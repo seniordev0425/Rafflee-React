@@ -12,19 +12,19 @@ function Header(props){
     const [hideNav, setHideNav] = useState(false)
     
     useEffect(() => {
-        setHideNav(window.innerWidth <= 850)
+        setHideNav(window.innerWidth <= 1000)
         window.addEventListener('resize', resize)
         return ()=>{
             window.removeEventListener('resize', resize)
         }
     },[])
     const resize = () => {
-        setHideNav(window.innerWidth <=750)
+        setHideNav(window.innerWidth <= 1000)
     }
     return(
         <div className="header-container">
             <div style={{width: "100%", height: 40}}>
-                <Link to="/"> <img src={images.logo} alt="logo"/> </Link>
+                <Link to="/"> <img src={images.logo} alt="logo" width="150"/> </Link>
                 <div className="header-right-part">
                 {hideNav 
                 ? 

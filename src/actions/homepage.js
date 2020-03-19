@@ -5,6 +5,7 @@ import { openNotification } from '../utils/notification'
 const qs = require('querystring')
 
 function onFailed(error) {
+  openNotification('warning', error)
   return {
     type: 'API_FAILED',
     error: error    
@@ -101,7 +102,7 @@ export function updateFavorite(params, name) {
         url: APIROUTE + "favorites/update/",
         method: 'POST',
         data: qs.stringify(params),
-        accessToken: localStorage.getItem('token'),
+        accessToken: sessionStorage.getItem('token'),
         onSuccess: (data) => onSuccessUpdateFavorite(data, name),
         onFailure: onFailed,
         label: 'UPDATE_FAVORITE_SUCCESS',
@@ -130,10 +131,6 @@ function onSuccessGetCategories(data) {
     }
 }
 
-
-
-
-
 function apiAction({
     url = "",
     method = "GET",
@@ -142,7 +139,8 @@ function apiAction({
     onSuccess = () => {},
     onFailure = () => {},
     label = "",
-    headersOverride = null
+    headersOverride = null,
+    requireErrorMessage = false
   }) {
     return {
       type: API,
@@ -154,7 +152,8 @@ function apiAction({
         onSuccess,
         onFailure,
         label,
-        headersOverride
+        headersOverride,
+        requireErrorMessage
       }
     };
 }

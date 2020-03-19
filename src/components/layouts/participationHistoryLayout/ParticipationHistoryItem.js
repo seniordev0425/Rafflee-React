@@ -6,7 +6,10 @@ import { Button } from 'reactstrap'
 import { useDispatch } from 'react-redux'
 import { updateFavorite } from '../../../actions/userInfo'
 
+import { useTranslation } from 'react-i18next'
+
 function ParticipationHistoryItem(props){
+    const { t } = useTranslation()
 
     const { item } = props
     const dispatch = useDispatch()
@@ -39,7 +42,7 @@ function ParticipationHistoryItem(props){
                                         color="primary"
                                         className="bootstrap-blue-btn promotion-list-item-btn"
                                     >
-                                            SEE CAMPAIGN
+                                        {t('button_group.see_campaign')}
                                     </Button>
                                 </Link>
                                 <div className="promotion-list-item-star" onClick={update}>

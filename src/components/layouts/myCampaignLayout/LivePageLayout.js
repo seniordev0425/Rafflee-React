@@ -9,7 +9,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSlidersH, faSearch } from '@fortawesome/free-solid-svg-icons'
 import { getCampaignParticipants, getCampaignWinnings, drawCampaign } from '../../../actions/campaign'
 
+import { useTranslation } from 'react-i18next'
+
 function LivePageLayout(props){
+    const { t } = useTranslation()
 
     const {id, goBack} = props
 
@@ -55,7 +58,7 @@ function LivePageLayout(props){
                 <Row key={index} className="pt-3 pb-3" style={!(index % 2) ? {background:"rgba(191, 232, 254, 0.25)"} : {background:"white"}}>
                     <Col xs={{size: 10, offset: 1}} className="pl-4 pr-4">
                         <div className="float-left" style={{fontSize:"1.1rem"}}>{item.username}</div>
-                        <div className="float-right view-profile-link">View Profile</div>
+                        <div className="float-right view-profile-link">{t('my_campaign_page.view_profile')}</div>
                     </Col>
                 </Row>
             )
@@ -90,13 +93,13 @@ function LivePageLayout(props){
         <>
             <Row className="mt-4 mb-3">
                 <Col xs={{size: 10, offset: 1}} className="pl-4 pr-4">
-                    <div className="float-left blue-link-btn" onClick={() => goBack(null)}>Back to Campaign Page</div>
+                    <div className="float-left blue-link-btn" onClick={() => goBack(null)}>{t('my_campaign_page.back_to_campaign_page')}</div>
                     <div className="float-right"><img src={images.video_player}/></div>
                 </Col>
             </Row>
             <Row className="mt-5 mb-3">
                 <Col xs={{size: 10, offset: 1}} className="pl-4 pr-4">
-                    <div className="float-left" style={{fontSize:"1.1rem", fontWeight:"bold"}}>Participants ({participants.length})</div>
+                    <div className="float-left" style={{fontSize:"1.1rem", fontWeight:"bold"}}>{t('my_campaign_page.participants')} ({participants.length})</div>
                     <div className="float-right">
                         <FontAwesomeIcon icon={faSearch}/>
                         <FontAwesomeIcon icon={faSlidersH} className="ml-3"/>
@@ -108,12 +111,12 @@ function LivePageLayout(props){
                 <Col xs="12" sm={{size: 10, offset: 1}}>
                     <Row>
                         <Col xs="12" sm="4">
-                            <span className="footer-link-bold mr-3">Draw Type: </span>
+                            <span className="footer-link-bold mr-3">{t('my_campaign_page.draw_type')}: </span>
                             <Select defaultValue="draw_by_gift" onChange={handleDrawType} size="large" style={{width: 180}}>
-                                <Option value="draw_by_gift">DRAW BY GIFT</Option>
-                                <Option value="draw_all_by_gift">DRAW ALL BY GIFT</Option>
-                                <Option value="draw">DRAW</Option>
-                                <Option value="draw_all">DRAW ALL</Option>
+                                <Option value="draw_by_gift">{t('my_campaign_page.draw_by_gift')}</Option>
+                                <Option value="draw_all_by_gift">{t('my_campaign_page.draw_all_by_gift')}</Option>
+                                <Option value="draw">{t('my_campaign_page.draw')}</Option>
+                                <Option value="draw_all">{t('my_campaign_page.draw_all')}</Option>
                             </Select>
                         </Col>
                         <Col xs="12" sm="4">
@@ -139,7 +142,7 @@ function LivePageLayout(props){
                                 onClick={onSubmit}
                                 disabled={isDrawing}
                             >
-                                Draw
+                                {t('button_group.draw')}
                             </Button>
                         </Col>
                     </Row>

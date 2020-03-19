@@ -7,7 +7,11 @@ import Engagement from './Engagement'
 import Following from './Following'
 import images from '../../../utils/images'
 
+import { useTranslation } from 'react-i18next'
+
 function AnalyticsLayout() {
+    const { t } = useTranslation()
+
     const [currentTab, setCurrentTab] = useState('overview')
 
     const {Option} = Select
@@ -32,19 +36,19 @@ function AnalyticsLayout() {
                 <Col sm={{size: 10, offset: 1}} xs="12" className="px-0">
                     <Menu mode="horizontal" className="menubar analytics-menu" selectedKeys={[currentTab]}>
                         <Menu.Item key="overview" className="analytics-menuitem" onClick={() => setCurrentTab("overview")}>
-                                <span className={currentTab === 'overview' ? "ml-3 underline" : "ml-3"}> Overview</span>                   
+                                <span className={currentTab === 'overview' ? "ml-3 underline" : "ml-3"}> {t('menubar.overview')}</span>                   
                         </Menu.Item>
                         <Menu.Item key="audience" className="analytics-menuitem" onClick={() => setCurrentTab("audience")}>
-                                <span className={currentTab === 'audience' ? "ml-3 underline" : "ml-3"}> Audience</span>
+                                <span className={currentTab === 'audience' ? "ml-3 underline" : "ml-3"}> {t('menubar.audience')}</span>
                         </Menu.Item>
                         <Menu.Item key="engagement" className="analytics-menuitem" onClick={() => setCurrentTab("engagement")}>
-                                <span className={currentTab === 'engagement' ? "ml-3 underline" : "ml-3"}> Engagement</span>
+                                <span className={currentTab === 'engagement' ? "ml-3 underline" : "ml-3"}> {t('menubar.engagement')}</span>
                         </Menu.Item>
                         <Menu.Item key="clicks" className="analytics-menuitem" onClick={() => setCurrentTab("clicks")}>
-                                <span className={currentTab === 'clicks' ? "ml-3 underline" : "ml-3"}> Clicks</span>
+                                <span className={currentTab === 'clicks' ? "ml-3 underline" : "ml-3"}> {t('menubar.clicks')}</span>
                         </Menu.Item>          
                         <Menu.Item key="following" className="analytics-menuitem" onClick={() => setCurrentTab("following")}>
-                                <span className={currentTab === 'following' ? "ml-3 underline" : "ml-3"}> Following</span>
+                                <span className={currentTab === 'following' ? "ml-3 underline" : "ml-3"}> {t('menubar.following')}</span>
                         </Menu.Item>                           
                     </Menu>
                 </Col>

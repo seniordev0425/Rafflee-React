@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Suspense }from 'react'
 import ReactDOM from 'react-dom'
 import { createBrowserHistory } from 'history'
 import { createStore, applyMiddleware } from 'redux';
@@ -14,6 +14,7 @@ import 'antd/dist/antd.css'
 import 'react-flags-select/css/react-flags-select.css'
 import './assets/css/app.css'
 import './utils/carousel_lib/scss/main.scss'
+import './i18next'
 
 
 
@@ -21,11 +22,14 @@ const history = createBrowserHistory()
 const store = createStore(AppReducer, applyMiddleware(apiMiddleware))
 
 ReactDOM.render(
-    <Provider store={store}>
-        <Router history={history}>
-            <Routes/> 
-        </Router>
-    </Provider>, 
+    <Suspense fallback="loading">
+        <Provider store={store}>
+            <Router history={history}>
+                <Routes/> 
+            </Router>
+        </Provider>
+    </Suspense>
+    , 
     document.getElementById('root')
 );
 

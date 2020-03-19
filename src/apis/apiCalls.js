@@ -18,60 +18,60 @@ export const verifyToken = (token) => {
 
 
 
-export const resetPasswordRequest = (values) => {
-    var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+// export const resetPasswordRequest = (values) => {
+//     var myHeaders = new Headers();
+//     myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
     
-    var urlencoded = new URLSearchParams();
-    urlencoded.append("email", values.email);
+//     var urlencoded = new URLSearchParams();
+//     urlencoded.append("email", values.email);
     
-    var requestOptions = {
-      method: 'POST',
-      headers: myHeaders,
-      body: urlencoded,
-      redirect: 'follow'
-    };
-    return fetch(APIROUTE + "account/password/reset/email/", requestOptions)
-}
+//     var requestOptions = {
+//       method: 'POST',
+//       headers: myHeaders,
+//       body: urlencoded,
+//       redirect: 'follow'
+//     };
+//     return fetch(APIROUTE + "account/password/reset/email/", requestOptions)
+// }
 
-export const resetPassword = (values, token, id) => {
-    var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+// export const resetPassword = (values, token, id) => {
+//     var myHeaders = new Headers();
+//     myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
 
-    var urlencoded = new URLSearchParams();
-    urlencoded.append("token", token);
-    urlencoded.append("id", id);
-    urlencoded.append("password", values.password);
-    urlencoded.append("password_confirmation", values.password_confirmation);
+//     var urlencoded = new URLSearchParams();
+//     urlencoded.append("token", token);
+//     urlencoded.append("id", id);
+//     urlencoded.append("password", values.password);
+//     urlencoded.append("password_confirmation", values.password_confirmation);
 
-    console.log(urlencoded)
-    var requestOptions = {
-    method: 'POST',
-    headers: myHeaders,
-    body: urlencoded,
-    redirect: 'follow'
-    };
+//     console.log(urlencoded)
+//     var requestOptions = {
+//     method: 'POST',
+//     headers: myHeaders,
+//     body: urlencoded,
+//     redirect: 'follow'
+//     };
 
-    return fetch(APIROUTE + "account/password/reset/", requestOptions)
-}
+//     return fetch(APIROUTE + "account/password/reset/", requestOptions)
+// }
 
-export const deleteAccountRequest = (values) => {
-    var myHeaders = new Headers();
-    myHeaders.append("Authorization", 'JWT ' + localStorage.getItem('token'));
-    myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+// export const deleteAccountRequest = (values) => {
+//     var myHeaders = new Headers();
+//     myHeaders.append("Authorization", 'JWT ' + sessionStorage.getItem('token'));
+//     myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
 
-    var urlencoded = new URLSearchParams();
-    urlencoded.append("password", values.password);
+//     var urlencoded = new URLSearchParams();
+//     urlencoded.append("password", values.password);
 
-    var requestOptions = {
-    method: 'DELETE',
-    headers: myHeaders,
-    body: urlencoded,
-    redirect: 'follow'
-    };
+//     var requestOptions = {
+//     method: 'DELETE',
+//     headers: myHeaders,
+//     body: urlencoded,
+//     redirect: 'follow'
+//     };
 
-    return fetch(APIROUTE + "account/profile/delete/", requestOptions)
-}
+//     return fetch(APIROUTE + "account/profile/delete/", requestOptions)
+// }
   
 
 // export const companyContact = (values) => {
@@ -107,7 +107,7 @@ export const deleteAccountRequest = (values) => {
 
 // export const updateUserProfile = (values, birth_date, img, country) => {
 //     var myHeaders = new Headers()
-//     myHeaders.append("Authorization", "JWT " + localStorage.getItem('token'));
+//     myHeaders.append("Authorization", "JWT " + sessionStorage.getItem('token'));
 
 //     var formdata = new FormData();
 //     formdata.append("profile_picture", img);
@@ -133,7 +133,7 @@ export const deleteAccountRequest = (values) => {
 
 // export const updateCompanyProfile = (values, country, img) => {
 //     var myHeaders = new Headers()
-//     myHeaders.append("Authorization", "JWT " + localStorage.getItem('token'));
+//     myHeaders.append("Authorization", "JWT " + sessionStorage.getItem('token'));
 
 //     var formdata = new FormData();
 //     formdata.append("logo", img);
@@ -191,7 +191,7 @@ export const deleteAccountRequest = (values) => {
 
 // export const getMyCampaigns = () => {
 //     var myHeaders = new Headers();
-//     myHeaders.append("Authorization", "JWT " + localStorage.getItem('token'));
+//     myHeaders.append("Authorization", "JWT " + sessionStorage.getItem('token'));
 
 //     var requestOptions = {
 //     method: 'GET',
@@ -204,7 +204,7 @@ export const deleteAccountRequest = (values) => {
 
 // export const getMyBills = () => {
 //     var myHeaders = new Headers();
-//     myHeaders.append("Authorization", "JWT " + localStorage.getItem('token'));
+//     myHeaders.append("Authorization", "JWT " + sessionStorage.getItem('token'));
 
 //     var requestOptions = {
 //     method: 'GET',
@@ -217,7 +217,7 @@ export const deleteAccountRequest = (values) => {
 
 // export const sendSmsToUser = (values) => {
 //     var myHeaders = new Headers();
-//     myHeaders.append("Authorization", "JWT " + localStorage.getItem('token'));
+//     myHeaders.append("Authorization", "JWT " + sessionStorage.getItem('token'));
 //     myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
     
 //     var urlencoded = new URLSearchParams();
@@ -235,7 +235,7 @@ export const deleteAccountRequest = (values) => {
 
 export const createCampaign = (firstFormData, poll) => {
     var myHeaders = new Headers();
-    myHeaders.append("Authorization", "JWT " + localStorage.getItem('token'));
+    myHeaders.append("Authorization", "JWT " + sessionStorage.getItem('token'));
 
     var formdata = new FormData();
     formdata.append("promotion_picture", firstFormData.promotion_picture);
@@ -270,14 +270,14 @@ export const createCampaign = (firstFormData, poll) => {
     return fetch(APIROUTE + "campaign/create/", requestOptions) 
 }
 
-export const getCategories = () => {
-    var requestOptions = {
-        method: 'GET',
-        redirect: 'follow'
-    };
+// export const getCategories = () => {
+//     var requestOptions = {
+//         method: 'GET',
+//         redirect: 'follow'
+//     };
       
-    return fetch(APIROUTE + "categories/", requestOptions)
-}
+//     return fetch(APIROUTE + "categories/", requestOptions)
+// }
 
 // export const getCampaignData = (id) => {
 //     var requestOptions = {
@@ -290,7 +290,7 @@ export const getCategories = () => {
 
 // export const campaignParticipate = (id) => {
 //     var myHeaders = new Headers();
-//     myHeaders.append("Authorization", "JWT " + localStorage.getItem('token'));
+//     myHeaders.append("Authorization", "JWT " + sessionStorage.getItem('token'));
 //     myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
 
 //     var urlencoded = new URLSearchParams();
@@ -308,7 +308,7 @@ export const getCategories = () => {
 
 // export const getCampaignParticipants = (id) => {
 //     var myHeaders = new Headers();
-//     myHeaders.append("Authorization", "JWT " + localStorage.getItem('token'));
+//     myHeaders.append("Authorization", "JWT " + sessionStorage.getItem('token'));
 
 //     var requestOptions = {
 //         method: 'GET',
@@ -322,7 +322,7 @@ export const getCategories = () => {
 // export const getCampaignWinnings = (id) => {
 //     var myHeaders = new Headers();
 //     myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
-//     myHeaders.append("Authorization", "JWT " + localStorage.getItem('token'));
+//     myHeaders.append("Authorization", "JWT " + sessionStorage.getItem('token'));
 
 //     var requestOptions = {
 //     method: 'GET',
@@ -336,7 +336,7 @@ export const getCategories = () => {
 // export const drawCampaign = (id, drawType, winningType) => {
 //     var myHeaders = new Headers();
 //     var urlencoded = new URLSearchParams();
-//     myHeaders.append("Authorization", "JWT " + localStorage.getItem('token'));
+//     myHeaders.append("Authorization", "JWT " + sessionStorage.getItem('token'));
 
 //     if (drawType === 'draw_by_gift' || drawType === 'draw_all_by_gift'){
 //         myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
@@ -372,7 +372,7 @@ export const getCategories = () => {
 
 // export const getParticipateHistory = () => {
 //     var myHeaders = new Headers();
-//     myHeaders.append("Authorization", "JWT " + localStorage.getItem('token'));
+//     myHeaders.append("Authorization", "JWT " + sessionStorage.getItem('token'));
 
 //     var requestOptions = {
 //     method: 'GET',

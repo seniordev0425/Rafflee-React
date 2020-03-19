@@ -1,9 +1,13 @@
-import React, { useState } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
-import { Button, Modal, ModalHeader, ModalBody} from 'reactstrap'
+import { Button, Modal, ModalBody} from 'reactstrap'
 import images  from '../../utils/images'
 
+import { useTranslation } from 'react-i18next'
+
 function Congratulation(props) {
+  const { t } = useTranslation()
+
   const { open, onToggle, winnerArr } = props
   
   const renderWinners = () => {
@@ -27,7 +31,7 @@ function Congratulation(props) {
   return <Modal isOpen={open} toggle={onToggle} className="congratulation-modal">
             
             <ModalBody>
-                <div className="congratulation-header">Congratulations!</div>
+                <div className="congratulation-header">{t('congratulation_modal.congratulations')}</div>
                 <div className="congratulation-number">#000000001</div>
                 {renderWinners()}
                 <div className="d-flex justify-content-center">
@@ -37,11 +41,11 @@ function Congratulation(props) {
                     style={{width: 180}}
                     onClick={onToggle}
                   >
-                  PICK ANOTHER
+                  {t('button_group.pick_another')}
                   </Button>
                 </div>
                 <div className="d-flex justify-content-center my-5">
-                  <span className="promotion-list-item-title mr-3" style={{fontSize: 17}}>Powered by: </span>
+                  <span className="promotion-list-item-title mr-3" style={{fontSize: 17}}>{t('congratulation_modal.powered_by')}</span>
                   <img src={images.logo} width="70" height="22" alt="logo"/>
                 </div>
 

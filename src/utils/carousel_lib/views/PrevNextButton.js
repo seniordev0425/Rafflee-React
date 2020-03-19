@@ -10,7 +10,7 @@ export const PrevNextButton = ({ name, disabled, onClick, onMouseEnter, onMouseL
     <div className={`alice-carousel__${name}-btn`}>
       <div className={`alice-carousel__${name}-btn-wrapper`} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
         <p className={className} onClick={onClick}>
-          {name == 'next' ? (
+          {name === 'next' ? (
               <FontAwesomeIcon icon={faChevronCircleRight} aria-hidden="true" size="lg"/>
             ) : 
             (

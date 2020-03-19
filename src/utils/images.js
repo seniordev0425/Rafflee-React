@@ -36,6 +36,8 @@ const images = {
     entry: require('../assets/image/entry.svg'),
     congratulation_item_img: require('../assets/image/congratulation_item_img.png'),
     gap_img: require('../assets/image/gap_image.png'),
+    flag_en: require('../assets/image/flag_en.png'),
+    flag_fr: require('../assets/image/flag_fr.png'),
 }
 
 export default images;

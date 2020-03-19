@@ -91,6 +91,21 @@ function UserInfo(state = initialFeedState, action){
                 ...state,
                 signUpSuccess: action.data
             }
+        case 'DELETE_ACCOUNT_SUCCESS':
+            return {
+                ...state,
+                DELETE_ACCOUNT_SUCCESS: action.flag
+            }
+        case 'RESET_PASSWORD_REQUEST_SUCCESS':
+            return {
+                ...state,
+                RESET_PASSWORD_REQUEST_SUCCESS: action.flag
+            }
+        case 'RESET_PASSWORD_SUCCESS':
+            return {
+                ...state,
+                RESET_PASSWORD_SUCCESS: action.flag
+            }
         case 'VERIFY_PHONE_NUMBER_SUCCESS':
             return {
                 ...state,

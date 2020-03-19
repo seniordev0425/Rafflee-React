@@ -10,14 +10,13 @@ import UserAccountForm from '../components/layouts/account/UserAccountForm'
 import images from '../utils/images'
 import CompanyAccountForm from '../components/layouts/account/CompanyAccountForm'
 
-import { getUserProfile, getCompanyProfile } from '../actions/userInfo'
+import { useTranslation } from 'react-i18next'
 
 
 const UserAccount = (props) => {
+    const { t } = useTranslation()
 
     const company = useSelector(state=>state.userInfo.company)
-
-    const dispatch = useDispatch()
 
     useEffect(() => {
         document.title = "UserAccount"
@@ -33,7 +32,7 @@ const UserAccount = (props) => {
                         <Menu mode="horizontal" className="menubar" selectedKeys={['profile']}>
                             <Menu.Item key="profile">
                                 <img src={company ? images.company_icon : images.user_icon}/>
-                                <span className="ml-3"> {company ? "Company Profile" : "Profile"}</span>
+                                <span className="ml-3"> {company ? t('menubar.company_profile') : t('menubar.user_profile')}</span>
                             </Menu.Item>
                             
                         </Menu>

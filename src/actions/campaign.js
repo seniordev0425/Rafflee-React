@@ -1,10 +1,13 @@
 import { APIROUTE } from '../utils/constants'
 import { API } from "./types";
 import { openNotification } from '../utils/notification'
+import successMessages from '../utils/messages/success'
+import errorMessages from '../utils/messages/error'
 
 const qs = require('querystring')
 
 function onFailed(error) {
+  openNotification('warning', error)
   return {
     type: 'API_FAILED',
     error: error    
@@ -16,14 +19,15 @@ export function campaignParticipate(params) {
       url: APIROUTE + "campaign/participate/",
       method: 'POST',
       data: qs.stringify(params),
-      accessToken: localStorage.getItem('token'),
+      accessToken: sessionStorage.getItem('token'),
       onSuccess: onSuccessCampaignParticipate,
       onFailure: onFailed,
       label: 'CAMPAIGN_PARTICIPATE_SUCCESS',
+      requireErrorMessage: true
   });
 }
 function onSuccessCampaignParticipate(data) {
-  openNotification('success', 'Successfully Participated')
+  openNotification('success', successMessages[localStorage.getItem('i18nextLng')].participate)
   return {
       type: 'API_SUCCESS',
       data: ''
@@ -51,7 +55,7 @@ export function getCampaignParticipants(id) {
   return apiAction({
       url: APIROUTE + `campaign/participants/${id}/`,
       method: 'GET',
-      accessToken: localStorage.getItem('token'),
+      accessToken: sessionStorage.getItem('token'),
       onSuccess: onSuccessGetCampaignParticipants,
       onFailure: onFailed,
       label: 'GET_CAMPAIGN_PARTICIPANTS_SUCCESS',
@@ -68,7 +72,7 @@ export function getCampaignWinnings(id) {
   return apiAction({
       url: APIROUTE + `campaign/live/get-winnings/${id}/`,
       method: 'GET',
-      accessToken: localStorage.getItem('token'),
+      accessToken: sessionStorage.getItem('token'),
       onSuccess: onSuccessGetCampaignWinnings,
       onFailure: onFailed,
       label: 'GET_CAMPAIGN_WINNINGS_SUCCESS',
@@ -96,7 +100,7 @@ export function drawCampaign(id, drawType, winning_name) {
       url: APIROUTE + endpoint + id + '/',
       method: 'POST',
       data: (drawType === 'draw_by_gift' || drawType === 'draw_all_by_gift') ? qs.stringify({winning_name: winning_name}) : null,
-      accessToken: localStorage.getItem('token'),
+      accessToken: sessionStorage.getItem('token'),
       onSuccess: (data) => onSuccessDrawCampaign(data, drawType),
       onFailure: (data) => onFailedDrawCampaign(data, winning_name),
       label: 'DRAW_CAMPAIGN_SUCCESS',
@@ -116,7 +120,7 @@ function onSuccessDrawCampaign(data, drawType) {
   }
 }
 function onFailedDrawCampaign(data, winning_name) {
-  openNotification('warning', 'All prizes will be distributed')
+  openNotification('warning', errorMessages[localStorage.getItem('i18nextLng')].ALL_WINNING_OBJECT_ARE_DISTRIBUTED)
   return {
     type: 'DRAW_CAMPAIGN_FAILED',
     data: winning_name
@@ -128,7 +132,7 @@ export function updateFavorite(params, name) {
       url: APIROUTE + "favorites/update/",
       method: 'POST',
       data: qs.stringify(params),
-      accessToken: localStorage.getItem('token'),
+      accessToken: sessionStorage.getItem('token'),
       onSuccess: (data) => onSuccessUpdateFavorite(data, name),
       onFailure: onFailed,
       label: 'UPDATE_CAMPAIGN_DETAIL_FAVORITE_SUCCESS',
@@ -143,7 +147,6 @@ function onSuccessUpdateFavorite(data, name) {
   }
 }
 
-
 function apiAction({
     url = "",
     method = "GET",
@@ -152,7 +155,8 @@ function apiAction({
     onSuccess = () => {},
     onFailure = () => {},
     label = "",
-    headersOverride = null
+    headersOverride = null,
+    requireErrorMessage = false
   }) {
     return {
       type: API,
@@ -164,7 +168,8 @@ function apiAction({
         onSuccess,
         onFailure,
         label,
-        headersOverride
+        headersOverride,
+        requireErrorMessage
       }
     };
   }
