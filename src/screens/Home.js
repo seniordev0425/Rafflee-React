@@ -55,8 +55,8 @@ function Home(props){
             <div className="premium-prize-text">
                 {t('homepage.premium_prizes_giveaways')}
             </div>
-            {hotPromotions.length && 
-                <Carousel hotPromotions={hotPromotions}/>
+            {hotPromotions.length > 0 && 
+                (<Carousel hotPromotions={hotPromotions}/>)
             }
             <div className="find-deal-text mb-4">
                 {t('homepage.find_campaign')}

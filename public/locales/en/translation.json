@@ -57,7 +57,8 @@
         "next": "NEXT",
         "create_poll":"CREATE POLL",
         "create_campaign":"Create Campaign",
-        "reset": "RESET"
+        "reset": "RESET",
+        "continue": "CONTINUE"
     },
 
     "homepage": {
@@ -159,6 +160,7 @@
         "short_description_required": "Short Description is required",
         "upload_image":"Upload Image",
         "categories": "Categories",
+        "url_video": "Video URL",
         "categories_placeholder": "Please select categories",
         "campaign_starts": "Campaign Starts",
         "campaign_ends": "Campaign Ends",
@@ -269,6 +271,12 @@
     "congratulation_modal": {
         "congratulations": "Congratulations!",
         "powered_by": "Powered by: "
+    },
+
+    "participate_confirm_modal": {
+        "thanks_for_participating": "Thanks for participating!",
+        "checkbox1": "Would you like to join the private Converse Cercle?",
+        "checkbox2": "Would you like to receive informations about this company by email?"
     }
     
     

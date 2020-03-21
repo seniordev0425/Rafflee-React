@@ -10,7 +10,9 @@ const initialFeedState = {
         number_of_eligible_people: '',
         end_date: '',
         favorite: false,
-        campaign_image: ''
+        campaign_image: '',
+        poll: {},
+        social_action: []
     },
     participants: [],
     campaignWinnings: [],

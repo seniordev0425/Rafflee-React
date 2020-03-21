@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { Row, Col } from 'reactstrap'
@@ -14,6 +14,8 @@ import Loading from '../components/common/Loading'
 import { campaignParticipate, getCampaignData, updateFavorite } from '../actions/campaign'
 
 import { useTranslation } from 'react-i18next'
+import VideoPlayerModal from '../components/modals/VideoPlayerModal'
+import ParticipateConfirmModal from '../components/modals/ParticipateConfirmModal'
 
 function CampaignDetail(props){
     const { t } = useTranslation()
@@ -24,8 +26,10 @@ function CampaignDetail(props){
     const campaignData = useSelector(state=>state.campaign.campaignData)
     const token = useSelector(state=>state.userInfo.token)
     const company = useSelector(state=>state.userInfo.company)
-
     const dispatch = useDispatch()
+
+    const [openVideo, setOpenVideo] = useState(false)
+    const [openConfirm, setOpenConfirm] = useState(false)
 
     useEffect(() => {
         document.title = "Campaign Detail"
@@ -53,11 +57,20 @@ function CampaignDetail(props){
         return diffDuration.days() > 0 ? diffDuration.days() : 0
     }
 
-    const participate = () => {
-        var body = {
-            promotion_id: match.params.id
-        }
-        dispatch(campaignParticipate(body))
+    const handleOpenVideo = () => setOpenVideo(!openVideo)
+
+    const openVideoModal = () => {
+        setOpenVideo(true)
+        // var body = {
+        //     promotion_id: match.params.id
+        // }
+        // dispatch(campaignParticipate(body))
+    }
+
+    const handleOpenConfirm = () => setOpenConfirm(!openConfirm)
+
+    const openConfirmModal = () => {
+        setOpenConfirm(true)
     }
 
     const update = () => {
@@ -137,22 +150,41 @@ function CampaignDetail(props){
 
                     <Row className="mb-4 mt-4">
                         <Col style={{paddingLeft: 40}}>
-                            <CustomCollapsePanel type="twitter" title="Tweet about the giveaway" participate={participate}/>
+                            <CustomCollapsePanel 
+                                type="twitter" 
+                                actions=''
+                                title="Tweet about the giveaway" 
+                                openConfirmModal={openConfirmModal}
+                            />
                         </Col>
                     </Row>
                     <Row className="mb-4">
                         <Col style={{paddingLeft: 40}}>
-                            <CustomCollapsePanel type="facebook" title="Visit Converse on Facebook" participate={participate}/>  
+                            <CustomCollapsePanel 
+                                type="facebook" 
+                                actions=''
+                                title="Visit Converse on Facebook" 
+                                openConfirmModal={openConfirmModal}
+                            />  
                         </Col>
                     </Row>
                     <Row className="mb-4">
                         <Col style={{paddingLeft: 40}}>
-                            <CustomCollapsePanel type="youtube" title="Follow Converse on YouTube" participate={participate}/>
+                            <CustomCollapsePanel 
+                                type="youtube" 
+                                actions=''
+                                title="Follow Converse on YouTube" 
+                                openConfirmModal={openConfirmModal}
+                            />
                         </Col>
                     </Row>
                     <Row className="mb-4">
                         <Col style={{paddingLeft: 40}}>
-                            <CustomCollapsePanel type="other" title="What is your favorite animal?" participate={participate}/>
+                            <CustomCollapsePanel 
+                                type="other" 
+                                title="What is your favorite animal?" 
+                                openConfirmModal={openConfirmModal}
+                            />
                         </Col>
                     </Row>
 
@@ -160,6 +192,9 @@ function CampaignDetail(props){
             </Row>
             <FooterLink/>
             <Footer/>
+
+            <VideoPlayerModal open={openVideo} onToggle={handleOpenVideo}/>
+            <ParticipateConfirmModal open={openConfirm} onToggle={handleOpenConfirm}/>
         </div>
     );
 }

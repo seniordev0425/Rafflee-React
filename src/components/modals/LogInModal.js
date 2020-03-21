@@ -2,21 +2,16 @@ import React, {useState} from 'react'
 import { connect, useSelector, useDispatch } from "react-redux";
 import {Form as FinalForm, Field} from 'react-final-form'
 import {Form, FormGroup, Button} from 'reactstrap'
+import { deviceDetect, isMobile } from 'react-device-detect'
 import FormInput from '../common/FormInput'
 import FormCheckbox from '../common/FormCheckbox'
 import ForgotPassword from './ForgotPassword'
 import { logIn } from '../../actions/userInfo'
-
-
-import {
-    composeValidators, 
-    required, 
-    isEmail, 
-    minLength, 
-    maxLength
-} from '../../utils/validation'
+import { required } from '../../utils/validation'
 
 import { useTranslation } from 'react-i18next'
+
+const API = 'https://api.ipify.org?format=jsonp?callback=?'
 
 function LogInModal(props){
     const { t } = useTranslation()
@@ -26,24 +21,35 @@ function LogInModal(props){
     const isLoading = useSelector(state=>state.userInfo.LOG_IN_SUCCESS)
     const dispatch = useDispatch()
 
+    const [isFetchingIP, setIsFethingIP] = useState(false)
     const [openForgotModal, setOpenForgotModal] = useState(false)
 
     const handleForgotModal = () => setOpenForgotModal(!openForgotModal)
 
     const onSubmit = (values) => {
-        var body = {
-            username: values.username,
-            password: values.password,
-        }
-        var rememberMe = values.remember
-        dispatch(logIn(body, rememberMe))
+        setIsFethingIP(true)
+        fetch(API, {method: 'GET', headers: {}})
+        .then(response => {
+            return response.text()
+        })
+        .then(ip => {
+            setIsFethingIP(false)
+            var body = {
+                username: values.username,
+                password: values.password,
+                device_id: isMobile ? deviceDetect().model : 'Laptop',
+                ip: ip
+            }
+            dispatch(logIn(body, values.rememberMe)) 
+        })
+        .catch(error => setIsFethingIP(false))
     }
     return(
         
         <div>
             <FinalForm
                 onSubmit={onSubmit}
-                render={({handleSubmit, pristine, values}) => (
+                render={({handleSubmit}) => (
                     <Form onSubmit={handleSubmit}>
                         <FormGroup>
                             <Field
@@ -69,7 +75,7 @@ function LogInModal(props){
                         <FormGroup>
                            
                             <Field
-                                name="remember"
+                                name="rememberMe"
                                 component={FormCheckbox}
                                 type="checkbox"
                             />
@@ -81,7 +87,7 @@ function LogInModal(props){
                             size="lg"
                             color="primary"
                             className="blue-btn"
-                            disabled={isLoading}
+                            disabled={isLoading || isFetchingIP}
                             style={{marginTop: '20px'}}
                         >
                             {t('button_group.log_in')}

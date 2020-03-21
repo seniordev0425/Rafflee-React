@@ -7,7 +7,7 @@ import errorMessages from '../utils/messages/error'
 const qs = require('querystring')
 
 function onFailed(error) {
-  openNotification('warning', error)
+  openNotification('warning', errorMessages[localStorage.getItem('i18nextLng')][error])
   return {
     type: 'API_FAILED',
     error: error    
@@ -104,6 +104,7 @@ export function drawCampaign(id, drawType, winning_name) {
       onSuccess: (data) => onSuccessDrawCampaign(data, drawType),
       onFailure: (data) => onFailedDrawCampaign(data, winning_name),
       label: 'DRAW_CAMPAIGN_SUCCESS',
+      requireErrorMessage: true
   });
 }
 function onSuccessDrawCampaign(data, drawType) {

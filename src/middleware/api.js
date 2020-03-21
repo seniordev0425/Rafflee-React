@@ -43,8 +43,8 @@ const apiMiddleware = ({ dispatch }) => next => action => {
     })
     .then(({ data }) => {
       console.log(data)
-      dispatch(onSuccess(data));
       dispatch(apiSuccess(label));
+      dispatch(onSuccess(data));
     })
     .catch(error => {
       console.log(error.response)

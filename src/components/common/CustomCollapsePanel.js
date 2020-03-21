@@ -14,7 +14,7 @@ import { useTranslation } from 'react-i18next'
 function CustomCollapsePanel(props) {
     const { t } = useTranslation()
 
-    const {type, title, participate} = props
+    const {type, title, openConfirmModal} = props
 
     const isLoading = useSelector(state=>state.userInfo.CAMPAIGN_PARTICIPATE_SUCCESS)
 
@@ -60,7 +60,7 @@ function CustomCollapsePanel(props) {
                     <div className="mt-3">
                         <Checkbox>Would you like to receive informations about this company by email?</Checkbox>
                     </div>
-                    <Button className="btn blue-btn mt-3 participate-btn-size" color="primary" onClick={participate} disabled={isLoading}>
+                    <Button className="btn blue-btn mt-3 participate-btn-size" color="primary" onClick={openConfirmModal} disabled={isLoading}>
                         {t('button_group.participate')}
                     </Button>
                 </ExpansionPanelDetails>

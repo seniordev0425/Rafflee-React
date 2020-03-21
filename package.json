@@ -29,6 +29,7 @@
     "react": "^16.12.0",
     "react-beforeunload": "^2.1.0",
     "react-cursor-position": "^3.0.3",
+    "react-device-detect": "^1.11.14",
     "react-dom": "^16.12.0",
     "react-final-form": "^6.3.5",
     "react-final-form-listeners": "^1.0.2",
@@ -36,6 +37,7 @@
     "react-i18next": "^11.3.3",
     "react-images-upload": "^1.2.8",
     "react-pdf": "^4.1.0",
+    "react-player": "^1.15.2",
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.0",
@@ -46,7 +48,8 @@
     "reactstrap": "^8.4.1",
     "redux": "^4.0.5",
     "semantic-ui-react": "^0.88.2",
-    "vanilla-swipe": "^1.1.1"
+    "vanilla-swipe": "^1.1.1",
+    "video-react": "^0.14.1"
   },
   "scripts": {
     "start": "react-scripts start",

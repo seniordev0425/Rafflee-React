@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { connect, useDispatch } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 import { compose } from 'redux'
 import { withRouter, Link } from 'react-router-dom'
 import { Button, Menu } from 'antd'
@@ -14,13 +14,24 @@ import { useTranslation } from 'react-i18next'
 function HeaderAfterLogin(props){
     const { t } = useTranslation()
     
-    const {history} = props
+    const { history } = props
+    
+    const SUCCESS_LOG_OUT = useSelector(state=>state.userInfo.SUCCESS_LOG_OUT)
+
     const dispatch = useDispatch()
 
+    useEffect(() => {
+        if (SUCCESS_LOG_OUT) {
+            history.push('/')
+            dispatch({type: 'INIT_STATE', state: 'SUCCESS_LOG_OUT', data: false})
+           
+        }
+    }, [SUCCESS_LOG_OUT])
+    
     const log_Out = () => {
         dispatch(logOut())
-        history.push('/')
     }
+
 
     const [hide, setHide] = useState(false)
     const [dropdownOpen, setOpen] = useState(false);

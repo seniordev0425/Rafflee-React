@@ -160,6 +160,7 @@ function FirstLayout(props){
         result.winnings_expiration_date = winEndDate
         result.social_actions = socialActions
         result.categories = categories
+        result.url_video = values.url_video
 
         gotoFinalLayout(result)
     }
@@ -251,7 +252,7 @@ function FirstLayout(props){
                                     </Col>
                                 </Row>
                                 <Row>
-                                    <Col xs="12">
+                                    <Col xs="12" sm="6">
                                         <div className="footer-link-bold mb-3 mt-4">{t('create_campaign_page.categories')}</div>
                                         <Select
                                             defaultValue={(firstFormTempData || {}).categories ? (firstFormTempData || {}).categories : []}
@@ -264,6 +265,26 @@ function FirstLayout(props){
                                             {children}
                                         </Select>
                                         
+                                    </Col>
+                                    <Col xs="12" sm="6">
+                                        <div className="mt-4 w-100">
+                                            <FormGroup>
+                                                <div className="footer-link-bold mb-3">{t('create_campaign_page.url_video')}</div>
+                                                <Field
+                                                    name="url_video"
+                                                    defaultValue={(firstFormTempData || {}).url_video ? (firstFormTempData || {}).url_video : ''}
+                                                    component={FormInput}
+                                                    className="custom-form-control"
+                                                    type="text"
+                                                    placeholder={t('create_campaign_page.url_video')}
+                                                />
+                                                <OnChange name="url_video">
+                                                    {(value) => {
+                                                        setTempData({...tempData, url_video: value})
+                                                    }}
+                                                </OnChange>
+                                            </FormGroup>
+                                        </div>
                                     </Col>
                                 </Row>
                                 <Row>

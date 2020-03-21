@@ -6,7 +6,6 @@ import PropTypes from 'prop-types'
 import {Form as FinalForm, Field} from 'react-final-form'
 import { Form, FormGroup, Button, Modal, ModalHeader, ModalBody } from 'reactstrap'
 import FormInput from '../common/FormInput'
-import { openNotification } from '../../utils/notification'
 import {
     required, 
 } from '../../utils/validation'

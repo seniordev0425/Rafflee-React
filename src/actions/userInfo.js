@@ -2,11 +2,12 @@ import { APIROUTE } from '../utils/constants'
 import { API } from "./types";
 import { openNotification } from '../utils/notification'
 import successMessages from '../utils/messages/success'
+import errorMessages from '../utils/messages/error'
 
 const qs = require('querystring')
 
 function onFailed(error) {
-  openNotification('warning', error)
+  openNotification('warning', errorMessages[localStorage.getItem('i18nextLng')][error])
   return {
     type: 'API_FAILED',
     error: error    
@@ -27,6 +28,7 @@ export function logIn(params, rememberMe) {
 }
 function onSuccessLogIn(data, rememberMe) {
   openNotification('success', successMessages[localStorage.getItem('i18nextLng')].logIn)
+  console.log('rememberMe',rememberMe)
   sessionStorage.setItem('token', data.token)
   sessionStorage.setItem('company', data.company)
   if (rememberMe) {
@@ -46,7 +48,7 @@ export function logOut(params) {
       accessToken: sessionStorage.getItem('token'),
       onSuccess: onSuccessLogOut,
       onFailure: onFailed,
-      label: 'LOG_IN_SUCCESS',
+      label: 'LOG_OUT',
   });
 }
 function onSuccessLogOut(data) {
