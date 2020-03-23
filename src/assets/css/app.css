@@ -1034,13 +1034,13 @@ h2 span {
 .ant-progress-inner {
     background: #0091ff1c !important;
 }
-.ant-select-selection__rendered {
+.multi-categories-selector .ant-select-selection__rendered {
     line-height: 50px !important;
 }
-.ant-select-selection__rendered > ul > li {
+.multi-categories-selector .ant-select-selection__rendered > ul > li {
     margin-top: 10px !important;
 }
-.ant-select-selection--single {
+.multi-categories-selector .ant-select-selection--single {
     height: 50px !important;
 }
 

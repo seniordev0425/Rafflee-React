@@ -251,7 +251,7 @@ function FirstLayout(props){
                                         </div>
                                     </Col>
                                 </Row>
-                                <Row>
+                                <Row className="multi-categories-selector">
                                     <Col xs="12" sm="6">
                                         <div className="footer-link-bold mb-3 mt-4">{t('create_campaign_page.categories')}</div>
                                         <Select
