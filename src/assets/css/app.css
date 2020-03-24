@@ -46,6 +46,14 @@ body {
 .font-size-20 {
     font-size: 2rem;
 }
+.responsive-font-size-11 {
+    font-size: 1.1rem;
+}
+@media (max-width: 575px) {
+    .responsive-font-size-11 {
+        font-size: 0.8rem;
+    }
+}
 .default-border {
     border: 1px solid rgba(126, 154, 168, 0.15);
     border-radius: 6px;
@@ -692,8 +700,7 @@ h2 span {
     display: inline-flex;
     height: 50px;
     align-items: center;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding: 0px 15px;
     border: 1px solid;
     border-radius: 6px;
     color: #0091ff;
@@ -702,12 +709,20 @@ h2 span {
     display: inline-flex;
     height: 50px;
     align-items: center;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding: 0px 15px;
     border: 1px solid;
     border-radius: 6px;
     color: #D0D0CF;
 }
+@media (max-width: 500px) {
+    .inline-div-inactive {
+        padding: 0px 5px;
+    }
+    .inline-div-active {
+        padding: 0px 5px;
+    }
+}
+
 .ant-checkbox-inner {
     border-color: #d9d9d9 !important;
 }
@@ -731,7 +746,6 @@ h2 span {
     color: #454540;
     opacity: 50%;
     text-decoration: underline;
-    font-size: 1.1rem;
     cursor: pointer;
 }
 .congratulation-modal {
@@ -769,10 +783,6 @@ h2 span {
     padding: 20px 30px;
     width: 90%;
     margin: auto;
-}
-.space-between {
-    display: flex;
-    justify-content: space-between;
 }
 .collapse-panel-body {
     background: #EFF9FF !important;
@@ -940,21 +950,25 @@ h2 span {
     margin-bottom: 0px;
 }
 .campaign-main-panel {
+    height: 25vw;
     margin-left: 15px;
     margin-right: 15px; 
     padding: 0px; 
     border: 3px solid #8ACDFF; 
     background: #8acdff08;
 }
-.campaign-main-panel .left img {
-    width: 100%;
-    height: 100%;
+.campaign-main-panel .left div {
+    height: calc(25vw - 6px);
 }
 .campaign-main-panel .right .div-item {
-    padding-bottom: 35px;
+    padding: 15px 0px;
     border-bottom: 1px solid #00000014;
-    margin-left: 25%;
-    margin-right: 25%;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+.campaign-main-panel .col {
+    height: 100%;
 }
 .campaign-main-panel .right {
     display: flex;

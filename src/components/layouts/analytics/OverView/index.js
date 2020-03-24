@@ -57,21 +57,21 @@ function OverView() {
         <Row className="my-5">
             <Col xs="12" sm={{size: 10, offset: 1}} className="px-4">
                 <div className="default-border">
-                    <Row className="justify-content-between p-4">
+                    <Row className="justify-content-between p-2 p-sm-4">
                         <div className="float-left font-weight-bold font-size-11">{t('analytics_page.most_active_users')}</div>
                         <div className="float-right">
                             <FontAwesomeIcon icon={faSearch}/>
                             <FontAwesomeIcon icon={faSlidersH} className="ml-3"/>
                         </div>
                     </Row>
-                    <Row className="justify-content-between p-4" style={{background:"rgba(191, 232, 254, 0.25)"}}>
-                        <div className="font-size-11">Joe Fishman</div>
-                        <div className="font-size-11">Joe24@gmail.com</div>
+                    <Row className="justify-content-between p-2 p-sm-4 responsive-font-size-11" style={{background:"rgba(191, 232, 254, 0.25)"}}>
+                        <div>Joe Fishman</div>
+                        <div>Joe24@gmail.com</div>
                         <div className="view-profile-link">{t('analytics_page.view_profile')}</div>
                     </Row>
-                    <Row className="justify-content-between p-4">
-                        <div className="font-size-11">Joe Fishman</div>
-                        <div className="font-size-11">Joe24@gmail.com</div>
+                    <Row className="justify-content-between p-2 p-sm-4 responsive-font-size-11">
+                        <div>Joe Fishman</div>
+                        <div>Joe24@gmail.com</div>
                         <div className="view-profile-link">{t('analytics_page.view_profile')}</div>
                     </Row>
                 </div>

@@ -10,7 +10,7 @@ function Engagement() {
 
     return (
         <>
-        <Row className="my-5">
+        <Row className="">
             <Col xs="12" sm={{size: 10, offset: 1}} className="px-4 followers-container">
                 <div className="default-border audience-bottom-div p-4">
                     <div>
@@ -35,7 +35,7 @@ function Engagement() {
             </Col>
         </Row>
         <Row>
-            <Col xs="12" sm={{size: 10, offset: 1}} className="p-4 mt-5">
+            <Col xs="12" sm={{size: 10, offset: 1}} className="p-4">
                 <EngagementBarChart/>
             </Col>
         </Row>

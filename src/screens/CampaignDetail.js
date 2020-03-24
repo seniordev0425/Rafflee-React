@@ -91,12 +91,12 @@ function CampaignDetail(props){
             <Row style={{borderTop:"2px solid #7e9aa817"}}>
                 <Col xs="12" sm={{size: 10, offset: 1}}>
                     <Row className="my-5">
-                        <Col sm="2" xs="3" lg="1" className="promotion-list-item-img">
+                        <Col lg="1" md="2" sm="2" xs="3" className="promotion-list-item-img">
                             <img src={campaignData.campaign_image ? `data:image/png;base64,${campaignData.campaign_image}` : images.profile_img}/>
                         </Col>
-                        <Col sm="10" xs="9" lg="11">
+                        <Col lg="11" md="10" sm="10" xs="9" className="pl-sm-5">
                             <div className="promotion-list-item-title">{campaignData.campaign_name}</div>
-                            <div style={{marginTop:"20px", display:"flex", justifyContent:"space-between"}}>
+                            <div className="d-flex justify-content-between mt-4">
                                 <div style={{width: "70%", fontSize:"1.1rem"}}>{campaignData.description}</div>
                                 {(token && !company) && (
                                     <div className="promotion-list-item-star" onClick={update}>
@@ -109,7 +109,10 @@ function CampaignDetail(props){
 
                     <Row className="campaign-main-panel mt-4 mb-5">
                         <Col className="px-0 left">
-                            <img src={images.campaign} />
+                            <div className="w-100">
+                                <img src={images.campaign} width="100%" height="100%"/>
+                            </div>
+                            
                         </Col>
                         <Col className="px-0 center">
                             <div className="mt-5 menubar ml-5">{t('campaign_detail_page.giveaways')}</div>
@@ -125,24 +128,24 @@ function CampaignDetail(props){
                             <div className="bottom-half-circle"></div>
                             
                             <div className="div-item promotion-list-item-title">
-                                <div className="menubar">
+                                <div className="menubar" style={{lineHeight: "2.5rem"}}>
                                     {Date.parse(campaignData.end_date) > Date.now() ? t('campaign_detail_page.prize_ends_in') : t('campaign_detail_page.prize_ended')}
                                 </div>
-                                <img src={images.clock} width="30"/>
+                                <img src={images.clock} width="25" height="25"/>
                                 <span className="ml-3">{calcRemainingDates()} {t('campaign_detail_page.days')}</span>
                             </div>
                             <div className="div-item promotion-list-item-title">
-                                <div className="menubar">
+                                <div className="menubar" style={{lineHeight: "2.5rem"}}>
                                     {t('campaign_detail_page.your_entries')}
                                 </div>
-                                <img src={images.entry} width="30"/>
+                                <img src={images.entry} width="25" height="25"/>
                                 <span className="ml-3">0 {t('campaign_detail_page.entries')}</span>
                             </div>
                             <div className="div-item promotion-list-item-title">
-                                <div className="menubar">
+                                <div className="menubar" style={{lineHeight: "2.5rem"}}>
                                     {t('campaign_detail_page.maximum_participants')}
                                 </div>
-                                <img src={images.user} width="30"/>
+                                <img src={images.user} width="25" height="25"/>
                                 <span className="ml-3">{campaignData.number_of_eligible_people} {t('campaign_detail_page.participants')}</span>
                             </div>
                         </Col>

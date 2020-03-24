@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Bar } from 'react-chartjs-2'
+import { isMobile } from 'react-device-detect'
 
 import { useTranslation } from 'react-i18next'
 
@@ -22,12 +23,12 @@ function EngagementBarChart() {
     })
 
     return(
-        <div className="default-border p-4">
+        <div className="default-border p-1 p-sm-4">
         <div className="d-flex mb-4">
             <div className="font-size-11 font-weight-bold">{t('analytics_page.engagement_score_by_day')}</div>
         </div>
         
-        <Bar data={data.dataLine} height={100} options={{responsive: true, legend: false, scales:{xAxes:[{gridLines:{display: false}, barPercentage: 0.1}]}}}/>
+        <Bar data={data.dataLine} height={isMobile ? 150 : 100} options={{responsive: true, legend: false, scales:{xAxes:[{gridLines:{display: false}, barPercentage: 0.1}]}}}/>
 
     </div>
     )

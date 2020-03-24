@@ -4,7 +4,7 @@ import AliceCarousel from '../../../utils/carousel_lib/react-alice-carousel'
 import CampaignCard from './CampaignCard'
 
 function Carousel(props){
-    const {hotPromotions} = props
+    const { hotPromotions } = props
 
     const responsive = {
         0: { items: 1 },
@@ -28,11 +28,11 @@ function Carousel(props){
     )
 
     return(
-        <div className="app" style={{maxWidth: galleryItems.length * 400}}>
+        <div className="app" style={{maxWidth: galleryItems.length > 1 ? galleryItems.length * 450 : galleryItems.length * 480}}>
             <AliceCarousel
                 items={galleryItems}
                 showSlideInfo={true}
-                preventEventOnTouchMove={true}
+                preventEventOnTouchMove={false}
                 mouseTrackingEnabled={false}
                 onSlideChanged={console.debug}
                 responsive={responsive}

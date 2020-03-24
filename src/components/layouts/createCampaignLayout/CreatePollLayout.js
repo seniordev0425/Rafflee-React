@@ -62,7 +62,7 @@ function CreatePollLayout(props){
                     <Row>
                         <Col xs={{size: 10, offset: 1}}>
                             <Row className="mt-3">
-                                <span className="policy-button color-blue" onClick={() => gotoFirstLayout(false, null)}>
+                                <span className="policy-button color-blue font-size-11" onClick={() => gotoFirstLayout(false, null)}>
                                     {t('create_campaign_page.back_to_create_campaign')}
                                 </span>
                             </Row>

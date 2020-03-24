@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Line } from 'react-chartjs-2'
+import { isMobile } from 'react-device-detect'
 
 import { useTranslation } from 'react-i18next'
 
@@ -57,7 +58,7 @@ function SplineChart() {
         }
     })
     return (
-        <div className="default-border p-4">
+        <div className="default-border p-2 p-sm-4">
             <div className="d-flex justify-content-between mb-4">
                 <div className="font-size-11 font-weight-bold">{t('analytics_page.total_views_clicks')}</div>
                 <div>
@@ -70,7 +71,7 @@ function SplineChart() {
                 </div>
             </div>
             
-            <Line data={data.dataLine} height={100} options={{responsive: true, legend: false, scales:{xAxes:[{gridLines:{display: false}}]}}}/>
+            <Line data={data.dataLine} height={isMobile ? 150 : 100} options={{responsive: true, legend: false, scales:{xAxes:[{gridLines:{display: false}}]}}}/>
     
         </div>
     )

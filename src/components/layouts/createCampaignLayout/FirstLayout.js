@@ -356,15 +356,15 @@ function FirstLayout(props){
                                         <div className="footer-link-bold mb-3 mt-3">{t('create_campaign_page.results')}</div>
                                         <Radio.Group onChange={onChangeDistribution} value={distribution}>
                                             <Radio value="direct"/>
-                                            <div className={distribution === ('direct') ? "inline-div-active ml-3" : "inline-div-inactive ml-3"}>
+                                            <div className={distribution === ('direct') ? "inline-div-active ml-sm-3" : "inline-div-inactive ml-sm-3"}>
                                                 {t('create_campaign_page.direct')}
                                             </div>
                                             <Radio value="live_draw" className="ml-3"/>
-                                            <div className={distribution === ('live_draw') ? "inline-div-active ml-3" : "inline-div-inactive ml-3"}>
+                                            <div className={distribution === ('live_draw') ? "inline-div-active ml-sm-3" : "inline-div-inactive ml-sm-3"}>
                                                 {t('create_campaign_page.live_draw')}
                                             </div>
                                             <Radio value="end_promotion" className="ml-3"/>
-                                            <div className={distribution === ('end_promotion') ? "inline-div-active ml-3" : "inline-div-inactive ml-3"}>
+                                            <div className={distribution === ('end_promotion') ? "inline-div-active ml-sm-3" : "inline-div-inactive ml-sm-3"}>
                                                 {t('create_campaign_page.end_date')}
                                             </div>
                                         </Radio.Group>
@@ -378,127 +378,127 @@ function FirstLayout(props){
                             </Col>
                         </Row>
                         <Row className="mt-3 pt-3 pb-3">
-                            <Col xs="12" sm={{size: 10, offset: 1}} style={{display:"flex", justifyContent:"space-between"}}>
+                            <Col xs="12" sm={{size: 10, offset: 1}} className="d-flex justify-content-between">
                                 <div className="fb-icon-container1" style={{width: 50, borderRadius: 6, color: "white", fontWeight: "bold", fontSize: "1.4rem"}}>
                                     f
                                 </div>
                                 <div>
                                 <CheckBoxButtonWithString 
                                     value={socialActions.facebook.like}
-                                    btnString={t('create_campaign_page.like')} 
+                                    btnString="like"
                                     handleActions={() => handleActions("facebook", "like")}
                                 />
                                 <CheckBoxButtonWithString 
                                     value={socialActions.facebook.follow}
-                                    btnString={t('create_campaign_page.follow')} 
+                                    btnString="follow"
                                     handleActions={() => handleActions("facebook", "follow")}
                                 />
                                 <CheckBoxButtonWithString 
                                     value={socialActions.facebook.comment}
-                                    btnString={t('create_campaign_page.message')} 
+                                    btnString="message"
                                     handleActions={() => handleActions("facebook", "comment")}
                                 />
                                 </div>
                             </Col>
                         </Row>
                         <Row className="pt-3 pb-3" style={{background:"rgba(191, 232, 254, 0.25)"}}>
-                            <Col xs="12" sm={{size: 10, offset: 1}} style={{display:"flex", justifyContent:"space-between"}}>
+                            <Col xs="12" sm={{size: 10, offset: 1}} className="d-flex justify-content-between">
                                 <div className="twitter-icon-container1" style={{width:50, borderRadius: 6}}>
                                     <img src={images.twitter_icon}/>
                                 </div>
                                 <div>
                                 <CheckBoxButtonWithString 
                                     value={socialActions.twitter.like}
-                                    btnString={t('create_campaign_page.like')} 
+                                    btnString="like"
                                     handleActions={() => handleActions("twitter", "like")}
                                 />
                                 <CheckBoxButtonWithString 
                                     value={socialActions.twitter.follow}
-                                    btnString={t('create_campaign_page.follow')} 
+                                    btnString="follow"
                                     handleActions={() => handleActions("twitter", "follow")}
                                 />
                                 <CheckBoxButtonWithString 
                                     value={socialActions.twitter.comment}
-                                    btnString={t('create_campaign_page.message')} 
+                                    btnString="message"
                                     handleActions={() => handleActions("twitter", "comment")}
                                 />
                                 <CheckBoxButtonWithString 
                                     value={socialActions.twitter.retweet}
-                                    btnString={t('create_campaign_page.retweet')} 
+                                    btnString="retweet"
                                     handleActions={() => handleActions("twitter", "retweet")}
                                 />
                                 </div>
                             </Col>
                         </Row>
                         <Row className="pt-3 pb-3">
-                            <Col xs="12" sm={{size: 10, offset: 1}} style={{display:"flex", justifyContent:"space-between"}}>
+                            <Col xs="12" sm={{size: 10, offset: 1}} className="d-flex justify-content-between">
                                 <div className="youtube-icon-container1" style={{width:50, borderRadius: 6}}>
                                     <img src={images.youtube_icon}/>
                                 </div>
                                 <div>
                                 <CheckBoxButtonWithString 
                                     value={socialActions.youtube.like}
-                                    btnString={t('create_campaign_page.like')} 
+                                    btnString="like"
                                     handleActions={() => handleActions("youtube", "like")}
                                 />
                                 <CheckBoxButtonWithString 
                                     value={socialActions.youtube.follow}
-                                    btnString={t('create_campaign_page.follow')} 
+                                    btnString="follow"
                                     handleActions={() => handleActions("youtube", "follow")}
                                 />
                                 </div>
                             </Col>
                         </Row>
                         <Row className="pt-3 pb-3" style={{background:"rgba(191, 232, 254, 0.25)"}}>
-                            <Col xs="12" sm={{size: 10, offset: 1}} style={{display:"flex", justifyContent:"space-between"}}>
+                            <Col xs="12" sm={{size: 10, offset: 1}} className="d-flex justify-content-between">
                                 <div className="instagram-icon-container1" style={{width:50, borderRadius: 6}}>
                                     <img src={images.instagram_icon}/>
                                 </div>
                                 <div>
                                 <CheckBoxButtonWithString 
                                     value={socialActions.instagram.like}
-                                    btnString={t('create_campaign_page.like')} 
+                                    btnString="like"
                                     handleActions={() => handleActions("instagram", "like")}
                                 />
                                 <CheckBoxButtonWithString 
                                     value={socialActions.instagram.follow}
-                                    btnString={t('create_campaign_page.follow')} 
+                                    btnString="follow"
                                     handleActions={() => handleActions("instagram", "follow")}
                                 />
                                 <CheckBoxButtonWithString 
                                     value={socialActions.instagram.comment}
-                                    btnString={t('create_campaign_page.message')} 
+                                    btnString="message"
                                     handleActions={() => handleActions("instagram", "comment")}
                                 />
                                 </div>
                             </Col>
                         </Row>
                         <Row className="pt-3 pb-3">
-                            <Col xs="12" sm={{size: 10, offset: 1}} style={{display:"flex", justifyContent:"space-between"}}>
+                            <Col xs="12" sm={{size: 10, offset: 1}} className="d-flex justify-content-between">
                                 <div className="twitch-icon-container1" style={{width:50, borderRadius: 6}}>
                                     <img src={images.twitch_icon}/>
                                 </div>
                                 <div>
                                 <CheckBoxButtonWithString 
                                     value={socialActions.twitch.like}
-                                    btnString={t('create_campaign_page.like')} 
+                                    btnString="like"
                                     handleActions={() => handleActions("twitch", "like")}
                                 />
                                 <CheckBoxButtonWithString 
                                     value={socialActions.twitch.follow}
-                                    btnString={t('create_campaign_page.follow')} 
+                                    btnString="follow"
                                     handleActions={() => handleActions("twitch", "follow")}
                                 />
                                 <CheckBoxButtonWithString 
                                     value={socialActions.twitch.comment}
-                                    btnString={t('create_campaign_page.message')} 
+                                    btnString="message"
                                     handleActions={() => handleActions("twitch", "comment")}
                                 />
                                 </div>
                             </Col>
                         </Row>
                         <Row className="pt-3 pb-3" style={{background:"rgba(191, 232, 254, 0.25)"}}> 
-                            <Col xs="12" sm={{size: 10, offset: 1}} style={{display:"flex", justifyContent:"space-between"}}>
+                            <Col xs="12" sm={{size: 10, offset: 1}} className="d-flex justify-content-between">
                                 <div className="google-icon-container1" style={{width:50, borderRadius: 6, color: "white", fontWeight: "bold", fontSize: "1.4rem"}}>
                                     ?
                                 </div>

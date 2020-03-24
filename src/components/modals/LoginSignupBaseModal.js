@@ -7,6 +7,7 @@ import CompanyModal from './CompanyModal'
 import FaceBookSignBtn from '../common/Buttons/FaceBookSignBtn'
 import GoogleSignBtn from '../common/Buttons/GoogleSignBtn'
 import { Row, Modal, ModalHeader, ModalBody} from 'reactstrap'
+import FacebookLogin from 'react-facebook-login';
 
 import { useTranslation } from 'react-i18next'
 
@@ -15,6 +16,10 @@ function LoginSignupBaseModal(props){
 
     const {isLogin, switch_login_signin, modal, toggle, companyStatus, showCompanyModal} = props
     const token = useSelector(state=>state.userInfo.token)
+
+    const responseFacebook = (response) => {
+        console.log(response)
+    }
  
     return (
         <>
@@ -34,7 +39,11 @@ function LoginSignupBaseModal(props){
                                     <h2><span className="or-divider-text">{t('signin_modal.or')}</span></h2>
                                 </div>
                                 <div style={{marginTop: "2rem"}}>
-                                    <FaceBookSignBtn/>
+                                    <FacebookLogin
+                                        appId="569090800341241"
+                                        fields="name,email,picture"
+                                        callback={responseFacebook} 
+                                    />
                                 </div>   
                                 <div style={{marginTop: "1rem"}}>
                                     <GoogleSignBtn/>

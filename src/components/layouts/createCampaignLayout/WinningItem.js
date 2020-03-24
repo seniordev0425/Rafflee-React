@@ -42,7 +42,7 @@ function WinningItem(props){
                     </FormGroup>
                 </div>
             </Col>
-            <Col xs="12" sm="4" style={{display: "flex", justifyContent: "space-between"}}>
+            <Col xs="12" sm="4" className="d-flex justify-content-between">
                 <div className="mt-4 half-width">
                     <FormGroup>
                         <div className="footer-link-bold mb-3">{t('create_campaign_page.number_of_people')}</div>

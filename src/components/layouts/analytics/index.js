@@ -56,15 +56,15 @@ function AnalyticsLayout() {
             <Row className="py-5">
                 <Col sm={{size: 10, offset: 1}} xs="12">
                     <Row>
-                        <Col sm="6" xs="12" className="d-flex">
+                        <Col lg="6" xs="12" className="d-flex">
                             <img src={images.profile_img} width="100px" height="100px" className="mr-4"/>
                             <div className="ml-5">
                                 <div className="font-weight-bold font-size-13">Gap Analytics</div>
                                 <div className="color-blue mt-5 font-size-11">gap@gmail.com</div>
                             </div>
                         </Col>
-                        <Col sm="6" xs="12" className="d-flex justify-content-end align-items-end mt-4">
-                            <div className="mr-5">
+                        <Col lg="6" xs="12" className="d-flex justify-content-lg-end justify-content-between align-items-end mt-4">
+                            <div className="mr-lg-5">
                                 <Select size="large" style={{width: 140}}>
                                     <Option value="overall">Overall</Option>
                                 </Select>

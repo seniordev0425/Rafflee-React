@@ -38,6 +38,10 @@ const images = {
     gap_img: require('../assets/image/gap_image.png'),
     flag_en: require('../assets/image/flag_en.png'),
     flag_fr: require('../assets/image/flag_fr.png'),
+    follow_icon: require('../assets/image/follow.png'),
+    like_icon: require('../assets/image/like.png'),
+    message_icon: require('../assets/image/comment.png'),
+    retweet_icon: require('../assets/image/retweet.png'),
 }
 
 export default images;

@@ -39,7 +39,7 @@ function AudienceSplineChart() {
     return (
         <>
             <div className="d-flex justify-content-between mb-4">
-                <div className="font-size-13 font-weight-bold">{t('analytics_page.audience_growth')}</div>
+                <div className="font-size-11 font-weight-bold">{t('analytics_page.audience_growth')}</div>
                 <div>
                     <div className="font-size-9 font-weight-bold">
                         <span style={{width: 10, height: 10, background: "#0091ff", borderRadius: 3, display: "inline-block"}}/>

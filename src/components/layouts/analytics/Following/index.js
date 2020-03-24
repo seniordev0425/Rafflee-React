@@ -11,7 +11,7 @@ function Following() {
 
     return(
         <>
-        <Row className="my-5">
+        <Row>
             <Col xs="12" sm={{size: 10, offset: 1}} className="px-4 followers-container">
                 <div className="audience-bottom-div d-flex flex-column justify-content-between">
                     <div className="default-border p-4">
@@ -24,7 +24,7 @@ function Following() {
                         </div>
                         <ColorBar width={156} color="#0091ff"/>
                     </div>
-                    <div className="default-border p-4">
+                    <div className="default-border p-4 mt-3 mt-sm-0">
                         <div>
                             <span className="font-weight-bold font-size-11">{t('analytics_page.circle_followers')}</span>
                         </div>
@@ -34,7 +34,7 @@ function Following() {
                         </div>
                         <ColorBar width={156} color="#7479EE"/>
                     </div>
-                    <div className="default-border p-4">
+                    <div className="default-border p-4 mt-3 mt-sm-0">
                         <div>
                             <span className="font-weight-bold font-size-11">{t('analytics_page.lost_followers')}</span>
                         </div>
@@ -64,7 +64,7 @@ function Following() {
                 </div>
             </Col>
         </Row>
-        <Row>
+        <Row className="mt-4">
             <Col xs="12" sm={{size: 10, offset: 1}} className="px-4">
                 <div className="default-border p-4 mb-5 d-flex justify-content-between flex-column">
                     <div className="d-flex justify-content-between">
@@ -75,21 +75,21 @@ function Following() {
                         </div>
                     </div>
                     <div className="d-flex font-size-10 mt-4">
-                        <div style={{width: "20%"}}>{t('analytics_page.male')}</div>
-                        <div style={{width: "80%"}}>
-                            <Progress strokeWidth={15} percent={30}/>
+                        <div style={{width: "25%"}}>{t('analytics_page.male')}</div>
+                        <div style={{width: "75%"}}>
+                            <Progress strokeWidth={10} percent={30}/>
                         </div>
                     </div>
                     <div className="d-flex font-size-10 mt-4">
-                        <div style={{width: "20%"}}>{t('analytics_page.female')}</div>
-                        <div style={{width: "80%"}}>
-                            <Progress strokeWidth={15} percent={74.5}/>
+                        <div style={{width: "25%"}}>{t('analytics_page.female')}</div>
+                        <div style={{width: "75%"}}>
+                            <Progress strokeWidth={10} percent={74.5}/>
                         </div>
                     </div>
                     <div className="d-flex font-size-10 mt-4">
-                        <div style={{width: "20%"}}>{t('analytics_page.unknown')}</div>
-                        <div style={{width: "80%"}}>
-                            <Progress strokeWidth={15} percent={10.4}/>
+                        <div style={{width: "25%"}}>{t('analytics_page.unknown')}</div>
+                        <div style={{width: "75%"}}>
+                            <Progress strokeWidth={10} percent={10.4}/>
                         </div>
                     </div>
                 </div>

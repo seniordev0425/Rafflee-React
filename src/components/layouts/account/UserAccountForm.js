@@ -54,7 +54,7 @@ function UserAccountForm(props){
 
     const [verifyPhoneNumber, setVerifyPhoneNumber] = useState('')
 
-    const [initialDate, setInitialDate] = useState('1901-01-01')
+    const [initialDate, setInitialDate] = useState('1970-01-01')
 
     const [imgFormData, setImgFormData] = useState([])
 
@@ -214,7 +214,7 @@ function UserAccountForm(props){
                                 <div className="mt-4 half-width">
                                     <FormGroup>
                                         <div className="footer-link-bold mb-3">{t('account_page.phone_number')}</div>
-                                        <div style={{display: "flex", justifyContent: "space-between"}}>
+                                        <div className="d-flex justify-content-between">
                                             <div style={{width: "70%"}}>
                                                 <Field
                                                     name="phonenumber"
@@ -349,27 +349,21 @@ function UserAccountForm(props){
                                 </div>
                             </Col>
                             <Col xs="12" sm="6">
-                                <Row>
-                                    <Col xs="12" sm={{size:"6", offset:"6"}} className="pl-0 pr-0">
-                                        <div className="mt-4">
-                                        
+                                <div className="mt-4 d-flex justify-content-end">
+                                    <div className="half-width">
                                         <div className="footer-link-bold mb-3">Youtube</div>
                                         <YoutubeConnectBtn/>
+                                    </div>
+                                </div>
 
-                                        </div>
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col xs="12" sm={{size:"6", offset:"6"}} className="pl-0 pr-0">
-                                        <div className="mt-4">
-                                        
+                                <div className="mt-4 d-flex justify-content-end">
+                                    <div className="half-width">
                                         <div className="footer-link-bold mb-3">Instagram</div>
                                         <InstagramConnectBtn/>
+                                    </div>
+                                </div>
 
-                                        </div>
-                                    </Col>
-                                </Row>
-                                <Row style={{justifyContent:"flex-end"}}>
+                                <div className="mt-4 d-flex justify-content-end">
                                     <div className="mt-4 half-width">
                                         <Button
                                             type="submit"
@@ -392,9 +386,7 @@ function UserAccountForm(props){
                                         </Button>
 
                                     </div>
-                                </Row>
-                                
-                               
+                                </div>
                             </Col>
                         </Row>
 
