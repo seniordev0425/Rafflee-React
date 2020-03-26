@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import { useSelector } from 'react-redux'
 import { withRouter, Redirect } from 'react-router-dom'
 import { compose } from 'redux'
-
 import { connect } from "react-redux";
 import { Route, Switch } from 'react-router-dom'
+import CookieConsent from 'react-cookie-consent'
 import Home from '../screens/Home'
 import Deals from '../screens/Deals'
 import UserAccount from '../screens/UserAccount'
@@ -23,9 +22,16 @@ import { openNotification } from '../utils/notification'
 
 import { verifyToken } from '../apis/apiCalls'
 
+import { useTranslation } from 'react-i18next'
+
+const API = 'https://api.ipify.org?format=jsonp?callback=?'
+
 function Routes(props){
+    const { t } = useTranslation()
+
     const {dispatch, history} = props
-    const [authLoading, setAuthLoading] = useState(true);
+    const [authLoading, setAuthLoading] = useState(true)
+    const [isFetchingIP, setIsFethingIP] = useState(false)
 
     const [online, setOnline] = useState(navigator.onLine)
 
@@ -33,6 +39,17 @@ function Routes(props){
     const handleOffline = () => setOnline(navigator.onLine)
     
     useEffect(() => {
+        setIsFethingIP(true)
+        fetch(API, {method: 'GET', headers: {}})
+        .then(response => {
+            return response.text()
+        })
+        .then(ip => {
+            setIsFethingIP(false)
+            dispatch({type: 'FETCH_IP_SUCCESS', data: ip}) 
+        })
+        .catch(error => setIsFethingIP(false))
+
         const _handleOnline = handleOnline
         const _handleOffline = handleOffline
         window.addEventListener('online', _handleOnline)
@@ -95,14 +112,13 @@ function Routes(props){
             });
         }
         
-
         return () => {
             window.removeEventListener('online', _handleOnline)
             window.removeEventListener('offline', _handleOffline)
         };
     }, [])
 
-    if (authLoading && sessionStorage.getItem('token') && !props.token) {
+    if ((authLoading && sessionStorage.getItem('token') && !props.token) || isFetchingIP) {
         return <Loading/>
     }
     return (
@@ -123,6 +139,18 @@ function Routes(props){
                 <Route exact path="/privacy-policy" component={PrivacyPolicy} />
                 <Route component={NotFound} />
             </Switch>
+            <CookieConsent
+                style={{justifyContent: "center", background: "#7778edd9"}}
+                contentStyle={{flex: null, textAlign: "center"}}
+                buttonText={t('button_group.accept')}
+                buttonStyle={{background: "#0091ff", color: "white", borderRadius: 3, margin: 0}}
+                enableDeclineButton = {true}
+                flipButtons
+                declineButtonText={t('button_group.decline')}
+                declineButtonStyle={{background: "#f01212", borderRadius: 3, margin: 0, marginLeft: 15}}
+            >
+                This site uses cookies, by continuing to use the service, you accept our Cookie Policy
+            </CookieConsent>
         </ScrollToTop>
         
     )

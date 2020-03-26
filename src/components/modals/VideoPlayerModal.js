@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Modal, ModalHeader, ModalBody, Input } from 'reactstrap'
 import ReactPlayer from 'react-player'
-import { Player } from 'video-react'
-
 
 function VideoPlayerModal(props) {
     const { open, onToggle } = props

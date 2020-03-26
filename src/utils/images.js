@@ -5,6 +5,8 @@ const images = {
     twitch_icon: require('../assets/image/twitch_icon.png'),
     youtube_icon: require('../assets/image/youtube_icon.png'),
     instagram_icon: require('../assets/image/instagram_icon.png'),
+    steam_icon: require('../assets/image/steam_icon.png'),
+    video_icon: require('../assets/image/video_icon.png'),
     logo: require('../assets/image/logo.png'),
     logout_icon: require('../assets/image/logout_icon.png'),
     profile_img: require('../assets/image/profile_img.png'),

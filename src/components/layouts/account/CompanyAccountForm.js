@@ -13,6 +13,7 @@ import TwitterConnectBtn from '../../common/Buttons/TwitterConnectBtn'
 import TwitchConnectBtn from '../../common/Buttons/TwitchConnectBtn'
 import YoutubeConnectBtn from '../../common/Buttons/YoutubeConnectBtn'
 import InstagramConnectBtn from '../../common/Buttons/InstagramConnectBtn'
+import SteamConnectBtn from '../../common/Buttons/SteamConnectBtn'
 import { updateCompanyProfile } from '../../../actions/userInfo'
 import { getCompanyProfile } from '../../../actions/userInfo'
 
@@ -242,6 +243,12 @@ function CompanyAccountForm(props){
                                     <div className="mt-4 half-width">
                                         <div className="footer-link-bold mb-3">Instagram</div>
                                         <InstagramConnectBtn/>
+                                    </div>
+                                </Row>
+                                <Row style={{justifyContent:"flex-end"}}>
+                                    <div className="mt-4 half-width">
+                                        <div className="footer-link-bold mb-3">Steam</div>
+                                        <SteamConnectBtn/>
                                     </div>
                                 </Row>
                                 <Row style={{justifyContent:"flex-end"}}>

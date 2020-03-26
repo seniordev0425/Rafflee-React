@@ -1,5 +1,6 @@
 const errorMessages = {
     en: {
+        MSG_ERROR_LOGIN_CONNECT: "Something went wrong",
         MSG_USER_NOT_EXIST: "User account does not exist",
         MSG_INVALID_PASSWORD: "Username or password not correct",
         MSG_FIELD_REQUIRED: "Parameters missing or error with parameters",

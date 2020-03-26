@@ -11,39 +11,29 @@ import { required } from '../../utils/validation'
 
 import { useTranslation } from 'react-i18next'
 
-const API = 'https://api.ipify.org?format=jsonp?callback=?'
-
 function LogInModal(props){
     const { t } = useTranslation()
     
     const { toggle } = props
 
     const isLoading = useSelector(state=>state.userInfo.LOG_IN_SUCCESS)
+    const ip = useSelector(state=>state.userInfo.ip)
     const dispatch = useDispatch()
 
-    const [isFetchingIP, setIsFethingIP] = useState(false)
     const [openForgotModal, setOpenForgotModal] = useState(false)
 
     const handleForgotModal = () => setOpenForgotModal(!openForgotModal)
 
     const onSubmit = (values) => {
-        setIsFethingIP(true)
-        fetch(API, {method: 'GET', headers: {}})
-        .then(response => {
-            return response.text()
-        })
-        .then(ip => {
-            setIsFethingIP(false)
-            var body = {
-                username: values.username,
-                password: values.password,
-                device_id: isMobile ? deviceDetect().model : 'Laptop',
-                ip: ip
-            }
-            dispatch(logIn(body, values.rememberMe)) 
-        })
-        .catch(error => setIsFethingIP(false))
+        var body = {
+            username: values.username,
+            password: values.password,
+            device_id: isMobile ? deviceDetect().model : 'Laptop',
+            ip: ip
+        }
+        dispatch(logIn(body, values.rememberMe)) 
     }
+    
     return(
         
         <div>
@@ -87,7 +77,7 @@ function LogInModal(props){
                             size="lg"
                             color="primary"
                             className="blue-btn"
-                            disabled={isLoading || isFetchingIP}
+                            disabled={isLoading}
                             style={{marginTop: '20px'}}
                         >
                             {t('button_group.log_in')}

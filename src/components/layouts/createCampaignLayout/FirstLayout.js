@@ -160,7 +160,10 @@ function FirstLayout(props){
         result.winnings_expiration_date = winEndDate
         result.social_actions = socialActions
         result.categories = categories
-        result.url_video = values.url_video
+        result.url_video = {
+            "url": values.url_video,
+            "video_name": values.video_name
+        }
 
         gotoFinalLayout(result)
     }
@@ -252,7 +255,7 @@ function FirstLayout(props){
                                     </Col>
                                 </Row>
                                 <Row className="multi-categories-selector">
-                                    <Col xs="12" sm="6">
+                                    <Col>
                                         <div className="footer-link-bold mb-3 mt-4">{t('create_campaign_page.categories')}</div>
                                         <Select
                                             defaultValue={(firstFormTempData || {}).categories ? (firstFormTempData || {}).categories : []}
@@ -265,6 +268,29 @@ function FirstLayout(props){
                                             {children}
                                         </Select>
                                         
+                                    </Col>
+                                    
+                                </Row>
+                                <Row>
+                                    <Col xs="12" sm="6">
+                                        <div className="mt-4 w-100">
+                                            <FormGroup>
+                                                <div className="footer-link-bold mb-3">{t('create_campaign_page.video_name')}</div>
+                                                <Field
+                                                    name="video_name"
+                                                    defaultValue={(firstFormTempData || {}).video_name ? (firstFormTempData || {}).video_name : ''}
+                                                    component={FormInput}
+                                                    className="custom-form-control"
+                                                    type="text"
+                                                    placeholder={t('create_campaign_page.video_name')}
+                                                />
+                                                <OnChange name="video_name">
+                                                    {(value) => {
+                                                        setTempData({...tempData, video_name: value})
+                                                    }}
+                                                </OnChange>
+                                            </FormGroup>
+                                        </div>
                                     </Col>
                                     <Col xs="12" sm="6">
                                         <div className="mt-4 w-100">
@@ -359,11 +385,11 @@ function FirstLayout(props){
                                             <div className={distribution === ('direct') ? "inline-div-active ml-sm-3" : "inline-div-inactive ml-sm-3"}>
                                                 {t('create_campaign_page.direct')}
                                             </div>
-                                            <Radio value="live_draw" className="ml-3"/>
+                                            <Radio value="live_draw" className="ml-sm-3 ml-1"/>
                                             <div className={distribution === ('live_draw') ? "inline-div-active ml-sm-3" : "inline-div-inactive ml-sm-3"}>
                                                 {t('create_campaign_page.live_draw')}
                                             </div>
-                                            <Radio value="end_promotion" className="ml-3"/>
+                                            <Radio value="end_promotion" className="ml-sm-3 ml-1"/>
                                             <div className={distribution === ('end_promotion') ? "inline-div-active ml-sm-3" : "inline-div-inactive ml-sm-3"}>
                                                 {t('create_campaign_page.end_date')}
                                             </div>
@@ -499,7 +525,7 @@ function FirstLayout(props){
                         </Row>
                         <Row className="pt-3 pb-3" style={{background:"rgba(191, 232, 254, 0.25)"}}> 
                             <Col xs="12" sm={{size: 10, offset: 1}} className="d-flex justify-content-between">
-                                <div className="google-icon-container1" style={{width:50, borderRadius: 6, color: "white", fontWeight: "bold", fontSize: "1.4rem"}}>
+                                <div className="other-icon-container" style={{width:50, borderRadius: 6, color: "white", fontWeight: "bold", fontSize: "1.4rem"}}>
                                     ?
                                 </div>
                                 {!pollCreated ? (

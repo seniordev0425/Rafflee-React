@@ -1,9 +1,12 @@
-import React, { Component, useState } from 'react';
+import React, { Component, useState, useEffect } from 'react';
 import { Document, Page, pdfjs } from 'react-pdf/dist/entry.webpack';
+import { useTranslation } from 'react-i18next'
 import './pdf.css';
 import 'react-pdf/dist/Page/AnnotationLayer.css'; 
-import pdfGeneral from '../../../assets/pdf/general.pdf'
-import pdfPolicy from '../../../assets/pdf/policy.pdf'
+import pdfGeneralEn from '../../../assets/pdf/general_en.pdf'
+import pdfGeneralFr from '../../../assets/pdf/general_fr.pdf'
+import pdfPolicyEn from '../../../assets/pdf/policy_en.pdf'
+import pdfPolicyFr from '../../../assets/pdf/policy_fr.pdf'
 import Loading from '../../common/Loading';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
@@ -11,6 +14,11 @@ pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/$
 function PdfLayout(props) {
     const { name } = props
     const [numPages, setNumPages] = useState(null)
+
+    const { i18n } = useTranslation()
+    
+    const pdfGeneral = {en: pdfGeneralEn, fr: pdfGeneralFr}
+    const pdfPolicy = {en: pdfPolicyEn, fr: pdfPolicyFr}
 
     const onDocumentLoadSuccess = (pdf) => {
         setNumPages(pdf.numPages)
@@ -34,7 +42,12 @@ function PdfLayout(props) {
     
     return (
         <div className="ResumeContainer">
-           <Document loading={<Loading/>} className={"PDFDocument"} file={name === 'general' ? pdfGeneral : pdfPolicy} onLoadSuccess={onDocumentLoadSuccess}>
+           <Document 
+                loading={<Loading/>} 
+                className={"PDFDocument"} 
+                file={name === 'general' ? pdfGeneral[i18n.language] : pdfPolicy[i18n.language]} 
+                onLoadSuccess={onDocumentLoadSuccess}
+           >
                 {renderPages()}
             </Document> 
         </div>

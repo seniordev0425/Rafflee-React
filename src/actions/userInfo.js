@@ -13,6 +13,7 @@ function onFailed(error) {
     error: error    
   }
 }
+
 /////////////////////////////////////////////// LOGIN-ACTION
 export function logIn(params, rememberMe) {
   return apiAction({
@@ -26,9 +27,19 @@ export function logIn(params, rememberMe) {
 
   });
 }
+export function facebookLogin(params) {
+  return apiAction({
+    url: APIROUTE + "login/facebook/",
+    method: 'POST',
+    data: qs.stringify(params),
+    onSuccess: (data) => onSuccessLogIn(data, false),
+    onFailure: onFailed,
+    label: 'FACEBOOK_LOG_IN',
+    requireErrorMessage: true
+  });
+}
 function onSuccessLogIn(data, rememberMe) {
   openNotification('success', successMessages[localStorage.getItem('i18nextLng')].logIn)
-  console.log('rememberMe',rememberMe)
   sessionStorage.setItem('token', data.token)
   sessionStorage.setItem('company', data.company)
   if (rememberMe) {

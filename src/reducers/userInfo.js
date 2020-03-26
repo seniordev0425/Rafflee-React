@@ -3,6 +3,7 @@ const initialFeedState = {
     company: false,
     myInfo: null,
     isLoading: false,
+    ip: '127.0.0.1',
 
     userProfile: {
         address: '',
@@ -84,6 +85,11 @@ function UserInfo(state = initialFeedState, action){
             return {
                 ...state,
                 companyProfile: action.data
+            }
+        case 'FETCH_IP_SUCCESS':
+            return {
+                ...state,
+                ip: action.data
             }
         case 'LOG_IN_SUCCESS':
             return {

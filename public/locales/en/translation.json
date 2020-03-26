@@ -58,7 +58,9 @@
         "create_poll":"CREATE POLL",
         "create_campaign":"Create Campaign",
         "reset": "RESET",
-        "continue": "CONTINUE"
+        "continue": "CONTINUE",
+        "accept": "Accept",
+        "decline": "Decline"
     },
 
     "homepage": {
@@ -96,7 +98,36 @@
         "maximum_participants": "MAXIMUM PARTICIPANTS",
         "days": "days",
         "entries": "Entries",
-        "participants": "Participants"
+        "participants": "Participants",
+        "twitter": {
+            "title": "Tweet about the giveaway",
+            "text": "To get credit for this entry, you must tweet about this on your twitter page. Likes & comments are appreciated, but no required. Thanks!"
+        },
+        "facebook": {
+            "title": "Visit Converse on Facebook",
+            "text": "To get credit for this entry, you must tweet about this on your twitter page. Likes & comments are appreciated, but no required. Thanks!"
+        },
+        "youtube": {
+            "title": "Follow Converse on Youtube",
+            "text": "To get credit for this entry, you must tweet about this on your twitter page. Likes & comments are appreciated, but no required. Thanks!"
+        },
+        "twitch": {
+            "title": "Follow Converse on Twitch",
+            "text": "To get credit for this entry, you must tweet about this on your twitter page. Likes & comments are appreciated, but no required. Thanks!"
+        },
+        "instagram": {
+            "title": "Follow Converse on Instagram",
+            "text": "To get credit for this entry, you must tweet about this on your twitter page. Likes & comments are appreciated, but no required. Thanks!"
+        },
+        "other": {
+            "title": "",
+            "text": "To get credit for this entry, you must answer this question. Thanks!"
+        },
+        "video": {
+            "title": "Watch Video to participate",
+            "text": "Watch Video to participate"
+        },
+        "watch_video": "Watch a Video"
     },
 
     "my_campaign_page": {
@@ -161,6 +192,7 @@
         "upload_image":"Upload Image",
         "categories": "Categories",
         "url_video": "Video URL",
+        "video_name": "Video Name",
         "categories_placeholder": "Please select categories",
         "campaign_starts": "Campaign Starts",
         "campaign_ends": "Campaign Ends",

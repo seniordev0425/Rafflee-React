@@ -18,6 +18,7 @@ import TwitterConnectBtn from '../../common/Buttons/TwitterConnectBtn'
 import TwitchConnectBtn from '../../common/Buttons/TwitchConnectBtn'
 import YoutubeConnectBtn from '../../common/Buttons/YoutubeConnectBtn'
 import InstagramConnectBtn from '../../common/Buttons/InstagramConnectBtn'
+import SteamConnectBtn from '../../common/Buttons/SteamConnectBtn'
 import { getUserProfile, sendSms, updateUserProfile } from '../../../actions/userInfo'
 import moment from 'moment'
 
@@ -360,6 +361,12 @@ function UserAccountForm(props){
                                     <div className="half-width">
                                         <div className="footer-link-bold mb-3">Instagram</div>
                                         <InstagramConnectBtn/>
+                                    </div>
+                                </div>
+                                <div className="mt-4 d-flex justify-content-end">
+                                    <div className="half-width">
+                                        <div className="footer-link-bold mb-3">Steam</div>
+                                        <SteamConnectBtn/>
                                     </div>
                                 </div>
 

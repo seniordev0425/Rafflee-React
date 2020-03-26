@@ -321,6 +321,15 @@ h2 span {
     background: #6422FF 0% 0% no-repeat padding-box;
     border-radius: 6px 0px 0px 6px;
 }
+.other-icon-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    background: #22B9A7 0% 0% no-repeat padding-box;
+    border-radius: 6px 0px 0px 6px;
+}
 .twitch-icon-container1 img {
     width: 1.5rem;
 }
@@ -380,6 +389,29 @@ h2 span {
     text-align: center;
     background: #7E3AAC 0% 0% no-repeat padding-box;
     border-radius: 0px 6px 6px 0px;
+}
+.steam-icon-container1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    background: #8cbfff 0% 0% no-repeat padding-box;
+    border-radius: 6px 0px 0px 6px;
+}
+.steam-icon-container1 img {
+    width: 1.5rem;
+}
+.steam-icon-container2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    color: white;
+    text-align: center;
+    background: #0a458f 0% 0% no-repeat padding-box;
+    border-radius: 0px 6px 6px 0px; 
 }
 .selected-flag {
     height: 100% !important;
@@ -567,12 +599,6 @@ h2 span {
     height: 85px;
     border-radius: 6px;
 }
-@media (max-width: 500px){
-    .promotion-list-item-img img{
-        width: 65px;
-        height: 65px;
-    }
-}
 .promotion-list-item-title {
     font-size: 22px;
     color: #0091ff;
@@ -581,6 +607,18 @@ h2 span {
 .promotion-list-item-text {
     font-size: 1.1rem;
     margin-top: 20px;
+}
+@media (max-width: 575px) {
+    .promotion-list-item-img img{
+        width: 65px;
+        height: 65px;
+    }
+    .promotion-list-item-title {
+        font-size: 18px;
+    }
+    .promotion-list-item-text {
+        font-size: 1rem;
+    }
 }
 .promotion-list-item-btn {
     width: 200px;   
@@ -852,6 +890,30 @@ h2 span {
     align-items: center;
     background: #FFDDDD;
 }
+.collapse-instagram-icon {
+    height: 40px;
+    width: 50px;
+    border-radius: 6px;
+    position: absolute;
+    top: 16px;
+    left: 13px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #481e64;
+}
+.collapse-twitch-icon {
+    height: 40px;
+    width: 50px;
+    border-radius: 6px;
+    position: absolute;
+    top: 16px;
+    left: 13px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #6422ff;
+}
 .collapse-other-icon {
     height: 40px;
     width: 50px;
@@ -863,6 +925,21 @@ h2 span {
     justify-content: center;
     align-items: center;
     background: #22B9A7;
+    color: white;
+    font-weight: bolder;
+    font-size: 1.4rem;
+}
+.collapse-video-icon {
+    height: 40px;
+    width: 50px;
+    border-radius: 6px;
+    position: absolute;
+    top: 16px;
+    left: 13px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f58d9ae8;
     color: white;
     font-weight: bolder;
     font-size: 1.4rem;
@@ -914,7 +991,7 @@ h2 span {
 .menu-item-mr {
     margin-right: 3rem;
 }
-@media (max-width: 700px) {
+@media (max-width: 800px) {
     .menu-item-mr {
         margin-right: 0px;
     }
@@ -950,6 +1027,8 @@ h2 span {
     margin-bottom: 0px;
 }
 .campaign-main-panel {
+    font-size: 22px;
+    font-weight: bold;
     height: 25vw;
     margin-left: 15px;
     margin-right: 15px; 
@@ -959,6 +1038,15 @@ h2 span {
 }
 .campaign-main-panel .left div {
     height: calc(25vw - 6px);
+}
+@media (max-width: 1400px) {
+    .campaign-main-panel {
+        font-size: 18px;
+        height: 33vw;
+    }
+    .campaign-main-panel .left div {
+        height: calc(33vw - 6px);
+    }
 }
 .campaign-main-panel .right .div-item {
     padding: 15px 0px;
@@ -974,6 +1062,32 @@ h2 span {
     display: flex;
     justify-content: center;
     flex-direction: column;
+}
+.campaign-main-panel-mobile {
+    display: none;
+    font-size: 16px;
+    font-weight: bold;
+    margin-left: 15px;
+    margin-right: 15px; 
+    padding: 0px; 
+    border: 1px solid #8ACDFF; 
+    background: #8acdff08;
+}
+.campaign-main-panel-mobile-footer {
+    display: none;
+    font-size: 16px;
+    font-weight: bold;
+}
+@media (max-width: 1100px) {
+    .campaign-main-panel-mobile {
+        display: flex;
+    }
+    .campaign-main-panel-mobile-footer {
+        display: flex;
+    }
+    .campaign-main-panel {
+        display: none;
+    }
 }
 .participate-btn-size {
     width: 170px;
@@ -1056,6 +1170,23 @@ h2 span {
 }
 .multi-categories-selector .ant-select-selection--single {
     height: 50px !important;
+}
+.social-btn {
+    display: inline-flex;
+    height: 35px;
+    align-items: center;
+    padding: 0px 15px;
+    border: 1px solid;
+    border-radius: 6px;
+    color: white;
+    background: #0091ff;
+    cursor: pointer;
+}
+
+@media (max-width: 575px) {
+    .social-btn {
+        font-size: 0.8rem;
+    }
 }
 
 

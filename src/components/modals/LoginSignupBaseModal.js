@@ -1,13 +1,16 @@
 import React from 'react'
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { deviceDetect, isMobile } from 'react-device-detect'
 import PropTypes from 'prop-types'
 import LogInModal from './LogInModal'
 import SignUpModal from './SignUpModal'
 import CompanyModal from './CompanyModal'
-import FaceBookSignBtn from '../common/Buttons/FaceBookSignBtn'
-import GoogleSignBtn from '../common/Buttons/GoogleSignBtn'
 import { Row, Modal, ModalHeader, ModalBody} from 'reactstrap'
-import FacebookLogin from 'react-facebook-login';
+import GoogleSignBtn from '../common/Buttons/GoogleSignBtn'
+import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
+import FaceBookSignBtn from '../common/Buttons/FaceBookSignBtn'
+import { FACEBOOK_APP_ID } from '../../utils/constants'
+import { facebookLogin } from '../../actions/userInfo'
 
 import { useTranslation } from 'react-i18next'
 
@@ -15,10 +18,18 @@ function LoginSignupBaseModal(props){
     const { t } = useTranslation()
 
     const {isLogin, switch_login_signin, modal, toggle, companyStatus, showCompanyModal} = props
+    const ip = useSelector(state=>state.userInfo.ip)
     const token = useSelector(state=>state.userInfo.token)
+    const dispatch = useDispatch()
 
     const responseFacebook = (response) => {
         console.log(response)
+        var body = {
+            device_id: isMobile ? deviceDetect().model : 'Laptop',
+            ip: ip,
+            access_token: response.accessToken
+        }
+        dispatch(facebookLogin(body))
     }
  
     return (
@@ -40,9 +51,12 @@ function LoginSignupBaseModal(props){
                                 </div>
                                 <div style={{marginTop: "2rem"}}>
                                     <FacebookLogin
-                                        appId="569090800341241"
+                                        appId={FACEBOOK_APP_ID}
                                         fields="name,email,picture"
                                         callback={responseFacebook} 
+                                        render={renderProps => (
+                                            <div onClick={renderProps.onClick}><FaceBookSignBtn/></div>
+                                        )}
                                     />
                                 </div>   
                                 <div style={{marginTop: "1rem"}}>
@@ -53,8 +67,6 @@ function LoginSignupBaseModal(props){
                         
                     </ModalBody>
             </Modal>
-            
-            
         </>
     );
 }

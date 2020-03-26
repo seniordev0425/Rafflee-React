@@ -1,8 +1,8 @@
 import React from 'react'
-import {FormGroup, Input, Row, Col} from 'reactstrap'
+import { FormGroup, Input, Row, Col } from 'reactstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
-
+import { required } from '../../../utils/validation'
 import { useTranslation } from 'react-i18next'
 
 function WinningItem(props){
@@ -22,7 +22,6 @@ function WinningItem(props){
                             className="custom-form-control"
                             type="text"
                             required
-                            
                         />
                     </FormGroup>
                 </div>
@@ -36,8 +35,8 @@ function WinningItem(props){
                             value={item.description}
                             onChange={(e) => setWinningVal(e, id, 'description')}
                             className="custom-form-control"
-                            type="text"   
-                            required
+                            type="text" 
+                            required  
                         />
                     </FormGroup>
                 </div>
@@ -51,8 +50,8 @@ function WinningItem(props){
                             value={item.number_of_people}
                             onChange={(e) => setWinningVal(e, id, 'number_of_people')}
                             className="custom-form-control"
-                            type="number"      
-                            required          
+                            type="number"        
+                            required
                         />
                     </FormGroup>
                 </div>

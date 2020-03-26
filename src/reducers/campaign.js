@@ -12,7 +12,7 @@ const initialFeedState = {
         favorite: false,
         campaign_image: '',
         poll: {},
-        social_action: []
+        action_participate: []
     },
     participants: [],
     campaignWinnings: [],

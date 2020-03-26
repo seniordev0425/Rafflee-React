@@ -1,8 +1,11 @@
 import React from 'react'
-import {Container, Row, Col} from 'reactstrap'
+import { useSelector } from 'react-redux'
+import { Row, Col } from 'reactstrap'
 import images from '../../../utils/images'
 
 function FaceBookSignBtn(){
+
+    const isLoading = useSelector(state=>state.userInfo.FACEBOOK_LOG_IN)
     return(
 
             <Row className="pointer">

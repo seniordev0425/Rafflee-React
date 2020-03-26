@@ -4,7 +4,7 @@ import { Row, Col } from 'reactstrap'
 
 function Footer(){
     return(
-        <div className="footer-link" style={{marginTop: "15px"}}>
+        <div className="footer-link py-3">
             <Row>
                 <Col xs={{size: 10, offset: 1}}>
                     <Row className="justify-content-center">
