@@ -8,7 +8,7 @@ import { updateFavorite } from '../../../actions/userInfo'
 
 import { useTranslation } from 'react-i18next'
 
-function MyFollowingItem(props){
+function MyFollowingItem(props) {
     const { t } = useTranslation()
 
     const { item } = props
@@ -21,21 +21,20 @@ function MyFollowingItem(props){
         dispatch(updateFavorite(body, 'following'))
     }
 
-    return(
-
+    return (
         <div>
             <Row>
-                <Col xs="12" sm={{size: 10, offset: 1}}>
+                <Col xs="12" sm={{ size: 10, offset: 1 }}>
                     <Row>
                         <Col lg="1" md="2" sm="2" xs="3" className="promotion-list-item-img">
-                            <img src={images.profile_img}/>
+                            <img src={images.profile_img} />
                         </Col>
                         <Col lg="11" md="10" sm="10" xs="9" className="pl-sm-5">
                             <div className="promotion-list-item-title">{item.promotion}
                                 <span className={Date.parse(item.end_date) > Date.now() ? "green-dot" : "red-dot"}></span>
                             </div>
                             <div className="promotion-list-item-text">{item.description}</div>
-                            <div style={{marginTop:"20px", height:"40px"}}>
+                            <div style={{ marginTop: "20px", height: "40px" }}>
                                 <Link to={"/campaign-detail/" + item.id}>
                                     <Button
                                         size="lg"
@@ -46,15 +45,15 @@ function MyFollowingItem(props){
                                     </Button>
                                 </Link>
                                 <div className="promotion-list-item-star" onClick={update}>
-                                    <img src={images.trans_star_favorite}/>
+                                    <img src={images.trans_star_favorite} />
                                 </div>
                             </div>
-                            
+
                         </Col>
                     </Row>
                 </Col>
             </Row>
-        </div>   
+        </div>
 
     )
 }

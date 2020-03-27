@@ -7,8 +7,8 @@ const initialFeedState = {
     categories: []
 }
 
-function Homepage(state = initialFeedState, action){
-    switch(action.type){
+function Homepage(state = initialFeedState, action) {
+    switch (action.type) {
         case 'GET_ALL_PROMOTIONS_SUCCESS':
             return {
                 ...state,
@@ -44,7 +44,7 @@ function Homepage(state = initialFeedState, action){
                 return {
                     ...state,
                     hotPromotions: state.hotPromotions.map(promotion => promotion.pk === action.id ?
-                        {...promotion, favorite: !promotion.favorite} : promotion
+                        { ...promotion, favorite: !promotion.favorite } : promotion
                     )
                 }
             }
@@ -52,7 +52,7 @@ function Homepage(state = initialFeedState, action){
                 return {
                     ...state,
                     highlightedPromotions: state.highlightedPromotions.map(promotion => promotion.pk === action.id ?
-                        {...promotion, favorite: !promotion.favorite} : promotion
+                        { ...promotion, favorite: !promotion.favorite } : promotion
                     )
                 }
             }
@@ -60,7 +60,7 @@ function Homepage(state = initialFeedState, action){
                 return {
                     ...state,
                     newPromotions: state.newPromotions.map(promotion => promotion.pk === action.id ?
-                        {...promotion, favorite: !promotion.favorite} : promotion
+                        { ...promotion, favorite: !promotion.favorite } : promotion
                     )
                 }
             }
@@ -68,7 +68,7 @@ function Homepage(state = initialFeedState, action){
                 return {
                     ...state,
                     bestOfferPromotions: state.bestOfferPromotions.map(promotion => promotion.pk === action.id ?
-                        {...promotion, favorite: !promotion.favorite} : promotion
+                        { ...promotion, favorite: !promotion.favorite } : promotion
                     )
                 }
             }
@@ -76,7 +76,7 @@ function Homepage(state = initialFeedState, action){
                 return {
                     ...state,
                     allPromotions: state.allPromotions.map(promotion => promotion.pk === action.id ?
-                        {...promotion, favorite: !promotion.favorite} : promotion
+                        { ...promotion, favorite: !promotion.favorite } : promotion
                     )
                 }
             }

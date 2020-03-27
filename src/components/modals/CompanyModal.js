@@ -6,17 +6,17 @@ import FormInput from '../common/FormInput'
 import FormPhoneInput from '../common/FormPhoneInput'
 import { companyContact } from '../../actions/userInfo'
 import {
-    required, 
+    required,
     requiredPhoneObj
 } from '../../utils/validation'
 
 import { useTranslation } from 'react-i18next'
 
 
-function CompanyModal(){
+function CompanyModal() {
     const { t } = useTranslation()
 
-    const isLoading = useSelector(state=>state.userInfo.COMPANY_CONTACT_SUCCESS)
+    const isLoading = useSelector(state => state.userInfo.COMPANY_CONTACT_SUCCESS)
     const dispatch = useDispatch()
 
     const onSubmit = (values) => {
@@ -28,15 +28,15 @@ function CompanyModal(){
         }
         dispatch(companyContact(body))
     }
-    return(
-        
-        <div style={{fontFamily:"sofiapro"}}>
-            <Row style={{margin: 0}}>
+    return (
+
+        <div style={{ fontFamily: "sofiapro" }}>
+            <Row style={{ margin: 0 }}>
                 <div className="modal-company-btn">{t('company_modal.company_form')}</div>
             </Row>
             <FinalForm
                 onSubmit={onSubmit}
-                render={({handleSubmit, pristine, values}) => (
+                render={({ handleSubmit, pristine, values }) => (
                     <Form onSubmit={handleSubmit}>
                         <FormGroup>
                             <Field
@@ -80,16 +80,16 @@ function CompanyModal(){
 
                             />
                         </FormGroup>
-                        
+
                         <Button
                             type="submit"
                             size="lg"
                             color="primary"
                             className="blue-btn"
                             disabled={isLoading}
-                            style={{marginTop: '20px'}}
+                            style={{ marginTop: '20px' }}
                         >
-                        {t('button_group.send_message')}
+                            {t('button_group.send_message')}
                         </Button>
                         <div className="company-question-button-container">
                             {t('company_modal.need_help')} {t('company_modal.contact_us')} <span className="company-question-button">{t('company_modal.here')}</span>

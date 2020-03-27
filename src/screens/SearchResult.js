@@ -11,14 +11,14 @@ function SearchResult(props) {
     useEffect(() => {
         document.title = 'Search'
     }, [])
-    
-    return(
-        <div style={{fontFamily:"sofiapro"}}>
-            <JoinHeader/>
-            <Header/>
-            <SearchResultLayout searchKey={props.location.state.searchKey}/>
-            <FooterLink/>
-            <Footer/>
+
+    return (
+        <div style={{ fontFamily: "sofiapro" }}>
+            <JoinHeader />
+            <Header />
+            <SearchResultLayout searchKey={props.location.state.searchKey} />
+            <FooterLink />
+            <Footer />
         </div>
     )
 }

@@ -41,15 +41,15 @@ const initialFeedState = {
     myFollowing: [],
     myCampaigns: [],
     myBills: [],
-    
+
 }
 
-function UserInfo(state = initialFeedState, action){
-    switch(action.type){
+function UserInfo(state = initialFeedState, action) {
+    switch (action.type) {
         case 'INIT_STATE':
             return {
                 ...state,
-                [action.state]: action.data 
+                [action.state]: action.data
             }
         case 'API_START':
             return {
@@ -65,7 +65,7 @@ function UserInfo(state = initialFeedState, action){
         case 'API_SUCCESS':
             return {
                 ...state,
-                [action.payload]: true 
+                [action.payload]: true
             }
         case 'API_ERROR':
             return {
@@ -75,13 +75,13 @@ function UserInfo(state = initialFeedState, action){
             return {
                 ...state
             }
-        case 'GET_USER_PROFILE_SUCCESS': 
+        case 'GET_USER_PROFILE_SUCCESS':
             return {
                 ...state,
                 userProfile: action.data,
                 phone_number_verified: action.data.phone_number_verification
             }
-        case 'GET_COMPANY_PROFILE_SUCCESS': 
+        case 'GET_COMPANY_PROFILE_SUCCESS':
             return {
                 ...state,
                 companyProfile: action.data
@@ -96,7 +96,7 @@ function UserInfo(state = initialFeedState, action){
                 ...state,
                 token: action.data.token,
                 company: action.data.company
-            }    
+            }
         case 'SIGN_UP_SUCCESS':
             return {
                 ...state,
@@ -125,25 +125,25 @@ function UserInfo(state = initialFeedState, action){
             }
         case 'GET_USER_INVENTORY_SUCCESS':
             return {
-                ...state, 
+                ...state,
                 userInventory: action.data
             }
-        case 'GET_PARTICIPATION_HISTORY_SUCCESS': 
+        case 'GET_PARTICIPATION_HISTORY_SUCCESS':
             return {
                 ...state,
                 userParticipationHistory: action.data
             }
-        case 'GET_FOLLOWING_SUCCESS': 
+        case 'GET_FOLLOWING_SUCCESS':
             return {
                 ...state,
                 myFollowing: action.data
             }
-        case 'GET_MY_CAMPAIGNS_SUCCESS': 
+        case 'GET_MY_CAMPAIGNS_SUCCESS':
             return {
                 ...state,
                 myCampaigns: action.data
             }
-        case 'GET_MY_BILLS_SUCCESS': 
+        case 'GET_MY_BILLS_SUCCESS':
             return {
                 ...state,
                 myBills: action.data
@@ -153,18 +153,18 @@ function UserInfo(state = initialFeedState, action){
                 return {
                     ...state,
                     userInventory: state.userInventory.map(promotion => promotion.pk === action.id ?
-                        {...promotion, favorite: !promotion.favorite} : promotion
+                        { ...promotion, favorite: !promotion.favorite } : promotion
                     ),
-                    myFollowing: action.result === 'FAVORITE_ADDED' ? [...state.myFollowing, {id: 10}] : state.myFollowing.filter((_, i) => i !== state.myFollowing.length - 1)
+                    myFollowing: action.result === 'FAVORITE_ADDED' ? [...state.myFollowing, { id: 10 }] : state.myFollowing.filter((_, i) => i !== state.myFollowing.length - 1)
                 }
             }
             else if (action.arrname === 'participation_history') {
                 return {
                     ...state,
                     userParticipationHistory: state.userParticipationHistory.map(promotion => promotion.pk === action.id ?
-                        {...promotion, favorite: !promotion.favorite} : promotion
+                        { ...promotion, favorite: !promotion.favorite } : promotion
                     ),
-                    myFollowing: action.result === 'FAVORITE_ADDED' ? [...state.myFollowing, {id: 10}] : state.myFollowing.filter((_, i) => i !== state.myFollowing.length - 1)
+                    myFollowing: action.result === 'FAVORITE_ADDED' ? [...state.myFollowing, { id: 10 }] : state.myFollowing.filter((_, i) => i !== state.myFollowing.length - 1)
                 }
             }
             else if (action.arrname === 'following') {
@@ -173,7 +173,7 @@ function UserInfo(state = initialFeedState, action){
                     myFollowing: state.myFollowing.filter((promotion) => promotion.id !== action.id)
                 }
             }
-        
+
         default:
             return state
     }

@@ -1,7 +1,7 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import { connect, useSelector, useDispatch } from "react-redux";
-import {Form as FinalForm, Field} from 'react-final-form'
-import {Form, FormGroup, Button} from 'reactstrap'
+import { Form as FinalForm, Field } from 'react-final-form'
+import { Form, FormGroup, Button } from 'reactstrap'
 import { deviceDetect, isMobile } from 'react-device-detect'
 import FormInput from '../common/FormInput'
 import FormCheckbox from '../common/FormCheckbox'
@@ -11,13 +11,13 @@ import { required } from '../../utils/validation'
 
 import { useTranslation } from 'react-i18next'
 
-function LogInModal(props){
+function LogInModal(props) {
     const { t } = useTranslation()
-    
+
     const { toggle } = props
 
-    const isLoading = useSelector(state=>state.userInfo.LOG_IN_SUCCESS)
-    const ip = useSelector(state=>state.userInfo.ip)
+    const isLoading = useSelector(state => state.userInfo.LOG_IN_SUCCESS)
+    const ip = useSelector(state => state.userInfo.ip)
     const dispatch = useDispatch()
 
     const [openForgotModal, setOpenForgotModal] = useState(false)
@@ -31,15 +31,15 @@ function LogInModal(props){
             device_id: isMobile ? deviceDetect().model : 'Laptop',
             ip: ip
         }
-        dispatch(logIn(body, values.rememberMe)) 
+        dispatch(logIn(body, values.rememberMe))
     }
-    
-    return(
-        
+
+    return (
+
         <div>
             <FinalForm
                 onSubmit={onSubmit}
-                render={({handleSubmit}) => (
+                render={({ handleSubmit }) => (
                     <Form onSubmit={handleSubmit}>
                         <FormGroup>
                             <Field
@@ -63,7 +63,7 @@ function LogInModal(props){
                             />
                         </FormGroup>
                         <FormGroup>
-                           
+
                             <Field
                                 name="rememberMe"
                                 component={FormCheckbox}
@@ -78,7 +78,7 @@ function LogInModal(props){
                             color="primary"
                             className="blue-btn"
                             disabled={isLoading}
-                            style={{marginTop: '20px'}}
+                            style={{ marginTop: '20px' }}
                         >
                             {t('button_group.log_in')}
                         </Button>

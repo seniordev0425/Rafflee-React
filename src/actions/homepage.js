@@ -5,11 +5,11 @@ import { openNotification } from '../utils/notification'
 const qs = require('querystring')
 
 function onFailed(error) {
-  openNotification('warning', error)
-  return {
-    type: 'API_FAILED',
-    error: error    
-  }
+    openNotification('warning', error)
+    return {
+        type: 'API_FAILED',
+        error: error
+    }
 }
 /////////////////////////////////////////////// GET_ALL_PROMOTIONS_ACTION
 export function getAllPromotions(params) {
@@ -136,24 +136,24 @@ function apiAction({
     method = "GET",
     data = null,
     accessToken = null,
-    onSuccess = () => {},
-    onFailure = () => {},
+    onSuccess = () => { },
+    onFailure = () => { },
     label = "",
     headersOverride = null,
     requireErrorMessage = false
-  }) {
+}) {
     return {
-      type: API,
-      payload: {
-        url,
-        method,
-        data,
-        accessToken,
-        onSuccess,
-        onFailure,
-        label,
-        headersOverride,
-        requireErrorMessage
-      }
+        type: API,
+        payload: {
+            url,
+            method,
+            data,
+            accessToken,
+            onSuccess,
+            onFailure,
+            label,
+            headersOverride,
+            requireErrorMessage
+        }
     };
 }

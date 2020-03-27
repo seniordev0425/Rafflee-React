@@ -8,20 +8,20 @@ import { useTranslation } from 'react-i18next'
 
 import { required } from '../../../utils/validation'
 
-function FinalLayout(props){
+function FinalLayout(props) {
     const { t } = useTranslation()
 
-    const {poll, firstFormData, createNewPromotion} = props
+    const { poll, firstFormData, createNewPromotion } = props
 
-    const isLoading = useSelector(state=>state.userInfo.CREATE_CAMPAIGN)
-    const SUCCESS_CREATE_CAMPAIGN = useSelector(state=>state.userInfo.SUCCESS_CREATE_CAMPAIGN)
-    
+    const isLoading = useSelector(state => state.userInfo.CREATE_CAMPAIGN)
+    const SUCCESS_CREATE_CAMPAIGN = useSelector(state => state.userInfo.SUCCESS_CREATE_CAMPAIGN)
+
     const dispatch = useDispatch()
 
     useEffect(() => {
         if (SUCCESS_CREATE_CAMPAIGN) {
             createNewPromotion()
-            dispatch({type: 'INIT_STATE', state: 'SUCCESS_CREATE_CAMPAIGN', data: false})
+            dispatch({ type: 'INIT_STATE', state: 'SUCCESS_CREATE_CAMPAIGN', data: false })
         }
     }, [SUCCESS_CREATE_CAMPAIGN])
 
@@ -41,25 +41,25 @@ function FinalLayout(props){
             formdata.append("poll", JSON.stringify(poll));
         else formdata.append("poll", "false");
         formdata.append("twitter", JSON.stringify(firstFormData.social_actions.twitter));
-        formdata.append("facebook",  JSON.stringify(firstFormData.social_actions.facebook));
-        formdata.append("instagram",  JSON.stringify(firstFormData.social_actions.instagram));
-        formdata.append("youtube",  JSON.stringify(firstFormData.social_actions.youtube));
-        formdata.append("twitch",  JSON.stringify(firstFormData.social_actions.twitch));
+        formdata.append("facebook", JSON.stringify(firstFormData.social_actions.facebook));
+        formdata.append("instagram", JSON.stringify(firstFormData.social_actions.instagram));
+        formdata.append("youtube", JSON.stringify(firstFormData.social_actions.youtube));
+        formdata.append("twitch", JSON.stringify(firstFormData.social_actions.twitch));
         if (firstFormData.categories)
-            formdata.append("categories",  JSON.stringify(firstFormData.categories));
-        else formdata.append("categories",  "false");
+            formdata.append("categories", JSON.stringify(firstFormData.categories));
+        else formdata.append("categories", "false");
         formdata.append("url_video", JSON.stringify(firstFormData.url_video));
 
         dispatch(createCampaign(formdata))
     }
-    
-    return(
+
+    return (
         <FinalForm
             onSubmit={onSubmit}
-            render={({handleSubmit}) => (
+            render={({ handleSubmit }) => (
                 <Form onSubmit={handleSubmit}>
                     <Row>
-                        <Col xs={{size: 10, offset: 1}}>
+                        <Col xs={{ size: 10, offset: 1 }}>
                             <Row>
                                 <Col xs="12" sm="6">
                                     <Row>
@@ -75,7 +75,7 @@ function FinalLayout(props){
                                                 />
                                             </FormGroup>
                                         </div>
-                                    </Row>      
+                                    </Row>
                                     <Row>
                                         <div className="mt-4 full-width">
                                             <FormGroup>
@@ -89,7 +89,7 @@ function FinalLayout(props){
                                                 />
                                             </FormGroup>
                                         </div>
-                                    </Row>      
+                                    </Row>
                                     <Row>
                                         <div className="mt-4 full-width">
                                             <FormGroup>
@@ -103,7 +103,7 @@ function FinalLayout(props){
                                                 />
                                             </FormGroup>
                                         </div>
-                                    </Row> 
+                                    </Row>
                                     <Row>
                                         <div className="mt-4 full-width">
                                             <FormGroup>
@@ -117,11 +117,11 @@ function FinalLayout(props){
                                                 />
                                             </FormGroup>
                                         </div>
-                                    </Row>           
+                                    </Row>
                                 </Col>
                                 <Col xs="12" sm="6">
                                     <Row>
-                                        <Col xs="12" sm={{size:9, offset: 3}}>
+                                        <Col xs="12" sm={{ size: 9, offset: 3 }}>
                                             <Row>
                                                 <div className="footer-link-bold mb-3 mt-4">{t('create_campaign_page.campaign_total')}</div>
                                             </Row>
@@ -132,19 +132,19 @@ function FinalLayout(props){
                                                 <div className="footer-link mb-3">{t('create_campaign_page.IVA')}:$20</div>
                                             </Row>
                                             <Row>
-                                                <div className="footer-link mb-3" style={{paddingTop:20, borderTop:"1px solid #DEE6E9"}}>
+                                                <div className="footer-link mb-3" style={{ paddingTop: 20, borderTop: "1px solid #DEE6E9" }}>
                                                     {t('create_campaign_page.total')}:$5643
                                                 </div>
                                             </Row>
                                             <Row>
-                                                <Button className="btn blue-btn mt-3" color="primary" style={{width:200}} disabled={isLoading} onClick={onSubmit}>
+                                                <Button className="btn blue-btn mt-3" color="primary" style={{ width: 200 }} disabled={isLoading} onClick={onSubmit}>
                                                     {t('button_group.create_campaign')}
                                                 </Button>
                                             </Row>
                                         </Col>
                                     </Row>
                                 </Col>
-                            </Row>                                              
+                            </Row>
                         </Col>
                     </Row>
                 </Form>

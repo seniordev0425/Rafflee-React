@@ -8,12 +8,12 @@ import PdfLayout from '../components/layouts/pdfLayout'
 
 function GeneralConditions() {
     return (
-        <div style={{fontFamily:"sofiapro"}}>
-            <JoinHeader/>
-            <Header/>
-            <PdfLayout name="general"/>
-            <FooterLink/>
-            <Footer/>
+        <div style={{ fontFamily: "sofiapro" }}>
+            <JoinHeader />
+            <Header />
+            <PdfLayout name="general" />
+            <FooterLink />
+            <Footer />
         </div>
     )
 }

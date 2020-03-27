@@ -9,14 +9,14 @@ import FooterLink from '../components/layouts/footer/FooterLink'
 import Footer from '../components/layouts/footer/Footer'
 
 
-function Deals(){
+function Deals() {
     return (
-        <div style={{fontFamily:"sofiapro"}}>
-            <JoinHeader/>
-            <Header/>
-            <CurrentPromotionList/>
-            <FooterLink/>
-            <Footer/>
+        <div style={{ fontFamily: "sofiapro" }}>
+            <JoinHeader />
+            <Header />
+            <CurrentPromotionList />
+            <FooterLink />
+            <Footer />
         </div>
     );
 }

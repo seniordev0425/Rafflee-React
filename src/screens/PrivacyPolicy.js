@@ -8,12 +8,12 @@ import PdfLayout from '../components/layouts/pdfLayout'
 
 function PrivacyPolicy() {
     return (
-        <div style={{fontFamily:"sofiapro"}}>
-            <JoinHeader/>
-            <Header/>
-            <PdfLayout name="policy"/>
-            <FooterLink/>
-            <Footer/>
+        <div style={{ fontFamily: "sofiapro" }}>
+            <JoinHeader />
+            <Header />
+            <PdfLayout name="policy" />
+            <FooterLink />
+            <Footer />
         </div>
     )
 }

@@ -9,20 +9,20 @@ import { Switch } from 'antd'
 import { signUp } from '../../actions/userInfo'
 
 import {
-    composeValidators, 
-    required, 
-    isEmail, 
+    composeValidators,
+    required,
+    isEmail,
 } from '../../utils/validation'
 
 import { useTranslation } from 'react-i18next'
 
-function SignUpModal(props){
+function SignUpModal(props) {
     const { t } = useTranslation()
 
     const { showCompanyModal, toggle, history } = props
 
-    const isLoading = useSelector(state=>state.userInfo.SIGN_UP_SUCCESS)
-    const signUpSuccess = useSelector(state=>state.userInfo.signUpSuccess)
+    const isLoading = useSelector(state => state.userInfo.SIGN_UP_SUCCESS)
+    const signUpSuccess = useSelector(state => state.userInfo.signUpSuccess)
 
     const dispatch = useDispatch()
     const [agree, setAgree] = useState(false)
@@ -34,12 +34,12 @@ function SignUpModal(props){
     const [containEnoughLen, setContainEnoughLen] = useState(false)
 
     useEffect(() => {
-        if (signUpSuccess){
-            dispatch({type: 'SIGN_UP_SUCCESS', data: false})
+        if (signUpSuccess) {
+            dispatch({ type: 'SIGN_UP_SUCCESS', data: false })
             toggle()
-        } 
-    },[signUpSuccess])
-    
+        }
+    }, [signUpSuccess])
+
     const onSubmit = (values) => {
         if (!containCapital || !containSpecial || !containLowercase || !containCapital || !containNumber) return
         var body = {
@@ -63,12 +63,12 @@ function SignUpModal(props){
         setContainNumber(numberFormat.test(val))
         setContainEnoughLen(val.length >= 8)
     }
-    
-    return(
+
+    return (
         <div>
             <FinalForm
                 onSubmit={onSubmit}
-                render={({handleSubmit}) => (
+                render={({ handleSubmit }) => (
                     <Form onSubmit={handleSubmit}>
                         <FormGroup>
                             <Field
@@ -119,27 +119,27 @@ function SignUpModal(props){
                                 placeholder={t('signin_modal.confirm_password')}
                                 validate={required(t('signin_modal.confirm_password_required'))}
                             />
-                            
-                            <div className="mt-3" style={containSpecial ? {color: "green"} : {color: "#dc3545"}}>
+
+                            <div className="mt-3" style={containSpecial ? { color: "green" } : { color: "#dc3545" }}>
                                 {t('signin_modal.password_special_alert')}
                             </div>
-                            <div className="mt-2" style={containLowercase ? {color: "green"} : {color: "#dc3545"}}>
+                            <div className="mt-2" style={containLowercase ? { color: "green" } : { color: "#dc3545" }}>
                                 {t('signin_modal.password_lowercase_alert')}
                             </div>
-                            <div className="mt-2" style={containCapital ? {color: "green"} : {color: "#dc3545"}}>
+                            <div className="mt-2" style={containCapital ? { color: "green" } : { color: "#dc3545" }}>
                                 {t('signin_modal.password_capital_alert')}
                             </div>
-                            <div className="mt-2" style={containNumber ? {color: "green"} : {color: "#dc3545"}}>
+                            <div className="mt-2" style={containNumber ? { color: "green" } : { color: "#dc3545" }}>
                                 {t('signin_modal.password_number_alert')}
                             </div>
-                            <div className="mt-2" style={containEnoughLen ? {color: "green"} : {color: "#dc3545"}}>
+                            <div className="mt-2" style={containEnoughLen ? { color: "green" } : { color: "#dc3545" }}>
                                 {t('signin_modal.password_length_alert')}
                             </div>
-                        </FormGroup>                        
+                        </FormGroup>
                         <FormGroup>
                             <Switch onChange={() => setAgree(!agree)} />
-                            <span className="agree-container">{t('signin_modal.i_agree')} 
-                                <span className="policy-button" onClick={() => history.push('/general-conditions')}>{t('signin_modal.terms_of_use')}</span> {t('signin_modal.and')} 
+                            <span className="agree-container">{t('signin_modal.i_agree')}
+                                <span className="policy-button" onClick={() => history.push('/general-conditions')}>{t('signin_modal.terms_of_use')}</span> {t('signin_modal.and')}
                                 <span className="policy-button" onClick={() => history.push('/privacy-policy')}>{t('signin_modal.privacy_policy')}</span>
                             </span>
                         </FormGroup>
@@ -149,7 +149,7 @@ function SignUpModal(props){
                             color="primary"
                             className="blue-btn"
                             disabled={isLoading || !agree}
-                            style={{marginTop: '20px'}}
+                            style={{ marginTop: '20px' }}
                         >
                             {t('button_group.create_account')}
                         </Button>

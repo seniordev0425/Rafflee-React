@@ -11,21 +11,21 @@ import { useTranslation } from 'react-i18next'
 function ProfileActivated(props) {
   const { t } = useTranslation()
 
-  const {match} = props
+  const { match } = props
 
-  const isLoading = useSelector(state=>state.userInfo.GET_USER_INVENTORY_SUCCESS)
+  const isLoading = useSelector(state => state.userInfo.GET_USER_INVENTORY_SUCCESS)
   const dispatch = useDispatch()
 
   useEffect(() => {
     dispatch(profileActivate(match.params.id, match.params.token))
-  },[])
+  }, [])
 
   if (isLoading)
-    return <Loading/>
+    return <Loading />
 
-  return(
+  return (
     <>
-      <Header/>
+      <Header />
       <Container fluid className="mt-5">
         <section className="py-5 px-sm-5 px-4">
           <Row className="mt-5">

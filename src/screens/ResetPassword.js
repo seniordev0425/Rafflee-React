@@ -11,18 +11,18 @@ import { required } from '../utils/validation'
 
 import { useTranslation } from 'react-i18next'
 
-function ResetPassword(props){
+function ResetPassword(props) {
     const { t } = useTranslation()
 
     const { match, history } = props
 
-    const isLoading = useSelector(state=>state.userInfo.RESET_PASSWORD)
-    const RESET_PASSWORD_SUCCESS = useSelector(state=>state.userInfo.RESET_PASSWORD_SUCCESS)
+    const isLoading = useSelector(state => state.userInfo.RESET_PASSWORD)
+    const RESET_PASSWORD_SUCCESS = useSelector(state => state.userInfo.RESET_PASSWORD_SUCCESS)
     const dispatch = useDispatch()
 
     useEffect(() => {
         if (RESET_PASSWORD_SUCCESS) {
-            dispatch({type: 'RESET_PASSWORD_SUCCESS', flag: false})
+            dispatch({ type: 'RESET_PASSWORD_SUCCESS', flag: false })
             history.push('/')
         }
     }, [RESET_PASSWORD_SUCCESS])
@@ -37,48 +37,48 @@ function ResetPassword(props){
         dispatch(resetPassword(body))
     }
 
-    return(
+    return (
         <>
-        <Header/>
-        <div className="reset-password-form">
-            <FinalForm
-                onSubmit={onSubmit}
-                render={({handleSubmit}) => (
-                    <Form onSubmit={handleSubmit}>
-                        <FormGroup>
-                            <Field
-                                name="password"
-                                component={FormInput}
-                                className="custom-form-control"
-                                type="password"
-                                placeholder={t('signin_modal.password')}
-                                validate={required(t('signin_modal.password_required'))}
-                            />
-                        </FormGroup>
-                        <FormGroup>
-                            <Field
-                                name="password_confirmation"
-                                component={FormInput}
-                                className="custom-form-control"
-                                type="password"
-                                placeholder={t('signin_modal.confirm_password')}
-                                validate={required(t('signin_modal.confirm_password_required'))}
-                            />
-                        </FormGroup>
-                        <Button
-                            type="submit"
-                            size="lg"
-                            color="primary"
-                            className="blue-btn"
-                            disabled={isLoading}
-                            style={{marginTop: '20px'}}
-                        >
-                            {t('button_group.reset')}
-                        </Button>
-                    </Form>
-                )}
-            />
-        </div>
+            <Header />
+            <div className="reset-password-form">
+                <FinalForm
+                    onSubmit={onSubmit}
+                    render={({ handleSubmit }) => (
+                        <Form onSubmit={handleSubmit}>
+                            <FormGroup>
+                                <Field
+                                    name="password"
+                                    component={FormInput}
+                                    className="custom-form-control"
+                                    type="password"
+                                    placeholder={t('signin_modal.password')}
+                                    validate={required(t('signin_modal.password_required'))}
+                                />
+                            </FormGroup>
+                            <FormGroup>
+                                <Field
+                                    name="password_confirmation"
+                                    component={FormInput}
+                                    className="custom-form-control"
+                                    type="password"
+                                    placeholder={t('signin_modal.confirm_password')}
+                                    validate={required(t('signin_modal.confirm_password_required'))}
+                                />
+                            </FormGroup>
+                            <Button
+                                type="submit"
+                                size="lg"
+                                color="primary"
+                                className="blue-btn"
+                                disabled={isLoading}
+                                style={{ marginTop: '20px' }}
+                            >
+                                {t('button_group.reset')}
+                            </Button>
+                        </Form>
+                    )}
+                />
+            </div>
         </>
     );
 }

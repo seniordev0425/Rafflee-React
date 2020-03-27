@@ -26,10 +26,10 @@ import { useTranslation } from 'react-i18next'
 
 const API = 'https://api.ipify.org?format=jsonp?callback=?'
 
-function Routes(props){
+function Routes(props) {
     const { t } = useTranslation()
 
-    const {dispatch, history} = props
+    const { dispatch, history } = props
     const [authLoading, setAuthLoading] = useState(true)
     const [isFetchingIP, setIsFethingIP] = useState(false)
 
@@ -37,29 +37,29 @@ function Routes(props){
 
     const handleOnline = () => setOnline(navigator.onLine)
     const handleOffline = () => setOnline(navigator.onLine)
-    
+
     useEffect(() => {
         setIsFethingIP(true)
-        fetch(API, {method: 'GET', headers: {}})
-        .then(response => {
-            return response.text()
-        })
-        .then(ip => {
-            setIsFethingIP(false)
-            dispatch({type: 'FETCH_IP_SUCCESS', data: ip}) 
-        })
-        .catch(error => setIsFethingIP(false))
+        fetch(API, { method: 'GET', headers: {} })
+            .then(response => {
+                return response.text()
+            })
+            .then(ip => {
+                setIsFethingIP(false)
+                dispatch({ type: 'FETCH_IP_SUCCESS', data: ip })
+            })
+            .catch(error => setIsFethingIP(false))
 
         const _handleOnline = handleOnline
         const _handleOffline = handleOffline
         window.addEventListener('online', _handleOnline)
         window.addEventListener('offline', _handleOffline)
-    
+
         const token = sessionStorage.getItem('token')
-        const company = sessionStorage.getItem('company') 
+        const company = sessionStorage.getItem('company')
 
         const rememberToken = localStorage.getItem('token')
-        const rememberCompany= localStorage.getItem('company')
+        const rememberCompany = localStorage.getItem('company')
 
         if (!token && !rememberToken) {
             return
@@ -67,51 +67,51 @@ function Routes(props){
 
         if (token) {
             verifyToken(token)
-            .then(response => response.text())
-            .then(result => {
-                var json_rlt = JSON.parse(result)
-                if (json_rlt.token){
-                    dispatch({type: "LOG_IN_SUCCESS", data: {token: token, company: company === 'true'}})
-                }
-                else {
+                .then(response => response.text())
+                .then(result => {
+                    var json_rlt = JSON.parse(result)
+                    if (json_rlt.token) {
+                        dispatch({ type: "LOG_IN_SUCCESS", data: { token: token, company: company === 'true' } })
+                    }
+                    else {
+                        sessionStorage.clear()
+                        localStorage.removeItem('token')
+                        localStorage.removeItem('company')
+                        history.push('/')
+                    }
+                    setAuthLoading(false)
+                })
+                .catch(error => {
                     sessionStorage.clear()
-                    localStorage.removeItem('token')
-                    localStorage.removeItem('company')
-                    history.push('/')
-                }
-                setAuthLoading(false)
-            })
-            .catch(error => {
-                sessionStorage.clear()
-                setAuthLoading(false)
-            });
+                    setAuthLoading(false)
+                });
             return
         }
 
         if (rememberToken) {
             verifyToken(rememberToken)
-            .then(response => response.text())
-            .then(result => {
-                var json_rlt = JSON.parse(result)
-                if (json_rlt.token){
-                    dispatch({type: "LOG_IN_SUCCESS", data: {token: rememberToken, company: rememberCompany === 'true'}})
-                    sessionStorage.setItem('token', rememberToken)
-                    sessionStorage.setItem('company', rememberCompany)
-                }
-                else {
+                .then(response => response.text())
+                .then(result => {
+                    var json_rlt = JSON.parse(result)
+                    if (json_rlt.token) {
+                        dispatch({ type: "LOG_IN_SUCCESS", data: { token: rememberToken, company: rememberCompany === 'true' } })
+                        sessionStorage.setItem('token', rememberToken)
+                        sessionStorage.setItem('company', rememberCompany)
+                    }
+                    else {
+                        localStorage.removeItem('token')
+                        localStorage.removeItem('company')
+                        history.push('/')
+                    }
+                    setAuthLoading(false)
+                })
+                .catch(error => {
                     localStorage.removeItem('token')
                     localStorage.removeItem('company')
-                    history.push('/')
-                }
-                setAuthLoading(false)
-            })
-            .catch(error => {
-                localStorage.removeItem('token')
-                localStorage.removeItem('company')
-                setAuthLoading(false)
-            });
+                    setAuthLoading(false)
+                });
         }
-        
+
         return () => {
             window.removeEventListener('online', _handleOnline)
             window.removeEventListener('offline', _handleOffline)
@@ -119,12 +119,12 @@ function Routes(props){
     }, [])
 
     if ((authLoading && sessionStorage.getItem('token') && !props.token) || isFetchingIP) {
-        return <Loading/>
+        return <Loading />
     }
     return (
         <ScrollToTop>
             {
-                !online && openNotification('warning', 'Warning!','No internet connection detected. Make sure Wi-Fi or mobile data is turned on, then try again.')
+                !online && openNotification('warning', 'Warning!', 'No internet connection detected. Make sure Wi-Fi or mobile data is turned on, then try again.')
             }
             <Switch>
                 <Route exact path="/" component={Home} />
@@ -140,21 +140,21 @@ function Routes(props){
                 <Route component={NotFound} />
             </Switch>
             <CookieConsent
-                style={{justifyContent: "center", background: "#7778edd9"}}
-                contentStyle={{flex: null, textAlign: "center"}}
+                style={{ justifyContent: "center", background: "#7778edd9" }}
+                contentStyle={{ flex: null, textAlign: "center" }}
                 buttonText={t('button_group.accept')}
-                buttonStyle={{background: "#0091ff", color: "white", borderRadius: 3, margin: 0}}
-                enableDeclineButton = {true}
+                buttonStyle={{ background: "#0091ff", color: "white", borderRadius: 3, margin: 0 }}
+                enableDeclineButton={true}
                 flipButtons
                 declineButtonText={t('button_group.decline')}
-                declineButtonStyle={{background: "#f01212", borderRadius: 3, margin: 0, marginLeft: 15}}
+                declineButtonStyle={{ background: "#f01212", borderRadius: 3, margin: 0, marginLeft: 15 }}
             >
                 This site uses cookies, by continuing to use the service, you accept our Cookie Policy
             </CookieConsent>
         </ScrollToTop>
-        
+
     )
-    
+
 }
 function mapStateToProps(state) {
     return {

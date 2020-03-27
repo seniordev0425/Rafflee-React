@@ -1,4 +1,4 @@
-import React, { Suspense }from 'react'
+import React, { Suspense } from 'react'
 import ReactDOM from 'react-dom'
 import { createBrowserHistory } from 'history'
 import { createStore, applyMiddleware } from 'redux';
@@ -26,11 +26,11 @@ ReactDOM.render(
     <Suspense fallback="loading">
         <Provider store={store}>
             <Router history={history}>
-                <Routes/> 
+                <Routes />
             </Router>
         </Provider>
     </Suspense>
-    , 
+    ,
     document.getElementById('root')
 );
 

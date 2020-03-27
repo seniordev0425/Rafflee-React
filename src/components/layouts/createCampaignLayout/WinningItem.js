@@ -5,11 +5,11 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import { required } from '../../../utils/validation'
 import { useTranslation } from 'react-i18next'
 
-function WinningItem(props){
+function WinningItem(props) {
     const { t } = useTranslation()
 
-    const {id, item, removeWinning, setWinningVal} = props
-    return(
+    const { id, item, removeWinning, setWinningVal } = props
+    return (
         <Row>
             <Col xs="12" sm="4">
                 <div className="mt-4 half-width">
@@ -35,8 +35,8 @@ function WinningItem(props){
                             value={item.description}
                             onChange={(e) => setWinningVal(e, id, 'description')}
                             className="custom-form-control"
-                            type="text" 
-                            required  
+                            type="text"
+                            required
                         />
                     </FormGroup>
                 </div>
@@ -50,13 +50,13 @@ function WinningItem(props){
                             value={item.number_of_people}
                             onChange={(e) => setWinningVal(e, id, 'number_of_people')}
                             className="custom-form-control"
-                            type="number"        
+                            type="number"
                             required
                         />
                     </FormGroup>
                 </div>
-                
-                <FontAwesomeIcon className="remove-winning-icon" icon={faTrash} onClick={() => removeWinning(id)}/>      
+
+                <FontAwesomeIcon className="remove-winning-icon" icon={faTrash} onClick={() => removeWinning(id)} />
             </Col>
         </Row>
     )

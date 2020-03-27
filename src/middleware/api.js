@@ -24,12 +24,12 @@ const apiMiddleware = ({ dispatch }) => next => action => {
   // axios default configs
   axios.defaults.baseURL = process.env.REACT_APP_BASE_URL || "";
   axios.defaults.headers.common["Content-Type"] = "application/x-www-form-urlencoded";
-  if (accessToken){
-    if (label === 'SIGN_UP_SUCCESS')axios.defaults.headers.common["Authorization"] = accessToken;
+  if (accessToken) {
+    if (label === 'SIGN_UP_SUCCESS') axios.defaults.headers.common["Authorization"] = accessToken;
     else axios.defaults.headers.common["Authorization"] = `JWT ${accessToken}`;
   }
   else axios.defaults.headers.common["Authorization"] = null;
-    
+
   if (label) {
     dispatch(apiStart(label));
   }

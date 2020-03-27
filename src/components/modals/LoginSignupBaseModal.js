@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import LogInModal from './LogInModal'
 import SignUpModal from './SignUpModal'
 import CompanyModal from './CompanyModal'
-import { Row, Modal, ModalHeader, ModalBody} from 'reactstrap'
+import { Row, Modal, ModalHeader, ModalBody } from 'reactstrap'
 import GoogleSignBtn from '../common/Buttons/GoogleSignBtn'
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
 import FaceBookSignBtn from '../common/Buttons/FaceBookSignBtn'
@@ -14,12 +14,12 @@ import { facebookLogin } from '../../actions/userInfo'
 
 import { useTranslation } from 'react-i18next'
 
-function LoginSignupBaseModal(props){
+function LoginSignupBaseModal(props) {
     const { t } = useTranslation()
 
-    const {isLogin, switch_login_signin, modal, toggle, companyStatus, showCompanyModal} = props
-    const ip = useSelector(state=>state.userInfo.ip)
-    const token = useSelector(state=>state.userInfo.token)
+    const { isLogin, switch_login_signin, modal, toggle, companyStatus, showCompanyModal } = props
+    const ip = useSelector(state => state.userInfo.ip)
+    const token = useSelector(state => state.userInfo.token)
     const dispatch = useDispatch()
 
     const responseFacebook = (response) => {
@@ -31,41 +31,41 @@ function LoginSignupBaseModal(props){
         }
         dispatch(facebookLogin(body))
     }
- 
+
     return (
         <>
-            <Modal isOpen={modal && !token} toggle={toggle} style={{top: 165}}>
-                    <ModalHeader toggle={toggle} style={{borderBottom: 'none'}}></ModalHeader>
-                    <ModalBody className="modal-body-padding">
-                        {companyStatus === true ? (<CompanyModal/>): (
-                            <div style={{fontFamily:"sofiapro"}}>
-                                <Row style={{margin: 0}}>
-                                    <div className="modal-login-btn" style={isLogin ? {opacity: 1} : {opacity: 0.25}} onClick={()=>switch_login_signin(true)}>{t('header.log_in')}</div>
-                                    <div className="modal-signin-btn" style={isLogin ? {opacity: 0.25} : {opacity: 1}} onClick={()=>switch_login_signin(false)}>{t('header.sign_in')}</div>
-                                </Row>
-                                
-                                <div style={{marginTop: "2rem"}}>{isLogin ? (<LogInModal toggle={toggle}/>) : (<SignUpModal toggle={toggle} showCompanyModal={showCompanyModal}/>)}</div>
-                                
-                                <div className="or-divider-container">
-                                    <h2><span className="or-divider-text">{t('signin_modal.or')}</span></h2>
-                                </div>
-                                <div style={{marginTop: "2rem"}}>
-                                    <FacebookLogin
-                                        appId={FACEBOOK_APP_ID}
-                                        fields="name,email,picture"
-                                        callback={responseFacebook} 
-                                        render={renderProps => (
-                                            <div onClick={renderProps.onClick}><FaceBookSignBtn/></div>
-                                        )}
-                                    />
-                                </div>   
-                                <div style={{marginTop: "1rem"}}>
-                                    <GoogleSignBtn/>
-                                </div>
+            <Modal isOpen={modal && !token} toggle={toggle} style={{ top: 165 }}>
+                <ModalHeader toggle={toggle} style={{ borderBottom: 'none' }}></ModalHeader>
+                <ModalBody className="modal-body-padding">
+                    {companyStatus === true ? (<CompanyModal />) : (
+                        <div style={{ fontFamily: "sofiapro" }}>
+                            <Row style={{ margin: 0 }}>
+                                <div className="modal-login-btn" style={isLogin ? { opacity: 1 } : { opacity: 0.25 }} onClick={() => switch_login_signin(true)}>{t('header.log_in')}</div>
+                                <div className="modal-signin-btn" style={isLogin ? { opacity: 0.25 } : { opacity: 1 }} onClick={() => switch_login_signin(false)}>{t('header.sign_in')}</div>
+                            </Row>
+
+                            <div style={{ marginTop: "2rem" }}>{isLogin ? (<LogInModal toggle={toggle} />) : (<SignUpModal toggle={toggle} showCompanyModal={showCompanyModal} />)}</div>
+
+                            <div className="or-divider-container">
+                                <h2><span className="or-divider-text">{t('signin_modal.or')}</span></h2>
                             </div>
-                        )}
-                        
-                    </ModalBody>
+                            <div style={{ marginTop: "2rem" }}>
+                                <FacebookLogin
+                                    appId={FACEBOOK_APP_ID}
+                                    fields="name,email,picture"
+                                    callback={responseFacebook}
+                                    render={renderProps => (
+                                        <div onClick={renderProps.onClick}><FaceBookSignBtn /></div>
+                                    )}
+                                />
+                            </div>
+                            <div style={{ marginTop: "1rem" }}>
+                                <GoogleSignBtn />
+                            </div>
+                        </div>
+                    )}
+
+                </ModalBody>
             </Modal>
         </>
     );

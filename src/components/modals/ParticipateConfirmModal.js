@@ -11,7 +11,7 @@ function ParticipateConfirmModal(props) {
     return (
         <Modal isOpen={open} toggle={onToggle} >
             <ModalBody>
-    <div className="text-center font-size-19 mt-4 underline color-blue">{t('participate_confirm_modal.thanks_for_participating')}</div>
+                <div className="text-center font-size-19 mt-4 underline color-blue">{t('participate_confirm_modal.thanks_for_participating')}</div>
                 <div className="mt-3">
                     <Checkbox>{t('participate_confirm_modal.checkbox1')}</Checkbox>
                 </div>
@@ -24,7 +24,7 @@ function ParticipateConfirmModal(props) {
                     </Button>
                 </div>
             </ModalBody>
-            
+
         </Modal>
     )
 }

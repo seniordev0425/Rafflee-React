@@ -14,7 +14,7 @@ function VideoPlayerModal(props) {
     useEffect(() => {
         window.addEventListener('blur', () => handlePlayingState(false))
         window.addEventListener('focus', () => handlePlayingState(true))
-        
+
 
         return () => {
             window.removeEventListener('blur', handlePlayingState)
@@ -37,7 +37,7 @@ function VideoPlayerModal(props) {
                     onEnded={handleEnded}
                 />
             </ModalBody>
-            
+
         </Modal>
     )
 }

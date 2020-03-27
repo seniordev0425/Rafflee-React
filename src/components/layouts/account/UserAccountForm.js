@@ -23,10 +23,10 @@ import { getUserProfile, sendSms, updateUserProfile } from '../../../actions/use
 import moment from 'moment'
 
 import {
-    composeValidators, 
-    required, 
-    isEmail, 
-    minLength, 
+    composeValidators,
+    required,
+    isEmail,
+    minLength,
     maxLength,
     requiredPhoneObj
 } from '../../../utils/validation'
@@ -35,23 +35,23 @@ import Loading from '../../common/Loading';
 
 import { useTranslation } from 'react-i18next'
 
-function UserAccountForm(props){
+function UserAccountForm(props) {
     const { t } = useTranslation()
 
-    const userProfile = useSelector(state=>state.userInfo.userProfile)
-    const phone_number_verified = useSelector(state=>state.userInfo.phone_number_verified)
-    const isLoading = useSelector(state=>state.userInfo.GET_USER_PROFILE_SUCCESS)
-    const isUpdating = useSelector(state=>state.userInfo.UPDATE_USER_PROFILE_SUCCESS)
-    const isSendingSms = useSelector(state=>state.userInfo.SEND_SMS)
-    const toggleVerificationModal = useSelector(state=>state.userInfo.SUCCESS_SEND_SMS)
+    const userProfile = useSelector(state => state.userInfo.userProfile)
+    const phone_number_verified = useSelector(state => state.userInfo.phone_number_verified)
+    const isLoading = useSelector(state => state.userInfo.GET_USER_PROFILE_SUCCESS)
+    const isUpdating = useSelector(state => state.userInfo.UPDATE_USER_PROFILE_SUCCESS)
+    const isSendingSms = useSelector(state => state.userInfo.SEND_SMS)
+    const toggleVerificationModal = useSelector(state => state.userInfo.SUCCESS_SEND_SMS)
 
     const dispatch = useDispatch()
-    
+
     const { Option } = Select
 
     const [countryName, setCountryName] = useState('')
 
-    const [initialPhoneNum, setInitialPhoneNum] = useState({phone_number:null, phone_country:null})
+    const [initialPhoneNum, setInitialPhoneNum] = useState({ phone_number: null, phone_country: null })
 
     const [verifyPhoneNumber, setVerifyPhoneNumber] = useState('')
 
@@ -75,15 +75,15 @@ function UserAccountForm(props){
 
     useEffect(() => {
         dispatch(getUserProfile())
-    },[])
-    
+    }, [])
+
     useEffect(() => {
-        if (toggleVerificationModal){
+        if (toggleVerificationModal) {
             handleVerificationModal()
-            dispatch({type: 'INIT_STATE', state: 'SUCCESS_SEND_SMS', data: false})
+            dispatch({ type: 'INIT_STATE', state: 'SUCCESS_SEND_SMS', data: false })
         }
     }, [toggleVerificationModal])
-    
+
     useEffect(() => {
         var tmpNum = {}
         tmpNum.phone_country = country_code
@@ -95,7 +95,7 @@ function UserAccountForm(props){
         if (birth_date) setInitialDate(birth_date)
         setCountryName(country)
         setGenderState(gender)
-        
+
     }, [userProfile])
 
     const onSubmit = (values) => {
@@ -126,7 +126,7 @@ function UserAccountForm(props){
     const onDrop = (picture) => {
         if (picture && picture[0]) {
             setImgFormData(picture[0])
-            
+
             var file_read = new FileReader()
             file_read.addEventListener('load', (e) => {
                 setImgBase64Data(e.target.result)
@@ -143,38 +143,38 @@ function UserAccountForm(props){
     }
 
     if (isLoading)
-        return <Loading/>
-        
+        return <Loading />
+
     return (
         <>
             <FinalForm
                 onSubmit={onSubmit}
-                render={({handleSubmit}) => (
+                render={({ handleSubmit }) => (
                     <Form onSubmit={handleSubmit}>
                         <Row>
                             <Col xs="12" sm="6">
 
                                 <div className="mt-4 half-width">
                                     <FormGroup>
-                                        {imgBase64Data && (<img className="profile-img" src={imgBase64Data}/>)}
+                                        {imgBase64Data && (<img className="profile-img" src={imgBase64Data} />)}
                                         <ImageUploader
                                             buttonText={t('button_group.upload_image')}
                                             onChange={onDrop}
                                             withPreview={true}
                                             className="upload-image-container"
-                                            fileContainerStyle={{boxShadow:"none", border:"1px solid #DEE6E9"}}
+                                            fileContainerStyle={{ boxShadow: "none", border: "1px solid #DEE6E9" }}
                                             singleImage={true}
                                             withIcon={false}
                                             imgExtension={['.jpg', '.gif', '.png', '.gif']}
                                             maxFileSize={5242880}
                                         />
-                                    </FormGroup>  
+                                    </FormGroup>
                                 </div>
                                 <div className="mt-4 half-width" >
                                     <FormGroup>
                                         <div className="footer-link-bold mb-3">{t('account_page.first_name')}</div>
                                         <Field
-                                            defaultValue={ userProfile.firstname }
+                                            defaultValue={userProfile.firstname}
                                             name="first_name"
                                             component={FormInput}
                                             className="custom-form-control"
@@ -189,7 +189,7 @@ function UserAccountForm(props){
                                         <div className="footer-link-bold mb-3">{t('account_page.last_name')}</div>
                                         <Field
                                             name="last_name"
-                                            defaultValue={ userProfile.lastname }
+                                            defaultValue={userProfile.lastname}
                                             component={FormInput}
                                             className="custom-form-control"
                                             type="text"
@@ -201,11 +201,11 @@ function UserAccountForm(props){
                                 <div className="mt-4 half-width">
                                     <FormGroup>
                                         <div className="footer-link-bold mb-3">{t('account_page.gender')}</div>
-                                        <Select 
-                                            defaultValue={gender ? gender : 'male'} 
-                                            onChange={val => setGenderState(val)} 
-                                            size="large" 
-                                            style={{width: 180}}
+                                        <Select
+                                            defaultValue={gender ? gender : 'male'}
+                                            onChange={val => setGenderState(val)}
+                                            size="large"
+                                            style={{ width: 180 }}
                                         >
                                             <Option value="male">{t('account_page.male')}</Option>
                                             <Option value="female">{t('account_page.female')}</Option>
@@ -216,10 +216,10 @@ function UserAccountForm(props){
                                     <FormGroup>
                                         <div className="footer-link-bold mb-3">{t('account_page.phone_number')}</div>
                                         <div className="d-flex justify-content-between">
-                                            <div style={{width: "70%"}}>
+                                            <div style={{ width: "70%" }}>
                                                 <Field
                                                     name="phonenumber"
-                                                    defaultValue={initialPhoneNum}                    
+                                                    defaultValue={initialPhoneNum}
                                                     component={FormPhoneInput}
                                                     className="custom-form-control"
                                                 />
@@ -229,26 +229,26 @@ function UserAccountForm(props){
                                                     }}
                                                 </OnChange>
                                             </div>
-                                            
+
                                             <div className="d-flex justify-content-end align-items-center w-25">
                                                 {!phone_number_verified
                                                     ?
                                                     <Button
                                                         color="primary"
                                                         className="blue-btn mt-1"
-                                                        style={{width: "100%", height: 40}}
+                                                        style={{ width: "100%", height: 40 }}
                                                         onClick={sendSMS}
                                                         disabled={isSendingSms}
                                                     >
-                                                    {t('button_group.verify')}
+                                                        {t('button_group.verify')}
                                                     </Button>
                                                     :
-                                                    <FontAwesomeIcon icon={faCheckCircle} className="phone-verified-icon"/>
+                                                    <FontAwesomeIcon icon={faCheckCircle} className="phone-verified-icon" />
                                                 }
                                             </div>
-                                            
-                                        </div>                                       
-                                    </FormGroup>                             
+
+                                        </div>
+                                    </FormGroup>
                                 </div>
                                 <div className="mt-4 half-width">
                                     <FormGroup>
@@ -260,7 +260,7 @@ function UserAccountForm(props){
                                             className="menu-flags"
                                             name="country"
                                         />
-                                    </FormGroup>  
+                                    </FormGroup>
                                 </div>
                                 <div className="mt-4 half-width">
                                     <FormGroup>
@@ -278,7 +278,7 @@ function UserAccountForm(props){
                                         <div className="footer-link-bold mb-3">{t('account_page.email')}</div>
                                         <Field
                                             name="email"
-                                            defaultValue={ userProfile.email }
+                                            defaultValue={userProfile.email}
                                             component={FormInput}
                                             className="custom-form-control"
                                             type="email"
@@ -292,12 +292,12 @@ function UserAccountForm(props){
                                 </div>
                             </Col>
                             <Col xs="12" sm="6">
-                                <div className="mt-4" style={{width: "100%"}}>
+                                <div className="mt-4" style={{ width: "100%" }}>
                                     <FormGroup>
                                         <div className="footer-link-bold mb-3">{t('account_page.address')}</div>
                                         <Field
                                             name="address"
-                                            defaultValue={ userProfile.address }
+                                            defaultValue={userProfile.address}
                                             component={FormInput}
                                             className="custom-form-control"
                                             type="text"
@@ -305,11 +305,11 @@ function UserAccountForm(props){
                                         />
                                     </FormGroup>
                                 </div>
-                                <div className="mt-4" style={{width: "100%"}}>
+                                <div className="mt-4" style={{ width: "100%" }}>
                                     <FormGroup>
                                         <Field
                                             name="street"
-                                            defaultValue={ userProfile.city }
+                                            defaultValue={userProfile.city}
                                             component={FormInput}
                                             className="custom-form-control"
                                             type="text"
@@ -321,7 +321,7 @@ function UserAccountForm(props){
                                     <FormGroup>
                                         <Field
                                             name="postal_code"
-                                            defaultValue={ userProfile.region }
+                                            defaultValue={userProfile.region}
                                             component={FormInput}
                                             className="custom-form-control"
                                             type="text"
@@ -335,17 +335,17 @@ function UserAccountForm(props){
                             <Col xs="12" sm="6">
                                 <div className="mt-4 half-width">
                                     <div className="footer-link-bold mb-3">Facebook</div>
-                                    <FaceBookConnectBtn/>
+                                    <FaceBookConnectBtn />
 
                                 </div>
                                 <div className="mt-4 half-width">
                                     <div className="footer-link-bold mb-3">Twitter</div>
-                                    <TwitterConnectBtn/>
+                                    <TwitterConnectBtn />
 
                                 </div>
                                 <div className="mt-4 half-width">
                                     <div className="footer-link-bold mb-3">Twitch</div>
-                                    <TwitchConnectBtn/>
+                                    <TwitchConnectBtn />
 
                                 </div>
                             </Col>
@@ -353,20 +353,20 @@ function UserAccountForm(props){
                                 <div className="mt-4 d-flex justify-content-end">
                                     <div className="half-width">
                                         <div className="footer-link-bold mb-3">Youtube</div>
-                                        <YoutubeConnectBtn/>
+                                        <YoutubeConnectBtn />
                                     </div>
                                 </div>
 
                                 <div className="mt-4 d-flex justify-content-end">
                                     <div className="half-width">
                                         <div className="footer-link-bold mb-3">Instagram</div>
-                                        <InstagramConnectBtn/>
+                                        <InstagramConnectBtn />
                                     </div>
                                 </div>
                                 <div className="mt-4 d-flex justify-content-end">
                                     <div className="half-width">
                                         <div className="footer-link-bold mb-3">Steam</div>
-                                        <SteamConnectBtn/>
+                                        <SteamConnectBtn />
                                     </div>
                                 </div>
 
@@ -377,7 +377,7 @@ function UserAccountForm(props){
                                             size="lg"
                                             color="primary"
                                             className="blue-btn mt-2"
-                                            style={{width:"45%", marginRight:"5%"}}
+                                            style={{ width: "45%", marginRight: "5%" }}
                                             disabled={isUpdating}
                                         >
                                             {t('button_group.update')}
@@ -387,7 +387,7 @@ function UserAccountForm(props){
                                             color="danger"
                                             className="red-btn mt-2"
                                             onClick={handleDeleteModal}
-                                            style={{width:"45%", marginLeft:"5%"}}
+                                            style={{ width: "45%", marginLeft: "5%" }}
                                         >
                                             {t('button_group.delete')}
                                         </Button>

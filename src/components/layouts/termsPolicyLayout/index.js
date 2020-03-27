@@ -23,16 +23,16 @@ class GeneralConditionsLayout extends Component {
             <div id="ResumeContainer">
                 <Document className={"PDFDocument"} file={file} onLoadSuccess={this.onDocumentLoadSuccess}>
                     <div className="PDFPage PDFPageOne">
-                        <Page 
-                            pageNumber={pageNumber} 
-                            renderTextLayer={false} 
-                            renderInteractiveForms={false} 
+                        <Page
+                            pageNumber={pageNumber}
+                            renderTextLayer={false}
+                            renderInteractiveForms={false}
                             width={window.innerWidth * 0.8}
                         />
                         <div className="mb-3 font-size-13 text-center">1</div>
                     </div>
-                    <Page className={"PDFPage PDFPageOne"} pageNumber={pageNumber + 1} renderTextLayer={false} renderInteractiveForms={false} width={window.innerWidth * 0.8}/>
-                    <Page className={"PDFPage PDFPageOne"} pageNumber={pageNumber + 2} renderTextLayer={false} renderInteractiveForms={false} width={window.innerWidth * 0.8}/>
+                    <Page className={"PDFPage PDFPageOne"} pageNumber={pageNumber + 1} renderTextLayer={false} renderInteractiveForms={false} width={window.innerWidth * 0.8} />
+                    <Page className={"PDFPage PDFPageOne"} pageNumber={pageNumber + 2} renderTextLayer={false} renderInteractiveForms={false} width={window.innerWidth * 0.8} />
                 </Document>
             </div>
         );

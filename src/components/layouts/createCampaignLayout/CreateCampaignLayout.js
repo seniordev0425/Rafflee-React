@@ -1,9 +1,9 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import FirstLayout from './FirstLayout'
 import CreatePollLayout from './CreatePollLayout'
 import FinalLayout from './FinalLayout'
 
-function CreateCampaignLayout(){
+function CreateCampaignLayout() {
 
     const [currentLayout, setCurrentLayout] = useState('first');
     const [pollCreated, setPollCreated] = useState(false)
@@ -40,17 +40,17 @@ function CreateCampaignLayout(){
         setPollCreated(false)
     }
     const renderLayout = () => {
-        switch(currentLayout){
+        switch (currentLayout) {
             case 'first':
-                return <FirstLayout gotoPollCreate={gotoPollCreate} gotoFinalLayout={gotoFinalLayout} pollCreated={pollCreated} firstFormTempData={firstFormTempData}/>
+                return <FirstLayout gotoPollCreate={gotoPollCreate} gotoFinalLayout={gotoFinalLayout} pollCreated={pollCreated} firstFormTempData={firstFormTempData} />
             case 'create poll':
-                return <CreatePollLayout gotoFirstLayout={gotoFirstLayout}/>
+                return <CreatePollLayout gotoFirstLayout={gotoFirstLayout} />
             case 'final':
-                return <FinalLayout poll={poll} firstFormData={firstFormData} createNewPromotion={createNewPromotion}/>
+                return <FinalLayout poll={poll} firstFormData={firstFormData} createNewPromotion={createNewPromotion} />
 
         }
     }
-    return(
+    return (
         <>
             {renderLayout()}
         </>

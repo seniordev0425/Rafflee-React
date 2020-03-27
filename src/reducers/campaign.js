@@ -18,12 +18,12 @@ const initialFeedState = {
     campaignWinnings: [],
     winnerArr: [],
     TOGGLE_WINNERS_MODAL: false,
-    
+
 }
 
-function Campaign(state = initialFeedState, action){
-    switch(action.type){
-        case 'GET_CAMPAIGN_DATA_SUCCESS': 
+function Campaign(state = initialFeedState, action) {
+    switch (action.type) {
+        case 'GET_CAMPAIGN_DATA_SUCCESS':
             return {
                 ...state,
                 campaignData: action.data
@@ -31,7 +31,7 @@ function Campaign(state = initialFeedState, action){
         case 'UPDATE_CAMPAIGN_DETAIL_FAVORITE_SUCCESS':
             return {
                 ...state,
-                campaignData: {...state.campaignData, favorite: !state.campaignData.favorite}
+                campaignData: { ...state.campaignData, favorite: !state.campaignData.favorite }
             }
         case 'GET_CAMPAIGN_PARTICIPANTS_SUCCESS':
             return {

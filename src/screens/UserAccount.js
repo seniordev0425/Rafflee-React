@@ -16,38 +16,37 @@ import { useTranslation } from 'react-i18next'
 const UserAccount = (props) => {
     const { t } = useTranslation()
 
-    const company = useSelector(state=>state.userInfo.company)
+    const company = useSelector(state => state.userInfo.company)
 
     useEffect(() => {
         document.title = "UserAccount"
-    },[]);
+    }, []);
 
     return (
-        <div style={{fontFamily:"sofiapro"}}>
-            <JoinHeader/>
-            <Header/>
+        <div style={{ fontFamily: "sofiapro" }}>
+            <JoinHeader />
+            <Header />
             <div className="menubar-container">
                 <Row>
-                    <Col xs={{size: 10, offset: 1}}>
+                    <Col xs={{ size: 10, offset: 1 }}>
                         <Menu mode="horizontal" className="menubar" selectedKeys={['profile']}>
                             <Menu.Item key="profile">
-                                <img src={company ? images.company_icon : images.user_icon}/>
+                                <img src={company ? images.company_icon : images.user_icon} />
                                 <span className="ml-3"> {company ? t('menubar.company_profile') : t('menubar.user_profile')}</span>
                             </Menu.Item>
-                            
                         </Menu>
                     </Col>
                 </Row>
             </div>
             <div>
                 <Row className="mb-5">
-                    <Col xs={{size: 10, offset: 1}}>
-                        {company ? (<CompanyAccountForm/>) : (<UserAccountForm/>)}
+                    <Col xs={{ size: 10, offset: 1 }}>
+                        {company ? (<CompanyAccountForm />) : (<UserAccountForm />)}
                     </Col>
                 </Row>
             </div>
-            <FooterLink/>
-            <Footer/>
+            <FooterLink />
+            <Footer />
         </div>
     );
 }

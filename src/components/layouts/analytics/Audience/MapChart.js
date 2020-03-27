@@ -10,8 +10,8 @@ const geoUrl =
   "https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json";
 
 const markers = [
-  
-  
+
+
   { markerOffset: 25, name: "Japan", coordinates: [136, 35] },
   { markerOffset: -15, name: "Caracas", coordinates: [-66.9036, 10.4806] },
   { markerOffset: -15, name: "Lima", coordinates: [-77.0428, -12.0464] }
@@ -21,8 +21,8 @@ const MapChart = () => {
   return (
     <ComposableMap
       projectionConfig={{
-      scale: 160,
-    }}>
+        scale: 160,
+      }}>
       <Geographies geography={geoUrl}>
         {({ geographies }) =>
           geographies
@@ -34,7 +34,7 @@ const MapChart = () => {
               />
             ))
         }
-        
+
       </Geographies>
       {markers.map(({ name, coordinates, markerOffset }) => (
         <Marker key={name} coordinates={coordinates}>
