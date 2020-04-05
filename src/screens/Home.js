@@ -41,9 +41,6 @@ function Home(props) {
 
     }, [token]);
 
-    // if (isLoading_1 || isLoading_2 || isLoading_3 || isLoading_4)
-    //     return <Loading/>
-
     return (
         <div style={{ fontFamily: "sofiapro" }}>
             <JoinHeader />
@@ -55,8 +52,11 @@ function Home(props) {
             <div className="premium-prize-text">
                 {t('homepage.premium_prizes_giveaways')}
             </div>
-            {hotPromotions.length > 0 &&
+            {hotPromotions.length > 0 
+                ?
                 (<Carousel hotPromotions={hotPromotions} />)
+                :
+                <Loading />
             }
             <div className="find-deal-text mb-4">
                 {t('homepage.find_campaign')}

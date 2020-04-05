@@ -22,7 +22,7 @@ export function campaignParticipate(params) {
     accessToken: sessionStorage.getItem('token'),
     onSuccess: onSuccessCampaignParticipate,
     onFailure: onFailed,
-    label: 'CAMPAIGN_PARTICIPATE_SUCCESS',
+    label: 'CAMPAIGN_PARTICIPATE',
     requireErrorMessage: true
   });
 }

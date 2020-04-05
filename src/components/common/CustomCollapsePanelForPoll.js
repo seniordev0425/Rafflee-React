@@ -11,20 +11,11 @@ import { useTranslation } from 'react-i18next'
 function CustomCollapsePanelForPoll(props) {
     const { t } = useTranslation()
 
-    const {type, multiple_choice, responses, question, onParticipate} = props
+    const {type, multiple_choice, responses, question, handleAnswers} = props
 
     const { Option } = Select
 
     const [answers, setAnswers] = useState(null)
-
-    const renderIcons = () => {
-        switch(type){
-            case 'other':
-                return (<div className="collapse-other-icon">
-                            ?
-                        </div>)
-        }
-    }
 
     const renderChildren = () => {
         return (
@@ -34,9 +25,10 @@ function CustomCollapsePanelForPoll(props) {
         )
     }
 
-    const handleAnswers = (val) => {
-        setAnswers(val)
-    }
+    // const handleAnswers = (val) => {
+    //     setAnswers(val)
+    //     console.log(val)
+    // }
 
     return(
         <>
@@ -63,16 +55,14 @@ function CustomCollapsePanelForPoll(props) {
                     >
                         {renderChildren()}
                     </Select>
-                    <div className="mt-2 mt-sm-3">
-                        <div className="social-btn mr-sm-3"  onClick={() => onParticipate(type, null, answers)}>
-                            {t('button_group.participate')}
-                        </div>
-                    </div>
+                    
                     
                    
                 </ExpansionPanelDetails>
             </ExpansionPanel>
-            {renderIcons()}
+            <div className="collapse-other-icon">
+                ?
+            </div>
         </>
     )
 }

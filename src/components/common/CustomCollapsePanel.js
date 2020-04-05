@@ -4,13 +4,14 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import images from '../../utils/images'
+import CheckBoxButtonForAction from '../common/Buttons/CheckBoxButtonForAction'
 
 import { useTranslation } from 'react-i18next'
 
 function CustomCollapsePanel(props) {
     const { t } = useTranslation()
 
-    const {type, actions, onParticipate} = props
+    const {type, actions, onParticipate, isVideoEnded} = props
 
     const renderIcons = () => {
         switch(type){
@@ -60,29 +61,19 @@ function CustomCollapsePanel(props) {
                     </div>
                     <div className="mt-2 mt-sm-3">
                         {actions.like && (
-                            <div className="social-btn mr-sm-3" onClick={() => onParticipate(type, 'like', null)}>
-                                {t('create_campaign_page.like')}
-                            </div>
+                            <CheckBoxButtonForAction socialName={type} btnString='like' onParticipate={onParticipate}/>
                         )}
                         {actions.follow && (
-                            <div className="social-btn mr-sm-3" onClick={() => onParticipate(type, 'follow', null)}>
-                                {t('create_campaign_page.follow')}
-                            </div>
+                            <CheckBoxButtonForAction socialName={type} btnString='follow' onParticipate={onParticipate}/>
                         )}
                         {actions.comment &&(
-                            <div className="social-btn mr-sm-3"  onClick={() => onParticipate(type, 'comment', null)}>
-                                {t('create_campaign_page.message')}
-                            </div>
+                            <CheckBoxButtonForAction socialName={type} btnString='comment' onParticipate={onParticipate}/>
                         )}
                         {actions.retweet &&(
-                            <div className="social-btn mr-sm-3"  onClick={() => onParticipate(type, 'retweet', null)}>
-                                {t('create_campaign_page.retweet')}
-                            </div>
+                           <CheckBoxButtonForAction socialName={type} btnString='retweet' onParticipate={onParticipate}/>
                         )}
                         {actions.video &&(
-                            <div className="social-btn mr-sm-3"  onClick={() => onParticipate(type, null, null)}>
-                                {t('campaign_detail_page.watch_video')}
-                            </div>
+                            <CheckBoxButtonForAction socialName={type} btnString='video' onParticipate={onParticipate} isVideoEnded={isVideoEnded}/>
                         )}
                     </div>
                 </ExpansionPanelDetails>

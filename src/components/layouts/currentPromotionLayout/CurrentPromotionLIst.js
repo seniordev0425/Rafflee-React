@@ -114,7 +114,7 @@ function CurrentPromotionList(props) {
 
         let tempArr = []
         let flag = false
-        for (let i = 0; i < list.length; i++) {
+        for (let i = 0; i < list.length; i ++) {
             if (!list[i].categories) continue
             flag = false
             for (let j = 0; j < list[i].categories.length; j++) {

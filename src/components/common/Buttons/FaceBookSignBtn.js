@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { Row, Col } from 'reactstrap'
+import { Row, Col, Spinner } from 'reactstrap'
 import images from '../../../utils/images'
 
 function FaceBookSignBtn(){
@@ -13,7 +13,8 @@ function FaceBookSignBtn(){
                     f
                 </Col>
                 <Col xs="10" className="pl-0 pr-0 fb-icon-container2">
-                    SIGN UP WITH FACEBOOK
+                    {isLoading ? <Spinner/> : 'SIGN UP WITH FACEBOOK'}
+                    
                 </Col>
             </Row>
 

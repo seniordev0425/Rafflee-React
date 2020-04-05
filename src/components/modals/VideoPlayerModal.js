@@ -3,7 +3,7 @@ import { Modal, ModalHeader, ModalBody, Input } from 'reactstrap'
 import ReactPlayer from 'react-player'
 
 function VideoPlayerModal(props) {
-    const { open, onToggle } = props
+    const { open, onToggle, videoEnded } = props
 
     const [playing, setPlaying] = useState(true)
 
@@ -23,7 +23,7 @@ function VideoPlayerModal(props) {
     }, [])
 
     const handleEnded = () => {
-        console.log('Playing ended!')
+        videoEnded()
     }
     return (
         <Modal isOpen={open} toggle={onToggle} size="lg">

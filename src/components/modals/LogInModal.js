@@ -25,6 +25,7 @@ function LogInModal(props) {
     const handleForgotModal = () => setOpenForgotModal(!openForgotModal)
 
     const onSubmit = (values) => {
+        console.log(ip)
         var body = {
             username: values.username,
             password: values.password,

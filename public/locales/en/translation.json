@@ -210,7 +210,7 @@
         "like": "LIKE",
         "follow": "FOLLOW",
         "retweet": "RETWEET",
-        "message": "MESSAGE",
+        "comment": "MESSAGE",
         "create_poll": "CREATE POLL",
         "poll_created": "POLL CREATED",
         "back_to_create_campaign": "Back to Create Campaign",
@@ -233,7 +233,8 @@
         "campaign":"Campaign",
         "iva": "IVA",
         "total": "Total",
-        "must_have_one_at_least": "Must have one answer at least"
+        "must_have_one_at_least": "Must have one answer at least",
+        "video": "Video"
     },
 
     "profile_activated_page": {

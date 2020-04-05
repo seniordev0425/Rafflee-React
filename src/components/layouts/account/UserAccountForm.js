@@ -91,7 +91,7 @@ function UserAccountForm(props) {
         setInitialPhoneNum(tmpNum)
         setVerifyPhoneNumber(tmpNum)
 
-        if (profile_picture) setImgBase64Data('data:image/png;base64,' + profile_picture)
+        // if (profile_picture) setImgBase64Data('data:image/png;base64,' + profile_picture)
         if (birth_date) setInitialDate(birth_date)
         setCountryName(country)
         setGenderState(gender)
@@ -99,7 +99,6 @@ function UserAccountForm(props) {
     }, [userProfile])
 
     const onSubmit = (values) => {
-        console.log(genderState)
         var formdata = new FormData()
         formdata.append("profile_picture", imgFormData)
         formdata.append("phone_number", values.phonenumber.phone_number)
@@ -126,6 +125,7 @@ function UserAccountForm(props) {
     const onDrop = (picture) => {
         if (picture && picture[0]) {
             setImgFormData(picture[0])
+            console.log(picture[0])
 
             var file_read = new FileReader()
             file_read.addEventListener('load', (e) => {
@@ -156,7 +156,9 @@ function UserAccountForm(props) {
 
                                 <div className="mt-4 half-width">
                                     <FormGroup>
-                                        {imgBase64Data && (<img className="profile-img" src={imgBase64Data} />)}
+                                        {(imgBase64Data || profile_picture) && 
+                                            <img className="profile-img" src={imgBase64Data ? imgBase64Data : profile_picture} />
+                                        }
                                         <ImageUploader
                                             buttonText={t('button_group.upload_image')}
                                             onChange={onDrop}

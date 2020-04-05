@@ -97,7 +97,6 @@ export function signUp(params) {
     url: APIROUTE + "account/register/",
     method: 'POST',
     data: qs.stringify(params),
-    accessToken: "Basic cmFmZmxlZTpKM1N1aXNMM1A0c3NXb3JkUg==",
     onSuccess: onSuccessSignUp,
     onFailure: onFailed,
     label: 'SIGN_UP_SUCCESS',

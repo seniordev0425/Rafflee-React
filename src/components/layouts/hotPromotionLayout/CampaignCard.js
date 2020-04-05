@@ -12,7 +12,7 @@ function CampaignCard(props) {
     return (
         <div className="item campaign-card-body">
             <div>
-                <div className="campaign-card-img"><img src={campaign_image ? `data:image/png;base64,${campaign_image}` : images.profile_img} /></div>
+                <div className="campaign-card-img"><img src={campaign_image ? campaign_image : images.profile_img} /></div>
                 <div className="mt-4 campaign-card-title">{campaign_name}</div>
                 <div className="mt-4 campaign-card-text">{description}</div>
             </div>

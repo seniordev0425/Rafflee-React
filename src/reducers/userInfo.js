@@ -3,7 +3,7 @@ const initialFeedState = {
     company: false,
     myInfo: null,
     isLoading: false,
-    ip: '127.0.0.1',
+    ip: '1.1.1.1',
 
     userProfile: {
         address: '',
@@ -155,7 +155,7 @@ function UserInfo(state = initialFeedState, action) {
                     userInventory: state.userInventory.map(promotion => promotion.pk === action.id ?
                         { ...promotion, favorite: !promotion.favorite } : promotion
                     ),
-                    myFollowing: action.result === 'FAVORITE_ADDED' ? [...state.myFollowing, { id: 10 }] : state.myFollowing.filter((_, i) => i !== state.myFollowing.length - 1)
+                    myFollowing: action.result === 'MSG_FAVORITE_ADDED' ? [...state.myFollowing, { id: 10 }] : state.myFollowing.filter((_, i) => i !== state.myFollowing.length - 1)
                 }
             }
             else if (action.arrname === 'participation_history') {
@@ -164,7 +164,7 @@ function UserInfo(state = initialFeedState, action) {
                     userParticipationHistory: state.userParticipationHistory.map(promotion => promotion.pk === action.id ?
                         { ...promotion, favorite: !promotion.favorite } : promotion
                     ),
-                    myFollowing: action.result === 'FAVORITE_ADDED' ? [...state.myFollowing, { id: 10 }] : state.myFollowing.filter((_, i) => i !== state.myFollowing.length - 1)
+                    myFollowing: action.result === 'MSG_FAVORITE_ADDED' ? [...state.myFollowing, { id: 10 }] : state.myFollowing.filter((_, i) => i !== state.myFollowing.length - 1)
                 }
             }
             else if (action.arrname === 'following') {

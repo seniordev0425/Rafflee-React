@@ -421,7 +421,7 @@ function FirstLayout(props) {
                                 />
                                 <CheckBoxButtonWithString
                                     value={socialActions.facebook.comment}
-                                    btnString="message"
+                                    btnString="comment"
                                     handleActions={() => handleActions("facebook", "comment")}
                                 />
                             </div>
@@ -445,7 +445,7 @@ function FirstLayout(props) {
                                 />
                                 <CheckBoxButtonWithString
                                     value={socialActions.twitter.comment}
-                                    btnString="message"
+                                    btnString="comment"
                                     handleActions={() => handleActions("twitter", "comment")}
                                 />
                                 <CheckBoxButtonWithString
@@ -493,7 +493,7 @@ function FirstLayout(props) {
                                 />
                                 <CheckBoxButtonWithString
                                     value={socialActions.instagram.comment}
-                                    btnString="message"
+                                    btnString="comment"
                                     handleActions={() => handleActions("instagram", "comment")}
                                 />
                             </div>
@@ -517,7 +517,7 @@ function FirstLayout(props) {
                                 />
                                 <CheckBoxButtonWithString
                                     value={socialActions.twitch.comment}
-                                    btnString="message"
+                                    btnString="comment"
                                     handleActions={() => handleActions("twitch", "comment")}
                                 />
                             </div>

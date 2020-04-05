@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { Row, Col } from 'reactstrap'
+import { Row, Col, Button } from 'reactstrap'
 import moment from 'moment'
 
 import JoinHeader from '../components/layouts/HeaderLayout/JoinHeader'
@@ -18,12 +18,15 @@ import { useTranslation } from 'react-i18next'
 import VideoPlayerModal from '../components/modals/VideoPlayerModal'
 import ParticipateConfirmModal from '../components/modals/ParticipateConfirmModal'
 
+let actionParams = []
+
 function CampaignDetail(props) {
     const { t } = useTranslation()
 
     const { match } = props
 
     const isLoading = useSelector(state => state.userInfo.GET_CAMPAIGN_DATA_SUCCESS)
+    const CAMPAIGN_PARTICIPATE_PROCESS = useSelector(state => state.userInfo.CAMPAIGN_PARTICIPATE)
     const campaignData = useSelector(state => state.campaign.campaignData)
     const token = useSelector(state => state.userInfo.token)
     const company = useSelector(state => state.userInfo.company)
@@ -31,7 +34,9 @@ function CampaignDetail(props) {
 
     const [action, setAction] = useState({})
     const [openVideo, setOpenVideo] = useState(false)
+    const [isVideoEnded, setIsVideoEnded] = useState(false)
     const [openConfirm, setOpenConfirm] = useState(false)
+    const [answers, setAnswers] = useState([])
 
     useEffect(() => {
         document.title = "Campaign Detail"
@@ -39,6 +44,7 @@ function CampaignDetail(props) {
             token: token
         }
         dispatch(getCampaignData(match.params.id, body))
+        actionParams = []
     }, [])
 
     useEffect(() => {
@@ -67,10 +73,12 @@ function CampaignDetail(props) {
 
     const openVideoModal = () => {
         setOpenVideo(true)
-        // var body = {
-        //     promotion_id: match.params.id
-        // }
-        // dispatch(campaignParticipate(body))
+    }
+
+    const videoEnded = () => {
+        setIsVideoEnded(true)
+        actionParams = actionParams.filter((item) => item['social_name'] !== 'video')
+        actionParams.push({social_name: 'video', action_type: true})
     }
 
     const handleOpenConfirm = () => setOpenConfirm(!openConfirm)
@@ -79,10 +87,22 @@ function CampaignDetail(props) {
         setOpenConfirm(true)
     }
 
-    const onParticipate = (socialName, actionType, pollData) => {
+    const onParticipate = (socialName, actionType, checked, pollData) => {
         if (socialName === 'video') {
-            openVideoModal()
+            if (!isVideoEnded) openVideoModal()
+            else {
+                actionParams = actionParams.filter((item) => item['social_name'] !== socialName)
+                actionParams.push({social_name: socialName, action_type: checked})
+            }
         }
+        else {
+            actionParams = actionParams.filter((item) => item['social_name'] !== socialName)
+            if (checked) actionParams.push({social_name: socialName, action_type: actionType})
+        }
+    }
+
+    const handleAnswers = (val) => {
+        setAnswers(val)
     }
 
     const update = () => {
@@ -90,6 +110,15 @@ function CampaignDetail(props) {
             promotion_id: match.params.id
         }
         dispatch(updateFavorite(body, 'campaign_detail'))
+    }
+
+    const participate = () => {
+        if (answers) actionParams.push({social_name: 'poll', action_type: answers})
+        var body = {
+            promotion_id: campaignData.pk,
+            social_actions: JSON.stringify(actionParams)
+        }
+        dispatch(campaignParticipate(body))
     }
 
     if (isLoading) {
@@ -104,7 +133,11 @@ function CampaignDetail(props) {
                 <Col xs="12" sm={{ size: 10, offset: 1 }}>
                     <Row className="my-5">
                         <Col lg="1" md="2" sm="2" xs="3" className="promotion-list-item-img">
-                            <img src={campaignData.campaign_image ? `data:image/png;base64,${campaignData.campaign_image}` : images.profile_img} />
+                            <div>
+                                <img src={campaignData.company_logo ? campaignData.company_logo : images.profile_img} />
+                                <div className="mt-3 color-blue font-weight-bold">{campaignData.company_name}</div>
+                            </div>
+                            
                         </Col>
                         <Col lg="11" md="10" sm="10" xs="9" className="pl-sm-5">
                             <div className="promotion-list-item-title">{campaignData.campaign_name}</div>
@@ -121,7 +154,7 @@ function CampaignDetail(props) {
                     <Row className="campaign-main-panel mt-4 mb-5">
                         <Col className="px-0 left">
                             <div className="w-100">
-                                <img src={images.campaign} width="100%" height="100%" />
+                                <img src={campaignData.campaign_image ? campaignData.campaign_image : images.campaign} width="100%" height="100%" />
                             </div>
                         </Col>
                         <Col className="px-0 center">
@@ -164,7 +197,7 @@ function CampaignDetail(props) {
                     <Row className="campaign-main-panel-mobile mt-3 mb-3">
                         <Col className="px-0 left">
                             <div className="w-100">
-                                <img src={images.campaign} width="100%" />
+                                <img src={campaignData.campaign_image ? campaignData.campaign_image : images.campaign} width="100%" />
                             </div>
                         </Col>
                         <Col className="px-0 center d-flex justify-content-center">
@@ -285,6 +318,7 @@ function CampaignDetail(props) {
                                     type="video"
                                     actions={{ video: true }}
                                     onParticipate={onParticipate}
+                                    isVideoEnded={isVideoEnded}
                                 />
                             </Col>
                         </Row>
@@ -297,11 +331,22 @@ function CampaignDetail(props) {
                                     multiple_choice={action.poll.multiple_choices}
                                     responses={action.poll.responses}
                                     question={action.poll.question}
-                                    onParticipate={onParticipate}
+                                    handleAnswers={handleAnswers}
                                 />
                             </Col>
                         </Row>
                     )}
+                    <Row className="justify-content-center mb-4">
+                        <Button
+                            size="lg"
+                            color="primary"
+                            className="bootstrap-blue-btn promotion-list-item-btn"
+                            onClick={participate}
+                            disabled={CAMPAIGN_PARTICIPATE_PROCESS}
+                        >
+                            {t('button_group.participate')}
+                        </Button>
+                    </Row>
                 </Col>
             </Row>
             <FooterLink />
@@ -309,7 +354,7 @@ function CampaignDetail(props) {
 
 
             <ParticipateConfirmModal open={openConfirm} onToggle={handleOpenConfirm} />
-            <VideoPlayerModal open={openVideo} onToggle={handleOpenVideo} />
+            <VideoPlayerModal open={openVideo} onToggle={handleOpenVideo} videoEnded={videoEnded}/>
         </div>
     );
 }

@@ -59,7 +59,7 @@ function CompanyAccountForm(props) {
         tmpNum.phone_number = national_number
         setInitialPhoneNum(tmpNum)
 
-        if (logo !== '') setImgBase64Data('data:image/png;base64,' + logo)
+        // if (logo !== '') setImgBase64Data('data:image/png;base64,' + logo)
         setCountryName(country)
     }, [companyProfile])
 
@@ -104,7 +104,9 @@ function CompanyAccountForm(props) {
                             <Col xs="12" sm="6">
                                 <div className="mt-4 half-width">
                                     <FormGroup>
-                                        {imgBase64Data && (<img className="profile-img" src={imgBase64Data} />)}
+                                        {(imgBase64Data || logo) && 
+                                            <img className="profile-img" src={imgBase64Data ? imgBase64Data : logo} />
+                                        }
                                         <ImageUploader
                                             buttonText={t('button_group.upload_image')}
                                             onChange={onDrop}
