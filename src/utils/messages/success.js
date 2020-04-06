@@ -5,6 +5,7 @@ const successMessages = {
         companySendMessage: "Successfully Submitted!",
         accountUpdate: "Successfully Updated!",
         participate: "Successfully Participated!",
+        campaignSubscribe: "Success",
         deleteAccount: "Account was deleted.",
         resetPasswordRequest: "Confirm your Email to reset a password.",
         resetPassword: "Password Updated!",

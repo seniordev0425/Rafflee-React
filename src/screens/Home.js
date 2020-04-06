@@ -52,7 +52,7 @@ function Home(props) {
             <div className="premium-prize-text">
                 {t('homepage.premium_prizes_giveaways')}
             </div>
-            {hotPromotions.length > 0 
+            {!isLoading_1
                 ?
                 (<Carousel hotPromotions={hotPromotions} />)
                 :

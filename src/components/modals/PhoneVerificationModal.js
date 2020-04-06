@@ -36,9 +36,6 @@ function PhoneVerificationModal(props) {
             number: `+${phone_number.phone_country}${phone_number.phone_number}`,
             code: verifyCode
         }
-        // console.log(phone_number)
-        // dispatch({type: 'VERIFY_PHONE_NUMBER_SUCCESS',flag: true})
-
         dispatch(verifyPhoneNumber(body))
     }
 

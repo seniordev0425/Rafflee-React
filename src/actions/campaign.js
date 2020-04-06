@@ -33,6 +33,26 @@ function onSuccessCampaignParticipate(data) {
     data: ''
   }
 }
+/////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_ACTION
+export function campaignSubscribe(params) {
+  return apiAction({
+    url: APIROUTE + "campaign/participate/subscription/",
+    method: 'POST',
+    data: qs.stringify(params),
+    accessToken: sessionStorage.getItem('token'),
+    onSuccess: onSuccessCampaignSubscribe,
+    onFailure: onFailed,
+    label: 'CAMPAIGN_SUBSCRIPTION',
+    requireErrorMessage: true
+  });
+}
+function onSuccessCampaignSubscribe(data) {
+  openNotification('success', successMessages[localStorage.getItem('i18nextLng')].campaignSubscribe)
+  return {
+    type: '',
+    data: ''
+  }
+}
 /////////////////////////////////////////////// GET_CAMPAIGN_DATA_ACTION
 export function getCampaignData(id, params) {
   return apiAction({

@@ -27,6 +27,8 @@ function Carousel(props) {
         />
     )
 
+    if (hotPromotions.length < 1)
+        return <></>
     return (
         <div className="app" style={{ maxWidth: galleryItems.length > 1 ? galleryItems.length * 450 : galleryItems.length * 480 }}>
             <AliceCarousel
@@ -42,8 +44,7 @@ function Carousel(props) {
                 autoPlay={true}
                 autoPlayInterval={2000}
                 duration={800}
-            >
-            </AliceCarousel>
+            />
         </div>
     )
 }

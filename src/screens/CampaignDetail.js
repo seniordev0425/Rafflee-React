@@ -27,6 +27,8 @@ function CampaignDetail(props) {
 
     const isLoading = useSelector(state => state.userInfo.GET_CAMPAIGN_DATA_SUCCESS)
     const CAMPAIGN_PARTICIPATE_PROCESS = useSelector(state => state.userInfo.CAMPAIGN_PARTICIPATE)
+    const CAMPAIGN_PARTICIPATE_SUCCESS = useSelector(state => state.userInfo.SUCCESS_CAMPAIGN_PARTICIPATE)
+    // const CAMPAIGN_SUBSCRIPTION_SUCCESS = useSelector(state => state.userInfo.CAMPAIGN_SUBSCRIPTION_SUCCESS)
     const campaignData = useSelector(state => state.campaign.campaignData)
     const token = useSelector(state => state.userInfo.token)
     const company = useSelector(state => state.userInfo.company)
@@ -50,6 +52,13 @@ function CampaignDetail(props) {
     useEffect(() => {
         setAction(campaignData.action_participate[0])
     }, [campaignData])
+
+    useEffect(() => {
+        if (CAMPAIGN_PARTICIPATE_SUCCESS) {
+            dispatch({type: 'INIT_STATE', state: 'SUCCESS_CAMPAIGN_PARTICIPATE', data: false})
+            setOpenConfirm(true)
+        }
+    }, [CAMPAIGN_PARTICIPATE_SUCCESS])
 
     const renderWinnings = () => {
         return (
@@ -82,10 +91,6 @@ function CampaignDetail(props) {
     }
 
     const handleOpenConfirm = () => setOpenConfirm(!openConfirm)
-
-    const openConfirmModal = () => {
-        setOpenConfirm(true)
-    }
 
     const onParticipate = (socialName, actionType, checked, pollData) => {
         if (socialName === 'video') {
@@ -353,7 +358,7 @@ function CampaignDetail(props) {
             <Footer />
 
 
-            <ParticipateConfirmModal open={openConfirm} onToggle={handleOpenConfirm} />
+            <ParticipateConfirmModal open={openConfirm} onToggle={handleOpenConfirm} promotion_id={campaignData.pk} />
             <VideoPlayerModal open={openVideo} onToggle={handleOpenVideo} videoEnded={videoEnded}/>
         </div>
     );
