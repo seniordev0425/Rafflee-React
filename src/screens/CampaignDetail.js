@@ -13,6 +13,7 @@ import CustomCollapsePanel from '../components/common/CustomCollapsePanel'
 import CustomCollapsePanelForPoll from '../components/common/CustomCollapsePanelForPoll'
 import Loading from '../components/common/Loading'
 import { campaignParticipate, getCampaignData, updateFavorite } from '../actions/campaign'
+import { getUserProfile } from '../actions/userInfo'
 
 import { useTranslation } from 'react-i18next'
 import VideoPlayerModal from '../components/modals/VideoPlayerModal'
@@ -25,10 +26,11 @@ function CampaignDetail(props) {
 
     const { match } = props
 
-    const isLoading = useSelector(state => state.userInfo.GET_CAMPAIGN_DATA_SUCCESS)
+    const GET_CAMPAIGN_DATA_SUCCESS = useSelector(state => state.userInfo.GET_CAMPAIGN_DATA_SUCCESS)
+    const GET_USER_PROFILE_SUCCESS = useSelector(state => state.userInfo.GET_USER_PROFILE_SUCCESS)
     const CAMPAIGN_PARTICIPATE_PROCESS = useSelector(state => state.userInfo.CAMPAIGN_PARTICIPATE)
     const CAMPAIGN_PARTICIPATE_SUCCESS = useSelector(state => state.userInfo.SUCCESS_CAMPAIGN_PARTICIPATE)
-    // const CAMPAIGN_SUBSCRIPTION_SUCCESS = useSelector(state => state.userInfo.CAMPAIGN_SUBSCRIPTION_SUCCESS)
+
     const campaignData = useSelector(state => state.campaign.campaignData)
     const token = useSelector(state => state.userInfo.token)
     const company = useSelector(state => state.userInfo.company)
@@ -46,8 +48,11 @@ function CampaignDetail(props) {
             token: token
         }
         dispatch(getCampaignData(match.params.id, body))
+        if (token && !company) {
+            dispatch(getUserProfile())
+        }
         actionParams = []
-    }, [])
+    }, [token])
 
     useEffect(() => {
         setAction(campaignData.action_participate[0])
@@ -126,7 +131,7 @@ function CampaignDetail(props) {
         dispatch(campaignParticipate(body))
     }
 
-    if (isLoading) {
+    if (GET_CAMPAIGN_DATA_SUCCESS || GET_USER_PROFILE_SUCCESS) {
         return <Loading />
     }
 

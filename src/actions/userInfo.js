@@ -336,6 +336,22 @@ function onSuccessGetMyBills(data) {
     data: data.result_data
   }
 }
+/////////////////////////////////////////////// GET-PDF-INVOICE-ACTION
+export function getPdfInvoice(id) {
+  return apiAction({
+    url: APIROUTE + `company/bill/${id}/`,
+    accessToken: sessionStorage.getItem('token'),
+    onSuccess: onSuccessGetPdfInvoice,
+    onFailure: onFailed,
+    label: 'GET_PDF_INVOICE',
+  });
+}
+function onSuccessGetPdfInvoice(data) {
+  return {
+    type: 'SET_PDF_INVOICE',
+    data: data.result_data
+  }
+}
 /////////////////////////////////////////////// PROFILE-ACTIVATE-ACTION
 export function profileActivate(id, token) {
   return apiAction({

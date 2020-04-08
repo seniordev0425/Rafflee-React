@@ -189,6 +189,9 @@ function FirstLayout(props) {
                 <Form onSubmit={handleSubmit}>
                     <Row>
                         <Col xs={{ size: "10", offset: "1" }} className="pl-0 pr-0">
+                            <div className="px-3 mt-4">
+                                <h2><span className="color-blue font-size-13">{t('create_campaign_page.campaign_informations')}</span></h2>
+                            </div>
                             <Row>
                                 <Col xs="12" sm="6">
                                     <div className="mt-4 half-width">
@@ -232,7 +235,7 @@ function FirstLayout(props) {
                             </Row>
                             <Row>
                                 <Col xs="12">
-                                    <div className="mt-4">
+                                    <div>
                                         <FormGroup>
                                             <div className="footer-link-bold mb-3">{t('create_campaign_page.short_description')}</div>
                                             <Field
@@ -273,48 +276,6 @@ function FirstLayout(props) {
                             </Row>
                             <Row>
                                 <Col xs="12" sm="6">
-                                    <div className="mt-4 w-100">
-                                        <FormGroup>
-                                            <div className="footer-link-bold mb-3">{t('create_campaign_page.video_name')}</div>
-                                            <Field
-                                                name="video_name"
-                                                defaultValue={(firstFormTempData || {}).video_name ? (firstFormTempData || {}).video_name : ''}
-                                                component={FormInput}
-                                                className="custom-form-control"
-                                                type="text"
-                                                placeholder={t('create_campaign_page.video_name')}
-                                            />
-                                            <OnChange name="video_name">
-                                                {(value) => {
-                                                    setTempData({ ...tempData, video_name: value })
-                                                }}
-                                            </OnChange>
-                                        </FormGroup>
-                                    </div>
-                                </Col>
-                                <Col xs="12" sm="6">
-                                    <div className="mt-4 w-100">
-                                        <FormGroup>
-                                            <div className="footer-link-bold mb-3">{t('create_campaign_page.url_video')}</div>
-                                            <Field
-                                                name="url_video"
-                                                defaultValue={(firstFormTempData || {}).url_video ? (firstFormTempData || {}).url_video : ''}
-                                                component={FormInput}
-                                                className="custom-form-control"
-                                                type="text"
-                                                placeholder={t('create_campaign_page.url_video')}
-                                            />
-                                            <OnChange name="url_video">
-                                                {(value) => {
-                                                    setTempData({ ...tempData, url_video: value })
-                                                }}
-                                            </OnChange>
-                                        </FormGroup>
-                                    </div>
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col xs="12" sm="6">
                                     <div className="mt-4 half-width">
                                         <FormGroup>
                                             <div className="footer-link-bold mb-3">{t('create_campaign_page.campaign_starts')}</div>
@@ -342,6 +303,13 @@ function FirstLayout(props) {
                                         </FormGroup>
                                     </div>
                                 </Col>
+                            </Row>
+                            <div className="px-3 mt-4">
+                                <h2><span className="color-blue font-size-13">{t('create_campaign_page.prizes')}</span></h2>
+                            </div>
+                            {renderWinningItems()}
+                            <Row>
+                                <Col><span className="pointer" onClick={addWinning}>{t('create_campaign_page.add_more')} <span style={{ fontSize: "1.3rem", fontWeight: "bold" }}> +</span></span></Col>
                             </Row>
                             <Row>
                                 <Col xs="12" sm="6">
@@ -373,10 +341,6 @@ function FirstLayout(props) {
                                     </div>
                                 </Col>
                             </Row>
-                            {renderWinningItems()}
-                            <Row>
-                                <Col><span className="pointer" onClick={addWinning}>{t('create_campaign_page.add_more')} <span style={{ fontSize: "1.3rem", fontWeight: "bold" }}> +</span></span></Col>
-                            </Row>
                             <Row>
                                 <Col xs="12">
                                     <div className="footer-link-bold mb-3 mt-3">{t('create_campaign_page.results')}</div>
@@ -385,22 +349,24 @@ function FirstLayout(props) {
                                         <div className={distribution === ('direct') ? "inline-div-active ml-sm-3" : "inline-div-inactive ml-sm-3"}>
                                             {t('create_campaign_page.direct')}
                                         </div>
-                                        <Radio value="live_draw" className="ml-sm-3 ml-1" />
-                                        <div className={distribution === ('live_draw') ? "inline-div-active ml-sm-3" : "inline-div-inactive ml-sm-3"}>
-                                            {t('create_campaign_page.live_draw')}
-                                        </div>
                                         <Radio value="end_promotion" className="ml-sm-3 ml-1" />
                                         <div className={distribution === ('end_promotion') ? "inline-div-active ml-sm-3" : "inline-div-inactive ml-sm-3"}>
                                             {t('create_campaign_page.end_date')}
+                                        </div>
+                                        <Radio value="live_draw" className="ml-sm-3 ml-1" />
+                                        <div className={distribution === ('live_draw') ? "inline-div-active ml-sm-3" : "inline-div-inactive ml-sm-3"}>
+                                            {t('create_campaign_page.live_draw')}
                                         </div>
                                     </Radio.Group>
 
                                 </Col>
                             </Row>
 
-                            <Row>
-                                <Col><div className="footer-link-bold mt-3">{t('create_campaign_page.actions')}</div></Col>
-                            </Row>
+                            
+                                <div className="px-3 mt-4">
+                                    <h2><span className="color-blue font-size-13">{t('create_campaign_page.social_actions')}</span></h2>
+                                </div>
+                            
                         </Col>
                     </Row>
                     <Row className="mt-3 pt-3 pb-3">
@@ -538,6 +504,52 @@ function FirstLayout(props) {
                                     </div>
                                 )}
 
+                        </Col>
+                    </Row>
+                    <Row className="" >
+                        <Col xs={{ size: "10", offset: "1" }} className="pl-0 pr-0">
+                            <Row>
+                                <Col xs="12" sm="6">
+                                    <div className="mt-4 w-100">
+                                        <FormGroup>
+
+                                            <Field
+                                                name="video_name"
+                                                defaultValue={(firstFormTempData || {}).video_name ? (firstFormTempData || {}).video_name : ''}
+                                                component={FormInput}
+                                                className="custom-form-control"
+                                                type="text"
+                                                placeholder={t('create_campaign_page.video_name')}
+                                            />
+                                            <OnChange name="video_name">
+                                                {(value) => {
+                                                    setTempData({ ...tempData, video_name: value })
+                                                }}
+                                            </OnChange>
+                                        </FormGroup>
+                                    </div>
+                                </Col>
+                                <Col xs="12" sm="6">
+                                    <div className="mt-4 w-100">
+                                        <FormGroup>
+
+                                            <Field
+                                                name="url_video"
+                                                defaultValue={(firstFormTempData || {}).url_video ? (firstFormTempData || {}).url_video : ''}
+                                                component={FormInput}
+                                                className="custom-form-control"
+                                                type="text"
+                                                placeholder={t('create_campaign_page.url_video')}
+                                            />
+                                            <OnChange name="url_video">
+                                                {(value) => {
+                                                    setTempData({ ...tempData, url_video: value })
+                                                }}
+                                            </OnChange>
+                                        </FormGroup>
+                                    </div>
+                                </Col>
+                            </Row>
                         </Col>
                     </Row>
                     <Row className="mt-3 mb-5">

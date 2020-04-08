@@ -36,10 +36,10 @@ function Home(props) {
 
         dispatch(getHotPromotions({ token: token }))
         dispatch(getHighlightedPromotions({ token: token }))
-        dispatch(getNewPromotions({ token: token }))
-        dispatch(getBestPromotions({ token: token }))
+        // dispatch(getNewPromotions({ token: token }))
+        // dispatch(getBestPromotions({ token: token }))
 
-    }, [token]);
+    }, []);
 
     return (
         <div style={{ fontFamily: "sofiapro" }}>

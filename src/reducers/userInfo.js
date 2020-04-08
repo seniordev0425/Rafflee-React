@@ -41,6 +41,7 @@ const initialFeedState = {
     myFollowing: [],
     myCampaigns: [],
     myBills: [],
+    pdfInvoice: ''
 
 }
 
@@ -147,6 +148,11 @@ function UserInfo(state = initialFeedState, action) {
             return {
                 ...state,
                 myBills: action.data
+            }
+        case 'SET_PDF_INVOICE': 
+            return {
+                ...state,
+                pdfInvoice: action.data
             }
         case 'UPDATE_DASHBOARD_FAVORITE_SUCCESS':
             if (action.arrname === 'inventory') {

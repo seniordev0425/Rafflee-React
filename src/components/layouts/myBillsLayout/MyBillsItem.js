@@ -1,27 +1,22 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import { Row, Col } from 'reactstrap'
 import images from '../../../utils/images'
 import { Button } from 'reactstrap'
-import { saveAs } from 'file-saver'
 
 import { useTranslation } from 'react-i18next'
+import { getPdfInvoice } from '../../../actions/userInfo'
 
 function MyBillsItem(props) {
     const { t } = useTranslation()
 
     const { item } = props
+    
+    const dispatch = useDispatch()
 
     const download = () => {
-        setTimeout(() => {
-            const response = {
-                file: 'https://www.win-rar.com/predownload.html?spV=true&subD=true&f=winrar-x64-580.exe',
-            };
-            // server sent the url to the file!
-            // now, let's download:
-            window.location.href = response.file;
-            // you could also do:
-            // window.open(response.file);
-        }, 100);
+        dispatch(getPdfInvoice(item.id))
+       
     }
     return (
 
@@ -43,7 +38,6 @@ function MyBillsItem(props) {
 
                             </div>
                             <div className="mt-4">
-
                                 <Button
                                     size="lg"
                                     color="primary"
@@ -52,7 +46,6 @@ function MyBillsItem(props) {
                                 >
                                     {t('button_group.download_pdf')}
                                 </Button>
-
                             </div>
                         </Col>
                     </Row>

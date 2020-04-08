@@ -1095,7 +1095,7 @@ h2 span {
 }
 .profile-img {
     width: 100px;
-    height: 120px;
+    height: 100px;
 }
 .ant-pagination-item-link .anticon {
     vertical-align: 0.08rem;
@@ -1188,6 +1188,11 @@ h2 span {
         font-size: 0.8rem;
     }
 }
+.cropContainer {
+    height: 300px;
+}
+
+
 
 
 

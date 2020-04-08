@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react'
+import { useSelector } from 'react-redux'
 import { Modal, ModalHeader, ModalBody, Input } from 'reactstrap'
 import ReactPlayer from 'react-player'
 
 function VideoPlayerModal(props) {
     const { open, onToggle, videoEnded } = props
 
+    const campaignData = useSelector(state => state.campaign.campaignData)
     const [playing, setPlaying] = useState(true)
 
     const handlePlayingState = (val) => {
@@ -28,9 +30,12 @@ function VideoPlayerModal(props) {
     return (
         <Modal isOpen={open} toggle={onToggle} size="lg">
             <ModalBody>
+                <div className="promotion-list-item-title text-center mb-3">
+                    {campaignData.action_participate[0] ? campaignData.action_participate[0].video_name : ''}
+                </div>
                 <ReactPlayer
                     controls
-                    url='https://media.w3.org/2010/05/sintel/trailer_hd.mp4'
+                    url={campaignData.action_participate[0] ? campaignData.action_participate[0].url_video : ''}
                     playing={playing}
                     width='100%'
                     height="100%"

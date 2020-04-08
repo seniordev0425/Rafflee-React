@@ -10,6 +10,7 @@ import { getCode, getName } from 'country-list'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 import DeleteAccount from '../../modals/DeleteAccount'
+import ImageCropModal from '../../modals/ImageCropModal'
 import FormInput from '../../common/FormInput'
 import FormPhoneInput from '../../common/FormPhoneInput'
 import { DatePicker } from 'antd'
@@ -65,9 +66,12 @@ function UserAccountForm(props) {
 
     const [openDeleteModal, setOpenDeleteModal] = useState(false)
 
+    const [openImageCropModal, setOpenImageCropModal] = useState(false)
+
     const [openVerificationModal, setOpenVerificationModal] = useState(false)
 
     const handleDeleteModal = () => setOpenDeleteModal(!openDeleteModal)
+    const handleImageCropModal = () => setOpenImageCropModal(!openImageCropModal)
     const handleVerificationModal = () => setOpenVerificationModal(!openVerificationModal)
 
 
@@ -91,7 +95,6 @@ function UserAccountForm(props) {
         setInitialPhoneNum(tmpNum)
         setVerifyPhoneNumber(tmpNum)
 
-        // if (profile_picture) setImgBase64Data('data:image/png;base64,' + profile_picture)
         if (birth_date) setInitialDate(birth_date)
         setCountryName(country)
         setGenderState(gender)
@@ -100,7 +103,13 @@ function UserAccountForm(props) {
 
     const onSubmit = (values) => {
         var formdata = new FormData()
-        formdata.append("profile_picture", imgFormData)
+        
+        var block = imgBase64Data.split(";");
+        var contentType = block[0].split(":")[1];
+        var realData = block[1].split(",")[1];
+        var blob = b64toBlob(realData, contentType);
+
+        formdata.append("profile_picture", blob)
         formdata.append("phone_number", values.phonenumber.phone_number)
         formdata.append("prefix_number", values.phonenumber.phone_country)
         formdata.append("country", countryName)
@@ -130,6 +139,7 @@ function UserAccountForm(props) {
             var file_read = new FileReader()
             file_read.addEventListener('load', (e) => {
                 setImgBase64Data(e.target.result)
+                console.log(e.target.result)
             })
             file_read.readAsDataURL(picture[0])
         }
@@ -140,6 +150,30 @@ function UserAccountForm(props) {
             number: `+${verifyPhoneNumber.phone_country}${verifyPhoneNumber.phone_number}`
         }
         dispatch(sendSms(body))
+    }
+
+    const b64toBlob = (b64Data, contentType, sliceSize) => {
+        contentType = contentType || '';
+        sliceSize = sliceSize || 512;
+
+        var byteCharacters = atob(b64Data);
+        var byteArrays = [];
+
+        for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+            var slice = byteCharacters.slice(offset, offset + sliceSize);
+
+            var byteNumbers = new Array(slice.length);
+            for (var i = 0; i < slice.length; i++) {
+                byteNumbers[i] = slice.charCodeAt(i);
+            }
+
+            var byteArray = new Uint8Array(byteNumbers);
+
+            byteArrays.push(byteArray);
+        }
+
+        var blob = new Blob(byteArrays, { type: contentType });
+        return blob;
     }
 
     if (isLoading)
@@ -156,13 +190,28 @@ function UserAccountForm(props) {
 
                                 <div className="mt-4 half-width">
                                     <FormGroup>
-                                        {(imgBase64Data || profile_picture) && 
-                                            <img className="profile-img" src={imgBase64Data ? imgBase64Data : profile_picture} />
+                                        {(imgBase64Data || profile_picture) &&
+                                            <>
+                                                <img className="profile-img" src={imgBase64Data ? imgBase64Data : profile_picture} />
+                                                {imgBase64Data &&
+                                                    <div>
+                                                        <Button
+                                                            onClick={handleImageCropModal}
+                                                            size="lg"
+                                                            color="primary"
+                                                            className="blue-btn mt-2"
+                                                            style={{ width: 100, height: 30, fontSize: '1rem', lineHeight: 1 }}
+                                                        >
+                                                            {t('button_group.edit')}
+                                                        </Button>
+                                                    </div>
+                                                }
+                                            </>
                                         }
                                         <ImageUploader
                                             buttonText={t('button_group.upload_image')}
                                             onChange={onDrop}
-                                            withPreview={true}
+                                            withPreview={false}
                                             className="upload-image-container"
                                             fileContainerStyle={{ boxShadow: "none", border: "1px solid #DEE6E9" }}
                                             singleImage={true}
@@ -405,6 +454,12 @@ function UserAccountForm(props) {
             <DeleteAccount
                 open={openDeleteModal}
                 onToggle={handleDeleteModal}
+            />
+            <ImageCropModal
+                open={openImageCropModal}
+                onToggle={handleImageCropModal}
+                setBase64Data={(value) => setImgBase64Data(value)}
+                src={imgBase64Data}
             />
             <PhoneVerificationModal
                 open={openVerificationModal}

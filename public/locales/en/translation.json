@@ -60,7 +60,9 @@
         "reset": "RESET",
         "continue": "CONTINUE",
         "accept": "Accept",
-        "decline": "Decline"
+        "decline": "Decline",
+        "confirm": "Confirm",
+        "edit": "Edit"
     },
 
     "homepage": {
@@ -200,7 +202,7 @@
         "winning_ends": "Validity Expiration Date of the Prizes (for coupons only)",
         "name_of_prizes": "Name of Prizes",
         "type_of_prizes": "Type of Prizes",
-        "number_of_people": "Number of People",
+        "number_of_people": "Number of Prizes",
         "add_more": "Add more",
         "results": "Results",
         "direct": "Direct",
@@ -234,7 +236,10 @@
         "iva": "IVA",
         "total": "Total",
         "must_have_one_at_least": "Must have one answer at least",
-        "video": "Video"
+        "video": "Video",
+        "campaign_informations": "Campaign Informations",
+        "prizes": "Prizes",
+        "social_actions": "Social Actions"
     },
 
     "profile_activated_page": {

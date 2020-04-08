@@ -68,9 +68,7 @@ function DeleteAccount(props) {
                         >
                             {t('button_group.delete_account')}
                         </Button>
-
                     </Form>
-
                 )}
             />
         </ModalBody>
