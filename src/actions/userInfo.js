@@ -74,7 +74,7 @@ function onSuccessLogOut(data) {
 /////////////////////////////////////////////// DELETE-ACCOUNT-ACTION
 export function deleteAccount(params) {
   return apiAction({
-    url: APIROUTE + "account/profile/delete/",
+    url: APIROUTE + "account/profile/deactivate/",
     method: 'POST',
     data: qs.stringify(params),
     accessToken: sessionStorage.getItem('token'),

@@ -22,6 +22,7 @@ import InstagramConnectBtn from '../../common/Buttons/InstagramConnectBtn'
 import SteamConnectBtn from '../../common/Buttons/SteamConnectBtn'
 import { getUserProfile, sendSms, updateUserProfile } from '../../../actions/userInfo'
 import moment from 'moment'
+import { b64toBlob } from '../../../utils/others'
 
 import {
     composeValidators,
@@ -103,11 +104,14 @@ function UserAccountForm(props) {
 
     const onSubmit = (values) => {
         var formdata = new FormData()
-        
-        var block = imgBase64Data.split(";");
-        var contentType = block[0].split(":")[1];
-        var realData = block[1].split(",")[1];
-        var blob = b64toBlob(realData, contentType);
+
+        var blob = null
+        if (imgBase64Data) {
+            var block = imgBase64Data.split(";");
+            var contentType = block[0].split(":")[1];
+            var realData = block[1].split(",")[1];
+            blob = b64toBlob(realData, contentType);
+        }
 
         formdata.append("profile_picture", blob)
         formdata.append("phone_number", values.phonenumber.phone_number)
@@ -152,29 +156,29 @@ function UserAccountForm(props) {
         dispatch(sendSms(body))
     }
 
-    const b64toBlob = (b64Data, contentType, sliceSize) => {
-        contentType = contentType || '';
-        sliceSize = sliceSize || 512;
+    // const b64toBlob = (b64Data, contentType, sliceSize) => {
+    //     contentType = contentType || '';
+    //     sliceSize = sliceSize || 512;
 
-        var byteCharacters = atob(b64Data);
-        var byteArrays = [];
+    //     var byteCharacters = atob(b64Data);
+    //     var byteArrays = [];
 
-        for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
-            var slice = byteCharacters.slice(offset, offset + sliceSize);
+    //     for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+    //         var slice = byteCharacters.slice(offset, offset + sliceSize);
 
-            var byteNumbers = new Array(slice.length);
-            for (var i = 0; i < slice.length; i++) {
-                byteNumbers[i] = slice.charCodeAt(i);
-            }
+    //         var byteNumbers = new Array(slice.length);
+    //         for (var i = 0; i < slice.length; i++) {
+    //             byteNumbers[i] = slice.charCodeAt(i);
+    //         }
 
-            var byteArray = new Uint8Array(byteNumbers);
+    //         var byteArray = new Uint8Array(byteNumbers);
 
-            byteArrays.push(byteArray);
-        }
+    //         byteArrays.push(byteArray);
+    //     }
 
-        var blob = new Blob(byteArrays, { type: contentType });
-        return blob;
-    }
+    //     var blob = new Blob(byteArrays, { type: contentType });
+    //     return blob;
+    // }
 
     if (isLoading)
         return <Loading />

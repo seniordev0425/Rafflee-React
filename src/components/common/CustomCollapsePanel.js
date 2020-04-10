@@ -12,6 +12,9 @@ import { useTranslation } from 'react-i18next'
 function CustomCollapsePanel(props) {
     const { t } = useTranslation()
     const userProfile = useSelector(state => state.userInfo.userProfile)
+    const token = useSelector(state => state.userInfo.token)
+    const company = useSelector(state => state.userInfo.company)
+
     const { type, actions, onParticipate, isVideoEnded } = props
 
     const renderIcons = () => {
@@ -60,7 +63,7 @@ function CustomCollapsePanel(props) {
                     <div>
                         {t(`campaign_detail_page.${type}.text`)}
                     </div>
-                    {userProfile.phone_number_verification &&
+                    {(token && !company && userProfile.phone_number_verification) &&
                         <div className="mt-2 mt-sm-3">
                             {actions.like && (
                                 <CheckBoxButtonForAction socialName={type} btnString='like' onParticipate={onParticipate} />

@@ -26,7 +26,6 @@ const ImageCropModal = (props) => {
                 croppedAreaPixels,
                 rotation
             )
-            console.log('donee', { croppedImage })
             setBase64Data(croppedImage)
             onToggle()
         } catch (e) {

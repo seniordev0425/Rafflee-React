@@ -22,7 +22,6 @@ function CheckBoxButtonForAction(props){
         } else {
             setChecked(!checked)
         }
-            
     }
 
     return(
@@ -37,7 +36,6 @@ function CheckBoxButtonForAction(props){
                 t(`create_campaign_page.${btnString}`)
                 :
                 <img src={images[`${btnString}_icon`]} width={15}/>
-
             }                
         </div>
     )

@@ -6,6 +6,7 @@ import ReactFlagsSelect from 'react-flags-select'
 import { getCode, getName } from 'country-list'
 import ImageUploader from 'react-images-upload'
 import DeleteAccount from '../../modals/DeleteAccount'
+import ImageCropModal from '../../modals/ImageCropModal'
 import FormInput from '../../common/FormInput'
 import FormPhoneInput from '../../common/FormPhoneInput'
 import FaceBookConnectBtn from '../../common/Buttons/FaceBookConnectBtn'
@@ -16,9 +17,7 @@ import InstagramConnectBtn from '../../common/Buttons/InstagramConnectBtn'
 import SteamConnectBtn from '../../common/Buttons/SteamConnectBtn'
 import { updateCompanyProfile } from '../../../actions/userInfo'
 import { getCompanyProfile } from '../../../actions/userInfo'
-
-
-
+import { b64toBlob } from '../../../utils/others'
 import {
     composeValidators,
     required,
@@ -30,6 +29,7 @@ import {
 import Loading from '../../common/Loading';
 
 import { useTranslation } from 'react-i18next'
+
 
 function CompanyAccountForm(props) {
     const { t } = useTranslation()
@@ -45,7 +45,10 @@ function CompanyAccountForm(props) {
     const [imgBase64Data, setImgBase64Data] = useState('')
     const [imgFormData, setImgFormData] = useState([])
     const [openDeleteModal, setOpenDeleteModal] = useState(false)
+    const [openImageCropModal, setOpenImageCropModal] = useState(false)
+
     const handleDeleteModal = () => setOpenDeleteModal(!openDeleteModal)
+    const handleImageCropModal = () => setOpenImageCropModal(!openImageCropModal)
 
     const { logo, country_code, national_number, country } = companyProfile
 
@@ -58,14 +61,21 @@ function CompanyAccountForm(props) {
         tmpNum.phone_country = country_code
         tmpNum.phone_number = national_number
         setInitialPhoneNum(tmpNum)
-
-        // if (logo !== '') setImgBase64Data('data:image/png;base64,' + logo)
         setCountryName(country)
     }, [companyProfile])
 
     const onSubmit = (values) => {
         var formdata = new FormData()
-        formdata.append("logo", imgFormData)
+        
+        var blob = null
+        if (imgBase64Data) {
+            var block = imgBase64Data.split(";");
+            var contentType = block[0].split(":")[1];
+            var realData = block[1].split(",")[1];
+            blob = b64toBlob(realData, contentType);
+        }
+        
+        formdata.append("logo", blob)
         formdata.append("phone_number", values.phonenumber.phone_number)
         formdata.append("prefix_number", values.phonenumber.phone_country)
         formdata.append("country", countryName)
@@ -104,8 +114,23 @@ function CompanyAccountForm(props) {
                             <Col xs="12" sm="6">
                                 <div className="mt-4 half-width">
                                     <FormGroup>
-                                        {(imgBase64Data || logo) && 
-                                            <img className="profile-img" src={imgBase64Data ? imgBase64Data : logo} />
+                                        {(imgBase64Data || logo) &&
+                                            <>
+                                                <img className="profile-img" src={imgBase64Data ? imgBase64Data : logo} />
+                                                {imgBase64Data &&
+                                                    <div>
+                                                        <Button
+                                                            onClick={handleImageCropModal}
+                                                            size="lg"
+                                                            color="primary"
+                                                            className="blue-btn mt-2"
+                                                            style={{ width: 100, height: 30, fontSize: '1rem', lineHeight: 1 }}
+                                                        >
+                                                            {t('button_group.edit')}
+                                                        </Button>
+                                                    </div>
+                                                }
+                                            </>
                                         }
                                         <ImageUploader
                                             buttonText={t('button_group.upload_image')}
@@ -285,6 +310,12 @@ function CompanyAccountForm(props) {
             <DeleteAccount
                 open={openDeleteModal}
                 onToggle={handleDeleteModal}
+            />
+            <ImageCropModal
+                open={openImageCropModal}
+                onToggle={handleImageCropModal}
+                setBase64Data={(value) => setImgBase64Data(value)}
+                src={imgBase64Data}
             />
         </>
     )

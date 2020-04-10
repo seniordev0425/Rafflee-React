@@ -60,7 +60,7 @@ function CampaignDetail(props) {
 
     useEffect(() => {
         if (CAMPAIGN_PARTICIPATE_SUCCESS) {
-            dispatch({type: 'INIT_STATE', state: 'SUCCESS_CAMPAIGN_PARTICIPATE', data: false})
+            dispatch({ type: 'INIT_STATE', state: 'SUCCESS_CAMPAIGN_PARTICIPATE', data: false })
             setOpenConfirm(true)
         }
     }, [CAMPAIGN_PARTICIPATE_SUCCESS])
@@ -92,7 +92,7 @@ function CampaignDetail(props) {
     const videoEnded = () => {
         setIsVideoEnded(true)
         actionParams = actionParams.filter((item) => item['social_name'] !== 'video')
-        actionParams.push({social_name: 'video', action_type: true})
+        actionParams.push({ social_name: 'video', action_type: true })
     }
 
     const handleOpenConfirm = () => setOpenConfirm(!openConfirm)
@@ -102,12 +102,12 @@ function CampaignDetail(props) {
             if (!isVideoEnded) openVideoModal()
             else {
                 actionParams = actionParams.filter((item) => item['social_name'] !== socialName)
-                actionParams.push({social_name: socialName, action_type: checked})
+                actionParams.push({ social_name: socialName, action_type: checked })
             }
         }
         else {
             actionParams = actionParams.filter((item) => item['social_name'] !== socialName)
-            if (checked) actionParams.push({social_name: socialName, action_type: actionType})
+            if (checked) actionParams.push({ social_name: socialName, action_type: actionType })
         }
     }
 
@@ -123,7 +123,7 @@ function CampaignDetail(props) {
     }
 
     const participate = () => {
-        if (answers) actionParams.push({social_name: 'poll', action_type: answers})
+        if (answers) actionParams.push({ social_name: 'poll', action_type: answers })
         var body = {
             promotion_id: campaignData.pk,
             social_actions: JSON.stringify(actionParams)
@@ -147,7 +147,7 @@ function CampaignDetail(props) {
                                 <img src={campaignData.company_logo ? campaignData.company_logo : images.profile_img} />
                                 <div className="mt-3 color-blue font-weight-bold">{campaignData.company_name}</div>
                             </div>
-                            
+
                         </Col>
                         <Col lg="11" md="10" sm="10" xs="9" className="pl-sm-5">
                             <div className="promotion-list-item-title">{campaignData.campaign_name}</div>
@@ -364,7 +364,7 @@ function CampaignDetail(props) {
 
 
             <ParticipateConfirmModal open={openConfirm} onToggle={handleOpenConfirm} promotion_id={campaignData.pk} />
-            <VideoPlayerModal open={openVideo} onToggle={handleOpenVideo} videoEnded={videoEnded}/>
+            <VideoPlayerModal open={openVideo} onToggle={handleOpenVideo} videoEnded={videoEnded} />
         </div>
     );
 }

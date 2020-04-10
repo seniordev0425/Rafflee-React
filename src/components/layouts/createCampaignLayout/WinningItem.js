@@ -27,7 +27,7 @@ function WinningItem(props) {
                 </div>
             </Col>
             <Col xs="12" sm="4">
-                <div className="mt-4 full-width">
+                <div className="mt-4 half-width">
                     <FormGroup>
                         <div className="footer-link-bold mb-3">{t('create_campaign_page.type_of_prizes')}</div>
                         <Input
@@ -41,8 +41,8 @@ function WinningItem(props) {
                     </FormGroup>
                 </div>
             </Col>
-            <Col xs="12" sm="4" className="d-flex justify-content-between">
-                <div className="mt-4 half-width">
+            <Col xs="12" sm="4" className="d-flex justify-content-around">
+                <div className="mt-4 w-25">
                     <FormGroup>
                         <div className="footer-link-bold mb-3">{t('create_campaign_page.number_of_people')}</div>
                         <Input
@@ -54,6 +54,13 @@ function WinningItem(props) {
                             required
                         />
                     </FormGroup>
+                </div>
+                <div>
+                    <Input
+                        type='file'
+                        style={{marginTop: 70}}
+                        onChange={(e) => setWinningVal(e, id, 'image')}
+                    />
                 </div>
 
                 <FontAwesomeIcon className="remove-winning-icon" icon={faTrash} onClick={() => removeWinning(id)} />
