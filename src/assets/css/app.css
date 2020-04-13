@@ -434,6 +434,7 @@ h2 span {
 }
 .logout-icon {
     width: 20px !important;
+    margin-top: -5px;
 }
 .banner {
     width: 100%;
@@ -463,12 +464,10 @@ h2 span {
 .banner-text-green {
     font-size: 30px;
     color: #06CBC7;
-    font-weight: bold;
 }
 .banner-text-purple {
     font-size: 30px;
     color: #936EEA;
-    font-weight: bold;
 }
 .banner-search {
     height: 55px;
@@ -477,7 +476,7 @@ h2 span {
 }
 .banner-search-input {
     height: 100%;
-    width: 400px;
+    width: 440px;
     border: 0px;
     border-radius: 5px 0px 0px 5px;
     box-shadow: 0px 3px 10px #181b1d1a;
@@ -538,10 +537,26 @@ h2 span {
     display: flex;
     justify-content: center;
 }
-.campaign-card-img img {
+.campaign-card-img .campaign-img {
     width: 100px;
     height: 100px;
     border-radius: 6px;
+}
+.campaign-card-img .company-logo-container {
+    position: absolute;
+    top: 115px;
+    left: calc(50% - 70px);
+    width: 50px;
+    height: 50px;
+    background: white;
+    padding: 6px;
+    border-radius: 50%;
+}
+.campaign-card-img .company-logo {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    box-shadow: 0px 5px 5px #bec2c5d9;
 }
 .campaign-card-title {
     font-size: 22px;
@@ -551,7 +566,7 @@ h2 span {
 }
 .campaign-card-text {
     text-align: center;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
 }
 .campaign-card-star {
     display: flex;
@@ -1096,6 +1111,7 @@ h2 span {
 .profile-img {
     width: 100px;
     height: 100px;
+    border-radius: 6px;
 }
 .ant-pagination-item-link .anticon {
     vertical-align: 0.08rem;

@@ -33,7 +33,7 @@ function onSuccessCampaignParticipate(data) {
     data: ''
   }
 }
-/////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_ACTION
+/////////////////////////////////////////////// CAMPAIGN_SUBSCRIBE_ACTION
 export function campaignSubscribe(params) {
   return apiAction({
     url: APIROUTE + "campaign/participate/subscription/",

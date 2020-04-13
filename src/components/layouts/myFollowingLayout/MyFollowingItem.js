@@ -30,7 +30,13 @@ function MyFollowingItem(props) {
                             <img src={item.campaign_image ? item.campaign_image : images.profile_img} />
                         </Col>
                         <Col lg="11" md="10" sm="10" xs="9" className="pl-sm-5">
-                            <div className="promotion-list-item-title">{item.promotion}
+                            <div className="promotion-list-item-title">
+                                <img
+                                    src={item.company_logo ? item.company_logo : images.profile_img}
+                                    style={{ width: 40, height: 40, borderRadius: '50%', boxShadow: ' 0px 5px 5px #bec2c5d9' }}
+                                    className="mr-3"
+                                />
+                                {item.promotion}
                                 <span className={Date.parse(item.end_date) > Date.now() ? "green-dot" : "red-dot"}></span>
                             </div>
                             <div className="promotion-list-item-text">{item.description}</div>

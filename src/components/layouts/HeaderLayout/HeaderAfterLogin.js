@@ -52,13 +52,13 @@ function HeaderAfterLogin(props) {
         <>
             {!hide ? (
                 <Row>
-                    <Link to="/deals"><Button type="link" className="no-border-btn mr-3">{t('header.campaigns')}</Button></Link>
+                    <Link to="/deals"><Button type="link" className="no-border-btn mr-3 h-100">{t('header.campaigns')}</Button></Link>
                     <Link to="/user-account"><Button className="white-btn mr-3" style={{ width: 140 }}>{t('header.account')}</Button></Link>
                     <Link to={props.company ? "/dashboard/my-campaign" : "/dashboard/inventory"}>
                         <Button type="primary" className="ant-blue-btn mr-3" style={{ width: 140 }}>{t('header.dashboard')}</Button>
                     </Link>
                     <div onClick={log_Out} className="pointer mr-3">
-                        <Button type="link" className="no-border-btn">{t('header.log_out')}</Button>
+                        <Button type="link" className="no-border-btn h-100">{t('header.log_out')}</Button>
                         <img src={images.logout_icon} className="logout-icon" />
                     </div>
                     <SelectLanguage />

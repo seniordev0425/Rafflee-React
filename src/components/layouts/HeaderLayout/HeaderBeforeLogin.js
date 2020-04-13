@@ -50,10 +50,10 @@ function HeaderBeforeLogin() {
         <>
             {!hide ? (
                 <Row>
-                    <Link to="/deals"><Button type="link" className="no-border-btn mr-3">{t('header.campaigns')}</Button></Link>
+                    <Link to="/deals"><Button type="link" className="no-border-btn mr-3 h-100">{t('header.campaigns')}</Button></Link>
                     <Button className="white-btn mr-3" style={{ width: 140 }} onClick={() => toggle(false)}>{t('header.sign_in')}</Button>
                     <Button type="primary" className="ant-blue-btn mr-3" style={{ width: 140 }} onClick={() => toggle(true)}>{t('header.log_in')}</Button>
-                    <FontAwesomeIcon icon={faQuestionCircle} className="font-size-19 color-blue pointer mr-3" />
+                    <FontAwesomeIcon icon={faQuestionCircle} className="font-size-19 color-blue pointer mr-3 mt-1" />
                     <SelectLanguage />
                 </Row>
             ) : (

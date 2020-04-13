@@ -156,30 +156,6 @@ function UserAccountForm(props) {
         dispatch(sendSms(body))
     }
 
-    // const b64toBlob = (b64Data, contentType, sliceSize) => {
-    //     contentType = contentType || '';
-    //     sliceSize = sliceSize || 512;
-
-    //     var byteCharacters = atob(b64Data);
-    //     var byteArrays = [];
-
-    //     for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
-    //         var slice = byteCharacters.slice(offset, offset + sliceSize);
-
-    //         var byteNumbers = new Array(slice.length);
-    //         for (var i = 0; i < slice.length; i++) {
-    //             byteNumbers[i] = slice.charCodeAt(i);
-    //         }
-
-    //         var byteArray = new Uint8Array(byteNumbers);
-
-    //         byteArrays.push(byteArray);
-    //     }
-
-    //     var blob = new Blob(byteArrays, { type: contentType });
-    //     return blob;
-    // }
-
     if (isLoading)
         return <Loading />
 
@@ -267,7 +243,88 @@ function UserAccountForm(props) {
                                         </Select>
                                     </FormGroup>
                                 </div>
+                                
                                 <div className="mt-4 half-width">
+                                    <FormGroup>
+                                        <div className="footer-link-bold mb-3">{t('account_page.country')}</div>
+                                        <ReactFlagsSelect
+                                            onSelect={onSelectFlag}
+                                            defaultCountry={getCode(country || 'France')}
+                                            searchable={true}
+                                            className="menu-flags"
+                                            name="country"
+                                        />
+                                    </FormGroup>
+                                </div>
+                                <div className="mt-4 half-width">
+                                    <FormGroup>
+                                        <div className="footer-link-bold mb-3">{t('account_page.birth_date')}</div>
+                                        <DatePicker
+                                            onChange={onChangeInitialDate}
+                                            name="birth_date"
+                                            value={moment(initialDate, 'YYYY-MM-DD')}
+                                            className="ant-date-picker"
+                                        />
+                                    </FormGroup>
+                                </div>
+                                
+                            </Col>
+                            <Col xs="12" sm="6">
+                                <div className="mt-4" style={{ width: "100%" }}>
+                                    <FormGroup>
+                                        <div className="footer-link-bold mb-3">{t('account_page.address')}</div>
+                                        <Field
+                                            name="address"
+                                            defaultValue={userProfile.address}
+                                            component={FormInput}
+                                            className="custom-form-control"
+                                            type="text"
+                                            placeholder={t('account_page.address')}
+                                        />
+                                    </FormGroup>
+                                </div>
+                                <div className="mt-4" style={{ width: "100%" }}>
+                                    <FormGroup>
+                                        <Field
+                                            name="street"
+                                            defaultValue={userProfile.city}
+                                            component={FormInput}
+                                            className="custom-form-control"
+                                            type="text"
+                                            placeholder={t('account_page.city')}
+                                        />
+                                    </FormGroup>
+                                </div>
+                                <div className="mt-4 half-width">
+                                    <FormGroup>
+                                        <Field
+                                            name="postal_code"
+                                            defaultValue={userProfile.region}
+                                            component={FormInput}
+                                            className="custom-form-control"
+                                            type="text"
+                                            placeholder={t('account_page.region')}
+                                        />
+                                    </FormGroup>
+                                </div>
+                                <div className="mt-4 w-100">
+                                    <FormGroup>
+                                        <div className="footer-link-bold mb-3">{t('account_page.email')}</div>
+                                        <Field
+                                            name="email"
+                                            defaultValue={userProfile.email}
+                                            component={FormInput}
+                                            className="custom-form-control"
+                                            type="email"
+                                            placeholder="name@example.com"
+                                            validate={composeValidators(
+                                                required(t('account_page.enter_valid_email')),
+                                                isEmail(t('account_page.enter_valid_email'))
+                                            )}
+                                        />
+                                    </FormGroup>
+                                </div>
+                                <div className="mt-4 w-100">
                                     <FormGroup>
                                         <div className="footer-link-bold mb-3">{t('account_page.phone_number')}</div>
                                         <div className="d-flex justify-content-between">
@@ -303,85 +360,6 @@ function UserAccountForm(props) {
                                             </div>
 
                                         </div>
-                                    </FormGroup>
-                                </div>
-                                <div className="mt-4 half-width">
-                                    <FormGroup>
-                                        <div className="footer-link-bold mb-3">{t('account_page.country')}</div>
-                                        <ReactFlagsSelect
-                                            onSelect={onSelectFlag}
-                                            defaultCountry={getCode(country || 'France')}
-                                            searchable={true}
-                                            className="menu-flags"
-                                            name="country"
-                                        />
-                                    </FormGroup>
-                                </div>
-                                <div className="mt-4 half-width">
-                                    <FormGroup>
-                                        <div className="footer-link-bold mb-3">{t('account_page.birth_date')}</div>
-                                        <DatePicker
-                                            onChange={onChangeInitialDate}
-                                            name="birth_date"
-                                            value={moment(initialDate, 'YYYY-MM-DD')}
-                                            className="ant-date-picker"
-                                        />
-                                    </FormGroup>
-                                </div>
-                                <div className="mt-4 half-width">
-                                    <FormGroup>
-                                        <div className="footer-link-bold mb-3">{t('account_page.email')}</div>
-                                        <Field
-                                            name="email"
-                                            defaultValue={userProfile.email}
-                                            component={FormInput}
-                                            className="custom-form-control"
-                                            type="email"
-                                            placeholder="name@example.com"
-                                            validate={composeValidators(
-                                                required(t('account_page.enter_valid_email')),
-                                                isEmail(t('account_page.enter_valid_email'))
-                                            )}
-                                        />
-                                    </FormGroup>
-                                </div>
-                            </Col>
-                            <Col xs="12" sm="6">
-                                <div className="mt-4" style={{ width: "100%" }}>
-                                    <FormGroup>
-                                        <div className="footer-link-bold mb-3">{t('account_page.address')}</div>
-                                        <Field
-                                            name="address"
-                                            defaultValue={userProfile.address}
-                                            component={FormInput}
-                                            className="custom-form-control"
-                                            type="text"
-                                            placeholder={t('account_page.address')}
-                                        />
-                                    </FormGroup>
-                                </div>
-                                <div className="mt-4" style={{ width: "100%" }}>
-                                    <FormGroup>
-                                        <Field
-                                            name="street"
-                                            defaultValue={userProfile.city}
-                                            component={FormInput}
-                                            className="custom-form-control"
-                                            type="text"
-                                            placeholder={t('account_page.city')}
-                                        />
-                                    </FormGroup>
-                                </div>
-                                <div className="mt-4 float-right half-width">
-                                    <FormGroup>
-                                        <Field
-                                            name="postal_code"
-                                            defaultValue={userProfile.region}
-                                            component={FormInput}
-                                            className="custom-form-control"
-                                            type="text"
-                                            placeholder={t('account_page.region')}
-                                        />
                                     </FormGroup>
                                 </div>
                             </Col>

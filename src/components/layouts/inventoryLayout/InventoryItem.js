@@ -29,7 +29,14 @@ function InventoryItem(props) {
                             <img src={item.campaign_image ? item.campaign_image : images.profile_img} />
                         </Col>
                         <Col lg="11" md="10" sm="10" xs="9" className="pl-sm-5">
-                            <div className="promotion-list-item-title">{item.campaign_name}</div>
+                            <div className="promotion-list-item-title">
+                                <img
+                                    src={item.company_logo ? item.company_logo : images.profile_img}
+                                    style={{ width: 40, height: 40, borderRadius: '50%', boxShadow: ' 0px 5px 5px #bec2c5d9' }}
+                                    className="mr-3"
+                                />
+                                {item.campaign_name}
+                            </div>
                             <div className="promotion-list-item-text">{item.description}</div>
                             <div style={{ marginTop: "20px", height: "40px" }}>
                                 <Button

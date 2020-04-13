@@ -145,35 +145,7 @@ function CompanyAccountForm(props) {
                                         />
                                     </FormGroup>
                                 </div>
-                                <div className="mt-4 half-width" >
-                                    <FormGroup>
-                                        <div className="footer-link-bold mb-3">{t('account_page.admin_email')}</div>
-                                        <Field
-                                            name="email"
-                                            defaultValue={companyProfile.email}
-                                            component={FormInput}
-                                            className="custom-form-control"
-                                            type="email"
-                                            placeholder="name@example.com"
-                                            validate={composeValidators(
-                                                required(t('account_page.enter_valid_email')),
-                                                isEmail(t('account_page.enter_valid_email'))
-                                            )}
-                                        />
-                                    </FormGroup>
-                                </div>
-
-                                <div className="mt-4 half-width">
-                                    <FormGroup>
-                                        <div className="footer-link-bold mb-3">{t('account_page.phone_number')}</div>
-                                        <Field
-                                            name="phonenumber"
-                                            defaultValue={initialPhoneNum}
-                                            component={FormPhoneInput}
-                                            className="custom-form-control"
-                                        />
-                                    </FormGroup>
-                                </div>
+                                
 
                                 <div className="mt-4 half-width">
                                     <FormGroup>
@@ -230,7 +202,7 @@ function CompanyAccountForm(props) {
                                         />
                                     </FormGroup>
                                 </div>
-                                <div className="mt-4 float-right half-width">
+                                <div className="mt-4 half-width">
                                     <FormGroup>
                                         <Field
                                             name="postal_code"
@@ -239,6 +211,35 @@ function CompanyAccountForm(props) {
                                             className="custom-form-control"
                                             type="text"
                                             placeholder={t('account_page.region')}
+                                        />
+                                    </FormGroup>
+                                </div>
+                                <div className="mt-4 w-100" >
+                                    <FormGroup>
+                                        <div className="footer-link-bold mb-3">{t('account_page.admin_email')}</div>
+                                        <Field
+                                            name="email"
+                                            defaultValue={companyProfile.email}
+                                            component={FormInput}
+                                            className="custom-form-control"
+                                            type="email"
+                                            placeholder="name@example.com"
+                                            validate={composeValidators(
+                                                required(t('account_page.enter_valid_email')),
+                                                isEmail(t('account_page.enter_valid_email'))
+                                            )}
+                                        />
+                                    </FormGroup>
+                                </div>
+
+                                <div className="mt-4 w-100">
+                                    <FormGroup>
+                                        <div className="footer-link-bold mb-3">{t('account_page.phone_number')}</div>
+                                        <Field
+                                            name="phonenumber"
+                                            defaultValue={initialPhoneNum}
+                                            component={FormPhoneInput}
+                                            className="custom-form-control"
                                         />
                                     </FormGroup>
                                 </div>

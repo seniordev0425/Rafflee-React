@@ -24,6 +24,7 @@ function Carousel(props) {
             campaign_name={item.campaign_name}
             campaign_image={item.campaign_image}
             pk={item.pk}
+            company_logo={item.company_logo}
         />
     )
 
@@ -41,7 +42,7 @@ function Carousel(props) {
                 stagePadding={stagePadding}
                 dotsDisabled={true}
                 infinite={true}
-                autoPlay={true}
+                autoPlay={false}
                 autoPlayInterval={2000}
                 duration={800}
             />

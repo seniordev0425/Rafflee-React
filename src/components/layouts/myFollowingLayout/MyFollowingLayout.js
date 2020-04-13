@@ -46,7 +46,7 @@ function MyFollowingLayout() {
         <>
             {renderHistoryList()}
             {myFollowing.length < 1 && (
-                <div className="empty-result mt-5 mb-5">
+                <div className="empty-result mt-5">
                     <span className="promotion-list-item-title">{t('empty_result_to_display')}</span>
                 </div>
             )}
