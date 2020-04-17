@@ -15,7 +15,7 @@ function Congratulation(props) {
       winnerArr.map((item, index) =>
         <div key={index} className="congratulation-item my-5">
           <div style={{ position: "absolute", left: "6%", marginTop: -6, marginLeft: 23 }}>
-            <img src={'data:image/png;base64,' + item.picture_profile} alt="" width="35" height="35" />
+            <img src={item.picture_profile ? item.picture_profile : images.profile_img} alt="" width="35" height="35" />
             <span className="ml-3">{item.username}</span>
           </div>
           <div className="d-flex align-items-center">
@@ -48,7 +48,6 @@ function Congratulation(props) {
         <span className="promotion-list-item-title mr-3" style={{ fontSize: 17 }}>{t('congratulation_modal.powered_by')}</span>
         <img src={images.logo} width="70" height="22" alt="logo" />
       </div>
-
     </ModalBody>
   </Modal>
 }

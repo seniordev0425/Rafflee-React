@@ -9,6 +9,7 @@ import ReactFlagsSelect from 'react-flags-select'
 import { getCode, getName } from 'country-list'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'
+import TwitterLogin from 'react-twitter-login'
 import DeleteAccount from '../../modals/DeleteAccount'
 import ImageCropModal from '../../modals/ImageCropModal'
 import FormInput from '../../common/FormInput'
@@ -34,7 +35,7 @@ import {
 } from '../../../utils/validation'
 import PhoneVerificationModal from '../../modals/PhoneVerificationModal';
 import Loading from '../../common/Loading';
-
+import { TWITTER_API_KEY, TWITTER_API_SECRET } from '../../../utils/constants'
 import { useTranslation } from 'react-i18next'
 
 function UserAccountForm(props) {
@@ -125,6 +126,7 @@ function UserAccountForm(props) {
         formdata.append("region", values.postal_code !== undefined ? values.postal_code : '')
         formdata.append("gender", genderState)
         dispatch(updateUserProfile(formdata))
+        console.log(formdata)
     }
 
     const onChangeInitialDate = (date, dateString) => {
@@ -373,6 +375,7 @@ function UserAccountForm(props) {
                                 </div>
                                 <div className="mt-4 half-width">
                                     <div className="footer-link-bold mb-3">Twitter</div>
+                                    
                                     <TwitterConnectBtn />
 
                                 </div>

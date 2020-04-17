@@ -14,6 +14,8 @@ import ResetPassword from '../screens/ResetPassword'
 import SearchResult from '../screens/SearchResult'
 import PrivacyPolicy from '../screens/PrivacyPolicy'
 import GeneralConditions from '../screens/GeneralConditions'
+import CompanyPage from '../screens/CompanyPage'
+import TwitterAuthPage from '../screens/SocialAuth/TwitterAuthPage'
 
 import Loading from '../components/common/Loading'
 import ScrollToTop from '../components/common/ScrollToTop'
@@ -137,6 +139,8 @@ function Routes(props) {
                 <Route exact path="/search-result" component={SearchResult} />
                 <Route exact path="/general-conditions" component={GeneralConditions} />
                 <Route exact path="/privacy-policy" component={PrivacyPolicy} />
+                <Route exact path="/company/:id" component={CompanyPage} />
+                <Route exact path="/twitter/login/callback/" component={TwitterAuthPage} />
                 <Route component={NotFound} />
             </Switch>
             <CookieConsent

@@ -25,11 +25,13 @@ function Carousel(props) {
             campaign_image={item.campaign_image}
             pk={item.pk}
             company_logo={item.company_logo}
+            company_id={item.company_id}
         />
     )
 
     if (hotPromotions.length < 1)
         return <></>
+        
     return (
         <div className="app" style={{ maxWidth: galleryItems.length > 1 ? galleryItems.length * 450 : galleryItems.length * 480 }}>
             <AliceCarousel
@@ -42,7 +44,7 @@ function Carousel(props) {
                 stagePadding={stagePadding}
                 dotsDisabled={true}
                 infinite={true}
-                autoPlay={false}
+                autoPlay={true}
                 autoPlayInterval={2000}
                 duration={800}
             />

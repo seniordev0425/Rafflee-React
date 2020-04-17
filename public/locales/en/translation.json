@@ -62,7 +62,8 @@
         "accept": "Accept",
         "decline": "Decline",
         "confirm": "Confirm",
-        "edit": "Edit"
+        "edit": "Edit",
+        "follow_circle": "FOLLOW CIRCLE"        
     },
 
     "homepage": {
@@ -250,7 +251,11 @@
     "search_result_page": {
         "search": "Search"
     },
-
+    "company_page": {
+        "member_since": "Memeber since",
+        "follow_circle": "Follow Circle",
+        "newsletter": "Newsletter"
+    },
     "signin_modal": {
         "username": "Username",
         "password": "Password",
@@ -315,6 +320,9 @@
         "thanks_for_participating": "Thanks for participating!",
         "checkbox1": "Would you like to join the private Converse Cercle?",
         "checkbox2": "Would you like to receive informations about this company by email?"
+    },
+    "social_oauth": {
+        "twitter": "Twitter Login Validated"
     }
     
     

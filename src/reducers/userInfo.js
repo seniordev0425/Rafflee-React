@@ -41,8 +41,23 @@ const initialFeedState = {
     myFollowing: [],
     myCampaigns: [],
     myBills: [],
-    pdfInvoice: ''
-
+    pdfInvoice: '',
+    companyInformation: {
+        description: null,
+        youtube_channel: null,
+        logo_url: null,
+        twitter_page_url: null,
+        number_of_follower: null,
+        facebook_page_url: null,
+        company_name: '',
+        website_url: null,
+        pk: null,
+        instagram_page_url: null,
+        type_of_account: '',
+        member_since: '',
+        certified: false
+    },
+    twitter_oauth_token: ''
 }
 
 function UserInfo(state = initialFeedState, action) {
@@ -179,7 +194,16 @@ function UserInfo(state = initialFeedState, action) {
                     myFollowing: state.myFollowing.filter((promotion) => promotion.id !== action.id)
                 }
             }
-
+        case 'SET_COMPANY_INFORMATION': 
+            return {
+                ...state,
+                companyInformation: action.data
+            }
+        case 'SET_TWITTER_OAUTH_TOKEN':
+            return {
+                ...state,
+                twitter_oauth_token: action.data
+            }
         default:
             return state
     }

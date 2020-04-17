@@ -291,7 +291,7 @@ function onSuccessGetParticipationHistory(data) {
 /////////////////////////////////////////////// GET-MY-FOLLOWING-ACTION
 export function getFollowing() {
   return apiAction({
-    url: APIROUTE + "favorites/",
+    url: APIROUTE + "favorites/campaign/",
     accessToken: sessionStorage.getItem('token'),
     onSuccess: onSuccessGetFollowing,
     onFailure: onFailed,
@@ -423,6 +423,77 @@ function onSuccessResetPassword(data) {
   return {
     type: 'RESET_PASSWORD_SUCCESS',
     flag: true
+  }
+}
+/////////////////////////////////////////////// GET-COMPANY-INFORMATION-ACTION
+export function getCompanyInformation(id) {
+  return apiAction({
+    url: APIROUTE + `company/${id}/`,
+    onSuccess: onSuccessGetCompanyInformation,
+    onFailure: onFailed,
+    label: 'GET_COMPANY_INFORMATION',
+  });
+}
+function onSuccessGetCompanyInformation(data) {
+  return {
+    type: 'SET_COMPANY_INFORMATION',
+    data: data.msg
+  }
+}
+/////////////////////////////////////////////// CAMPAIGN_SUBSCRIBE_ACTION
+export function followCircle(params, id) {
+  return apiAction({
+    url: APIROUTE + `account/follow/${id}/`,
+    method: 'POST',
+    data: qs.stringify(params),
+    accessToken: sessionStorage.getItem('token'),
+    onSuccess: onSuccessFollowCircle,
+    onFailure: onFailed,
+    label: 'FOLLOW_CIRCLE',
+    requireErrorMessage: true
+  });
+}
+function onSuccessFollowCircle(data) {
+  openNotification('success', successMessages[localStorage.getItem('i18nextLng')].followCircle)
+  return {
+    type: '',
+    data: ''
+  }
+}
+/////////////////////////////////////////////// TWITTER_CONNECT_STEP1
+export function twitterConnectStep1() {
+  return apiAction({
+    url: APIROUTE + `twitter/connect/1/`,
+    method: 'POST',
+    accessToken: sessionStorage.getItem('token'),
+    onSuccess: onSuccessTwitterConnectStep1,
+    onFailure: onFailed,
+    label: 'TWITTER_CONNECT_STEP1',
+  });
+}
+function onSuccessTwitterConnectStep1(data) {
+  console.log(data)
+  return {
+    type: 'SET_TWITTER_OAUTH_TOKEN',
+    data: data.oauth_token
+  }
+}
+/////////////////////////////////////////////// TWITTER_CONNECT_STEP2
+export function twitterConnectStep2(params) {
+  return apiAction({
+    url: APIROUTE + `twitter/connect/2/`,
+    method: 'POST',
+    data: qs.stringify(params),
+    accessToken: sessionStorage.getItem('token'),
+    onSuccess: onSuccessTwitterConnectStep2,
+    onFailure: onFailed,
+    label: 'TWITTER_CONNECT_STEP2',
+  });
+}
+function onSuccessTwitterConnectStep2(data) {
+  return {
+    type: '',
+    data: ''
   }
 }
 

@@ -19,6 +19,9 @@ body {
 .color-purple {
     color: #7479EE;
 }
+.color-gray {
+    color: #9399A3;
+}
 .font-size-8 {
     font-size: 0.8rem;
 }
@@ -1207,7 +1210,12 @@ h2 span {
 .cropContainer {
     height: 300px;
 }
-
+.company-page-header {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid #cccccc;
+    border-top: 1px solid #cccccc;
+}
 
 
 

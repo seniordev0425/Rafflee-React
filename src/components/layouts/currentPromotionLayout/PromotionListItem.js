@@ -35,11 +35,13 @@ function PromotionListItem(props) {
                         </Col>
                         <Col lg="11" md="10" sm="10" xs="9" className="pl-sm-5">
                             <div className="promotion-list-item-title">
-                                <img
-                                    src={item.company_logo ? item.company_logo : images.profile_img}
-                                    style={{ width: 40, height: 40, borderRadius: '50%', boxShadow: ' 0px 5px 5px #bec2c5d9' }}
-                                    className="mr-3"
-                                />
+                                <Link to={`/company/${item.company_id}/`}>
+                                    <img
+                                        src={item.company_logo ? item.company_logo : images.profile_img}
+                                        style={{ width: 40, height: 40, borderRadius: '50%', boxShadow: ' 0px 5px 5px #bec2c5d9' }}
+                                        className="mr-3"
+                                    />
+                                </Link>
                                 {item.campaign_name}
                             </div>
                             <div className="promotion-list-item-text">{item.description}</div>
