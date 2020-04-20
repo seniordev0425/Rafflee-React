@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 import { Row, Col, Button } from 'reactstrap'
 import moment from 'moment'
 
@@ -143,11 +143,12 @@ function CampaignDetail(props) {
                 <Col xs="12" sm={{ size: 10, offset: 1 }}>
                     <Row className="my-5">
                         <Col lg="1" md="2" sm="2" xs="3" className="promotion-list-item-img">
-                            <div>
-                                <img src={campaignData.company_logo ? campaignData.company_logo : images.profile_img} />
-                                <div className="mt-3 color-blue font-weight-bold">{campaignData.company_name}</div>
-                            </div>
-
+                            <Link to={`/company/${campaignData.company_id}/`}>
+                                <div>
+                                    <img src={campaignData.company_logo ? campaignData.company_logo : images.profile_img} />
+                                    <div className="mt-3 color-blue font-weight-bold">{campaignData.company_name}</div>
+                                </div>
+                            </Link>
                         </Col>
                         <Col lg="11" md="10" sm="10" xs="9" className="pl-sm-5">
                             <div className="promotion-list-item-title">{campaignData.campaign_name}</div>

@@ -29,7 +29,7 @@ function CompanyPage(props) {
     useEffect(() => {
         document.title = "Company Page"
         dispatch(getCompanyInformation(id))
-    }, []);
+    }, [])
 
     const handleFollowModal = () => {
         setFollowModal(!openFollowModal)

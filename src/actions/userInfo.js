@@ -496,6 +496,23 @@ function onSuccessTwitterConnectStep2(data) {
     data: ''
   }
 }
+/////////////////////////////////////////////// PARTICIPATION_RESULT
+export function participationResult(id) {
+  return apiAction({
+    url: APIROUTE + `account/result/${id}/`,
+    accessToken: sessionStorage.getItem('token'),
+    onSuccess: onSuccessParticipationResult,
+    onFailure: onFailed,
+    label: 'TWITTER_CONNECT_STEP2',
+    requireErrorMessage: true
+  });
+}
+function onSuccessParticipationResult(data) {
+  return {
+    type: 'SET_PARTICIPATION_RESULT',
+    data: data.result_data
+  }
+}
 
 function apiAction({
   url = "",

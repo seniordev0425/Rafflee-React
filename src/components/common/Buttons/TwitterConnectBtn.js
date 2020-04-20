@@ -12,7 +12,6 @@ function TwitterConnectBtn() {
     useEffect(() => {
         if (twitter_oauth_token) {
             dispatch({ type: 'INIT_STATE', state: 'twitter_oauth_token', data: '' })
-            // dispatch(twitterAuthorize(twitter_oauth_token))
             window.open(`https://api.twitter.com/oauth/authorize?oauth_token=${twitter_oauth_token}`, '_blank')
         }
     }, [twitter_oauth_token])

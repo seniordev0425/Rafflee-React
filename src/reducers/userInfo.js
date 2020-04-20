@@ -57,7 +57,8 @@ const initialFeedState = {
         member_since: '',
         certified: false
     },
-    twitter_oauth_token: ''
+    twitter_oauth_token: '',
+    participationResult: null
 }
 
 function UserInfo(state = initialFeedState, action) {
@@ -203,6 +204,11 @@ function UserInfo(state = initialFeedState, action) {
             return {
                 ...state,
                 twitter_oauth_token: action.data
+            }
+        case 'SET_PARTICIPATION_RESULT': 
+            return {
+                ...state,
+                participationResult: action.data
             }
         default:
             return state

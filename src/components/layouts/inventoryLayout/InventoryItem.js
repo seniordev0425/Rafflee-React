@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { Row, Col } from 'reactstrap'
 import images from '../../../utils/images'
 import { Button } from 'reactstrap'
-import { updateFavorite } from '../../../actions/userInfo'
+import { updateFavorite, participationResult } from '../../../actions/userInfo'
 
 import { useTranslation } from 'react-i18next'
 
@@ -19,6 +19,10 @@ function InventoryItem(props) {
             promotion_id: item.pk
         }
         dispatch(updateFavorite(body, 'inventory'))
+    }
+
+    const goToParticipationResult = () => {
+        dispatch(participationResult(item.pk))
     }
 
     return (
@@ -46,6 +50,7 @@ function InventoryItem(props) {
                                     size="lg"
                                     color="#06CBC7"
                                     className="bootstrap-green-btn promotion-list-item-btn"
+                                    onClick={goToParticipationResult}
                                 >
                                     {t('button_group.already_won')}
                                 </Button>

@@ -23,7 +23,6 @@ function LoginSignupBaseModal(props) {
     const dispatch = useDispatch()
 
     const responseFacebook = (response) => {
-        console.log(response)
         var body = {
             device_id: isMobile ? deviceDetect().model : 'Laptop',
             ip: ip,

@@ -15,6 +15,7 @@ import SearchResult from '../screens/SearchResult'
 import PrivacyPolicy from '../screens/PrivacyPolicy'
 import GeneralConditions from '../screens/GeneralConditions'
 import CompanyPage from '../screens/CompanyPage'
+import ParticipationResult from '../screens/ParticipationResult'
 import TwitterAuthPage from '../screens/SocialAuth/TwitterAuthPage'
 
 import Loading from '../components/common/Loading'
@@ -141,6 +142,7 @@ function Routes(props) {
                 <Route exact path="/privacy-policy" component={PrivacyPolicy} />
                 <Route exact path="/company/:id" component={CompanyPage} />
                 <Route exact path="/twitter/login/callback/" component={TwitterAuthPage} />
+                <Route exact path="/participation-result/:id" component={ParticipationResult} />
                 <Route component={NotFound} />
             </Switch>
             <CookieConsent
