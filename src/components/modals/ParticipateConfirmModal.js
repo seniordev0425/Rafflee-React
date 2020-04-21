@@ -28,11 +28,10 @@ function ParticipateConfirmModal(props) {
 
     const subscribe = () => {
         var body = {
-            promotion_id: promotion_id,
             joign_cercle: joinCircle,
             newsletter: newsletter
         }
-        dispatch(campaignSubscribe(body))
+        dispatch(campaignSubscribe(body, promotion_id))
     }
     return (
         <Modal isOpen={open} toggle={onToggle} >

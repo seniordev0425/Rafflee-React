@@ -18,6 +18,7 @@ import CreateCampaignLayout from '../components/layouts/createCampaignLayout/Cre
 import InventoryLayout from '../components/layouts/inventoryLayout/InventoryLayout'
 import ParticipationHistoryLayout from '../components/layouts/participationHistoryLayout/ParticipationHistoryLayout'
 import MyFollowingLayout from '../components/layouts/myFollowingLayout/MyFollowingLayout'
+import MyCircleLayout from '../components/layouts/myCircleLayout/MyCircleLayout'
 
 import { useTranslation } from 'react-i18next'
 
@@ -49,6 +50,8 @@ function Dashboard(props) {
                 return <ParticipationHistoryLayout />
             case 'following':
                 return <MyFollowingLayout />
+            case 'my-circle':
+                return <MyCircleLayout />
             default:
                 return <MyCampaignLayout />;
         }

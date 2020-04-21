@@ -34,9 +34,9 @@ function onSuccessCampaignParticipate(data) {
   }
 }
 /////////////////////////////////////////////// CAMPAIGN_SUBSCRIBE_ACTION
-export function campaignSubscribe(params) {
+export function campaignSubscribe(params, id) {
   return apiAction({
-    url: APIROUTE + "campaign/participate/subscription/",
+    url: APIROUTE + `campaign/participate/subscription/${id}/`,
     method: 'POST',
     data: qs.stringify(params),
     accessToken: sessionStorage.getItem('token'),
@@ -150,7 +150,7 @@ function onFailedDrawCampaign(data, winning_name) {
 /////////////////////////////////////////////// UPDATE_CAMPAIGN_DETAIL_FAVORITE_ACTION
 export function updateFavorite(params, name) {
   return apiAction({
-    url: APIROUTE + "favorites/update/",
+    url: APIROUTE + "favorites/update/campaign/",
     method: 'POST',
     data: qs.stringify(params),
     accessToken: sessionStorage.getItem('token'),

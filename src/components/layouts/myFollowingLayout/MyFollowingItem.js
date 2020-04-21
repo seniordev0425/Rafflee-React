@@ -16,7 +16,7 @@ function MyFollowingItem(props) {
 
     const update = () => {
         var body = {
-            promotion_id: item.id
+            promotion_id: item.promotion_id
         }
         dispatch(updateFavorite(body, 'following'))
     }
@@ -31,17 +31,19 @@ function MyFollowingItem(props) {
                         </Col>
                         <Col lg="11" md="10" sm="10" xs="9" className="pl-sm-5">
                             <div className="promotion-list-item-title">
-                                <img
-                                    src={item.company_logo ? item.company_logo : images.profile_img}
-                                    style={{ width: 40, height: 40, borderRadius: '50%', boxShadow: ' 0px 5px 5px #bec2c5d9' }}
-                                    className="mr-3"
-                                />
+                                <Link to={`/company/${item.company_id}/`}>
+                                    <img
+                                        src={item.company_image ? item.company_image : images.profile_img}
+                                        style={{ width: 40, height: 40, borderRadius: '50%', boxShadow: ' 0px 5px 5px #bec2c5d9' }}
+                                        className="mr-3"
+                                    />
+                                </Link>
                                 {item.promotion}
                                 <span className={Date.parse(item.end_date) > Date.now() ? "green-dot" : "red-dot"}></span>
                             </div>
                             <div className="promotion-list-item-text">{item.description}</div>
                             <div style={{ marginTop: "20px", height: "40px" }}>
-                                <Link to={"/campaign-detail/" + item.id}>
+                                <Link to={"/campaign-detail/" + item.promotion_id}>
                                     <Button
                                         size="lg"
                                         color="primary"

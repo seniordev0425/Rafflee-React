@@ -39,6 +39,7 @@ const initialFeedState = {
     userInventory: [],
     userParticipationHistory: [],
     myFollowing: [],
+    myFavoriteCompanies: [],
     myCampaigns: [],
     myBills: [],
     pdfInvoice: '',
@@ -58,7 +59,15 @@ const initialFeedState = {
         certified: false
     },
     twitter_oauth_token: '',
-    participationResult: null
+    participationResult: {
+        giveway_description: '',
+        number_of_eligible_people: '',
+        campaign_description: '',
+        campaign_image: '',
+        giveway_image_url: '',
+        campaign_name: '',
+        giveway_name: ''
+    }
 }
 
 function UserInfo(state = initialFeedState, action) {
@@ -153,7 +162,12 @@ function UserInfo(state = initialFeedState, action) {
         case 'GET_FOLLOWING_SUCCESS':
             return {
                 ...state,
-                myFollowing: action.data
+                myFollowing: (action.data || [])
+            }
+        case 'SET_MY_FAVORITE_COMPANIES': 
+            return {
+                ...state,
+                myFavoriteCompanies: action.data
             }
         case 'GET_MY_CAMPAIGNS_SUCCESS':
             return {
@@ -192,7 +206,7 @@ function UserInfo(state = initialFeedState, action) {
             else if (action.arrname === 'following') {
                 return {
                     ...state,
-                    myFollowing: state.myFollowing.filter((promotion) => promotion.id !== action.id)
+                    myFollowing: state.myFollowing.filter((promotion) => promotion.promotion_id !== action.id)
                 }
             }
         case 'SET_COMPANY_INFORMATION': 

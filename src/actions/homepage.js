@@ -99,7 +99,7 @@ function onSuccessGetBestPromotions(data) {
 /////////////////////////////////////////////// UPDATE_FAVORITE_ACTION
 export function updateFavorite(params, name) {
     return apiAction({
-        url: APIROUTE + "favorites/update/",
+        url: APIROUTE + "favorites/update/campaign/",
         method: 'POST',
         data: qs.stringify(params),
         accessToken: sessionStorage.getItem('token'),

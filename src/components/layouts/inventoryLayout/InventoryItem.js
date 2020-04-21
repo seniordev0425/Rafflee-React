@@ -1,6 +1,6 @@
-import React from 'react'
-import { useDispatch } from 'react-redux'
-import { Link } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link, withRouter } from 'react-router-dom'
 import { Row, Col } from 'reactstrap'
 import images from '../../../utils/images'
 import { Button } from 'reactstrap'
@@ -10,10 +10,19 @@ import { useTranslation } from 'react-i18next'
 
 function InventoryItem(props) {
     const { t } = useTranslation()
+    const { history } = props
 
     const { item } = props
+    const PARTICIPATION_RESULT_SUCCESS = useSelector(state => state.userInfo.SUCCESS_PARTICIPATION_RESULT)
     const dispatch = useDispatch()
 
+    useEffect(() => {
+        if (PARTICIPATION_RESULT_SUCCESS) {
+            dispatch({type: 'INIT_STATE', state: 'SUCCESS_PARTICIPATION_RESULT', data: false})
+            history.push(`/participation-result/${item.pk}`)
+        }
+    }, [PARTICIPATION_RESULT_SUCCESS])
+    
     const update = () => {
         var body = {
             promotion_id: item.pk
@@ -68,4 +77,4 @@ function InventoryItem(props) {
     )
 }
 
-export default InventoryItem;
+export default withRouter(InventoryItem);

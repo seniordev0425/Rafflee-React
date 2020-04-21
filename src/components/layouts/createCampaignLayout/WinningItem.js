@@ -41,29 +41,33 @@ function WinningItem(props) {
                     </FormGroup>
                 </div>
             </Col>
-            <Col xs="12" sm="4" className="d-flex justify-content-around">
-                <div className="mt-4 w-25">
-                    <FormGroup>
-                        <div className="footer-link-bold mb-3">{t('create_campaign_page.number_of_people')}</div>
-                        <Input
-                            name={"number" + id}
-                            value={item.number_of_people}
-                            onChange={(e) => setWinningVal(e, id, 'number_of_people')}
-                            className="custom-form-control"
-                            type="number"
-                            required
-                        />
-                    </FormGroup>
-                </div>
-                <div>
-                    <Input
-                        type='file'
-                        style={{marginTop: 70}}
-                        onChange={(e) => setWinningVal(e, id, 'image')}
-                    />
-                </div>
-
-                <FontAwesomeIcon className="remove-winning-icon" icon={faTrash} onClick={() => removeWinning(id)} />
+            <Col xs="12" sm="4">
+            <div className="footer-link-bold mb-3 mt-4">{t('create_campaign_page.number_of_people')}</div>
+                <Row>
+                    <Col xs="12" sm="4" className="p-0">
+                        <div className="d-flex align-items-center">
+                            <FormGroup>
+                                <Input
+                                    name={"number" + id}
+                                    value={item.number_of_people}
+                                    onChange={(e) => setWinningVal(e, id, 'number_of_people')}
+                                    className="custom-form-control"
+                                    type="number"
+                                    required
+                                />
+                            </FormGroup>
+                        </div>
+                    </Col>
+                    <Col xs="12" sm="8" className="d-flex justify-content-between align-items-center p-0 mb-3">
+                        <div className="pl-0 pl-sm-2">
+                            <Input
+                                type='file'
+                                onChange={(e) => setWinningVal(e, id, 'image')}
+                            />
+                        </div>
+                        <FontAwesomeIcon className="remove-winning-icon" icon={faTrash} onClick={() => removeWinning(id)} />
+                    </Col>
+                </Row>
             </Col>
         </Row>
     )

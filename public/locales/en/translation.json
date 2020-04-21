@@ -95,7 +95,8 @@
 
     "campaign_detail_page": {
         "giveaways": "GIVEAWAYS",
-        "description": "Description",
+        "giveway_name": "Giveway Name",
+        "giveway_description": "Giveway Description",
         "prize_ends_in": "PRIZE ENDS IN",
         "prize_ended": "PRIZE ENDED",
         "your_entries": "YOUR ENTRIES",

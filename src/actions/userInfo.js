@@ -259,7 +259,7 @@ function onSuccessVerifyPhoneNumber(data) {
 /////////////////////////////////////////////// GET-USER-INVENTORY-ACTION
 export function getUserInventory() {
   return apiAction({
-    url: APIROUTE + "campaign/user/in-progress/",
+    url: APIROUTE + "campaign/user/historical/",
     accessToken: sessionStorage.getItem('token'),
     onSuccess: onSuccessGetUserInventory,
     onFailure: onFailed,
@@ -275,7 +275,7 @@ function onSuccessGetUserInventory(data) {
 /////////////////////////////////////////////// GET-PARTICIPATION-HISTORY-ACTION
 export function getParticipationHistory() {
   return apiAction({
-    url: APIROUTE + "campaign/user/historical/",
+    url: APIROUTE + "campaign/user/in-progress/",
     accessToken: sessionStorage.getItem('token'),
     onSuccess: onSuccessGetParticipationHistory,
     onFailure: onFailed,
@@ -301,6 +301,22 @@ export function getFollowing() {
 function onSuccessGetFollowing(data) {
   return {
     type: 'GET_FOLLOWING_SUCCESS',
+    data: data.result_data
+  }
+}
+/////////////////////////////////////////////// GET_FAVORITE_COMPANIES
+export function getFavoriteCompanies() {
+  return apiAction({
+    url: APIROUTE + `favorites/company/`,
+    accessToken: sessionStorage.getItem('token'),
+    onSuccess: onSuccessGetFavoriteCompanies,
+    onFailure: onFailed,
+    label: 'GET_FAVORITE_COMPANIES',
+  });
+}
+function onSuccessGetFavoriteCompanies(data) {
+  return {
+    type: 'SET_MY_FAVORITE_COMPANIES',
     data: data.result_data
   }
 }
@@ -370,7 +386,7 @@ function onSuccessProfileActivate(data) {
 /////////////////////////////////////////////// UPDATE-DASHBOARD-FAVORITE-ACTION
 export function updateFavorite(params, name) {
   return apiAction({
-    url: APIROUTE + "favorites/update/",
+    url: APIROUTE + "favorites/update/campaign/",
     method: 'POST',
     data: qs.stringify(params),
     accessToken: sessionStorage.getItem('token'),
@@ -503,7 +519,7 @@ export function participationResult(id) {
     accessToken: sessionStorage.getItem('token'),
     onSuccess: onSuccessParticipationResult,
     onFailure: onFailed,
-    label: 'TWITTER_CONNECT_STEP2',
+    label: 'PARTICIPATION_RESULT',
     requireErrorMessage: true
   });
 }
@@ -513,6 +529,7 @@ function onSuccessParticipationResult(data) {
     data: data.result_data
   }
 }
+
 
 function apiAction({
   url = "",

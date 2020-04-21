@@ -32,7 +32,7 @@ function MyFollowingLayout() {
 
     const renderHistoryList = () => {
         return (
-            myFollowing.slice(minValue, maxValue).map((item, index) =>
+            (myFollowing || []).slice(minValue, maxValue).map((item, index) =>
                 <div key={index} className="promotion-list-item-container">
                     <MyFollowingItem item={item} />
                 </div>
