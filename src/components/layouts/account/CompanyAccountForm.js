@@ -253,7 +253,7 @@ function CompanyAccountForm(props) {
                                 </div>
                                 <div className="mt-4 half-width">
                                     <div className="footer-link-bold mb-3">Twitter</div>
-                                    <TwitterConnectBtn />
+                                    <TwitterConnectBtn connected={companyProfile.twitter} />
                                 </div>
                                 <div className="mt-4 half-width">
                                     <div className="footer-link-bold mb-3">Twitch</div>

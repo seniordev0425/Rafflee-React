@@ -18,7 +18,8 @@ const initialFeedState = {
         lastname: '',
         firstname: '',
         phone_number_verification: false,
-        region: ''
+        region: '',
+        twitter: false
     },
 
     phone_number_verified: false,
@@ -32,7 +33,8 @@ const initialFeedState = {
         region: '',
         logo: '',
         country_code: '',
-        email: ''
+        email: '',
+        twitter: false
     },
 
     signUpSuccess: false,

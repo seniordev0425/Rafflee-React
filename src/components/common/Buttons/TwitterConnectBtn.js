@@ -4,7 +4,9 @@ import { Row, Col } from 'reactstrap'
 import { twitterConnectStep1 } from '../../../actions/userInfo'
 import images from '../../../utils/images'
 
-function TwitterConnectBtn() {
+function TwitterConnectBtn(props) {
+
+    const { connected } = props
 
     const dispatch = useDispatch()
     const twitter_oauth_token = useSelector(state => state.userInfo.twitter_oauth_token)
@@ -17,6 +19,7 @@ function TwitterConnectBtn() {
     }, [twitter_oauth_token])
 
     const twitterConnect = () => {
+        if (connected) return
         dispatch(twitterConnectStep1())
     }
 
@@ -27,8 +30,8 @@ function TwitterConnectBtn() {
                 <img src={images.twitter_icon} />
             </Col>
             <Col xs="10" className="pl-0 pr-0 twitter-icon-container2">
-                CONNECT WITH TWITTER
-                </Col>
+                {connected ? 'CONNECTED WITH TWITTER' : 'CONNECT WITH TWITTER'}
+            </Col>
         </Row>
 
     )

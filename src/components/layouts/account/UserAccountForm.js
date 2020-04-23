@@ -35,7 +35,6 @@ import {
 } from '../../../utils/validation'
 import PhoneVerificationModal from '../../modals/PhoneVerificationModal';
 import Loading from '../../common/Loading';
-import { TWITTER_API_KEY, TWITTER_API_SECRET } from '../../../utils/constants'
 import { useTranslation } from 'react-i18next'
 
 function UserAccountForm(props) {
@@ -238,7 +237,6 @@ function UserAccountForm(props) {
                                             defaultValue={gender ? gender : 'male'}
                                             onChange={val => setGenderState(val)}
                                             size="large"
-                                            style={{ width: 180 }}
                                         >
                                             <Option value="male">{t('account_page.male')}</Option>
                                             <Option value="female">{t('account_page.female')}</Option>
@@ -376,7 +374,7 @@ function UserAccountForm(props) {
                                 <div className="mt-4 half-width">
                                     <div className="footer-link-bold mb-3">Twitter</div>
                                     
-                                    <TwitterConnectBtn />
+                                    <TwitterConnectBtn connected={userProfile.twitter} />
 
                                 </div>
                                 <div className="mt-4 half-width">

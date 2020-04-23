@@ -47,7 +47,6 @@ function CreateCampaignLayout() {
                 return <CreatePollLayout gotoFirstLayout={gotoFirstLayout} />
             case 'final':
                 return <FinalLayout poll={poll} firstFormData={firstFormData} createNewPromotion={createNewPromotion} />
-
         }
     }
     return (

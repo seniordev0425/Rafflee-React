@@ -9,6 +9,7 @@ const images = {
     video_icon: require('../assets/image/video_icon.png'),
     logo: require('../assets/image/logo.png'),
     logout_icon: require('../assets/image/logout_icon.png'),
+    account_icon: require('../assets/image/account_icon.png'),
     profile_img: require('../assets/image/profile_img.png'),
     star: require('../assets/image/yellow_star.svg'),
     trans_star: require('../assets/image/trans_star.svg'),
