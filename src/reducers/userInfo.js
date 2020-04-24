@@ -69,7 +69,8 @@ const initialFeedState = {
         giveway_image_url: '',
         campaign_name: '',
         giveway_name: ''
-    }
+    },
+    tempActionData: null
 }
 
 function UserInfo(state = initialFeedState, action) {
@@ -225,6 +226,23 @@ function UserInfo(state = initialFeedState, action) {
             return {
                 ...state,
                 participationResult: action.data
+            }
+        case 'SET_ACTION_FILED_STATUS': {
+            return {
+                ...state,
+                [action.name]: true
+            }
+        }
+        case 'SET_TEMP_ACTION_DATA': 
+            return {
+                ...state,
+                tempActionData: action.data,
+                [action.openModalName]: true
+            }
+        case 'SET_ACTION_VALIDATION_STATUS': 
+            return {
+                ...state,
+                [action.data]: true
             }
         default:
             return state

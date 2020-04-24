@@ -325,7 +325,26 @@
     },
     "social_oauth": {
         "twitter": "Twitter Login Validated"
-    }
+    },
+    "twitter_like_modal": {
+        "header": "LIKE ID",
+        "id": "ID"
+    },
+    "twitter_follow_modal": {
+        "header": "FOLLOW TYPE & ID",
+        "select_type": "Select Type",
+        "screen_name": "Screen Name",
+        "user_id": "User ID",
+        "enter_id": "Enter ID"
+    },
+    "twitter_comment_modal": {
+        "header": "COMMENT MODEL",
+        "comment_model": "Enter comment Model"
+    },
+    "twitter_retweet_modal": {
+        "header": "RETWEET ID"
+    },
+    "required": "Required"
     
     
 }

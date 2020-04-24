@@ -8,19 +8,28 @@ import { useTranslation } from 'react-i18next'
 function CheckBoxButtonForAction(props){
     const { t } = useTranslation()
 
-    const { socialName, btnString, onParticipate, isVideoEnded } = props
+    const { socialName, btnString, onParticipate, isVideoEnded, tryToOpenValidationModal } = props
     const[checked, setChecked] = useState(false)
 
     useEffect(() => {
         if (isVideoEnded) if (socialName === 'video') setChecked(!checked)
     }, [isVideoEnded])
     
-    const onChangeChecked = () => {
+    const onVideoChecked = () => {
         onParticipate(socialName, btnString, !checked, null)
-        if (socialName === 'video') {
+        // if (socialName === 'video') {
             if (isVideoEnded) setChecked(!checked)
-        } else {
+        // } else {
+            // setChecked(!checked)
+        // }
+    }
+
+    const onActionChecked = () => {
+        if (checked) {
+            onParticipate(socialName, btnString, !checked, null)
             setChecked(!checked)
+        } else {
+            tryToOpenValidationModal(socialName, btnString)
         }
     }
 
@@ -28,7 +37,7 @@ function CheckBoxButtonForAction(props){
         <div className={checked ? "inline-div-active ml-3" : "inline-div-inactive ml-3"}>
             <Checkbox 
                 className="mr-2"
-                onChange={onChangeChecked}
+                onChange={socialName === 'video' ? onVideoChecked : onActionChecked}
                 checked={checked}
             />
             {!isMobile

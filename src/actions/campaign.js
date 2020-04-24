@@ -188,6 +188,60 @@ function onSuccessCreateCampaign(data) {
     data: ''
   }
 }
+/////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_TWITTER_LIKE_ACTION
+export function campaignParticipateTwitterLike(params) {
+  return apiAction({
+    url: APIROUTE + "campaign/participate/twitter/like/",
+    method: 'POST',
+    data: qs.stringify(params),
+    accessToken: sessionStorage.getItem('token'),
+    onSuccess: onSuccessCampaignParticipateTwitterLike,
+    onFailure: onFailed,
+    label: 'CAMPAIGN_PARTICIPATE_TWITTER_LIKE',
+    requireErrorMessage: true
+  });
+}
+function onSuccessCampaignParticipateTwitterLike(data) {
+  if (data.msg === 'MSG_ACTION_EXIST') {
+    return {
+      type: 'SET_TEMP_ACTION_DATA',
+      data: data,
+      openModalName: 'OPEN_TWITTER_LIKE_VALIDATION_MODAL'
+    }
+  } else {
+    return {
+      type: 'SET_ACTION_VALIDATION_STATUS',
+      data: 'twitter_like_validation',
+    }
+  }
+}
+/////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_TWITTER_RETWEET_ACTION
+export function campaignParticipateTwitterRetweet(params) {
+  return apiAction({
+    url: APIROUTE + "campaign/participate/twitter/retweet/",
+    method: 'POST',
+    data: qs.stringify(params),
+    accessToken: sessionStorage.getItem('token'),
+    onSuccess: onSuccessCampaignParticipateTwitterRetweet,
+    onFailure: onFailed,
+    label: 'CAMPAIGN_PARTICIPATE_TWITTER_RETWEET',
+    requireErrorMessage: true
+  });
+}
+function onSuccessCampaignParticipateTwitterRetweet(data) {
+  if (data.msg === 'MSG_ACTION_EXIST') {
+    return {
+      type: 'SET_TEMP_ACTION_DATA',
+      data: data,
+      openModalName: 'OPEN_TWITTER_RETWEET_VALIDATION_MODAL'
+    }
+  } else {
+    return {
+      type: 'SET_ACTION_VALIDATION_STATUS',
+      data: 'twitter_retweet_validation',
+    }
+  }
+}
 
 function apiAction({
   url = "",

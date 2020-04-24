@@ -12,12 +12,20 @@ import images from '../utils/images'
 import CustomCollapsePanel from '../components/common/CustomCollapsePanel'
 import CustomCollapsePanelForPoll from '../components/common/CustomCollapsePanelForPoll'
 import Loading from '../components/common/Loading'
-import { campaignParticipate, getCampaignData, updateFavorite } from '../actions/campaign'
+import {
+    campaignParticipate,
+    getCampaignData,
+    updateFavorite,
+    campaignParticipateTwitterLike,
+    campaignParticipateTwitterRetweet
+} from '../actions/campaign'
 import { getUserProfile } from '../actions/userInfo'
 
 import { useTranslation } from 'react-i18next'
 import VideoPlayerModal from '../components/modals/VideoPlayerModal'
 import ParticipateConfirmModal from '../components/modals/ParticipateConfirmModal'
+import TwitterLikeValidationModal from '../components/modals/ActionValidationModals/TwitterLikeValidationModal'
+import TwitterRetweetValidationModal from '../components/modals/ActionValidationModals/TwitterRetweetValidationModal'
 
 let actionParams = []
 
@@ -31,6 +39,9 @@ function CampaignDetail(props) {
     const CAMPAIGN_PARTICIPATE_PROCESS = useSelector(state => state.userInfo.CAMPAIGN_PARTICIPATE)
     const CAMPAIGN_PARTICIPATE_SUCCESS = useSelector(state => state.userInfo.SUCCESS_CAMPAIGN_PARTICIPATE)
 
+    const OPEN_TWITTER_LIKE_VALIDATION_MODAL = useSelector(state => state.userInfo.OPEN_TWITTER_LIKE_VALIDATION_MODAL)
+    const OPEN_TWITTER_RETWEET_VALIDATION_MODAL = useSelector(state => state.userInfo.OPEN_TWITTER_RETWEET_VALIDATION_MODAL)
+
     const campaignData = useSelector(state => state.campaign.campaignData)
     const token = useSelector(state => state.userInfo.token)
     const company = useSelector(state => state.userInfo.company)
@@ -41,6 +52,9 @@ function CampaignDetail(props) {
     const [isVideoEnded, setIsVideoEnded] = useState(false)
     const [openConfirm, setOpenConfirm] = useState(false)
     const [answers, setAnswers] = useState([])
+
+    const [openTwitterLikeModal, setOpenTwitterLikeModal] = useState(false)
+    const [openTwitterRetweetModal, setOpenTwitterRetweetModal] = useState(false)
 
     useEffect(() => {
         document.title = "Campaign Detail"
@@ -64,6 +78,20 @@ function CampaignDetail(props) {
             setOpenConfirm(true)
         }
     }, [CAMPAIGN_PARTICIPATE_SUCCESS])
+
+    useEffect(() => {
+        if (OPEN_TWITTER_LIKE_VALIDATION_MODAL) {
+            dispatch({ type: 'INIT_STATE', state: 'OPEN_TWITTER_LIKE_VALIDATION_MODAL', data: false })
+            setOpenTwitterLikeModal(true)
+        }
+        if (OPEN_TWITTER_RETWEET_VALIDATION_MODAL) {
+            dispatch({ type: 'INIT_STATE', state: 'OPEN_TWITTER_RETWEET_VALIDATION_MODAL', data: false })
+            setOpenTwitterRetweetModal(true)
+        }
+    }, [
+        OPEN_TWITTER_LIKE_VALIDATION_MODAL,
+        OPEN_TWITTER_RETWEET_VALIDATION_MODAL
+    ])
 
     const renderWinnings = () => {
         return (
@@ -96,6 +124,15 @@ function CampaignDetail(props) {
     }
 
     const handleOpenConfirm = () => setOpenConfirm(!openConfirm)
+
+    const tryToOpenValidationModal = (socialName, actionType) => {
+        if (socialName === 'twitter' && actionType === 'like') {
+            dispatch(campaignParticipateTwitterLike({ promotion_id: campaignData.pk }))
+        }
+        else if (socialName === 'twitter' && actionType === 'retweet') {
+            dispatch(campaignParticipateTwitterRetweet({ promotion_id: campaignData.pk }))
+        }
+    }
 
     const onParticipate = (socialName, actionType, checked, pollData) => {
         if (socialName === 'video') {
@@ -301,6 +338,7 @@ function CampaignDetail(props) {
                                         }
                                     }
                                     onParticipate={onParticipate}
+                                    tryToOpenValidationModal={tryToOpenValidationModal}
                                 />
                             </Col>
                         </Row>
@@ -363,9 +401,19 @@ function CampaignDetail(props) {
             <FooterLink />
             <Footer />
 
-
             <ParticipateConfirmModal open={openConfirm} onToggle={handleOpenConfirm} promotion_id={campaignData.pk} />
             <VideoPlayerModal open={openVideo} onToggle={handleOpenVideo} videoEnded={videoEnded} />
+
+            <TwitterLikeValidationModal
+                open={openTwitterLikeModal}
+                onToggle={() => setOpenTwitterLikeModal(!openTwitterLikeModal)}
+                promotion_id={campaignData.pk}
+            />
+            <TwitterRetweetValidationModal
+                open={openTwitterRetweetModal}
+                onToggle={() => setOpenTwitterRetweetModal(!openTwitterRetweetModal)}
+                promotion_id={campaignData.pk}
+            />
         </div>
     );
 }

@@ -17,6 +17,10 @@ import { required } from '../../../utils/validation'
 import { b64toBlob } from '../../../utils/others'
 
 import { useTranslation } from 'react-i18next'
+import TwitterLikeModal from '../../modals/ActionFieldModals/TwitterLikeModal'
+import TwitterFollowModal from '../../modals/ActionFieldModals/TwitterFollowModal'
+import TwitterCommentModal from '../../modals/ActionFieldModals/TwitterCommentModal'
+import TwitterRetweetModal from '../../modals/ActionFieldModals/TwitterRetweetModal'
 
 function FirstLayout(props) {
     const { t } = useTranslation()
@@ -36,13 +40,18 @@ function FirstLayout(props) {
     const [winStartDate, setWinStartDate] = useState((firstFormTempData || {}).winStartDate ? (firstFormTempData || {}).winStartDate : '')
     const [winEndDate, setWinEndDate] = useState((firstFormTempData || {}).winEndDate ? (firstFormTempData || {}).winEndDate : '')
     const [imgFormData, setImgFormData] = useState([])
-    const [imgBase64Data, setImgBase64Data] = useState('')
+    const [imgBase64Data, setImgBase64Data] = useState((firstFormTempData || {}).imgBase64Data ? (firstFormTempData || {}).imgBase64Data : '')
     const [socialActions, setSocialActions] = useState((firstFormTempData || {}).socialActions ? firstFormTempData.socialActions : {
         twitter: {
             comment: false,
+            comment_model: '',
             like: false,
+            like_id: '',
             retweet: false,
-            follow: false
+            retweet_id: '',
+            follow: false,
+            follow_type: '',
+            follow_id: ''
         },
         facebook: {
             comment: false,
@@ -65,6 +74,12 @@ function FirstLayout(props) {
         },
     })
 
+    const [openTwitterLikeModal, setOpenTwitterLikeModal] = useState(false)
+    const [openTwitterFollowModal, setOpenTwitterFollowModal] = useState(false)
+    const [openTwitterCommentModal, setOpenTwitterCommentModal] = useState(false)
+    const [openTwitterRetweetModal, setOpenTwitterRetweetModal] = useState(false)
+
+
     const [tempData, setTempData] = useState(firstFormTempData)
 
     const categoryArr = useSelector(state => state.homepage.categories)
@@ -76,6 +91,10 @@ function FirstLayout(props) {
     useEffect(() => {
         dispatch(getCategories())
     }, [])
+
+    useEffect(() => {
+        console.log(socialActions)
+    }, [socialActions])
 
     useEffect(() => {
         let temp = []
@@ -92,6 +111,12 @@ function FirstLayout(props) {
         setTempData({ ...tempData, socialActions: socialActions })
     }
 
+    const handleActionValues = (category, action, val) => {
+        let newActions = { ...socialActions }
+        newActions[category][action] = val
+        setSocialActions(newActions)
+        setTempData({ ...tempData, socialActions: socialActions })
+    }
     const onChangeStartDate = (date, dateString) => {
         setStartDate(dateString)
         setTempData({ ...tempData, startDate: dateString })
@@ -163,6 +188,7 @@ function FirstLayout(props) {
             var file_read = new FileReader()
             file_read.addEventListener('load', (e) => {
                 setImgBase64Data(e.target.result)
+                setTempData({ ...tempData, imgBase64Data: e.target.result })
             })
             file_read.readAsDataURL(picture[0])
         }
@@ -449,21 +475,29 @@ function FirstLayout(props) {
                                         value={socialActions.twitter.like}
                                         btnString="like"
                                         handleActions={() => handleActions("twitter", "like")}
+                                        openModal={() => setOpenTwitterLikeModal(true)}
+                                        finishedName='TWITTER_LIKE_ID_FINISHED'
                                     />
                                     <CheckBoxButtonWithString
                                         value={socialActions.twitter.follow}
                                         btnString="follow"
                                         handleActions={() => handleActions("twitter", "follow")}
+                                        openModal={() => setOpenTwitterFollowModal(true)}
+                                        finishedName='TWITTER_FOLLOW_ID_FINISHED'
                                     />
                                     <CheckBoxButtonWithString
                                         value={socialActions.twitter.comment}
                                         btnString="comment"
                                         handleActions={() => handleActions("twitter", "comment")}
+                                        openModal={() => setOpenTwitterCommentModal(true)}
+                                        finishedName='TWITTER_COMMENT_MODEL_FINISHED'
                                     />
                                     <CheckBoxButtonWithString
                                         value={socialActions.twitter.retweet}
                                         btnString="retweet"
                                         handleActions={() => handleActions("twitter", "retweet")}
+                                        openModal={() => setOpenTwitterRetweetModal(true)}
+                                        finishedName='TWITTER_RETWEET_ID_FINISHED'
                                     />
                                 </div>
                             </Col>
@@ -610,8 +644,34 @@ function FirstLayout(props) {
             <ImageCropModal
                 open={openImageCropModal}
                 onToggle={handleImageCropModal}
-                setBase64Data={(value) => setImgBase64Data(value)}
+                setBase64Data={(value) => {
+                    setImgBase64Data(value)
+                    setTempData({ ...tempData, imgBase64Data: value })
+                }}
                 src={imgBase64Data}
+            />
+            <TwitterLikeModal
+                open={openTwitterLikeModal}
+                onToggle={() => setOpenTwitterLikeModal(!openTwitterLikeModal)}
+                handleActionValues={(val) => handleActionValues('twitter', 'like_id', val)}
+            />
+            <TwitterFollowModal
+                open={openTwitterFollowModal}
+                onToggle={() => setOpenTwitterFollowModal(!openTwitterFollowModal)}
+                handleActionValues={(val) => {
+                    handleActionValues('twitter', 'follow_type', val.follow_type)
+                    handleActionValues('twitter', 'follow_id', val.follow_id)
+                }}
+            />
+            <TwitterCommentModal
+                open={openTwitterCommentModal}
+                onToggle={() => setOpenTwitterCommentModal(!openTwitterCommentModal)}
+                handleActionValues={(val) => handleActionValues('twitter', 'comment_model', val)}
+            />
+            <TwitterRetweetModal
+                open={openTwitterRetweetModal}
+                onToggle={() => setOpenTwitterRetweetModal(!openTwitterRetweetModal)}
+                handleActionValues={(val) => handleActionValues('twitter', 'retweet_id', val)}
             />
         </>
     )

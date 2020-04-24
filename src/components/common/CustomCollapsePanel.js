@@ -15,7 +15,7 @@ function CustomCollapsePanel(props) {
     const token = useSelector(state => state.userInfo.token)
     const company = useSelector(state => state.userInfo.company)
 
-    const { type, actions, onParticipate, isVideoEnded } = props
+    const { type, actions, onParticipate, isVideoEnded, tryToOpenValidationModal } = props
 
     const renderIcons = () => {
         switch (type) {
@@ -66,16 +66,36 @@ function CustomCollapsePanel(props) {
                     {(token && !company && userProfile.phone_number_verification) &&
                         <div className="mt-2 mt-sm-3">
                             {actions.like && (
-                                <CheckBoxButtonForAction socialName={type} btnString='like' onParticipate={onParticipate} />
+                                <CheckBoxButtonForAction
+                                    socialName={type}
+                                    btnString='like'
+                                    onParticipate={onParticipate}
+                                    tryToOpenValidationModal={tryToOpenValidationModal}
+                                />
                             )}
                             {actions.follow && (
-                                <CheckBoxButtonForAction socialName={type} btnString='follow' onParticipate={onParticipate} />
+                                <CheckBoxButtonForAction
+                                    socialName={type}
+                                    btnString='follow'
+                                    onParticipate={onParticipate}
+                                    tryToOpenValidationModal={tryToOpenValidationModal}
+                                />
                             )}
                             {actions.comment && (
-                                <CheckBoxButtonForAction socialName={type} btnString='comment' onParticipate={onParticipate} />
+                                <CheckBoxButtonForAction
+                                    socialName={type}
+                                    btnString='comment'
+                                    onParticipate={onParticipate}
+                                    tryToOpenValidationModal={tryToOpenValidationModal}
+                                />
                             )}
                             {actions.retweet && (
-                                <CheckBoxButtonForAction socialName={type} btnString='retweet' onParticipate={onParticipate} />
+                                <CheckBoxButtonForAction
+                                    socialName={type}
+                                    btnString='retweet'
+                                    onParticipate={onParticipate}
+                                    tryToOpenValidationModal={tryToOpenValidationModal}
+                                />
                             )}
                             {actions.video && (
                                 <CheckBoxButtonForAction socialName={type} btnString='video' onParticipate={onParticipate} isVideoEnded={isVideoEnded} />
