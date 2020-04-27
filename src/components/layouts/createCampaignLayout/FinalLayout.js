@@ -17,7 +17,7 @@ function FinalLayout(props) {
     const SUCCESS_CREATE_CAMPAIGN = useSelector(state => state.userInfo.SUCCESS_CREATE_CAMPAIGN)
 
     const dispatch = useDispatch()
-    console.log(poll)
+    
     useEffect(() => {
         if (SUCCESS_CREATE_CAMPAIGN) {
             createNewPromotion()

@@ -488,7 +488,6 @@ export function twitterConnectStep1() {
   });
 }
 function onSuccessTwitterConnectStep1(data) {
-  console.log(data)
   return {
     type: 'SET_TWITTER_OAUTH_TOKEN',
     data: data.oauth_token
@@ -512,7 +511,22 @@ function onSuccessTwitterConnectStep2(data) {
     data: ''
   }
 }
-/////////////////////////////////////////////// PARTICIPATION_RESULT
+/////////////////////////////////////////////// GET_GOOGLE_AUTH_URL
+export function getGoogleAuthUrl() {
+  return apiAction({
+    url: APIROUTE + `login/google/authorization-url/`,
+    onSuccess: onSuccessGoogleAuthUrl,
+    onFailure: onFailed,
+    label: 'GET_GOOGLE_AUTH_URL',
+  });
+}
+function onSuccessGoogleAuthUrl(data) {
+  return {
+    type: 'SET_GOOGLE_AUTH_URL',
+    data: data.authorization_url
+  }
+}
+/////////////////////////////////////////////// PARTICIPATION_RESULT_ACTION
 export function participationResult(id) {
   return apiAction({
     url: APIROUTE + `account/result/${id}/`,
@@ -527,6 +541,22 @@ function onSuccessParticipationResult(data) {
   return {
     type: 'SET_PARTICIPATION_RESULT',
     data: data.result_data
+  }
+}
+/////////////////////////////////////////////// GET_COMPANY_WALL_ACTION
+export function getCompanyWall(id) {
+  return apiAction({
+    url: APIROUTE + `company/wall/${id}/`,
+    accessToken: sessionStorage.getItem('token'),
+    onSuccess: onSuccessGetCompanyWall,
+    onFailure: onFailed,
+    label: 'GET_COMPANY_WALL',
+  });
+}
+function onSuccessGetCompanyWall(data) {
+  return {
+    type: 'SET_COMPANY_WALL',
+    data: data.wall
   }
 }
 

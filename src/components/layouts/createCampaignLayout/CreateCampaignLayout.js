@@ -29,7 +29,6 @@ function CreateCampaignLayout() {
     }
 
     const gotoFinalLayout = (result) => {
-        console.log(result)
         setFirstFormData(result)
         setCurrentLayout('final')
     }

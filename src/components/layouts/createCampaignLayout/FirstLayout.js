@@ -43,8 +43,8 @@ function FirstLayout(props) {
     const [imgBase64Data, setImgBase64Data] = useState((firstFormTempData || {}).imgBase64Data ? (firstFormTempData || {}).imgBase64Data : '')
     const [socialActions, setSocialActions] = useState((firstFormTempData || {}).socialActions ? firstFormTempData.socialActions : {
         twitter: {
-            comment: false,
-            comment_model: '',
+            tweet: false,
+            tweet_model: '',
             like: false,
             like_id: '',
             retweet: false,
@@ -91,10 +91,6 @@ function FirstLayout(props) {
     useEffect(() => {
         dispatch(getCategories())
     }, [])
-
-    useEffect(() => {
-        console.log(socialActions)
-    }, [socialActions])
 
     useEffect(() => {
         let temp = []
@@ -219,7 +215,7 @@ function FirstLayout(props) {
             "url": values.url_video,
             "video_name": values.video_name
         }
-        console.log(result)
+
         gotoFinalLayout(result)
     }
 
@@ -246,7 +242,7 @@ function FirstLayout(props) {
                         <Row>
                             <Col xs={{ size: "10", offset: "1" }} className="pl-0 pr-0">
                                 <div className="px-3 mt-4">
-                                    <h2><span className="color-blue font-size-13">{t('create_campaign_page.campaign_informations')}</span></h2>
+                                    <h2><span className="color-blue font-size-13 px-0"></span></h2>
                                 </div>
                                 <Row>
                                     <Col xs="12" sm="6">
@@ -377,7 +373,7 @@ function FirstLayout(props) {
                                     </Col>
                                 </Row>
                                 <div className="px-3 mt-4">
-                                    <h2><span className="color-blue font-size-13">{t('create_campaign_page.prizes')}</span></h2>
+                                    <h2><span className="color-blue font-size-13 px-0"></span></h2>
                                 </div>
                                 {renderWinningItems()}
                                 <Row>
@@ -436,7 +432,7 @@ function FirstLayout(props) {
 
 
                                 <div className="px-3 mt-4">
-                                    <h2><span className="color-blue font-size-13">{t('create_campaign_page.social_actions')}</span></h2>
+                                    <h2><span className="color-blue font-size-13 px-0"></span></h2>
                                 </div>
 
                             </Col>
@@ -486,9 +482,9 @@ function FirstLayout(props) {
                                         finishedName='TWITTER_FOLLOW_ID_FINISHED'
                                     />
                                     <CheckBoxButtonWithString
-                                        value={socialActions.twitter.comment}
+                                        value={socialActions.twitter.tweet}
                                         btnString="comment"
-                                        handleActions={() => handleActions("twitter", "comment")}
+                                        handleActions={() => handleActions("twitter", "tweet")}
                                         openModal={() => setOpenTwitterCommentModal(true)}
                                         finishedName='TWITTER_COMMENT_MODEL_FINISHED'
                                     />
@@ -666,7 +662,7 @@ function FirstLayout(props) {
             <TwitterCommentModal
                 open={openTwitterCommentModal}
                 onToggle={() => setOpenTwitterCommentModal(!openTwitterCommentModal)}
-                handleActionValues={(val) => handleActionValues('twitter', 'comment_model', val)}
+                handleActionValues={(val) => handleActionValues('twitter', 'tweet_model', val)}
             />
             <TwitterRetweetModal
                 open={openTwitterRetweetModal}

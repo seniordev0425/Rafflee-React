@@ -179,7 +179,7 @@ body {
 .ant-blue-btn {
     background-color:#0091ff !important;
     border-radius:6px !important;
-    font-size:1.1rem !important;
+    font-size:1rem !important;
     height:40px !important;
     font-family: 'sofiapro' !important;
 }
@@ -188,14 +188,14 @@ body {
     color: #0091ff !important;
     border: 1px solid #0091ff !important;
     border-radius: 6px !important;
-    font-size: 1.1rem !important;
+    font-size: 1rem !important;
     height: 40px !important;
     font-family: 'sofiapro' !important;
 }
 
 .no-border-btn {
     color: #0091ff !important;
-    font-size: 1.1rem !important;
+    font-size: 1rem !important;
     font-family: 'sofiapro' !important;
 }
 
@@ -570,6 +570,8 @@ h2 span {
 .campaign-card-text {
     text-align: center;
     font-size: 0.9rem;
+    max-height: 70px;
+    overflow-y: auto;
 }
 .campaign-card-star {
     display: flex;
@@ -846,6 +848,11 @@ h2 span {
 }
 .collapse-panel-summary {
     height: 70px;
+}
+@media (max-width: 500px) {
+    .collapse-panel-summary {
+        height: auto;
+    }
 }
 .MuiIconButton-label {
     color: #0091ff !important;
@@ -1214,6 +1221,25 @@ h2 span {
     padding-bottom: 40px;
     border-bottom: 1px solid #cccccc;
     border-top: 1px solid #cccccc;
+}
+.social-wall-container {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    border-top: 1px solid #cccccc;
+}
+.company-wall-img {
+    display: flex;
+}
+.company-wall-img img {
+    width: 85px;
+    height: 85px;
+    border-radius: 6px;
+}
+@media (max-width: 575px) {
+    .company-wall-img img{
+        width: 65px;
+        height: 65px;
+    }
 }
 
 

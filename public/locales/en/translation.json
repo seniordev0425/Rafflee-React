@@ -258,6 +258,11 @@
         "follow_circle": "Follow Circle",
         "newsletter": "Newsletter"
     },
+    "my_circle_page": {
+        "back": "Back",
+        "followers": "Followers",
+        "friends": "Friends"
+    },
     "signin_modal": {
         "username": "Username",
         "password": "Password",
@@ -338,11 +343,15 @@
         "enter_id": "Enter ID"
     },
     "twitter_comment_modal": {
-        "header": "COMMENT MODEL",
-        "comment_model": "Enter comment Model"
+        "header": "TWEET MODEL",
+        "comment_model": "Enter Tweet Model"
     },
     "twitter_retweet_modal": {
         "header": "RETWEET ID"
+    },
+    "twitter_comment_validation_modal": {
+        "template": "Template",
+        "comment": "Tweet"
     },
     "required": "Required"
     

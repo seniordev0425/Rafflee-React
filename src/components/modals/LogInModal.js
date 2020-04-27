@@ -25,7 +25,6 @@ function LogInModal(props) {
     const handleForgotModal = () => setOpenForgotModal(!openForgotModal)
 
     const onSubmit = (values) => {
-        console.log(ip)
         var body = {
             username: values.username,
             password: values.password,
@@ -63,15 +62,16 @@ function LogInModal(props) {
                                 validate={required(t('signin_modal.password_required'))}
                             />
                         </FormGroup>
-                        <FormGroup>
-
-                            <Field
-                                name="rememberMe"
-                                component={FormCheckbox}
-                                type="checkbox"
-                            />
-                            <span> {t('login_modal.remember_me')}</span>
-                            <span className="policy-button float-right" onClick={handleForgotModal}>{t('login_modal.forgot_password')}</span>
+                        <FormGroup className="d-flex align-items-center justify-content-between">
+                            <div className="d-flex align-items-center">
+                                <Field
+                                    name="rememberMe"
+                                    component={FormCheckbox}
+                                    type="checkbox"
+                                />
+                                <span> {t('login_modal.remember_me')}</span>
+                            </div>
+                            <span className="policy-button" onClick={handleForgotModal}>{t('login_modal.forgot_password')}</span>
                         </FormGroup>
                         <Button
                             type="submit"

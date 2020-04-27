@@ -10,7 +10,8 @@ const successMessages = {
         deleteAccount: "Account was deleted.",
         resetPasswordRequest: "Confirm your Email to reset a password.",
         resetPassword: "Password Updated!",
-        createCampaign: "New campaign created successfully!"
+        createCampaign: "New campaign created successfully!",
+        success: "Success"
     },
 
 
@@ -25,7 +26,8 @@ const successMessages = {
         deleteAccount: "Account was deleted.",
         resetPasswordRequest: "Confirm your Email to reset a password.",
         resetPassword: "Password Updated!",
-        createCampaign: "New campaign created successfully!"
+        createCampaign: "New campaign created successfully!",
+        success: "Success"
     }
 }
 

@@ -53,17 +53,6 @@ function Campaign(state = initialFeedState, action) {
                 ...state,
                 campaignWinnings: state.campaignWinnings.filter((item) => item.name !== action.data)
             }
-        case 'SET_TEMP_ACTION_DATA': 
-            return {
-                ...state,
-                tempActionData: action.data,
-                [action.openModalName]: true
-            }
-        case 'SET_ACTION_VALIDATION_STATUS': 
-            return {
-                ...state,
-                [action.data]: true
-            }
         default:
             return state
     }

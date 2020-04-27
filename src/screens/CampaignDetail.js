@@ -17,7 +17,9 @@ import {
     getCampaignData,
     updateFavorite,
     campaignParticipateTwitterLike,
-    campaignParticipateTwitterRetweet
+    campaignParticipateTwitterRetweet,
+    campaignParticipateTwitterComment,
+    campaignParticipateTwitterFollow,
 } from '../actions/campaign'
 import { getUserProfile } from '../actions/userInfo'
 
@@ -26,6 +28,8 @@ import VideoPlayerModal from '../components/modals/VideoPlayerModal'
 import ParticipateConfirmModal from '../components/modals/ParticipateConfirmModal'
 import TwitterLikeValidationModal from '../components/modals/ActionValidationModals/TwitterLikeValidationModal'
 import TwitterRetweetValidationModal from '../components/modals/ActionValidationModals/TwitterRetweetValidationModal'
+import TwitterCommentValidationModal from '../components/modals/ActionValidationModals/TwitterCommentValidationModal'
+import TwitterFollowValidationModal from '../components/modals/ActionValidationModals/TwitterFollowValidationModal'
 
 let actionParams = []
 
@@ -41,6 +45,8 @@ function CampaignDetail(props) {
 
     const OPEN_TWITTER_LIKE_VALIDATION_MODAL = useSelector(state => state.userInfo.OPEN_TWITTER_LIKE_VALIDATION_MODAL)
     const OPEN_TWITTER_RETWEET_VALIDATION_MODAL = useSelector(state => state.userInfo.OPEN_TWITTER_RETWEET_VALIDATION_MODAL)
+    const OPEN_TWITTER_COMMENT_VALIDATION_MODAL = useSelector(state => state.userInfo.OPEN_TWITTER_COMMENT_VALIDATION_MODAL)
+    const OPEN_TWITTER_FOLLOW_VALIDATION_MODAL = useSelector(state => state.userInfo.OPEN_TWITTER_FOLLOW_VALIDATION_MODAL)
 
     const campaignData = useSelector(state => state.campaign.campaignData)
     const token = useSelector(state => state.userInfo.token)
@@ -55,6 +61,8 @@ function CampaignDetail(props) {
 
     const [openTwitterLikeModal, setOpenTwitterLikeModal] = useState(false)
     const [openTwitterRetweetModal, setOpenTwitterRetweetModal] = useState(false)
+    const [openTwitterCommentModal, setOpenTwitterCommentModal] = useState(false)
+    const [openTwitterFollowModal, setOpenTwitterFollowModal] = useState(false)
 
     useEffect(() => {
         document.title = "Campaign Detail"
@@ -88,9 +96,19 @@ function CampaignDetail(props) {
             dispatch({ type: 'INIT_STATE', state: 'OPEN_TWITTER_RETWEET_VALIDATION_MODAL', data: false })
             setOpenTwitterRetweetModal(true)
         }
+        if (OPEN_TWITTER_COMMENT_VALIDATION_MODAL) {
+            dispatch({ type: 'INIT_STATE', state: 'OPEN_TWITTER_COMMENT_VALIDATION_MODAL', data: false })
+            setOpenTwitterCommentModal(true)
+        }
+        if (OPEN_TWITTER_FOLLOW_VALIDATION_MODAL) {
+            dispatch({ type: 'INIT_STATE', state: 'OPEN_TWITTER_FOLLOW_VALIDATION_MODAL', data: false })
+            setOpenTwitterFollowModal(true)
+        }
     }, [
         OPEN_TWITTER_LIKE_VALIDATION_MODAL,
-        OPEN_TWITTER_RETWEET_VALIDATION_MODAL
+        OPEN_TWITTER_RETWEET_VALIDATION_MODAL,
+        OPEN_TWITTER_COMMENT_VALIDATION_MODAL,
+        OPEN_TWITTER_FOLLOW_VALIDATION_MODAL,
     ])
 
     const renderWinnings = () => {
@@ -131,6 +149,12 @@ function CampaignDetail(props) {
         }
         else if (socialName === 'twitter' && actionType === 'retweet') {
             dispatch(campaignParticipateTwitterRetweet({ promotion_id: campaignData.pk }))
+        }
+        else if (socialName === 'twitter' && actionType === 'comment') {
+            dispatch(campaignParticipateTwitterComment({ promotion_id: campaignData.pk }))
+        }
+        else if (socialName === 'twitter' && actionType === 'follow') {
+            dispatch(campaignParticipateTwitterFollow({ promotion_id: campaignData.pk }))
         }
     }
 
@@ -324,7 +348,7 @@ function CampaignDetail(props) {
                             </Col>
                         </Row>
                     )}
-                    {(action.social_action && (action.social_action[3].twitter_like || action.social_action[3].twitter_follow || action.social_action[3].twitter_comment || action.social_action[3].twitter_retweet)) && (
+                    {(action.social_action && (action.social_action[3].twitter_like || action.social_action[3].twitter_follow || action.social_action[3].twitter_tweet || action.social_action[3].twitter_retweet)) && (
                         <Row className="mb-4 mt-4">
                             <Col style={{ paddingLeft: 40 }}>
                                 <CustomCollapsePanel
@@ -333,7 +357,7 @@ function CampaignDetail(props) {
                                         {
                                             like: action.social_action[3].twitter_like,
                                             follow: action.social_action[3].twitter_follow,
-                                            comment: action.social_action[3].twitter_comment,
+                                            comment: action.social_action[3].twitter_tweet,
                                             retweet: action.social_action[3].twitter_retweet,
                                         }
                                     }
@@ -407,11 +431,25 @@ function CampaignDetail(props) {
             <TwitterLikeValidationModal
                 open={openTwitterLikeModal}
                 onToggle={() => setOpenTwitterLikeModal(!openTwitterLikeModal)}
+                closeModal={() => setOpenTwitterLikeModal(false)}
                 promotion_id={campaignData.pk}
             />
             <TwitterRetweetValidationModal
                 open={openTwitterRetweetModal}
                 onToggle={() => setOpenTwitterRetweetModal(!openTwitterRetweetModal)}
+                closeModal={() => setOpenTwitterRetweetModal(false)}
+                promotion_id={campaignData.pk}
+            />
+            <TwitterCommentValidationModal
+                open={openTwitterCommentModal}
+                onToggle={() => setOpenTwitterCommentModal(!openTwitterCommentModal)}
+                closeModal={() => setOpenTwitterCommentModal(false)}
+                promotion_id={campaignData.pk}
+            />
+            <TwitterFollowValidationModal
+                open={openTwitterFollowModal}
+                onToggle={() => setOpenTwitterFollowModal(!openTwitterFollowModal)}
+                closeModal={() => setOpenTwitterFollowModal(false)}
                 promotion_id={campaignData.pk}
             />
         </div>

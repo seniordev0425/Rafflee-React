@@ -125,7 +125,6 @@ function UserAccountForm(props) {
         formdata.append("region", values.postal_code !== undefined ? values.postal_code : '')
         formdata.append("gender", genderState)
         dispatch(updateUserProfile(formdata))
-        console.log(formdata)
     }
 
     const onChangeInitialDate = (date, dateString) => {
@@ -139,12 +138,10 @@ function UserAccountForm(props) {
     const onDrop = (picture) => {
         if (picture && picture[0]) {
             setImgFormData(picture[0])
-            console.log(picture[0])
 
             var file_read = new FileReader()
             file_read.addEventListener('load', (e) => {
                 setImgBase64Data(e.target.result)
-                console.log(e.target.result)
             })
             file_read.readAsDataURL(picture[0])
         }

@@ -29,6 +29,7 @@ function Dashboard(props) {
     const userInventory = useSelector(state => state.userInfo.userInventory)
     const userParticipationHistory = useSelector(state => state.userInfo.userParticipationHistory)
     const myFollowing = useSelector(state => state.userInfo.myFollowing)
+    const myFavoriteCompanies = useSelector(state => state.userInfo.myFavoriteCompanies)
 
     useEffect(() => {
         document.title = "Dashboard"
@@ -45,9 +46,9 @@ function Dashboard(props) {
             case 'create-campaign':
                 return <CreateCampaignLayout />;
             case 'inventory':
-                return <InventoryLayout />
-            case 'participation-history':
                 return <ParticipationHistoryLayout />
+            case 'participation-history':
+                return <InventoryLayout />
             case 'following':
                 return <MyFollowingLayout />
             case 'my-circle':
@@ -92,16 +93,16 @@ function Dashboard(props) {
                             </Menu>
                         ) : (
                                 <Menu mode="horizontal" className="menubar" selectedKeys={[match.params.menu]}>
-                                    <Menu.Item key="inventory">
-                                        <Link to="/dashboard/inventory">
-                                            <img src={match.params.menu === 'inventory' ? images.inventory_icon_blue : images.inventory_icon} />
-                                            <span className="ml-3"> {t('menubar.inventory')} {`(${(userInventory || []).length})`}</span>
-                                        </Link>
-                                    </Menu.Item>
                                     <Menu.Item key="participation-history">
                                         <Link to="/dashboard/participation-history">
                                             <img src={match.params.menu === 'participation-history' ? images.ph_icon_blue : images.ph_icon} />
-                                            <span className="ml-3"> {t('menubar.rafflee_history')} {`(${(userParticipationHistory || []).length})`}</span>
+                                            <span className="ml-3"> {t('menubar.rafflee_history')} {`(${(userInventory || []).length})`}</span>
+                                        </Link>
+                                    </Menu.Item>
+                                    <Menu.Item key="inventory">
+                                        <Link to="/dashboard/inventory">
+                                            <img src={match.params.menu === 'inventory' ? images.inventory_icon_blue : images.inventory_icon} />
+                                            <span className="ml-3"> {t('menubar.inventory')} {`(${(userParticipationHistory || []).length})`}</span>
                                         </Link>
                                     </Menu.Item>
                                     <Menu.Item key="following">
@@ -113,7 +114,7 @@ function Dashboard(props) {
                                     <Menu.Item key="my-circle">
                                         <Link to="/dashboard/my-circle">
                                             <img src={match.params.menu === 'my-circle' ? images.my_circle_icon_blue : images.my_circle_icon} />
-                                            <span className="ml-3"> {t('menubar.my_circle')}</span>
+                                            <span className="ml-3"> {t('menubar.my_circle')} {`(${(myFavoriteCompanies || []).length})`}</span>
                                         </Link>
                                     </Menu.Item>
                                 </Menu>

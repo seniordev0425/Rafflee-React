@@ -8,8 +8,10 @@ import CompanyModal from './CompanyModal'
 import { Row, Modal, ModalHeader, ModalBody } from 'reactstrap'
 import GoogleSignBtn from '../common/Buttons/GoogleSignBtn'
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
+import GoogleLogin from 'react-google-login'
 import FaceBookSignBtn from '../common/Buttons/FaceBookSignBtn'
 import { FACEBOOK_APP_ID } from '../../utils/constants'
+import { GOOGLE_CLIENT_ID } from '../../utils/constants'
 import { facebookLogin } from '../../actions/userInfo'
 
 import { useTranslation } from 'react-i18next'
@@ -31,9 +33,13 @@ function LoginSignupBaseModal(props) {
         dispatch(facebookLogin(body))
     }
 
+    const responseGoogle = (response) => {
+        console.log(response)
+    }
+
     return (
         <>
-            <Modal isOpen={modal && !token} toggle={toggle} style={{ top: 165 }}>
+            <Modal isOpen={modal && !token} toggle={toggle} style={{ top: 165, maxWidth: 400 }}>
                 <ModalHeader toggle={toggle} style={{ borderBottom: 'none' }}></ModalHeader>
                 <ModalBody className="modal-body-padding">
                     {companyStatus === true ? (<CompanyModal />) : (

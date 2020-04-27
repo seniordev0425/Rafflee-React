@@ -19,7 +19,6 @@ function ParticipateConfirmModal(props) {
 
     useEffect(() => {
         if (CAMPAIGN_SUBSCRIPTION_SUCCESS) {
-            console.log('success')
             dispatch({type: 'INIT_STATE', state: 'SUCCESS_CAMPAIGN_SUBSCRIPTION', data: false })
             onToggle()
         }

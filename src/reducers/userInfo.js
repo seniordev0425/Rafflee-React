@@ -42,6 +42,7 @@ const initialFeedState = {
     userParticipationHistory: [],
     myFollowing: [],
     myFavoriteCompanies: [],
+    companyWall: {},
     myCampaigns: [],
     myBills: [],
     pdfInvoice: '',
@@ -61,6 +62,7 @@ const initialFeedState = {
         certified: false
     },
     twitter_oauth_token: '',
+    google_auth_url: '',
     participationResult: {
         giveway_description: '',
         number_of_eligible_people: '',
@@ -70,7 +72,7 @@ const initialFeedState = {
         campaign_name: '',
         giveway_name: ''
     },
-    tempActionData: null
+    tempActionData: null,
 }
 
 function UserInfo(state = initialFeedState, action) {
@@ -172,6 +174,11 @@ function UserInfo(state = initialFeedState, action) {
                 ...state,
                 myFavoriteCompanies: action.data
             }
+        case 'SET_COMPANY_WALL': 
+            return {
+                ...state,
+                companyWall: action.data
+            }
         case 'GET_MY_CAMPAIGNS_SUCCESS':
             return {
                 ...state,
@@ -221,6 +228,11 @@ function UserInfo(state = initialFeedState, action) {
             return {
                 ...state,
                 twitter_oauth_token: action.data
+            }
+        case 'SET_GOOGLE_AUTH_URL':
+            return {
+                ...state,
+                google_auth_url: action.data
             }
         case 'SET_PARTICIPATION_RESULT': 
             return {

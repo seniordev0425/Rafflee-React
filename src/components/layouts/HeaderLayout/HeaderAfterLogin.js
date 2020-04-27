@@ -53,7 +53,7 @@ function HeaderAfterLogin(props) {
             {!hide ? (
                 <Row>
                     <Link to="/deals"><Button type="link" className="no-border-btn mr-3 h-100">{t('header.campaigns')}</Button></Link>
-                    <Link to={props.company ? "/dashboard/my-campaign" : "/dashboard/inventory"}>
+                    <Link to={props.company ? "/dashboard/my-campaign" : "/dashboard/participation-history"}>
                         <Button type="primary" className="ant-blue-btn mr-3" style={{ width: 140 }}>{t('header.dashboard')}</Button>
                     </Link>
                     <Link to="/user-account" className="d-flex align-items-center mx-3"><img src={images.account_icon} width={27} height={27} /></Link>    
@@ -71,7 +71,7 @@ function HeaderAfterLogin(props) {
                         <DropdownMenu style={{ left: -115 }}>
                             <DropdownItem><Link to="/deals">{t('header.campaigns')}</Link></DropdownItem>
                             <DropdownItem><Link to="/user-account">Account</Link></DropdownItem>
-                            <DropdownItem><Link to={props.company ? "/dashboard/my-campaign" : "/dashboard/inventory"}>{t('header.dashboard')}</Link></DropdownItem>
+                            <DropdownItem><Link to={props.company ? "/dashboard/my-campaign" : "/dashboard/participation-history"}>{t('header.dashboard')}</Link></DropdownItem>
                             <DropdownItem onClick={log_Out}><Link to="/">{t('header.log_out')}</Link></DropdownItem>
                             <DropdownItem><SelectLanguage /></DropdownItem>
                         </DropdownMenu>

@@ -15,8 +15,6 @@ function CustomCollapsePanelForPoll(props) {
 
     const { Option } = Select
 
-    const [answers, setAnswers] = useState(null)
-
     const renderChildren = () => {
         return (
             responses.map((item, index) => 
@@ -24,11 +22,6 @@ function CustomCollapsePanelForPoll(props) {
             )
         )
     }
-
-    // const handleAnswers = (val) => {
-    //     setAnswers(val)
-    //     console.log(val)
-    // }
 
     return(
         <>
@@ -40,7 +33,7 @@ function CustomCollapsePanelForPoll(props) {
                     aria-label="Expand"
                     id="panel1a-header"
                 >
-                <span className="promotion-list-item-title">{question}</span>
+                <div className="promotion-list-item-title">{question}</div>
                 </ExpansionPanelSummary>
                 <ExpansionPanelDetails>
                     <div>
@@ -55,9 +48,6 @@ function CustomCollapsePanelForPoll(props) {
                     >
                         {renderChildren()}
                     </Select>
-                    
-                    
-                   
                 </ExpansionPanelDetails>
             </ExpansionPanel>
             <div className="collapse-other-icon">
