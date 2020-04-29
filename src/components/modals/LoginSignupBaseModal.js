@@ -65,7 +65,15 @@ function LoginSignupBaseModal(props) {
                                 />
                             </div>
                             <div style={{ marginTop: "1rem" }}>
-                                <GoogleSignBtn />
+                                <GoogleLogin
+                                    clientId={GOOGLE_CLIENT_ID}
+                                    render={renderProps => (
+                                        <div onClick={renderProps.onClick} disabled={renderProps.disabled}><GoogleSignBtn /></div>
+                                    )}
+                                    onSuccess={responseGoogle}
+                                    onFailure={responseGoogle}
+                                    cookiePolicy={'single_host_origin'}
+                                />
                             </div>
                         </div>
                     )}

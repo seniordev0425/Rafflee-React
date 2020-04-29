@@ -101,6 +101,7 @@ function FirstLayout(props) {
     }, [categoryArr])
 
     const handleActions = (category, action) => {
+        console.log(socialActions)
         let newActions = { ...socialActions }
         newActions[category][action] = !newActions[category][action]
         setSocialActions(newActions)
