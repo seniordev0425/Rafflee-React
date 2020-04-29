@@ -38,6 +38,17 @@ export function facebookLogin(params) {
     requireErrorMessage: true
   });
 }
+export function googleLogin(params) {
+  return apiAction({
+    url: APIROUTE + "login/google/",
+    method: 'POST',
+    data: qs.stringify(params),
+    onSuccess: (data) => onSuccessLogIn(data, false),
+    onFailure: onFailed,
+    label: 'GOOGLE_LOG_IN',
+    requireErrorMessage: true
+  });
+}
 function onSuccessLogIn(data, rememberMe) {
   openNotification('success', successMessages[localStorage.getItem('i18nextLng')].logIn)
   sessionStorage.setItem('token', data.token)

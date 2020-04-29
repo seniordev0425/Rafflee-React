@@ -7,7 +7,6 @@ function FaceBookSignBtn(){
 
     const isLoading = useSelector(state=>state.userInfo.FACEBOOK_LOG_IN)
     return(
-
             <Row className="pointer">
                 <Col xs="2" className="pl-0 pr-0 fb-icon-container1">
                     f

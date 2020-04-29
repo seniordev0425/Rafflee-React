@@ -198,6 +198,7 @@
         "categories": "Categories",
         "url_video": "Video URL",
         "video_name": "Video Name",
+        "url_website": "Website URL",
         "categories_placeholder": "Please select categories",
         "campaign_starts": "Campaign Starts",
         "campaign_ends": "Campaign Ends",

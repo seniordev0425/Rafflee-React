@@ -148,7 +148,6 @@ function FirstLayout(props) {
                 var realData = block[1].split(",")[1];
                 newArr[id][type] = realData
                 setWinningArr(newArr)
-                // setTempData({ ...tempData, winningArr: winningArr })
             })
             file_read.readAsDataURL(e.target.files[0])
         } else {
@@ -216,6 +215,10 @@ function FirstLayout(props) {
             "url": values.url_video,
             "video_name": values.video_name
         }
+        result.url_website = {
+            "url": values.url_website
+        }
+        console.log(result)
 
         gotoFinalLayout(result)
     }
@@ -589,7 +592,6 @@ function FirstLayout(props) {
                                     <Col xs="12" sm="6">
                                         <div className="mt-4 w-100">
                                             <FormGroup>
-
                                                 <Field
                                                     name="video_name"
                                                     defaultValue={(firstFormTempData || {}).video_name ? (firstFormTempData || {}).video_name : ''}
@@ -609,7 +611,6 @@ function FirstLayout(props) {
                                     <Col xs="12" sm="6">
                                         <div className="mt-4 w-100">
                                             <FormGroup>
-
                                                 <Field
                                                     name="url_video"
                                                     defaultValue={(firstFormTempData || {}).url_video ? (firstFormTempData || {}).url_video : ''}
@@ -621,6 +622,29 @@ function FirstLayout(props) {
                                                 <OnChange name="url_video">
                                                     {(value) => {
                                                         setTempData({ ...tempData, url_video: value })
+                                                    }}
+                                                </OnChange>
+                                            </FormGroup>
+                                        </div>
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col xs="12" sm="6">
+                                    </Col>
+                                    <Col xs="12" sm="6">
+                                        <div className="mt-4 w-100">
+                                            <FormGroup>
+                                                <Field
+                                                    name="url_website"
+                                                    defaultValue={(firstFormTempData || {}).url_website ? (firstFormTempData || {}).url_website : ''}
+                                                    component={FormInput}
+                                                    className="custom-form-control"
+                                                    type="text"
+                                                    placeholder={t('create_campaign_page.url_website')}
+                                                />
+                                                <OnChange name="url_website">
+                                                    {(value) => {
+                                                        setTempData({ ...tempData, url_website: value })
                                                     }}
                                                 </OnChange>
                                             </FormGroup>

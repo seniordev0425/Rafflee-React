@@ -12,7 +12,7 @@ import GoogleLogin from 'react-google-login'
 import FaceBookSignBtn from '../common/Buttons/FaceBookSignBtn'
 import { FACEBOOK_APP_ID } from '../../utils/constants'
 import { GOOGLE_CLIENT_ID } from '../../utils/constants'
-import { facebookLogin } from '../../actions/userInfo'
+import { facebookLogin, googleLogin } from '../../actions/userInfo'
 
 import { useTranslation } from 'react-i18next'
 
@@ -35,6 +35,12 @@ function LoginSignupBaseModal(props) {
 
     const responseGoogle = (response) => {
         console.log(response)
+        var body = {
+            device_id: isMobile ? deviceDetect().model : 'Laptop',
+            ip: ip,
+            code: response.tokenId
+        }
+        dispatch(googleLogin(body))
     }
 
     return (

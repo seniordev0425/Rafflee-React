@@ -49,7 +49,7 @@ function FinalLayout(props) {
             formdata.append("categories", JSON.stringify(firstFormData.categories));
         else formdata.append("categories", "false");
         formdata.append("url_video", JSON.stringify(firstFormData.url_video));
-
+        formdata.append("url_website", JSON.stringify(firstFormData.url_website));
         dispatch(createCampaign(formdata))
     }
 
