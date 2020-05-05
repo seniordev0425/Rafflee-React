@@ -34,7 +34,6 @@ function LoginSignupBaseModal(props) {
     }
 
     const responseGoogle = (response) => {
-        console.log(response)
         var body = {
             device_id: isMobile ? deviceDetect().model : 'Laptop',
             ip: ip,

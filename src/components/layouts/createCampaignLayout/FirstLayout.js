@@ -101,7 +101,7 @@ function FirstLayout(props) {
     }, [categoryArr])
 
     const handleActions = (category, action) => {
-        console.log(socialActions)
+        // console.log(socialActions)
         let newActions = { ...socialActions }
         newActions[category][action] = !newActions[category][action]
         setSocialActions(newActions)
@@ -218,7 +218,7 @@ function FirstLayout(props) {
         result.url_website = {
             "url": values.url_website
         }
-        console.log(result)
+        // console.log(result)
 
         gotoFinalLayout(result)
     }

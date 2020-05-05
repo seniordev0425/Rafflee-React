@@ -1241,6 +1241,9 @@ h2 span {
         height: 65px;
     }
 }
+::-webkit-scrollbar { 
+    display: none; 
+}
 
 
 
