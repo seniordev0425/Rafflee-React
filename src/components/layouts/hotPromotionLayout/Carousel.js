@@ -44,7 +44,7 @@ function Carousel(props) {
                 stagePadding={stagePadding}
                 dotsDisabled={true}
                 infinite={true}
-                autoPlay={false}
+                autoPlay={true}
                 autoPlayInterval={2000}
                 duration={800}
             />

@@ -37,7 +37,8 @@ function LoginSignupBaseModal(props) {
         var body = {
             device_id: isMobile ? deviceDetect().model : 'Laptop',
             ip: ip,
-            code: response.tokenId
+            code: response.tokenId,
+            device: 'web'
         }
         dispatch(googleLogin(body))
     }

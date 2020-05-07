@@ -119,7 +119,6 @@ function SignUpModal(props) {
                                 placeholder={t('signin_modal.confirm_password')}
                                 validate={required(t('signin_modal.confirm_password_required'))}
                             />
-
                             <div className="mt-3" style={containSpecial ? { color: "green" } : { color: "#dc3545" }}>
                                 {t('signin_modal.password_special_alert')}
                             </div>
