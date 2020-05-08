@@ -101,7 +101,7 @@ function FirstLayout(props) {
     }, [categoryArr])
 
     const handleActions = (category, action) => {
-        // console.log(socialActions)
+
         let newActions = { ...socialActions }
         newActions[category][action] = !newActions[category][action]
         setSocialActions(newActions)
@@ -142,14 +142,9 @@ function FirstLayout(props) {
     const setWinningVal = (e, id, type) => {
         let newArr = [...winningArr]
         if (type === 'image') {
-            var file_read = new FileReader()
-            file_read.addEventListener('load', (event) => {
-                var block = event.target.result.split(";");
-                var realData = block[1].split(",")[1];
-                newArr[id][type] = realData
-                setWinningArr(newArr)
-            })
-            file_read.readAsDataURL(e.target.files[0])
+            newArr[id][type] = e
+            setWinningArr(newArr)
+            setTempData({ ...tempData, winningArr: winningArr })
         } else {
             newArr[id][type] = e.target.value
             setWinningArr(newArr)
@@ -218,7 +213,6 @@ function FirstLayout(props) {
         result.url_website = {
             "url": values.url_website
         }
-        // console.log(result)
 
         gotoFinalLayout(result)
     }
@@ -230,7 +224,6 @@ function FirstLayout(props) {
         )
         setCategories(temp)
         setTempData({ ...tempData, categories: val })
-
     }
 
     const createPoll = () => {
@@ -342,9 +335,7 @@ function FirstLayout(props) {
                                         >
                                             {children}
                                         </Select>
-
                                     </Col>
-
                                 </Row>
                                 <Row>
                                     <Col xs="12" sm="6">
