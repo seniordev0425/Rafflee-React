@@ -257,7 +257,7 @@ function CompanyAccountForm(props) {
                                 </div>
                                 <div className="mt-4 half-width">
                                     <div className="footer-link-bold mb-3">Twitch</div>
-                                    <TwitchConnectBtn />
+                                    <TwitchConnectBtn connected={companyProfile.twitch} />
                                 </div>
                             </Col>
                             <Col xs="12" sm="6">

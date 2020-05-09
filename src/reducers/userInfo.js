@@ -19,7 +19,8 @@ const initialFeedState = {
         firstname: '',
         phone_number_verification: false,
         region: '',
-        twitter: false
+        twitter: false,
+        twitch: false
     },
 
     phone_number_verified: false,
@@ -34,7 +35,8 @@ const initialFeedState = {
         logo: '',
         country_code: '',
         email: '',
-        twitter: false
+        twitter: false,
+        twitch: false
     },
 
     signUpSuccess: false,
@@ -48,6 +50,7 @@ const initialFeedState = {
     pdfInvoice: '',
     companyInformation: {
         description: null,
+        follow: false,
         youtube_channel: null,
         logo_url: null,
         twitter_page_url: null,

@@ -28,7 +28,7 @@ function CompanyPage(props) {
 
     useEffect(() => {
         document.title = "Company Page"
-        dispatch(getCompanyInformation(id))
+        dispatch(getCompanyInformation(id, { token: token }))
     }, [])
 
     const handleFollowModal = () => {

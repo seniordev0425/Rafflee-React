@@ -453,9 +453,11 @@ function onSuccessResetPassword(data) {
   }
 }
 /////////////////////////////////////////////// GET-COMPANY-INFORMATION-ACTION
-export function getCompanyInformation(id) {
+export function getCompanyInformation(id, params) {
   return apiAction({
     url: APIROUTE + `company/${id}/`,
+    method: 'POST',
+    data: qs.stringify(params),
     onSuccess: onSuccessGetCompanyInformation,
     onFailure: onFailed,
     label: 'GET_COMPANY_INFORMATION',
@@ -522,19 +524,22 @@ function onSuccessTwitterConnectStep2(data) {
     data: ''
   }
 }
-/////////////////////////////////////////////// GET_GOOGLE_AUTH_URL
-export function getGoogleAuthUrl() {
+/////////////////////////////////////////////// TWITCH_CONNECT
+export function twitchConnect(params) {
   return apiAction({
-    url: APIROUTE + `login/google/authorization-url/`,
-    onSuccess: onSuccessGoogleAuthUrl,
+    url: APIROUTE + `twitch/connect/`,
+    method: 'POST',
+    data: qs.stringify(params),
+    accessToken: sessionStorage.getItem('token'),
+    onSuccess: onSuccessTwitchConnect,
     onFailure: onFailed,
-    label: 'GET_GOOGLE_AUTH_URL',
+    label: 'TWITCH_CONNECT',
   });
 }
-function onSuccessGoogleAuthUrl(data) {
+function onSuccessTwitchConnect(data) {
   return {
-    type: 'SET_GOOGLE_AUTH_URL',
-    data: data.authorization_url
+    type: '',
+    data: ''
   }
 }
 /////////////////////////////////////////////// PARTICIPATION_RESULT_ACTION

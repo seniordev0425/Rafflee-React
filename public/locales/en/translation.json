@@ -330,7 +330,8 @@
         "checkbox2": "Would you like to receive informations about this company by email?"
     },
     "social_oauth": {
-        "twitter": "Twitter Login Validated"
+        "twitter": "Twitter Connected",
+        "twitch": "Twitch Connected"
     },
     "twitter_like_modal": {
         "header": "LIKE ID",

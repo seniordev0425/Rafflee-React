@@ -376,7 +376,7 @@ function UserAccountForm(props) {
                                 </div>
                                 <div className="mt-4 half-width">
                                     <div className="footer-link-bold mb-3">Twitch</div>
-                                    <TwitchConnectBtn />
+                                    <TwitchConnectBtn connected={userProfile.twitch} />
 
                                 </div>
                             </Col>
