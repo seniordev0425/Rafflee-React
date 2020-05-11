@@ -1,5 +1,5 @@
 import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { Row, Col } from 'reactstrap'
 import images from '../../../utils/images'
 import { TWITCH_CLIENT_ID } from '../../../utils/constants'
@@ -7,10 +7,15 @@ import { TWITCH_CLIENT_ID } from '../../../utils/constants'
 function TwitchConnectBtn(props) {
 
     const { connected } = props
+    const company = useSelector(state => state.userInfo.company)
 
     const getTwitchToken = () => {
         if (connected) return
-        window.open(`https://id.twitch.tv/oauth2/authorize?response_type=code&client_id=${TWITCH_CLIENT_ID}&redirect_uri=https://rafflee.io/twitch/connect/&scope=openid`, '_blank')
+        if (company) {
+            window.open(`https://id.twitch.tv/oauth2/authorize?response_type=code&client_id=${TWITCH_CLIENT_ID}&redirect_uri=https://rafflee.io/twitch/connect/&scope=openid+viewing_activity_read+channel_read+user_follows_edit`, '_blank')
+        } else {
+            window.open(`https://id.twitch.tv/oauth2/authorize?response_type=code&client_id=${TWITCH_CLIENT_ID}&redirect_uri=https://rafflee.io/twitch/connect/&scope=openid+viewing_activity_read+user_follows_edit`, '_blank')
+        } 
     }
 
     return (
