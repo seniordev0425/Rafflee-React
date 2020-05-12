@@ -15,7 +15,7 @@ function CustomCollapsePanel(props) {
     const token = useSelector(state => state.userInfo.token)
     const company = useSelector(state => state.userInfo.company)
 
-    const { type, actions, onParticipate, isVideoEnded, tryToOpenValidationModal } = props
+    const { type, actions, onParticipate, isVideoEnded, tryToOpenValidationModal, url, participateWebsite } = props
 
     const renderIcons = () => {
         switch (type) {
@@ -43,6 +43,10 @@ function CustomCollapsePanel(props) {
             case 'video':
                 return (<div className="collapse-video-icon">
                     <img src={images.video_icon} width="25" />
+                </div>)
+            case 'website':
+                return (<div className="collapse-website-icon">
+                    <img src={images.visit_icon} width="25" />
                 </div>)
         }
     }
@@ -98,7 +102,15 @@ function CustomCollapsePanel(props) {
                                 />
                             )}
                             {actions.video && (
-                                <CheckBoxButtonForAction socialName={type} btnString='video' onParticipate={onParticipate} isVideoEnded={isVideoEnded} />
+                                <CheckBoxButtonForAction
+                                    socialName={type}
+                                    btnString='video'
+                                    onParticipate={onParticipate}
+                                    isVideoEnded={isVideoEnded}
+                                />
+                            )}
+                            {actions.website && (
+                                <a href={url} target='blank' className="" onClick={participateWebsite}>{url}</a>
                             )}
                         </div>
                     }

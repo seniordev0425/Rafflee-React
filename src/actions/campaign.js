@@ -376,6 +376,66 @@ function onSuccessCampaignParticipateTwitterFollowValidation(data) {
     data: 'twitter_follow_validation',
   }
 }
+/////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_VIDEO_ACTION
+export function campaignParticipateVideo(params) {
+  return apiAction({
+    url: APIROUTE + "campaign/participate/url_video/",
+    method: 'POST',
+    data: qs.stringify(params),
+    accessToken: sessionStorage.getItem('token'),
+    onSuccess: onSuccessCampaignParticipateVideo,
+    onFailure: onFailed,
+    label: 'CAMPAIGN_PARTICIPATE_VIDEO',
+    requireErrorMessage: true
+  });
+}
+function onSuccessCampaignParticipateVideo(data) {
+  openNotification('success', successMessages[localStorage.getItem('i18nextLng')].completeToWatchVideo)
+  return {
+    type: '',
+    data: '',
+  }
+}
+/////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_POLL_ACTION
+export function campaignParticipatePoll(params) {
+  return apiAction({
+    url: APIROUTE + "campaign/participate/poll/",
+    method: 'POST',
+    data: qs.stringify(params),
+    accessToken: sessionStorage.getItem('token'),
+    onSuccess: onSuccessCampaignParticipatePoll,
+    onFailure: onFailed,
+    label: 'CAMPAIGN_PARTICIPATE_POLL',
+    requireErrorMessage: true
+  });
+}
+function onSuccessCampaignParticipatePoll(data) {
+  openNotification('success', successMessages[localStorage.getItem('i18nextLng')].completeToSubmitPoll)
+  return {
+    type: '',
+    data: '',
+  }
+}
+/////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_WEBSITE_ACTION
+export function campaignParticipateWebsite(params) {
+  return apiAction({
+    url: APIROUTE + "campaign/participate/url_website/",
+    method: 'POST',
+    data: qs.stringify(params),
+    accessToken: sessionStorage.getItem('token'),
+    onSuccess: onSuccessCampaignParticipateWebsite,
+    onFailure: onFailed,
+    label: 'CAMPAIGN_PARTICIPATE_WEBSITE',
+    requireErrorMessage: true
+  });
+}
+function onSuccessCampaignParticipateWebsite(data) {
+  // openNotification('success', successMessages[localStorage.getItem('i18nextLng')].completeToWatchVideo)
+  return {
+    type: '',
+    data: '',
+  }
+}
 
 function apiAction({
   url = "",

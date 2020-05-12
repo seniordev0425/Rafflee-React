@@ -20,6 +20,9 @@ import {
     campaignParticipateTwitterRetweet,
     campaignParticipateTwitterComment,
     campaignParticipateTwitterFollow,
+    campaignParticipateVideo,
+    campaignParticipatePoll,
+    campaignParticipateWebsite
 } from '../actions/campaign'
 import { getUserProfile } from '../actions/userInfo'
 
@@ -139,6 +142,7 @@ function CampaignDetail(props) {
         setIsVideoEnded(true)
         actionParams = actionParams.filter((item) => item['social_name'] !== 'video')
         actionParams.push({ social_name: 'video', action_type: true })
+        dispatch(campaignParticipateVideo({ promotion_id: campaignData.pk }))
     }
 
     const handleOpenConfirm = () => setOpenConfirm(!openConfirm)
@@ -172,8 +176,12 @@ function CampaignDetail(props) {
         }
     }
 
-    const handleAnswers = (val) => {
-        setAnswers(val)
+    const participatePoll = (val) => {
+        dispatch(campaignParticipatePoll({ promotion_id: campaignData.pk, response: JSON.stringify(val) }))
+    }
+
+    const participateWebsite = () => {
+        dispatch(campaignParticipateWebsite({ promotion_id: campaignData.pk }))
     }
 
     const update = () => {
@@ -396,6 +404,18 @@ function CampaignDetail(props) {
                             </Col>
                         </Row>
                     )}
+                    {action.website && (
+                        <Row className="mb-4 mt-4">
+                            <Col style={{ paddingLeft: 40 }}>
+                                <CustomCollapsePanel
+                                    type="website"
+                                    actions={{ website: true }}
+                                    url={action.website}
+                                    participateWebsite={participateWebsite}
+                                />
+                            </Col>
+                        </Row>
+                    )}
                     {action.poll && (
                         <Row className="mb-4 mt-4">
                             <Col style={{ paddingLeft: 40 }}>
@@ -404,7 +424,7 @@ function CampaignDetail(props) {
                                     multiple_choice={action.poll.multiple_choices}
                                     responses={action.poll.responses}
                                     question={action.poll.question}
-                                    handleAnswers={handleAnswers}
+                                    participatePoll={participatePoll}
                                 />
                             </Col>
                         </Row>

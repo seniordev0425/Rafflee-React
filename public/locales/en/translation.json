@@ -129,10 +129,15 @@
             "text": "To get credit for this entry, you must answer this question. Thanks!"
         },
         "video": {
-            "title": "Watch Video to participate",
+            "title": "Watch Video",
             "text": "Watch Video to participate"
         },
-        "watch_video": "Watch a Video"
+        "website": {
+            "title": "Visit Website",
+            "text": "Visit Website to participate"
+        },
+        "watch_video": "Watch a Video",
+        "select_answer": "Select your answers"
     },
 
     "my_campaign_page": {

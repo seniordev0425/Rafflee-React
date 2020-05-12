@@ -11,7 +11,9 @@ const successMessages = {
         resetPasswordRequest: "Confirm your Email to reset a password.",
         resetPassword: "Password Updated!",
         createCampaign: "New campaign created successfully!",
-        success: "Success"
+        success: "Success",
+        completeToWatchVideo: "Completed to watch Video.",
+        completeToSubmitPoll: "Successfully Submitted."
     },
 
 
