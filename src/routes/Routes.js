@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { withRouter, Redirect } from 'react-router-dom'
 import { compose } from 'redux'
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import { Route, Switch } from 'react-router-dom'
 import CookieConsent from 'react-cookie-consent'
 import Home from '../screens/Home'
@@ -25,6 +25,7 @@ import NotFound from '../components/common/NotFound'
 import { openNotification } from '../utils/notification'
 
 import { verifyToken } from '../apis/apiCalls'
+import { getUserProfile, getCompanyProfile } from '../actions/userInfo'
 
 import { useTranslation } from 'react-i18next'
 
@@ -32,6 +33,9 @@ const API = 'https://api.ipify.org?format=jsonp?callback=?'
 
 function Routes(props) {
     const { t } = useTranslation()
+
+    const token = useSelector(state => state.userInfo.token)
+    const company = useSelector(state => state.userInfo.company)
 
     const { dispatch, history } = props
     const [authLoading, setAuthLoading] = useState(true)
@@ -41,6 +45,16 @@ function Routes(props) {
 
     const handleOnline = () => setOnline(navigator.onLine)
     const handleOffline = () => setOnline(navigator.onLine)
+
+    useEffect(() => {
+        if (token) {
+            if (company) {
+                dispatch(getCompanyProfile())
+            } else {
+                dispatch(getUserProfile())
+            }
+        }
+    }, [token])
 
     useEffect(() => {
         setIsFethingIP(true)

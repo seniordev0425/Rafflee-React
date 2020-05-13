@@ -12,7 +12,7 @@ const successMessages = {
         resetPassword: "Password Updated!",
         createCampaign: "New campaign created successfully!",
         success: "Success",
-        completeToWatchVideo: "Completed to watch Video.",
+        completeToWatchVideo: "Completed to watch a video.",
         completeToSubmitPoll: "Successfully Submitted."
     },
 

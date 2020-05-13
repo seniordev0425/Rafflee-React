@@ -43,9 +43,11 @@ function UserAccountForm(props) {
     const userProfile = useSelector(state => state.userInfo.userProfile)
     const phone_number_verified = useSelector(state => state.userInfo.phone_number_verified)
     const isLoading = useSelector(state => state.userInfo.GET_USER_PROFILE_SUCCESS)
-    const isUpdating = useSelector(state => state.userInfo.UPDATE_USER_PROFILE_SUCCESS)
+    const isUpdating = useSelector(state => state.userInfo.UPDATE_USER_PROFILE)
+    const UPDATE_USER_PROFILE_SUCCESS = useSelector(state => state.userInfo.SUCCESS_UPDATE_USER_PROFILE)
     const isSendingSms = useSelector(state => state.userInfo.SEND_SMS)
     const toggleVerificationModal = useSelector(state => state.userInfo.SUCCESS_SEND_SMS)
+
 
     const dispatch = useDispatch()
 
@@ -99,8 +101,14 @@ function UserAccountForm(props) {
         if (birth_date) setInitialDate(birth_date)
         setCountryName(country)
         setGenderState(gender)
-
     }, [userProfile])
+
+    useEffect(() => {
+        if (UPDATE_USER_PROFILE_SUCCESS) {
+            dispatch({ type: 'UPDATE_USER_PICTURE', data: imgBase64Data })
+            dispatch({ type: 'INIT_STATE', state: 'SUCCESS_UPDATE_USER_PROFILE', data: false })
+        }
+    }, [UPDATE_USER_PROFILE_SUCCESS])
 
     const onSubmit = (values) => {
         var formdata = new FormData()
@@ -189,7 +197,6 @@ function UserAccountForm(props) {
                                         <ImageUploader
                                             buttonText={t('button_group.upload_image')}
                                             onChange={onDrop}
-                                            withPreview={false}
                                             className="upload-image-container"
                                             fileContainerStyle={{ boxShadow: "none", border: "1px solid #DEE6E9" }}
                                             singleImage={true}

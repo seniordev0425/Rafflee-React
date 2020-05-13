@@ -42,7 +42,7 @@ function CampaignDetail(props) {
     const { match } = props
 
     const GET_CAMPAIGN_DATA_SUCCESS = useSelector(state => state.userInfo.GET_CAMPAIGN_DATA_SUCCESS)
-    const GET_USER_PROFILE_SUCCESS = useSelector(state => state.userInfo.GET_USER_PROFILE_SUCCESS)
+    // const GET_USER_PROFILE_SUCCESS = useSelector(state => state.userInfo.GET_USER_PROFILE_SUCCESS)
     const CAMPAIGN_PARTICIPATE_PROCESS = useSelector(state => state.userInfo.CAMPAIGN_PARTICIPATE)
     const CAMPAIGN_PARTICIPATE_SUCCESS = useSelector(state => state.userInfo.SUCCESS_CAMPAIGN_PARTICIPATE)
 
@@ -73,9 +73,9 @@ function CampaignDetail(props) {
             token: token
         }
         dispatch(getCampaignData(match.params.id, body))
-        if (token && !company) {
-            dispatch(getUserProfile())
-        }
+        // if (token && !company) {
+        //     dispatch(getUserProfile())
+        // }
         actionParams = []
     }, [token])
 
@@ -200,7 +200,7 @@ function CampaignDetail(props) {
         dispatch(campaignParticipate(body))
     }
 
-    if (GET_CAMPAIGN_DATA_SUCCESS || GET_USER_PROFILE_SUCCESS) {
+    if (GET_CAMPAIGN_DATA_SUCCESS) {
         return <Loading />
     }
 

@@ -136,7 +136,7 @@
             "title": "Visit Website",
             "text": "Visit Website to participate"
         },
-        "watch_video": "Watch a Video",
+        "watch_video": "Run video",
         "select_answer": "Select your answers"
     },
 
@@ -245,7 +245,7 @@
         "iva": "IVA",
         "total": "Total",
         "must_have_one_at_least": "Must have one answer at least",
-        "video": "Video",
+        "video": "Run video",
         "campaign_informations": "Campaign Informations",
         "prizes": "Prizes",
         "social_actions": "Social Actions"

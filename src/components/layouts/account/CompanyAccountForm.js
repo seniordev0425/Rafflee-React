@@ -36,7 +36,8 @@ function CompanyAccountForm(props) {
 
     const companyProfile = useSelector(state => state.userInfo.companyProfile)
     const isLoading = useSelector(state => state.userInfo.GET_COMPANY_PROFILE_SUCCESS)
-    const isUpdating = useSelector(state => state.userInfo.UPDATE_COMPANY_PROFILE_SUCCESS)
+    const isUpdating = useSelector(state => state.userInfo.UPDATE_COMPANY_PROFILE)
+    const UPDATE_COMPANY_PROFILE_SUCCESS = useSelector(state => state.userInfo.SUCCESS_UPDATE_COMPANY_PROFILE)
 
     const dispatch = useDispatch()
 
@@ -64,9 +65,16 @@ function CompanyAccountForm(props) {
         setCountryName(country)
     }, [companyProfile])
 
+    useEffect(() => {
+        if (UPDATE_COMPANY_PROFILE_SUCCESS) {
+            dispatch({ type: 'UPDATE_COMPANY_LOGO', data: imgBase64Data })
+            dispatch({ type: 'INIT_STATE', state: 'SUCCESS_UPDATE_COMPANY_PROFILE', data: false })
+        }
+    }, [UPDATE_COMPANY_PROFILE_SUCCESS])
+
     const onSubmit = (values) => {
         var formdata = new FormData()
-        
+
         var blob = null
         if (imgBase64Data) {
             var block = imgBase64Data.split(";");
@@ -74,7 +82,7 @@ function CompanyAccountForm(props) {
             var realData = block[1].split(",")[1];
             blob = b64toBlob(realData, contentType);
         }
-        
+
         formdata.append("logo", blob)
         formdata.append("phone_number", values.phonenumber.phone_number)
         formdata.append("prefix_number", values.phonenumber.phone_country)
@@ -135,7 +143,6 @@ function CompanyAccountForm(props) {
                                         <ImageUploader
                                             buttonText={t('button_group.upload_image')}
                                             onChange={onDrop}
-                                            withPreview={true}
                                             className="upload-image-container"
                                             fileContainerStyle={{ boxShadow: "none", border: "1px solid #DEE6E9" }}
                                             singleImage={true}
@@ -145,7 +152,7 @@ function CompanyAccountForm(props) {
                                         />
                                     </FormGroup>
                                 </div>
-                                
+
 
                                 <div className="mt-4 half-width">
                                     <FormGroup>

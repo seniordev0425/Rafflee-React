@@ -164,14 +164,14 @@ export function updateUserProfile(params) {
     accessToken: sessionStorage.getItem('token'),
     onSuccess: onSuccessUpdateUserProfile,
     onFailure: onFailed,
-    label: 'UPDATE_USER_PROFILE_SUCCESS',
+    label: 'UPDATE_USER_PROFILE',
 
   });
 }
 function onSuccessUpdateUserProfile(data) {
   openNotification('success', successMessages[localStorage.getItem('i18nextLng')].accountUpdate)
   return {
-    type: 'UPDATE_USER_PROFILE_SUCCESS',
+    type: 'UPDATE_USER_PROFILE',
     data: ''
   }
 }
@@ -201,14 +201,14 @@ export function updateCompanyProfile(params) {
     accessToken: sessionStorage.getItem('token'),
     onSuccess: onSuccessUpdateCompanyProfile,
     onFailure: onFailed,
-    label: 'UPDATE_COMPANY_PROFILE_SUCCESS',
+    label: 'UPDATE_COMPANY_PROFILE',
 
   });
 }
 function onSuccessUpdateCompanyProfile(data) {
   openNotification('success', successMessages[localStorage.getItem('i18nextLng')].accountUpdate)
   return {
-    type: 'UPDATE_COMPANY_PROFILE_SUCCESS',
+    type: 'UPDATE_COMPANY_PROFILE',
     data: ''
   }
 }
@@ -527,7 +527,7 @@ function onSuccessTwitterConnectStep2(data) {
 /////////////////////////////////////////////// TWITCH_CONNECT
 export function twitchConnect(params) {
   return apiAction({
-    url: APIROUTE + `twitch/connect/`,
+    url: APIROUTE + `twitch/connect/web/`,
     method: 'POST',
     data: qs.stringify(params),
     accessToken: sessionStorage.getItem('token'),

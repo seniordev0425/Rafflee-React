@@ -16,7 +16,7 @@ function CustomCollapsePanel(props) {
     const company = useSelector(state => state.userInfo.company)
 
     const { type, actions, onParticipate, isVideoEnded, tryToOpenValidationModal, url, participateWebsite } = props
-
+    
     const renderIcons = () => {
         switch (type) {
             case 'twitter':
@@ -110,7 +110,7 @@ function CustomCollapsePanel(props) {
                                 />
                             )}
                             {actions.website && (
-                                <a href={url} target='blank' className="" onClick={participateWebsite}>{url}</a>
+                                <a rel={'external'} href={url.includes("http") ? url : `https://${url}`} target='_blank' className="" onClick={participateWebsite}>{url}</a>
                             )}
                         </div>
                     }

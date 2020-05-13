@@ -171,12 +171,12 @@ function UserInfo(state = initialFeedState, action) {
                 ...state,
                 myFollowing: (action.data || [])
             }
-        case 'SET_MY_FAVORITE_COMPANIES': 
+        case 'SET_MY_FAVORITE_COMPANIES':
             return {
                 ...state,
                 myFavoriteCompanies: action.data
             }
-        case 'SET_COMPANY_WALL': 
+        case 'SET_COMPANY_WALL':
             return {
                 ...state,
                 companyWall: action.data
@@ -191,7 +191,7 @@ function UserInfo(state = initialFeedState, action) {
                 ...state,
                 myBills: action.data
             }
-        case 'SET_PDF_INVOICE': 
+        case 'SET_PDF_INVOICE':
             return {
                 ...state,
                 pdfInvoice: action.data
@@ -221,7 +221,7 @@ function UserInfo(state = initialFeedState, action) {
                     myFollowing: state.myFollowing.filter((promotion) => promotion.promotion_id !== action.id)
                 }
             }
-        case 'SET_COMPANY_INFORMATION': 
+        case 'SET_COMPANY_INFORMATION':
             return {
                 ...state,
                 companyInformation: action.data
@@ -231,7 +231,7 @@ function UserInfo(state = initialFeedState, action) {
                 ...state,
                 twitter_oauth_token: action.data
             }
-        case 'SET_PARTICIPATION_RESULT': 
+        case 'SET_PARTICIPATION_RESULT':
             return {
                 ...state,
                 participationResult: action.data
@@ -242,16 +242,26 @@ function UserInfo(state = initialFeedState, action) {
                 [action.name]: true
             }
         }
-        case 'SET_TEMP_ACTION_DATA': 
+        case 'SET_TEMP_ACTION_DATA':
             return {
                 ...state,
                 tempActionData: action.data,
                 [action.openModalName]: true
             }
-        case 'SET_ACTION_VALIDATION_STATUS': 
+        case 'SET_ACTION_VALIDATION_STATUS':
             return {
                 ...state,
                 [action.data]: true
+            }
+        case 'UPDATE_COMPANY_LOGO':
+            return {
+                ...state,
+                companyProfile: { ...state.companyProfile, logo: action.data }
+            }
+        case 'UPDATE_USER_PICTURE':
+            return {
+                ...state,
+                userProfile: { ...state.userProfile, profile_picture: action.data }
             }
         default:
             return state

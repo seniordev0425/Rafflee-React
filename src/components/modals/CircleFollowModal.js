@@ -33,9 +33,9 @@ function CircleFollowModal(props) {
     }
     return (
         <Modal isOpen={open} toggle={onToggle} >
+            <ModalHeader toggle={onToggle}><div className="text-center font-size-19 color-blue">{t('company_page.follow_circle')}</div></ModalHeader>
             <ModalBody>
-                <div className="text-center font-size-19 mt-4 underline color-blue">{t('company_page.follow_circle')}</div>
-                <div className="mt-3">
+                <div>
                     <Checkbox checked={joinCircle} onChange={() => setJoinCircle(!joinCircle)}>{t('company_page.follow_circle')}</Checkbox>
                 </div>
                 <div className="mt-3">

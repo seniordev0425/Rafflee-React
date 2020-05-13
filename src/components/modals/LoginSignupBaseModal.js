@@ -77,7 +77,7 @@ function LoginSignupBaseModal(props) {
                                         <div onClick={renderProps.onClick} disabled={renderProps.disabled}><GoogleSignBtn /></div>
                                     )}
                                     onSuccess={responseGoogle}
-                                    onFailure={responseGoogle}
+                                    onFailure={() => void 0}
                                     cookiePolicy={'single_host_origin'}
                                 />
                             </div>

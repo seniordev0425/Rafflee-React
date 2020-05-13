@@ -38,7 +38,7 @@ function VideoPlayerModal(props) {
                     url={campaignData.action_participate[0] ? campaignData.action_participate[0].url_video : ''}
                     playing={playing}
                     width='100%'
-                    height="100%"
+                    // height="100%"
                     onEnded={handleEnded}
                 />
             </ModalBody>
