@@ -4,7 +4,8 @@ import { compose } from 'redux'
 import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import ReactCodeInput from 'react-verification-code-input'
-import { Button, Modal, ModalHeader, ModalBody } from 'reactstrap'
+import { Modal, ModalHeader, ModalBody } from 'reactstrap'
+import { Button } from 'antd'
 import { resendSms, verifyPhoneNumber } from '../../actions/userInfo'
 
 import { useTranslation } from 'react-i18next'
@@ -21,7 +22,6 @@ function PhoneVerificationModal(props) {
 
     const [verifyCode, setVerifyCode] = useState('')
 
-
     useEffect(() => {
         if (isVerified) {
             onToggle()
@@ -31,7 +31,6 @@ function PhoneVerificationModal(props) {
     }, [isVerified])
 
     const onSubmit = () => {
-
         var body = {
             number: `+${phone_number.phone_country}${phone_number.phone_number}`,
             code: verifyCode
@@ -49,6 +48,7 @@ function PhoneVerificationModal(props) {
     const handleVerifyCode = (values) => {
         setVerifyCode(values)
     }
+
     return (<Modal isOpen={open} toggle={onToggle}>
         <ModalHeader className="modal-login-btn" style={{ borderBottom: 'none' }}>
             <div className="modal-login-btn">{t('phone_verify_modal.enter_code')}</div>
@@ -60,14 +60,14 @@ function PhoneVerificationModal(props) {
             />
             <div className="d-flex justify-content-center">
                 <Button
-                    color="primary"
-                    className="blue-btn mt-4"
+                    htmlType="submit"
+                    type="primary"
+                    className="ant-blue-btn mt-4"
                     style={{ width: 100, height: 40 }}
                     onClick={onSubmit}
-                    disabled={isVerifying}
-                    type="submit"
+                    loading={isVerifying}
                 >
-                    {t('button_group.verify')}
+                    {!isVerifying && t('button_group.verify')}
                 </Button>
             </div>
             <div className="blue-link-btn d-flex justify-content-center mt-4">
@@ -75,9 +75,7 @@ function PhoneVerificationModal(props) {
                     {t('phone_verify_modal.resend_code')}
                 </span>
             </div>
-
         </ModalBody>
-
     </Modal>)
 }
 
@@ -85,6 +83,7 @@ PhoneVerificationModal.propTypes = {
     open: PropTypes.bool,
     onToggle: PropTypes.func.isRequired,
 }
+
 function mapStateToProps(state) {
     return {
         myInfo: state.userInfo.myInfo,
@@ -92,4 +91,5 @@ function mapStateToProps(state) {
         company: state.userInfo.company,
     }
 }
-export default compose(withRouter, connect(mapStateToProps))(PhoneVerificationModal);
+
+export default compose(withRouter, connect(mapStateToProps))(PhoneVerificationModal)

@@ -11,6 +11,7 @@ function SelectLanguage() {
     const handleLanguage = (value) => {
         i18n.changeLanguage(value)
     }
+    
     return (
         <>
             <Select defaultValue={localStorage.getItem('i18nextLng')} size="large" style={{ width: 130 }} onChange={handleLanguage}>

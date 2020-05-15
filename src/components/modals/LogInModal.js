@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { connect, useSelector, useDispatch } from "react-redux";
 import { Form as FinalForm, Field } from 'react-final-form'
-import { Form, FormGroup, Button } from 'reactstrap'
+import { Form, FormGroup } from 'reactstrap'
+import { Button } from 'antd'
 import { deviceDetect, isMobile } from 'react-device-detect'
 import FormInput from '../common/FormInput'
 import FormCheckbox from '../common/FormCheckbox'
@@ -69,23 +70,19 @@ function LogInModal(props) {
                                     component={FormCheckbox}
                                     type="checkbox"
                                 />
-                                <span> {t('login_modal.remember_me')}</span>
+                                <span className="ml-1" style={{color: '#7E9AA8'}}> {t('login_modal.remember_me')}</span>
                             </div>
-                            <span className="policy-button" onClick={handleForgotModal}>{t('login_modal.forgot_password')}</span>
+                            <span className="policy-button" onClick={handleForgotModal} style={{color: '#7E9AA8'}}>{t('login_modal.forgot_password')}</span>
                         </FormGroup>
                         <Button
-                            type="submit"
-                            size="lg"
-                            color="primary"
-                            className="blue-btn"
-                            disabled={isLoading}
-                            style={{ marginTop: '20px' }}
+                            htmlType="submit"
+                            type="primary"
+                            className="ant-blue-btn mt-4"
+                            loading={isLoading}
                         >
-                            {t('button_group.log_in')}
+                            {!isLoading && t('button_group.log_in')}
                         </Button>
-
                     </Form>
-
                 )}
             />
             <ForgotPassword
@@ -94,7 +91,7 @@ function LogInModal(props) {
                 toggle={toggle}
             />
         </div>
-    );
+    )
 }
 
 function mapStateToProps(state) {
@@ -104,4 +101,5 @@ function mapStateToProps(state) {
         company: state.userInfo.company,
     }
 }
-export default connect(mapStateToProps)(LogInModal);
+
+export default connect(mapStateToProps)(LogInModal)

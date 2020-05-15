@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import React, { useEffect } from 'react'
+import { useSelector } from 'react-redux'
 import { Row, Col } from 'reactstrap'
 import { Menu } from 'antd'
 import JoinHeader from '../components/layouts/HeaderLayout/JoinHeader'
@@ -12,7 +12,6 @@ import CompanyAccountForm from '../components/layouts/account/CompanyAccountForm
 
 import { useTranslation } from 'react-i18next'
 
-
 const UserAccount = (props) => {
     const { t } = useTranslation()
 
@@ -20,7 +19,7 @@ const UserAccount = (props) => {
 
     useEffect(() => {
         document.title = "UserAccount"
-    }, []);
+    }, [])
 
     return (
         <div style={{ fontFamily: "sofiapro" }}>
@@ -48,7 +47,7 @@ const UserAccount = (props) => {
             <FooterLink />
             <Footer />
         </div>
-    );
+    )
 }
 
-export default UserAccount;
+export default UserAccount

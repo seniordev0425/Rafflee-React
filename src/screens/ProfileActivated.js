@@ -20,8 +20,7 @@ function ProfileActivated(props) {
     dispatch(profileActivate(match.params.id, match.params.token))
   }, [])
 
-  if (isLoading)
-    return <Loading />
+  if (isLoading) return <Loading />
 
   return (
     <>
@@ -40,4 +39,4 @@ function ProfileActivated(props) {
   )
 }
 
-export default withRouter(ProfileActivated);  
+export default withRouter(ProfileActivated)

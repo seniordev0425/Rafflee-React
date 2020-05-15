@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Modal, ModalHeader, ModalBody, Button } from 'reactstrap'
-import { Checkbox } from 'antd'
+import { Modal, ModalBody } from 'reactstrap'
+import { Checkbox, Button } from 'antd'
 import { campaignSubscribe } from '../../actions/campaign'
 import { useTranslation } from 'react-i18next'
 
@@ -32,6 +32,7 @@ function ParticipateConfirmModal(props) {
         }
         dispatch(campaignSubscribe(body, promotion_id))
     }
+    
     return (
         <Modal isOpen={open} toggle={onToggle} >
             <ModalBody>
@@ -45,17 +46,16 @@ function ParticipateConfirmModal(props) {
                 <div className="d-flex justify-content-center">
                     <Button 
                         onClick={subscribe}
-                        className="btn blue-btn mt-3 participate-btn-size" 
-                        color="primary" 
-                        disabled={CAMPAIGN_SUBSCRIPTION_PROCESS}
+                        className="ant-blue-btn mt-3 participate-btn-size" 
+                        type="primary" 
+                        loading={CAMPAIGN_SUBSCRIPTION_PROCESS}
                     >
-                        {t('button_group.continue')}
+                        {!CAMPAIGN_SUBSCRIPTION_PROCESS && t('button_group.continue')}
                     </Button>
                 </div>
             </ModalBody>
-
         </Modal>
     )
 }
 
-export default ParticipateConfirmModal;
+export default ParticipateConfirmModal

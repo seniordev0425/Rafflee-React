@@ -2,14 +2,13 @@ import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from "react-redux";
 import { Form as FinalForm, Field } from 'react-final-form'
 import { OnChange } from 'react-final-form-listeners'
-import { Form, FormGroup, Button, Row, Col } from 'reactstrap'
-import { Select } from 'antd'
+import { Form, FormGroup, Row, Col } from 'reactstrap'
+import { Select, Button } from 'antd'
 import ImageUploader from 'react-images-upload'
 import ReactFlagsSelect from 'react-flags-select'
 import { getCode, getName } from 'country-list'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'
-import TwitterLogin from 'react-twitter-login'
 import DeleteAccount from '../../modals/DeleteAccount'
 import ImageCropModal from '../../modals/ImageCropModal'
 import FormInput from '../../common/FormInput'
@@ -24,20 +23,16 @@ import SteamConnectBtn from '../../common/Buttons/SteamConnectBtn'
 import { getUserProfile, sendSms, updateUserProfile } from '../../../actions/userInfo'
 import moment from 'moment'
 import { b64toBlob } from '../../../utils/others'
-
 import {
     composeValidators,
     required,
     isEmail,
-    minLength,
-    maxLength,
-    requiredPhoneObj
 } from '../../../utils/validation'
 import PhoneVerificationModal from '../../modals/PhoneVerificationModal';
 import Loading from '../../common/Loading';
 import { useTranslation } from 'react-i18next'
 
-function UserAccountForm(props) {
+function UserAccountForm() {
     const { t } = useTranslation()
 
     const userProfile = useSelector(state => state.userInfo.userProfile)
@@ -105,8 +100,10 @@ function UserAccountForm(props) {
 
     useEffect(() => {
         if (UPDATE_USER_PROFILE_SUCCESS) {
-            dispatch({ type: 'UPDATE_USER_PICTURE', data: imgBase64Data })
-            dispatch({ type: 'INIT_STATE', state: 'SUCCESS_UPDATE_USER_PROFILE', data: false })
+            if (imgBase64Data) {
+                dispatch({ type: 'UPDATE_USER_PICTURE', data: imgBase64Data })
+                dispatch({ type: 'INIT_STATE', state: 'SUCCESS_UPDATE_USER_PROFILE', data: false })
+            }
         }
     }, [UPDATE_USER_PROFILE_SUCCESS])
 
@@ -173,7 +170,6 @@ function UserAccountForm(props) {
                     <Form onSubmit={handleSubmit}>
                         <Row>
                             <Col xs="12" sm="6">
-
                                 <div className="mt-4 half-width">
                                     <FormGroup>
                                         {(imgBase64Data || profile_picture) &&
@@ -183,9 +179,8 @@ function UserAccountForm(props) {
                                                     <div>
                                                         <Button
                                                             onClick={handleImageCropModal}
-                                                            size="lg"
-                                                            color="primary"
-                                                            className="blue-btn mt-2"
+                                                            type="primary"
+                                                            className="ant-blue-btn mt-2"
                                                             style={{ width: 100, height: 30, fontSize: '1rem', lineHeight: 1 }}
                                                         >
                                                             {t('button_group.edit')}
@@ -247,7 +242,6 @@ function UserAccountForm(props) {
                                         </Select>
                                     </FormGroup>
                                 </div>
-                                
                                 <div className="mt-4 half-width">
                                     <FormGroup>
                                         <div className="footer-link-bold mb-3">{t('account_page.country')}</div>
@@ -271,7 +265,6 @@ function UserAccountForm(props) {
                                         />
                                     </FormGroup>
                                 </div>
-                                
                             </Col>
                             <Col xs="12" sm="6">
                                 <div className="mt-4" style={{ width: "100%" }}>
@@ -345,24 +338,21 @@ function UserAccountForm(props) {
                                                     }}
                                                 </OnChange>
                                             </div>
-
                                             <div className="d-flex justify-content-end align-items-center w-25">
                                                 {!phone_number_verified
                                                     ?
                                                     <Button
-                                                        color="primary"
-                                                        className="blue-btn mt-1"
-                                                        style={{ width: "100%", height: 40 }}
+                                                        type="primary"
+                                                        className="ant-blue-btn mt-1"
                                                         onClick={sendSMS}
-                                                        disabled={isSendingSms}
+                                                        loading={isSendingSms}
                                                     >
-                                                        {t('button_group.verify')}
+                                                        {!isSendingSms && t('button_group.verify')}
                                                     </Button>
                                                     :
                                                     <FontAwesomeIcon icon={faCheckCircle} className="phone-verified-icon" />
                                                 }
                                             </div>
-
                                         </div>
                                     </FormGroup>
                                 </div>
@@ -377,7 +367,7 @@ function UserAccountForm(props) {
                                 </div>
                                 <div className="mt-4 half-width">
                                     <div className="footer-link-bold mb-3">Twitter</div>
-                                    
+
                                     <TwitterConnectBtn connected={userProfile.twitter} />
 
                                 </div>
@@ -411,30 +401,26 @@ function UserAccountForm(props) {
                                 <div className="mt-4 d-flex justify-content-end">
                                     <div className="mt-4 half-width">
                                         <Button
-                                            type="submit"
-                                            size="lg"
-                                            color="primary"
-                                            className="blue-btn mt-2"
+                                            htmlType='submit'
+                                            type="primary"
+                                            className="ant-blue-btn mt-2"
                                             style={{ width: "45%", marginRight: "5%" }}
-                                            disabled={isUpdating}
+                                            loading={isUpdating}
                                         >
-                                            {t('button_group.update')}
+                                            {!isUpdating && t('button_group.update')}
                                         </Button>
                                         <Button
-                                            size="lg"
-                                            color="danger"
-                                            className="red-btn mt-2"
+                                            type="danger"
+                                            className="ant-red-btn mt-2"
                                             onClick={handleDeleteModal}
                                             style={{ width: "45%", marginLeft: "5%" }}
                                         >
                                             {t('button_group.delete')}
                                         </Button>
-
                                     </div>
                                 </div>
                             </Col>
                         </Row>
-
                     </Form>
                 )}
             />
@@ -457,4 +443,4 @@ function UserAccountForm(props) {
     )
 }
 
-export default UserAccountForm;
+export default UserAccountForm

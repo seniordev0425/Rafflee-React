@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react'
-import { Modal, ModalBody, Button } from 'reactstrap'
+import { Modal, ModalBody } from 'reactstrap'
 import Cropper from 'react-easy-crop'
-import { Slider } from 'antd'
+import { Slider, Button } from 'antd'
 import getCroppedImg from './cropImage'
 import { useTranslation } from 'react-i18next'
 
@@ -79,22 +79,18 @@ const ImageCropModal = (props) => {
                         <div className="d-flex justify-content-center">
                             <Button
                                 onClick={showCroppedImage}
-                                size="lg"
-                                color="primary"
-                                className="blue-btn mt-2"
+                                type="primary"
+                                className="ant-blue-btn mt-2"
                                 style={{ width: 200 }}
                             >
                                 {t('button_group.confirm')}
                             </Button>
                         </div>
-
                     </div>
-
                 </div>
             </ModalBody>
         </Modal>
     )
-
 }
 
 export default ImageCropModal

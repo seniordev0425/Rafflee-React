@@ -1,6 +1,5 @@
 import React from 'react'
-import {Container, Row, Col} from 'reactstrap'
-import images from '../../../utils/images'
+import { Row, Col} from 'reactstrap'
 
 function FaceBookConnectBtn(){
     return(

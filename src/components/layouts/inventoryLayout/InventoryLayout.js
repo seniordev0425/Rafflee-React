@@ -3,7 +3,12 @@ import { withRouter } from 'react-router-dom'
 import { Pagination } from 'antd'
 import { useSelector, useDispatch } from 'react-redux'
 import InventoryItem from './InventoryItem'
-import { getUserInventory, getParticipationHistory, getFollowing, getFavoriteCompanies } from '../../../actions/userInfo'
+import {
+    getUserInventory,
+    getParticipationHistory,
+    getFollowing,
+    getFavoriteCompanies
+} from '../../../actions/userInfo'
 import Loading from '../../common/Loading'
 import { NUMBER_PER_PAGE } from '../../../utils/constants'
 
@@ -34,7 +39,7 @@ function InventoryLayout(props) {
 
     useEffect(() => {
         if (PARTICIPATION_RESULT_SUCCESS) {
-            dispatch({type: 'INIT_STATE', state: 'SUCCESS_PARTICIPATION_RESULT', data: false})
+            dispatch({ type: 'INIT_STATE', state: 'SUCCESS_PARTICIPATION_RESULT', data: false })
             history.push(`/participation-result/${selectedId}`)
         }
     }, [PARTICIPATION_RESULT_SUCCESS])
@@ -48,7 +53,7 @@ function InventoryLayout(props) {
         return (
             userInventory.slice(minValue, maxValue).map((item, index) =>
                 <div key={index} className="promotion-list-item-container">
-                    <InventoryItem item={item} setSelectedId = {(id) => setSelectedId(id)} />
+                    <InventoryItem item={item} setSelectedId={(id) => setSelectedId(id)} />
                 </div>
             )
         )

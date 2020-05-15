@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Row, Col } from 'reactstrap'
 import { Link } from 'react-router-dom'
 import images from '../../../utils/images'
-import { Button } from 'reactstrap'
+import { Button } from 'antd'
 import { updateFavorite } from '../../../actions/homepage'
 
 import { useTranslation } from 'react-i18next'
@@ -25,7 +25,6 @@ function PromotionListItem(props) {
     }
 
     return (
-
         <div>
             <Row>
                 <Col xs="12" sm={{ size: 10, offset: 1 }}>
@@ -48,9 +47,8 @@ function PromotionListItem(props) {
                             <div style={{ marginTop: "20px", height: "40px" }}>
                                 <Link to={"/campaign-detail/" + item.pk}>
                                     <Button
-                                        size="lg"
-                                        color="primary"
-                                        className="bootstrap-blue-btn promotion-list-item-btn"
+                                        type="primary"
+                                        className="ant-blue-btn promotion-list-item-btn"
                                     >
                                         {t('button_group.see_campaign')}
                                     </Button>
@@ -60,16 +58,13 @@ function PromotionListItem(props) {
                                         <img src={item.favorite ? images.trans_star_favorite : images.trans_star} />
                                     </div>
                                 )}
-
                             </div>
-
                         </Col>
                     </Row>
                 </Col>
             </Row>
         </div>
-
     )
 }
 
-export default PromotionListItem;
+export default PromotionListItem

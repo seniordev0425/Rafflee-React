@@ -29,8 +29,7 @@ function Carousel(props) {
         />
     )
 
-    if (hotPromotions.length < 1)
-        return <></>
+    if (hotPromotions.length < 1) return <></>
         
     return (
         <div className="app" style={{ maxWidth: galleryItems.length > 1 ? galleryItems.length * 450 : galleryItems.length * 480 }}>
@@ -55,4 +54,5 @@ function Carousel(props) {
 Carousel.propTypes = {
     hotPromotions: PropTypes.array.isRequired,
 }
-export default Carousel;
+
+export default Carousel

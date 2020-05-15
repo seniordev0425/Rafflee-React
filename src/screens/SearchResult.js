@@ -23,4 +23,4 @@ function SearchResult(props) {
     )
 }
 
-export default withRouter(SearchResult);
+export default withRouter(SearchResult)

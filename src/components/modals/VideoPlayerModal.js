@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { Modal, ModalHeader, ModalBody, Input } from 'reactstrap'
+import { Modal, ModalBody } from 'reactstrap'
 import ReactPlayer from 'react-player'
 
 function VideoPlayerModal(props) {
@@ -17,7 +17,6 @@ function VideoPlayerModal(props) {
         window.addEventListener('blur', () => handlePlayingState(false))
         window.addEventListener('focus', () => handlePlayingState(true))
 
-
         return () => {
             window.removeEventListener('blur', handlePlayingState)
             window.removeEventListener('focus', handlePlayingState)
@@ -27,6 +26,7 @@ function VideoPlayerModal(props) {
     const handleEnded = () => {
         videoEnded()
     }
+
     return (
         <Modal isOpen={open} toggle={onToggle} size="lg">
             <ModalBody>
@@ -42,9 +42,8 @@ function VideoPlayerModal(props) {
                     onEnded={handleEnded}
                 />
             </ModalBody>
-
         </Modal>
     )
 }
 
-export default VideoPlayerModal;
+export default VideoPlayerModal

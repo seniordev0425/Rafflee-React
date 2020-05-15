@@ -1,5 +1,5 @@
 import React from 'react'
-import { Row, Col, Button } from 'reactstrap'
+import { Row, Col } from 'reactstrap'
 import images from '../../../utils/images'
 
 function MyCircleItem(props) {

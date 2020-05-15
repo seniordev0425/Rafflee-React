@@ -4,9 +4,13 @@ import { Pagination } from 'antd'
 import MyCircleItem from './MyCircleItem'
 import DetailLayout from './DetailLayout'
 import Loading from '../../common/Loading'
-import { getFavoriteCompanies, getUserInventory, getParticipationHistory, getFollowing } from '../../../actions/userInfo'
+import { 
+    getFavoriteCompanies, 
+    getUserInventory, 
+    getParticipationHistory, 
+    getFollowing 
+} from '../../../actions/userInfo'
 import { NUMBER_PER_PAGE } from '../../../utils/constants'
-
 import { useTranslation } from 'react-i18next'
 
 function MyCircleLayout() {

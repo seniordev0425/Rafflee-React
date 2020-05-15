@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { Row, Col, Button } from 'reactstrap'
+import { Row, Col } from 'reactstrap'
+import { Button } from 'antd'
 import { withRouter } from 'react-router-dom'
 import JoinHeader from '../components/layouts/HeaderLayout/JoinHeader'
 import Header from '../components/layouts/HeaderLayout/Header'
@@ -13,7 +14,6 @@ import images from '../utils/images'
 import moment from 'moment'
 
 import { useTranslation } from 'react-i18next'
-
 
 function CompanyPage(props) {
     const { t } = useTranslation()
@@ -72,16 +72,14 @@ function CompanyPage(props) {
                                 {token &&
                                     <div style={{ marginTop: "20px", height: "40px" }}>
                                         <Button
-                                            size="lg"
-                                            color="primary"
-                                            className="bootstrap-blue-btn promotion-list-item-btn"
+                                            type="primary"
+                                            className="ant-blue-btn promotion-list-item-btn"
                                             onClick={handleFollowModal}
                                         >
                                             {t('button_group.follow_circle')}
                                         </Button>
                                     </div>
                                 }
-
                             </Col>
                         </Row>
                     </Col>
@@ -91,7 +89,7 @@ function CompanyPage(props) {
             <Footer />
             <CircleFollowModal open={openFollowModal} onToggle={handleFollowModal} pk={companyInformation.pk} />
         </div>
-    );
+    )
 }
 
-export default withRouter(CompanyPage);
+export default withRouter(CompanyPage)

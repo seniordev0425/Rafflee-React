@@ -35,8 +35,8 @@ class GeneralConditionsLayout extends Component {
                     <Page className={"PDFPage PDFPageOne"} pageNumber={pageNumber + 2} renderTextLayer={false} renderInteractiveForms={false} width={window.innerWidth * 0.8} />
                 </Document>
             </div>
-        );
+        )
     }
 }
 
-export default GeneralConditionsLayout;
+export default GeneralConditionsLayout

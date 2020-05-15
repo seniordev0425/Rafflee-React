@@ -2,7 +2,7 @@ import React from 'react'
 import { Row, Col } from 'reactstrap'
 import { Link } from 'react-router-dom'
 import images from '../../../utils/images'
-import { Button } from 'reactstrap'
+import { Button } from 'antd'
 import { useDispatch } from 'react-redux'
 import { updateFavorite } from '../../../actions/userInfo'
 
@@ -45,9 +45,8 @@ function ParticipationHistoryItem(props) {
                             <div style={{ marginTop: "20px", height: "40px" }}>
                                 <Link to={"/campaign-detail/" + item.pk}>
                                     <Button
-                                        size="lg"
-                                        color="primary"
-                                        className="bootstrap-blue-btn promotion-list-item-btn"
+                                        type="primary"
+                                        className="ant-blue-btn promotion-list-item-btn"
                                     >
                                         {t('button_group.see_campaign')}
                                     </Button>
@@ -56,14 +55,12 @@ function ParticipationHistoryItem(props) {
                                     <img src={item.favorite ? images.trans_star_favorite : images.trans_star} />
                                 </div>
                             </div>
-
                         </Col>
                     </Row>
                 </Col>
             </Row>
         </div>
-
     )
 }
 
-export default ParticipationHistoryItem;
+export default ParticipationHistoryItem

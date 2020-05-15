@@ -75,4 +75,4 @@ function MyCampaignLayout() {
     )
 }
 
-export default MyCampaignLayout;
+export default MyCampaignLayout

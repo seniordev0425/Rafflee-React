@@ -57,6 +57,7 @@ function Dashboard(props) {
                 return <MyCampaignLayout />;
         }
     }
+    
     return (
         <div style={{ fontFamily: "sofiapro" }}>
             <JoinHeader />
@@ -119,21 +120,16 @@ function Dashboard(props) {
                                     </Menu.Item>
                                 </Menu>
                             )}
-
-
                     </Col>
                 </Row>
             </div>
             <div>
                 {renderBody()}
             </div>
-
             <FooterLink />
             <Footer />
-
-
         </div>
-    );
+    )
 }
 
 function mapStateToProps(state) {
@@ -143,4 +139,4 @@ function mapStateToProps(state) {
         company: state.userInfo.company
     }
 }
-export default compose(withRouter, connect(mapStateToProps))(Dashboard);
+export default compose(withRouter, connect(mapStateToProps))(Dashboard)

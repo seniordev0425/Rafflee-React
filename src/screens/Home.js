@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { connect, useSelector, useDispatch } from 'react-redux'
 import { compose } from 'redux'
 import { withRouter } from 'react-router-dom'
@@ -9,37 +9,26 @@ import Carousel from '../components/layouts/hotPromotionLayout/Carousel'
 import CurrentPromotionList from '../components/layouts/currentPromotionLayout/CurrentPromotionLIst'
 import FooterLink from '../components/layouts/footer/FooterLink'
 import Footer from '../components/layouts/footer/Footer'
-import { getHotPromotions, getHighlightedPromotions, getNewPromotions, getBestPromotions } from '../actions/homepage'
+import { getHotPromotions, getHighlightedPromotions } from '../actions/homepage'
 import Loading from '../components/common/Loading'
 
 import { useTranslation } from 'react-i18next'
 
 
-function Home(props) {
+function Home() {
     const { t } = useTranslation()
 
     const hotPromotions = useSelector(state => state.homepage.hotPromotions)
-    const highlightedPromotions = useSelector(state => state.homepage.highlightedPromotions)
-    const newPromotions = useSelector(state => state.homepage.newPromotions)
-    const bestOfferPromotions = useSelector(state => state.homepage.bestOfferPromotions)
-
     const isLoading_1 = useSelector(state => state.userInfo.GET_HOT_PROMOTIONS_SUCCESS)
-    const isLoading_2 = useSelector(state => state.userInfo.GET_HIGHLIGHTED_PROMOTIONS_SUCCESS)
-    const isLoading_3 = useSelector(state => state.userInfo.GET_NEW_PROMOTIONS_SUCCESS)
-    const isLoading_4 = useSelector(state => state.userInfo.GET_BEST_PROMOTIONS_SUCCESS)
 
     const token = useSelector(state => state.userInfo.token)
     const dispatch = useDispatch()
 
     useEffect(() => {
         document.title = "Home"
-
         dispatch(getHotPromotions({ token: token }))
         dispatch(getHighlightedPromotions({ token: token }))
-        // dispatch(getNewPromotions({ token: token }))
-        // dispatch(getBestPromotions({ token: token }))
-
-    }, []);
+    }, [])
 
     return (
         <div style={{ fontFamily: "sofiapro" }}>
@@ -65,7 +54,7 @@ function Home(props) {
             <FooterLink />
             <Footer />
         </div>
-    );
+    )
 }
 
 function mapStateToProps(state) {
@@ -74,4 +63,5 @@ function mapStateToProps(state) {
         token: state.userInfo.token
     }
 }
-export default compose(withRouter, connect(mapStateToProps))(Home);
+
+export default compose(withRouter, connect(mapStateToProps))(Home)

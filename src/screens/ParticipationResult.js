@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { withRouter, Link } from 'react-router-dom'
-import { Row, Col, Button } from 'reactstrap'
+import { Row, Col } from 'reactstrap'
 
 import JoinHeader from '../components/layouts/HeaderLayout/JoinHeader'
 import Header from '../components/layouts/HeaderLayout/Header'
@@ -95,7 +94,6 @@ function ParticipationResult(props) {
                             <div className="color-blue">{participation_result.giveway_description}</div>
                         </div>
                     </Row>
-
                 </Col>
             </Row>
             <FooterLink />

@@ -3,11 +3,9 @@ import { Link } from 'react-router-dom'
 import { Button } from 'antd'
 import { Row, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap'
 import LoginSignupBaseModal from '../../modals/LoginSignupBaseModal'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons'
 import SelectLanguage from './SelectLanguage'
+import images from '../../../utils/images'
 import { useTranslation } from 'react-i18next'
-
 
 function HeaderBeforeLogin() {
     const { t } = useTranslation()
@@ -52,8 +50,8 @@ function HeaderBeforeLogin() {
                 <Row>
                     <Link to="/deals"><Button type="link" className="no-border-btn mr-3 h-100">{t('header.campaigns')}</Button></Link>
                     <Button className="white-btn mr-3" style={{ width: 140 }} onClick={() => toggle(false)}>{t('header.sign_in')}</Button>
-                    <Button type="primary" className="ant-blue-btn mr-3" style={{ width: 140 }} onClick={() => toggle(true)}>{t('header.log_in')}</Button>
-                    <FontAwesomeIcon icon={faQuestionCircle} className="font-size-19 color-blue pointer mr-3 mt-1" />
+                    <Button type="primary" className="ant-blue-btn" style={{ width: 140 }} onClick={() => toggle(true)}>{t('header.log_in')}</Button>
+                    <img src={images.question_icon} className="mx-4" />
                     <SelectLanguage />
                 </Row>
             ) : (
@@ -68,10 +66,16 @@ function HeaderBeforeLogin() {
                         </DropdownMenu>
                     </ButtonDropdown>
                 )}
-            <LoginSignupBaseModal modal={modal} isLogin={isLogin ? true : false} switch_login_signin={switch_login_signin} toggle={toggle} companyStatus={companyStatus} showCompanyModal={showCompanyModal} />
-
+            <LoginSignupBaseModal
+                modal={modal}
+                isLogin={isLogin ? true : false}
+                switch_login_signin={switch_login_signin}
+                toggle={toggle}
+                companyStatus={companyStatus}
+                showCompanyModal={showCompanyModal} 
+            />
         </>
     )
 }
 
-export default HeaderBeforeLogin;
+export default HeaderBeforeLogin

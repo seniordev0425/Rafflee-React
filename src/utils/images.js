@@ -50,6 +50,9 @@ const images = {
     facebook_gray_icon: require('../assets/image/facebook_gray_icon.png'),
     instagram_gray_icon: require('../assets/image/instagram_gray_icon.png'),
     verified_icon: require('../assets/image/verified_icon.png'),
+    question_icon: require('../assets/image/question_icon.svg'),
+    left_icon: require('../assets/image/left_icon.png'),
+    right_icon: require('../assets/image/right_icon.png'),
 }
 
 export default images;

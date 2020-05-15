@@ -185,7 +185,6 @@ function CurrentPromotionList(props) {
                             <span className="promotion-list-item-title">{t('empty_result_to_display')}</span>
                         </div>
                     )}
-
                     <Pagination
                         defaultCurrent={1}
                         defaultPageSize={NUMBER_PER_PAGE}
@@ -195,9 +194,8 @@ function CurrentPromotionList(props) {
                     />
                 </>
             }
-
         </>
     )
 }
 
-export default CurrentPromotionList;
+export default CurrentPromotionList

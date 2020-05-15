@@ -25,6 +25,7 @@ function Banner(props) {
             }
         })
     }
+
     return (
         <div className="banner font-weight-bold">
             <div>
@@ -44,4 +45,4 @@ function Banner(props) {
     )
 }
 
-export default withRouter(Banner);
+export default withRouter(Banner)

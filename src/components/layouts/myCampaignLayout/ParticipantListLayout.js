@@ -88,4 +88,4 @@ function ParticipantListLayout(props) {
     )
 }
 
-export default ParticipantListLayout;
+export default ParticipantListLayout

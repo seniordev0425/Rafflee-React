@@ -9,6 +9,7 @@ function MyCampaignItem(props) {
     const { t } = useTranslation()
 
     const { item, goToLivePage, goToParticipatePage } = props
+
     return (
         <div>
             <Row>
@@ -46,8 +47,7 @@ function MyCampaignItem(props) {
                 </Col>
             </Row>
         </div>
-
     )
 }
 
-export default MyCampaignItem;
+export default MyCampaignItem

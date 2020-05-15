@@ -1,9 +1,8 @@
-import React, { useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import React from 'react'
+import { useDispatch } from 'react-redux'
 import { Row, Col } from 'reactstrap'
 import images from '../../../utils/images'
-import { Button } from 'reactstrap'
-
+import { Button } from 'antd'
 import { useTranslation } from 'react-i18next'
 import { getPdfInvoice } from '../../../actions/userInfo'
 
@@ -18,8 +17,8 @@ function MyBillsItem(props) {
         dispatch(getPdfInvoice(item.id))
        
     }
+    
     return (
-
         <div>
             <Row>
                 <Col xs="12" sm={{ size: 10, offset: 1 }}>
@@ -39,9 +38,8 @@ function MyBillsItem(props) {
                             </div>
                             <div className="mt-4">
                                 <Button
-                                    size="lg"
-                                    color="primary"
-                                    className="bootstrap-blue-btn promotion-list-item-btn"
+                                    type="primary"
+                                    className="ant-blue-btn promotion-list-item-btn"
                                     onClick={download}
                                 >
                                     {t('button_group.download_pdf')}
@@ -52,8 +50,7 @@ function MyBillsItem(props) {
                 </Col>
             </Row>
         </div>
-
     )
 }
 
-export default MyBillsItem;
+export default MyBillsItem

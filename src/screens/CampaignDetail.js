@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom'
-import { Row, Col, Button } from 'reactstrap'
+import { Row, Col } from 'reactstrap'
+import { Button } from 'antd'
 import moment from 'moment'
 
 import JoinHeader from '../components/layouts/HeaderLayout/JoinHeader'
@@ -431,13 +432,12 @@ function CampaignDetail(props) {
                     )}
                     <Row className="justify-content-center mb-4">
                         <Button
-                            size="lg"
-                            color="primary"
-                            className="bootstrap-blue-btn promotion-list-item-btn"
+                            type="primary"
+                            className="ant-blue-btn promotion-list-item-btn"
                             onClick={participate}
-                            disabled={CAMPAIGN_PARTICIPATE_PROCESS}
+                            loading={CAMPAIGN_PARTICIPATE_PROCESS}
                         >
-                            {t('button_group.participate')}
+                            {!CAMPAIGN_PARTICIPATE_PROCESS && t('button_group.participate')}
                         </Button>
                     </Row>
                 </Col>
@@ -473,7 +473,7 @@ function CampaignDetail(props) {
                 promotion_id={campaignData.pk}
             />
         </div>
-    );
+    )
 }
 
-export default withRouter(CampaignDetail);
+export default withRouter(CampaignDetail)

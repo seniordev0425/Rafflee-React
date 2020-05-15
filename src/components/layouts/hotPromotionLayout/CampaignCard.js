@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button } from 'reactstrap'
+import { Button } from 'antd'
 import { Link } from 'react-router-dom'
 import images from '../../../utils/images'
 
@@ -23,10 +23,9 @@ function CampaignCard(props) {
                 <div className="mt-4 campaign-card-title">{campaign_name}</div>
                 <div className="mt-4 campaign-card-text">{description}</div>
             </div>
-
             <div>
                 <Link to={"/campaign-detail/" + pk}>
-                    <Button size="lg" color="primary" className="bootstrap-blue-btn">
+                    <Button type="primary" className="ant-blue-btn">
                         {t('button_group.see_campaign')}
                     </Button>
                 </Link>
@@ -38,4 +37,4 @@ function CampaignCard(props) {
     )
 }
 
-export default CampaignCard;
+export default CampaignCard

@@ -54,9 +54,7 @@ function LoginSignupBaseModal(props) {
                                 <div className="modal-login-btn" style={isLogin ? { opacity: 1 } : { opacity: 0.25 }} onClick={() => switch_login_signin(true)}>{t('header.log_in')}</div>
                                 <div className="modal-signin-btn" style={isLogin ? { opacity: 0.25 } : { opacity: 1 }} onClick={() => switch_login_signin(false)}>{t('header.sign_in')}</div>
                             </Row>
-
                             <div style={{ marginTop: "2rem" }}>{isLogin ? (<LogInModal toggle={toggle} />) : (<SignUpModal toggle={toggle} showCompanyModal={showCompanyModal} />)}</div>
-
                             <div className="or-divider-container">
                                 <h2><span className="or-divider-text">{t('signin_modal.or')}</span></h2>
                             </div>
@@ -83,12 +81,12 @@ function LoginSignupBaseModal(props) {
                             </div>
                         </div>
                     )}
-
                 </ModalBody>
             </Modal>
         </>
-    );
+    )
 }
+
 LoginSignupBaseModal.propTypes = {
     isLogin: PropTypes.bool,
     modal: PropTypes.bool,
@@ -97,6 +95,4 @@ LoginSignupBaseModal.propTypes = {
     showCompanyModal: PropTypes.func
 }
 
-
-
-export default LoginSignupBaseModal;
+export default LoginSignupBaseModal

@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
-
 import images from '../../../utils/images'
-
-
 import HeaderBeforeLogin from './HeaderBeforeLogin'
 import HeaderAfterLogin from './HeaderAfterLogin'
 
@@ -18,9 +15,11 @@ function Header(props) {
             window.removeEventListener('resize', resize)
         }
     }, [])
+    
     const resize = () => {
         setHideNav(window.innerWidth <= 1000)
     }
+
     return (
         <div className="header-container">
             <div style={{ width: "100%", height: 40 }}>
@@ -35,17 +34,17 @@ function Header(props) {
                         (
                             props.token ? <HeaderAfterLogin /> : <HeaderBeforeLogin />
                         )}
-
                 </div>
             </div>
-
         </div>
     )
 }
+
 function mapStateToProps(state) {
     return {
         myInfo: state.userInfo.myInfo,
         token: state.userInfo.token
     }
 }
-export default connect(mapStateToProps)(Header);
+
+export default connect(mapStateToProps)(Header)

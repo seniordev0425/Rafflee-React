@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { withRouter, Redirect } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import { compose } from 'redux'
 import { connect, useSelector } from "react-redux";
 import { Route, Switch } from 'react-router-dom'
@@ -174,9 +174,7 @@ function Routes(props) {
                 This site uses cookies, by continuing to use the service, you accept our Cookie Policy
             </CookieConsent>
         </ScrollToTop>
-
     )
-
 }
 function mapStateToProps(state) {
     return {
@@ -184,4 +182,5 @@ function mapStateToProps(state) {
         company: state.userInfo.company
     }
 }
-export default compose(withRouter, connect(mapStateToProps))(Routes);
+
+export default compose(withRouter, connect(mapStateToProps))(Routes)

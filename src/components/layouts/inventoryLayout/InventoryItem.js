@@ -60,7 +60,6 @@ function InventoryItem(props) {
                                     <img src={item.favorite ? images.trans_star_favorite : images.trans_star} />
                                 </div>
                             </div>
-
                         </Col>
                     </Row>
                 </Col>
@@ -69,4 +68,4 @@ function InventoryItem(props) {
     )
 }
 
-export default withRouter(InventoryItem);
+export default withRouter(InventoryItem)

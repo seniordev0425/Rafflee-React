@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { connect, useSelector, useDispatch } from "react-redux";
 import { compose } from 'redux'
 import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { Form as FinalForm, Field } from 'react-final-form'
-import { Form, FormGroup, Button, Modal, ModalHeader, ModalBody } from 'reactstrap'
+import { Form, FormGroup, Modal, ModalHeader, ModalBody } from 'reactstrap'
+import { Button } from 'antd'
 import FormInput from '../common/FormInput'
 import {
     required,
@@ -59,20 +60,17 @@ function DeleteAccount(props) {
                         </FormGroup>
 
                         <Button
-                            type="submit"
-                            size="lg"
-                            color="danger"
-                            className="red-btn"
-                            disabled={isLoading}
-                            style={{ marginTop: '20px' }}
+                            htmlType="submit"
+                            type="danger"
+                            className="ant-red-btn mt-4"
+                            loading={isLoading}
                         >
-                            {t('button_group.delete_account')}
+                            {!isLoading && t('button_group.delete_account')}
                         </Button>
                     </Form>
                 )}
             />
         </ModalBody>
-
     </Modal>)
 }
 
@@ -80,6 +78,7 @@ DeleteAccount.propTypes = {
     open: PropTypes.bool,
     onToggle: PropTypes.func.isRequired,
 }
+
 function mapStateToProps(state) {
     return {
         myInfo: state.userInfo.myInfo,
@@ -87,4 +86,5 @@ function mapStateToProps(state) {
         company: state.userInfo.company,
     }
 }
-export default compose(withRouter, connect(mapStateToProps))(DeleteAccount);
+
+export default compose(withRouter, connect(mapStateToProps))(DeleteAccount)

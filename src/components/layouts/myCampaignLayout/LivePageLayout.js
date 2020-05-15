@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { Row, Col, Button } from 'reactstrap'
-import { Select } from 'antd'
+import { Row, Col } from 'reactstrap'
+import { Select, Button } from 'antd'
 import images from '../../../utils/images'
 import Congratulation from '../../modals/Congratulation'
 import Loading from '../../common/Loading'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSlidersH, faSearch } from '@fortawesome/free-solid-svg-icons'
-import { getCampaignParticipants, getCampaignWinnings, drawCampaign } from '../../../actions/campaign'
+import {
+    getCampaignParticipants,
+    getCampaignWinnings,
+    drawCampaign
+} from '../../../actions/campaign'
 
 import { useTranslation } from 'react-i18next'
 
@@ -136,22 +140,21 @@ function LivePageLayout(props) {
                         </Col>
                         <Col xs="12" md="4" className="mt-md-0 mt-4 d-flex justify-content-start justify-content-md-end">
                             <Button
-                                color="primary"
-                                className="blue-btn float-right"
+                                type="primary"
+                                className="ant-blue-btn float-right"
                                 style={{ width: 160 }}
                                 onClick={onSubmit}
-                                disabled={isDrawing}
+                                loading={isDrawing}
                             >
-                                {t('button_group.draw')}
+                                {!isDrawing && t('button_group.draw')}
                             </Button>
                         </Col>
                     </Row>
                 </Col>
             </Row>
-
             <Congratulation open={open} onToggle={onToggle} winnerArr={winnerArr} />
         </>
     )
 }
 
-export default LivePageLayout;
+export default LivePageLayout

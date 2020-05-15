@@ -7,7 +7,14 @@ import { faSlidersH } from '@fortawesome/free-solid-svg-icons'
 import PromotionListItem from '../currentPromotionLayout/PromotionListItem'
 import CategoryFilter from '../../common/CategoryFilter'
 import { NUMBER_PER_PAGE } from '../../../utils/constants'
-import { getHotPromotions, getHighlightedPromotions, getNewPromotions, getBestPromotions, getCategories, getAllPromotions } from '../../../actions/homepage'
+import { 
+    getHotPromotions, 
+    getHighlightedPromotions, 
+    getNewPromotions, 
+    getBestPromotions, 
+    getCategories, 
+    getAllPromotions 
+} from '../../../actions/homepage'
 import Loading from '../../common/Loading'
 
 import { useTranslation } from 'react-i18next'
@@ -229,9 +236,8 @@ function SearchResultLayout(props) {
                     />
                 </>
             }
-
         </>
     )
 }
 
-export default SearchResultLayout;
+export default SearchResultLayout

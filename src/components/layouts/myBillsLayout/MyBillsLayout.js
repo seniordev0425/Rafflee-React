@@ -7,8 +7,6 @@ import Loading from '../../common/Loading'
 import { getMyBills } from '../../../actions/userInfo'
 import { NUMBER_PER_PAGE } from '../../../utils/constants'
 
-import { saveAs } from 'file-saver'
-
 function MyBillsLayout() {
 
     const isLoading = useSelector(state => state.userInfo.GET_MY_BILLS_SUCCESS)
@@ -60,7 +58,6 @@ function MyBillsLayout() {
     return (
         <>
             {renderMyBillsList()}
-
             <Pagination
                 defaultCurrent={1}
                 defaultPageSize={NUMBER_PER_PAGE}
@@ -72,4 +69,4 @@ function MyBillsLayout() {
     )
 }
 
-export default MyBillsLayout;
+export default MyBillsLayout

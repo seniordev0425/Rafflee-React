@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Document, Page, pdfjs } from 'react-pdf/dist/entry.webpack';
 import { useTranslation } from 'react-i18next'
 import './pdf.css';
@@ -54,4 +54,4 @@ function PdfLayout(props) {
     )
 }
 
-export default PdfLayout;
+export default PdfLayout

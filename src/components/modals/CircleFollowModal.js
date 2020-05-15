@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Modal, ModalHeader, ModalBody, Button } from 'reactstrap'
-import { Checkbox } from 'antd'
+import { Modal, ModalHeader, ModalBody } from 'reactstrap'
+import { Checkbox, Button } from 'antd'
 import { followCircle } from '../../actions/userInfo'
 import { useTranslation } from 'react-i18next'
 
@@ -31,6 +31,7 @@ function CircleFollowModal(props) {
         }
         dispatch(followCircle(body, pk))
     }
+
     return (
         <Modal isOpen={open} toggle={onToggle} >
             <ModalHeader toggle={onToggle}><div className="text-center font-size-19 color-blue">{t('company_page.follow_circle')}</div></ModalHeader>
@@ -44,17 +45,16 @@ function CircleFollowModal(props) {
                 <div className="d-flex justify-content-center">
                     <Button 
                         onClick={subscribe}
-                        className="btn blue-btn mt-3 participate-btn-size" 
-                        color="primary" 
-                        disabled={FOLLOW_CIRCLE_PROCESS}
+                        className="ant-blue-btn mt-3 participate-btn-size" 
+                        type="primary" 
+                        loading={FOLLOW_CIRCLE_PROCESS}
                     >
-                        {t('button_group.continue')}
+                        {!FOLLOW_CIRCLE_PROCESS && t('button_group.continue')}
                     </Button>
                 </div>
             </ModalBody>
-
         </Modal>
     )
 }
 
-export default CircleFollowModal;
+export default CircleFollowModal

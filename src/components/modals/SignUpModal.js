@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { withRouter } from 'react-router'
 import { Form as FinalForm, Field } from 'react-final-form'
 import { OnChange } from 'react-final-form-listeners'
-import { Form, FormGroup, Button, Input } from 'reactstrap'
+import { Form, FormGroup } from 'reactstrap'
 import FormInput from '../common/FormInput'
-import { Switch } from 'antd'
+import { Switch, Button } from 'antd'
 import { signUp } from '../../actions/userInfo'
 
 import {
@@ -48,7 +48,6 @@ function SignUpModal(props) {
             password1: values.password1,
             password2: values.password2
         }
-
         dispatch(signUp(body))
     }
 
@@ -91,7 +90,6 @@ function SignUpModal(props) {
                                 type="text"
                                 placeholder={t('signin_modal.username')}
                                 validate={required(t('signin_modal.username_required'))}
-
                             />
                         </FormGroup>
                         <FormGroup>
@@ -102,7 +100,6 @@ function SignUpModal(props) {
                                 type="password"
                                 placeholder={t('signin_modal.password')}
                                 validate={required(t('signin_modal.password_required'))}
-
                             />
                             <OnChange name="password1">
                                 {(value) => {
@@ -143,14 +140,13 @@ function SignUpModal(props) {
                             </span>
                         </FormGroup>
                         <Button
-                            type="submit"
-                            size="lg"
-                            color="primary"
-                            className="blue-btn"
-                            disabled={isLoading || !agree}
-                            style={{ marginTop: '20px' }}
+                            htmlType='submit'
+                            type="primary"
+                            className="ant-blue-btn mt-4"
+                            disabled={!agree}
+                            loading={isLoading}
                         >
-                            {t('button_group.create_account')}
+                            {!isLoading && t('button_group.create_account')}
                         </Button>
                         <div className="company-question-button-container" onClick={showCompanyModal}>
                             <span className="company-question-button">{t('signin_modal.are_you_company')}</span>
@@ -160,7 +156,7 @@ function SignUpModal(props) {
                 )}
             />
         </div>
-    );
+    )
 }
 
-export default withRouter(SignUpModal);
+export default withRouter(SignUpModal)

@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Button, Modal, ModalBody } from 'reactstrap'
+import { Modal, ModalBody } from 'reactstrap'
+import { Button } from 'antd'
 import images from '../../utils/images'
 
 import { useTranslation } from 'react-i18next'
@@ -22,22 +23,21 @@ function Congratulation(props) {
             {item.winning}
           </div>
           <div className="d-flex align-items-center">
-
           </div>
         </div>
       )
     )
   }
-  return <Modal isOpen={open} toggle={onToggle} className="congratulation-modal">
 
+  return <Modal isOpen={open} toggle={onToggle} className="congratulation-modal">
     <ModalBody>
       <div className="congratulation-header">{t('congratulation_modal.congratulations')}</div>
       <div className="congratulation-number">#000000001</div>
       {renderWinners()}
       <div className="d-flex justify-content-center">
         <Button
-          color="primary"
-          className="blue-btn"
+          type="primary"
+          className="ant-blue-btn"
           style={{ width: 180 }}
           onClick={onToggle}
         >
@@ -57,4 +57,4 @@ Congratulation.propTypes = {
   onToggle: PropTypes.func.isRequired,
 }
 
-export default Congratulation;
+export default Congratulation

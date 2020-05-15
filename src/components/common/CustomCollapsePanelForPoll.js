@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Select } from 'antd'
-import { Button } from 'reactstrap'
+import { Button } from 'antd'
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
@@ -65,13 +65,12 @@ function CustomCollapsePanelForPoll(props) {
                     </Select>
                     <div className="mt-3">
                         <Button
-                            size="lg"
-                            color="primary"
-                            className="bootstrap-blue-btn promotion-list-item-btn"
+                            type="primary"
+                            className="ant-blue-btn promotion-list-item-btn"
                             onClick={onSubmit}
-                            disabled={CAMPAIGN_PARTICIPATE_POLL_PROCESS}
+                            loading={CAMPAIGN_PARTICIPATE_POLL_PROCESS}
                         >
-                            {t('button_group.confirm')}
+                            {!CAMPAIGN_PARTICIPATE_POLL_PROCESS && t('button_group.confirm')}
                         </Button>
                     </div>
                 </ExpansionPanelDetails>

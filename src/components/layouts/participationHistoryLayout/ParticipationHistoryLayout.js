@@ -2,7 +2,12 @@ import React, { useState, useEffect } from 'react'
 import { Pagination } from 'antd'
 import { useSelector, useDispatch } from 'react-redux'
 import Loading from '../../common/Loading'
-import { getParticipationHistory, getUserInventory, getFollowing, getFavoriteCompanies } from '../../../actions/userInfo'
+import {
+    getParticipationHistory,
+    getUserInventory, 
+    getFollowing, 
+    getFavoriteCompanies
+} from '../../../actions/userInfo'
 import ParticipationHistoryItem from './ParticipationHistoryItem'
 import { NUMBER_PER_PAGE } from '../../../utils/constants'
 
@@ -62,4 +67,4 @@ function ParticipationHistoryLayout() {
     )
 }
 
-export default ParticipationHistoryLayout;
+export default ParticipationHistoryLayout

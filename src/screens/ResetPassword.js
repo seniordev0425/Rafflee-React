@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { compose } from 'redux'
 import { connect, useSelector, useDispatch } from "react-redux";
 import { withRouter } from 'react-router-dom'
 import { Form as FinalForm, Field } from 'react-final-form'
-import { Form, FormGroup, Button } from 'reactstrap'
+import { Form, FormGroup } from 'reactstrap'
+import { Button } from 'antd'
 import FormInput from '../components/common/FormInput'
 import { resetPassword } from '../actions/userInfo'
 import Header from '../components/layouts/HeaderLayout/Header'
@@ -66,21 +67,19 @@ function ResetPassword(props) {
                                 />
                             </FormGroup>
                             <Button
-                                type="submit"
-                                size="lg"
-                                color="primary"
-                                className="blue-btn"
-                                disabled={isLoading}
-                                style={{ marginTop: '20px' }}
+                                htmlType="submit"
+                                type="primary"
+                                className="ant-blue-btn mt-4"
+                                loading={isLoading}
                             >
-                                {t('button_group.reset')}
+                                {!isLoading && t('button_group.reset')}
                             </Button>
                         </Form>
                     )}
                 />
             </div>
         </>
-    );
+    )
 }
 
 function mapStateToProps(state) {
@@ -90,4 +89,4 @@ function mapStateToProps(state) {
         company: state.userInfo.company,
     }
 }
-export default compose(withRouter, connect(mapStateToProps))(ResetPassword);
+export default compose(withRouter, connect(mapStateToProps))(ResetPassword)

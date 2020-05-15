@@ -44,9 +44,11 @@ function HeaderAfterLogin(props) {
             window.removeEventListener('resize', resize)
         }
     }, [])
+
     const resize = () => {
         setHide(window.innerWidth <= 1000)
     }
+
     return (
         <>
             {!hide ? (
@@ -67,7 +69,6 @@ function HeaderAfterLogin(props) {
             ) : (
                     <ButtonDropdown isOpen={dropdownOpen} toggle={() => void 0}>
                         <DropdownToggle caret onClick={dropDownToggle}>
-
                         </DropdownToggle>
                         <DropdownMenu style={{ left: -115 }}>
                             <DropdownItem><Link to="/deals">{t('header.campaigns')}</Link></DropdownItem>
@@ -77,7 +78,8 @@ function HeaderAfterLogin(props) {
                             <DropdownItem><SelectLanguage /></DropdownItem>
                         </DropdownMenu>
                     </ButtonDropdown>
-                )}
+                )
+            }
         </>
     )
 }

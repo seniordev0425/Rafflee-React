@@ -111,8 +111,8 @@ body {
 .custom-form-control {
     border: 1px solid #DEE6E9 !important;
     border-radius: 6px !important;
-    padding-left: 2.5rem !important;
-    height: 50px !important;
+    padding-left: 1rem;
+    height: 45px !important;
     font-size: 1rem !important
 }
 .custom-form-control:focus {
@@ -121,7 +121,7 @@ body {
 .company-contact-form-text-area {
     border: 1px solid #DEE6E9 !important;
     border-radius: 6px !important;
-    padding-left: 2.5rem !important;
+    padding-left: 1rem;
     font-size: 1rem !important
 }
 .company-contact-form-text-area:focus {
@@ -173,23 +173,33 @@ body {
 @media (max-width: 450px){
     .promotion-list-item-btn {
         width: 140px !important;
-        font-size: 0.8rem;
+        /* font-size: 0.8rem !important; */
     }
 }
 .ant-blue-btn {
+    width: 100%;
     background-color:#0091ff !important;
     border-radius:6px !important;
-    font-size:1rem !important;
+    font-size:1rem;
+    height:40px;
+    font-family: 'sofiapro' !important;
+    box-shadow: 0px 6px 15px #0091FF26;
+}
+.ant-red-btn {
+    width: 100%;
+    background-color:#f01212 !important;
+    border-radius:6px !important;
+    font-size:1rem;
     height:40px !important;
     font-family: 'sofiapro' !important;
+    box-shadow: 0px 6px 15px #0091FF26;
 }
-
 .white-btn {
+    height: 40px !important;
     color: #0091ff !important;
     border: 1px solid #0091ff !important;
     border-radius: 6px !important;
     font-size: 1rem !important;
-    height: 40px !important;
     font-family: 'sofiapro' !important;
 }
 
@@ -248,19 +258,19 @@ h2 span {
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 50px;
+    height: 40px;
     background: #CE4F46 0% 0% no-repeat padding-box;
     border-radius: 6px 0px 0px 6px;
 }
 .google-icon-container1 img {
-    width: 1.2rem;
+    width: 0.9rem;
 }
 .google-icon-container2 {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center;    
     width: 100%;
-    height: 50px;
+    height: 40px;
     color: white;
     text-align: center;
     background: #F2554A 0% 0% no-repeat padding-box;
@@ -271,10 +281,10 @@ h2 span {
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 50px;
+    height: 40px;
     background: #2A3E6A 0% 0% no-repeat padding-box;
     border-radius: 6px 0px 0px 6px;
-    font-size: 1.9rem;
+    font-size: 1.2rem;
     color: white;
     font-weight: bold;
 }
@@ -286,7 +296,7 @@ h2 span {
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 50px;
+    height: 40px;
     color: white;
     text-align: center;
     background: #3B5999 0% 0% no-repeat padding-box;
@@ -297,19 +307,19 @@ h2 span {
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 50px;
+    height: 40px;
     background: #E2F0FC 0% 0% no-repeat padding-box;
     border-radius: 6px 0px 0px 6px;
 }
 .twitter-icon-container1 img {
-    width: 1.5rem;
+    width: 1.2rem;
 }
 .twitter-icon-container2 {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 50px;
+    height: 40px;
     color: white;
     text-align: center;
     background: #0091ff 0% 0% no-repeat padding-box;
@@ -320,7 +330,7 @@ h2 span {
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 50px;
+    height: 40px;
     background: #6422FF 0% 0% no-repeat padding-box;
     border-radius: 6px 0px 0px 6px;
 }
@@ -329,19 +339,19 @@ h2 span {
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 50px;
+    height: 40px;
     background: #22B9A7 0% 0% no-repeat padding-box;
     border-radius: 6px 0px 0px 6px;
 }
 .twitch-icon-container1 img {
-    width: 1.5rem;
+    width: 1.2rem;
 }
 .twitch-icon-container2 {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 50px;
+    height: 40px;
     color: white;
     text-align: center;
     background: #4103A2 0% 0% no-repeat padding-box;
@@ -352,19 +362,19 @@ h2 span {
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 50px;
+    height: 40px;
     background: #FFDDDD 0% 0% no-repeat padding-box;
     border-radius: 6px 0px 0px 6px;
 }
 .youtube-icon-container1 img {
-    width: 3.5rem;
+    width: 3rem;
 }
 .youtube-icon-container2 {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 50px;
+    height: 40px;
     color: white;
     text-align: center;
     background: #F01212 0% 0% no-repeat padding-box;
@@ -375,19 +385,19 @@ h2 span {
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 50px;
+    height: 40px;
     background: #481E64 0% 0% no-repeat padding-box;
     border-radius: 6px 0px 0px 6px;
 }
 .instagram-icon-container1 img {
-    width: 1.2rem;
+    width: 1rem;
 }
 .instagram-icon-container2 {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 50px;
+    height: 40px;
     color: white;
     text-align: center;
     background: #7E3AAC 0% 0% no-repeat padding-box;
@@ -398,19 +408,19 @@ h2 span {
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 50px;
+    height: 40px;
     background: #8cbfff 0% 0% no-repeat padding-box;
     border-radius: 6px 0px 0px 6px;
 }
 .steam-icon-container1 img {
-    width: 1.5rem;
+    width: 1.2rem;
 }
 .steam-icon-container2 {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 50px;
+    height: 40px;
     color: white;
     text-align: center;
     background: #0a458f 0% 0% no-repeat padding-box;
@@ -460,17 +470,21 @@ h2 span {
     height: 100%;
 }
 .banner-text-blue {
-    font-size: 30px;
+    font-size: 35px;
     color: #0091ff;
 
 }
 .banner-text-green {
-    font-size: 30px;
+    font-size: 35px;
     color: #06CBC7;
+    text-shadow: 0px 1px, 1px 1px, 1px 0px;
+    letter-spacing: 2px;
 }
 .banner-text-purple {
-    font-size: 30px;
+    font-size: 35px;
     color: #936EEA;
+    text-shadow: 0px 1px, 1px 1px, 1px 0px;
+    letter-spacing: 2px;
 }
 .banner-search {
     height: 55px;
@@ -510,10 +524,10 @@ h2 span {
     font-size: 1.2rem;
 }
 .hot-new-text {
-    font-size: 29px;
+    font-size: 35px;
     color:#0091ff;
     text-align: center;
-    margin-top: 30px;
+    margin-top: 40px;
     font-weight: bold;
 }
 .premium-prize-text {
@@ -585,7 +599,7 @@ h2 span {
     top: 10px;
 }
 .find-deal-text {
-    font-size: 29px;
+    font-size: 35px;
     color:#7778ED;
     text-align: center;
     margin-top: 30px;
@@ -1055,7 +1069,7 @@ h2 span {
 }
 .category-item {
     color: #7E9AA8;
-    padding: 10px 21px;
+    padding: 13px 28px;
     border-bottom: 1px solid #7e9aa81f;
     display: flex;
     justify-content: space-between;

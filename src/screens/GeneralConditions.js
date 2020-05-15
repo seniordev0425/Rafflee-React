@@ -18,4 +18,4 @@ function GeneralConditions() {
     )
 }
 
-export default GeneralConditions;
+export default GeneralConditions

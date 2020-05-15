@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from "react-redux";
 import { Form as FinalForm, Field } from 'react-final-form'
-import { Form, FormGroup, Button, Row, Col } from 'reactstrap'
+import { Form, FormGroup, Row, Col } from 'reactstrap'
+import { Button } from 'antd'
 import ReactFlagsSelect from 'react-flags-select'
 import { getCode, getName } from 'country-list'
 import ImageUploader from 'react-images-upload'
@@ -22,9 +23,6 @@ import {
     composeValidators,
     required,
     isEmail,
-    minLength,
-    maxLength,
-    requiredPhoneObj
 } from '../../../utils/validation'
 import Loading from '../../common/Loading';
 
@@ -67,8 +65,11 @@ function CompanyAccountForm(props) {
 
     useEffect(() => {
         if (UPDATE_COMPANY_PROFILE_SUCCESS) {
-            dispatch({ type: 'UPDATE_COMPANY_LOGO', data: imgBase64Data })
-            dispatch({ type: 'INIT_STATE', state: 'SUCCESS_UPDATE_COMPANY_PROFILE', data: false })
+            if (imgBase64Data) {
+                console.log('Update header profile img')
+                dispatch({ type: 'UPDATE_COMPANY_LOGO', data: imgBase64Data })
+                dispatch({ type: 'INIT_STATE', state: 'SUCCESS_UPDATE_COMPANY_PROFILE', data: false })
+            }     
         }
     }, [UPDATE_COMPANY_PROFILE_SUCCESS])
 
@@ -129,9 +130,8 @@ function CompanyAccountForm(props) {
                                                     <div>
                                                         <Button
                                                             onClick={handleImageCropModal}
-                                                            size="lg"
-                                                            color="primary"
-                                                            className="blue-btn mt-2"
+                                                            type="primary"
+                                                            className="ant-blue-btn mt-2"
                                                             style={{ width: 100, height: 30, fontSize: '1rem', lineHeight: 1 }}
                                                         >
                                                             {t('button_group.edit')}
@@ -289,19 +289,17 @@ function CompanyAccountForm(props) {
                                 <Row style={{ justifyContent: "flex-end" }}>
                                     <div className="mt-4 half-width">
                                         <Button
-                                            type="submit"
-                                            size="lg"
-                                            color="primary"
-                                            className="blue-btn mt-2"
+                                            htmlType='submit'
+                                            type="primary"
+                                            className="ant-blue-btn mt-2"
                                             style={{ width: "45%", marginRight: "5%" }}
-                                            disabled={isUpdating}
+                                            loading={isUpdating}
                                         >
-                                            {t('button_group.update')}
+                                            {!isUpdating && t('button_group.update')}
                                         </Button>
                                         <Button
-                                            size="lg"
-                                            color="danger"
-                                            className="red-btn mt-2"
+                                            type="danger"
+                                            className="ant-red-btn mt-2"
                                             onClick={handleDeleteModal}
                                             style={{ width: "45%", marginLeft: "5%" }}
                                         >
@@ -313,7 +311,6 @@ function CompanyAccountForm(props) {
                         </Row>
                     </Form>
                 )}
-
             />
             <DeleteAccount
                 open={openDeleteModal}
@@ -329,4 +326,4 @@ function CompanyAccountForm(props) {
     )
 }
 
-export default CompanyAccountForm;
+export default CompanyAccountForm

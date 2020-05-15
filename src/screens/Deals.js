@@ -18,7 +18,7 @@ function Deals() {
             <FooterLink />
             <Footer />
         </div>
-    );
+    )
 }
 
 function mapStateToProps(state) {
@@ -27,4 +27,5 @@ function mapStateToProps(state) {
         token: state.userInfo.token
     }
 }
-export default compose(withRouter, connect(mapStateToProps))(Deals);
+
+export default compose(withRouter, connect(mapStateToProps))(Deals)
