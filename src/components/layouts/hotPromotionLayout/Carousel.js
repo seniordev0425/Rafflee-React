@@ -32,7 +32,7 @@ function Carousel(props) {
     if (hotPromotions.length < 1) return <></>
         
     return (
-        <div className="app" style={{ maxWidth: galleryItems.length > 1 ? galleryItems.length * 450 : galleryItems.length * 480 }}>
+        <div className="app" style={{ maxWidth: galleryItems.length > 1 ? galleryItems.length * 350 : galleryItems.length * 400 }}>
             <AliceCarousel
                 items={galleryItems}
                 showSlideInfo={true}
@@ -43,7 +43,7 @@ function Carousel(props) {
                 stagePadding={stagePadding}
                 dotsDisabled={true}
                 infinite={true}
-                autoPlay={true}
+                // autoPlay={true}
                 autoPlayInterval={2000}
                 duration={800}
             />

@@ -37,7 +37,7 @@ function PromotionListItem(props) {
                                 <Link to={`/company/${item.company_id}/`}>
                                     <img
                                         src={item.company_logo ? item.company_logo : images.profile_img}
-                                        style={{ width: 40, height: 40, borderRadius: '50%', boxShadow: ' 0px 5px 5px #bec2c5d9' }}
+                                        style={{ width: 40, height: 40, borderRadius: '50%', boxShadow: ' 0px 5px 20px #bec2c5d9' }}
                                         className="mr-3"
                                     />
                                 </Link>
