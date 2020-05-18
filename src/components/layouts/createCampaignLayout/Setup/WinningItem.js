@@ -2,8 +2,7 @@ import React, { useState } from 'react'
 import { FormGroup, Input, Row, Col, Button } from 'reactstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
-import ImageCropModal from '../../modals/ImageCropModal'
-import { required } from '../../../utils/validation'
+import ImageCropModal from '../../../modals/ImageCropModal'
 import { useTranslation } from 'react-i18next'
 
 function WinningItem(props) {

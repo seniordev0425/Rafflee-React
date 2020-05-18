@@ -1,58 +1,107 @@
 import React, { useState, useEffect } from 'react'
-import FirstLayout from './FirstLayout'
-import CreatePollLayout from './CreatePollLayout'
-import FinalLayout from './FinalLayout'
+import { Menu } from 'antd'
+import { Row, Col } from 'reactstrap'
+import SetupSection from './Setup/SetupSection'
+import CampaignType from './CampaignType/CampaignType'
+import ActionSection from './Action/ActionSection'
+
+import { useTranslation } from 'react-i18next'
 
 function CreateCampaignLayout() {
+    const { t } = useTranslation()
 
-    const [currentLayout, setCurrentLayout] = useState('first');
-    const [pollCreated, setPollCreated] = useState(false)
-    const [poll, setPoll] = useState(null)
-    const [firstFormData, setFirstFormData] = useState(null)
-    const [firstFormTempData, setFirstFormTempData] = useState({})
+    const [currentSection, setCurrentSection] = useState('setup')
 
-
-    useEffect(() => {
+    const [params, setParams] = useState({
+        promotion_name: '',
+        promotion_picture: '',
+        promotion_description: '',
+        categories: [],
+        temp_categories: [],
+        start_date: '',
+        end_date: '',
+        winnings: [{ name: '', number_of_people: '', description: '', image: '' }],
+        campaign_type: 'giveaway',
+        live_draw: false,
+        twitter: {
+            tweet: false,
+            tweet_model: '',
+            like: false,
+            like_id: '',
+            retweet: false,
+            retweet_id: '',
+            follow: false,
+            follow_type: '',
+            follow_id: ''
+        },
+        instagram: {
+            publication: false,
+            profile: false,
+            publication_url: '',
+            profile_url: ''
+        },
+        twitch: {
+            follow: false,
+            follow_name : ''
+        }
     })
 
-    const gotoFirstLayout = (iscreated, poll) => {
-        if (iscreated) {
-            setPollCreated(true)
-            setPoll(poll)
-        }
-        setCurrentLayout('first')
+    const _setParams = (key, val) => {
+        let temp_params = { ...params }
+        temp_params[key] = val
+        setParams(temp_params)
     }
 
-    const gotoPollCreate = (data) => {
-        setCurrentLayout('create poll')
-        setFirstFormTempData(data)
+    const _setAction = (socialName, actionType, val) => {
+        let temp_params = { ...params }
+        temp_params[socialName][actionType] = val
+        setParams(temp_params)
+        console.log(params)
     }
 
-    const gotoFinalLayout = (result) => {
-        setFirstFormData(result)
-        setCurrentLayout('final')
+    const _setSection = (section) => {
+        setCurrentSection(section)
     }
 
-    const createNewPromotion = () => {
-        setCurrentLayout('first')
-        setFirstFormTempData({})
-        setPollCreated(false)
-    }
-    const renderLayout = () => {
-        switch (currentLayout) {
-            case 'first':
-                return <FirstLayout gotoPollCreate={gotoPollCreate} gotoFinalLayout={gotoFinalLayout} pollCreated={pollCreated} firstFormTempData={firstFormTempData} />
-            case 'create poll':
-                return <CreatePollLayout gotoFirstLayout={gotoFirstLayout} />
-            case 'final':
-                return <FinalLayout poll={poll} firstFormData={firstFormData} createNewPromotion={createNewPromotion} />
+    const renderSection = () => {
+        switch (currentSection) {
+            case 'setup':
+                return <SetupSection params={params} setParams={_setParams} setSection={_setSection} />
+            case 'campaign_type':
+                return <CampaignType params={params} setParams={_setParams} setSection={_setSection} />
+            case 'action':
+                return <ActionSection params={params} setParams={_setParams} setSection={_setSection} setAction={_setAction} />
+            default:
+                return <SetupSection />
         }
     }
+
     return (
         <>
-            {renderLayout()}
+            <Row style={{ borderBottom: "1px solid rgba(126, 154, 168, 0.15)" }}>
+                <Col sm={{ size: 10, offset: 1 }} xs="12" className="px-0">
+                    <Menu mode="horizontal" className="menubar analytics-menu" selectedKeys={[currentSection]}>
+                        <Menu.Item key="setup" className="analytics-menuitem" onClick={() => setCurrentSection("setup")}>
+                            <span className={currentSection === 'setup' ? "ml-3 underline font-weight-bold" : "ml-3"}> {t('menubar.setup')}</span>
+                        </Menu.Item>
+                        <Menu.Item key="campaign_type" className="analytics-menuitem" onClick={() => setCurrentSection("campaign_type")}>
+                            <span className={currentSection === 'campaign_type' ? "ml-3 underline font-weight-bold" : "ml-3"}> {t('menubar.campaign_type')}</span>
+                        </Menu.Item>
+                        <Menu.Item key="action" className="analytics-menuitem" onClick={() => setCurrentSection("action")}>
+                            <span className={currentSection === 'action' ? "ml-3 underline font-weight-bold" : "ml-3"}> {t('menubar.action')}</span>
+                        </Menu.Item>
+                        <Menu.Item key="preview" className="analytics-menuitem" onClick={() => setCurrentSection("preview")}>
+                            <span className={currentSection === 'preview' ? "ml-3 underline font-weight-bold" : "ml-3"}> {t('menubar.preview')}</span>
+                        </Menu.Item>
+                        <Menu.Item key="payment" className="analytics-menuitem" onClick={() => setCurrentSection("payment")}>
+                            <span className={currentSection === 'payment' ? "ml-3 underline font-weight-bold" : "ml-3"}> {t('menubar.payment')}</span>
+                        </Menu.Item>
+                    </Menu>
+                </Col>
+            </Row>
+            {renderSection()}
         </>
     )
 }
 
-export default CreateCampaignLayout;
+export default CreateCampaignLayout

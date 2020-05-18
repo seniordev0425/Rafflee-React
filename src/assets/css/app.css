@@ -22,6 +22,9 @@ body {
 .color-gray {
     color: #9399A3;
 }
+.color-white {
+    color: white;
+}
 .font-size-8 {
     font-size: 0.8rem;
 }
@@ -786,6 +789,31 @@ h2 span {
     border-radius: 6px;
     color: #D0D0CF;
 }
+.inline-sort-div-active 
+{
+    display: inline-flex;
+    width: calc(100% - 50px);
+    height: 45px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 15px;
+    border: 1px solid;
+    border-radius: 6px;
+    color: #0091ff;
+    font-size: 0.9rem;
+}
+.inline-sort-div-inactive {
+    display: inline-flex;
+    width: calc(100% - 50px);
+    height: 45px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 15px;
+    border: 1px solid;
+    border-radius: 6px;
+    color: #D0D0CF;
+    font-size: 0.9rem;
+}
 @media (max-width: 500px) {
     .inline-div-inactive {
         padding: 0px 5px;
@@ -1272,6 +1300,152 @@ h2 span {
 }
 ::-webkit-scrollbar { 
     display: none; 
+}
+.ant-tooltip-inner {
+    color: white;
+    background-color: #0091ff;
+}
+.ant-tooltip-placement-top .ant-tooltip-arrow, .ant-tooltip-placement-topLeft .ant-tooltip-arrow, .ant-tooltip-placement-topRight .ant-tooltip-arrow {
+    border-bottom-color: #0091ff !important;
+}
+.facebook-action-btn {
+    width: 140px;
+    height: 40px;
+    padding: 10px 20px;
+    background-color: #4264A3;
+    border-radius: 6px;
+    cursor: not-allowed;
+}
+.twitter-action-btn {
+    width: 118px;
+    height: 40px;
+    padding: 10px 20px;
+    background-color: #1EA1F1;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.youtube-action-btn {
+    width: 130px;
+    height: 40px;
+    padding: 10px 20px;
+    background-color: #FF0200;
+    border-radius: 6px;
+    cursor: not-allowed;
+}
+.instagram-action-btn {
+    width: 143px;
+    height: 40px;
+    padding: 10px 20px;
+    background-color: #1E3F6C;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.twitch-action-btn {
+    width: 113px;
+    height: 40px;
+    padding: 10px 20px;
+    background-color: #9147FF;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.blog-action-btn {
+    width: 100px;
+    height: 40px;
+    padding: 10px 20px;
+    background-color: #FCD20C;
+    border-radius: 6px;
+    cursor: not-allowed;
+}
+.podcast-action-btn {
+    width: 230px;
+    height: 40px;
+    padding: 10px 20px;
+    background-color: #B3C5C6;
+    border-radius: 6px;
+    cursor: not-allowed;
+}
+.tumblr-action-btn {
+    width: 120px;
+    height: 40px;
+    padding: 10px 20px;
+    background-color: #35465C;
+    border-radius: 6px;
+    cursor: not-allowed;
+}
+.typeform-action-btn {
+    width: 140px;
+    height: 40px;
+    padding: 10px 20px;
+    background-color: #95A5A6;
+    border-radius: 6px;
+    cursor: not-allowed;
+}
+.vimeo-action-btn {
+    width: 113px;
+    height: 40px;
+    padding: 10px 20px;
+    background-color: #0074D5;
+    border-radius: 6px;
+    cursor: not-allowed;
+}
+.spotify-action-btn {
+    width: 117px;
+    height: 40px;
+    padding: 10px 20px;
+    background-color: #2DBD59;
+    border-radius: 6px;
+    cursor: not-allowed;
+}
+.poll-action-btn {
+    width: 100px;
+    height: 40px;
+    padding: 10px 20px;
+    background-color: #22B9A7;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.steam-action-btn {
+    width: 115px;
+    height: 40px;
+    padding: 10px 20px;
+    background-color: #000000;
+    border-radius: 6px;
+    cursor: not-allowed;
+}
+.website-action-btn {
+    width: 152px;
+    height: 40px;
+    padding: 10px 20px;
+    background-color: #95A5A6;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.soundcloud-action-btn {
+    width: 170px;
+    height: 40px;
+    padding: 10px 20px;
+    background-color: #FF7701;
+    border-radius: 6px;
+    cursor: not-allowed;
+}
+.action-list-container {
+    background: white;
+    width: 200px;
+    box-shadow: 0px 5px 10px #0000001A;
+    border: 1px solid #0091FF;
+    border-radius: 6px;
+}
+.action-list-item {
+    color: #7E9AA8;
+    padding: 13px 20px;
+    border-bottom: 1px solid #7e9aa81f;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+}
+.action-list-item label {
+    margin-bottom: 0px;
 }
 
 

@@ -33,7 +33,12 @@
         "overview": "Overview",
         "audience": "Audience",
         "engagement": "Engagement",
-        "clicks": "Clicks"
+        "clicks": "Clicks",
+        "setup": "1. Setup",
+        "campaign_type": "2. Campaign Type",
+        "action": "3. Action",
+        "preview": "4. Preview",
+        "payment": "Payment"
     },
 
     "empty_result_to_display": "There is no result to display.",
@@ -63,7 +68,8 @@
         "decline": "Decline",
         "confirm": "Confirm",
         "edit": "Edit",
-        "follow_circle": "FOLLOW CIRCLE"        
+        "follow_circle": "FOLLOW CIRCLE",
+        "remove": "Remove"     
     },
 
     "homepage": {
@@ -196,6 +202,7 @@
 
     "create_campaign_page": {
         "campaign_name": "Campaign Name",
+        "campaign_sort": "Sorts of Campaign",
         "campaign_name_required": "Campaign Name is required",
         "short_description": "Short Description",
         "short_description_required": "Short Description is required",
@@ -245,10 +252,17 @@
         "iva": "IVA",
         "total": "Total",
         "must_have_one_at_least": "Must have one answer at least",
+        "must_have_one_winning_at_least": "Must have one winning at least",
         "video": "Run video",
         "campaign_informations": "Campaign Informations",
         "prizes": "Prizes",
-        "social_actions": "Social Actions"
+        "social_actions": "Social Actions",
+        "giveaway": "Giveaway",
+        "reward": "Reward",
+        "rafflee": "Rafflee",
+        "options": "Options",
+        "like_tweet": "Like Tweet",
+        "mandatory": "Mandatory"
     },
 
     "profile_activated_page": {

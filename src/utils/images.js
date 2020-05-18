@@ -53,6 +53,21 @@ const images = {
     question_icon: require('../assets/image/question_icon.svg'),
     left_icon: require('../assets/image/left_icon.png'),
     right_icon: require('../assets/image/right_icon.png'),
+    facebook_action_icon: require('../assets/image/action_buttons/facebook.png'),
+    twitter_action_icon: require('../assets/image/action_buttons/twitter.png'),
+    youtube_action_icon: require('../assets/image/action_buttons/youtube.png'),
+    instagram_action_icon: require('../assets/image/action_buttons/instagram.png'),
+    twitch_action_icon: require('../assets/image/action_buttons/twitch.png'),
+    blog_action_icon: require('../assets/image/action_buttons/blog.png'),
+    podcast_action_icon: require('../assets/image/action_buttons/podcast.png'),
+    tumblr_action_icon: require('../assets/image/action_buttons/tumblr.png'),
+    typeform_action_icon: require('../assets/image/action_buttons/typeform.svg'),
+    vimeo_action_icon: require('../assets/image/action_buttons/vimeo.png'),
+    spotify_action_icon: require('../assets/image/action_buttons/spotify.png'),
+    steam_action_icon: require('../assets/image/action_buttons/steam.png'),
+    website_action_icon: require('../assets/image/action_buttons/website.png'),
+    soundcloud_action_icon: require('../assets/image/action_buttons/soundcloud.png'),
+    question_mark_white_icon: require('../assets/image/question_icon_white.png'),
 }
 
 export default images;
