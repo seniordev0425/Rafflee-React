@@ -63,7 +63,7 @@ function WinningItem(props) {
                     </FormGroup>
                 </div>
             </Col>
-            <Col sm="12" md="4" className={imgBase64Data ? "mt-md-0" : "mt-md-4"}>
+            <Col sm="12" md="4" className={imgBase64Data ? "mt-md-n3" : "mt-md-3"}>
                 <div className="d-flex justify-content-between align-items-center p-0 mb-md-0 mb-sm-3 mt-md-5">
                     <div className="pl-0 pl-sm-2 d-flex align-items-center">
                         <Input

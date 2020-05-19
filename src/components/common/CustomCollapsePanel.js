@@ -16,7 +16,7 @@ function CustomCollapsePanel(props) {
     const company = useSelector(state => state.userInfo.company)
 
     const { type, actions, onParticipate, isVideoEnded, tryToOpenValidationModal, url, participateWebsite } = props
-    
+
     const renderIcons = () => {
         switch (type) {
             case 'twitter':
@@ -63,11 +63,12 @@ function CustomCollapsePanel(props) {
                 >
                     <span className="promotion-list-item-title">{t(`campaign_detail_page.${type}.title`)}</span>
                 </ExpansionPanelSummary>
-                <ExpansionPanelDetails>
-                    <div>
-                        {t(`campaign_detail_page.${type}.text`)}
-                    </div>
-                    {(token && !company && userProfile.phone_number_verification) &&
+                {(token && !company && userProfile.phone_number_verification) &&
+                    <ExpansionPanelDetails>
+                        <div>
+                            {t(`campaign_detail_page.${type}.text`)}
+                        </div>
+
                         <div className="mt-2 mt-sm-3">
                             {actions.like && (
                                 <CheckBoxButtonForAction
@@ -113,8 +114,9 @@ function CustomCollapsePanel(props) {
                                 <a rel={'external'} href={url.includes("http") ? url : `https://${url}`} target='_blank' className="" onClick={participateWebsite}>{url}</a>
                             )}
                         </div>
-                    }
-                </ExpansionPanelDetails>
+
+                    </ExpansionPanelDetails>
+                }
             </ExpansionPanel>
             {renderIcons()}
         </>

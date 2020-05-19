@@ -49,12 +49,7 @@ function CheckBoxButtonForAction(props) {
                 onChange={socialName === 'video' ? onVideoChecked : onActionChecked}
                 checked={checked}
             />
-            {!isMobile
-                ?
-                t(`create_campaign_page.${btnString}`)
-                :
-                <img src={images[`${btnString}_icon`]} width={15} />
-            }
+            {t(`create_campaign_page.${btnString}`)}
         </div>
     )
 }

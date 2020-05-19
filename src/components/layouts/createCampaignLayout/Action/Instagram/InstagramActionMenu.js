@@ -11,7 +11,7 @@ function InstagramActionMenu(props) {
             </div>
             <div className="action-list-item">
                 <label>PUBLICATION</label>
-                <Checkbox checked={params.twitter.publication} onChange={(e) => setAction('twitter', 'publication', e.target.checked)}/>
+                <Checkbox checked={params.instagram.publication} onChange={(e) => setAction('instagram', 'publication', e.target.checked)}/>
             </div>
         </div>
     )

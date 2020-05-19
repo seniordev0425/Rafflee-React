@@ -5,7 +5,7 @@ import images from '../../../../../utils/images'
 
 import { useTranslation } from 'react-i18next'
 
-function TwitterLikeField(props) {
+function InstagramPublicationField(props) {
     const { t } = useTranslation()
 
     const { params, setAction } = props
@@ -14,11 +14,11 @@ function TwitterLikeField(props) {
         <div className="mt-3 mt-sm-5">
             <div
                 className="d-flex justify-content-between align-items-center px-2 px-sm-4"
-                style={{ height: 50, backgroundColor: '#1EA1F1', borderTopLeftRadius: 6, borderTopRightRadius: 6 }}
+                style={{ height: 50, backgroundColor: '#1E3F6C', borderTopLeftRadius: 6, borderTopRightRadius: 6 }}
             >
-                <div>
-                    <img src={images.twitter_action_icon} width={18} height={16} />
-                    <span className="ml-3">{t('create_campaign_page.like_tweet')}</span>
+                <div className="d-flex align-items-center">
+                    <img src={images.instagram_action_icon} width={18} height={18} />
+                    <span className="ml-3">{t('create_campaign_page.instagram_publication')}</span>
                 </div>
                 <div>
                     <Tooltip title="Tooltip will show on mouse enter.">
@@ -26,7 +26,7 @@ function TwitterLikeField(props) {
                     </Tooltip>
                     <span
                         className="ml-3 pointer"
-                        onClick={() => setAction('twitter', 'like', false)}
+                        onClick={() => setAction('instagram', 'publication', false)}
                     >
                         {t('button_group.remove')}
                     </span>
@@ -41,9 +41,9 @@ function TwitterLikeField(props) {
                         <Input
                             type="text"
                             className="custom-form-control"
-                            placeholder={t('create_campaign_page.tweet_id')}
-                            value={params.twitter.like_id}
-                            onChange={(e) => setAction('twitter', 'like_id',  e.target.value)}
+                            placeholder={t('create_campaign_page.instagram_publication_url')}
+                            value={params.instagram.publication_url}
+                            onChange={(e) => setAction('instagram', 'publication_url',  e.target.value)}
                         />
                     </Col>
                     <Col xs="12" sm="6" className="p-0 d-flex justify-content-end align-items-center mt-3 mt-sm-0">
@@ -56,4 +56,4 @@ function TwitterLikeField(props) {
     )
 }
 
-export default TwitterLikeField
+export default InstagramPublicationField

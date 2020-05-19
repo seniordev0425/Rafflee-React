@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import { withRouter, Link } from 'react-router-dom'
-import { Button } from 'antd'
-import { Row, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import { Button, Drawer } from 'antd'
+import { Row } from 'reactstrap';
 import images from '../../../utils/images'
 import { logOut } from '../../../actions/userInfo'
 import SelectLanguage from './SelectLanguage'
@@ -16,10 +16,11 @@ function HeaderAfterLogin(props) {
     const company = useSelector(state => state.userInfo.company)
     const userProfile = useSelector(state => state.userInfo.userProfile)
     const companyProfile = useSelector(state => state.userInfo.companyProfile)
-
     const SUCCESS_LOG_OUT = useSelector(state => state.userInfo.SUCCESS_LOG_OUT)
 
     const dispatch = useDispatch()
+
+    const [visible, setVisible] = useState(false)
 
     useEffect(() => {
         if (SUCCESS_LOG_OUT) {
@@ -27,15 +28,6 @@ function HeaderAfterLogin(props) {
             dispatch({ type: 'INIT_STATE', state: 'SUCCESS_LOG_OUT', data: false })
         }
     }, [SUCCESS_LOG_OUT])
-
-    const log_Out = () => {
-        dispatch(logOut())
-    }
-
-    const [hide, setHide] = useState(false)
-    const [dropdownOpen, setOpen] = useState(false);
-
-    const dropDownToggle = () => setOpen(!dropdownOpen);
 
     useEffect(() => {
         setHide(window.innerWidth <= 1000)
@@ -45,8 +37,22 @@ function HeaderAfterLogin(props) {
         }
     }, [])
 
+    const log_Out = () => {
+        dispatch(logOut())
+    }
+
+    const [hide, setHide] = useState(false)
+
     const resize = () => {
         setHide(window.innerWidth <= 1000)
+    }
+
+    const showDrawer = () => {
+        setVisible(true)
+    }
+
+    const onClose = () => {
+        setVisible(false)
     }
 
     return (
@@ -57,7 +63,7 @@ function HeaderAfterLogin(props) {
                     <Link to={company ? "/dashboard/my-campaign" : "/dashboard/participation-history"}>
                         <Button type="primary" className="ant-blue-btn mr-3" style={{ width: 140 }}>{t('header.dashboard')}</Button>
                     </Link>
-                    <Link to="/user-account" className="d-flex align-items-center mx-3">
+                    <Link to="/user-account/profile" className="d-flex align-items-center mx-3">
                         <img src={(companyProfile.logo || userProfile.profile_picture) ? (company ? companyProfile.logo : userProfile.profile_picture) : images.account_icon} width={27} height={27} className="rounded-circle" />
                     </Link>
                     <div onClick={log_Out} className="pointer mr-3">
@@ -67,17 +73,23 @@ function HeaderAfterLogin(props) {
                     <SelectLanguage />
                 </Row>
             ) : (
-                    <ButtonDropdown isOpen={dropdownOpen} toggle={() => void 0}>
-                        <DropdownToggle caret onClick={dropDownToggle}>
-                        </DropdownToggle>
-                        <DropdownMenu style={{ left: -115 }}>
-                            <DropdownItem><Link to="/deals">{t('header.campaigns')}</Link></DropdownItem>
-                            <DropdownItem><Link to="/user-account">Account</Link></DropdownItem>
-                            <DropdownItem><Link to={company ? "/dashboard/my-campaign" : "/dashboard/participation-history"}>{t('header.dashboard')}</Link></DropdownItem>
-                            <DropdownItem onClick={log_Out}><Link to="/">{t('header.log_out')}</Link></DropdownItem>
-                            <DropdownItem><SelectLanguage /></DropdownItem>
-                        </DropdownMenu>
-                    </ButtonDropdown>
+                <>
+                    <Button type="primary" onClick={showDrawer}>
+                        Menu
+                    </Button>
+                    <Drawer
+                        placement="left"
+                        closable={false}
+                        onClose={onClose}
+                        visible={visible}
+                    >
+                        <div className="mb-2 font-size-10"><Link to="/deals">{t('header.campaigns')}</Link></div>
+                        <div className="mb-2 font-size-10"><Link to="/user-account/profile">{t('header.account')}</Link></div>
+                        <div className="mb-2 font-size-10"><Link to={company ? "/dashboard/my-campaign" : "/dashboard/participation-history"}>{t('header.dashboard')}</Link></div>
+                        <div className="mb-2 font-size-10" onClick={log_Out}><Link to="/">{t('header.log_out')}</Link></div>
+                        <div><SelectLanguage /></div>
+                    </Drawer>
+                </>
                 )
             }
         </>

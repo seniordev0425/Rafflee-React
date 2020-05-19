@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { Button } from 'antd'
+import { Button, Drawer } from 'antd'
 import { Row, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap'
 import LoginSignupBaseModal from '../../modals/LoginSignupBaseModal'
 import SelectLanguage from './SelectLanguage'
@@ -13,9 +13,17 @@ function HeaderBeforeLogin() {
     const [modal, setModal] = useState(false)
     const [companyStatus, setCompanyStatus] = useState(false)
     const [isLogin, setIsLogin] = useState(false)
-    const [dropdownOpen, setOpen] = useState(false)
+    const [visible, setVisible] = useState(false)
 
-    const dropDownToggle = () => setOpen(!dropdownOpen)
+    useEffect(() => {
+        setHide(window.innerWidth <= 1000)
+        window.addEventListener('resize', resize)
+
+        return () => {
+            window.removeEventListener('resize', resize)
+        }
+    }, [])
+
 
     const showCompanyModal = () => setCompanyStatus(true)
 
@@ -31,17 +39,16 @@ function HeaderBeforeLogin() {
 
     const [hide, setHide] = useState(false)
 
-    useEffect(() => {
-        setHide(window.innerWidth <= 1000)
-        window.addEventListener('resize', resize)
-
-        return () => {
-            window.removeEventListener('resize', resize)
-        }
-    }, [])
-
     const resize = () => {
         setHide(window.innerWidth <= 1000)
+    }
+
+    const showDrawer = () => {
+        setVisible(true)
+    }
+
+    const onClose = () => {
+        setVisible(false)
     }
 
     return (
@@ -55,24 +62,30 @@ function HeaderBeforeLogin() {
                     <SelectLanguage />
                 </Row>
             ) : (
-                    <ButtonDropdown isOpen={dropdownOpen} toggle={() => void 0}>
-                        <DropdownToggle caret onClick={dropDownToggle}>
-                        </DropdownToggle>
-                        <DropdownMenu style={{ left: -115 }}>
-                            <DropdownItem><Link to="/deals">{t('header.campaigns')}</Link></DropdownItem>
-                            <DropdownItem onClick={() => toggle(false)}>{t('header.sign_in')}</DropdownItem>
-                            <DropdownItem onClick={() => toggle(false)}>{t('header.log_in')}</DropdownItem>
-                            <DropdownItem><SelectLanguage /></DropdownItem>
-                        </DropdownMenu>
-                    </ButtonDropdown>
-                )}
+                <>
+                    <Button type="primary" onClick={showDrawer}>
+                        Menu
+                    </Button>
+                    <Drawer
+                        placement="left"
+                        closable={false}
+                        onClose={onClose}
+                        visible={visible}
+                    >
+                        <div className="mb-2 font-size-10"><Link to="/deals">{t('header.campaigns')}</Link></div>
+                        <div className="mb-2 font-size-10 color-blue" onClick={() => toggle(false)}>{t('header.sign_in')}</div>
+                        <div className="mb-2 font-size-10 color-blue" onClick={() => toggle(false)}>{t('header.log_in')}</div>
+                        <div><SelectLanguage /></div>
+                    </Drawer>
+                </>
+            )}
             <LoginSignupBaseModal
                 modal={modal}
                 isLogin={isLogin ? true : false}
                 switch_login_signin={switch_login_signin}
                 toggle={toggle}
                 companyStatus={companyStatus}
-                showCompanyModal={showCompanyModal} 
+                showCompanyModal={showCompanyModal}
             />
         </>
     )

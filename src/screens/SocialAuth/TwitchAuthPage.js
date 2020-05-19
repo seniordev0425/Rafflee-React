@@ -26,7 +26,7 @@ function TwitchAuthPage(props) {
         if (SUCCESS_TWITCH_CONNECT) {
             dispatch({ type: 'INIT_STATE', state: 'SUCCESS_TWITCH_CONNECT', data: false })
             openNotification('success', t('social_oauth.twitch'))
-            history.push('/user-account')
+            history.push('/user-account/profile')
         }
     }, [SUCCESS_TWITCH_CONNECT])
 

@@ -38,7 +38,10 @@
         "campaign_type": "2. Campaign Type",
         "action": "3. Action",
         "preview": "4. Preview",
-        "payment": "Payment"
+        "payment": "Payment",
+        "settings": "Settings",
+        "password": "Password",
+        "deactivate": "Deactivate"
     },
 
     "empty_result_to_display": "There is no result to display.",
@@ -53,7 +56,7 @@
         "log_in": "LOGIN",
         "send_message": "SEND MESSAGE",
         "reset_password": "Reset Password",
-        "delete_account": "Delete Account",
+        "delete_account": "Deactivate Account",
         "pick_another": "PICK ANOTHER",
         "participate": "PARTICIPATE",
         "already_won": "ALREADY WON",
@@ -61,7 +64,7 @@
         "download_pdf": "DOWNLOAD PDF",
         "next": "NEXT",
         "create_poll":"CREATE POLL",
-        "create_campaign":"Create Campaign",
+        "create_campaign":"CREATE CAMPAIGN",
         "reset": "RESET",
         "continue": "CONTINUE",
         "accept": "Accept",
@@ -261,8 +264,20 @@
         "reward": "Reward",
         "rafflee": "Rafflee",
         "options": "Options",
-        "like_tweet": "Like Tweet",
-        "mandatory": "Mandatory"
+        "like_tweet": "Like",
+        "follow_tweet": "Follow",
+        "comment_tweet": "Comment",
+        "retweet_tweet": "Retweet",
+        "mandatory": "Mandatory",
+        "tweet_id": "Tweet ID",
+        "follow_id": "Follow ID",
+        "instagram_profile_url": "Instagram Profile URL",
+        "instagram_publication_url": "Instagram Publication URL",
+        "instagram_profile": "Profile",
+        "instagram_publication": "Publication",
+        "twitch_follow_name": "Follow Name",
+        "create_video_action": "VIDEO ACTION",
+        "create_website_action": "WEBSITE ACTION"
     },
 
     "profile_activated_page": {
@@ -282,6 +297,11 @@
         "back": "Back",
         "followers": "Followers",
         "friends": "Friends"
+    },
+    "user_settings_page": {
+        "current_password": "Current Password",
+        "new_password": "New Password",
+        "confirm_new_password": "Confirm New Password"
     },
     "signin_modal": {
         "username": "Username",
@@ -333,7 +353,7 @@
     },
 
     "delete_account_modal": {
-        "delete_account": "Delete Account",
+        "delete_account": "Deactivate Account",
         "password": "Password",
         "password_required": "Password is required"
     },

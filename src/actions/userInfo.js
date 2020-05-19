@@ -452,6 +452,26 @@ function onSuccessResetPassword(data) {
     flag: true
   }
 }
+/////////////////////////////////////////////// RESET-PASSWORD-ACTION
+export function updatePassword(params) {
+  return apiAction({
+    url: APIROUTE + "account/password/update/",
+    method: 'POST',
+    data: qs.stringify(params),
+    accessToken: sessionStorage.getItem('token'),
+    onSuccess: onSuccessUpdatePassword,
+    onFailure: onFailed,
+    label: 'UPDATE_PASSWORD',
+    requireErrorMessage: true
+  });
+}
+function onSuccessUpdatePassword(data) {
+  openNotification('success', successMessages[localStorage.getItem('i18nextLng')].resetPassword)
+  return {
+    type: '',
+    data: ''
+  }
+}
 /////////////////////////////////////////////// GET-COMPANY-INFORMATION-ACTION
 export function getCompanyInformation(id, params) {
   return apiAction({

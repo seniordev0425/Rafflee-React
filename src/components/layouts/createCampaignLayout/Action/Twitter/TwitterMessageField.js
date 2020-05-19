@@ -1,14 +1,16 @@
 import React from 'react'
 import { Row, Col, Input } from 'reactstrap'
-import { Tooltip, Checkbox } from 'antd'
+import { Tooltip, Checkbox, Select } from 'antd'
 import images from '../../../../../utils/images'
 
 import { useTranslation } from 'react-i18next'
 
-function TwitterLikeField(props) {
+function TwitterMessageField(props) {
     const { t } = useTranslation()
 
     const { params, setAction } = props
+
+    const { Option } = Select
 
     return (
         <div className="mt-3 mt-sm-5">
@@ -18,7 +20,7 @@ function TwitterLikeField(props) {
             >
                 <div>
                     <img src={images.twitter_action_icon} width={18} height={16} />
-                    <span className="ml-3">{t('create_campaign_page.like_tweet')}</span>
+                    <span className="ml-3">{t('create_campaign_page.comment_tweet')}</span>
                 </div>
                 <div>
                     <Tooltip title="Tooltip will show on mouse enter.">
@@ -26,7 +28,7 @@ function TwitterLikeField(props) {
                     </Tooltip>
                     <span
                         className="ml-3 pointer"
-                        onClick={() => setAction('twitter', 'like', false)}
+                        onClick={() => setAction('twitter', 'comment', false)}
                     >
                         {t('button_group.remove')}
                     </span>
@@ -41,9 +43,9 @@ function TwitterLikeField(props) {
                         <Input
                             type="text"
                             className="custom-form-control"
-                            placeholder={t('create_campaign_page.tweet_id')}
-                            value={params.twitter.like_id}
-                            onChange={(e) => setAction('twitter', 'like_id',  e.target.value)}
+                            placeholder={t('twitter_comment_modal.comment_model')}
+                            value={params.twitter.comment_model}
+                            onChange={(e) => setAction('twitter', 'comment_model', e.target.value)}
                         />
                     </Col>
                     <Col xs="12" sm="6" className="p-0 d-flex justify-content-end align-items-center mt-3 mt-sm-0">
@@ -56,4 +58,4 @@ function TwitterLikeField(props) {
     )
 }
 
-export default TwitterLikeField
+export default TwitterMessageField

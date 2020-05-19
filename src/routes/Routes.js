@@ -146,7 +146,7 @@ function Routes(props) {
             }
             <Switch>
                 <Route exact path="/" component={Home} />
-                <Route exact path="/user-account" component={UserAccount} />
+                <Route exact path="/user-account/:menu" component={UserAccount} />
                 <Route exact path="/dashboard/:menu" component={Dashboard} />
                 <Route exact path="/campaign-detail/:id" component={CampaignDetail} />
                 <Route exact path="/deals" component={Deals} />

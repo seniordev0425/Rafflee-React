@@ -17,11 +17,9 @@ function AnswerItem(props) {
                             onChange={(e) => setAnswerVal(e, id)}
                             className="custom-form-control"
                             type="text"
-                            required
                         />
                     </FormGroup>
                 </div>
-
                 <FontAwesomeIcon className="remove-answer-icon" icon={faTrash} onClick={() => removeAnswer(id)} />
             </Col>
         </Row>

@@ -27,7 +27,7 @@ function TwitterAuthPage(props) {
         if (SUCCESS_TWITTER_CONNECT_STEP2) {
             dispatch({ type: 'INIT_STATE', state: 'SUCCESS_TWITTER_CONNECT_STEP2', data: false })
             openNotification('success', t('social_oauth.twitter'))
-            history.push('/user-account')
+            history.push('/user-account/profile')
         }
     }, [SUCCESS_TWITTER_CONNECT_STEP2])
 

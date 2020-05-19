@@ -4,6 +4,8 @@ import { Row, Col } from 'reactstrap'
 import SetupSection from './Setup/SetupSection'
 import CampaignType from './CampaignType/CampaignType'
 import ActionSection from './Action/ActionSection'
+import PreviewSection from './Preview/PreviewSection'
+import PaymentSection from './Payment/PaymentSection'
 
 import { useTranslation } from 'react-i18next'
 
@@ -24,14 +26,14 @@ function CreateCampaignLayout() {
         campaign_type: 'giveaway',
         live_draw: false,
         twitter: {
-            tweet: false,
-            tweet_model: '',
+            comment: false,
+            comment_model: '',
             like: false,
             like_id: '',
             retweet: false,
             retweet_id: '',
             follow: false,
-            follow_type: '',
+            follow_type: 'screen_name',
             follow_id: ''
         },
         instagram: {
@@ -42,7 +44,17 @@ function CreateCampaignLayout() {
         },
         twitch: {
             follow: false,
-            follow_name : ''
+            follow_name: ''
+        },
+        poll: 'false',
+        url_video: {
+            video: false,
+            url: '',
+            video_name: ''
+        },
+        url_website: {
+            website: false,
+            url: ''
         }
     })
 
@@ -71,6 +83,10 @@ function CreateCampaignLayout() {
                 return <CampaignType params={params} setParams={_setParams} setSection={_setSection} />
             case 'action':
                 return <ActionSection params={params} setParams={_setParams} setSection={_setSection} setAction={_setAction} />
+            case 'preview':
+                return <PreviewSection params={params} setParams={_setParams} setSection={_setSection} />
+            case 'payment':
+                return <PaymentSection params={params} setParams={_setParams} setSection={_setSection} />
             default:
                 return <SetupSection />
         }
