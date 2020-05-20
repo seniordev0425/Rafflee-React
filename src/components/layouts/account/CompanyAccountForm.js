@@ -69,7 +69,7 @@ function CompanyAccountForm(props) {
                 console.log('Update header profile img')
                 dispatch({ type: 'UPDATE_COMPANY_LOGO', data: imgBase64Data })
                 dispatch({ type: 'INIT_STATE', state: 'SUCCESS_UPDATE_COMPANY_PROFILE', data: false })
-            }     
+            }
         }
     }, [UPDATE_COMPANY_PROFILE_SUCCESS])
 
@@ -111,7 +111,7 @@ function CompanyAccountForm(props) {
     }
 
     if (isLoading)
-        return <Loading />
+        return <div className="min-height-container"><Loading /></div> 
 
     return (
         <>
@@ -286,26 +286,16 @@ function CompanyAccountForm(props) {
                                         <SteamConnectBtn />
                                     </div>
                                 </Row>
-                                <Row style={{ justifyContent: "flex-end" }}>
-                                    <div className="mt-4 half-width">
-                                        <Button
-                                            htmlType='submit'
-                                            type="primary"
-                                            className="ant-blue-btn mt-2"
-                                            style={{ width: "45%", marginRight: "5%" }}
-                                            loading={isUpdating}
-                                        >
-                                            {!isUpdating && t('button_group.update')}
-                                        </Button>
-                                        <Button
-                                            type="danger"
-                                            className="ant-red-btn mt-2"
-                                            onClick={handleDeleteModal}
-                                            style={{ width: "45%", marginLeft: "5%" }}
-                                        >
-                                            {t('button_group.delete')}
-                                        </Button>
-                                    </div>
+                                <Row className="justify-content-sm-end justify-content-start mt-4">
+                                    <Button
+                                        htmlType='submit'
+                                        type="primary"
+                                        className="ant-blue-btn mt-2"
+                                        style={{ width: 200 }}
+                                        loading={isUpdating}
+                                    >
+                                        {!isUpdating && t('button_group.update')}
+                                    </Button>
                                 </Row>
                             </Col>
                         </Row>

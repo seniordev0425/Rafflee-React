@@ -1,5 +1,5 @@
 import React from 'react'
-import { Row, Col } from 'reactstrap'
+import { Row, Col, Input } from 'reactstrap'
 import { Button, Radio, Checkbox, Tooltip } from 'antd'
 import images from '../../../../utils/images'
 
@@ -84,6 +84,73 @@ function CampaignType(props) {
                                 }
                             </div>
                         </div>
+                    </div>
+                    {params.campaign_type === 'giveaway' &&
+                        <div className="m-3">
+                            <div className="d-flex align-items-center justify-content-between mt-4">
+                                <Checkbox
+                                    checked={params.limit_participants}
+                                    onChange={(e) => setParams('limit_participants', e.target.checked)}
+                                />
+                                <div className={params.limit_participants ? "inline-sort-div-active" : "inline-sort-div-inactive"}>
+                                    {t('create_campaign_page.limit_participants')}
+                                    {params.limit_participants
+                                        ?
+                                        (
+                                            <Tooltip title="Tooltip will show on mouse enter.">
+                                                <img src={images.question_icon} />
+                                            </Tooltip>
+                                        )
+                                        : (<img src={images.question_icon} />)
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    {params.limit_participants &&
+                        <div style={{ width: 250, marginLeft: 65 }}>
+                            <div className="footer-link-bold mb-3 mt-4">{t('create_campaign_page.maximum_number_of_participants')}</div>
+                            <Input
+                                value={params.limitation_participation}
+                                onChange={(e) => setParams('limitation_participation', e.target.value)}
+                                className="custom-form-control"
+                                type="number"
+                            />
+                        </div>
+                    }
+                    <div className="m-3">
+                        <Radio.Group value={params.public_promotion} onChange={(e) => setParams('public_promotion', e.target.value)} style={{ display: 'block' }}>
+                            <div className="d-flex align-items-center justify-content-between">
+                                <Radio value="public" />
+                                <div className={params.public_promotion === 'public' ? "inline-sort-div-active" : "inline-sort-div-inactive"}>
+                                    {t('create_campaign_page.public')}
+                                    {params.public_promotion === 'public'
+                                        ?
+                                        (
+                                            <Tooltip title="Tooltip will show on mouse enter.">
+                                                <img src={images.question_icon} />
+                                            </Tooltip>
+                                        )
+                                        : (<img src={images.question_icon} />)
+                                    }
+                                </div>
+                            </div>
+                            <div className="d-flex align-items-center justify-content-between mt-4">
+                                <Radio value="private" />
+                                <div className={params.public_promotion === 'private' ? "inline-sort-div-active" : "inline-sort-div-inactive"}>
+                                    {t('create_campaign_page.private')}
+                                    {params.public_promotion === 'private'
+                                        ?
+                                        (
+                                            <Tooltip title="Tooltip will show on mouse enter.">
+                                                <img src={images.question_icon} />
+                                            </Tooltip>
+                                        )
+                                        : (<img src={images.question_icon} />)
+                                    }
+                                </div>
+                            </div>
+                        </Radio.Group>
                     </div>
                 </div>
                 <Row>

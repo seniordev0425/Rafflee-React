@@ -30,7 +30,7 @@ const UserAccount = (props) => {
             <Header />
             <div className="menubar-container">
                 <Row>
-                    <Col xs={{ size: 10, offset: 1 }}>
+                    <Col xs="12" sm={{ size: 10, offset: 1 }}>
                         <Menu mode="horizontal" className="menubar" selectedKeys={[match.params.menu]}>
                             <Menu.Item key="profile">
                                 <Link to="/user-account/profile">
@@ -50,7 +50,7 @@ const UserAccount = (props) => {
             <div>
                 {match.params.menu === 'profile' &&
                     <Row className="mb-5">
-                        <Col xs={{ size: 10, offset: 1 }}>
+                        <Col xs="12" sm={{ size: 10, offset: 1 }}>
                             {company ? (<CompanyAccountForm />) : (<UserAccountForm />)}
                         </Col>
                     </Row>

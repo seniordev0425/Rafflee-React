@@ -110,7 +110,21 @@ function PollField(props) {
                 <Row className="mt-3">
                     <Checkbox>{t('create_campaign_page.allow_multiple_votes')}</Checkbox>
                 </Row>
-
+                <Row className="mt-5 justify-content-between">
+                    <div style={{ width: 200 }}>
+                        <Input
+                            value={params.poll.entries}
+                            onChange={(e) => setAction('poll', 'entries', e.target.value)}
+                            className="custom-form-control"
+                            type="number"
+                            placeholder={t('create_campaign_page.entries')}
+                        />
+                    </div>
+                    <div>
+                        <Checkbox checked={params.poll.mandatory} onChange={(e) => setAction('poll', 'mandatory', e.target.checked)} />
+                        <span className="ml-3 footer-link">{t('create_campaign_page.mandatory')}</span>
+                    </div>
+                </Row>
             </div>
         </div>
     )

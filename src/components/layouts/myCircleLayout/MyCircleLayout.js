@@ -70,18 +70,18 @@ function MyCircleLayout() {
     }
 
     if (GET_FAVORITE_COMPANIES_PROCESS) {
-        return <Loading />
+        return <div className="min-height-container"><Loading /></div>
     }
 
     return (
-        <>
+        <div className="min-height-container">
             {companyId
                 ?
                 <DetailLayout id={companyId} goBack={goBack} />
                 :
                 renderMyFavoriteCompanies()
             }
-        </>
+        </div>
     )
 }
 

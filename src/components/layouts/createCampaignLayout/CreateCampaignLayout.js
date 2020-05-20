@@ -18,6 +18,7 @@ function CreateCampaignLayout() {
         promotion_name: '',
         promotion_picture: '',
         promotion_description: '',
+        public_promotion: 'public',
         categories: [],
         temp_categories: [],
         start_date: '',
@@ -25,36 +26,56 @@ function CreateCampaignLayout() {
         winnings: [{ name: '', number_of_people: '', description: '', image: '' }],
         campaign_type: 'giveaway',
         live_draw: false,
+        limit_participants: false,
+        limitation_participation: 0,
         twitter: {
             comment: false,
             comment_model: '',
+            comment_entries: '',
+            comment_mandatory: false,
             like: false,
             like_id: '',
+            like_entries: '',
+            like_mandatory: false,
             retweet: false,
             retweet_id: '',
+            retweet_entries: '',
+            retweet_mandatory: false,
             follow: false,
             follow_type: 'screen_name',
-            follow_id: ''
+            follow_id: '',
+            follow_entries: '',
+            follow_mandatory: false
         },
         instagram: {
             publication: false,
             profile: false,
             publication_url: '',
-            profile_url: ''
+            profile_url: '',
+            publication_entries: '',
+            publication_mandatory: false,
+            profile_entries: '',
+            profile_mandatory: false
         },
         twitch: {
             follow: false,
-            follow_name: ''
+            follow_name: '',
+            follow_entries: '',
+            follow_mandatory: false
         },
         poll: 'false',
         url_video: {
             video: false,
             url: '',
-            video_name: ''
+            video_name: '',
+            entries: '',
+            mandatory: false
         },
         url_website: {
             website: false,
-            url: ''
+            url: '',
+            entries: '',
+            mandatory: false
         }
     })
 
@@ -62,6 +83,7 @@ function CreateCampaignLayout() {
         let temp_params = { ...params }
         temp_params[key] = val
         setParams(temp_params)
+        console.log(params)
     }
 
     const _setAction = (socialName, actionType, val) => {

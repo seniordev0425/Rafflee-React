@@ -48,9 +48,22 @@ function TwitterRetweetField(props) {
                             onChange={(e) => setAction('twitter', 'retweet_id', e.target.value)}
                         />
                     </Col>
-                    <Col xs="12" sm="6" className="p-0 d-flex justify-content-end align-items-center mt-3 mt-sm-0">
-                        <Checkbox />
-                        <span className="ml-3 footer-link">{t('create_campaign_page.mandatory')}</span>
+                    <Col size="12" className="p-0 justify-content-end align-items-center mt-3 mt-sm-0">
+                        <Row>
+                            <Col xs="12" sm="6" className="p-0">
+                                <Input
+                                    value={params.twitter.retweet_entries}
+                                    onChange={(e) => setAction('twitter', 'retweet_entries', e.target.value)}
+                                    className="custom-form-control ml-0 ml-sm-4 w-100"
+                                    type="number"
+                                    placeholder={t('create_campaign_page.entries')}
+                                />
+                            </Col>
+                            <Col xs="12" sm="6" className="p-0 d-flex align-items-center justify-content-end mt-3 mt-sm-0">
+                                <Checkbox checked={params.twitter.retweet_mandatory} onChange={(e) => setAction('twitter', 'retweet_mandatory', e.target.checked)} />
+                                <span className="ml-3 footer-link">{t('create_campaign_page.mandatory')}</span>
+                            </Col>
+                        </Row>
                     </Col>
                 </Row>
             </div>

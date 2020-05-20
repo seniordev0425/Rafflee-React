@@ -30,6 +30,7 @@ function ParticipationResult(props) {
     }, [PARTICIPATION_RESULT_SUCCESS])
 
     if (PARTICIPATION_RESULT_PROCESS) return <Loading />
+    
     return (
         <div style={{ fontFamily: "sofiapro" }}>
             <JoinHeader />

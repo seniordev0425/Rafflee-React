@@ -46,10 +46,10 @@ function MyFollowingLayout() {
         )
     }
 
-    if (isLoading)
-        return <Loading />
+    if (isLoading) return <div className="min-height-container"><Loading /></div>
+
     return (
-        <>
+        <div className="min-height-container">
             {renderHistoryList()}
             {myFollowing.length < 1 && (
                 <div className="empty-result mt-5">
@@ -63,7 +63,7 @@ function MyFollowingLayout() {
                 total={myFollowing.length}
                 className="py-5 d-flex justify-content-center"
             />
-        </>
+        </div>
     )
 }
 

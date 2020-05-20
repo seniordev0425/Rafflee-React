@@ -43,9 +43,10 @@ function Carousel(props) {
                 stagePadding={stagePadding}
                 dotsDisabled={true}
                 infinite={true}
-                // autoPlay={true}
+                autoPlay={true}
                 autoPlayInterval={2000}
                 duration={800}
+                // fadeOutAnimation={true}
             />
         </div>
     )

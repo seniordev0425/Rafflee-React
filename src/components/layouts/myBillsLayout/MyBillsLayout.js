@@ -52,11 +52,11 @@ function MyBillsLayout() {
     }
 
     if (isLoading) {
-        return <Loading />
+        return <div className="min-height-container"><Loading /></div>
     }
 
     return (
-        <>
+        <div className="min-height-container">
             {renderMyBillsList()}
             <Pagination
                 defaultCurrent={1}
@@ -65,7 +65,7 @@ function MyBillsLayout() {
                 total={billsList.length}
                 className="py-5 d-flex justify-content-center"
             />
-        </>
+        </div>
     )
 }
 

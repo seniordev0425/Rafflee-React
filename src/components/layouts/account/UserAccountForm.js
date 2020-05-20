@@ -159,8 +159,7 @@ function UserAccountForm() {
         dispatch(sendSms(body))
     }
 
-    if (isLoading)
-        return <Loading />
+    if (isLoading) return <div className="min-height-container"><Loading /></div>
 
     return (
         <>
@@ -398,26 +397,16 @@ function UserAccountForm() {
                                     </div>
                                 </div>
 
-                                <div className="mt-4 d-flex justify-content-end">
-                                    <div className="mt-4 half-width">
-                                        <Button
-                                            htmlType='submit'
-                                            type="primary"
-                                            className="ant-blue-btn mt-2"
-                                            style={{ width: "45%", marginRight: "5%" }}
-                                            loading={isUpdating}
-                                        >
-                                            {!isUpdating && t('button_group.update')}
-                                        </Button>
-                                        <Button
-                                            type="danger"
-                                            className="ant-red-btn mt-2"
-                                            onClick={handleDeleteModal}
-                                            style={{ width: "45%", marginLeft: "5%" }}
-                                        >
-                                            {t('button_group.delete')}
-                                        </Button>
-                                    </div>
+                                <div className="mt-4 d-flex justify-content-sm-end justify-content-start">
+                                    <Button
+                                        htmlType='submit'
+                                        type="primary"
+                                        className="ant-blue-btn mt-2"
+                                        style={{ width: 200 }}
+                                        loading={isUpdating}
+                                    >
+                                        {!isUpdating && t('button_group.update')}
+                                    </Button>
                                 </div>
                             </Col>
                         </Row>

@@ -59,10 +59,10 @@ function InventoryLayout(props) {
         )
     }
 
-    if (isLoading) return <Loading />
+    if (isLoading) return <div className="min-height-container"><Loading /></div>
 
     return (
-        <>
+        <div className="min-height-container">
             {renderInventoryList()}
             {userInventory.length < 1 && (
                 <div className="empty-result mt-5">
@@ -76,7 +76,7 @@ function InventoryLayout(props) {
                 total={userInventory.length}
                 className="py-5 d-flex justify-content-center"
             />
-        </>
+        </div>
     )
 }
 

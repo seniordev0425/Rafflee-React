@@ -277,7 +277,12 @@
         "instagram_publication": "Publication",
         "twitch_follow_name": "Follow Name",
         "create_video_action": "VIDEO ACTION",
-        "create_website_action": "WEBSITE ACTION"
+        "create_website_action": "WEBSITE ACTION",
+        "limit_participants": "Limit Participants",
+        "maximum_number_of_participants": "Maximum number of participants",
+        "public": "Public",
+        "private": "Private",
+        "entries": "Entries"
     },
 
     "profile_activated_page": {

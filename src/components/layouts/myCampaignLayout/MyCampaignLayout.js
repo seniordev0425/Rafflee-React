@@ -60,18 +60,18 @@ function MyCampaignLayout() {
     }
 
     if (isLoading) {
-        return <Loading />
+        return <div className="min-height-container"><Loading /></div>
     }
 
     return (
-        <>
+        <div className="min-height-container">
             {live_page_id
                 ?
                 (<LivePageLayout id={live_page_id} goBack={goToLivePage} />)
                 :
                 (participant_id ? <ParticipantListLayout id={participant_id} goBack={goToParticipatePage} /> : renderMyCampaignList())
             }
-        </>
+        </div>
     )
 }
 

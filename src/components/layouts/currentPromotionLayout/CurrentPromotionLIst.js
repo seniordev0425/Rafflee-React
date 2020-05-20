@@ -114,7 +114,7 @@ function CurrentPromotionList(props) {
 
         let tempArr = []
         let flag = false
-        for (let i = 0; i < list.length; i ++) {
+        for (let i = 0; i < list.length; i++) {
             if (!list[i].categories) continue
             flag = false
             for (let j = 0; j < list[i].categories.length; j++) {
@@ -175,9 +175,11 @@ function CurrentPromotionList(props) {
 
             {(isLoading_1 || isLoading_2 || isLoading_3 || isLoading_4 || isLoading_5)
                 ?
-                <Loading />
+                <div className="min-height-container">
+                    <Loading />
+                </div>
                 :
-                <>
+                <div className="min-height-container">
                     {renderPromotionList()}
 
                     {filter(promotionList[currentMenu]).length < 1 && (
@@ -192,7 +194,7 @@ function CurrentPromotionList(props) {
                         total={filter(promotionList[currentMenu]).length}
                         className="py-5 d-flex justify-content-center"
                     />
-                </>
+                </div>
             }
         </>
     )

@@ -48,17 +48,30 @@ function VideoField(props) {
                     </Col>
                     <Col size="12" className="p-0 justify-content-between align-items-center mt-3 mt-sm-0">
                         <Row>
-                            <Col xs="12" sm="6" className="p-0">
-                                <Input
-                                    type="text"
-                                    className="custom-form-control ml-0 ml-sm-4"
-                                    placeholder={t('create_campaign_page.video_name')}
-                                    value={params.url_video.video_name}
-                                    onChange={(e) => setAction('url_video', 'video_name', e.target.value)}
-                                />
+                            <Col xs="12" sm="8" className="p-0">
+                                <Row>
+                                    <Col className="p-0 px-sm-4">
+                                        <Input
+                                            type="text"
+                                            className="custom-form-control"
+                                            placeholder={t('create_campaign_page.video_name')}
+                                            value={params.url_video.video_name}
+                                            onChange={(e) => setAction('url_video', 'video_name', e.target.value)}
+                                        />
+                                    </Col>
+                                    <Col className="p-0 px-sm-4">
+                                        <Input
+                                            value={params.url_video.entries}
+                                            onChange={(e) => setAction('url_video', 'entries', e.target.value)}
+                                            className="custom-form-control"
+                                            type="number"
+                                            placeholder={t('create_campaign_page.entries')}
+                                        />
+                                    </Col>
+                                </Row>
                             </Col>
-                            <Col xs="12" sm="6" className="p-0 d-flex align-items-center justify-content-end mt-3 mt-sm-0">
-                                <Checkbox />
+                            <Col xs="12" sm="4" className="p-0 d-flex align-items-center justify-content-end mt-3 mt-sm-0">
+                                <Checkbox checked={params.url_video.mandatory} onChange={(e) => setAction('url_video', 'mandatory', e.target.checked)} />
                                 <span className="ml-3 footer-link">{t('create_campaign_page.mandatory')}</span>
                             </Col>
                         </Row>
