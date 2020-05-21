@@ -1,7 +1,10 @@
 import React from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import { Row, Col, Input, FormGroup } from 'reactstrap'
-import { Button, Radio, Checkbox, Tooltip } from 'antd'
+import { Button } from 'antd'
+import { createCampaign } from '../../../../actions/campaign'
 import images from '../../../../utils/images'
+import { b64toBlob } from '../../../../utils/others'
 
 import { useTranslation } from 'react-i18next'
 
@@ -9,6 +12,86 @@ function PaymentSection(props) {
     const { t } = useTranslation()
 
     const { params, setParams, setSection } = props
+
+    const CREATE_CAMPAIGN_PROCESS = useSelector(state => state.userInfo.CREATE_CAMPAIGN)
+    const dispatch = useDispatch()
+
+    const onSubmit = () => {
+        let categories = []
+        params.temp_categories.map((item) => categories.push({ name: item }))
+
+        let twitter = []
+        if (params.twitter.comment) {
+            twitter.push({ action: 'tweet', model: params.twitter.comment_model, entries: params.twitter.comment_entries, mandatory: params.twitter.comment_mandatory })
+        }
+        if (params.twitter.like) {
+            twitter.push({ action: 'like', id: params.twitter.like_id, entries: params.twitter.like_entries, mandatory: params.twitter.like_mandatory })
+        }
+        if (params.twitter.retweet) {
+            twitter.push({ action: 'retweet', id: params.twitter.retweet_id, entries: params.twitter.retweet_entries, mandatory: params.twitter.retweet_mandatory })
+        }
+        if (params.twitter.follow) {
+            twitter.push({ action: 'follow', type: params.twitter.follow_type, id: params.twitter.follow_id, entries: params.twitter.follow_entries, mandatory: params.twitter.follow_mandatory })
+        }
+
+        let instagram = []
+        if (params.instagram.profile) {
+            instagram.push({ action: 'instagram_profile', url: params.instagram.profile_url, entries: params.instagram.profile_entries, mandatory: params.instagram.profile_mandatory })
+        }
+        if (params.instagram.publication) {
+            instagram.push({ action: 'instagram_publication', url: params.instagram.publication_url, entries: params.instagram.publication_entries, mandatory: params.instagram.publication_mandatory })
+        }
+
+        let twitch = []
+        if (params.twitch.follow) {
+            twitch.push({ action: 'follow', follow_name: params.twitch.follow_name, entries: params.twitch.follow_entries, mandatory: params.twitch.follow_mandatory })
+        }
+
+        let url_video = {}
+        if (params.url_video.video) {
+            url_video = { url: params.url_video.url, video_name: params.url_video.video_name, entries: params.url_video.entries, mandatory: params.url_video.mandatory }
+        }
+
+        let url_website = {}
+        if (params.url_website.website) {
+            url_website = { url: params.url_website.url, entries: params.url_website.entries, mandatory: params.url_website.mandatory }
+        }
+
+        let promotion_picture = null
+        let block = params.promotion_picture.split(";")
+        let contentType = block[0].split(":")[1]
+        let realData = block[1].split(",")[1]
+        promotion_picture = b64toBlob(realData, contentType)
+
+        var formdata = new FormData()
+        formdata.append('promotion_picture', promotion_picture)
+        formdata.append('promotion_name', params.promotion_name)
+        formdata.append('promotion_description', params.promotion_description)
+        formdata.append('public_promotion', params.public_promotion)
+        formdata.append('winnings', JSON.stringify(params.winnings))
+        if (categories.length > 0) {
+            formdata.append('categories', JSON.stringify(categories))
+        } else {
+            formdata.append('categories', null)
+        }
+        formdata.append('promotion_option', JSON.stringify({ live_draw: params.live_draw, limitation_participation: params.limitation_participation }))
+        formdata.append('promotion_type', params.campaign_type)
+        formdata.append('start_date', params.start_date)
+        formdata.append('end_date', params.end_date)
+        if (params.poll === 'false') {
+            formdata.append('poll', null)
+        } else {
+            formdata.append('poll', JSON.stringify(params.poll))
+        }
+        formdata.append('facebook', JSON.stringify([]))
+        formdata.append('youtube', JSON.stringify([]))
+        formdata.append('twitter', JSON.stringify(twitter))
+        formdata.append('instagram', JSON.stringify(instagram))
+        formdata.append('twitch', JSON.stringify(twitch))
+        formdata.append('url_website', JSON.stringify(url_website))
+        formdata.append('url_video', JSON.stringify(url_video))
+        dispatch(createCampaign(formdata))
+    }
 
     return (
         <Row>
@@ -79,8 +162,14 @@ function PaymentSection(props) {
                                                 </div>
                                     </Row>
                                     <Row>
-                                        <Button className="ant-blue-btn mt-3" type="primary" style={{ width: 200 }}>
-                                            {t('button_group.create_campaign')}
+                                        <Button
+                                            onClick={onSubmit}
+                                            className="ant-blue-btn mt-3"
+                                            type="primary"
+                                            style={{ width: 200 }}
+                                            loading={CREATE_CAMPAIGN_PROCESS}
+                                        >
+                                            {!CREATE_CAMPAIGN_PROCESS && t('button_group.create_campaign')}
                                         </Button>
                                     </Row>
                                 </Col>

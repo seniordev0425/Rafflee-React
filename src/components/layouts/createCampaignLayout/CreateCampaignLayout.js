@@ -80,17 +80,18 @@ function CreateCampaignLayout() {
     })
 
     const _setParams = (key, val) => {
+        // console.log(val)
         let temp_params = { ...params }
         temp_params[key] = val
+        console.log(temp_params)
         setParams(temp_params)
-        console.log(params)
     }
 
     const _setAction = (socialName, actionType, val) => {
         let temp_params = { ...params }
         temp_params[socialName][actionType] = val
         setParams(temp_params)
-        console.log(params)
+        // console.log(params)
     }
 
     const _setSection = (section) => {

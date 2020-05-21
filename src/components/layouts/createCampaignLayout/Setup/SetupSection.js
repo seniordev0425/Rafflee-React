@@ -39,12 +39,8 @@ function SetupSection(props) {
     }, [categoryArr])
 
     const handleCategories = (val) => {
-        let temp = []
-        val.map((item) => temp.push({ name: item }))
-        setParams('categories', temp)
         setParams('temp_categories', val)
     }
-
 
     const setWinningVal = (e, id, type) => {
         let newArr = [...params.winnings]
