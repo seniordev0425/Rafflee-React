@@ -49,20 +49,23 @@ const initialFeedState = {
     myBills: [],
     pdfInvoice: '',
     companyInformation: {
-        description: null,
-        follow: false,
-        youtube_channel: null,
-        logo_url: null,
-        twitter_page_url: null,
-        number_of_follower: null,
-        facebook_page_url: null,
-        company_name: '',
-        website_url: null,
-        pk: null,
-        instagram_page_url: null,
-        type_of_account: '',
-        member_since: '',
-        certified: false
+        company: {
+            description: null,
+            follow: false,
+            youtube_channel: null,
+            logo_url: null,
+            twitter_page_url: null,
+            number_of_follower: null,
+            facebook_page_url: null,
+            company_name: '',
+            website_url: null,
+            pk: null,
+            instagram_page_url: null,
+            type_of_account: '',
+            member_since: '',
+            certified: false
+        },
+        social_wall: {}
     },
     twitter_oauth_token: '',
     participationResult: {

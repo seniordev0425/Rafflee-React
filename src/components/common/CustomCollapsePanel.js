@@ -15,7 +15,16 @@ function CustomCollapsePanel(props) {
     const token = useSelector(state => state.userInfo.token)
     const company = useSelector(state => state.userInfo.company)
 
-    const { type, actions, onParticipate, isVideoEnded, tryToOpenValidationModal, url, participateWebsite } = props
+    const {
+        type,
+        actions,
+        onParticipate,
+        isVideoEnded,
+        tryToOpenValidationModal,
+        participateWebsite,
+        participateInstagramProfile,
+        participateInstagramPublication
+    } = props
 
     const renderIcons = () => {
         switch (type) {
@@ -111,7 +120,41 @@ function CustomCollapsePanel(props) {
                                 />
                             )}
                             {actions.website && (
-                                <a rel={'external'} href={url.includes("http") ? url : `https://${url}`} target='_blank' className="" onClick={participateWebsite}>{url}</a>
+                                <a
+                                    rel={'external'}
+                                    href={actions.website.includes("http") ? actions.website : `https://${actions.website}`}
+                                    target='_blank'
+                                    className=""
+                                    onClick={participateWebsite}
+                                >
+                                    {actions.website}
+                                </a>
+                            )}
+                            {actions.instagram_profile && (
+                                <div>
+                                    <a
+                                        rel={'external'}
+                                        href={actions.instagram_profile.includes("http") ? actions.instagram_profile : `https://${actions.instagram_profile}`}
+                                        target='_blank'
+                                        className="d-block w-100 overflow-hidden"
+                                        onClick={participateInstagramProfile}
+                                    >
+                                        {actions.instagram_profile}
+                                    </a>
+                                </div>
+                            )}
+                            {actions.instagram_publication && (
+                                <div>
+                                    <a
+                                        rel={'external'}
+                                        href={actions.instagram_publication.includes("http") ? actions.instagram_publication : `https://${actions.instagram_publication}`}
+                                        target='_blank'
+                                        className="d-block w-100 overflow-hidden"
+                                        onClick={participateInstagramPublication}
+                                    >
+                                        {actions.instagram_publication}
+                                    </a>
+                                </div>
                             )}
                         </div>
 

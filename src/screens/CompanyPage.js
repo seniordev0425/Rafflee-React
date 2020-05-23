@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Row, Col } from 'reactstrap'
-import { Button } from 'antd'
+import { Button, Tooltip } from 'antd'
 import { withRouter } from 'react-router-dom'
 import JoinHeader from '../components/layouts/HeaderLayout/JoinHeader'
 import Header from '../components/layouts/HeaderLayout/Header'
@@ -20,6 +20,7 @@ function CompanyPage(props) {
     const { id } = props.match.params
 
     const token = useSelector(state => state.userInfo.token)
+    const company = useSelector(state => state.userInfo.company)
     const companyInformation = useSelector(state => state.userInfo.companyInformation)
     const GET_COMPANY_INFORMATION_PROCESS = useSelector(state => state.userInfo.GET_COMPANY_INFORMATION)
     const dispatch = useDispatch()
@@ -35,6 +36,43 @@ function CompanyPage(props) {
         setFollowModal(!openFollowModal)
     }
 
+    const twitter_tooltip = (
+        <div className="font-size-10">
+            <span><span className="font-weight-bold">{((companyInformation.social_wall || {}).twitter || {}).followers}</span> {t('my_circle_page.followers')}</span>
+            <span className="ml-3"><span className="font-weight-bold">{((companyInformation.social_wall || {}).twitter || {}).friends}</span> {t('my_circle_page.friends')}</span>
+        </div>
+    )
+
+    const renderCompanyWall = () => {
+        return (
+            (((companyInformation.social_wall || {}).twitter || {}).tweets || []).map((item, index) =>
+                <Row className="social-wall-container" key={index}>
+                    <Col xs="12" sm={{ size: 10, offset: 1 }}>
+                        <Row>
+                            <Col lg="1" md="2" sm="2" xs="3" className="company-wall-img">
+                                <img src={((companyInformation.social_wall || {}).twitter || {}).profile_image_url} />
+                            </Col>
+                            <Col lg="11" md="10" sm="10" xs="9" className="pl-sm-5">
+                                <div className="d-sm-flex">
+                                    <div>
+                                        <Tooltip title={twitter_tooltip}>
+                                            <img src={images.twitter_icon} width={20} height={20} className="pointer" />
+                                        </Tooltip>
+                                        <span className="font-size-10 font-weight-bold color-blue ml-3">{((companyInformation.social_wall || {}).twitter || {}).name}</span>
+                                    </div>
+                                </div>
+                                <div className="mt-4 font-size-9">
+                                    <div>{item.text}</div>
+                                    <div className="color-gray">{moment(item.created_at).format("ddd, MMM Do YYYY")}</div>
+                                </div>
+                            </Col>
+                        </Row>
+                    </Col>
+                </Row>
+            )
+        )
+    }
+
     if (GET_COMPANY_INFORMATION_PROCESS) return <Loading />
 
     return (
@@ -46,30 +84,30 @@ function CompanyPage(props) {
                     <Col xs="12" sm={{ size: 10, offset: 1 }}>
                         <Row>
                             <Col lg="1" md="2" sm="2" xs="3" className="promotion-list-item-img">
-                                <img src={companyInformation.logo_url ? companyInformation.logo_url : images.profile_img} className="rounded-circle" />
+                                <img src={companyInformation.company.logo_url ? companyInformation.company.logo_url : images.profile_img} className="rounded-circle" />
                             </Col>
                             <Col lg="11" md="10" sm="10" xs="9" className="pl-sm-5">
                                 <div className="d-sm-flex justify-content-sm-between">
                                     <div className="d-sm-flex align-items-sm-center">
                                         <div className="font-size-12 font-weight-bold">
-                                            {companyInformation.company_name}
-                                            {companyInformation.certified &&
+                                            {companyInformation.company.company_name}
+                                            {companyInformation.company.certified &&
                                                 <img src={images.verified_icon} width={20} height={20} className="ml-3 mt-n1" />
                                             }
                                         </div>
                                         <div className="ml-0 ml-sm-3 color-gray font-size-10">
                                             {t('company_page.member_since')}
-                                            {` ${moment(companyInformation.member_since).year()}`}
+                                            {` ${moment(companyInformation.company.member_since).format("MMM Do YYYY")}`}
                                         </div>
                                     </div>
                                     <div className="mt-3 mt-sm-0">
-                                        <a href={companyInformation.website_url || '#'}><img src={images.globe_gray_icon} width={20} height={20} className="mr-5" /></a>
-                                        <a href={companyInformation.instagram_page_url || '#'}><img src={images.instagram_gray_icon} width={20} height={20} className="mr-5" /></a>
-                                        <a href={companyInformation.facebook_page_url || '#'}><img src={images.facebook_gray_icon} width={8} height={20} /></a>
+                                        <a href={companyInformation.company.website_url || '#'}><img src={images.globe_gray_icon} width={20} height={20} className="mr-5" /></a>
+                                        <a href={companyInformation.company.instagram_page_url || '#'}><img src={images.instagram_gray_icon} width={20} height={20} className="mr-5" /></a>
+                                        <a href={companyInformation.company.facebook_page_url || '#'}><img src={images.facebook_gray_icon} width={8} height={20} /></a>
                                     </div>
                                 </div>
-                                <div className="font-size-12 mt-4">{companyInformation.description}</div>
-                                {token &&
+                                <div className="font-size-12 mt-4">{companyInformation.company.description}</div>
+                                {(token && !company) &&
                                     <div style={{ marginTop: "20px", height: "40px" }}>
                                         <Button
                                             type="primary"
@@ -85,9 +123,12 @@ function CompanyPage(props) {
                     </Col>
                 </Row>
             </div>
+            <div className="min-height-container">
+                {renderCompanyWall()}
+            </div>
             <FooterLink />
             <Footer />
-            <CircleFollowModal open={openFollowModal} onToggle={handleFollowModal} pk={companyInformation.pk} />
+            <CircleFollowModal open={openFollowModal} onToggle={handleFollowModal} pk={companyInformation.company.pk} />
         </div>
     )
 }

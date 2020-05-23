@@ -6,6 +6,7 @@ import CampaignType from './CampaignType/CampaignType'
 import ActionSection from './Action/ActionSection'
 import PreviewSection from './Preview/PreviewSection'
 import PaymentSection from './Payment/PaymentSection'
+import ResumeSection from './Resume/ResumeSection'
 
 import { useTranslation } from 'react-i18next'
 
@@ -91,7 +92,7 @@ function CreateCampaignLayout() {
         let temp_params = { ...params }
         temp_params[socialName][actionType] = val
         setParams(temp_params)
-        // console.log(params)
+        console.log(params)
     }
 
     const _setSection = (section) => {
@@ -110,6 +111,8 @@ function CreateCampaignLayout() {
                 return <PreviewSection params={params} setParams={_setParams} setSection={_setSection} />
             case 'payment':
                 return <PaymentSection params={params} setParams={_setParams} setSection={_setSection} />
+            case 'resume':
+                return <ResumeSection  params={params} setParams={_setParams} setSection={_setSection} />
             default:
                 return <SetupSection />
         }

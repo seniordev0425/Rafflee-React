@@ -1,4 +1,5 @@
 import React from 'react'
+import { Spin } from 'antd'
 import { Spinner } from 'reactstrap'
 
 import './index.css'
@@ -6,6 +7,6 @@ import './index.css'
 
 export default () => (
   <div className="spinnerWrapper">
-    <Spinner />
+    <Spin size='large' />
   </div>
 )

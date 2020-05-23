@@ -34,7 +34,13 @@ const UserAccount = (props) => {
                         <Menu mode="horizontal" className="menubar" selectedKeys={[match.params.menu]}>
                             <Menu.Item key="profile">
                                 <Link to="/user-account/profile">
-                                    <img src={company ? images.company_icon : images.user_icon} />
+                                    <img 
+                                        src={company 
+                                            ? 
+                                            match.params.menu === 'profile' ? images.company_icon : images.company_icon_black 
+                                            :  
+                                            match.params.menu === 'profile' ? images.user_icon : images.user_icon_black} 
+                                    />
                                     <span className="ml-3"> {company ? t('menubar.company_profile') : t('menubar.user_profile')}</span>
                                 </Link>
                             </Menu.Item>

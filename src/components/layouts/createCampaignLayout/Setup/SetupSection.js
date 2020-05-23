@@ -91,7 +91,10 @@ function SetupSection(props) {
                     <Col xs="12" sm="6">
                         <div className="mt-5 half-width">
                             <FormGroup>
-                                <div className="footer-link-bold mb-3">{t('create_campaign_page.campaign_name')}</div>
+                                <div className="footer-link-bold mb-3">
+                                    <span>{t('create_campaign_page.campaign_name')}</span>
+                                    <span className="ml-3 font-size-12" style={{ color: 'red', verticalAlign: 'sub' }}>*</span>
+                                </div>
                                 <Input
                                     type="text"
                                     className="custom-form-control"
@@ -103,9 +106,12 @@ function SetupSection(props) {
                         </div>
                     </Col>
                     <Col xs="12" sm={{ size: "4", offset: "2" }}>
-                        <div className="mt-4 half-width float-right">
+                        <div className="mt-5 half-width float-right">
                             <FormGroup>
-                                <div className="footer-link-bold mb-3">{t('create_campaign_page.upload_image')}</div>
+                                <div className="footer-link-bold mb-3">
+                                    <span>{t('create_campaign_page.upload_image')}</span>
+                                    <span className="ml-3 font-size-12" style={{ color: 'red', verticalAlign: 'sub' }}>*</span>
+                                </div>
                                 {params.promotion_picture &&
                                     <>
                                         <img className="profile-img" src={params.promotion_picture} />
@@ -139,7 +145,10 @@ function SetupSection(props) {
                     <Col xs="12">
                         <div>
                             <FormGroup>
-                                <div className="footer-link-bold mb-3">{t('create_campaign_page.short_description')}</div>
+                                <div className="footer-link-bold mb-3">
+                                    <span>{t('create_campaign_page.short_description')}</span>
+                                    <span className="ml-3 font-size-12" style={{ color: 'red', verticalAlign: 'sub' }}>*</span>
+                                </div>
                                 <Input
                                     type="textarea"
                                     className="company-contact-form-text-area"
@@ -169,7 +178,10 @@ function SetupSection(props) {
                     <Col xs="12" sm="6">
                         <div className="mt-4 half-width">
                             <FormGroup>
-                                <div className="footer-link-bold mb-3">{t('create_campaign_page.campaign_starts')}</div>
+                                <div className="footer-link-bold mb-3">
+                                    <span>{t('create_campaign_page.campaign_starts')}</span>
+                                    <span className="ml-3 font-size-12" style={{ color: 'red', verticalAlign: 'sub' }}>*</span>
+                                </div>
                                 <DatePicker
                                     defaultValue={params.start_date ? moment(params.start_date, 'YYYY-MM-DD') : null}
                                     onChange={(date, dateString) => setParams('start_date', dateString)}
@@ -183,7 +195,10 @@ function SetupSection(props) {
                     <Col xs="12" sm="6">
                         <div className="mt-4 half-width float-right">
                             <FormGroup>
-                                <div className="footer-link-bold mb-3">{t('create_campaign_page.campaign_ends')}</div>
+                                <div className="footer-link-bold mb-3">
+                                    <span>{t('create_campaign_page.campaign_ends')}</span>
+                                    <span className="ml-3 font-size-12" style={{ color: 'red', verticalAlign: 'sub' }}>*</span>
+                                </div>
                                 <DatePicker
                                     defaultValue={params.end_date ? moment(params.end_date, 'YYYY-MM-DD') : null}
                                     onChange={(date, dateString) => setParams('end_date', dateString)}

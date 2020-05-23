@@ -21,9 +21,12 @@ import {
     campaignParticipateTwitterRetweet,
     campaignParticipateTwitterComment,
     campaignParticipateTwitterFollow,
+    campaignParticipateTwitchFollow,
     campaignParticipateVideo,
     campaignParticipatePoll,
-    campaignParticipateWebsite
+    campaignParticipateWebsite,
+    campaignParticipateInstagramProfile,
+    campaignParticipateInstagramPublication,
 } from '../actions/campaign'
 import { getUserProfile } from '../actions/userInfo'
 
@@ -34,6 +37,7 @@ import TwitterLikeValidationModal from '../components/modals/ActionValidationMod
 import TwitterRetweetValidationModal from '../components/modals/ActionValidationModals/TwitterRetweetValidationModal'
 import TwitterCommentValidationModal from '../components/modals/ActionValidationModals/TwitterCommentValidationModal'
 import TwitterFollowValidationModal from '../components/modals/ActionValidationModals/TwitterFollowValidationModal'
+import TwitchFollowValidationModal from '../components/modals/ActionValidationModals/TwitchFollowValidationModal'
 
 let actionParams = []
 
@@ -51,6 +55,7 @@ function CampaignDetail(props) {
     const OPEN_TWITTER_RETWEET_VALIDATION_MODAL = useSelector(state => state.userInfo.OPEN_TWITTER_RETWEET_VALIDATION_MODAL)
     const OPEN_TWITTER_COMMENT_VALIDATION_MODAL = useSelector(state => state.userInfo.OPEN_TWITTER_COMMENT_VALIDATION_MODAL)
     const OPEN_TWITTER_FOLLOW_VALIDATION_MODAL = useSelector(state => state.userInfo.OPEN_TWITTER_FOLLOW_VALIDATION_MODAL)
+    const OPEN_TWITCH_FOLLOW_VALIDATION_MODAL = useSelector(state => state.userInfo.OPEN_TWITCH_FOLLOW_VALIDATION_MODAL)
 
     const campaignData = useSelector(state => state.campaign.campaignData)
     const token = useSelector(state => state.userInfo.token)
@@ -67,6 +72,7 @@ function CampaignDetail(props) {
     const [openTwitterRetweetModal, setOpenTwitterRetweetModal] = useState(false)
     const [openTwitterCommentModal, setOpenTwitterCommentModal] = useState(false)
     const [openTwitterFollowModal, setOpenTwitterFollowModal] = useState(false)
+    const [openTwitchFollowModal, setOpenTwitchFollowModal] = useState(false)
 
     useEffect(() => {
         document.title = "Campaign Detail"
@@ -108,11 +114,16 @@ function CampaignDetail(props) {
             dispatch({ type: 'INIT_STATE', state: 'OPEN_TWITTER_FOLLOW_VALIDATION_MODAL', data: false })
             setOpenTwitterFollowModal(true)
         }
+        if (OPEN_TWITCH_FOLLOW_VALIDATION_MODAL) {
+            dispatch({ type: 'INIT_STATE', state: 'OPEN_TWITCH_FOLLOW_VALIDATION_MODAL', data: false })
+            setOpenTwitchFollowModal(true)
+        }
     }, [
         OPEN_TWITTER_LIKE_VALIDATION_MODAL,
         OPEN_TWITTER_RETWEET_VALIDATION_MODAL,
         OPEN_TWITTER_COMMENT_VALIDATION_MODAL,
         OPEN_TWITTER_FOLLOW_VALIDATION_MODAL,
+        OPEN_TWITCH_FOLLOW_VALIDATION_MODAL,
     ])
 
     const renderWinnings = () => {
@@ -161,6 +172,9 @@ function CampaignDetail(props) {
         else if (socialName === 'twitter' && actionType === 'follow') {
             dispatch(campaignParticipateTwitterFollow({ promotion_id: campaignData.pk }))
         }
+        else if (socialName === 'twitch' && actionType === 'follow') {
+            dispatch(campaignParticipateTwitchFollow({ promotion_id: campaignData.pk }))
+        }
     }
 
     const onParticipate = (socialName, actionType, checked, pollData) => {
@@ -184,6 +198,15 @@ function CampaignDetail(props) {
     const participateWebsite = () => {
         dispatch(campaignParticipateWebsite({ promotion_id: campaignData.pk }))
     }
+
+    const participateInstagramProfile = () => {
+        dispatch(campaignParticipateInstagramProfile({ promotion_id: campaignData.pk }))
+    }
+
+    const participateInstagramPublication = () => {
+        dispatch(campaignParticipateInstagramPublication({ promotion_id: campaignData.pk }))
+    }
+
 
     const update = () => {
         var body = {
@@ -340,19 +363,19 @@ function CampaignDetail(props) {
                             </Col>
                         </Row>
                     )}
-                    {(action.social_action && (action.social_action[2].instagram_like || action.social_action[2].instagram_follow || action.social_action[2].instagram_comment)) && (
+                    {(action.social_action && (action.social_action[2].instagram_profile || action.social_action[2].instagram_publication)) && (
                         <Row className="mb-4 mt-4">
                             <Col style={{ paddingLeft: 40 }}>
                                 <CustomCollapsePanel
                                     type="instagram"
                                     actions={
                                         {
-                                            like: action.social_action[2].instagram_like,
-                                            follow: action.social_action[2].instagram_follow,
-                                            comment: action.social_action[2].instagram_comment,
+                                            instagram_profile: action.social_action[2].instagram_profile_url,
+                                            instagram_publication: action.social_action[2].instagram_publication_url,
                                         }
                                     }
-                                    onParticipate={onParticipate}
+                                    participateInstagramProfile={participateInstagramProfile}
+                                    participateInstagramPublication={participateInstagramPublication}
                                 />
                             </Col>
                         </Row>
@@ -383,12 +406,11 @@ function CampaignDetail(props) {
                                     type="twitch"
                                     actions={
                                         {
-                                            like: action.social_action[4].twitch_like,
                                             follow: action.social_action[4].twitch_follow,
-                                            comment: action.social_action[4].twitch_comment,
                                         }
                                     }
                                     onParticipate={onParticipate}
+                                    tryToOpenValidationModal={tryToOpenValidationModal}
                                 />
                             </Col>
                         </Row>
@@ -410,8 +432,7 @@ function CampaignDetail(props) {
                             <Col style={{ paddingLeft: 40 }}>
                                 <CustomCollapsePanel
                                     type="website"
-                                    actions={{ website: true }}
-                                    url={action.website}
+                                    actions={{ website: action.website }}
                                     participateWebsite={participateWebsite}
                                 />
                             </Col>
@@ -470,6 +491,12 @@ function CampaignDetail(props) {
                 open={openTwitterFollowModal}
                 onToggle={() => setOpenTwitterFollowModal(!openTwitterFollowModal)}
                 closeModal={() => setOpenTwitterFollowModal(false)}
+                promotion_id={campaignData.pk}
+            />
+            <TwitchFollowValidationModal
+                open={openTwitchFollowModal}
+                onToggle={() => setOpenTwitchFollowModal(!openTwitchFollowModal)}
+                closeModal={() => setOpenTwitchFollowModal(false)}
                 promotion_id={campaignData.pk}
             />
         </div>

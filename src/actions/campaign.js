@@ -376,6 +376,53 @@ function onSuccessCampaignParticipateTwitterFollowValidation(data) {
     data: 'twitter_follow_validation',
   }
 }
+/////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_TWITCH_FOLLOW_ACTION
+export function campaignParticipateTwitchFollow(params) {
+  return apiAction({
+    url: APIROUTE + "campaign/participate/twitch/follow/",
+    method: 'POST',
+    data: qs.stringify(params),
+    accessToken: sessionStorage.getItem('token'),
+    onSuccess: onSuccessCampaignParticipateTwitchFollow,
+    onFailure: onFailed,
+    label: 'CAMPAIGN_PARTICIPATE_TWITCH_FOLLOW',
+    requireErrorMessage: true
+  });
+}
+function onSuccessCampaignParticipateTwitchFollow(data) {
+  if (data.msg === 'MSG_ACTION_EXIST') {
+    return {
+      type: 'SET_TEMP_ACTION_DATA',
+      data: data,
+      openModalName: 'OPEN_TWITCH_FOLLOW_VALIDATION_MODAL'
+    }
+  } else {
+    return {
+      type: 'SET_ACTION_VALIDATION_STATUS',
+      data: 'twitch_follow_validation',
+    }
+  }
+}
+/////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_TWITCH_FOLLOW_VALIDATION_ACTION
+export function campaignParticipateTwitchFollowValidation(params) {
+  return apiAction({
+    url: APIROUTE + "campaign/participate/twitch/follow/validation/",
+    method: 'POST',
+    data: qs.stringify(params),
+    accessToken: sessionStorage.getItem('token'),
+    onSuccess: onSuccessCampaignParticipateTwitchFollowValidation,
+    onFailure: onFailed,
+    label: 'CAMPAIGN_PARTICIPATE_TWITCH_FOLLOW_VALIDATION',
+    requireErrorMessage: true
+  });
+}
+function onSuccessCampaignParticipateTwitchFollowValidation(data) {
+  openNotification('success', successMessages[localStorage.getItem('i18nextLng')].success)
+  return {
+    type: 'SET_ACTION_VALIDATION_STATUS',
+    data: 'twitch_follow_validation',
+  }
+}
 /////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_VIDEO_ACTION
 export function campaignParticipateVideo(params) {
   return apiAction({
@@ -430,7 +477,44 @@ export function campaignParticipateWebsite(params) {
   });
 }
 function onSuccessCampaignParticipateWebsite(data) {
-  // openNotification('success', successMessages[localStorage.getItem('i18nextLng')].completeToWatchVideo)
+  return {
+    type: '',
+    data: '',
+  }
+}
+/////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_INSTAGRAM_PROFILE_ACTION
+export function campaignParticipateInstagramProfile(params) {
+  return apiAction({
+    url: APIROUTE + "campaign/participate/instagram/profile/",
+    method: 'POST',
+    data: qs.stringify(params),
+    accessToken: sessionStorage.getItem('token'),
+    onSuccess: onSuccessCampaignParticipateInstagramProfile,
+    onFailure: onFailed,
+    label: 'CAMPAIGN_PARTICIPATE_INSTAGRAM_PROFILE',
+    requireErrorMessage: true
+  });
+}
+function onSuccessCampaignParticipateInstagramProfile(data) {
+  return {
+    type: '',
+    data: '',
+  }
+}
+/////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_INSTAGRAM_PUBLICATION_ACTION
+export function campaignParticipateInstagramPublication(params) {
+  return apiAction({
+    url: APIROUTE + "campaign/participate/instagram/publication/",
+    method: 'POST',
+    data: qs.stringify(params),
+    accessToken: sessionStorage.getItem('token'),
+    onSuccess: onSuccessCampaignParticipateInstagramPublication,
+    onFailure: onFailed,
+    label: 'CAMPAIGN_PARTICIPATE_INSTAGRAM_PUBLICATION',
+    requireErrorMessage: true
+  });
+}
+function onSuccessCampaignParticipateInstagramPublication(data) {
   return {
     type: '',
     data: '',

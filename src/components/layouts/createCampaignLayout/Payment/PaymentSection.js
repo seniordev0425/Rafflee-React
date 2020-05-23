@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Row, Col, Input, FormGroup } from 'reactstrap'
 import { Button } from 'antd'
@@ -14,9 +14,21 @@ function PaymentSection(props) {
     const { params, setParams, setSection } = props
 
     const CREATE_CAMPAIGN_PROCESS = useSelector(state => state.userInfo.CREATE_CAMPAIGN)
+    const CREATE_CAMPAIGN_SUCCESS = useSelector(state => state.userInfo.SUCCESS_CREATE_CAMPAIGN)
     const dispatch = useDispatch()
 
+    const [messages, setMessages] = useState([])
+
+    useEffect(() => {
+        if (CREATE_CAMPAIGN_SUCCESS) {
+            dispatch({ type: 'INIT_STATE', state: 'SUCCESS_CREATE_CAMPAIGN', data: false })
+            setSection('resume')
+        }
+    }, [CREATE_CAMPAIGN_SUCCESS])
+
     const onSubmit = () => {
+        let required_messages = []
+        
         let categories = []
         params.temp_categories.map((item) => categories.push({ name: item }))
 
@@ -55,6 +67,21 @@ function PaymentSection(props) {
         let url_website = {}
         if (params.url_website.website) {
             url_website = { url: params.url_website.url, entries: params.url_website.entries, mandatory: params.url_website.mandatory }
+        }
+
+        if (params.promotion_name === '') required_messages.push(t('create_campaign_page.required_fields.campaign_name'))
+        if (params.promotion_picture === '') required_messages.push(t('create_campaign_page.required_fields.campaign_image'))
+        if (params.promotion_description === '') required_messages.push(t('create_campaign_page.required_fields.short_description'))
+        if (params.start_date === '') required_messages.push(t('create_campaign_page.required_fields.start_date'))
+        if (params.end_date === '') required_messages.push(t('create_campaign_page.required_fields.end_date'))
+        if (!twitter.length && !twitch.length && !instagram.length && !params.url_video.video && !params.url_website.website && params.poll === 'false') {
+            required_messages.push(t('create_campaign_page.required_fields.action'))
+        }
+
+        setMessages(required_messages)
+        
+        if (required_messages.length > 0) {
+            return
         }
 
         let promotion_picture = null
@@ -100,7 +127,7 @@ function PaymentSection(props) {
                     <Row>
                         <Col xs="12" sm="6" className="p-0">
                             <Row>
-                                <div className="mt-4 full-width">
+                                <div className="full-width">
                                     <FormGroup>
                                         <div className="footer-link-bold mb-3">{t('create_campaign_page.name')}</div>
                                         <Input
@@ -148,7 +175,7 @@ function PaymentSection(props) {
                             <Row>
                                 <Col xs="12" sm={{ size: 9, offset: 3 }}>
                                     <Row>
-                                        <div className="footer-link-bold mb-3 mt-4">{t('create_campaign_page.campaign_total')}</div>
+                                        <div className="footer-link-bold mb-3">{t('create_campaign_page.campaign_total')}</div>
                                     </Row>
                                     <Row>
                                         <div className="footer-link mb-3">{t('create_campaign_page.campaign')} :$5623</div>
@@ -172,6 +199,13 @@ function PaymentSection(props) {
                                             {!CREATE_CAMPAIGN_PROCESS && t('button_group.create_campaign')}
                                         </Button>
                                     </Row>
+                                    <div>
+                                        {messages.map((item, index) => 
+                                            <div key={index} className="mt-3 font-size-9 color-red">
+                                                {item}
+                                            </div>
+                                        )}
+                                    </div>
                                 </Col>
                             </Row>
                         </Col>

@@ -59,7 +59,10 @@ function ActionSection(props) {
             <Row style={{ borderBottom: "1px solid rgba(126, 154, 168, 0.15)" }}>
                 <Col sm={{ size: "10", offset: "1" }} xs="12" className="px-sm-3">
                     <div className="mt-5 mb-3 ml-3">
-                        <div className="footer-link-bold">{t('create_campaign_page.actions')}</div>
+                        <div className="footer-link-bold mb-3">
+                            <span>{t('create_campaign_page.actions')}</span>
+                            <span className="ml-3 font-size-12" style={{ color: 'red', verticalAlign: 'sub' }}>*</span>
+                        </div>
                         <div className="mt-3 d-flex flex-wrap font-size-9 color-white">
                             <Dropdown placement="bottomLeft" disabled>
                                 <FacebookActionButton />

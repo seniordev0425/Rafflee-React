@@ -131,7 +131,7 @@
         },
         "instagram": {
             "title": "Follow Converse on Instagram",
-            "text": "To get credit for this entry, you must tweet about this on your twitter page. Likes & comments are appreciated, but no required. Thanks!"
+            "text": "Visit Instagram profile or publication below"
         },
         "other": {
             "title": "",
@@ -282,7 +282,23 @@
         "maximum_number_of_participants": "Maximum number of participants",
         "public": "Public",
         "private": "Private",
-        "entries": "Entries"
+        "entries": "Entries",
+        "required_fields": {
+            "campaign_name": "* Campaign name is required",
+            "campaign_image": "* Campaign image is required",
+            "short_description": "* Short description is required",
+            "start_date": "* Campaign start date is required",
+            "end_date": "* Campaign end date is required",
+            "action": "* At least one action is required"
+        },
+        "giveaway_campaign_create_success": "A Giveaway Campaign was successfully created.",
+        "reward_campaign_create_success": "A Reward Campaign was successfully created.",
+        "rafflee_campaign_create_success": "A Rafflee Campaign was successfully created.",
+        "campaign_link": "Campaign Link",
+        "embed_page_blog_post": "Embed in a Page or Blog Post",
+        "add_tab_site": "Add Tab to your Site",
+        "need_to_pay_text": "You need to pay to get access to this widget.",
+        "pay": "PAY"
     },
 
     "profile_activated_page": {

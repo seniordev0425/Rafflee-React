@@ -25,6 +25,9 @@ body {
 .color-white {
     color: white;
 }
+.color-red {
+    color: rgb(220, 53, 69);
+}
 .font-size-8 {
     font-size: 0.8rem;
 }
@@ -1277,7 +1280,6 @@ h2 span {
 .company-page-header {
     padding-top: 40px;
     padding-bottom: 40px;
-    border-bottom: 1px solid #cccccc;
     border-top: 1px solid #cccccc;
 }
 .social-wall-container {
@@ -1302,13 +1304,13 @@ h2 span {
 ::-webkit-scrollbar { 
     display: none; 
 }
-.ant-tooltip-inner {
+/* .ant-tooltip-inner {
     color: white;
     background-color: #0091ff;
 }
 .ant-tooltip-placement-top .ant-tooltip-arrow, .ant-tooltip-placement-topLeft .ant-tooltip-arrow, .ant-tooltip-placement-topRight .ant-tooltip-arrow {
     border-bottom-color: #0091ff !important;
-}
+} */
 .facebook-action-btn {
     width: 140px;
     height: 40px;
@@ -1457,7 +1459,13 @@ h2 span {
 .min-height-container {
     min-height: 60vh;
 }
-
+.ant-message-custom-content {
+    display: flex;
+    align-items: center;
+}
+.ant-message {
+    z-index: 1000000;
+}
 
 
 
