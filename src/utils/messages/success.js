@@ -7,6 +7,7 @@ const successMessages = {
         participate: "Successfully Participated!",
         campaignSubscribe: "Success",
         followCircle: "Success",
+        unfollowCircle: "Success",
         deleteAccount: "Account was deleted.",
         resetPasswordRequest: "Confirm your Email to reset a password.",
         resetPassword: "Password Updated!",
@@ -25,11 +26,14 @@ const successMessages = {
         participate: "Successfully Participated!",
         campaignSubscribe: "Success",
         followCircle: "Success",
+        unfollowCircle: "Success",
         deleteAccount: "Account was deleted.",
         resetPasswordRequest: "Confirm your Email to reset a password.",
         resetPassword: "Password Updated!",
         createCampaign: "New campaign created successfully!",
-        success: "Success"
+        success: "Success",
+        completeToWatchVideo: "Completed to watch a video.",
+        completeToSubmitPoll: "Successfully Submitted."
     }
 }
 

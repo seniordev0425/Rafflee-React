@@ -489,7 +489,7 @@ function onSuccessGetCompanyInformation(data) {
     data: data.msg
   }
 }
-/////////////////////////////////////////////// CAMPAIGN_SUBSCRIBE_ACTION
+/////////////////////////////////////////////// CAMPAIGN_FOLLOW_ACTION
 export function followCircle(params, id) {
   return apiAction({
     url: APIROUTE + `account/follow/${id}/`,
@@ -505,8 +505,27 @@ export function followCircle(params, id) {
 function onSuccessFollowCircle(data) {
   openNotification('success', successMessages[localStorage.getItem('i18nextLng')].followCircle)
   return {
-    type: '',
-    data: ''
+    type: 'SET_COMPANY_FOLLOW_VALUE',
+    data: true
+  }
+}
+/////////////////////////////////////////////// CAMPAIGN_UNFOLLOW_ACTION
+export function unfollowCircle(id) {
+  return apiAction({
+    url: APIROUTE + `account/unfollow/${id}/`,
+    method: 'POST',
+    accessToken: sessionStorage.getItem('token'),
+    onSuccess: onSuccessUnfollowCircle,
+    onFailure: onFailed,
+    label: 'UNFOLLOW_CIRCLE',
+    requireErrorMessage: true
+  });
+}
+function onSuccessUnfollowCircle(data) {
+  openNotification('success', successMessages[localStorage.getItem('i18nextLng')].unfollowCircle)
+  return {
+    type: 'SET_COMPANY_FOLLOW_VALUE',
+    data: false
   }
 }
 /////////////////////////////////////////////// TWITTER_CONNECT_STEP1

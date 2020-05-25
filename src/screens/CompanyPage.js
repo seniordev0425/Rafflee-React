@@ -9,6 +9,7 @@ import FooterLink from '../components/layouts/footer/FooterLink'
 import Footer from '../components/layouts/footer/Footer'
 import Loading from '../components/common/Loading'
 import CircleFollowModal from '../components/modals/CircleFollowModal'
+import CircleUnfollowModal from '../components/modals/CircleUnfollowModal'
 import { getCompanyInformation } from '../actions/userInfo'
 import images from '../utils/images'
 import moment from 'moment'
@@ -26,6 +27,7 @@ function CompanyPage(props) {
     const dispatch = useDispatch()
 
     const [openFollowModal, setFollowModal] = useState(false)
+    const [openUnfollowModal, setUnfollowModal] = useState(false)
 
     useEffect(() => {
         document.title = "Company Page"
@@ -34,6 +36,10 @@ function CompanyPage(props) {
 
     const handleFollowModal = () => {
         setFollowModal(!openFollowModal)
+    }
+
+    const handleUnfollowModal = () => {
+        setUnfollowModal(!openUnfollowModal)
     }
 
     const twitter_tooltip = (
@@ -107,14 +113,14 @@ function CompanyPage(props) {
                                     </div>
                                 </div>
                                 <div className="font-size-12 mt-4">{companyInformation.company.description}</div>
-                                {(token && !company) &&
+                                {(token) &&
                                     <div style={{ marginTop: "20px", height: "40px" }}>
                                         <Button
                                             type="primary"
                                             className="ant-blue-btn promotion-list-item-btn"
-                                            onClick={handleFollowModal}
+                                            onClick={companyInformation.company.follow ? handleUnfollowModal : handleFollowModal}
                                         >
-                                            {t('button_group.follow_circle')}
+                                            {companyInformation.company.follow ? t('button_group.unfollow_circle') : t('button_group.follow_circle')}
                                         </Button>
                                     </div>
                                 }
@@ -128,7 +134,8 @@ function CompanyPage(props) {
             </div>
             <FooterLink />
             <Footer />
-            <CircleFollowModal open={openFollowModal} onToggle={handleFollowModal} pk={companyInformation.company.pk} />
+            <CircleFollowModal open={openFollowModal} onToggle={handleFollowModal} pk={companyInformation.company.pk} companyName={companyInformation.company.company_name} />
+            <CircleUnfollowModal open={openUnfollowModal} onToggle={handleUnfollowModal} pk={companyInformation.company.pk} companyName={companyInformation.company.company_name} />
         </div>
     )
 }

@@ -266,6 +266,11 @@ function UserInfo(state = initialFeedState, action) {
                 ...state,
                 userProfile: { ...state.userProfile, profile_picture: action.data }
             }
+        case 'SET_COMPANY_FOLLOW_VALUE':
+            return {
+                ...state,
+                companyInformation: { ...state.companyInformation, company: { ...state.companyInformation.company, follow: action.data } }
+            }
         default:
             return state
     }

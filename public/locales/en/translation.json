@@ -71,7 +71,8 @@
         "decline": "Decline",
         "confirm": "Confirm",
         "edit": "Edit",
-        "follow_circle": "FOLLOW CIRCLE",
+        "follow_circle": "FOLLOW",
+        "unfollow_circle": "UNFOLLOW",
         "remove": "Remove"     
     },
 
@@ -312,6 +313,8 @@
     "company_page": {
         "member_since": "Memeber since",
         "follow_circle": "Follow Circle",
+        "unfollow_circle": "Unfollow Circle",
+        "unfollow_question": "Would you like to unfollow",
         "newsletter": "Newsletter"
     },
     "my_circle_page": {
