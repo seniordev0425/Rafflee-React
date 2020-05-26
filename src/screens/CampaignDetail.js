@@ -63,6 +63,7 @@ function CampaignDetail(props) {
     const dispatch = useDispatch()
 
     const [action, setAction] = useState({})
+    const [didActions, setDidActions] = useState({})
     const [openVideo, setOpenVideo] = useState(false)
     const [isVideoEnded, setIsVideoEnded] = useState(false)
     const [openConfirm, setOpenConfirm] = useState(false)
@@ -88,6 +89,33 @@ function CampaignDetail(props) {
 
     useEffect(() => {
         setAction(campaignData.action_participate[0])
+        let tempDidActions = {}
+        tempDidActions = {
+            twitter: {
+                like: (campaignData.user_actions || {}).twitter_like,
+                follow: (campaignData.user_actions || {}).twitter_follow,
+                comment: (campaignData.user_actions || {}).twitter_tweet,
+                retweet: (campaignData.user_actions || {}).twitter_retweet
+            },
+            twitch: {
+                follow: (campaignData.user_actions || {}).twitch_follow
+            },
+            instagram_profile: false,
+            instagram_publication: false,
+            poll: false,
+            video: (campaignData.user_actions || {}).video,
+            website: false,
+            youtube: {
+                like: false,
+                follow: false
+            },
+            facebook: {
+                like: false,
+                follow: false,
+                comment: false
+            }
+        }
+        setDidActions(tempDidActions)
     }, [campaignData])
 
     useEffect(() => {
@@ -179,11 +207,12 @@ function CampaignDetail(props) {
 
     const onParticipate = (socialName, actionType, checked, pollData) => {
         if (socialName === 'video') {
-            if (!isVideoEnded) openVideoModal()
-            else {
-                actionParams = actionParams.filter((item) => item['social_name'] !== socialName)
-                actionParams.push({ social_name: socialName, action_type: checked })
-            }
+            openVideoModal()
+            // if (!isVideoEnded) openVideoModal()
+            // else {
+            //     actionParams = actionParams.filter((item) => item['social_name'] !== socialName)
+            //     actionParams.push({ social_name: socialName, action_type: checked })
+            // }
         }
         else {
             actionParams = actionParams.filter((item) => item['social_name'] !== socialName)
@@ -293,7 +322,7 @@ function CampaignDetail(props) {
                                     {t('campaign_detail_page.maximum_participants')}
                                 </div>
                                 <img src={images.user} width="25" height="25" />
-                                <span className="ml-3 color-blue">{campaignData.number_of_eligible_people} {t('campaign_detail_page.participants')}</span>
+                                <span className="ml-3 color-blue">{campaignData.number_of_eligible_people || 0} {t('campaign_detail_page.participants')}</span>
                             </div>
                         </Col>
                     </Row>
@@ -327,7 +356,7 @@ function CampaignDetail(props) {
                         </Col>
                         <Col className="px-0">
                             <div className="d-flex justify-content-center"><img src={images.user} width="25" height="25" /></div>
-                            <div className="color-blue mt-2 text-center">{campaignData.number_of_eligible_people} {t('campaign_detail_page.participants')}</div>
+                            <div className="color-blue mt-2 text-center">{campaignData.number_of_eligible_people || 0} {t('campaign_detail_page.participants')}</div>
                         </Col>
                     </Row>
                     {(action.social_action && (action.social_action[0].facebook_like || action.social_action[0].facebook_follow || action.social_action[0].facebook_comment)) && (
@@ -342,6 +371,7 @@ function CampaignDetail(props) {
                                             comment: action.social_action[0].facebook_comment,
                                         }
                                     }
+                                    didActions={didActions}
                                     onParticipate={onParticipate}
                                 />
                             </Col>
@@ -358,6 +388,7 @@ function CampaignDetail(props) {
                                             follow: action.social_action[1].youtube_follow,
                                         }
                                     }
+                                    didActions={didActions}
                                     onParticipate={onParticipate}
                                 />
                             </Col>
@@ -374,6 +405,7 @@ function CampaignDetail(props) {
                                             instagram_publication: action.social_action[2].instagram_publication_url,
                                         }
                                     }
+                                    didActions={didActions}
                                     participateInstagramProfile={participateInstagramProfile}
                                     participateInstagramPublication={participateInstagramPublication}
                                 />
@@ -393,6 +425,7 @@ function CampaignDetail(props) {
                                             retweet: action.social_action[3].twitter_retweet,
                                         }
                                     }
+                                    didActions={didActions}
                                     onParticipate={onParticipate}
                                     tryToOpenValidationModal={tryToOpenValidationModal}
                                 />
@@ -409,6 +442,7 @@ function CampaignDetail(props) {
                                             follow: action.social_action[4].twitch_follow,
                                         }
                                     }
+                                    didActions={didActions}
                                     onParticipate={onParticipate}
                                     tryToOpenValidationModal={tryToOpenValidationModal}
                                 />
@@ -421,6 +455,7 @@ function CampaignDetail(props) {
                                 <CustomCollapsePanel
                                     type="video"
                                     actions={{ video: true }}
+                                    didActions={didActions}
                                     onParticipate={onParticipate}
                                     isVideoEnded={isVideoEnded}
                                 />
@@ -433,6 +468,7 @@ function CampaignDetail(props) {
                                 <CustomCollapsePanel
                                     type="website"
                                     actions={{ website: action.website }}
+                                    didActions={didActions}
                                     participateWebsite={participateWebsite}
                                 />
                             </Col>

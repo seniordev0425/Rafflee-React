@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Button, Modal, ModalBody, Input } from 'reactstrap'
+import { Modal, ModalBody, Input } from 'reactstrap'
+import { Button } from 'antd'
 import { useTranslation } from 'react-i18next'
 import { campaignParticipateTwitterCommentValidation } from '../../../actions/campaign'
 
@@ -51,13 +52,12 @@ function TwitterCommentValidationModal(props) {
                 </div>
                 <div className="mt-3 d-flex justify-content-center">
                     <Button
-                        size="lg"
-                        color="primary"
-                        className="bootstrap-blue-btn promotion-list-item-btn"
+                        type="primary"
+                        className="ant-blue-btn promotion-list-item-btn"
                         onClick={onSubmit}
-                        disabled={CAMPAIGN_PARTICIPATE_TWITTER_COMMENT_VALIDATION_PROCESS}
+                        loading={CAMPAIGN_PARTICIPATE_TWITTER_COMMENT_VALIDATION_PROCESS}
                     >
-                        {t('button_group.confirm')}
+                        {!CAMPAIGN_PARTICIPATE_TWITTER_COMMENT_VALIDATION_PROCESS && t('button_group.confirm')}
                     </Button>
                 </div>
             </ModalBody>

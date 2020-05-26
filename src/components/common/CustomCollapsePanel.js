@@ -18,6 +18,7 @@ function CustomCollapsePanel(props) {
     const {
         type,
         actions,
+        didActions,
         onParticipate,
         isVideoEnded,
         tryToOpenValidationModal,
@@ -85,6 +86,7 @@ function CustomCollapsePanel(props) {
                                     btnString='like'
                                     onParticipate={onParticipate}
                                     tryToOpenValidationModal={tryToOpenValidationModal}
+                                    defaultValue={didActions[type].like}
                                 />
                             )}
                             {actions.follow && (
@@ -93,6 +95,7 @@ function CustomCollapsePanel(props) {
                                     btnString='follow'
                                     onParticipate={onParticipate}
                                     tryToOpenValidationModal={tryToOpenValidationModal}
+                                    defaultValue={didActions[type].follow}
                                 />
                             )}
                             {actions.comment && (
@@ -101,6 +104,7 @@ function CustomCollapsePanel(props) {
                                     btnString='comment'
                                     onParticipate={onParticipate}
                                     tryToOpenValidationModal={tryToOpenValidationModal}
+                                    defaultValue={didActions[type].comment}
                                 />
                             )}
                             {actions.retweet && (
@@ -109,6 +113,7 @@ function CustomCollapsePanel(props) {
                                     btnString='retweet'
                                     onParticipate={onParticipate}
                                     tryToOpenValidationModal={tryToOpenValidationModal}
+                                    defaultValue={didActions[type].retweet}
                                 />
                             )}
                             {actions.video && (
@@ -117,6 +122,7 @@ function CustomCollapsePanel(props) {
                                     btnString='video'
                                     onParticipate={onParticipate}
                                     isVideoEnded={isVideoEnded}
+                                    defaultValue={didActions.video}
                                 />
                             )}
                             {actions.website && (

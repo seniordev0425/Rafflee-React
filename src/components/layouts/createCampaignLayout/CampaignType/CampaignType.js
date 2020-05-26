@@ -107,7 +107,7 @@ function CampaignType(props) {
                             </div>
                         </div>
                     }
-                    {params.limit_participants &&
+                    {(params.limit_participants && params.campaign_type === 'giveaway') &&
                         <div style={{ width: 250, marginLeft: 65 }}>
                             <div className="footer-link-bold mb-3 mt-4">{t('create_campaign_page.maximum_number_of_participants')}</div>
                             <Input

@@ -35,6 +35,7 @@ function PreviewSection(props) {
     }
 
     const calcMaximumParticipants = () => {
+        if (params.campaign_type === 'giveaway') return 0
         let max_participants = 0
         params.winnings.map(item => max_participants += parseInt(item.number_of_people || '0'))
         return max_participants

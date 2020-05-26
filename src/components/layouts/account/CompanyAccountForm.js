@@ -87,10 +87,11 @@ function CompanyAccountForm(props) {
         formdata.append("logo", blob)
         formdata.append("phone_number", values.phonenumber.phone_number)
         formdata.append("prefix_number", values.phonenumber.phone_country)
-        formdata.append("country", countryName)
-        formdata.append("region", values.postal_code !== undefined ? values.postal_code : '')
-        formdata.append("address", values.address !== undefined ? values.address : '')
-        formdata.append("city", values.street !== undefined ? values.street : '')
+        formdata.append("country", countryName || '')
+        formdata.append("region", values.postal_code || '')
+        formdata.append("address", values.address || '')
+        formdata.append("city", values.street || '')
+        
         dispatch(updateCompanyProfile(formdata))
     }
 

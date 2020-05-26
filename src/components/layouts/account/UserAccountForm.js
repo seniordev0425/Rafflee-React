@@ -121,14 +121,15 @@ function UserAccountForm() {
         formdata.append("profile_picture", blob)
         formdata.append("phone_number", values.phonenumber.phone_number)
         formdata.append("prefix_number", values.phonenumber.phone_country)
-        formdata.append("country", countryName)
+        formdata.append("country", countryName || '')
         formdata.append("birth_date", initialDate)
         formdata.append("first_name", values.first_name)
         formdata.append("last_name", values.last_name)
-        formdata.append("address", values.address !== undefined ? values.address : '')
-        formdata.append("city", values.street !== undefined ? values.street : '')
-        formdata.append("region", values.postal_code !== undefined ? values.postal_code : '')
+        formdata.append("address", values.address || '')
+        formdata.append("city", values.street || '')
+        formdata.append("region", values.postal_code || '')
         formdata.append("gender", genderState)
+        
         dispatch(updateUserProfile(formdata))
     }
 

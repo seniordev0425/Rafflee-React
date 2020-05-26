@@ -9,37 +9,38 @@ import { useTranslation } from 'react-i18next'
 function CheckBoxButtonForAction(props) {
     const { t } = useTranslation()
 
-    const { socialName, btnString, onParticipate, isVideoEnded, tryToOpenValidationModal } = props
+    const { socialName, btnString, onParticipate, isVideoEnded, tryToOpenValidationModal, defaultValue } = props
 
     const validation = useSelector(state => state.userInfo[`${socialName}_${btnString}_validation`])
     const dispatch = useDispatch()
 
-    const [checked, setChecked] = useState(false)
+    const [checked, setChecked] = useState(defaultValue)
 
     useEffect(() => {
-        if (isVideoEnded) if (socialName === 'video') setChecked(!checked)
+        if (isVideoEnded) if (socialName === 'video') setChecked(true)
     }, [isVideoEnded])
 
     useEffect(() => {
         if (validation) {
             dispatch({ type: 'INIT_STATE', state: `${socialName}_${btnString}_validation`, data: false })
-            onParticipate(socialName, btnString, !checked, null)
-            setChecked(!checked)
+            onParticipate(socialName, btnString, true, null)
+            setChecked(true)
         }
     }, [validation])
 
     const onVideoChecked = () => {
         onParticipate(socialName, btnString, !checked, null)
-        if (isVideoEnded) setChecked(!checked)
+        // if (isVideoEnded) setChecked(!checked)
     }
 
     const onActionChecked = () => {
-        if (checked) {
-            onParticipate(socialName, btnString, !checked, null)
-            setChecked(!checked)
-        } else {
+        // if (checked) {
+            // return
+            // onParticipate(socialName, btnString, !checked, null)
+            // setChecked(!checked)
+        // } else {
             tryToOpenValidationModal(socialName, btnString)
-        }
+        // }
     }
 
     return (

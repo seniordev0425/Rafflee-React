@@ -21,7 +21,7 @@ const UserAccount = (props) => {
     const company = useSelector(state => state.userInfo.company)
 
     useEffect(() => {
-        document.title = "UserAccount"
+        document.title = "Account"
     }, [])
 
     return (

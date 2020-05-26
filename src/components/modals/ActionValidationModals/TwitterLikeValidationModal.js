@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Button, Modal, ModalBody } from 'reactstrap'
+import { Modal, ModalBody } from 'reactstrap'
+import { Button } from 'antd'
 import { useTranslation } from 'react-i18next'
 import moment from 'moment'
 import { campaignParticipateTwitterLikeValidation } from '../../../actions/campaign'
@@ -54,13 +55,12 @@ function TwitterLikeValidationModal(props) {
                 </div>
                 <div className="mt-3 d-flex justify-content-center">
                     <Button
-                        size="lg"
-                        color="primary"
-                        className="bootstrap-blue-btn promotion-list-item-btn"
+                        type="primary"
+                        className="ant-blue-btn promotion-list-item-btn"
                         onClick={onSubmit}
-                        disabled={CAMPAIGN_PARTICIPATE_TWITTER_LIKE_VALIDATION_PROCESS}
+                        loading={CAMPAIGN_PARTICIPATE_TWITTER_LIKE_VALIDATION_PROCESS}
                     >
-                        {t('button_group.confirm')}
+                        {!CAMPAIGN_PARTICIPATE_TWITTER_LIKE_VALIDATION_PROCESS && t('button_group.confirm')}
                     </Button>
                 </div>
 

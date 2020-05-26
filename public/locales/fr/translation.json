@@ -1,0 +1,316 @@
+{
+    "header": {
+        "join_header_text": "Rafflee, la plateforme des giveaways.",
+        "join_now": "Inscris toi",
+        "Campaign": "Campagne",
+        "sign_in": "Sign In",
+        "log_in": "Log In",
+        "account": "Compte",
+        "dashboard": "Profil",
+        "log_out": "Logout"
+    },
+
+    "banner": {
+        "search_placeholder": "rechercher"
+    },
+
+    "menubar": {
+        "all": "Tous",
+        "highlights": "Highlights",
+        "new": "Nouveaux",
+        "hot": "Hot",
+        "endsoon": "finit bientôt",
+        "user_profile": "Profile utilisateur",
+        "company_profile": "Profile entreprise",
+        "inventory": "Inventory",
+        "rafflee_history": "Historique",
+        "following": "Following",
+        "my_circle": "My Circle",
+        "my_campaign": "Ma campagne",
+        "my_bills": "Mes factures",
+        "analytics": "Analytics",
+        "create_campaign": "Créer une campagne",
+        "overview": "Vue d'ensemble",
+        "audience": "Audience",
+        "engagement": "Engagement",
+        "clicks": "Clicks"
+    },
+
+    "empty_result_to_display": "Aucun résultat à afficher.",
+
+    "button_group": {
+        "see_campaign": "Voir la campagne",
+        "verify": "Verifie",
+        "update": "Mise à jour",
+        "delete": "effacer",
+        "upload_image": "Upload Image",
+        "create_account": "Créer un compte",
+        "log_in": "LOGIN",
+        "send_message": "envoie message",
+        "reset_password": "réinitialiser le mot de passe",
+        "delete_account": "Effacer le compte",
+        "pick_another": "Tirer un autre",
+        "participate": "PARTICIPER",
+        "already_won": "Déjà gagner",
+        "draw": "Tirage",
+        "download_pdf": "TELECHARGER PDF",
+        "next": "SUIVANT",
+        "create_poll":"CREER UN SONDAGE",
+        "create_campaign":"Creation campagne",
+        "reset": "REINITIALISER",
+        "continue": "CONTINUE",
+        "accept": "Accepter",
+        "decline": "Décliner"
+    },
+
+    "homepage": {
+        "hot_new_contest_everyday": "Des giveaways de fous tous les jours.",
+        "premium_prizes_giveaways": "Les giveaways les plus chauds choisis par Rafflee.",
+        "find_campaign": "Trouver le giveaway ou la raffle que vous cherchiez."
+    },
+
+    "account_page": {
+        "first_name": "Prénom",
+        "last_name": "Nom",
+        "gender": "Sexe",
+        "phone_number": "Numéro de téléphone",
+        "country": "Pays",
+        "birth_date": "Date de naissance",
+        "email": "Email",
+        "admin_email": "Administrateur Email",
+        "company_name": "Nom de l'entreprise",
+        "address": "Adresse",
+        "city": "Ville",
+        "region": "Région",
+        "male": "Homme",
+        "female": "Femme",
+        "first_name_required": " Le prénom est requis",
+        "last_name_required": "Le nom est requis",
+        "company_name_required": "Le nom de l'entreprise est requis",
+        "enter_valid_email": "Entrer un Email valide"
+    },
+
+    "campaign_detail_page": {
+        "giveaways": "GIVEAWAYS",
+        "prize_ends_in": "PRIZE ENDS IN",
+        "prize_ended": "PRIZE ENDED",
+        "your_entries": "YOUR ENTRIES",
+        "maximum_participants": "MAXIMUM PARTICIPANTS",
+        "days": "days",
+        "entries": "Entrée",
+        "participants": "Participants",
+        "twitter": {
+            "title": "Tweet à propos de ce giveaway",
+            "text": "Pour avoir une entrée validé,  merci de retweeter ce message. Merci!"
+        },
+        "facebook": {
+            "title": "Suivez Converse sur Facebook",
+            "text": "To get credit for this entry, you must tweet about this on your twitter page. Likes & comments are appreciated, but no required. Thanks!"
+        },
+        "youtube": {
+            "title": "Suivez Converse on Youtube",
+            "text": "To get credit for this entry, you must tweet about this on your twitter page. Likes & comments are appreciated, but no required. Thanks!"
+        },
+        "twitch": {
+            "title": "Suivez Converse on Twitch",
+            "text": "To get credit for this entry, you must tweet about this on your twitter page. Likes & comments are appreciated, but no required. Thanks!"
+        },
+        "instagram": {
+            "title": "Suivez Converse sur Instagram",
+            "text": "To get credit for this entry, you must tweet about this on your twitter page. Likes & comments are appreciated, but no required. Thanks!"
+        },
+        "other": {
+            "title": "",
+            "text": "Merci de répondre cette/ces questions :)!"
+        },
+        "video": {
+            "title": "Regarde la vidéo ",
+            "text": "Regarde la vidéo"
+        },
+        "watch_video": "Regarder une vidéo"
+    },
+
+    "my_campaign_page": {
+        "live_page": "Live Page",
+        "view_participants": "Voir les participants",
+        "back_to_campaign_page": "Retour aux campagnes",
+        "participants": "Participants",
+        "view_profile": "Voir le profil",
+        "draw_type": "Draw Type",
+        "draw_by_gift": "DRAW BY GIFT",
+        "draw_all_by_gift": "DRAW ALL BY GIFT",
+        "draw": "DRAW",
+        "draw_all": "DRAW ALL",
+        "prize_type": "Prize Type",
+        "campaign_analytics":"Campagne Analytics",
+        "generated_likes": "Likes générés",
+        "earned_followers": "Acquisition followers",
+        "tweets_generated": "Tweet généré",
+        "buy_data": "Achat de données"
+        
+    },
+
+    "my_bills_page": {
+        "emission_date": "Emission Date",
+        "total":"Total"
+    },
+
+    "analytics_page": {
+        "instagram_followers": "Instagram Followers",
+        "twitter_followers": "Twitter Followers",
+        "youtube_followers": "Youtube Followers",
+        "total_views_clicks": "Total Views & Clicks",
+        "views": "Views",
+        "clicks":"Clicks",
+        "most_active_users": "Most Active Users",
+        "view_profile":"View Profile",
+        "demographics": "Demographics",
+        "active_clients": "Active Clients",
+        "users": "Users",
+        "male": "Homme",
+        "female": "Femelle",
+        "unknown": "inconnu",
+        "audience_growth": "Augmentation de l'audience",
+        "campaigns_engagement": "Campaigns Engagement",
+        "brand_engagement": "Brand Engagement",
+        "engagement_score_by_day": "Engagement Score By Day",
+        "campaign_followers": "Campaign Followers",
+        "circle_followers": "Cercle Followers",
+        "lost_followers": "Lost Followers",
+        "following_base": "Following Base",
+        "following_data": "Following Data",
+        "campaign": "Campaign",
+        "circle": "Circle",
+        "lost": "Lost"
+    },
+
+    "create_campaign_page": {
+        "campaign_name": "Nom de la campagne",
+        "campaign_name_required": "Nom de la campagne est requise",
+        "short_description": "Petite description",
+        "short_description_required": "Petite description obligatoire",
+        "upload_image":"Upload Image",
+        "categories": "Categories",
+        "url_video": "Video URL",
+        "video_name": "Nom de la vidéo",
+        "categories_placeholder": "Choisissez des catégories",
+        "campaign_starts": "début de campagne",
+        "campaign_ends": "Fin de campagne",
+        "winning_starts": "Date de début de validité (coupons seulement)",
+        "winning_ends": "Date de fin de validité (coupons seulement)",
+        "name_of_prizes": "prix",
+        "type_of_prizes": "Type de prix",
+        "number_of_people": "Nombre de participant",
+        "add_more": "Ajouter",
+        "results": "Resultats",
+        "direct": "Direct",
+        "live_draw": "Tirage en direct",
+        "end_date": "Date de fin",
+        "actions": "Actions",
+        "like": "LIKE",
+        "follow": "FOLLOW",
+        "retweet": "RETWEET",
+        "comment": "MESSAGE",
+        "create_poll": "Créer un sondage",
+        "poll_created": "Sondage créer",
+        "back_to_create_campaign": "Retour création campagne",
+        "ask_question": "Posez une question",
+        "type_here": "Ecrivez ici",
+        "question_required": "Une question est obligatoire",
+        "choose_at_least_two_answer": "Choisissez 2 réponses au minimum",
+        "choose_answer": "Choisissez une réponse",
+        "allow_multiple_choices": "Permet des choix multiples",
+        "allow_multiple_votes": "Autorise plusieurs votes par IP",
+        "name": "Nom",
+        "name_required": "Le nom est requis",
+        "ccv": "CCV",
+        "ccv_required": "CCV est requis",
+        "card_number": "Numero de carte",
+        "card_number_required": "Numero de carte requis",
+        "date": "Date",
+        "date_required": "Date requise",
+        "campaign_total": "Campagne Total",
+        "campaign":"Campagne",
+        "iva": "IVA",
+        "total": "Total",
+        "must_have_one_at_least": "Doit avoir une réponse au minimum",
+        "video": "Video"
+    },
+
+    "profile_activated_page": {
+        "successfully_activated": "Votre compte est validé",
+        "goto_login": "Rejoindre la page d'accueil!"
+    },
+
+    "search_result_page": {
+        "search": "Recherche"
+    },
+
+    "signin_modal": {
+        "username": "Utilisateur",
+        "password": "Mot de passe",
+        "confirm_password": "Confirmez le mot de passe",
+        "password_special_alert": "Doit contenir au moins un caractère spécial.",
+        "password_lowercase_alert": "Doit contenir au moins une lettre minuscule.",
+        "password_capital_alert": "doit contenir au moins une lettre majuscule.",
+        "password_number_alert": " doit contenir au moins un chiffre.",
+        "password_length_alert": " doit contenir au moins 8 caractères",
+        "i_agree": "I agree to the",
+        "terms_of_use": "Terms of Use",
+        "and": "et",
+        "privacy_policy": "Politique de confidentialité",
+        "are_you_company": " Vous êtes une entreprise ?",
+        "or": "OU",
+        "enter_valid_email": "Entrer une adresse email valide",
+        "username_required": "Nom d'utilisateur requis",
+        "password_required": "Mot de passe requis",
+        "confirm_password_required": "confirmation du mot de passe requis"
+    },
+
+    "login_modal": {
+        "remember_me": "se rappeler de moi",
+        "forgot_password": "Mot de passe oublié"
+    },
+
+    "company_modal": {
+        "company_form": "Formulaire entreprise",
+        "email": "Addresse Email",
+        "email_required": "Adresse email recquise",
+        "phone_number_required": "Numéro de téléphone requis",
+        "company_name": "Nom de l'entreprise",
+        "company_name_required": "Nom de l'entrepris requis",
+        "your_message": "Votre message",
+        "your_message_required": "Ecrivez votre message",
+        "need_help": "Besoin d'aide?",
+        "contact_us": "Contactez nous",
+        "here": "Ici."
+    },
+
+    "forgot_password_modal": {
+        "forgot_password": "Mot de passe oublié ?"
+    },
+
+    "phone_verify_modal": {
+        "enter_code": "Entrer code de vérification",
+        "resend_code": "Renvoyer le code de vérification"
+    },
+
+    "delete_account_modal": {
+        "delete_account": "Supprimer le compte",
+        "password": "Mot de passe",
+        "password_required": "Mot de passe est obligatoire"
+    },
+
+    "congratulation_modal": {
+        "congratulations": "Félicitations!",
+        "powered_by": "Powered by: "
+    },
+
+    "participate_confirm_modal": {
+        "thanks_for_participating": "Merci pour votre participation!",
+        "checkbox1": "Veux tu rejoindre le cercle $ ?",
+        "checkbox2": "Voulez vous recevoir des infos de $   par email ?"
+    }
+    
+    
+}
