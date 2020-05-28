@@ -27,7 +27,7 @@ function Banner(props) {
     }
 
     return (
-        <div className="banner font-weight-bold">
+        <div className="banner font-weight-bold banner-text">
             <div>
                 <span className="banner-text-blue">Thousands of </span>
                 <span className="banner-text-green"> prizes </span>

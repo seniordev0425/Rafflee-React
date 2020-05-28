@@ -470,24 +470,22 @@ h2 span {
     background-position: center center;
 }
 .banner-text {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
+    font-size: 35px;
+}
+@media(max-width: 500px) {
+    .banner-text {
+        font-size: 25px;
+    }
 }
 .banner-text-blue {
-    font-size: 35px;
     color: #0091ff;
-
 }
 .banner-text-green {
-    font-size: 35px;
     color: #06CBC7;
     text-shadow: 0px 1px, 1px 1px, 1px 0px;
     letter-spacing: 2px;
 }
 .banner-text-purple {
-    font-size: 35px;
     color: #936EEA;
     text-shadow: 0px 1px, 1px 1px, 1px 0px;
     letter-spacing: 2px;
@@ -530,7 +528,6 @@ h2 span {
     font-size: 1.2rem;
 }
 .hot-new-text {
-    font-size: 35px;
     color:#0091ff;
     text-align: center;
     margin-top: 40px;
@@ -605,7 +602,6 @@ h2 span {
     top: 10px;
 }
 .find-deal-text {
-    font-size: 35px;
     color:#7778ED;
     text-align: center;
     margin-top: 30px;

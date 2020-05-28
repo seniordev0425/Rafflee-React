@@ -34,39 +34,39 @@ function PaymentSection(props) {
 
         let twitter = []
         if (params.twitter.comment) {
-            twitter.push({ action: 'tweet', model: params.twitter.comment_model, entries: params.twitter.comment_entries, mandatory: params.twitter.comment_mandatory })
+            twitter.push({ action: 'tweet', model: params.twitter.comment_model, entries: params.twitter.comment_entries || 1, mandatory: params.twitter.comment_mandatory })
         }
         if (params.twitter.like) {
-            twitter.push({ action: 'like', id: params.twitter.like_id, entries: params.twitter.like_entries, mandatory: params.twitter.like_mandatory })
+            twitter.push({ action: 'like', id: params.twitter.like_id, entries: params.twitter.like_entries || 1, mandatory: params.twitter.like_mandatory })
         }
         if (params.twitter.retweet) {
-            twitter.push({ action: 'retweet', id: params.twitter.retweet_id, entries: params.twitter.retweet_entries, mandatory: params.twitter.retweet_mandatory })
+            twitter.push({ action: 'retweet', id: params.twitter.retweet_id, entries: params.twitter.retweet_entries || 1, mandatory: params.twitter.retweet_mandatory })
         }
         if (params.twitter.follow) {
-            twitter.push({ action: 'follow', type: params.twitter.follow_type, id: params.twitter.follow_id, entries: params.twitter.follow_entries, mandatory: params.twitter.follow_mandatory })
+            twitter.push({ action: 'follow', type: params.twitter.follow_type, id: params.twitter.follow_id, entries: params.twitter.follow_entries || 1, mandatory: params.twitter.follow_mandatory })
         }
 
         let instagram = []
         if (params.instagram.profile) {
-            instagram.push({ action: 'instagram_profile', url: params.instagram.profile_url, entries: params.instagram.profile_entries, mandatory: params.instagram.profile_mandatory })
+            instagram.push({ action: 'instagram_profile', url: params.instagram.profile_url, entries: params.instagram.profile_entries || 1, mandatory: params.instagram.profile_mandatory })
         }
         if (params.instagram.publication) {
-            instagram.push({ action: 'instagram_publication', url: params.instagram.publication_url, entries: params.instagram.publication_entries, mandatory: params.instagram.publication_mandatory })
+            instagram.push({ action: 'instagram_publication', url: params.instagram.publication_url, entries: params.instagram.publication_entries || 1, mandatory: params.instagram.publication_mandatory })
         }
 
         let twitch = []
         if (params.twitch.follow) {
-            twitch.push({ action: 'follow', follow_name: params.twitch.follow_name, entries: params.twitch.follow_entries, mandatory: params.twitch.follow_mandatory })
+            twitch.push({ action: 'follow', follow_name: params.twitch.follow_name, entries: params.twitch.follow_entries || 1, mandatory: params.twitch.follow_mandatory })
         }
 
         let url_video = {}
         if (params.url_video.video) {
-            url_video = { url: params.url_video.url, video_name: params.url_video.video_name, entries: params.url_video.entries, mandatory: params.url_video.mandatory }
+            url_video = { url: params.url_video.url, video_name: params.url_video.video_name, entries: params.url_video.entries || 1, mandatory: params.url_video.mandatory }
         }
 
         let url_website = {}
         if (params.url_website.website) {
-            url_website = { url: params.url_website.url, entries: params.url_website.entries, mandatory: params.url_website.mandatory }
+            url_website = { url: params.url_website.url, entries: params.url_website.entries || 1, mandatory: params.url_website.mandatory }
         }
 
         if (params.promotion_name === '') required_messages.push(t('create_campaign_page.required_fields.campaign_name'))

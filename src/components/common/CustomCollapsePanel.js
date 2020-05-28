@@ -140,12 +140,13 @@ function CustomCollapsePanel(props) {
                                 <div>
                                     <a
                                         rel={'external'}
-                                        href={actions.instagram_profile.includes("http") ? actions.instagram_profile : `https://${actions.instagram_profile}`}
+                                        // href={actions.instagram_profile.includes("http") ? actions.instagram_profile : `https://${actions.instagram_profile}`}
+                                        href={`https://instagram.com/${actions.instagram_profile}`}
                                         target='_blank'
                                         className="d-block w-100 overflow-hidden"
                                         onClick={participateInstagramProfile}
                                     >
-                                        {actions.instagram_profile}
+                                        {`https://instagram.com/${actions.instagram_profile}`}
                                     </a>
                                 </div>
                             )}
@@ -153,12 +154,13 @@ function CustomCollapsePanel(props) {
                                 <div>
                                     <a
                                         rel={'external'}
-                                        href={actions.instagram_publication.includes("http") ? actions.instagram_publication : `https://${actions.instagram_publication}`}
+                                        // href={actions.instagram_publication.includes("http") ? actions.instagram_publication : `https://${actions.instagram_publication}`}
+                                        href={`https://instagram.com/p/${actions.instagram_publication}`}
                                         target='_blank'
                                         className="d-block w-100 overflow-hidden"
                                         onClick={participateInstagramPublication}
                                     >
-                                        {actions.instagram_publication}
+                                        {`https://instagram.com/p/${actions.instagram_publication}`}
                                     </a>
                                 </div>
                             )}

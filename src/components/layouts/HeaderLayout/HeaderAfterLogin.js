@@ -73,23 +73,21 @@ function HeaderAfterLogin(props) {
                     <SelectLanguage />
                 </Row>
             ) : (
-                <>
-                    <Button type="primary" onClick={showDrawer}>
-                        Menu
-                    </Button>
-                    <Drawer
-                        placement="left"
-                        closable={false}
-                        onClose={onClose}
-                        visible={visible}
-                    >
-                        <div className="mb-2 font-size-10"><Link to="/deals">{t('header.campaigns')}</Link></div>
-                        <div className="mb-2 font-size-10"><Link to="/user-account/profile">{t('header.account')}</Link></div>
-                        <div className="mb-2 font-size-10"><Link to={company ? "/dashboard/my-campaign" : "/dashboard/participation-history"}>{t('header.dashboard')}</Link></div>
-                        <div className="mb-2 font-size-10" onClick={log_Out}><Link to="/">{t('header.log_out')}</Link></div>
-                        <div><SelectLanguage /></div>
-                    </Drawer>
-                </>
+                    <>
+                        <img src={images.menu_icon} width={40} height={40} onClick={showDrawer} />
+                        <Drawer
+                            placement="left"
+                            closable={false}
+                            onClose={onClose}
+                            visible={visible}
+                        >
+                            <div className="mb-2 font-size-10"><Link to="/deals">{t('header.campaigns')}</Link></div>
+                            <div className="mb-2 font-size-10"><Link to="/user-account/profile">{t('header.account')}</Link></div>
+                            <div className="mb-2 font-size-10"><Link to={company ? "/dashboard/my-campaign" : "/dashboard/participation-history"}>{t('header.dashboard')}</Link></div>
+                            <div className="mb-2 font-size-10" onClick={log_Out}><Link to="/">{t('header.log_out')}</Link></div>
+                            <div><SelectLanguage /></div>
+                        </Drawer>
+                    </>
                 )
             }
         </>

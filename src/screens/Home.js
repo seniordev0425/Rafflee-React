@@ -35,7 +35,7 @@ function Home() {
             <JoinHeader />
             <Header />
             <Banner />
-            <div className="hot-new-text">
+            <div className="hot-new-text banner-text">
                 {t('homepage.hot_new_contest_everyday')}
             </div>
             <div className="premium-prize-text">
@@ -47,7 +47,7 @@ function Home() {
                 :
                 <Loading />
             }
-            <div className="find-deal-text mb-4">
+            <div className="find-deal-text mb-4 banner-text">
                 {t('homepage.find_campaign')}
             </div>
             <CurrentPromotionList />
