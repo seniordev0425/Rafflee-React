@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { FormGroup, Input, Row, Col, Button } from 'reactstrap'
+import { FormGroup, Input, Row, Col } from 'reactstrap'
+import { Button } from 'antd'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import ImageCropModal from '../../../modals/ImageCropModal'
@@ -15,6 +16,21 @@ function WinningItem(props) {
     const [openImageCropModal, setOpenImageCropModal] = useState(false)
 
     const handleImageCropModal = () => setOpenImageCropModal(!openImageCropModal)
+
+    const handleClick = event => {
+        document.getElementById('hiddenFileInput').click();
+    }
+
+    const handleChange = (e) => {
+        var file_read = new FileReader()
+        file_read.addEventListener('load', (event) => {
+            var block = event.target.result.split(";")
+            var realData = block[1].split(",")[1]
+            setWinningVal(realData, id, 'image')
+            setImgBase64Data(realData)
+        })
+        file_read.readAsDataURL(e.target.files[0])
+    }
 
     return (
         <Row>
@@ -65,37 +81,36 @@ function WinningItem(props) {
             </Col>
             <Col sm="12" md="4" className={imgBase64Data ? "mt-md-n3" : "mt-md-3"}>
                 <div className="d-flex justify-content-between align-items-center p-0 mb-md-0 mb-sm-3 mt-md-5">
-                    <div className="pl-0 pl-sm-2 d-flex align-items-center">
-                        <Input
-                            type='file'
-                            onChange={(e) => {
-                                var file_read = new FileReader()
-                                file_read.addEventListener('load', (event) => {
-                                    var block = event.target.result.split(";")
-                                    var realData = block[1].split(",")[1]
-                                    setWinningVal(realData, id, 'image')
-                                    setImgBase64Data(realData)
-                                })
-                                file_read.readAsDataURL(e.target.files[0])
-                            }}
-                        />
+                    <div className="pl-0 pl-sm-2 d-flex align-items-center" style={{ marginTop: imgBase64Data ? 20 : 0 }}>
                         {imgBase64Data &&
                             <div>
                                 <img src={`data:image/jpeg;base64,${imgBase64Data}`} style={{ width: 60, height: 60, borderRadius: 6 }} />
                                 <Button
                                     onClick={handleImageCropModal}
-                                    size="lg"
-                                    color="primary"
-                                    className="blue-btn mt-2"
+                                    type="primary"
+                                    className="ant-blue-btn mx-2 mt-3"
                                     style={{ width: 60, height: 30, fontSize: '1rem', lineHeight: 1 }}
                                 >
                                     {t('button_group.edit')}
                                 </Button>
                             </div>
                         }
-
+                        <Input
+                            type="file"
+                            id="hiddenFileInput"
+                            onChange={handleChange}
+                            style={{ display: 'none' }}
+                        />
+                        <Button
+                            onClick={handleClick}
+                            type="primary"
+                            className="ant-blue-btn mr-2"
+                            style={{ width: 127, height: 30, fontSize: '1rem', lineHeight: 1 }}
+                        >
+                            {t('button_group.prize_image')}
+                        </Button>
                     </div>
-                    <FontAwesomeIcon className="remove-winning-icon" icon={faTrash} onClick={() => removeWinning(id)} />
+                    <FontAwesomeIcon className="remove-winning-icon mt-3" icon={faTrash} onClick={() => removeWinning(id)} />
                 </div>
             </Col>
             <ImageCropModal

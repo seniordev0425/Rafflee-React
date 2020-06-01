@@ -1,7 +1,7 @@
 // inspired by https://leanpub.com/redux-book
 import axios from "axios";
 import { API } from "../actions/types";
-import { accessDenied, apiError, apiStart, apiEnd, apiSuccess } from "../actions/api";
+import { accessDenied, apiError, apiStart, apiEnd, apiSuccess, authError } from "../actions/api";
 
 const apiMiddleware = ({ dispatch }) => next => action => {
   next(action);
@@ -50,6 +50,9 @@ const apiMiddleware = ({ dispatch }) => next => action => {
       if (requireErrorMessage) {
         if (error.response && error.response.data && error.response.data.msg) dispatch(onFailure(error.response.data.msg));
         else dispatch(onFailure(''));
+      }
+      if (error.response && error.response.status === 401) {
+        dispatch(authError())
       }
     })
     .finally(() => {

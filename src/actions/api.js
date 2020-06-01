@@ -1,4 +1,4 @@
-import { API_START, API_END, API_SUCCESS, ACCESS_DENIED, API_ERROR } from "../actions/types";
+import { API_START, API_END, API_SUCCESS, ACCESS_DENIED, API_ERROR, AUTH_ERROR } from "../actions/types";
 
 export const apiStart = label => ({
   type: API_START,
@@ -26,3 +26,7 @@ export const apiError = error => ({
   type: API_ERROR,
   error
 });
+
+export const authError = () => ({
+  type: AUTH_ERROR
+})

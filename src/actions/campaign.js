@@ -3,11 +3,18 @@ import { API } from "./types";
 import { openNotification } from '../utils/notification'
 import successMessages from '../utils/messages/success'
 import errorMessages from '../utils/messages/error'
+import { TWITCH_CLIENT_ID } from '../utils/constants'
 
 const qs = require('querystring')
 
 function onFailed(error) {
   openNotification('warning', errorMessages[localStorage.getItem('i18nextLng')][error])
+  if (error === 'MSG_ERROR_USER_NOT_CONNECTED_TO_TWITCH') {
+    window.open(`https://id.twitch.tv/oauth2/authorize?response_type=code&client_id=${TWITCH_CLIENT_ID}&redirect_uri=https://rafflee.io/twitch/connect/&scope=openid+viewing_activity_read+user_follows_edit`, '_blank')
+  } 
+  else if (error === 'MSG_ERROR_USER_NOT_CONNECTED_TO_TWITTER') {
+    return { type: 'TWITTER_DIRECT_CONNECT', data: true }
+  }
   return {
     type: 'API_FAILED',
     error: error

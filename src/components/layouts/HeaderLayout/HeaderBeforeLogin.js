@@ -63,9 +63,7 @@ function HeaderBeforeLogin() {
                 </Row>
             ) : (
                 <>
-                    <Button type="primary" onClick={showDrawer}>
-                        Menu
-                    </Button>
+                    <img src={images.menu_icon} width={40} height={40} onClick={showDrawer} />
                     <Drawer
                         placement="left"
                         closable={false}

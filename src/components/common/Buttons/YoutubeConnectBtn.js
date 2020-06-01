@@ -4,7 +4,7 @@ import images from '../../../utils/images'
 
 function YoutubeConnectBtn(){
     return(
-            <Row className="pointer">
+            <Row className="not-allowed">
                 <Col xs="2" className="pl-0 pr-0 youtube-icon-container1">
                     <img src={images.youtube_icon}/>
                 </Col>

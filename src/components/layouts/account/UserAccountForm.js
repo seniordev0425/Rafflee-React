@@ -190,18 +190,18 @@ function UserAccountForm() {
                                             </>
                                         }
                                         <ImageUploader
-                                            buttonText={t('button_group.upload_image')}
+                                            buttonText={t('button_group.upload_profile_picture')}
+                                            buttonStyles={{ borderRadius: 6 }}
                                             onChange={onDrop}
                                             className="upload-image-container"
-                                            fileContainerStyle={{ boxShadow: "none", border: "1px solid #DEE6E9" }}
+                                            fileContainerStyle={{ boxShadow: "none", alignItems: 'flex-start' }}
                                             singleImage={true}
                                             withIcon={false}
-                                            imgExtension={['.jpg', '.gif', '.png', '.gif']}
-                                            maxFileSize={5242880}
+                                            withLabel={false}
                                         />
                                     </FormGroup>
                                 </div>
-                                <div className="mt-4 half-width" >
+                                <div className="mt-4 half-width">
                                     <FormGroup>
                                         <div className="footer-link-bold mb-3">{t('account_page.first_name')}</div>
                                         <Field

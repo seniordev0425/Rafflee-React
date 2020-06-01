@@ -204,7 +204,7 @@ function SearchResultLayout(props) {
 
             <div className="mt-0 py-3 d-flex justify-content-center" style={{ borderBottom: "1px solid #cccccc" }}>
                 <div className="banner-search mt-0">
-                    <span className="font-size-13 font-weight-bold mt-2 mr-4 color-blue">{t('search_result_page.search')}:</span>
+                    <span className="font-size-13 font-weight-bold mt-2 mr-1 mr-sm-4 color-blue">{t('search_result_page.search')}:</span>
                     <Input
                         onChange={(e) => setCurrentKey(e.target.value)}
                         placeholder="Search for name, description, company..."

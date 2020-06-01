@@ -77,6 +77,20 @@ function VideoField(props) {
                         </Row>
                     </Col>
                 </Row>
+                <Row className="mt-3">
+                    <Col xs="12" sm="6" className="p-0">
+                        <div className="footer-link-bold mb-3">
+                            {`${t('create_campaign_page.url_video_mobile')} (mp4, avi, etc.)`}
+                        </div>
+                        <Input
+                            type="text"
+                            className="custom-form-control"
+                            placeholder='https://example.com/name.mp4'
+                            value={params.url_video.url_mobile}
+                            onChange={(e) => setAction('url_video', 'url_mobile', e.target.value)}
+                        />
+                    </Col>
+                </Row>
             </div>
         </div>
     )

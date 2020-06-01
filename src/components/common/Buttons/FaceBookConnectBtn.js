@@ -3,7 +3,7 @@ import { Row, Col} from 'reactstrap'
 
 function FaceBookConnectBtn(){
     return(
-            <Row className="pointer">
+            <Row className="not-allowed">
                 <Col xs="2" className="pl-0 pr-0 fb-icon-container1">
                     f
                 </Col>

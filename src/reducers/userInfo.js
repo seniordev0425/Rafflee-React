@@ -78,6 +78,7 @@ const initialFeedState = {
         giveway_name: ''
     },
     tempActionData: null,
+    twitterDirectConnect: false
 }
 
 function UserInfo(state = initialFeedState, action) {
@@ -103,13 +104,10 @@ function UserInfo(state = initialFeedState, action) {
                 ...state,
                 [action.payload]: true
             }
-        case 'API_ERROR':
+        case 'AUTH_ERROR':
             return {
-                ...state
-            }
-        case 'API_FAILED':
-            return {
-                ...state
+                ...state,
+                AUTH_ERROR: true
             }
         case 'GET_USER_PROFILE_SUCCESS':
             return {
@@ -270,6 +268,11 @@ function UserInfo(state = initialFeedState, action) {
             return {
                 ...state,
                 companyInformation: { ...state.companyInformation, company: { ...state.companyInformation.company, follow: action.data } }
+            }
+        case 'TWITTER_DIRECT_CONNECT':
+            return {
+                ...state,
+                twitterDirectConnect: action.data
             }
         default:
             return state

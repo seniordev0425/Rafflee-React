@@ -68,6 +68,7 @@ function CreateCampaignLayout() {
         url_video: {
             video: false,
             url: '',
+            url_mobile: '',
             video_name: '',
             entries: '',
             mandatory: false

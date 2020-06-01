@@ -61,7 +61,7 @@ function PaymentSection(props) {
 
         let url_video = {}
         if (params.url_video.video) {
-            url_video = { url: params.url_video.url, video_name: params.url_video.video_name, entries: params.url_video.entries || 1, mandatory: params.url_video.mandatory }
+            url_video = { url: params.url_video.url, url_mobile: params.url_video.url_mobile, video_name: params.url_video.video_name, entries: params.url_video.entries || 1, mandatory: params.url_video.mandatory }
         }
 
         let url_website = {}

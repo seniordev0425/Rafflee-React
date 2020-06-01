@@ -128,14 +128,14 @@ function SetupSection(props) {
                                     </>
                                 }
                                 <ImageUploader
-                                    buttonText={t('create_campaign_page.upload_image')}
+                                    buttonText={t('button_group.upload_campaign_image')}
+                                    buttonStyles={{ borderRadius: 6 }}
                                     onChange={setPromotionPicture}
                                     className="upload-image-container"
-                                    fileContainerStyle={{ boxShadow: "none", border: "1px solid #DEE6E9" }}
+                                    fileContainerStyle={{ boxShadow: "none", alignItems: 'flex-start' }}
                                     singleImage={true}
                                     withIcon={false}
-                                    imgExtension={['.jpg', '.gif', '.png', '.gif']}
-                                    maxFileSize={5242880}
+                                    withLabel={false}
                                 />
                             </FormGroup>
                         </div>
