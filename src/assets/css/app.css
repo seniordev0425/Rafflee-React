@@ -1303,9 +1303,9 @@ h2 span {
         height: 65px;
     }
 }
-::-webkit-scrollbar { 
+/* ::-webkit-scrollbar { 
     display: none; 
-}
+} */
 /* .ant-tooltip-inner {
     color: white;
     background-color: #0091ff;

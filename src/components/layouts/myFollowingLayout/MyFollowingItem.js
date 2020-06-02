@@ -1,11 +1,11 @@
 import React from 'react'
-import { Row, Col } from 'reactstrap'
-import { Link } from 'react-router-dom'
-import images from '../../../utils/images'
-import { Button } from 'antd'
 import { useDispatch } from 'react-redux'
+import { Row, Col } from 'reactstrap'
+import { Button, Tooltip } from 'antd'
+import { Link } from 'react-router-dom'
+import moment from 'moment'
+import images from '../../../utils/images'
 import { updateFavorite } from '../../../actions/userInfo'
-
 import { useTranslation } from 'react-i18next'
 
 function MyFollowingItem(props) {
@@ -30,16 +30,23 @@ function MyFollowingItem(props) {
                             <img src={item.campaign_image ? item.campaign_image : images.profile_img} />
                         </Col>
                         <Col lg="11" md="10" sm="10" xs="9" className="pl-sm-5">
-                            <div className="promotion-list-item-title">
-                                <Link to={`/company/${item.company_id}/`}>
-                                    <img
-                                        src={item.company_image ? item.company_image : images.profile_img}
-                                        style={{ width: 40, height: 40, borderRadius: '50%', boxShadow: ' 0px 5px 20px #bec2c5d9' }}
-                                        className="mr-3"
-                                    />
-                                </Link>
-                                {item.promotion}
-                                <span className={Date.parse(item.end_date) > Date.now() ? "green-dot" : "red-dot"}></span>
+                            <div className="promotion-list-item-title d-flex justify-content-between align-items-center">
+                                <div>
+                                    <Link to={`/company/${item.company_id}/`}>
+                                        <img
+                                            src={item.company_image ? item.company_image : images.profile_img}
+                                            style={{ width: 40, height: 40, borderRadius: '50%', boxShadow: ' 0px 5px 20px #bec2c5d9' }}
+                                            className="mr-3"
+                                        />
+                                    </Link>
+                                    {item.promotion}
+                                </div>
+                                <Tooltip
+                                    title={Date.parse(item.end_date) > Date.now() ? `In progress. End date: ${moment(item.end_date).format('YYYY-MM-DD')}` : `Ended at ${moment(item.end_date).format('YYYY-MM-DD')}`}
+                                    placement="topRight"
+                                >
+                                    <span className={Date.parse(item.end_date) > Date.now() ? "green-dot pointer" : "red-dot pointer"}></span>
+                                </Tooltip>
                             </div>
                             <div className="promotion-list-item-text">{item.description}</div>
                             <div style={{ marginTop: "20px", height: "40px" }}>

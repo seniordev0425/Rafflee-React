@@ -19,6 +19,7 @@ function CreateCampaignLayout() {
         promotion_name: '',
         promotion_picture: '',
         promotion_description: '',
+        promotion_long_description: '',
         public_promotion: 'public',
         categories: [],
         temp_categories: [],

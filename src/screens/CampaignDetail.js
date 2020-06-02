@@ -275,7 +275,7 @@ function CampaignDetail(props) {
                         <Col lg="11" md="10" sm="10" xs="9" className="pl-sm-5">
                             <div className="promotion-list-item-title">{campaignData.campaign_name}</div>
                             <div className="d-flex justify-content-between">
-                                <div style={{ width: "70%" }} className="promotion-list-item-text">{campaignData.description}</div>
+                                <div style={{ width: "70%" }} className="promotion-list-item-text">{campaignData.long_description}</div>
                                 {(token && !company) && (
                                     <div className="promotion-list-item-star" onClick={update}>
                                         <img src={campaignData.favorite ? images.trans_star_favorite : images.trans_star} />

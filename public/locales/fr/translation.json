@@ -188,6 +188,7 @@
         "campaign_name": "Nom de la campagne",
         "campaign_name_required": "Nom de la campagne est requise",
         "short_description": "Petite description",
+        "complete_description": "Complete Description",
         "short_description_required": "Petite description obligatoire",
         "upload_image":"Upload Image",
         "categories": "Categories",

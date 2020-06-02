@@ -29,6 +29,10 @@ function MyCampaignItem(props) {
                                 </Tooltip>
 
                             </div>
+                            <div className="font-size-9 d-block d-sm-flex">
+                                <div>{`${t('my_campaign_page.number_of_views')}${item.nbr_of_views},`}</div>
+                                <div className="ml-sm-2 ml-0">{`${t('my_campaign_page.percentage_of_interest')}${item.percentage_of_interest}`}</div>
+                            </div>
                             <div className="promotion-list-item-text">{item.description}</div>
                             {item.live_draw &&
                                 <div className="mt-2">

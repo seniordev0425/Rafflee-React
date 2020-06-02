@@ -72,10 +72,17 @@ function PaymentSection(props) {
         if (params.promotion_name === '') required_messages.push(t('create_campaign_page.required_fields.campaign_name'))
         if (params.promotion_picture === '') required_messages.push(t('create_campaign_page.required_fields.campaign_image'))
         if (params.promotion_description === '') required_messages.push(t('create_campaign_page.required_fields.short_description'))
+        if (params.promotion_long_description === '') required_messages.push(t('create_campaign_page.required_fields.complete_description'))
         if (params.start_date === '') required_messages.push(t('create_campaign_page.required_fields.start_date'))
         if (params.end_date === '') required_messages.push(t('create_campaign_page.required_fields.end_date'))
         if (!twitter.length && !twitch.length && !instagram.length && !params.url_video.video && !params.url_website.website && params.poll === 'false') {
             required_messages.push(t('create_campaign_page.required_fields.action'))
+        }
+        for (let i = 0; i < params.winnings.length; i ++) {
+            if (params.winnings[i].name === '' || params.winnings[i].number_of_people === '' || params.winnings[i].description === ''){
+                required_messages.push(t('create_campaign_page.required_fields.winnings'))
+                break;
+            }
         }
 
         setMessages(required_messages)
@@ -94,6 +101,7 @@ function PaymentSection(props) {
         formdata.append('promotion_picture', promotion_picture)
         formdata.append('promotion_name', params.promotion_name)
         formdata.append('promotion_description', params.promotion_description)
+        formdata.append('promotion_long_description', params.promotion_long_description)
         formdata.append('public_promotion', params.public_promotion)
         formdata.append('winnings', JSON.stringify(params.winnings))
         if (categories.length > 0) {

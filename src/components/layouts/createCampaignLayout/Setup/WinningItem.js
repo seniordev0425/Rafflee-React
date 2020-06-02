@@ -37,7 +37,10 @@ function WinningItem(props) {
             <Col xs="12" sm="4" md="3">
                 <div className="mt-4">
                     <FormGroup>
-                        <div className="footer-link-bold mb-3">{t('create_campaign_page.name_of_prizes')}</div>
+                        <div className="footer-link-bold mb-3">
+                            <span>{t('create_campaign_page.name_of_prizes')}</span>
+                            <span className="ml-3 font-size-12" style={{ color: 'red', verticalAlign: 'sub' }}>*</span>
+                        </div>
                         <Input
                             name={"name" + id}
                             value={item.name}
@@ -52,7 +55,10 @@ function WinningItem(props) {
             <Col xs="12" sm="4" md="3">
                 <div className="mt-4">
                     <FormGroup>
-                        <div className="footer-link-bold mb-3">{t('create_campaign_page.type_of_prizes')}</div>
+                        <div className="footer-link-bold mb-3">
+                            <span>{t('create_campaign_page.type_of_prizes')}</span>
+                            <span className="ml-3 font-size-12" style={{ color: 'red', verticalAlign: 'sub' }}>*</span>
+                        </div>
                         <Input
                             name={"winning_type" + id}
                             value={item.description}
@@ -67,7 +73,10 @@ function WinningItem(props) {
             <Col xs="12" sm="4" md="2">
                 <div className="mt-4">
                     <FormGroup>
-                        <div className="footer-link-bold mb-3 mt-4">{t('create_campaign_page.number_of_people')}</div>
+                        <div className="footer-link-bold mb-3">
+                            <span>{t('create_campaign_page.number_of_people')}</span>
+                            <span className="ml-3 font-size-12" style={{ color: 'red', verticalAlign: 'sub' }}>*</span>
+                        </div>
                         <Input
                             name={"number" + id}
                             value={item.number_of_people}

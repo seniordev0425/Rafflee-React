@@ -169,8 +169,9 @@
         "generated_likes": "Generated Likes",
         "earned_followers": "Earned Followers",
         "tweets_generated": "Tweets Generated",
-        "buy_data": "Buy Data"
-        
+        "buy_data": "Buy Data",
+        "number_of_views": "Number of Views: ",
+        "percentage_of_interest": "Percentage of Interest: "
     },
 
     "my_bills_page": {
@@ -212,7 +213,9 @@
         "campaign_sort": "Sorts of Campaign",
         "campaign_name_required": "Campaign Name is required",
         "short_description": "Short Description",
+        "complete_description": "Complete Description",
         "short_description_required": "Short Description is required",
+        "complete_description_required": "Complete Description is required",
         "upload_image":"Upload Image",
         "categories": "Categories",
         "url_video": "Video URL",
@@ -292,9 +295,11 @@
             "campaign_name": "* Campaign name is required",
             "campaign_image": "* Campaign image is required",
             "short_description": "* Short description is required",
+            "complete_description": "* Complete description is required",
             "start_date": "* Campaign start date is required",
             "end_date": "* Campaign end date is required",
-            "action": "* At least one action is required"
+            "action": "* At least one action is required",
+            "winnings": "* Please fill prize fields"
         },
         "giveaway_campaign_create_success": "A Giveaway Campaign was successfully created.",
         "reward_campaign_create_success": "A Reward Campaign was successfully created.",
