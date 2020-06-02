@@ -1,7 +1,8 @@
 import React from 'react'
-import { Row, Col } from 'reactstrap'
+import { Row, Col, Button } from 'reactstrap'
+import { Tooltip } from 'antd'
 import images from '../../../utils/images'
-import { Button } from 'reactstrap'
+import moment from 'moment'
 
 import { useTranslation } from 'react-i18next'
 
@@ -19,8 +20,14 @@ function MyCampaignItem(props) {
                             <img src={item.campaign_image ? item.campaign_image : images.profile_img} />
                         </Col>
                         <Col lg="11" md="10" sm="10" xs="9" className="pl-sm-5">
-                            <div className="promotion-list-item-title">{item.campaign_name}
-                                <span className={Date.parse(item.end_date) > Date.now() ? "green-dot" : "red-dot"}></span>
+                            <div className="promotion-list-item-title d-flex justify-content-between align-items-center">{item.campaign_name}
+                                <Tooltip
+                                    title={Date.parse(item.end_date) > Date.now() ? `In progress. End date: ${moment(item.end_date).format('YYYY-MM-DD')}` : `Ended at ${moment(item.end_date).format('YYYY-MM-DD')}`}
+                                    placement="topRight"
+                                >
+                                    <span className={Date.parse(item.end_date) > Date.now() ? "green-dot pointer" : "red-dot pointer"}></span>
+                                </Tooltip>
+
                             </div>
                             <div className="promotion-list-item-text">{item.description}</div>
                             {item.live_draw &&

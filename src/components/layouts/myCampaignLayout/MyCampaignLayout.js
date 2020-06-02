@@ -20,6 +20,7 @@ function MyCampaignLayout() {
 
     const [minValue, setMinValue] = useState(0)
     const [maxValue, setMaxValue] = useState(NUMBER_PER_PAGE)
+    const [currentPage, setCurrentPage] = useState(1)
 
     useEffect(() => {
         dispatch(getMyCampaigns())
@@ -36,6 +37,7 @@ function MyCampaignLayout() {
     }
 
     const handlePagination = (value) => {
+        setCurrentPage(value)
         setMinValue((value - 1) * NUMBER_PER_PAGE)
         setMaxValue((value) * NUMBER_PER_PAGE)
     }
@@ -49,7 +51,7 @@ function MyCampaignLayout() {
                     </div>
                 )}
                 <Pagination
-                    defaultCurrent={1}
+                    defaultCurrent={currentPage}
                     defaultPageSize={NUMBER_PER_PAGE}
                     onChange={handlePagination}
                     total={campaignList.length}

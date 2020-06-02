@@ -155,7 +155,7 @@ function Routes(props) {
 
     useEffect(() => {
         if (AUTH_ERROR) {
-            openNotification('warning', 'Login Again')
+            openNotification('warning', 'Login to continue')
             history.push('/')
             dispatch({ type: 'INIT_STATE', state: 'AUTH_ERROR', data: false })
             dispatch({ type: "LOG_IN_SUCCESS", data: { token: '', company: false } })

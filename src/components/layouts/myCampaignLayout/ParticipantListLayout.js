@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Row, Col } from 'reactstrap'
+import { Input } from 'antd'
 import { getCampaignParticipants } from '../../../actions/campaign'
 import images from '../../../utils/images'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -19,13 +20,15 @@ function ParticipantListLayout(props) {
 
     const dispatch = useDispatch()
 
+    const [keyword, setKeyword] = useState('')
+
     useEffect(() => {
         dispatch(getCampaignParticipants(id))
     }, [])
 
     const renderParticipants = () => {
         return (
-            (participants || []).map((item, index) =>
+            participants.filter((item, index) => item.email.toLowerCase().includes(keyword) || item.username.toLowerCase().includes(keyword)).map((item, index) =>
                 <Row key={index} className="pt-3 pb-3" style={!(index % 2) ? { background: "rgba(191, 232, 254, 0.25)" } : { background: "white" }}>
                     <Col xs="12" sm={{ size: 10, offset: 1 }} className="pl-4 pr-4 d-flex justify-content-between responsive-font-size-11">
                         <div>{item.username}</div>
@@ -72,8 +75,14 @@ function ParticipantListLayout(props) {
             <Row className="mt-3 mb-3">
                 <Col xs="12" sm={{ size: 10, offset: 1 }} className="pl-4 pr-4">
                     <div className="float-left responsive-font-size-11 font-weight-bold">{t('my_campaign_page.participants')} ({participants.length})</div>
-                    <div className="float-right">
-                        <FontAwesomeIcon icon={faSearch} />
+                    <div className="float-right d-flex align-items-center">
+                        <Input
+                            onChange={e => setKeyword(e.target.value.toLowerCase())}
+                            size="small"
+                            placeholder="Name or email"
+                            prefix={<FontAwesomeIcon icon={faSearch} />}
+                            className="mycampaign-searchbox"
+                        />
                         <FontAwesomeIcon icon={faSlidersH} className="ml-3" />
                     </div>
                 </Col>

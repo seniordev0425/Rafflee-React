@@ -753,8 +753,6 @@ h2 span {
 .green-dot {
     height: 14px;
     width: 14px;
-    margin-top: 9px;
-    float: right;
     background-color: #03D54B;
     box-shadow: 0px 3px 6px #03D54B29;
     border-radius: 50%;
@@ -763,7 +761,6 @@ h2 span {
 .red-dot {
     height: 14px;
     width: 14px;
-    float: right;
     background-color: #D50303;
     box-shadow: 0px 3px 6px #03D54B29;
     border-radius: 50%;
@@ -1029,7 +1026,7 @@ h2 span {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #ff712ea1;
+    background: #f7f7f7;
     color: white;
     font-weight: bolder;
     font-size: 1.4rem;
@@ -1474,7 +1471,11 @@ h2 span {
 .ant-date-picker input {
     height: 40px;   
 }
-
+@media (max-width: 575px) {
+    .mycampaign-searchbox {
+        width: 160px;
+    }
+}
 
 
 

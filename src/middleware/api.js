@@ -49,7 +49,7 @@ const apiMiddleware = ({ dispatch }) => next => action => {
       console.log(error.response)
       if (requireErrorMessage) {
         if (error.response && error.response.data && error.response.data.msg) dispatch(onFailure(error.response.data.msg));
-        else dispatch(onFailure(''));
+        // else dispatch(onFailure(''));
       }
       if (error.response && error.response.status === 401) {
         dispatch(authError())

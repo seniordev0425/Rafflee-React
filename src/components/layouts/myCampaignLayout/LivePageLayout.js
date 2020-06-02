@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Row, Col } from 'reactstrap'
-import { Select, Button } from 'antd'
+import { Select, Button, Input } from 'antd'
 import images from '../../../utils/images'
 import Congratulation from '../../modals/Congratulation'
 import Loading from '../../common/Loading'
@@ -33,6 +33,7 @@ function LivePageLayout(props) {
     const [open, setOpen] = useState(false)
     const [drawType, setDrawType] = useState('draw_by_gift')
     const [winningType, setWinningType] = useState('')
+    const [keyword, setKeyword] = useState('')
 
     const { Option } = Select
 
@@ -58,7 +59,7 @@ function LivePageLayout(props) {
 
     const renderParticipants = () => {
         return (
-            (participants).map((item, index) =>
+            (participants.filter((item, index) => item.email.toLowerCase().includes(keyword) || item.username.toLowerCase().includes(keyword))).map((item, index) =>
                 <Row key={index} className="pt-3 pb-3" style={!(index % 2) ? { background: "rgba(191, 232, 254, 0.25)" } : { background: "white" }}>
                     <Col xs="12" sm={{ size: 10, offset: 1 }} className="pl-4 pr-4 font-size-11">
                         <div className="float-left">{item.username}</div>
@@ -104,8 +105,14 @@ function LivePageLayout(props) {
             <Row className="mt-5 mb-3">
                 <Col xs="12" sm={{ size: 10, offset: 1 }} className="pl-4 pr-4">
                     <div className="float-left" style={{ fontSize: "1.1rem", fontWeight: "bold" }}>{t('my_campaign_page.participants')} ({participants.length})</div>
-                    <div className="float-right">
-                        <FontAwesomeIcon icon={faSearch} />
+                    <div className="float-right d-flex align-items-center">
+                        <Input
+                            onChange={e => setKeyword(e.target.value.toLowerCase())}
+                            size="small"
+                            placeholder="Name or email"
+                            prefix={<FontAwesomeIcon icon={faSearch} />}
+                            className="mycampaign-searchbox"
+                        />
                         <FontAwesomeIcon icon={faSlidersH} className="ml-3" />
                     </div>
                 </Col>
