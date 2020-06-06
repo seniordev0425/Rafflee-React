@@ -93,20 +93,25 @@ function CompanyPage(props) {
                                 <img src={companyInformation.company.logo_url ? companyInformation.company.logo_url : images.profile_img} className="rounded-circle" />
                             </Col>
                             <Col lg="11" md="10" sm="10" xs="9" className="pl-sm-5">
-                                <div className="d-sm-flex justify-content-sm-between">
-                                    <div className="d-sm-flex align-items-sm-center">
+                                <div className="d-md-flex justify-content-md-between">
+                                    <div className="d-md-flex align-items-md-center">
                                         <div className="font-size-12 font-weight-bold">
                                             {companyInformation.company.company_name}
                                             {companyInformation.company.certified &&
                                                 <img src={images.verified_icon} width={20} height={20} className="ml-3 mt-n1" />
                                             }
                                         </div>
-                                        <div className="ml-0 ml-sm-3 color-gray font-size-10">
-                                            {t('company_page.member_since')}
-                                            {` ${moment(companyInformation.company.member_since).format("MMM Do YYYY")}`}
+                                        <div className="ml-0 ml-md-3 color-gray font-size-10 d-md-flex">
+                                            <div className="mr-md-3">
+                                                {t('company_page.member_since')}
+                                                {` ${moment(companyInformation.company.member_since).format("MMM Do YYYY")}`}
+                                            </div>
+                                            <div>
+                                                {`${t('my_circle_page.followers')}: ${companyInformation.company.number_of_follower}`}
+                                            </div>
                                         </div>
                                     </div>
-                                    <div className="mt-3 mt-sm-0">
+                                    <div className="mt-3 mt-md-0">
                                         <a href={companyInformation.company.website_url || '#'}><img src={images.globe_gray_icon} width={20} height={20} className="mr-5" /></a>
                                         <a href={companyInformation.company.instagram_page_url || '#'}><img src={images.instagram_gray_icon} width={20} height={20} className="mr-5" /></a>
                                         <a href={companyInformation.company.facebook_page_url || '#'}><img src={images.facebook_gray_icon} width={8} height={20} /></a>

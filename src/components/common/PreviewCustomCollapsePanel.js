@@ -97,21 +97,11 @@ function CustomCollapsePanel(props) {
                                 tryToOpenValidationModal={tryToOpenValidationModal}
                             />
                         )}
-                        {actions.profile && (
-                            <CheckBoxButtonForAction
-                                socialName={type}
-                                btnString='instagram_profile'
-                                onParticipate={onParticipate}
-                                tryToOpenValidationModal={tryToOpenValidationModal}
-                            />
+                        {actions.profile_url && (
+                            <div className="color-blue">{`https://instagram.com/${actions.profile_url}`}</div>
                         )}
-                        {actions.publication && (
-                            <CheckBoxButtonForAction
-                                socialName={type}
-                                btnString='instagram_publication'
-                                onParticipate={onParticipate}
-                                tryToOpenValidationModal={tryToOpenValidationModal}
-                            />
+                        {actions.publication_url && (
+                           <div className="color-blue">{`https://instagram.com/p/${actions.publication_url}`}</div>
                         )}
                         {actions.video && (
                             <CheckBoxButtonForAction
@@ -122,7 +112,8 @@ function CustomCollapsePanel(props) {
                             />
                         )}
                         {actions.website && (
-                            <a rel={'external'} href={url.includes("http") ? url : `https://${url}`} target='_blank' className="" onClick={participateWebsite}>{url}</a>
+                            // <a rel={'external'} href={url.includes("http") ? url : `https://${url}`} target='_blank' className="" onClick={participateWebsite}>{url}</a>
+                            <div className="color-blue">{url}</div>
                         )}
                     </div>
 

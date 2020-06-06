@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next'
 
 function ParticipateConfirmModal(props) {
     const { t } = useTranslation()
-    const { open, onToggle, promotion_id } = props
+    const { open, onToggle, promotion_id, company_name } = props
 
     const CAMPAIGN_SUBSCRIPTION_PROCESS = useSelector(state => state.userInfo.CAMPAIGN_SUBSCRIPTION)
     const CAMPAIGN_SUBSCRIPTION_SUCCESS = useSelector(state => state.userInfo.SUCCESS_CAMPAIGN_SUBSCRIPTION)
@@ -38,7 +38,7 @@ function ParticipateConfirmModal(props) {
             <ModalBody>
                 <div className="text-center font-size-19 mt-4 underline color-blue">{t('participate_confirm_modal.thanks_for_participating')}</div>
                 <div className="mt-3">
-                    <Checkbox checked={joinCircle} onChange={() => setJoinCircle(!joinCircle)}>{t('participate_confirm_modal.checkbox1')}</Checkbox>
+                    <Checkbox checked={joinCircle} onChange={() => setJoinCircle(!joinCircle)}>{`${t('participate_confirm_modal.checkbox1')}${company_name}?` }</Checkbox>
                 </div>
                 <div className="mt-3">
                     <Checkbox checked={newsletter} onChange={() => setNewsletter(!newsletter)}>{t('participate_confirm_modal.checkbox2')}</Checkbox>

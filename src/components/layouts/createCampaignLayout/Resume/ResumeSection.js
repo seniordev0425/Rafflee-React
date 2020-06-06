@@ -1,4 +1,5 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import { Row, Col, Input } from 'reactstrap'
 import images from '../../../../utils/images'
 
@@ -8,6 +9,8 @@ function ResumeSection(props) {
     const { t } = useTranslation()
 
     const { params, setParams, setSection } = props
+
+    const created_promotion_id = useSelector(state => state.campaign.created_promotion_id)
 
     return (
         <Row>
@@ -20,11 +23,12 @@ function ResumeSection(props) {
                         {t(`create_campaign_page.${params.campaign_type}_campaign_create_success`)}
                     </div>
                     <div className="footer-link-bold mt-5 mb-3">{t('create_campaign_page.campaign_link')}</div>
-                    <Input
-                        type="text"
-                        className="custom-form-control footer-link"
-                        defaultValue='https://rafflee.io/campaign/'
-                    />
+                    <div
+                        className="px-3 py-2 mb-5 d-flex align-items-center font-size-9 color-blue"
+                        style={{ borderRadius: 6, border: '1px solid #DEE6E9' }}
+                    >
+                       <a href={`https://rafflee.io/campaign-detail/${created_promotion_id}`}>{`https://rafflee.io/campaign-detail/${created_promotion_id}`}</a> 
+                    </div>
                     <div className="footer-link-bold mt-5 mb-3">{t('create_campaign_page.embed_page_blog_post')}</div>
                     <Input
                         type="textarea"

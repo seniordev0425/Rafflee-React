@@ -10,7 +10,7 @@ function TwitchConnectBtn(props) {
     const company = useSelector(state => state.userInfo.company)
 
     const getTwitchToken = () => {
-        // if (connected) return
+        if (connected) return
         if (company) {
             window.open(`https://id.twitch.tv/oauth2/authorize?response_type=code&client_id=${TWITCH_CLIENT_ID}&redirect_uri=https://rafflee.io/twitch/connect/&scope=openid+viewing_activity_read+channel_read+user_follows_edit`, '_blank')
         } else {

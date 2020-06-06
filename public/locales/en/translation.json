@@ -76,7 +76,8 @@
         "edit": "Edit",
         "follow_circle": "FOLLOW",
         "unfollow_circle": "UNFOLLOW",
-        "remove": "Remove"     
+        "remove": "Remove",
+        "close": "Close"     
     },
 
     "homepage": {
@@ -130,12 +131,12 @@
             "text": "To get credit for this entry, you must tweet about this on your twitter page. Likes & comments are appreciated, but no required. Thanks!"
         },
         "twitch": {
-            "title": "Follow Converse on Twitch",
-            "text": "To get credit for this entry, you must tweet about this on your twitter page. Likes & comments are appreciated, but no required. Thanks!"
+            "title": "Follow on Twitch",
+            "text": "To get credit for this entry, follow on twitch. Thanks!"
         },
         "instagram": {
-            "title": "Follow Converse on Instagram",
-            "text": "Visit Instagram profile or publication below"
+            "title": "Visit below profile or publication on Instagram",
+            "text": "To get entries for this action, you are redirected on the instagram page. Likes & comments are appreciated. Thanks!"
         },
         "other": {
             "title": "",
@@ -398,8 +399,11 @@
 
     "participate_confirm_modal": {
         "thanks_for_participating": "Thanks for participating!",
-        "checkbox1": "Would you like to join the private Converse Cercle?",
+        "checkbox1": "Would you like to join ",
         "checkbox2": "Would you like to receive informations about this company by email?"
+    },
+    "campaign_close_modal": {
+        "close_campaign": "Close Campaign"
     },
     "social_oauth": {
         "twitter": "Twitter Connected",

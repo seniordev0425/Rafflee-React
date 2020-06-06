@@ -274,6 +274,13 @@ function UserInfo(state = initialFeedState, action) {
                 ...state,
                 twitterDirectConnect: action.data
             }
+        case 'UPDATE_MYCAMPAIGN_ENDDATE':
+            return {
+                ...state,
+                myCampaigns: state.myCampaigns.map(promotion => promotion.pk === action.data.promotion_id ?
+                    { ...promotion, end_date: `${action.data.end_date}Z` } : promotion
+                )
+            }
         default:
             return state
     }

@@ -51,7 +51,7 @@ function ParticipationResult(props) {
                     <Row className="campaign-main-panel mt-4 mb-5">
                         <Col className="px-0 left">
                             <div className="w-100">
-                                <img src={participation_result.giveway_image_url ? participation_result.giveway_image_url : images.campaign} width="100%" height="100%" />
+                                <img src={participation_result.giveaway_image_url ? participation_result.giveaway_image_url : images.campaign} width="100%" height="100%" />
                             </div>
                         </Col>
                         <Col className="px-0 center">
@@ -59,7 +59,7 @@ function ParticipationResult(props) {
                             <div className="d-flex ml-3 ml-lg-5 mt-3">
                                 <img src={images.award} width="30" height="40" />
                                 <div className="ml-4  color-blue">
-                                    {participation_result.giveway_name}
+                                    {participation_result.giveaway_name}
                                 </div>
                             </div>
                         </Col>
@@ -67,14 +67,14 @@ function ParticipationResult(props) {
                             <div className="top-half-circle"></div>
                             <div className="bottom-half-circle"></div>
                             <div className="mt-3 ml-3 mt-lg-5 ml-lg-5">{t('campaign_detail_page.giveway_description')}</div>
-                            <div className="color-blue ml-3 ml-lg-5 mt-3">{participation_result.giveway_description}</div>
+                            <div className="color-blue ml-3 ml-lg-5 mt-3">{participation_result.giveaway_description}</div>
                         </Col>
                     </Row>
 
                     <Row className="campaign-main-panel-mobile mt-3 mb-3">
                         <Col className="px-0 left">
                             <div className="w-100">
-                                <img src={participation_result.giveway_image_url ? participation_result.giveway_image_url : images.campaign} width="100%" />
+                                <img src={participation_result.giveaway_image_url ? participation_result.giveaway_image_url : images.campaign} width="100%" />
                             </div>
                         </Col>
                         <Col className="px-0 center d-flex justify-content-center">
@@ -83,7 +83,7 @@ function ParticipationResult(props) {
                                 <div className="d-flex mt-2 ml-2">
                                     <img src={images.award} width="20" height="25" />
                                     <div className="ml-4 color-blue">
-                                        {participation_result.giveway_name}
+                                        {participation_result.giveaway_name}
                                     </div>
                                 </div>
                             </div>
@@ -92,7 +92,7 @@ function ParticipationResult(props) {
                     <Row className="campaign-main-panel-mobile-footer px-3">
                         <div>
                             <div className="mt-2">{t('campaign_detail_page.giveway_description')}</div>
-                            <div className="color-blue">{participation_result.giveway_description}</div>
+                            <div className="color-blue">{participation_result.giveaway_description}</div>
                         </div>
                     </Row>
                 </Col>

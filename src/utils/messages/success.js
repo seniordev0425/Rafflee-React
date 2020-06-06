@@ -14,7 +14,8 @@ const successMessages = {
         createCampaign: "New campaign created successfully!",
         success: "Success",
         completeToWatchVideo: "Completed to watch a video.",
-        completeToSubmitPoll: "Successfully Submitted."
+        completeToSubmitPoll: "Successfully Submitted.",
+        closeCampaign: "Campaign Closed"
     },
 
 
@@ -33,7 +34,8 @@ const successMessages = {
         createCampaign: "La nouvelle campagne à été créé avec succès!",
         success: "Validé",
         completeToWatchVideo: "Complétez pour regarder la vidéo",
-        completeToSubmitPoll: "Questionnaire soumis avec succès."
+        completeToSubmitPoll: "Questionnaire soumis avec succès.",
+        closeCampaign: "Campaign Closed"
     }
 }
 

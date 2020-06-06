@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Row, Col, Button } from 'reactstrap'
-import { Tooltip } from 'antd'
+import { Button as AntdButton, Tooltip } from 'antd'
+import CampaignCloseModal from '../../modals/CampaignCloseModal'
 import images from '../../../utils/images'
 import moment from 'moment'
 
@@ -10,6 +11,12 @@ function MyCampaignItem(props) {
     const { t } = useTranslation()
 
     const { item, goToLivePage, goToParticipatePage } = props
+
+    const [openCloseModal, setOpenCloseModal] = useState(false)
+    const handleCloseModal = () => {
+        if (Date.parse(item.end_date) <= Date.now()) return
+        setOpenCloseModal(!openCloseModal)
+    }
 
     return (
         <div>
@@ -22,10 +29,10 @@ function MyCampaignItem(props) {
                         <Col lg="11" md="10" sm="10" xs="9" className="pl-sm-5">
                             <div className="promotion-list-item-title d-flex justify-content-between align-items-center">{item.campaign_name}
                                 <Tooltip
-                                    title={Date.parse(item.end_date) > Date.now() ? `In progress. End date: ${moment(item.end_date).format('YYYY-MM-DD')}` : `Ended at ${moment(item.end_date).format('YYYY-MM-DD')}`}
+                                    title={Date.parse(item.end_date) > (Date.now() + 1000) ? `In progress. End date: ${moment(item.end_date).format('YYYY-MM-DD')}` : `Ended at ${moment(item.end_date).format('YYYY-MM-DD')}`}
                                     placement="topRight"
                                 >
-                                    <span className={Date.parse(item.end_date) > Date.now() ? "green-dot pointer" : "red-dot pointer"}></span>
+                                    <span className={Date.parse(item.end_date) > (Date.now() + 1000) ? "green-dot pointer" : "red-dot pointer"}></span>
                                 </Tooltip>
 
                             </div>
@@ -47,16 +54,29 @@ function MyCampaignItem(props) {
                                 </div>
                             }
 
-                            <div className="mt-2">
+                            <div className="mt-2 d-flex justify-content-between align-items-center">
                                 <span className="footer-link-bold pointer" onClick={() => goToParticipatePage(item.pk)}>
                                     {t('my_campaign_page.view_participants')} ({item.number_of_participants})
                                 </span>
+                                <AntdButton
+                                    type="primary"
+                                    className={Date.parse(item.end_date) > (Date.now() + 1000) ? "ant-blue-btn" : "ant-disabled-btn"}
+                                    style={{ width: 85, height: 30, padding: 0 }}
+                                    onClick={handleCloseModal}
+                                >
+                                    {t('button_group.close')}
+                                </AntdButton>
                             </div>
-
                         </Col>
                     </Row>
                 </Col>
             </Row>
+            <CampaignCloseModal
+                open={openCloseModal}
+                onToggle={handleCloseModal}
+                onClose={() => setOpenCloseModal(false)}
+                promotion_id={item.pk}
+            />
         </div>
     )
 }

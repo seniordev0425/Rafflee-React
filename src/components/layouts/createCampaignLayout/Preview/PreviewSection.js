@@ -54,7 +54,7 @@ function PreviewSection(props) {
                         </Col>
                         <Col lg="11" md="10" sm="10" xs="9" className="pl-sm-5">
                             <div className="promotion-list-item-title">{params.promotion_name}</div>
-                            <div style={{ width: "70%" }} className="promotion-list-item-text">{params.promotion_description}</div>
+                            <div style={{ width: "70%" }} className="promotion-list-item-text">{params.promotion_long_description}</div>
                         </Col>
                     </Row>
                     <Row className="campaign-main-panel mt-4 mb-5 mx-0">
@@ -160,8 +160,8 @@ function PreviewSection(props) {
                                     type="instagram"
                                     actions={
                                         {
-                                            profile: params.instagram.profile,
-                                            publication: params.instagram.publication,
+                                            profile_url: params.instagram.profile_url,
+                                            publication_url: params.instagram.publication_url,
                                         }
                                     }
                                     onParticipate={() => void 0}

@@ -191,8 +191,8 @@ export function createCampaign(params) {
 function onSuccessCreateCampaign(data) {
   openNotification('success', successMessages[localStorage.getItem('i18nextLng')].createCampaign)
   return {
-    type: '',
-    data: ''
+    type: 'CREATED_PROMOTION_ID',
+    data: data.promotion_id
   }
 }
 /////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_TWITTER_LIKE_ACTION
@@ -525,6 +525,27 @@ function onSuccessCampaignParticipateInstagramPublication(data) {
   return {
     type: '',
     data: '',
+  }
+}
+/////////////////////////////////////////////// CLOSE_CAMPAIGN_ACTION
+export function closeCampaign(params) {
+  return apiAction({
+    url: APIROUTE + "campaign/close/",
+    method: 'POST',
+    data: params,
+    accessToken: sessionStorage.getItem('token'),
+    onSuccess: onSuccessCloseCampaign,
+    onFailure: onFailed,
+    label: 'CLOSE_CAMPAIGN',
+    requireErrorMessage: true
+
+  });
+}
+function onSuccessCloseCampaign(data) {
+  openNotification('success', successMessages[localStorage.getItem('i18nextLng')].closeCampaign)
+  return {
+    type: 'UPDATE_MYCAMPAIGN_ENDDATE',
+    data: {promotion_id: data.promotion_id, end_date: data.end_date}
   }
 }
 

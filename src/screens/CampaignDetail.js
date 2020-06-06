@@ -502,7 +502,7 @@ function CampaignDetail(props) {
             <FooterLink />
             <Footer />
 
-            <ParticipateConfirmModal open={openConfirm} onToggle={handleOpenConfirm} promotion_id={campaignData.pk} />
+            <ParticipateConfirmModal open={openConfirm} onToggle={handleOpenConfirm} promotion_id={campaignData.pk} company_name={campaignData.company_name} />
             <VideoPlayerModal open={openVideo} onToggle={handleOpenVideo} videoEnded={videoEnded} />
 
             <TwitterLikeValidationModal

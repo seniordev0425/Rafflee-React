@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useMemo } from 'react'
 import { FormGroup, Input, Row, Col } from 'reactstrap'
 import { Button } from 'antd'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -15,10 +15,14 @@ function WinningItem(props) {
 
     const [openImageCropModal, setOpenImageCropModal] = useState(false)
 
+    useMemo(() => {
+        setImgBase64Data(item.image)
+    }, [item.image])
+    
     const handleImageCropModal = () => setOpenImageCropModal(!openImageCropModal)
 
     const handleClick = event => {
-        document.getElementById('hiddenFileInput').click();
+        document.getElementById('hiddenFileInput' + id).click();
     }
 
     const handleChange = (e) => {
@@ -106,7 +110,7 @@ function WinningItem(props) {
                         }
                         <Input
                             type="file"
-                            id="hiddenFileInput"
+                            id={`hiddenFileInput${id}`}
                             onChange={handleChange}
                             style={{ display: 'none' }}
                         />
