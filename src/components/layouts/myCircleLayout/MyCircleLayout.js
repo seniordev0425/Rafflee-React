@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Pagination } from 'antd'
+import { Pagination, Input } from 'antd'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import MyCircleItem from './MyCircleItem'
-import DetailLayout from './DetailLayout'
 import Loading from '../../common/Loading'
-import { 
-    getFavoriteCompanies, 
-    getUserInventory, 
-    getParticipationHistory, 
-    getFollowing 
+import {
+    getFavoriteCompanies,
+    getUserInventory,
+    getParticipationHistory,
+    getFollowing
 } from '../../../actions/userInfo'
 import { NUMBER_PER_PAGE } from '../../../utils/constants'
 import { useTranslation } from 'react-i18next'
@@ -23,7 +24,7 @@ function MyCircleLayout() {
     const [minValue, setMinValue] = useState(0)
     const [maxValue, setMaxValue] = useState(NUMBER_PER_PAGE)
 
-    const [companyId, setCompanyId] = useState(null)
+    const [keyword, setKeyword] = useState('')
 
     useEffect(() => {
         dispatch(getFavoriteCompanies())
@@ -37,23 +38,15 @@ function MyCircleLayout() {
         setMaxValue((value) * NUMBER_PER_PAGE)
     }
 
-    const goToDetailPage = (val) => {
-        setCompanyId(val)
-    }
-
-    const goBack = () => {
-        setCompanyId(null)
-    }
-
     const renderMyFavoriteCompanies = () => {
         return (
             <>
-                {(myFavoriteCompanies || []).slice(minValue, maxValue).map((item, index) =>
+                {((myFavoriteCompanies || []).filter((item, index) => item.company_name.toLowerCase().includes(keyword))).slice(minValue, maxValue).map((item, index) =>
                     <div key={index} className="promotion-list-item-container">
-                        <MyCircleItem item={item} goToDetailPage={goToDetailPage} />
+                        <MyCircleItem item={item} />
                     </div>
                 )}
-                {(myFavoriteCompanies || []).length < 1 && (
+                {((myFavoriteCompanies || []).filter((item, index) => item.company_name.toLowerCase().includes(keyword))).length < 1 && (
                     <div className="empty-result mt-5">
                         <span className="promotion-list-item-title">{t('empty_result_to_display')}</span>
                     </div>
@@ -62,7 +55,7 @@ function MyCircleLayout() {
                     defaultCurrent={1}
                     defaultPageSize={NUMBER_PER_PAGE}
                     onChange={handlePagination}
-                    total={(myFavoriteCompanies || []).length}
+                    total={((myFavoriteCompanies || []).filter((item, index) => item.company_name.toLowerCase().includes(keyword))).length}
                     className="py-5 d-flex justify-content-center"
                 />
             </>
@@ -75,12 +68,16 @@ function MyCircleLayout() {
 
     return (
         <div className="min-height-container">
-            {companyId
-                ?
-                <DetailLayout id={companyId} goBack={goBack} />
-                :
-                renderMyFavoriteCompanies()
-            }
+            <div className="d-flex justify-content-center mt-3">
+                <Input
+                    onChange={e => setKeyword(e.target.value.toLowerCase())}
+                    size="large"
+                    placeholder="Search for circle name"
+                    prefix={<FontAwesomeIcon icon={faSearch} />}
+                    className="mycircle-searchbox"
+                />
+            </div>
+            {renderMyFavoriteCompanies()}
         </div>
     )
 }

@@ -64,7 +64,7 @@ function HeaderAfterLogin(props) {
                         <Button type="primary" className="ant-blue-btn mr-3" style={{ width: 140 }}>{t('header.dashboard')}</Button>
                     </Link>
                     <Link to="/user-account/profile" className="d-flex align-items-center mx-3">
-                        <img src={(companyProfile.logo || userProfile.profile_picture) ? (company ? companyProfile.logo : userProfile.profile_picture) : images.account_icon} width={27} height={27} className="rounded-circle" />
+                        <img src={company ? (companyProfile.logo || images.account_icon) : (userProfile.profile_picture || images.account_icon)} width={27} height={27} className="rounded-circle" />
                     </Link>
                     <div onClick={log_Out} className="pointer mr-3">
                         <Button type="link" className="no-border-btn h-100">{t('header.log_out')}</Button>
