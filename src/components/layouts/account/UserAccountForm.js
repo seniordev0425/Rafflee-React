@@ -23,13 +23,14 @@ import SteamConnectBtn from '../../common/Buttons/SteamConnectBtn'
 import { getUserProfile, sendSms, updateUserProfile } from '../../../actions/userInfo'
 import moment from 'moment'
 import { b64toBlob } from '../../../utils/others'
+import { UPLOAD_MAX_SIZE } from '../../../utils/constants'
 import {
     composeValidators,
     required,
     isEmail,
 } from '../../../utils/validation'
-import PhoneVerificationModal from '../../modals/PhoneVerificationModal';
-import Loading from '../../common/Loading';
+import PhoneVerificationModal from '../../modals/PhoneVerificationModal'
+import Loading from '../../common/Loading'
 import { useTranslation } from 'react-i18next'
 
 function UserAccountForm() {
@@ -198,6 +199,8 @@ function UserAccountForm() {
                                             singleImage={true}
                                             withIcon={false}
                                             withLabel={false}
+                                            maxFileSize={UPLOAD_MAX_SIZE}
+                                            fileSizeError='file size is too big. Max 1MB'
                                         />
                                     </FormGroup>
                                 </div>

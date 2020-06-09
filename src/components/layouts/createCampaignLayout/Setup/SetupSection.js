@@ -11,6 +11,7 @@ import { getCategories } from '../../../../actions/homepage'
 import { openNotification } from '../../../../utils/notification'
 
 import { useTranslation } from 'react-i18next'
+import { UPLOAD_MAX_SIZE } from '../../../../utils/constants'
 
 function SetupSection(props) {
     const { t } = useTranslation()
@@ -136,6 +137,8 @@ function SetupSection(props) {
                                     singleImage={true}
                                     withIcon={false}
                                     withLabel={false}
+                                    maxFileSize={UPLOAD_MAX_SIZE}
+                                    fileSizeError='file size is too big. Max 1MB'
                                 />
                             </FormGroup>
                         </div>

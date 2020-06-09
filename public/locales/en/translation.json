@@ -151,7 +151,8 @@
             "text": "Visit Website to participate"
         },
         "watch_video": "Run video",
-        "select_answer": "Select your answers"
+        "select_answer": "Select your answers",
+        "social_detail_alert": "This part is only for phone number verified users."
     },
 
     "my_campaign_page": {
@@ -171,7 +172,7 @@
         "earned_followers": "Earned Followers",
         "tweets_generated": "Tweets Generated",
         "buy_data": "Buy Data",
-        "number_of_views": "Number of Views: ",
+        "number_of_views": "Number of today views: ",
         "percentage_of_interest": "Percentage of Interest: "
     },
 

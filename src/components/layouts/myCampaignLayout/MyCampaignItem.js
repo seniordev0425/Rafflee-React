@@ -13,6 +13,7 @@ function MyCampaignItem(props) {
     const { item, goToLivePage, goToParticipatePage } = props
 
     const [openCloseModal, setOpenCloseModal] = useState(false)
+
     const handleCloseModal = () => {
         if (Date.parse(item.end_date) <= Date.now()) return
         setOpenCloseModal(!openCloseModal)
@@ -38,7 +39,9 @@ function MyCampaignItem(props) {
                             </div>
                             <div className="font-size-9 d-block d-sm-flex">
                                 <div>{`${t('my_campaign_page.number_of_views')}${item.nbr_of_views},`}</div>
-                                <div className="ml-sm-2 ml-0">{`${t('my_campaign_page.percentage_of_interest')}${item.percentage_of_interest}`}</div>
+                                <div className="ml-sm-2 ml-0">{t('my_campaign_page.percentage_of_interest')}
+                                    <span style={{ color: item.percentage_of_interest >= 0 ? 'green' : 'red' }}>{`${item.percentage_of_interest}%`}</span>
+                                </div>
                             </div>
                             <div className="promotion-list-item-text">{item.description}</div>
                             {item.live_draw &&

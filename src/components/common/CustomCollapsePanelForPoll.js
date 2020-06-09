@@ -54,32 +54,38 @@ function CustomCollapsePanelForPoll(props) {
                 >
                     <div className="promotion-list-item-title">{question}</div>
                 </ExpansionPanelSummary>
-                {(token && !company && userProfile.phone_number_verification) &&
-                    <ExpansionPanelDetails>
+
+                <ExpansionPanelDetails>
+                    {(token && !company && userProfile.phone_number_verification)
+                        ?
                         <div>
-                            {t(`campaign_detail_page.${type}.text`)}
-                        </div>
-                        <Select
-                            mode={multiple_choice ? "multiple" : "single"}
-                            className="w-100 mt-2 mt-sm-3"
-                            placeholder={t('create_campaign_page.categories_placeholder')}
-                            onChange={(val) => setAnswers(val)}
-                            size="large"
-                        >
-                            {renderChildren()}
-                        </Select>
-                        <div className="mt-3">
-                            <Button
-                                type="primary"
-                                className="ant-blue-btn promotion-list-item-btn"
-                                onClick={onSubmit}
-                                loading={CAMPAIGN_PARTICIPATE_POLL_PROCESS}
+                            <div>
+                                {t(`campaign_detail_page.${type}.text`)}
+                            </div>
+                            <Select
+                                mode={multiple_choice ? "multiple" : "single"}
+                                className="w-100 mt-2 mt-sm-3"
+                                placeholder={t('create_campaign_page.categories_placeholder')}
+                                onChange={(val) => setAnswers(val)}
+                                size="large"
                             >
-                                {!CAMPAIGN_PARTICIPATE_POLL_PROCESS && t('button_group.confirm')}
-                            </Button>
+                                {renderChildren()}
+                            </Select>
+                            <div className="mt-3">
+                                <Button
+                                    type="primary"
+                                    className="ant-blue-btn promotion-list-item-btn"
+                                    onClick={onSubmit}
+                                    loading={CAMPAIGN_PARTICIPATE_POLL_PROCESS}
+                                >
+                                    {!CAMPAIGN_PARTICIPATE_POLL_PROCESS && t('button_group.confirm')}
+                                </Button>
+                            </div>
                         </div>
-                    </ExpansionPanelDetails>
-                }
+                        :
+                        <span style={{ color: '#f5ad2b' }}>{t('campaign_detail_page.social_detail_alert')}</span>
+                    }
+                </ExpansionPanelDetails>
             </ExpansionPanel>
             <div className="collapse-other-icon">
                 ?

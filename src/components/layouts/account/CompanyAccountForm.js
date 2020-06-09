@@ -19,6 +19,7 @@ import SteamConnectBtn from '../../common/Buttons/SteamConnectBtn'
 import { updateCompanyProfile } from '../../../actions/userInfo'
 import { getCompanyProfile } from '../../../actions/userInfo'
 import { b64toBlob } from '../../../utils/others'
+import { UPLOAD_MAX_SIZE } from '../../../utils/constants'
 import {
     composeValidators,
     required,
@@ -150,6 +151,8 @@ function CompanyAccountForm(props) {
                                             singleImage={true}
                                             withIcon={false}
                                             withLabel={false}
+                                            maxFileSize={UPLOAD_MAX_SIZE}
+                                            fileSizeError='file size is too big. Max 1MB'
                                         />
                                     </FormGroup>
                                 </div>

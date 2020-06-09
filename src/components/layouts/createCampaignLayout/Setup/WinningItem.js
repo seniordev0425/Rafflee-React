@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import ImageCropModal from '../../../modals/ImageCropModal'
 import { useTranslation } from 'react-i18next'
+import { UPLOAD_MAX_SIZE } from '../../../../utils/constants'
 
 function WinningItem(props) {
     const { t } = useTranslation()
@@ -12,13 +13,13 @@ function WinningItem(props) {
     const { id, item, removeWinning, setWinningVal } = props
 
     const [imgBase64Data, setImgBase64Data] = useState(item.image)
-
+    const [exceedMaxSize, setExceedMaxSize] = useState(false)
     const [openImageCropModal, setOpenImageCropModal] = useState(false)
 
     useMemo(() => {
         setImgBase64Data(item.image)
     }, [item.image])
-    
+
     const handleImageCropModal = () => setOpenImageCropModal(!openImageCropModal)
 
     const handleClick = event => {
@@ -33,6 +34,12 @@ function WinningItem(props) {
             setWinningVal(realData, id, 'image')
             setImgBase64Data(realData)
         })
+        console.log(e.target.files[0].size)
+        if (e.target.files[0].size >= UPLOAD_MAX_SIZE) {
+            setExceedMaxSize(true)
+            return
+        }
+        setExceedMaxSize(false)
         file_read.readAsDataURL(e.target.files[0])
     }
 
@@ -122,6 +129,9 @@ function WinningItem(props) {
                         >
                             {t('button_group.prize_image')}
                         </Button>
+                        {exceedMaxSize && 
+                            <span style={{ color: 'red' }}>Max file size 1MB.</span>
+                        }
                     </div>
                     <FontAwesomeIcon className="remove-winning-icon mt-3" icon={faTrash} onClick={() => removeWinning(id)} />
                 </div>
