@@ -76,23 +76,23 @@ function Routes(props) {
         window.addEventListener('online', _handleOnline)
         window.addEventListener('offline', _handleOffline)
 
-        const token = sessionStorage.getItem('token')
+        const session_token = sessionStorage.getItem('token')
         const company = sessionStorage.getItem('company')
 
         const rememberToken = localStorage.getItem('token')
         const rememberCompany = localStorage.getItem('company')
 
-        if (!token && !rememberToken) {
+        if (!session_token && !rememberToken) {
             return
         }
 
-        if (token) {
-            verifyToken(token)
+        if (session_token) {
+            verifyToken(session_token)
                 .then(response => response.text())
                 .then(result => {
                     var json_rlt = JSON.parse(result)
                     if (json_rlt.token) {
-                        dispatch({ type: "LOG_IN_SUCCESS", data: { token: token, company: company === 'true' } })
+                        dispatch({ type: "LOG_IN_SUCCESS", data: { token: session_token, company: company === 'true' } })
                     }
                     else {
                         sessionStorage.clear()

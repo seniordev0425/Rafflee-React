@@ -120,6 +120,7 @@ function WinningItem(props) {
                             id={`hiddenFileInput${id}`}
                             onChange={handleChange}
                             style={{ display: 'none' }}
+                            accept="image/*"
                         />
                         <Button
                             onClick={handleClick}

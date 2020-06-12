@@ -1,53 +1,58 @@
-import React from "react";
-import {
-  ComposableMap,
-  Geographies,
-  Geography,
-  Marker
-} from "react-simple-maps";
+import React from 'react'
+import { GOOGLE_MAP_API_KEY } from '../../../../utils/constants'
 
-const geoUrl =
-  "https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json";
+const { compose, withProps, withStateHandlers } = require("recompose")
+const {
+  withScriptjs,
+  withGoogleMap,
+  GoogleMap,
+  Marker,
+  InfoWindow,
+} = require("react-google-maps")
+const { MarkerWithLabel } = require("react-google-maps/lib/components/addons/MarkerWithLabel")
 
-const markers = [
-  { markerOffset: 25, name: "Japan", coordinates: [136, 35] },
-  { markerOffset: -15, name: "Caracas", coordinates: [-66.9036, 10.4806] },
-  { markerOffset: -15, name: "Lima", coordinates: [-77.0428, -12.0464] }
-];
+const MapWithAMakredInfoWindow = compose(
+  withStateHandlers(() => ({
+    isOpen: false,
+  }), {
+    onToggleOpen: ({ isOpen }) => () => ({
+      isOpen: !isOpen,
+    })
+  }),
+  withScriptjs,
+  withGoogleMap
+)(props =>
+  <GoogleMap
+    defaultZoom={1}
+    defaultCenter={{ lat: 0, lng: 0 }}
+  >
+    {(props.demographics_type === 'action' ? props.overralActionDemographics : props.overralParitipationDemographics).map((item, index) =>
+      <MarkerWithLabel
+        key={index}
+        position={{ lat: item.latitude, lng: item.longitude }}
+        labelAnchor={new window.google.maps.Point(-15, 30)}
+        labelStyle={{ fontSize: "14px", color: '#0091ff', fontWeight: 'bold' }}
+        title={item.city}     
+      >
+        <span>{`${item.country} (${item.number})`}</span>
+      </MarkerWithLabel>
+    )}
+  </GoogleMap>
+)
 
-const MapChart = () => {
+function MapChart(props) {
+  const { overralActionDemographics, overralParitipationDemographics, demographics_type } = props
   return (
-    <ComposableMap
-      projectionConfig={{
-        scale: 160,
-      }}>
-      <Geographies geography={geoUrl}>
-        {({ geographies }) =>
-          geographies
-            .map(geo => (
-              <Geography
-                key={geo.rsmKey}
-                geography={geo}
-                fill="#f1f3fd"
-              />
-            ))
-        }
+    <MapWithAMakredInfoWindow
+      overralActionDemographics={overralActionDemographics}
+      overralParitipationDemographics={overralParitipationDemographics}
+      demographics_type={demographics_type}
+      googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAP_API_KEY}&v=3.exp&libraries=geometry,drawing,places`}
+      loadingElement={<div style={{ height: `100%` }} />}
+      containerElement={<div style={{ height: `400px` }} />}
+      mapElement={<div style={{ height: `100%` }} />}
+    />
+  )
+}
 
-      </Geographies>
-      {markers.map(({ name, coordinates, markerOffset }) => (
-        <Marker key={name} coordinates={coordinates}>
-          <circle r={10} fill="#F00" stroke="#fff" strokeWidth={2} />
-          <text
-            textAnchor="middle"
-            y={markerOffset}
-            style={{ fontFamily: "system-ui", fill: "#5D5A6D" }}
-          >
-            {name}
-          </text>
-        </Marker>
-      ))}
-    </ComposableMap>
-  );
-};
-
-export default MapChart;
+export default MapChart

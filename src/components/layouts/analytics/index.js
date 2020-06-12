@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
 import { Menu, Select } from 'antd'
 import { Row, Col } from 'reactstrap'
 import OverView from './OverView'
@@ -12,16 +13,20 @@ import { useTranslation } from 'react-i18next'
 function AnalyticsLayout() {
     const { t } = useTranslation()
 
+    const companyProfile = useSelector(state => state.userInfo.companyProfile)
     const [currentTab, setCurrentTab] = useState('overview')
+
+    const [time, setTime] = useState('week')
+    const [demographics_type, setDemographicsType] = useState('action')
 
     const { Option } = Select
 
     const renderBody = () => {
         switch (currentTab) {
             case 'overview':
-                return <OverView />
+                return <OverView time={time} />
             case 'audience':
-                return <Audience />
+                return <Audience time={time} demographics_type={demographics_type} />
             case 'engagement':
                 return <Engagement />
             case 'clicks':
@@ -57,21 +62,35 @@ function AnalyticsLayout() {
                 <Col sm={{ size: 10, offset: 1 }} xs="12">
                     <Row>
                         <Col lg="6" xs="12" className="d-flex">
-                            <img src={images.profile_img} width="100px" height="100px" className="mr-4" />
+                            <img src={companyProfile.logo || images.profile_img} width="100px" height="100px" className="mr-4 rounded-circle" />
                             <div className="ml-5">
-                                <div className="font-weight-bold font-size-13">Gap Analytics</div>
-                                <div className="color-blue mt-5 font-size-11">gap@gmail.com</div>
+                                <div className="font-weight-bold font-size-13">{companyProfile.company_name}</div>
+                                <div className="color-blue mt-5 font-size-11">{companyProfile.email}</div>
                             </div>
                         </Col>
                         <Col lg="6" xs="12" className="d-flex justify-content-lg-end justify-content-between align-items-end mt-4">
-                            <div className="mr-lg-5">
-                                <Select size="large" style={{ width: 140 }}>
-                                    <Option value="overall">Overall</Option>
+                            <div className="mr-2">
+                                <Select
+                                    size="large"
+                                    style={{ width: 140 }}
+                                    defaultValue={demographics_type}
+                                    onChange={val => setDemographicsType(val)}
+                                >
+                                    <Option value="action">Action</Option>
+                                    <Option value="participation">Participation</Option>
                                 </Select>
                             </div>
                             <div>
-                                <Select size="large" style={{ width: 140 }}>
+                                <Select
+                                    size="large"
+                                    style={{ width: 140 }}
+                                    defaultValue={time}
+                                    onChange={val => setTime(val)}
+                                >
+                                    <Option value="day">Today</Option>
+                                    <Option value="week">This Week</Option>
                                     <Option value="month">This Month</Option>
+                                    <Option value="year">This Year</Option>
                                 </Select>
                             </div>
                         </Col>

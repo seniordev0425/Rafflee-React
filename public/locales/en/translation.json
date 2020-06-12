@@ -182,9 +182,11 @@
     },
 
     "analytics_page": {
+        "rafflee_followers": "Rafflee Followers",
         "instagram_followers": "Instagram Followers",
         "twitter_followers": "Twitter Followers",
         "youtube_followers": "Youtube Followers",
+        "twitch_followers": "Twitch Followers",
         "total_views_clicks": "Total Views & Clicks",
         "views": "Views",
         "clicks":"Clicks",
@@ -207,7 +209,11 @@
         "following_data": "Following Data",
         "campaign": "Campaign",
         "circle": "Circle",
-        "lost": "Lost"
+        "lost": "Lost",
+        "followers": "Followers",
+        "rafflee": "Rafflee",
+        "twitter": "Twitter",
+        "twitch": "Twitch"
     },
 
     "create_campaign_page": {

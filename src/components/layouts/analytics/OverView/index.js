@@ -1,49 +1,90 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Row, Col } from 'reactstrap'
-import images from '../../../../utils/images'
-import ColorBar from '../../../common/ColorBar'
 import OverViewSplineChart from './OverViewSplineChart'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch, faSlidersH } from '@fortawesome/free-solid-svg-icons'
+import images from '../../../../utils/images'
+import ColorBar from '../../../common/ColorBar'
+import Loading from '../../../common/Loading'
+import { overviewFollowers } from '../../../../actions/analytics'
 
 import { useTranslation } from 'react-i18next'
 
-function OverView() {
+function OverView(props) {
     const { t } = useTranslation()
+
+    const { time } = props
+
+    const overviewDayFollowers = useSelector(state => state.analytics.overviewDayFollowers)
+    const overviewWeekFollowers = useSelector(state => state.analytics.overviewWeekFollowers)
+    const overviewMonthFollowers = useSelector(state => state.analytics.overviewMonthFollowers)
+    const overviewYearFollowers = useSelector(state => state.analytics.overviewYearFollowers)
+
+    const OVERVIEW_DAY_FOLLOWERS = useSelector(state => state.userInfo.OVERVIEW_DAY_FOLLOWERS)
+    const OVERVIEW_WEEK_FOLLOWERS = useSelector(state => state.userInfo.OVERVIEW_WEEK_FOLLOWERS)
+    const OVERVIEW_MONTH_FOLLOWERS = useSelector(state => state.userInfo.OVERVIEW_MONTH_FOLLOWERS)
+    const OVERVIEW_YEAR_FOLLOWERS = useSelector(state => state.userInfo.OVERVIEW_YEAR_FOLLOWERS)
+
+    const dispatch = useDispatch()
+
+    const overviewFollowersArr = {
+        day: overviewDayFollowers,
+        week: overviewWeekFollowers,
+        month: overviewMonthFollowers,
+        year: overviewYearFollowers
+    }
+
+    useEffect(() => {
+        dispatch(overviewFollowers('day'))
+        dispatch(overviewFollowers('week'))
+        dispatch(overviewFollowers('month'))
+        dispatch(overviewFollowers('year'))
+    }, [])
+
+    const renderFollowerNumber = (socialName) => {
+        let arr_len = overviewFollowersArr[time].length
+        if (arr_len === 0) return 0
+        else if (arr_len === 1) return overviewFollowersArr[time][0][socialName]
+        else return (overviewFollowersArr[time][arr_len - 1][socialName] - overviewFollowersArr[time][0][socialName])
+    }
+
+    if (OVERVIEW_DAY_FOLLOWERS || OVERVIEW_WEEK_FOLLOWERS || OVERVIEW_MONTH_FOLLOWERS || OVERVIEW_YEAR_FOLLOWERS) {
+        return <div className="min-height-container"><Loading /></div>
+    }
+
     return (
         <>
             <Row>
                 <Col xs="12" sm={{ size: 10, offset: 1 }} className="px-4 followers-container">
                     <div className="follower-div">
-                        <div>
-                            <img src={images.instagram_icon} width="30px" height="30px" />
-                            <span className="font-weight-bold font-size-11 ml-3">{t('analytics_page.instagram_followers')}</span>
+                        <div className="d-flex align-items-center">
+                            <img src={images.rafflee_icon} width="30px" height="30px" />
+                            <span className="font-weight-bold font-size-11 ml-3">{t('analytics_page.rafflee_followers')}</span>
                         </div>
                         <div className="d-flex justify-content-between mt-3">
-                            <span className="font-weight-bold font-size-20">+3939</span>
-                            <span className="font-size-11 mt-3" style={{ color: "#55C97B" }}>(+348)</span>
+                            <span className="font-weight-bold font-size-20">+{renderFollowerNumber('rafflee')}</span>
+                            {/* <span className="font-size-11 mt-3" style={{ color: "#55C97B" }}>(+348)</span> */}
                         </div>
                         <ColorBar width={100} color="#0091ff" />
                     </div>
                     <div className="follower-div">
-                        <div>
+                        <div className="d-flex align-items-center">
                             <img src={images.twitter_icon} width="30px" height="30px" />
                             <span className="font-weight-bold font-size-11 ml-3">{t('analytics_page.twitter_followers')}</span>
                         </div>
                         <div className="d-flex justify-content-between mt-3">
-                            <span className="font-weight-bold font-size-20">+124</span>
-                            <span className="font-size-11 mt-3" style={{ color: "#55C97B" }}>(+38)</span>
+                            <span className="font-weight-bold font-size-20">+{renderFollowerNumber('twitter')}</span>
                         </div>
                         <ColorBar width={100} color="#0091ff" />
                     </div>
                     <div className="follower-div">
-                        <div>
-                            <img src={images.youtube_icon} width="30px" height="30px" />
-                            <span className="font-weight-bold font-size-11 ml-3">{t('analytics_page.youtube_followers')}</span>
+                        <div className="d-flex align-items-center">
+                            <img src={images.twitch_icon} width="30px" height="30px" />
+                            <span className="font-weight-bold font-size-11 ml-3">{t('analytics_page.twitch_followers')}</span>
                         </div>
                         <div className="d-flex justify-content-between mt-3">
-                            <span className="font-weight-bold font-size-20">+373</span>
-                            <span className="font-size-11 mt-3" style={{ color: "#55C97B" }}>(+69)</span>
+                            <span className="font-weight-bold font-size-20">+{renderFollowerNumber('twitch')}</span>
                         </div>
                         <ColorBar width={100} color="#0091ff" />
                     </div>
@@ -51,7 +92,7 @@ function OverView() {
             </Row>
             <Row>
                 <Col xs="12" sm={{ size: 10, offset: 1 }} className="p-4 mt-5">
-                    <OverViewSplineChart />
+                    <OverViewSplineChart overviewFollowersArr={overviewFollowersArr} time={time} />
                 </Col>
             </Row>
             <Row className="my-5">
