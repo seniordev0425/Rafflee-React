@@ -20,6 +20,7 @@ import TwitchConnectBtn from '../../common/Buttons/TwitchConnectBtn'
 import YoutubeConnectBtn from '../../common/Buttons/YoutubeConnectBtn'
 import InstagramConnectBtn from '../../common/Buttons/InstagramConnectBtn'
 import SteamConnectBtn from '../../common/Buttons/SteamConnectBtn'
+import SnapchatConnectBtn from '../../common/Buttons/SnapchatConnectBtn'
 import { getUserProfile, sendSms, updateUserProfile } from '../../../actions/userInfo'
 import moment from 'moment'
 import { b64toBlob } from '../../../utils/others'
@@ -130,7 +131,7 @@ function UserAccountForm() {
         formdata.append("city", values.street || '')
         formdata.append("region", values.postal_code || '')
         formdata.append("gender", genderState)
-        
+
         dispatch(updateUserProfile(formdata))
     }
 
@@ -366,18 +367,33 @@ function UserAccountForm() {
                                 <div className="mt-4 half-width">
                                     <div className="footer-link-bold mb-3">Facebook</div>
                                     <FaceBookConnectBtn />
-
                                 </div>
                                 <div className="mt-4 half-width">
-                                    <div className="footer-link-bold mb-3">Twitter</div>
-
+                                    <div className="footer-link-bold mb-3 d-flex align-items-center">
+                                        <span>Twitter</span>
+                                        {userProfile.twitter &&
+                                            <FontAwesomeIcon icon={faCheckCircle} className="color-blue font-size-12 ml-3" />
+                                        }
+                                    </div>
                                     <TwitterConnectBtn connected={userProfile.twitter} />
-
                                 </div>
                                 <div className="mt-4 half-width">
-                                    <div className="footer-link-bold mb-3">Twitch</div>
+                                    <div className="footer-link-bold mb-3 d-flex align-items-center">
+                                        <span>Twitch</span>
+                                        {userProfile.twitch &&
+                                            <FontAwesomeIcon icon={faCheckCircle} className="color-blue font-size-12 ml-3" />
+                                        }
+                                    </div>
                                     <TwitchConnectBtn connected={userProfile.twitch} />
-
+                                </div>
+                                <div className="mt-4 half-width">
+                                    <div className="footer-link-bold mb-3 d-flex align-items-center">
+                                        <span>Snapchat</span>
+                                        {userProfile.snapchat &&
+                                            <FontAwesomeIcon icon={faCheckCircle} className="color-blue font-size-12 ml-3" />
+                                        }
+                                    </div>
+                                    <SnapchatConnectBtn connected={userProfile.snapchat} />
                                 </div>
                             </Col>
                             <Col xs="12" sm="6">

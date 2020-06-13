@@ -39,35 +39,12 @@ function Audience(props) {
     return (
         <>
             <Row className="">
-                <Col xs="12" sm={{ size: 10, offset: 1 }} className="px-4 ">
-                    <div className="followers-container default-border">
-                        <div className="audience-bottom-div p-2 p-md-4">
+                <Col xs="12" sm={{ size: 10, offset: 1 }} className="px-4">
+                    <div className="p-2 p-sm-4 default-border">
                             <div className="font-size-11 font-weight-bold mb-3">{t('analytics_page.demographics')}</div>
                             <MapChart
-                                overralActionDemographics={overralActionDemographics}
-                                overralParitipationDemographics={overralParitipationDemographics}
-                                demographics_type={demographics_type}
+                                overralDemographics={demographics_type === 'action' ? overralActionDemographics : overralParitipationDemographics}
                             />
-                        </div>
-                        <div className="audience-bottom-div p-2 p-md-4">
-                            <div className="d-flex flex-wrap font-size-9">
-                                {(demographics_type === 'action' ? overralActionDemographics : overralParitipationDemographics).map((item, index) =>
-                                    <div key={index} style={{ width: 150 }} className="mt-2 mt-md-5">
-                                        <div>
-                                            <ReactCountryFlag
-                                                countryCode={getCode(item.country)}
-                                                style={{
-                                                    fontSize: '1.5em',
-                                                }}
-                                                svg
-                                            />
-                                            <span className="color-gray ml-2">{item.country}</span>
-                                        </div>
-                                            <div className="footer-link-bold mt-2">{`${item.number} users`}</div>
-                                    </div>
-                                )}
-                            </div>
-                        </div>
                     </div>
 
                 </Col>

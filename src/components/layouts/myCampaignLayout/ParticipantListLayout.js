@@ -30,10 +30,14 @@ function ParticipantListLayout(props) {
         return (
             participants.filter((item, index) => item.email.toLowerCase().includes(keyword) || item.username.toLowerCase().includes(keyword)).map((item, index) =>
                 <Row key={index} className="pt-3 pb-3" style={!(index % 2) ? { background: "rgba(191, 232, 254, 0.25)" } : { background: "white" }}>
-                    <Col xs="12" sm={{ size: 10, offset: 1 }} className="pl-4 pr-4 d-flex justify-content-between responsive-font-size-11">
-                        <div>{item.username}</div>
-                        <div>{item.email}</div>
-                        <div className="view-profile-link">{t('my_campaign_page.view_profile')}</div>
+                    <Col xs="12" sm={{ size: 10, offset: 1 }} className="pl-4 pr-4 responsive-font-size-11">
+                        <Row>
+                            <Col sm="5" xs="3" className="px-0" style={{ overflowWrap: 'anywhere' }}><div>{item.username}</div></Col>
+                            <Col sm="7" xs="9" className="d-flex justify-content-between px-0">
+                                <div>{item.email}</div>
+                                <div className="view-profile-link">{t('my_campaign_page.view_profile')}</div>
+                            </Col>
+                        </Row>
                     </Col>
                 </Row>
             )
@@ -66,10 +70,14 @@ function ParticipantListLayout(props) {
                 </Col>
             </Row>
             <Row className="pt-3 pb-3" style={{ background: "rgba(191, 232, 254, 0.25)" }}>
-                <Col xs="12" sm={{ size: 10, offset: 1 }} className="pl-4 pr-4 d-flex justify-content-between responsive-font-size-11">
-                    <div>{t('my_campaign_page.generated_likes')}</div>
-                    <div>{t('my_campaign_page.earned_followers')}</div>
-                    <div>{t('my_campaign_page.tweets_generated')}</div>
+                <Col xs="12" sm={{ size: 10, offset: 1 }} className="pl-4 pr-4 responsive-font-size-11">
+                    <Row>
+                        <Col sm="5" xs="3" className="px-0" style={{ overflowWrap: 'anywhere' }}><div>{t('my_campaign_page.generated_likes')}</div></Col>
+                        <Col sm="7" xs="9" className="d-flex justify-content-between px-0">
+                            <div>{t('my_campaign_page.earned_followers')}</div>
+                            <div>{t('my_campaign_page.tweets_generated')}</div>
+                        </Col>
+                    </Row>
                 </Col>
             </Row>
             <Row className="mt-3 mb-3">

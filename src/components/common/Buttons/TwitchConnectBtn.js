@@ -19,7 +19,7 @@ function TwitchConnectBtn(props) {
     }
 
     return (
-        <Row className="pointer" onClick={getTwitchToken}>
+        <Row className={connected ? "not-allowed" : "pointer"} onClick={getTwitchToken}>
             <Col xs="2" className="pl-0 pr-0 twitch-icon-container1">
                 <img src={images.twitch_icon} />
             </Col>

@@ -24,7 +24,7 @@ function TwitterConnectBtn(props) {
     }
 
     return (
-        <Row className="pointer" onClick={twitterConnect}>
+        <Row className={connected ? "not-allowed" : "pointer"} onClick={twitterConnect}>
             <Col xs="2" className="pl-0 pr-0 twitter-icon-container1">
                 <img src={images.twitter_icon} />
             </Col>

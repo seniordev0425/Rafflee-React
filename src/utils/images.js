@@ -8,6 +8,7 @@ const images = {
     steam_icon: require('../assets/image/steam_icon.png'),
     video_icon: require('../assets/image/video_icon.png'),
     visit_icon: require('../assets/image/visit_icon.png'),
+    snapchat_icon: require('../assets/image/snapchat_icon.png'),
     logo: require('../assets/image/logo.png'),
     logout_icon: require('../assets/image/logout_icon.png'),
     account_icon: require('../assets/image/account_icon.png'),

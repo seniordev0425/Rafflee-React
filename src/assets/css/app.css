@@ -446,6 +446,29 @@ h2 span {
     background: #0a458f 0% 0% no-repeat padding-box;
     border-radius: 0px 6px 6px 0px; 
 }
+.snapchat-icon-container1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 40px;
+    background: #f29e54 0% 0% no-repeat padding-box;
+    border-radius: 6px 0px 0px 6px;
+}
+.snapchat-icon-container1 img {
+    width: 1rem;
+}
+.snapchat-icon-container2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 40px;
+    color: white;
+    text-align: center;
+    background: #ff7701 0% 0% no-repeat padding-box;
+    border-radius: 0px 6px 6px 0px;
+}
 .selected-flag {
     height: 100% !important;
 }
@@ -1492,6 +1515,16 @@ h2 span {
 }
 .mycircle-searchbox {
     width: 300px;
+}
+.leaflet-container {
+    height: 500px;
+    width: 100%;
+}
+@media (max-width: 575px) {
+    .leaflet-container {
+        height: 300px;
+        width: 100%;
+    }
 }
 
 

@@ -6,6 +6,8 @@ import { Button } from 'antd'
 import ReactFlagsSelect from 'react-flags-select'
 import { getCode, getName } from 'country-list'
 import ImageUploader from 'react-images-upload'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 import DeleteAccount from '../../modals/DeleteAccount'
 import ImageCropModal from '../../modals/ImageCropModal'
 import FormInput from '../../common/FormInput'
@@ -15,6 +17,7 @@ import TwitterConnectBtn from '../../common/Buttons/TwitterConnectBtn'
 import TwitchConnectBtn from '../../common/Buttons/TwitchConnectBtn'
 import YoutubeConnectBtn from '../../common/Buttons/YoutubeConnectBtn'
 import InstagramConnectBtn from '../../common/Buttons/InstagramConnectBtn'
+import SnapchatConnectBtn from '../../common/Buttons/SnapchatConnectBtn'
 import SteamConnectBtn from '../../common/Buttons/SteamConnectBtn'
 import { updateCompanyProfile } from '../../../actions/userInfo'
 import { getCompanyProfile } from '../../../actions/userInfo'
@@ -92,7 +95,7 @@ function CompanyAccountForm(props) {
         formdata.append("region", values.postal_code || '')
         formdata.append("address", values.address || '')
         formdata.append("city", values.street || '')
-        
+
         dispatch(updateCompanyProfile(formdata))
     }
 
@@ -113,7 +116,7 @@ function CompanyAccountForm(props) {
     }
 
     if (isLoading)
-        return <div className="min-height-container"><Loading /></div> 
+        return <div className="min-height-container"><Loading /></div>
 
     return (
         <>
@@ -263,12 +266,31 @@ function CompanyAccountForm(props) {
                                     <FaceBookConnectBtn />
                                 </div>
                                 <div className="mt-4 half-width">
-                                    <div className="footer-link-bold mb-3">Twitter</div>
+                                    <div className="footer-link-bold mb-3 d-flex align-items-center">
+                                        <span>Twitter</span>
+                                        {companyProfile.twitter &&
+                                            <FontAwesomeIcon icon={faCheckCircle} className="color-blue font-size-12 ml-3" />
+                                        }
+                                    </div>
                                     <TwitterConnectBtn connected={companyProfile.twitter} />
                                 </div>
                                 <div className="mt-4 half-width">
-                                    <div className="footer-link-bold mb-3">Twitch</div>
+                                    <div className="footer-link-bold mb-3 d-flex align-items-center">
+                                        <span>Twitch</span>
+                                        {companyProfile.twitch &&
+                                            <FontAwesomeIcon icon={faCheckCircle} className="color-blue font-size-12 ml-3" />
+                                        }
+                                    </div>
                                     <TwitchConnectBtn connected={companyProfile.twitch} />
+                                </div>
+                                <div className="mt-4 half-width">
+                                    <div className="footer-link-bold mb-3 d-flex align-items-center">
+                                        <span>Snapchat</span>
+                                        {companyProfile.snapchat &&
+                                            <FontAwesomeIcon icon={faCheckCircle} className="color-blue font-size-12 ml-3" />
+                                        }
+                                    </div>
+                                    <SnapchatConnectBtn connected={companyProfile.snapchat} />
                                 </div>
                             </Col>
                             <Col xs="12" sm="6">

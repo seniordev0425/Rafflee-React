@@ -213,7 +213,10 @@
         "followers": "Followers",
         "rafflee": "Rafflee",
         "twitter": "Twitter",
-        "twitch": "Twitch"
+        "twitch": "Twitch",
+        "continent": "Continent:",
+        "country": "Country:",
+        "city": "City:"
     },
 
     "create_campaign_page": {

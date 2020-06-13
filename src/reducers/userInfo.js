@@ -20,7 +20,8 @@ const initialFeedState = {
         phone_number_verification: false,
         region: '',
         twitter: false,
-        twitch: false
+        twitch: false,
+        snapchat: false
     },
 
     phone_number_verified: false,
@@ -36,7 +37,8 @@ const initialFeedState = {
         country_code: '',
         email: '',
         twitter: false,
-        twitch: false
+        twitch: false,
+        snapchat: false
     },
 
     signUpSuccess: false,
