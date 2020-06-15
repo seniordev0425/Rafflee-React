@@ -34,7 +34,6 @@ function WinningItem(props) {
             setWinningVal(realData, id, 'image')
             setImgBase64Data(realData)
         })
-        console.log(e.target.files[0].size)
         if (e.target.files[0].size >= UPLOAD_MAX_SIZE) {
             setExceedMaxSize(true)
             return

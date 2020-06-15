@@ -12,7 +12,8 @@ const initialFeedState = {
         female: 0
     },
     overralActionDemographics: [],
-    overralParitipationDemographics: []
+    overralParitipationDemographics: [],
+    campaignsInformations: []
 }
 
 function Analytics(state = initialFeedState, action) {
@@ -55,6 +56,11 @@ function Analytics(state = initialFeedState, action) {
                     ...state,
                     overralParitipationDemographics: action.data
                 }
+            }
+        case 'SET_CAMPAIGNS_INFORMATIONS':
+            return {
+                ...state,
+                campaignsInformations: action.data
             }
         default:
             return state

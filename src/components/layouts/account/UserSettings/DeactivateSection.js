@@ -16,7 +16,6 @@ function DeactivateSection() {
     const dispatch = useDispatch()
 
     const onSubmit = (values) => {
-        // console.log(values)
         dispatch(deleteAccount({ password: values.password }))
     }
 

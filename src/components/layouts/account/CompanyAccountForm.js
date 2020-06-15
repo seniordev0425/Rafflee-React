@@ -70,7 +70,6 @@ function CompanyAccountForm(props) {
     useEffect(() => {
         if (UPDATE_COMPANY_PROFILE_SUCCESS) {
             if (imgBase64Data) {
-                console.log('Update header profile img')
                 dispatch({ type: 'UPDATE_COMPANY_LOGO', data: imgBase64Data })
                 dispatch({ type: 'INIT_STATE', state: 'SUCCESS_UPDATE_COMPANY_PROFILE', data: false })
             }

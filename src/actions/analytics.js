@@ -58,12 +58,27 @@ export function getDemographics(id, demographics_type) {
     });
 }
 function onSuccessGetDemographics(data, id, demographics_type) {
-    if (id === 'all') {
-        return {
-            type: 'SET_OVERRAL_DEMOGRAPHICS',
-            demographics_type: demographics_type,
-            data: data.datas
-        }
+    return {
+        type: 'SET_OVERRAL_DEMOGRAPHICS',
+        demographics_type: demographics_type,
+        data: data.datas
+    }
+}
+/////////////////////////////////////////////// ANALYTICS-GET-CAMPAIGNS-INFORMATIONS-ACTION
+export function getCampaignsInformations() {
+    return apiAction({
+        url: APIROUTE + `campaign/all-campaigns/informations/`,
+        method: 'GET',
+        accessToken: sessionStorage.getItem('token'),
+        onSuccess: onSuccessGetCampaignsInformations,
+        onFailure: onFailed,
+        label: `GET_CAMPAIGNS_INFORMATIONS`,
+    });
+}
+function onSuccessGetCampaignsInformations(data) {
+    return {
+        type: 'SET_CAMPAIGNS_INFORMATIONS',
+        data: data.list_of_promotions
     }
 }
 

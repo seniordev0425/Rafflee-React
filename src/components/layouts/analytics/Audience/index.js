@@ -17,7 +17,7 @@ import { useTranslation } from 'react-i18next'
 function Audience(props) {
     const { t } = useTranslation()
 
-    const { time, demographics_type } = props
+    const { campaignID, demographics_type } = props
 
     const activeGender = useSelector(state => state.analytics.activeGender)
     const overralActionDemographics = useSelector(state => state.analytics.overralActionDemographics)
@@ -27,10 +27,10 @@ function Audience(props) {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(getActiveGender('all'))
-        dispatch(getDemographics('all', 'action'))
-        dispatch(getDemographics('all', 'participation'))
-    }, [])
+        dispatch(getActiveGender(campaignID))
+        dispatch(getDemographics(campaignID, 'action'))
+        dispatch(getDemographics(campaignID, 'participation'))
+    }, [campaignID])
 
     if (GET_ACTIVE_GENDER_PROCESS || GET_DEMOGRAPHICS) {
         return <div className="min-height-container"><Loading /></div>

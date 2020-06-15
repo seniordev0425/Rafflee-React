@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
+import React, { useState, useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import { Menu, Select } from 'antd'
 import { Row, Col } from 'reactstrap'
 import OverView from './OverView'
@@ -7,6 +7,8 @@ import Audience from './Audience'
 import Engagement from './Engagement'
 import Following from './Following'
 import images from '../../../utils/images'
+import Loading from '../../common/Loading'
+import { getCampaignsInformations } from '../../../actions/analytics'
 
 import { useTranslation } from 'react-i18next'
 
@@ -14,19 +16,28 @@ function AnalyticsLayout() {
     const { t } = useTranslation()
 
     const companyProfile = useSelector(state => state.userInfo.companyProfile)
+    const campaignsInformations = useSelector(state => state.analytics.campaignsInformations)
+    const GET_CAMPAIGNS_INFORMATIONS_PROCESS = useSelector(state => state.userInfo.GET_CAMPAIGNS_INFORMATIONS)
+    const dispatch = useDispatch()
+
     const [currentTab, setCurrentTab] = useState('overview')
 
     const [time, setTime] = useState('week')
     const [demographics_type, setDemographicsType] = useState('action')
+    const [campaignID, setCampaignID] = useState('all')
 
     const { Option } = Select
+
+    useEffect(() => {
+        dispatch(getCampaignsInformations())
+    }, [])
 
     const renderBody = () => {
         switch (currentTab) {
             case 'overview':
                 return <OverView time={time} />
             case 'audience':
-                return <Audience time={time} demographics_type={demographics_type} />
+                return <Audience demographics_type={demographics_type} campaignID={campaignID} />
             case 'engagement':
                 return <Engagement />
             case 'clicks':
@@ -35,6 +46,9 @@ function AnalyticsLayout() {
                 return <Following />
         }
     }
+
+    if (GET_CAMPAIGNS_INFORMATIONS_PROCESS) return <div className="min-height-container"><Loading /></div>
+
     return (
         <>
             <Row style={{ borderBottom: "1px solid rgba(126, 154, 168, 0.15)" }}>
@@ -69,30 +83,49 @@ function AnalyticsLayout() {
                             </div>
                         </Col>
                         <Col lg="6" xs="12" className="d-flex justify-content-lg-end justify-content-between align-items-end mt-4">
-                            <div className="mr-2">
-                                <Select
-                                    size="large"
-                                    style={{ width: 140 }}
-                                    defaultValue={demographics_type}
-                                    onChange={val => setDemographicsType(val)}
-                                >
-                                    <Option value="action">Action</Option>
-                                    <Option value="participation">Participation</Option>
-                                </Select>
-                            </div>
-                            <div>
-                                <Select
-                                    size="large"
-                                    style={{ width: 140 }}
-                                    defaultValue={time}
-                                    onChange={val => setTime(val)}
-                                >
-                                    <Option value="day">Today</Option>
-                                    <Option value="week">This Week</Option>
-                                    <Option value="month">This Month</Option>
-                                    <Option value="year">This Year</Option>
-                                </Select>
-                            </div>
+                            {currentTab === 'audience' &&
+                                <div className="mr-2">
+                                    <Select
+                                        size="large"
+                                        style={{ width: 140 }}
+                                        defaultValue={demographics_type}
+                                        onChange={val => setDemographicsType(val)}
+                                    >
+                                        <Option value="action">Action</Option>
+                                        <Option value="participation">Participation</Option>
+                                    </Select>
+                                </div>
+                            }
+                            {(currentTab === 'overview' || currentTab === 'clicks') &&
+                                <div>
+                                    <Select
+                                        size="large"
+                                        style={{ width: 140 }}
+                                        defaultValue={time}
+                                        onChange={val => setTime(val)}
+                                    >
+                                        <Option value="day">Today</Option>
+                                        <Option value="week">This Week</Option>
+                                        <Option value="month">This Month</Option>
+                                        <Option value="year">This Year</Option>
+                                    </Select>
+                                </div>
+                            }
+                            {(currentTab === 'audience' || currentTab === 'clicks') &&
+                                <div>
+                                    <Select
+                                        size="large"
+                                        style={{ minWidth: 140 }}
+                                        defaultValue={campaignID}
+                                        onChange={val => setCampaignID(val)}
+                                    >
+                                        <Option value='all'>All</Option>
+                                        {campaignsInformations.map((item, index) =>
+                                            <Option key={index} value={item.id}>{item.name}</Option>
+                                        )}
+                                    </Select>
+                                </div>
+                            }
                         </Col>
                     </Row>
                 </Col>
