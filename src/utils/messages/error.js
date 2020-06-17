@@ -85,12 +85,12 @@ const errorMessages = {
 
     fr: {
         MSG_USER_NOT_EXIST: "Le compte n'existe pas",
-        MSG_INVALID_PASSWORD: "Le npm d'utilisateur ou le password ne sont pas correct",
+        MSG_INVALID_PASSWORD: "Le nom d'utilisateur ou le password ne sont pas correct",
         MSG_FIELD_REQUIRED: "Paramètre manquant ou erreur avec les paramètres",
         MSG_PASSWORD_PROBLEM: "Erreur système, chiffrement du mot de passe",
         MSG_USER_NOT_ACTIVE: "Le compte n'est pas activé",
         MSG_USER_LOGOUT: "Utilisateur déconnecté",
-        MSG_EMAIL_RESET_PASSWORD_SENDED: "L'email de rénitialisation du mot de passe à été envoyé",
+        MSG_EMAIL_RESET_PASSWORD_SENDED: "L'email de réinitialisation du mot de passe à été envoyé",
         MSG_PASSWORD_UPDATED: "Mot de passe mis à jour",
         MSG_ERROR_SERVER: "Erreur serveur",
         MSG_PASSWORDS_DONT_MATCH: "Le mot de passe ne correspond pas",
@@ -98,7 +98,7 @@ const errorMessages = {
         MSG_PASSWORD_TO_SIMPLE: "Nouveau mot de passe trop simple",
         MSG_REPEAT_PASSWORD_DOES_NOT_MATCH: "Le nouveau mot de passe ne correspond pas",
         MSG_PHONE_NUMBER_ERROR: "Erreur avec le numéro de téléphone",
-        MSG_SMS_SENDED: "Sms envoyé",
+        MSG_SMS_SENDED: "SMS envoyé",
         MSG_ERROR_CODE_NOT_CORRESPONDING: "Le code ne correspond pas avec le numéro de téléphone",
         MSG_PHONE_NUMBER_CONFIRMED: "Numéro de téléphone confirmé",
         MSG_PHONE_NUMBER_NOT_CONFIRMED: "Numéro de téléphone non confirmé",
@@ -133,7 +133,7 @@ const errorMessages = {
         MSG_IMPOSSIBLE_TO_PARTICIPATE_WITH_PRO_ACCOUNT: "Impossible de participer avec un compte entreprise",
         MSG_GIVEWAY_NOT_EXIST: "Prix non trouvé",
         MSG_PARTICIPATION_ACCEPTED: "Participation accepté",
-        MSG_ALREADY_PARTICIPATED: "Le compte participte déjà",
+        MSG_ALREADY_PARTICIPATED: "Le compte participe déjà",
         MSG_NO_SOCIAL_ACTION_FINDED: "Actions non trouvées",
         MSG_ERROR_SERVER_PROMOTION_CREATION: "Erreur avec la création de la promotion",
         MSG_ERROR_SERVER_CATEGORIES_CREATION: "Erreur avec la création de la catégorie",
@@ -146,9 +146,9 @@ const errorMessages = {
         MSG_WINNERS_FINDED: "Tout les gagnant ont été trouvé",
         MSG_FAVORITE_NOT_FINDED: "Favoris non trouvés",
         MSG_NO_FAVORITE_FINDED: "Aucun favoris trouvés",
-        MSG_FAVORITE_FINDED: "Favori trouvé",
-        MSG_FAVORITE_DELETED: "Favori supprimé",
-        MSG_FAVORITE_ADDED: "Favori ajouté",
+        MSG_FAVORITE_FINDED: "Favoris trouvé",
+        MSG_FAVORITE_DELETED: "Favoris supprimé",
+        MSG_FAVORITE_ADDED: "Favoris ajouté",
         MSG_OAUTH_TOKEN_TWITTER: "Erreur avec le twitter connect",
         MSG_TWITTER_LOGIN_VALIDATED: "Connection avec twitter validé",
         MSG_TWITCH_LOGIN_VALIDATED: "Connection avec twitch validé",
@@ -160,9 +160,9 @@ const errorMessages = {
         MSG_ERROR_WITH_URL: "Erreur serveur",
         MSG_ERROR_WITH_TWITCH_GET_USER_INFORMATIONS: "Erreur avec la connection à twitch",
         MSG_ERROR_WITH_TWITCH_OAUTH_TOKEN: "Erreur avec la connection à twitch",
-        MSG_ERROR_USER_NOT_CONNECTED_TO_TWITCH: "Please connect to twitch",
-        MSG_ERROR_USER_NOT_CONNECTED_TO_TWITTER: "Please connect to twitter",
-        MSG_PARTICIPATION_NOT_VALIDATED: "You have to validate actions."
+        MSG_ERROR_USER_NOT_CONNECTED_TO_TWITCH: "Connecte toi à Twitch",
+        MSG_ERROR_USER_NOT_CONNECTED_TO_TWITTER: "Connecte toi à Twitter",
+        MSG_PARTICIPATION_NOT_VALIDATED: "Valide les actions."
     }
 }
 

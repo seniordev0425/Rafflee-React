@@ -6,6 +6,7 @@ import OverView from './OverView'
 import Audience from './Audience'
 import Engagement from './Engagement'
 import Following from './Following'
+import Clicks from './Clicks'
 import images from '../../../utils/images'
 import Loading from '../../common/Loading'
 import { getCampaignsInformations } from '../../../actions/analytics'
@@ -41,7 +42,7 @@ function AnalyticsLayout() {
             case 'engagement':
                 return <Engagement />
             case 'clicks':
-                return <OverView />
+                return <Clicks time={time} campaignID={campaignID} />
             case 'following':
                 return <Following />
         }
@@ -96,6 +97,21 @@ function AnalyticsLayout() {
                                     </Select>
                                 </div>
                             }
+                            {(currentTab === 'audience' || currentTab === 'clicks') &&
+                                <div className="mr-2">
+                                    <Select
+                                        size="large"
+                                        style={{ minWidth: 140 }}
+                                        defaultValue={campaignID}
+                                        onChange={val => setCampaignID(val)}
+                                    >
+                                        <Option value='all'>All</Option>
+                                        {campaignsInformations.map((item, index) =>
+                                            <Option key={index} value={item.id}>{item.name}</Option>
+                                        )}
+                                    </Select>
+                                </div>
+                            }
                             {(currentTab === 'overview' || currentTab === 'clicks') &&
                                 <div>
                                     <Select
@@ -108,21 +124,6 @@ function AnalyticsLayout() {
                                         <Option value="week">This Week</Option>
                                         <Option value="month">This Month</Option>
                                         <Option value="year">This Year</Option>
-                                    </Select>
-                                </div>
-                            }
-                            {(currentTab === 'audience' || currentTab === 'clicks') &&
-                                <div>
-                                    <Select
-                                        size="large"
-                                        style={{ minWidth: 140 }}
-                                        defaultValue={campaignID}
-                                        onChange={val => setCampaignID(val)}
-                                    >
-                                        <Option value='all'>All</Option>
-                                        {campaignsInformations.map((item, index) =>
-                                            <Option key={index} value={item.id}>{item.name}</Option>
-                                        )}
                                     </Select>
                                 </div>
                             }

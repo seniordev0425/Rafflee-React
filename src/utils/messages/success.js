@@ -21,7 +21,7 @@ const successMessages = {
 
     fr: {
         logIn: "Connexion réussie!",
-        signUp: "Inscription réussie! Nous avons envoyé un lien de confirmation vers votre e-mail. Veuillez vérifier votre boîte de réception.",
+        signUp: "Inscription réussie! Nous t'avons envoyé un lien de confirmation vers votre e-mail. Vérifie ta boîte de réception.",
         companySendMessage: "Soumis avec succès!",
         accountUpdate: "Mise à jour réussie!",
         participate: "Participation réussie!",
@@ -29,13 +29,13 @@ const successMessages = {
         followCircle: "Abonnement réussie",
         unfollowCircle: "Désabonnement réussie",
         deleteAccount: "Le compte à été supprimé",
-        resetPasswordRequest: "Confirmez votre email pour rénitialiser votre mot de passe.",
+        resetPasswordRequest: "Confirme ton email pour réinitialiser ton mot de passe.",
         resetPassword: "Mot de passe mis à jour",
         createCampaign: "La nouvelle campagne à été créé avec succès!",
         success: "Validé",
-        completeToWatchVideo: "Complétez pour regarder la vidéo",
+        completeToWatchVideo: "Compléte pour regarder la vidéo",
         completeToSubmitPoll: "Questionnaire soumis avec succès.",
-        closeCampaign: "Campaign Closed"
+        closeCampaign: "Campagne fermée"
     }
 }
 

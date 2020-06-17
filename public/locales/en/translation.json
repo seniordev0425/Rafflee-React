@@ -189,6 +189,8 @@
         "twitch_followers": "Twitch Followers",
         "total_views_clicks": "Total Views & Clicks",
         "views": "Views",
+        "actions": "Actions",
+        "participations": "Paritipations",
         "clicks":"Clicks",
         "most_active_users": "Most Active Users",
         "view_profile":"View Profile",
@@ -216,7 +218,13 @@
         "twitch": "Twitch",
         "continent": "Continent:",
         "country": "Country:",
-        "city": "City:"
+        "city": "City:",
+        "benefit_by_action": "Benefit by action",
+        "benefit_by_click": "Benefit by click",
+        "benefit_by_participation": "Benefit by participation",
+        "benefit_by_total": "Total benefit",
+        "click_data": "Click Data",
+        "click_total_data": "Click Total Data"
     },
 
     "create_campaign_page": {

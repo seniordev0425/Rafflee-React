@@ -81,7 +81,23 @@ function onSuccessGetCampaignsInformations(data) {
         data: data.list_of_promotions
     }
 }
-
+/////////////////////////////////////////////// ANALYTICS-GET-CAMPAIGNS-INFORMATIONS-ACTION
+export function getClicksData(id, time) {
+    return apiAction({
+        url: APIROUTE + `analytics/click/${id}/${time}/`,
+        method: 'GET',
+        accessToken: sessionStorage.getItem('token'),
+        onSuccess: onSuccessGetClicksData,
+        onFailure: onFailed,
+        label: `GET_CLICKS_DATA`,
+    });
+}
+function onSuccessGetClicksData(data) {
+    return {
+        type: 'SET_CLICKS_DATA',
+        data: data.result_data
+    }
+}
 
 function apiAction({
     url = "",
