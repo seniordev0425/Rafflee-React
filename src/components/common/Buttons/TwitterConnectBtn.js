@@ -4,7 +4,10 @@ import { Row, Col } from 'reactstrap'
 import { twitterConnectStep1 } from '../../../actions/userInfo'
 import images from '../../../utils/images'
 
+import { useTranslation } from 'react-i18next'
+
 function TwitterConnectBtn(props) {
+    const { t } = useTranslation()
 
     const { connected } = props
 
@@ -29,7 +32,7 @@ function TwitterConnectBtn(props) {
                 <img src={images.twitter_icon} />
             </Col>
             <Col xs="10" className="pl-0 pr-0 twitter-icon-container2">
-                {connected ? 'CONNECTED WITH TWITTER' : 'CONNECT WITH TWITTER'}
+                {connected ? t('account_page.twitter_connected') : t('account_page.twitter_connect')}
             </Col>
         </Row>
     )

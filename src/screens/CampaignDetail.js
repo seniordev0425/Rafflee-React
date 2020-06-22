@@ -100,8 +100,8 @@ function CampaignDetail(props) {
             twitch: {
                 follow: (campaignData.user_actions || {}).twitch_follow
             },
-            instagram_profile: false,
-            instagram_publication: false,
+            instagram_profile: (campaignData.user_actions || {}).instagram_profile,
+            instagram_publication: (campaignData.user_actions || {}).instagram_publication,
             poll: false,
             video: (campaignData.user_actions || {}).video,
             website: false,
@@ -203,16 +203,17 @@ function CampaignDetail(props) {
         else if (socialName === 'twitch' && actionType === 'follow') {
             dispatch(campaignParticipateTwitchFollow({ promotion_id: campaignData.pk }))
         }
+        else if (socialName === 'instagram' && actionType === 'follow') {
+            dispatch(campaignParticipateInstagramProfile({ promotion_id: campaignData.pk }))
+        }
+        else if (socialName === 'instagram' && actionType === 'like') {
+            dispatch(campaignParticipateInstagramPublication({ promotion_id: campaignData.pk }))
+        }
     }
 
     const onParticipate = (socialName, actionType, checked, pollData) => {
         if (socialName === 'video') {
             openVideoModal()
-            // if (!isVideoEnded) openVideoModal()
-            // else {
-            //     actionParams = actionParams.filter((item) => item['social_name'] !== socialName)
-            //     actionParams.push({ social_name: socialName, action_type: checked })
-            // }
         }
         else {
             actionParams = actionParams.filter((item) => item['social_name'] !== socialName)
@@ -406,8 +407,10 @@ function CampaignDetail(props) {
                                         }
                                     }
                                     didActions={didActions}
-                                    participateInstagramProfile={participateInstagramProfile}
-                                    participateInstagramPublication={participateInstagramPublication}
+                                    // participateInstagramProfile={participateInstagramProfile}
+                                    // participateInstagramPublication={participateInstagramPublication}
+                                    onParticipate={onParticipate}
+                                    tryToOpenValidationModal={tryToOpenValidationModal}
                                 />
                             </Col>
                         </Row>

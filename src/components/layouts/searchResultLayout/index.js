@@ -207,7 +207,7 @@ function SearchResultLayout(props) {
                     <span className="font-size-13 font-weight-bold mt-2 mr-1 mr-sm-4 color-blue">{t('search_result_page.search')}:</span>
                     <Input
                         onChange={(e) => setCurrentKey(e.target.value)}
-                        placeholder="Search for name, description, company..."
+                        placeholder={t('search_result_page.search_placeholder')}
                         className="banner-search-input"
                         value={currentKey}
                     />

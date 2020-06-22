@@ -5,6 +5,7 @@ import images from '../../../utils/images'
 import { Button } from 'antd'
 import { useTranslation } from 'react-i18next'
 import { getPdfInvoice } from '../../../actions/userInfo'
+import moment from 'moment'
 
 function MyBillsItem(props) {
     const { t } = useTranslation()
@@ -32,7 +33,7 @@ function MyBillsItem(props) {
                                 <span className="footer-link-bold float-right">{t('my_bills_page.total')}:</span>
                             </div>
                             <div className="footer-link-bold mt-2">
-                                {t('my_bills_page.emission_date')}: {item.emission_date}
+                                {t('my_bills_page.emission_date')}: {moment(item.emission_date).format('DD/MM/YYYY')}
                                 <span className="float-right">{item.price}</span>
 
                             </div>

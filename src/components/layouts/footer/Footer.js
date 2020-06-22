@@ -1,30 +1,22 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import { Row, Col } from 'reactstrap'
+import { useTranslation } from 'react-i18next'
 
 function Footer() {
+    const { t } = useTranslation()
+
     return (
         <div className="footer-link py-3">
             <Row>
                 <Col xs={{ size: 10, offset: 1 }}>
                     <Row className="justify-content-center">
                         <span>
-                            ©2020 Rafflee, all rights reserved.
+                            {t('footer.all_rights_reserved')}
                         </span>
-                        <Link to="/privacy-policy" className="ml-2">
-                            <span className="underline" style={{ color: "#222A41" }}>Privacy Policy</span>
-
-                        </Link>
-
-                        <Link to="/general-conditions" className="ml-2">
-                            <span className="underline" style={{ color: "#222A41" }}>Terms & Conditions</span>
-                        </Link>
                     </Row>
-
                 </Col>
             </Row>
         </div>
-
     )
 }
 

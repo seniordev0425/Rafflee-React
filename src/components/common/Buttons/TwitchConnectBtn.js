@@ -4,7 +4,10 @@ import { Row, Col } from 'reactstrap'
 import images from '../../../utils/images'
 import { TWITCH_CLIENT_ID } from '../../../utils/constants'
 
+import { useTranslation } from 'react-i18next'
+
 function TwitchConnectBtn(props) {
+    const { t } = useTranslation()
 
     const { connected } = props
     const company = useSelector(state => state.userInfo.company)
@@ -24,7 +27,7 @@ function TwitchConnectBtn(props) {
                 <img src={images.twitch_icon} />
             </Col>
             <Col xs="10" className="pl-0 pr-0 twitch-icon-container2">
-                {connected ? 'CONNECTED WITH TWITCH' : 'CONNECT WITH TWITCH'}
+                {connected ? t('account_page.twitch_connected') : t('account_page.twitch_connect')}
             </Col>
         </Row>
 

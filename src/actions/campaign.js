@@ -504,8 +504,8 @@ export function campaignParticipateInstagramProfile(params) {
 }
 function onSuccessCampaignParticipateInstagramProfile(data) {
   return {
-    type: '',
-    data: '',
+    type: 'SET_ACTION_VALIDATION_STATUS',
+    data: 'instagram_follow_validation',
   }
 }
 /////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_INSTAGRAM_PUBLICATION_ACTION
@@ -523,8 +523,8 @@ export function campaignParticipateInstagramPublication(params) {
 }
 function onSuccessCampaignParticipateInstagramPublication(data) {
   return {
-    type: '',
-    data: '',
+    type: 'SET_ACTION_VALIDATION_STATUS',
+    data: 'instagram_like_validation',
   }
 }
 /////////////////////////////////////////////// CLOSE_CAMPAIGN_ACTION

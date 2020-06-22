@@ -49,7 +49,7 @@ function SplineChart(props) {
                     pointHoverBackgroundColor: "#aaaaaa",
                     pointHoverBorderColor: "#aaaaaa",
                     pointHoverBorderWidth: 2,
-                    pointRadius: time === 'day' ? 2 : 0,
+                    pointRadius: overviewFollowersArr[time].length === 1 ? 2 : 0,
                     pointHitRadius: 10,
                     data: getFollowers('rafflee')
                 },
@@ -71,7 +71,7 @@ function SplineChart(props) {
                     pointHoverBackgroundColor: "#0091ff",
                     pointHoverBorderColor: "#0091ff",
                     pointHoverBorderWidth: 2,
-                    pointRadius: time === 'day' ? 2 : 0,
+                    pointRadius: overviewFollowersArr[time].length === 1 ? 2 : 0,
                     pointHitRadius: 10,
                     data: getFollowers('twitter')
                 },
@@ -93,7 +93,7 @@ function SplineChart(props) {
                     pointHoverBackgroundColor: "#7e3aac",
                     pointHoverBorderColor: "#7e3aac",
                     pointHoverBorderWidth: 2,
-                    pointRadius: time === 'day' ? 2 : 0,
+                    pointRadius: overviewFollowersArr[time].length === 1? 2 : 0,
                     pointHitRadius: 10,
                     data: getFollowers('twitch')
                 }
@@ -124,7 +124,7 @@ function SplineChart(props) {
                         pointHoverBackgroundColor: "#aaaaaa",
                         pointHoverBorderColor: "#aaaaaa",
                         pointHoverBorderWidth: 2,
-                        pointRadius: time === 'day' ? 2 : 0,
+                        pointRadius: overviewFollowersArr[time].length === 1 ? 2 : 0,
                         pointHitRadius: 10,
                         data: getFollowers('rafflee')
                     },
@@ -146,7 +146,7 @@ function SplineChart(props) {
                         pointHoverBackgroundColor: "#0091ff",
                         pointHoverBorderColor: "#0091ff",
                         pointHoverBorderWidth: 2,
-                        pointRadius: time === 'day' ? 2 : 0,
+                        pointRadius: overviewFollowersArr[time].length === 1 ? 2 : 0,
                         pointHitRadius: 10,
                         data: getFollowers('twitter')
                     },
@@ -168,7 +168,7 @@ function SplineChart(props) {
                         pointHoverBackgroundColor: "#7e3aac",
                         pointHoverBorderColor: "#7e3aac",
                         pointHoverBorderWidth: 2,
-                        pointRadius: time === 'day' ? 2 : 0,
+                        pointRadius: overviewFollowersArr[time].length === 1 ? 2 : 0,
                         pointHitRadius: 10,
                         data: getFollowers('twitch')
                     }

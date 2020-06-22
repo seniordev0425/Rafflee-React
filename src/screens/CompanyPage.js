@@ -112,9 +112,15 @@ function CompanyPage(props) {
                                         </div>
                                     </div>
                                     <div className="mt-3 mt-md-0">
-                                        <a href={companyInformation.company.website_url || '#'}><img src={images.globe_gray_icon} width={20} height={20} className="mr-5" /></a>
-                                        <a href={companyInformation.company.instagram_page_url || '#'}><img src={images.instagram_gray_icon} width={20} height={20} className="mr-5" /></a>
-                                        <a href={companyInformation.company.facebook_page_url || '#'}><img src={images.facebook_gray_icon} width={8} height={20} /></a>
+                                        {companyInformation.company.website_url &&
+                                            <a href={companyInformation.company.website_url || '#'}><img src={images.globe_gray_icon} width={20} height={20} className="mr-5" /></a>
+                                        }
+                                        {companyInformation.company.instagram_page_url &&
+                                            <a href={companyInformation.company.instagram_page_url || '#'}><img src={images.instagram_gray_icon} width={20} height={20} className="mr-5" /></a>
+                                        }
+                                        {companyInformation.company.facebook_page_url &&
+                                            <a href={companyInformation.company.facebook_page_url || '#'}><img src={images.facebook_gray_icon} width={8} height={20} /></a>
+                                        }
                                     </div>
                                 </div>
                                 <div className="font-size-12 mt-4">{companyInformation.company.description}</div>

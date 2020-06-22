@@ -30,7 +30,7 @@ function MyCampaignItem(props) {
                         <Col lg="11" md="10" sm="10" xs="9" className="pl-sm-5">
                             <div className="promotion-list-item-title d-flex justify-content-between align-items-center">{item.campaign_name}
                                 <Tooltip
-                                    title={Date.parse(item.end_date) > (Date.now() + 1000) ? `In progress. End date: ${moment(item.end_date).format('YYYY-MM-DD')}` : `Ended at ${moment(item.end_date).format('YYYY-MM-DD')}`}
+                                    title={Date.parse(item.end_date) > (Date.now() + 1000) ? `${t('my_campaign_page.in_progress')} ${moment(item.end_date).format('YYYY-MM-DD')}` : `${t('my_campaign_page.ended_at')} ${moment(item.end_date).format('YYYY-MM-DD')}`}
                                     placement="topRight"
                                 >
                                     <span className={Date.parse(item.end_date) > (Date.now() + 1000) ? "green-dot pointer" : "red-dot pointer"}></span>

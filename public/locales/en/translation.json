@@ -9,11 +9,31 @@
         "dashboard": "Dashboard",
         "log_out": "Logout"
     },
-
-    "banner": {
-        "search_placeholder": "Search..."
+    "footer": {
+        "all_rights_reserved": "©2020 Rafflee, all rights reserved.",
+        "enterprise": "Enterprise",
+        "who_are_we": "Who are we?",
+        "the_team": "The team",
+        "we_are_hiring": "We are hiring!",
+        "community": "Community",
+        "company_contact_us": "Company, contact us!",
+        "influencer_contact_us": "Influencer, contact us!",
+        "faq": "FAQ",
+        "legal": "Legal",
+        "privacy_policy": "Privacy Policy",
+        "cookies_policy": "Cookies Policy",
+        "legal_notice": "Legal Notice",
+        "terms_of_service": "Terms of Service",
+        "follow_us": "Follow Us"
     },
-
+    "banner": {
+        "search_placeholder": "Search...",
+        "thousands_of": "Thousands of",
+        "prizes": "prizes",
+        "and": "and",
+        "giveaways": "giveaways",
+        "for_you": "for you."
+    },
     "menubar": {
         "all": "All",
         "highlights": "Highlights",
@@ -43,9 +63,7 @@
         "password": "Password",
         "deactivate": "Deactivate"
     },
-
     "empty_result_to_display": "There is no result to display.",
-
     "button_group": {
         "see_campaign": "SEE CAMPAIGN",
         "verify": "Verify",
@@ -66,8 +84,8 @@
         "draw": "Draw",
         "download_pdf": "DOWNLOAD PDF",
         "next": "NEXT",
-        "create_poll":"CREATE POLL",
-        "create_campaign":"CREATE CAMPAIGN",
+        "create_poll": "CREATE POLL",
+        "create_campaign": "CREATE CAMPAIGN",
         "reset": "RESET",
         "continue": "CONTINUE",
         "accept": "Accept",
@@ -77,15 +95,13 @@
         "follow_circle": "FOLLOW",
         "unfollow_circle": "UNFOLLOW",
         "remove": "Remove",
-        "close": "Close"     
+        "close": "Close"
     },
-
     "homepage": {
         "hot_new_contest_everyday": "Hot new contest everyday.",
         "premium_prizes_giveaways": "Premium prizes & giveaways chosen by Rafflee.",
         "find_campaign": "Find the campaign you have been looking for."
     },
-
     "account_page": {
         "first_name": "First Name",
         "last_name": "Last Name",
@@ -104,9 +120,22 @@
         "first_name_required": "First name is required",
         "last_name_required": "Last name is required",
         "company_name_required": "Company name is required",
-        "enter_valid_email": "Enter a valid email address"
+        "enter_valid_email": "Enter a valid email address",
+        "facebook_connect": "CONNECT WITH FACEBOOK",
+        "facebook_connected": "CONNECTED WITH FACEBOOK",
+        "twitter_connect": "CONNECT WITH TWITTER",
+        "twitter_connected": "CONNECTED WITH TWITTER",
+        "twitch_connect": "CONNECT WITH TWITCH",
+        "twitch_connected": "CONNECTED WITH TWITCH",
+        "snapchat_connect": "CONNECT WITH SNAPCHAT",
+        "snapchat_connected": "CONNECTED WITH SNAPCHAT",
+        "youtube_connect": "CONNECT WITH YOUTUBE",
+        "youtube_connected": "CONNECTED WITH YOUTUBE",
+        "instagram_connect": "CONNECT WITH INSTAGRAM",
+        "instagram_connected": "CONNECTED WITH INSTAGRAM",
+        "steam_connect": "CONNECT WITH STEAM",
+        "steam_connected": "CONNECTED WITH STEAM"
     },
-
     "campaign_detail_page": {
         "giveaways": "GIVEAWAYS",
         "giveway_name": "Giveway Name",
@@ -154,7 +183,6 @@
         "select_answer": "Select your answers",
         "social_detail_alert": "This part is only for phone number verified users."
     },
-
     "my_campaign_page": {
         "live_page": "Live Page",
         "view_participants": "View Participants",
@@ -167,20 +195,20 @@
         "draw": "DRAW",
         "draw_all": "DRAW ALL",
         "prize_type": "Prize Type",
-        "campaign_analytics":"Campaign Analytics",
+        "campaign_analytics": "Campaign Analytics",
         "generated_likes": "Generated Likes",
         "earned_followers": "Earned Followers",
         "tweets_generated": "Tweets Generated",
         "buy_data": "Buy Data",
         "number_of_views": "Number of today views: ",
-        "percentage_of_interest": "Percentage of Interest: "
+        "percentage_of_interest": "Percentage of Interest: ",
+        "in_progress": "In progress. End date:",
+        "ended_at": "Ended at"
     },
-
     "my_bills_page": {
         "emission_date": "Emission Date",
-        "total":"Total"
+        "total": "Total"
     },
-
     "analytics_page": {
         "rafflee_followers": "Rafflee Followers",
         "instagram_followers": "Instagram Followers",
@@ -191,9 +219,9 @@
         "views": "Views",
         "actions": "Actions",
         "participations": "Paritipations",
-        "clicks":"Clicks",
+        "clicks": "Clicks",
         "most_active_users": "Most Active Users",
-        "view_profile":"View Profile",
+        "view_profile": "View Profile",
         "demographics": "Demographics",
         "active_clients": "Active Clients",
         "users": "Users",
@@ -219,14 +247,22 @@
         "continent": "Continent:",
         "country": "Country:",
         "city": "City:",
-        "benefit_by_action": "Benefit by action",
-        "benefit_by_click": "Benefit by click",
-        "benefit_by_participation": "Benefit by participation",
+        "product_benefit": "Product benefit",
+        "benefit_by_action": "By action",
+        "benefit_by_view": "By view",
+        "benefit_by_participation": "By participation",
         "benefit_by_total": "Total benefit",
         "click_data": "Click Data",
-        "click_total_data": "Click Total Data"
+        "click_total_data": "Click Total Data",
+        "action": "Action",
+        "participation": "Pariticipation",
+        "all": "All",
+        "today": "Today",
+        "this_week": "This Week",
+        "this_month": "This Month",
+        "this_year": "This Year", 
+        "total": "Total: "
     },
-
     "create_campaign_page": {
         "campaign_name": "Campaign Name",
         "campaign_sort": "Sorts of Campaign",
@@ -235,7 +271,7 @@
         "complete_description": "Complete Description",
         "short_description_required": "Short Description is required",
         "complete_description_required": "Complete Description is required",
-        "upload_image":"Upload Image",
+        "upload_image": "Upload Image",
         "categories": "Categories",
         "url_video": "Video URL",
         "url_video_mobile": "Video URL for mobile app",
@@ -278,7 +314,7 @@
         "date": "Date",
         "date_required": "Date is required",
         "campaign_total": "Campaign Total",
-        "campaign":"Campaign",
+        "campaign": "Campaign",
         "iva": "IVA",
         "total": "Total",
         "must_have_one_at_least": "Must have one answer at least",
@@ -329,14 +365,13 @@
         "need_to_pay_text": "You need to pay to get access to this widget.",
         "pay": "PAY"
     },
-
     "profile_activated_page": {
         "successfully_activated": "Your account has been activated",
         "goto_login": "Go to Homepage and Login!"
     },
-
     "search_result_page": {
-        "search": "Search"
+        "search": "Search",
+        "search_placeholder": "Search for name, description, company..."
     },
     "company_page": {
         "member_since": "Memeber since",
@@ -348,7 +383,8 @@
     "my_circle_page": {
         "back": "Back",
         "followers": "Followers",
-        "friends": "Friends"
+        "friends": "Friends",
+        "search_for_circle_name": "Search for circle name"
     },
     "user_settings_page": {
         "current_password": "Current Password",
@@ -375,12 +411,12 @@
         "password_required": "Password is required",
         "confirm_password_required": "Confirm Password required"
     },
-
     "login_modal": {
         "remember_me": "Remember Me",
-        "forgot_password": "Forgot Password"
+        "forgot_password": "Forgot Password",
+        "signup_with_google": "SIGN UP WITH GOOGLE",
+        "signup_with_facebook": "SIGN UP WITH FACEBOOK"
     },
-
     "company_modal": {
         "company_form": "Company Form",
         "email": "Email Address",
@@ -394,27 +430,22 @@
         "contact_us": "Contact us",
         "here": "here."
     },
-
     "forgot_password_modal": {
         "forgot_password": "Forgot Password?"
     },
-
     "phone_verify_modal": {
         "enter_code": "Enter Verification Code",
         "resend_code": "Resend verification code"
     },
-
     "delete_account_modal": {
         "delete_account": "Deactivate Account",
         "password": "Password",
         "password_required": "Password is required"
     },
-
     "congratulation_modal": {
         "congratulations": "Congratulations!",
         "powered_by": "Powered by: "
     },
-
     "participate_confirm_modal": {
         "thanks_for_participating": "Thanks for participating!",
         "checkbox1": "Would you like to join ",

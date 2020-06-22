@@ -14,21 +14,7 @@ const initialFeedState = {
     overralActionDemographics: [],
     overralParitipationDemographics: [],
     campaignsInformations: [],
-    clicksData: {
-        date: '',
-        click_actions: 0,
-        product_benefit_by_participations: '',
-        product_benefit_by_view: '',
-        product_benefit_by_action: '',
-        click_actions_total: 0,
-        click_participations_total: 0,
-        click_views_total: 0,
-        click_views: 0,
-        product_benefit_by_total: '',
-        click_participations: 0
-    }
-
-
+    clicksData: []
 }
 
 function Analytics(state = initialFeedState, action) {

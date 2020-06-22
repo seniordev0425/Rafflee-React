@@ -61,7 +61,7 @@ function MapChart(props) {
               setCity('')
             }}
           >
-            <Option value="">All</Option>
+            <Option value="">{t('analytics_page.all')}</Option>
             <Option value="Asia">Asia</Option>
             <Option value="Europe">Europe</Option>
             <Option value="America">America</Option>
@@ -80,7 +80,7 @@ function MapChart(props) {
                 setCity('')
               }}
             >
-              <Option value="">All</Option>
+              <Option value="">{t('analytics_page.all')}</Option>
               {getCountryList(continent).map((item, index) =>
                 <Option key={index} value={item}>{item}</Option>
               )}
@@ -96,7 +96,7 @@ function MapChart(props) {
               value={city}
               onChange={val => setCity(val)}
             >
-              <Option value="">All</Option>
+              <Option value="">{t('analytics_page.all')}</Option>
               {getCityList(country).map((item, index) =>
                 <Option key={index} value={item}>{item}</Option>
               )}

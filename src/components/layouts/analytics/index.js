@@ -92,8 +92,8 @@ function AnalyticsLayout() {
                                         defaultValue={demographics_type}
                                         onChange={val => setDemographicsType(val)}
                                     >
-                                        <Option value="action">Action</Option>
-                                        <Option value="participation">Participation</Option>
+                                        <Option value="action">{t('analytics_page.action')}</Option>
+                                        <Option value="participation">{t('analytics_page.participation')}</Option>
                                     </Select>
                                 </div>
                             }
@@ -105,7 +105,7 @@ function AnalyticsLayout() {
                                         defaultValue={campaignID}
                                         onChange={val => setCampaignID(val)}
                                     >
-                                        <Option value='all'>All</Option>
+                                        <Option value='all'>{t('analytics_page.all')}</Option>
                                         {campaignsInformations.map((item, index) =>
                                             <Option key={index} value={item.id}>{item.name}</Option>
                                         )}
@@ -120,10 +120,10 @@ function AnalyticsLayout() {
                                         defaultValue={time}
                                         onChange={val => setTime(val)}
                                     >
-                                        <Option value="day">Today</Option>
-                                        <Option value="week">This Week</Option>
-                                        <Option value="month">This Month</Option>
-                                        <Option value="year">This Year</Option>
+                                        <Option value="day">{t('analytics_page.today')}</Option>
+                                        <Option value="week">{t('analytics_page.this_week')}</Option>
+                                        <Option value="month">{t('analytics_page.this_month')}</Option>
+                                        <Option value="year">{t('analytics_page.this_year')}</Option>
                                     </Select>
                                 </div>
                             }

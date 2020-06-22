@@ -98,10 +98,20 @@ function CustomCollapsePanel(props) {
                             />
                         )}
                         {actions.profile_url && (
-                            <div className="color-blue">{`https://instagram.com/${actions.profile_url}`}</div>
+                            <CheckBoxButtonForAction
+                                socialName={type}
+                                btnString='follow'
+                                onParticipate={onParticipate}
+                                tryToOpenValidationModal={tryToOpenValidationModal}
+                            />
                         )}
                         {actions.publication_url && (
-                           <div className="color-blue">{`https://instagram.com/p/${actions.publication_url}`}</div>
+                            <CheckBoxButtonForAction
+                                socialName={type}
+                                btnString='like'
+                                onParticipate={onParticipate}
+                                tryToOpenValidationModal={tryToOpenValidationModal}
+                            />
                         )}
                         {actions.video && (
                             <CheckBoxButtonForAction

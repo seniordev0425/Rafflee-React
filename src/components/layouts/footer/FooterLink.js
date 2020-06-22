@@ -1,82 +1,74 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { Row, Col } from 'reactstrap'
-import images from '../../../utils/images'
-import { Button } from 'reactstrap'
+import { useTranslation } from 'react-i18next'
 
 function FooterLink() {
+    const { t } = useTranslation()
 
     return (
-
         <div className="footer-link-container">
             <Row>
-                <Col xs={{ size: 10, offset: 1 }}>
+                <Col xs="12" sm={{ size: 10, offset: 1 }}>
                     <Row>
-                        <Col>
+                        <Col xs="6" md="3" className="mb-4 mb-md-0">
                             <div className="footer-link-bold">
-                                Quick Links
+                                {t('footer.enterprise')}
                             </div>
-                            <div className="footer-link" style={{ marginTop: "20px" }}>
-                                Lorem Ipsum
+                            <div className="footer-link" style={{ marginTop: "15px" }}>
+                                {t('footer.who_are_we')}
                             </div>
-                            <div className="footer-link" style={{ marginTop: "20px" }}>
-                                Lorem Ipsum
+                            <div className="footer-link" style={{ marginTop: "15px" }}>
+                                {t('footer.the_team')}
                             </div>
-                            <div className="footer-link" style={{ marginTop: "20px" }}>
-                                Lorem Ipsum
+                            <div className="footer-link" style={{ marginTop: "15px" }}>
+                                {t('footer.we_are_hiring')}
                             </div>
-
                         </Col>
-                        <Col>
+                        <Col xs="6" md="3" className="mb-4 mb-md-0">
                             <div className="footer-link-bold">
-                                Products
+                                {t('footer.community')}
                             </div>
-                            <div className="footer-link" style={{ marginTop: "20px" }}>
-                                Lorem Ipsum
+                            <div className="footer-link" style={{ marginTop: "15px" }}>
+                                {t('footer.company_contact_us')}
                             </div>
-                            <div className="footer-link" style={{ marginTop: "20px" }}>
-                                Lorem Ipsum
+                            <div className="footer-link" style={{ marginTop: "15px" }}>
+                                {t('footer.influencer_contact_us')}
                             </div>
-                            <div className="footer-link" style={{ marginTop: "20px" }}>
-                                Lorem Ipsum
+                            <div className="footer-link" style={{ marginTop: "15px" }}>
+                                {t('footer.faq')}
                             </div>
-
                         </Col>
-                        <Col>
+                        <Col xs="6" md="3">
                             <div className="footer-link-bold">
-                                Resources
+                                {t('footer.legal')}
                             </div>
-                            <div className="footer-link" style={{ marginTop: "20px" }}>
-                                Lorem Ipsum
+                            <Link to="/privacy-policy">
+                                <div className="footer-link" style={{ marginTop: "15px" }}>
+                                    {t('footer.privacy_policy')}
+                                </div>
+                            </Link>
+                            <div className="footer-link" style={{ marginTop: "15px" }}>
+                                {t('footer.cookies_policy')}
                             </div>
-                            <div className="footer-link" style={{ marginTop: "20px" }}>
-                                Lorem Ipsum
+                            <div className="footer-link" style={{ marginTop: "15px" }}>
+                                {t('footer.legal_notice')}
                             </div>
-                            <div className="footer-link" style={{ marginTop: "20px" }}>
-                                Lorem Ipsum
-                            </div>
-
+                            <Link to="/general-conditions">
+                                <div className="footer-link" style={{ marginTop: "15px" }}>
+                                    {t('footer.terms_of_service')}
+                                </div>
+                            </Link>
                         </Col>
-                        <Col>
+                        <Col xs="6" md="3">
                             <div className="footer-link-bold">
-                                Contact Us
+                                {t('footer.follow_us')}
                             </div>
-                            <div className="footer-link" style={{ marginTop: "20px" }}>
-                                youremail@mail.com
-                            </div>
-                            <div className="footer-link-bold" style={{ marginTop: "20px" }}>
-                                Follow Us
-                            </div>
-                            <div className="footer-link" style={{ marginTop: "20px" }}>
-                                Lorem Ipsum
-                            </div>
-
                         </Col>
-
                     </Row>
                 </Col>
             </Row>
         </div>
-
     )
 }
 

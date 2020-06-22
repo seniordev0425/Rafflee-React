@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { withRouter } from 'react-router-dom'
 import { compose } from 'redux'
 import { connect, useSelector } from "react-redux";
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, Redirect } from 'react-router-dom'
 import CookieConsent from 'react-cookie-consent'
 import Home from '../screens/Home'
 import Deals from '../screens/Deals'
@@ -155,7 +155,7 @@ function Routes(props) {
 
     useEffect(() => {
         if (AUTH_ERROR) {
-            openNotification('warning', 'Login to continue')
+            // openNotification('warning', 'Login to continue')
             history.push('/')
             dispatch({ type: 'INIT_STATE', state: 'AUTH_ERROR', data: false })
             dispatch({ type: "LOG_IN_SUCCESS", data: { token: '', company: false } })
@@ -176,8 +176,12 @@ function Routes(props) {
             }
             <Switch>
                 <Route exact path="/" component={Home} />
-                <Route exact path="/user-account/:menu" component={UserAccount} />
-                <Route exact path="/dashboard/:menu" component={Dashboard} />
+                {token &&
+                    <Route exact path="/user-account/:menu" component={UserAccount} />
+                }
+                {token &&
+                    <Route exact path="/dashboard/:menu" component={Dashboard} />
+                }
                 <Route exact path="/campaign-detail/:id" component={CampaignDetail} />
                 <Route exact path="/deals" component={Deals} />
                 <Route exact path="/profile/activate/:id/:token" component={ProfileActivated} />
@@ -189,6 +193,12 @@ function Routes(props) {
                 <Route exact path="/twitter/login/callback/" component={TwitterAuthPage} />
                 <Route exact path="/twitch/connect/" component={TwitchAuthPage} />
                 <Route exact path="/participation-result/:id" component={ParticipationResult} />
+                {!token &&
+                    <Redirect exact from="/user-account/:menu" to="/" />
+                }
+                {!token &&
+                    <Redirect exact from="/dashboard/:menu" to="/" />
+                }
                 <Route component={NotFound} />
             </Switch>
             <CookieConsent

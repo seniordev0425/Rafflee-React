@@ -42,11 +42,17 @@ function OverView(props) {
         dispatch(overviewFollowers('year'))
     }, [])
 
-    const renderFollowerNumber = (socialName) => {
+    const getIncreaseFollowerNumber = (socialName) => {
         let arr_len = overviewFollowersArr[time].length
         if (arr_len === 0) return 0
         else if (arr_len === 1) return overviewFollowersArr[time][0][socialName]
         else return (overviewFollowersArr[time][arr_len - 1][socialName] - overviewFollowersArr[time][0][socialName])
+    }
+
+    const getTotalFollowerNumber = (socialName) => {
+        let arr_len = overviewFollowersArr[time].length
+        if (arr_len === 0) return 0
+        return overviewFollowersArr[time][arr_len - 1][socialName]
     }
 
     if (OVERVIEW_DAY_FOLLOWERS || OVERVIEW_WEEK_FOLLOWERS || OVERVIEW_MONTH_FOLLOWERS || OVERVIEW_YEAR_FOLLOWERS) {
@@ -62,9 +68,9 @@ function OverView(props) {
                             <img src={images.rafflee_icon} width="30px" height="30px" />
                             <span className="font-weight-bold font-size-11 ml-3">{t('analytics_page.rafflee_followers')}</span>
                         </div>
-                        <div className="d-flex justify-content-between mt-3">
-                            <span className="font-weight-bold font-size-20">+{renderFollowerNumber('rafflee')}</span>
-                            {/* <span className="font-size-11 mt-3" style={{ color: "#55C97B" }}>(+348)</span> */}
+                        <div className="d-flex justify-content-between mt-3 align-items-center">
+                            <span className="font-weight-bold font-size-11">{t('analytics_page.total')}{getTotalFollowerNumber('rafflee')}</span>
+                            <span className="font-size-11 mt-3" style={{ color: "#55C97B" }}>(+{getIncreaseFollowerNumber('rafflee')})</span>
                         </div>
                         <ColorBar width={100} color="#0091ff" />
                     </div>
@@ -73,8 +79,9 @@ function OverView(props) {
                             <img src={images.twitter_icon} width="30px" height="30px" />
                             <span className="font-weight-bold font-size-11 ml-3">{t('analytics_page.twitter_followers')}</span>
                         </div>
-                        <div className="d-flex justify-content-between mt-3">
-                            <span className="font-weight-bold font-size-20">+{renderFollowerNumber('twitter')}</span>
+                        <div className="d-flex justify-content-between mt-3 align-items-center">
+                            <span className="font-weight-bold font-size-11">{t('analytics_page.total')}{getTotalFollowerNumber('twitter')}</span>
+                            <span className="font-size-11 mt-3" style={{ color: "#55C97B" }}>(+{getIncreaseFollowerNumber('twitter')})</span>
                         </div>
                         <ColorBar width={100} color="#0091ff" />
                     </div>
@@ -83,8 +90,9 @@ function OverView(props) {
                             <img src={images.twitch_icon} width="30px" height="30px" />
                             <span className="font-weight-bold font-size-11 ml-3">{t('analytics_page.twitch_followers')}</span>
                         </div>
-                        <div className="d-flex justify-content-between mt-3">
-                            <span className="font-weight-bold font-size-20">+{renderFollowerNumber('twitch')}</span>
+                        <div className="d-flex justify-content-between mt-3 align-items-center">
+                            <span className="font-weight-bold font-size-11">{t('analytics_page.total')}{getTotalFollowerNumber('twitch')}</span>
+                            <span className="font-size-11 mt-3" style={{ color: "#55C97B" }}>(+{getIncreaseFollowerNumber('twitch')})</span>
                         </div>
                         <ColorBar width={100} color="#0091ff" />
                     </div>

@@ -2,7 +2,11 @@ import React from 'react'
 import {Container, Row, Col} from 'reactstrap'
 import images from '../../../utils/images'
 
+import { useTranslation } from 'react-i18next'
+
 function InstagramConnectBtn(){
+    const { t } = useTranslation()
+
     return(
 
             <Row className="not-allowed">
@@ -10,7 +14,7 @@ function InstagramConnectBtn(){
                     <img src={images.instagram_icon}/>
                 </Col>
                 <Col xs="10" className="pl-0 pr-0 instagram-icon-container2">
-                    CONNECT WITH INSTAGRAM
+                    {t('account_page.instagram_connect')}
                 </Col>
             </Row>
 

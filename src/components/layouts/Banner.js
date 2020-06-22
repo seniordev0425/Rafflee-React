@@ -29,13 +29,13 @@ function Banner(props) {
     return (
         <div className="banner font-weight-bold banner-text">
             <div>
-                <span className="banner-text-blue">Thousands of </span>
-                <span className="banner-text-green"> prizes </span>
+                <span className="banner-text-blue">{t('banner.thousands_of')}</span>
+                <span className="banner-text-green"> {t('banner.prizes')} </span>
             </div>
             <div>
-                <span className="banner-text-blue">and </span>
-                <span className="banner-text-purple"> giveaways </span>
-                <span className="banner-text-blue">for you.</span>
+                <span className="banner-text-blue">{t('banner.and')} </span>
+                <span className="banner-text-purple"> {t('banner.giveaways')} </span>
+                <span className="banner-text-blue">{t('banner.for_you')}</span>
             </div>
             <div className="banner-search">
                 <Input placeholder={t('banner.search_placeholder')} className="banner-search-input" onChange={(e) => setSearchKey(e.target.value)} onKeyPress={handleKeyPress}></Input>

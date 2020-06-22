@@ -1,15 +1,22 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Checkbox } from 'antd'
-import { isMobile } from 'react-device-detect'
-import images from '../../../utils/images'
 
 import { useTranslation } from 'react-i18next'
 
 function CheckBoxButtonForAction(props) {
     const { t } = useTranslation()
 
-    const { socialName, btnString, onParticipate, isVideoEnded, tryToOpenValidationModal, defaultValue } = props
+    const {
+        socialName,
+        btnString,
+        onParticipate,
+        isVideoEnded,
+        tryToOpenValidationModal,
+        defaultValue,
+        instagram_profile,
+        instagram_publication
+    } = props
 
     const validation = useSelector(state => state.userInfo[`${socialName}_${btnString}_validation`])
     const dispatch = useDispatch()
@@ -30,17 +37,15 @@ function CheckBoxButtonForAction(props) {
 
     const onVideoChecked = () => {
         onParticipate(socialName, btnString, !checked, null)
-        // if (isVideoEnded) setChecked(!checked)
     }
 
     const onActionChecked = () => {
-        // if (checked) {
-            // return
-            // onParticipate(socialName, btnString, !checked, null)
-            // setChecked(!checked)
-        // } else {
-            tryToOpenValidationModal(socialName, btnString)
-        // }
+        tryToOpenValidationModal(socialName, btnString)
+        if (socialName === 'instagram' && btnString === 'follow') {
+            if (instagram_profile) window.open(instagram_profile, '_blank')
+        } else if (socialName === 'instagram' && btnString === 'like') {
+            if (instagram_publication) window.open(instagram_publication, '_blank')
+        }
     }
 
     return (

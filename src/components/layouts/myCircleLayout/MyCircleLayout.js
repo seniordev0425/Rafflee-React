@@ -72,7 +72,7 @@ function MyCircleLayout() {
                 <Input
                     onChange={e => setKeyword(e.target.value.toLowerCase())}
                     size="large"
-                    placeholder="Search for circle name"
+                    placeholder={t('my_circle_page.search_for_circle_name')}
                     prefix={<FontAwesomeIcon icon={faSearch} />}
                     className="mycircle-searchbox"
                 />

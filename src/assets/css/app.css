@@ -686,6 +686,7 @@ h2 span {
 .promotion-list-item-text {
     font-size: 1.1rem;
     margin-top: 20px;
+    overflow-wrap: break-word;
 }
 @media (max-width: 575px) {
     .promotion-list-item-img img{
