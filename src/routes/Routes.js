@@ -14,6 +14,7 @@ import ResetPassword from '../screens/ResetPassword'
 import SearchResult from '../screens/SearchResult'
 import PrivacyPolicy from '../screens/PrivacyPolicy'
 import GeneralConditions from '../screens/GeneralConditions'
+import Report from '../screens/Report'
 import CompanyPage from '../screens/CompanyPage'
 import ParticipationResult from '../screens/ParticipationResult'
 import TwitterAuthPage from '../screens/SocialAuth/TwitterAuthPage'
@@ -193,6 +194,7 @@ function Routes(props) {
                 <Route exact path="/twitter/login/callback/" component={TwitterAuthPage} />
                 <Route exact path="/twitch/connect/" component={TwitchAuthPage} />
                 <Route exact path="/participation-result/:id" component={ParticipationResult} />
+                <Route exact path="/report" component={Report} />
                 {!token &&
                     <Redirect exact from="/user-account/:menu" to="/" />
                 }

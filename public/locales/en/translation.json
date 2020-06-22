@@ -19,6 +19,7 @@
         "company_contact_us": "Company, contact us!",
         "influencer_contact_us": "Influencer, contact us!",
         "faq": "FAQ",
+        "report": "Report",
         "legal": "Legal",
         "privacy_policy": "Privacy Policy",
         "cookies_policy": "Cookies Policy",
@@ -101,6 +102,14 @@
         "hot_new_contest_everyday": "Hot new contest everyday.",
         "premium_prizes_giveaways": "Premium prizes & giveaways chosen by Rafflee.",
         "find_campaign": "Find the campaign you have been looking for."
+    },
+    "report_page": {
+        "bug": "Bug",
+        "feedback": "Feedback",
+        "context": "Context",
+        "context_required": "Context required",
+        "description": "Description",
+        "description_required": "Description required"
     },
     "account_page": {
         "first_name": "First Name",

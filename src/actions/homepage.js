@@ -1,6 +1,7 @@
 import { APIROUTE } from '../utils/constants'
 import { API } from "./types";
 import { openNotification } from '../utils/notification'
+import successMessages from '../utils/messages/success'
 
 const qs = require('querystring')
 
@@ -128,6 +129,24 @@ function onSuccessGetCategories(data) {
     return {
         type: 'GET_CATEGORIES_SUCCESS',
         data: data.result_data
+    }
+}
+/////////////////////////////////////////////// GET_CATEGORIES_ACTION
+export function betaReport(params) {
+    return apiAction({
+        url: APIROUTE + "beta/report/",
+        method: 'POST',
+        data: qs.stringify(params),
+        onSuccess: onSuccessBetaReport,
+        onFailure: onFailed,
+        label: 'BETA_REPORT',
+    });
+}
+function onSuccessBetaReport(data) {
+    openNotification('success', successMessages[localStorage.getItem('i18nextLng')].success)
+    return {
+        type: '',
+        data: ''
     }
 }
 

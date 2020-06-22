@@ -38,6 +38,11 @@ function FooterLink() {
                             <div className="footer-link" style={{ marginTop: "15px" }}>
                                 {t('footer.faq')}
                             </div>
+                            <Link to="/report">
+                                <div className="footer-link" style={{ marginTop: "15px" }}>
+                                    {t('footer.report')}
+                                </div>
+                            </Link>
                         </Col>
                         <Col xs="6" md="3">
                             <div className="footer-link-bold">

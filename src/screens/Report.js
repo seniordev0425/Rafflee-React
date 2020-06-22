@@ -1,0 +1,93 @@
+import React, { useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { Radio, Button } from 'antd'
+import { Form as FinalForm, Field } from 'react-final-form'
+import { Form, FormGroup, In } from 'reactstrap'
+import FormInput from '../components/common/FormInput'
+import JoinHeader from '../components/layouts/HeaderLayout/JoinHeader'
+import Header from '../components/layouts/HeaderLayout/Header'
+import FooterLink from '../components/layouts/footer/FooterLink'
+import Footer from '../components/layouts/footer/Footer'
+import { required } from '../utils/validation'
+import {betaReport} from '../actions/homepage'
+import { useTranslation } from 'react-i18next'
+
+function Report() {
+    const { t } = useTranslation()
+
+    const BETA_REPORT_PROCESS = useSelector(state => state.userInfo.BETA_REPORT)
+    const dispatch = useDispatch()
+
+    const [mode, setMode] = useState('bug')
+
+    const handleModeChange = (e) => {
+        setMode(e.target.value)
+    }
+
+    const onSubmit = (values) => {
+        var body = {
+            context: values.context,
+            type: mode,
+            description: values.description
+        }
+        dispatch(betaReport(body))
+    }
+
+    return (
+        <div style={{ fontFamily: "sofiapro" }}>
+            <JoinHeader />
+            <Header />
+            <div className="d-flex justify-content-center pt-4">
+                <div className="min-height-container">
+                    <Radio.Group onChange={handleModeChange} value={mode} style={{ marginBottom: 8 }}>
+                        <Radio.Button value="bug">{t('report_page.bug')}</Radio.Button>
+                        <Radio.Button value="feedback">{t('report_page.feedback')}</Radio.Button>
+                    </Radio.Group>
+                    <div className="mt-5" style={{ width: 350 }}>
+                    <FinalForm
+                        onSubmit={onSubmit}
+                        render={({ handleSubmit }) => (
+                            <Form onSubmit={handleSubmit}>
+                                <FormGroup>
+                                    <div className="footer-link-bold mb-3">{t('report_page.context')}</div>
+                                    <Field
+                                        name="context"
+                                        component={FormInput}
+                                        className="company-contact-form-text-area"
+                                        type="textarea"
+                                        rows={2}
+                                        validate={required(t('report_page.context_required'))}
+                                    />
+                                </FormGroup>
+                                <FormGroup>
+                                    <div className="footer-link-bold mb-3">{t('report_page.description')}</div>
+                                    <Field
+                                        name="description"
+                                        component={FormInput}
+                                        className="company-contact-form-text-area"
+                                        type="textarea"
+                                        rows={5}
+                                        validate={required(t('report_page.description_required'))}
+                                    />
+                                </FormGroup>
+                                <Button
+                                    htmlType="submit"
+                                    type="primary"
+                                    className="ant-blue-btn mt-4"
+                                    loading={BETA_REPORT_PROCESS}
+                                >
+                                    {!BETA_REPORT_PROCESS && t('button_group.confirm')}
+                                </Button>
+                            </Form>
+                        )}
+                    />
+                    </div>
+                </div>
+            </div>
+            <FooterLink />
+            <Footer />
+        </div>
+    )
+}
+
+export default Report
