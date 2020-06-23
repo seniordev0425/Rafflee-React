@@ -13,10 +13,10 @@ function CampaignCard(props) {
         <div className="item campaign-card-body">
             <div>
                 <div className="campaign-card-img">
-                    <img src={campaign_image ? campaign_image : images.profile_img} className="campaign-img" />
+                    <img src={campaign_image ? campaign_image : images.profile_img} className="campaign-img" alt="" />
                     <div className="company-logo-container">
                         <Link to={`/company/${company_id}/`}>
-                            <img src={company_logo ? company_logo : images.profile_img} className="company-logo" />
+                            <img src={company_logo ? company_logo : images.profile_img} className="company-logo" alt="" />
                         </Link>
                     </div>
                 </div>
@@ -31,7 +31,7 @@ function CampaignCard(props) {
                 </Link>
             </div>
             <div className="campaign-card-star" >
-                <img src={images.star} />
+                <img src={images.star} alt="" />
             </div>
         </div>
     )

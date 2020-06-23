@@ -38,32 +38,32 @@ function FooterLink() {
                             <div className="footer-link" style={{ marginTop: "15px" }}>
                                 {t('footer.faq')}
                             </div>
-                            <Link to="/report">
-                                <div className="footer-link" style={{ marginTop: "15px" }}>
-                                    {t('footer.report')}
-                                </div>
-                            </Link>
+                            <div style={{ marginTop: "15px" }}>
+                                <Link to="/report">
+                                    <span className="footer-link">{t('footer.report')}</span>
+                                </Link>
+                            </div>
                         </Col>
                         <Col xs="6" md="3">
                             <div className="footer-link-bold">
                                 {t('footer.legal')}
                             </div>
-                            <Link to="/privacy-policy">
-                                <div className="footer-link" style={{ marginTop: "15px" }}>
-                                    {t('footer.privacy_policy')}
-                                </div>
-                            </Link>
+                            <div style={{ marginTop: "15px" }}>
+                                <Link to="/privacy-policy">
+                                    <span className="footer-link">{t('footer.privacy_policy')}</span>
+                                </Link>
+                            </div>
                             <div className="footer-link" style={{ marginTop: "15px" }}>
                                 {t('footer.cookies_policy')}
                             </div>
                             <div className="footer-link" style={{ marginTop: "15px" }}>
                                 {t('footer.legal_notice')}
                             </div>
-                            <Link to="/general-conditions">
-                                <div className="footer-link" style={{ marginTop: "15px" }}>
-                                    {t('footer.terms_of_service')}
-                                </div>
-                            </Link>
+                            <div style={{ marginTop: "15px" }}>
+                                <Link to="/general-conditions">
+                                    <span className="footer-link">{t('footer.terms_of_service')}</span>
+                                </Link>
+                            </div>
                         </Col>
                         <Col xs="6" md="3">
                             <div className="footer-link-bold">
