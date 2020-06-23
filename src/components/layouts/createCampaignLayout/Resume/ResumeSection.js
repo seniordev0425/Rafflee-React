@@ -1,14 +1,13 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { Row, Col, Input } from 'reactstrap'
-import images from '../../../../utils/images'
 
 import { useTranslation } from 'react-i18next'
 
 function ResumeSection(props) {
     const { t } = useTranslation()
 
-    const { params, setParams, setSection } = props
+    const { params } = props
 
     const created_promotion_id = useSelector(state => state.campaign.created_promotion_id)
 

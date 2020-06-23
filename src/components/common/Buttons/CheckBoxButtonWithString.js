@@ -43,7 +43,7 @@ function CheckBoxButtonWithString(props) {
                 ?
                 t(`create_campaign_page.${btnString}`)
                 :
-                <img src={images[`${btnString}_icon`]} width={15} />
+                <img src={images[`${btnString}_icon`]} width={15} alt="" />
 
             }
         </div>

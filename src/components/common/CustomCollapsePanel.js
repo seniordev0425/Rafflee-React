@@ -23,15 +23,13 @@ function CustomCollapsePanel(props) {
         isVideoEnded,
         tryToOpenValidationModal,
         participateWebsite,
-        participateInstagramProfile,
-        participateInstagramPublication
     } = props
 
     const renderIcons = () => {
         switch (type) {
             case 'twitter':
                 return (<div className="collapse-twitter-icon">
-                    <img src={images.twitter_icon} />
+                    <img src={images.twitter_icon} alt="" />
                 </div>)
             case 'facebook':
                 return (<div className="collapse-fb-icon">
@@ -39,25 +37,27 @@ function CustomCollapsePanel(props) {
                 </div>)
             case 'youtube':
                 return (<div className="collapse-youtube-icon">
-                    <img src={images.youtube_icon} />
+                    <img src={images.youtube_icon} alt="" />
                 </div>)
             case 'twitch':
                 return (<div className="collapse-twitch-icon">
-                    <img src={images.twitch_icon} width="20" />
+                    <img src={images.twitch_icon} width="20" alt="" />
                 </div>)
             case 'instagram':
                 return (<div className="collapse-instagram-icon">
-                    <img src={images.instagram_icon} width="20" />
+                    <img src={images.instagram_icon} width="20" alt="" />
                 </div>)
 
             case 'video':
                 return (<div className="collapse-video-icon">
-                    <img src={images.video_icon} width="25" />
+                    <img src={images.video_icon} width="25" alt="" />
                 </div>)
             case 'website':
                 return (<div className="collapse-website-icon">
-                    <img src={images.visit_icon} width="25" />
+                    <img src={images.visit_icon} width="25" alt="" />
                 </div>)
+            default:
+                return <></> 
         }
     }
 
@@ -129,7 +129,7 @@ function CustomCollapsePanel(props) {
                                 )}
                                 {actions.website && (
                                     <a
-                                        rel={'external'}
+                                        rel={'noopener noreferrer'}
                                         href={actions.website.includes("http") ? actions.website : `https://${actions.website}`}
                                         target='_blank'
                                         className=""

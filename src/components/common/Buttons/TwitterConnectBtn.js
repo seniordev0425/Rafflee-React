@@ -29,7 +29,7 @@ function TwitterConnectBtn(props) {
     return (
         <Row className={connected ? "not-allowed" : "pointer"} onClick={twitterConnect}>
             <Col xs="2" className="pl-0 pr-0 twitter-icon-container1">
-                <img src={images.twitter_icon} />
+                <img src={images.twitter_icon} alt="" />
             </Col>
             <Col xs="10" className="pl-0 pr-0 twitter-icon-container2">
                 {connected ? t('account_page.twitter_connected') : t('account_page.twitter_connect')}

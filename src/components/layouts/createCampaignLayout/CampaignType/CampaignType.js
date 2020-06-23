@@ -25,10 +25,10 @@ function CampaignType(props) {
                                         ?
                                         (
                                             <Tooltip title="Tooltip will show on mouse enter.">
-                                                <img src={images.question_icon} width={26} height={26} />
+                                                <img src={images.question_icon} width={26} height={26} alt="" />
                                             </Tooltip>
                                         )
-                                        : (<img src={images.question_mark_gray_icon} width={26} height={26} />)
+                                        : (<img src={images.question_mark_gray_icon} width={26} height={26} alt="" />)
                                     }
                                 </div>
                             </div>
@@ -40,10 +40,10 @@ function CampaignType(props) {
                                         ?
                                         (
                                             <Tooltip title="Tooltip will show on mouse enter.">
-                                                <img src={images.question_icon} width={26} height={26} />
+                                                <img src={images.question_icon} width={26} height={26} alt="" />
                                             </Tooltip>
                                         )
-                                        : (<img src={images.question_mark_gray_icon} width={26} height={26} />)
+                                        : (<img src={images.question_mark_gray_icon} width={26} height={26} alt="" />)
                                     }
                                 </div>
                             </div>
@@ -55,10 +55,10 @@ function CampaignType(props) {
                                         ?
                                         (
                                             <Tooltip title="Tooltip will show on mouse enter.">
-                                                <img src={images.question_icon} width={26} height={26} />
+                                                <img src={images.question_icon} width={26} height={26} alt="" />
                                             </Tooltip>
                                         )
-                                        : (<img src={images.question_mark_gray_icon} width={26} height={26} />)
+                                        : (<img src={images.question_mark_gray_icon} width={26} height={26} alt="" />)
                                     }
                                 </div>
                             </div>
@@ -77,10 +77,10 @@ function CampaignType(props) {
                                     ?
                                     (
                                         <Tooltip title="Tooltip will show on mouse enter.">
-                                            <img src={images.question_icon} width={26} height={26} />
+                                            <img src={images.question_icon} width={26} height={26} alt="" />
                                         </Tooltip>
                                     )
-                                    : (<img src={images.question_mark_gray_icon} width={26} height={26} />)
+                                    : (<img src={images.question_mark_gray_icon} width={26} height={26} alt="" />)
                                 }
                             </div>
                         </div>
@@ -98,10 +98,10 @@ function CampaignType(props) {
                                         ?
                                         (
                                             <Tooltip title="Tooltip will show on mouse enter.">
-                                                <img src={images.question_icon} width={26} height={26} />
+                                                <img src={images.question_icon} width={26} height={26} alt="" />
                                             </Tooltip>
                                         )
-                                        : (<img src={images.question_mark_gray_icon} width={26} height={26} />)
+                                        : (<img src={images.question_mark_gray_icon} width={26} height={26} alt="" />)
                                     }
                                 </div>
                             </div>
@@ -128,10 +128,10 @@ function CampaignType(props) {
                                         ?
                                         (
                                             <Tooltip title="Tooltip will show on mouse enter.">
-                                                <img src={images.question_icon} width={26} height={26} />
+                                                <img src={images.question_icon} width={26} height={26} alt="" />
                                             </Tooltip>
                                         )
-                                        : (<img src={images.question_mark_gray_icon} width={26} height={26} />)
+                                        : (<img src={images.question_mark_gray_icon} width={26} height={26} alt="" />)
                                     }
                                 </div>
                             </div>
@@ -143,10 +143,10 @@ function CampaignType(props) {
                                         ?
                                         (
                                             <Tooltip title="Tooltip will show on mouse enter.">
-                                                <img src={images.question_icon} width={26} height={26} />
+                                                <img src={images.question_icon} width={26} height={26} alt="" />
                                             </Tooltip>
                                         )
-                                        : (<img src={images.question_mark_gray_icon} width={26} height={26} />)
+                                        : (<img src={images.question_mark_gray_icon} width={26} height={26} alt="" />)
                                     }
                                 </div>
                             </div>

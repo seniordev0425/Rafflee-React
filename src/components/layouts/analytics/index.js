@@ -77,7 +77,7 @@ function AnalyticsLayout() {
                 <Col sm={{ size: 10, offset: 1 }} xs="12">
                     <Row>
                         <Col lg="6" xs="12" className="d-flex">
-                            <img src={companyProfile.logo || images.profile_img} width="100px" height="100px" className="mr-4 rounded-circle" />
+                            <img src={companyProfile.logo || images.profile_img} width="100px" height="100px" className="mr-4 rounded-circle" alt="" />
                             <div className="ml-5">
                                 <div className="font-weight-bold font-size-13">{companyProfile.company_name}</div>
                                 <div className="color-blue mt-5 font-size-11">{companyProfile.email}</div>

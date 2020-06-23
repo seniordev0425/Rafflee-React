@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { withRouter } from 'react-router-dom'
 import { Input } from 'reactstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { useDispatch } from 'react-redux'
 import { Form as FinalForm, Field } from 'react-final-form'
 import { Form, FormGroup, Button, Modal, ModalHeader, ModalBody } from 'reactstrap'

@@ -1,7 +1,7 @@
 // inspired by https://leanpub.com/redux-book
 import axios from "axios";
 import { API } from "../actions/types";
-import { accessDenied, apiError, apiStart, apiEnd, apiSuccess, authError } from "../actions/api";
+import { apiStart, apiEnd, apiSuccess, authError } from "../actions/api";
 
 const apiMiddleware = ({ dispatch }) => next => action => {
   next(action);

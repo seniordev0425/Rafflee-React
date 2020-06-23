@@ -70,19 +70,19 @@ function Dashboard(props) {
                             <Menu mode="horizontal" className="menubar" selectedKeys={[match.params.menu]}>
                                 <Menu.Item key="my-campaign">
                                     <Link to="/dashboard/my-campaign">
-                                        <img src={match.params.menu === 'my-campaign' ? images.my_campaign_blue : images.my_campaign} />
+                                        <img src={match.params.menu === 'my-campaign' ? images.my_campaign_blue : images.my_campaign} alt="" />
                                         <span className="ml-3"> {t('menubar.my_campaign')}</span>
                                     </Link>
                                 </Menu.Item>
                                 <Menu.Item key="my-bills">
                                     <Link to="/dashboard/my-bills">
-                                        <img src={match.params.menu === 'my-bills' ? images.my_bills_blue : images.my_bills} />
+                                        <img src={match.params.menu === 'my-bills' ? images.my_bills_blue : images.my_bills} alt="" />
                                         <span className="ml-3"> {t('menubar.my_bills')}</span>
                                     </Link>
                                 </Menu.Item>
                                 <Menu.Item key="analytics">
                                     <Link to="/dashboard/analytics">
-                                        <img src={match.params.menu === 'analytics' ? images.my_analytics_blue : images.my_analytics} />
+                                        <img src={match.params.menu === 'analytics' ? images.my_analytics_blue : images.my_analytics} alt="" />
                                         <span className="ml-3"> {t('menubar.analytics')}</span>
                                     </Link>
                                 </Menu.Item>
@@ -96,25 +96,25 @@ function Dashboard(props) {
                                 <Menu mode="horizontal" className="menubar" selectedKeys={[match.params.menu]}>
                                     <Menu.Item key="participation-history">
                                         <Link to="/dashboard/participation-history">
-                                            <img src={match.params.menu === 'participation-history' ? images.ph_icon_blue : images.ph_icon} />
+                                            <img src={match.params.menu === 'participation-history' ? images.ph_icon_blue : images.ph_icon} alt="" />
                                             <span className="ml-3"> {t('menubar.rafflee_history')} {`(${(userInventory || []).length})`}</span>
                                         </Link>
                                     </Menu.Item>
                                     <Menu.Item key="inventory">
                                         <Link to="/dashboard/inventory">
-                                            <img src={match.params.menu === 'inventory' ? images.inventory_icon_blue : images.inventory_icon} />
+                                            <img src={match.params.menu === 'inventory' ? images.inventory_icon_blue : images.inventory_icon} alt="" />
                                             <span className="ml-3"> {t('menubar.inventory')} {`(${(userParticipationHistory || []).length})`}</span>
                                         </Link>
                                     </Menu.Item>
                                     <Menu.Item key="following">
                                         <Link to="/dashboard/following">
-                                            <img src={match.params.menu === 'following' ? images.following_icon_blue : images.following_icon} />
+                                            <img src={match.params.menu === 'following' ? images.following_icon_blue : images.following_icon} alt="" />
                                             <span className="ml-3"> {t('menubar.following')} {`(${(myFollowing || []).length})`}</span>
                                         </Link>
                                     </Menu.Item>
                                     <Menu.Item key="my-circle">
                                         <Link to="/dashboard/my-circle">
-                                            <img src={match.params.menu === 'my-circle' ? images.my_circle_icon_blue : images.my_circle_icon} />
+                                            <img src={match.params.menu === 'my-circle' ? images.my_circle_icon_blue : images.my_circle_icon} alt="" />
                                             <span className="ml-3"> {t('menubar.my_circle')} {`(${(myFavoriteCompanies || []).length})`}</span>
                                         </Link>
                                     </Menu.Item>

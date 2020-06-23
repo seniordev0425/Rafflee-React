@@ -37,7 +37,7 @@ function TwitchFollowValidationModal(props) {
         <Modal isOpen={open} toggle={onToggle}>
             <ModalBody>
                 <div>
-                    <img src={(actionData || {}).profile_img} width={50} height={50} className="rounded-circle" />
+                    <img src={(actionData || {}).profile_img} width={50} height={50} className="rounded-circle" alt="" />
                     <span className="font-size-10 font-weight-bold ml-3">{(actionData || {}).name}</span>
                 </div>
                 <div className="mt-3">

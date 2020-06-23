@@ -176,7 +176,7 @@ function UserAccountForm() {
                                     <FormGroup>
                                         {(imgBase64Data || profile_picture) &&
                                             <>
-                                                <img className="profile-img" src={imgBase64Data ? imgBase64Data : profile_picture} />
+                                                <img className="profile-img" src={imgBase64Data ? imgBase64Data : profile_picture} alt="" />
                                                 {imgBase64Data &&
                                                     <div>
                                                         <Button

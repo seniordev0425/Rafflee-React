@@ -21,7 +21,7 @@ function CompanyPage(props) {
     const { id } = props.match.params
 
     const token = useSelector(state => state.userInfo.token)
-    const company = useSelector(state => state.userInfo.company)
+    // const company = useSelector(state => state.userInfo.company)
     const companyInformation = useSelector(state => state.userInfo.companyInformation)
     const GET_COMPANY_INFORMATION_PROCESS = useSelector(state => state.userInfo.GET_COMPANY_INFORMATION)
     const dispatch = useDispatch()
@@ -56,13 +56,13 @@ function CompanyPage(props) {
                     <Col xs="12" sm={{ size: 10, offset: 1 }}>
                         <Row>
                             <Col lg="1" md="2" sm="2" xs="3" className="company-wall-img">
-                                <img src={((companyInformation.social_wall || {}).twitter || {}).profile_image_url} />
+                                <img src={((companyInformation.social_wall || {}).twitter || {}).profile_image_url} alt="" />
                             </Col>
                             <Col lg="11" md="10" sm="10" xs="9" className="pl-sm-5">
                                 <div className="d-sm-flex">
                                     <div>
                                         <Tooltip title={twitter_tooltip}>
-                                            <img src={images.twitter_icon} width={20} height={20} className="pointer" />
+                                            <img src={images.twitter_icon} width={20} height={20} className="pointer" alt="" />
                                         </Tooltip>
                                         <span className="font-size-10 font-weight-bold color-blue ml-3">{((companyInformation.social_wall || {}).twitter || {}).name}</span>
                                     </div>
@@ -90,7 +90,7 @@ function CompanyPage(props) {
                     <Col xs="12" sm={{ size: 10, offset: 1 }}>
                         <Row>
                             <Col lg="1" md="2" sm="2" xs="3" className="promotion-list-item-img">
-                                <img src={companyInformation.company.logo_url ? companyInformation.company.logo_url : images.profile_img} className="rounded-circle" />
+                                <img src={companyInformation.company.logo_url ? companyInformation.company.logo_url : images.profile_img} className="rounded-circle" alt="" />
                             </Col>
                             <Col lg="11" md="10" sm="10" xs="9" className="pl-sm-5">
                                 <div className="d-md-flex justify-content-md-between">
@@ -98,7 +98,7 @@ function CompanyPage(props) {
                                         <div className="font-size-12 font-weight-bold">
                                             {companyInformation.company.company_name}
                                             {companyInformation.company.certified &&
-                                                <img src={images.verified_icon} width={20} height={20} className="ml-3 mt-n1" />
+                                                <img src={images.verified_icon} width={20} height={20} className="ml-3 mt-n1" alt="" />
                                             }
                                         </div>
                                         <div className="ml-0 ml-md-3 color-gray font-size-10 d-md-flex">
@@ -113,13 +113,13 @@ function CompanyPage(props) {
                                     </div>
                                     <div className="mt-3 mt-md-0">
                                         {companyInformation.company.website_url &&
-                                            <a href={companyInformation.company.website_url || '#'}><img src={images.globe_gray_icon} width={20} height={20} className="mr-5" /></a>
+                                            <a href={companyInformation.company.website_url || '#'}><img src={images.globe_gray_icon} width={20} height={20} className="mr-5" alt="" /></a>
                                         }
                                         {companyInformation.company.instagram_page_url &&
-                                            <a href={companyInformation.company.instagram_page_url || '#'}><img src={images.instagram_gray_icon} width={20} height={20} className="mr-5" /></a>
+                                            <a href={companyInformation.company.instagram_page_url || '#'}><img src={images.instagram_gray_icon} width={20} height={20} className="mr-5" alt="" /></a>
                                         }
                                         {companyInformation.company.facebook_page_url &&
-                                            <a href={companyInformation.company.facebook_page_url || '#'}><img src={images.facebook_gray_icon} width={8} height={20} /></a>
+                                            <a href={companyInformation.company.facebook_page_url || '#'}><img src={images.facebook_gray_icon} width={8} height={20} alt="" /></a>
                                         }
                                     </div>
                                 </div>

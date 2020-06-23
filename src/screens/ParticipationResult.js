@@ -39,7 +39,7 @@ function ParticipationResult(props) {
                 <Col xs="12" sm={{ size: 10, offset: 1 }}>
                     <Row className="my-5">
                         <Col lg="1" md="2" sm="2" xs="3" className="promotion-list-item-img">
-                            <img src={participation_result.campaign_image ? participation_result.campaign_image : images.profile_img} />
+                            <img src={participation_result.campaign_image ? participation_result.campaign_image : images.profile_img} alt="" />
                         </Col>
                         <Col lg="11" md="10" sm="10" xs="9" className="pl-sm-5">
                             <div className="promotion-list-item-title">{participation_result.campaign_name}</div>
@@ -51,13 +51,13 @@ function ParticipationResult(props) {
                     <Row className="campaign-main-panel mt-4 mb-5">
                         <Col className="px-0 left">
                             <div className="w-100">
-                                <img src={participation_result.giveaway_image_url ? participation_result.giveaway_image_url : images.campaign} width="100%" height="100%" />
+                                <img src={participation_result.giveaway_image_url ? participation_result.giveaway_image_url : images.campaign} width="100%" height="100%" alt="" />
                             </div>
                         </Col>
                         <Col className="px-0 center">
                             <div className="mt-3 ml-3 mt-lg-5 ml-lg-5">{t('campaign_detail_page.giveway_name')}</div>
                             <div className="d-flex ml-3 ml-lg-5 mt-3">
-                                <img src={images.award} width="30" height="40" />
+                                <img src={images.award} width="30" height="40" alt="" />
                                 <div className="ml-4  color-blue">
                                     {participation_result.giveaway_name}
                                 </div>
@@ -74,14 +74,14 @@ function ParticipationResult(props) {
                     <Row className="campaign-main-panel-mobile mt-3 mb-3">
                         <Col className="px-0 left">
                             <div className="w-100">
-                                <img src={participation_result.giveaway_image_url ? participation_result.giveaway_image_url : images.campaign} width="100%" />
+                                <img src={participation_result.giveaway_image_url ? participation_result.giveaway_image_url : images.campaign} width="100%" alt="" />
                             </div>
                         </Col>
                         <Col className="px-0 center d-flex justify-content-center">
                             <div>
                                 <div className="mt-2 ml-2">{t('campaign_detail_page.giveway_name')}</div>
                                 <div className="d-flex mt-2 ml-2">
-                                    <img src={images.award} width="20" height="25" />
+                                    <img src={images.award} width="20" height="25" alt="" />
                                     <div className="ml-4 color-blue">
                                         {participation_result.giveaway_name}
                                     </div>

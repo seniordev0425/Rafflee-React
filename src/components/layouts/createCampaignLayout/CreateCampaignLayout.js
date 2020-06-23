@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Menu } from 'antd'
 import { Row, Col } from 'reactstrap'
 import SetupSection from './Setup/SetupSection'

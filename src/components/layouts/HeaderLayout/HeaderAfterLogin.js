@@ -64,17 +64,17 @@ function HeaderAfterLogin(props) {
                         <Button type="primary" className="ant-blue-btn mr-3" style={{ width: 140 }}>{t('header.dashboard')}</Button>
                     </Link>
                     <Link to="/user-account/profile" className="d-flex align-items-center mx-3">
-                        <img src={company ? (companyProfile.logo || images.account_icon) : (userProfile.profile_picture || images.account_icon)} width={27} height={27} className="rounded-circle" />
+                        <img src={company ? (companyProfile.logo || images.account_icon) : (userProfile.profile_picture || images.account_icon)} width={27} height={27} className="rounded-circle" alt="" />
                     </Link>
                     <div onClick={log_Out} className="pointer mr-3">
                         <Button type="link" className="no-border-btn h-100">{t('header.log_out')}</Button>
-                        <img src={images.logout_icon} className="logout-icon" />
+                        <img src={images.logout_icon} className="logout-icon" alt="" />
                     </div>
                     <SelectLanguage />
                 </Row>
             ) : (
                     <>
-                        <img src={images.menu_icon} width={40} height={40} onClick={showDrawer} />
+                        <img src={images.menu_icon} width={40} height={40} onClick={showDrawer} alt="" />
                         <Drawer
                             placement="left"
                             closable={false}

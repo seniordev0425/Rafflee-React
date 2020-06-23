@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { Select } from 'antd'
-import { Button } from 'antd'
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
@@ -11,7 +10,7 @@ import { useTranslation } from 'react-i18next'
 function PreviewCustomCollapsePanelForPoll(props) {
     const { t } = useTranslation()
 
-    const { type, multiple_choice, responses, question, participatePoll } = props
+    const { type, multiple_choice, responses, question } = props
 
     const [answers, setAnswers] = useState(null)
 

@@ -103,7 +103,7 @@ function WinningItem(props) {
                     <div className="pl-0 pl-sm-2 d-flex align-items-center" style={{ marginTop: imgBase64Data ? 20 : 0 }}>
                         {imgBase64Data &&
                             <div>
-                                <img src={`data:image/jpeg;base64,${imgBase64Data}`} style={{ width: 60, height: 60, borderRadius: 6 }} />
+                                <img src={`data:image/jpeg;base64,${imgBase64Data}`} style={{ width: 60, height: 60, borderRadius: 6 }} alt="" />
                                 <Button
                                     onClick={handleImageCropModal}
                                     type="primary"

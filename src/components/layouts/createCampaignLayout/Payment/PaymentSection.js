@@ -1,17 +1,16 @@
-import React, { useState, useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { Row, Col, Input, FormGroup } from 'reactstrap'
 import { Button } from 'antd'
+import React, { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
+import { useDispatch, useSelector } from 'react-redux'
+import { Col, FormGroup, Input, Row } from 'reactstrap'
 import { createCampaign } from '../../../../actions/campaign'
-import images from '../../../../utils/images'
 import { b64toBlob } from '../../../../utils/others'
 
-import { useTranslation } from 'react-i18next'
 
 function PaymentSection(props) {
     const { t } = useTranslation()
 
-    const { params, setParams, setSection } = props
+    const { params, setSection } = props
 
     const CREATE_CAMPAIGN_PROCESS = useSelector(state => state.userInfo.CREATE_CAMPAIGN)
     const CREATE_CAMPAIGN_SUCCESS = useSelector(state => state.userInfo.SUCCESS_CREATE_CAMPAIGN)

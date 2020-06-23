@@ -22,7 +22,7 @@ function VideoField(props) {
                 </div>
                 <div>
                     <Tooltip title="Tooltip will show on mouse enter.">
-                        <img src={images.question_mark_white_icon} width={22} />
+                        <img src={images.question_mark_white_icon} width={22} alt="" />
                     </Tooltip>
                     <span
                         className="ml-3 pointer"

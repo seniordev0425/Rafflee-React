@@ -115,7 +115,7 @@ function SetupSection(props) {
                                 </div>
                                 {params.promotion_picture &&
                                     <>
-                                        <img className="profile-img" src={params.promotion_picture} />
+                                        <img className="profile-img" src={params.promotion_picture} alt="" />
                                         <div>
                                             <Button
                                                 onClick={handleImageCropModal}

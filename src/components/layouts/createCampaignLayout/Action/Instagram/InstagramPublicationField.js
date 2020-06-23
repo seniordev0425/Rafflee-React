@@ -17,12 +17,12 @@ function InstagramPublicationField(props) {
                 style={{ height: 50, backgroundColor: '#1E3F6C', borderTopLeftRadius: 6, borderTopRightRadius: 6 }}
             >
                 <div className="d-flex align-items-center">
-                    <img src={images.instagram_action_icon} width={18} height={18} />
+                    <img src={images.instagram_action_icon} width={18} height={18} alt="" />
                     <span className="ml-3">{t('create_campaign_page.instagram_publication')}</span>
                 </div>
                 <div>
                     <Tooltip title="Tooltip will show on mouse enter.">
-                        <img src={images.question_mark_white_icon} width={22} />
+                        <img src={images.question_mark_white_icon} width={22} alt="" />
                     </Tooltip>
                     <span
                         className="ml-3 pointer"

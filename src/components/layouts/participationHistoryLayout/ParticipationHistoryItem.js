@@ -28,7 +28,7 @@ function ParticipationHistoryItem(props) {
                 <Col xs="12" sm={{ size: 10, offset: 1 }}>
                     <Row>
                         <Col lg="1" md="2" sm="2" xs="3" className="promotion-list-item-img">
-                            <img src={item.campaign_image ? item.campaign_image : images.profile_img} />
+                            <img src={item.campaign_image ? item.campaign_image : images.profile_img} alt="" />
                         </Col>
                         <Col lg="11" md="10" sm="10" xs="9" className="pl-sm-5">
                             <div className="promotion-list-item-title d-flex justify-content-between align-items-center">
@@ -38,6 +38,7 @@ function ParticipationHistoryItem(props) {
                                             src={item.company_logo ? item.company_logo : images.profile_img}
                                             style={{ width: 40, height: 40, borderRadius: '50%', boxShadow: ' 0px 5px 20px #bec2c5d9' }}
                                             className="mr-3"
+                                            alt=""
                                         />
                                     </Link>
                                     {item.campaign_name}
@@ -60,7 +61,7 @@ function ParticipationHistoryItem(props) {
                                     </Button>
                                 </Link>
                                 <div className="promotion-list-item-star" onClick={update}>
-                                    <img src={item.favorite ? images.trans_star_favorite : images.trans_star} />
+                                    <img src={item.favorite ? images.trans_star_favorite : images.trans_star} alt="" />
                                 </div>
                             </div>
                         </Col>

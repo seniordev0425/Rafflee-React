@@ -12,7 +12,7 @@ import { useTranslation } from 'react-i18next'
 function PreviewSection(props) {
     const { t } = useTranslation()
 
-    const { params, setParams, setSection } = props
+    const { params, setSection } = props
 
     const companyProfile = useSelector(state => state.userInfo.companyProfile)
 
@@ -48,7 +48,7 @@ function PreviewSection(props) {
                     <Row className="my-5">
                         <Col lg="1" md="2" sm="2" xs="3" className="promotion-list-item-img p-0">
                             <div>
-                                <img src={companyProfile.logo ? companyProfile.logo : images.profile_img} />
+                                <img src={companyProfile.logo ? companyProfile.logo : images.profile_img} alt="" />
                                 <div className="mt-3 color-blue font-weight-bold">{companyProfile.company_name}</div>
                             </div>
                         </Col>
@@ -60,13 +60,13 @@ function PreviewSection(props) {
                     <Row className="campaign-main-panel mt-4 mb-5 mx-0">
                         <Col className="px-0 left">
                             <div className="w-100">
-                                <img src={params.promotion_picture ? params.promotion_picture : images.campaign} width="100%" height="100%" />
+                                <img src={params.promotion_picture ? params.promotion_picture : images.campaign} width="100%" height="100%" alt="" />
                             </div>
                         </Col>
                         <Col className="px-0 center">
                             <div className="mt-3 ml-3 mt-lg-5 ml-lg-5">{t('campaign_detail_page.giveaways')}</div>
                             <div className="d-flex ml-3 ml-lg-5 mt-3">
-                                <img src={images.award} width="30" height="40" />
+                                <img src={images.award} width="30" height="40" alt="" />
                                 <div className="ml-4">
                                     {renderWinnings()}
                                 </div>
@@ -79,7 +79,7 @@ function PreviewSection(props) {
                                 <div className="" style={{ lineHeight: "2.5rem" }}>
                                     {t('campaign_detail_page.prize_ends_in')}
                                 </div>
-                                <img src={images.clock} width="25" height="25" />
+                                <img src={images.clock} width="25" height="25" alt="" />
                                 {params.end_date &&
                                     <span className="ml-3 color-blue">{calcRemainingDates()} {t('campaign_detail_page.days')}</span>
                                 }
@@ -88,14 +88,14 @@ function PreviewSection(props) {
                                 <div className="" style={{ lineHeight: "2.5rem" }}>
                                     {t('campaign_detail_page.your_entries')}
                                 </div>
-                                <img src={images.entry} width="25" height="25" />
+                                <img src={images.entry} width="25" height="25" alt="" />
                                 <span className="ml-3 color-blue">0 {t('campaign_detail_page.entries')}</span>
                             </div>
                             <div className="div-item">
                                 <div style={{ lineHeight: "2.5rem" }}>
                                     {t('campaign_detail_page.maximum_participants')}
                                 </div>
-                                <img src={images.user} width="25" height="25" />
+                                <img src={images.user} width="25" height="25" alt="" />
                                 <span className="ml-3 color-blue">{calcMaximumParticipants()} {t('campaign_detail_page.participants')}</span>
                             </div>
                         </Col>
@@ -103,14 +103,14 @@ function PreviewSection(props) {
                     <Row className="campaign-main-panel-mobile mt-3 mb-3 mx-0">
                         <Col className="px-0 left">
                             <div className="w-100">
-                                <img src={params.promotion_picture ? params.promotion_picture : images.campaign} width="100%" />
+                                <img src={params.promotion_picture ? params.promotion_picture : images.campaign} width="100%" alt="" />
                             </div>
                         </Col>
                         <Col className="px-0 center d-flex justify-content-center">
                             <div>
                                 <div className="mt-2 ml-2">{t('campaign_detail_page.giveaways')}</div>
                                 <div className="d-flex mt-2 ml-2">
-                                    <img src={images.award} width="20" height="25" />
+                                    <img src={images.award} width="20" height="25" alt="" />
                                     <div className="ml-4">
                                         {renderWinnings()}
                                     </div>
@@ -120,17 +120,17 @@ function PreviewSection(props) {
                     </Row>
                     <Row className="campaign-main-panel-mobile-footer px-3 mx-0">
                         <Col className="px-0" style={{ borderRight: "1px solid #8ACDFF" }}>
-                            <div className="d-flex justify-content-center"><img src={images.clock} width="25" height="25" /></div>
+                            <div className="d-flex justify-content-center"><img src={images.clock} width="25" height="25" alt="" /></div>
                             {params.end_date &&
                                 <div className="color-blue mt-2 text-center">{calcRemainingDates()} {t('campaign_detail_page.days')}</div>
                             }
                         </Col>
                         <Col className="px-0" style={{ borderRight: "1px solid #8ACDFF" }}>
-                            <div className="d-flex justify-content-center"><img src={images.entry} width="25" height="25" /></div>
+                            <div className="d-flex justify-content-center"><img src={images.entry} width="25" height="25" alt="" /></div>
                             <div className="color-blue mt-2 text-center">0 {t('campaign_detail_page.entries')}</div>
                         </Col>
                         <Col className="px-0">
-                            <div className="d-flex justify-content-center"><img src={images.user} width="25" height="25" /></div>
+                            <div className="d-flex justify-content-center"><img src={images.user} width="25" height="25" alt="" /></div>
                             <div className="color-blue mt-2 text-center">{calcMaximumParticipants()} {t('campaign_detail_page.participants')}</div>
                         </Col>
                     </Row>

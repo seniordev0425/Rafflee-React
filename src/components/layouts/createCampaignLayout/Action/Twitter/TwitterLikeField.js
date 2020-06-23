@@ -17,12 +17,12 @@ function TwitterLikeField(props) {
                 style={{ height: 50, backgroundColor: '#1EA1F1', borderTopLeftRadius: 6, borderTopRightRadius: 6 }}
             >
                 <div>
-                    <img src={images.twitter_action_icon} width={18} height={16} />
+                    <img src={images.twitter_action_icon} width={18} height={16} alt="" />
                     <span className="ml-3">{t('create_campaign_page.like_tweet')}</span>
                 </div>
                 <div>
                     <Tooltip title="Tooltip will show on mouse enter.">
-                        <img src={images.question_mark_white_icon} width={22} />
+                        <img src={images.question_mark_white_icon} width={22} alt="" />
                     </Tooltip>
                     <span
                         className="ml-3 pointer"

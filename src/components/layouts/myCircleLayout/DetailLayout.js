@@ -29,12 +29,12 @@ function DetailLayout(props) {
                 <Col xs="12" sm={{ size: 10, offset: 1 }}>
                     <Row>
                         <Col lg="1" md="2" sm="2" xs="3" className="company-wall-img">
-                            <img src={((companyWall || {}).twitter || {}).profile_image_url} />
+                            <img src={((companyWall || {}).twitter || {}).profile_image_url} alt="" />
                         </Col>
                         <Col lg="11" md="10" sm="10" xs="9" className="pl-sm-5">
                             <div className="d-sm-flex">
                                 <div>
-                                    <img src={images.twitter_icon} width={20} height={20} />
+                                    <img src={images.twitter_icon} width={20} height={20} alt="" />
                                     <span className="font-size-10 font-weight-bold color-blue ml-3">{((companyWall || {}).twitter || {}).name}</span>
                                 </div>
                                 <div className="font-size-10 ml-sm-3 mt-2 mt-sm-0">

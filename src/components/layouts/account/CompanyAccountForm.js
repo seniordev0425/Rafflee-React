@@ -129,7 +129,7 @@ function CompanyAccountForm(props) {
                                     <FormGroup>
                                         {(imgBase64Data || logo) &&
                                             <>
-                                                <img className="profile-img" src={imgBase64Data ? imgBase64Data : logo} />
+                                                <img className="profile-img" src={imgBase64Data ? imgBase64Data : logo} alt="" />
                                                 {imgBase64Data &&
                                                     <div>
                                                         <Button

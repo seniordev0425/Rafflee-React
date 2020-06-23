@@ -65,7 +65,7 @@ function OverView(props) {
                 <Col xs="12" sm={{ size: 10, offset: 1 }} className="px-4 followers-container">
                     <div className="follower-div">
                         <div className="d-flex align-items-center">
-                            <img src={images.rafflee_icon} width="30px" height="30px" />
+                            <img src={images.rafflee_icon} width="30px" height="30px" alt="" />
                             <span className="font-weight-bold font-size-11 ml-3">{t('analytics_page.rafflee_followers')}</span>
                         </div>
                         <div className="d-flex justify-content-between mt-3 align-items-center">
@@ -76,7 +76,7 @@ function OverView(props) {
                     </div>
                     <div className="follower-div">
                         <div className="d-flex align-items-center">
-                            <img src={images.twitter_icon} width="30px" height="30px" />
+                            <img src={images.twitter_icon} width="30px" height="30px" alt="" />
                             <span className="font-weight-bold font-size-11 ml-3">{t('analytics_page.twitter_followers')}</span>
                         </div>
                         <div className="d-flex justify-content-between mt-3 align-items-center">
@@ -87,7 +87,7 @@ function OverView(props) {
                     </div>
                     <div className="follower-div">
                         <div className="d-flex align-items-center">
-                            <img src={images.twitch_icon} width="30px" height="30px" />
+                            <img src={images.twitch_icon} width="30px" height="30px" alt="" />
                             <span className="font-weight-bold font-size-11 ml-3">{t('analytics_page.twitch_followers')}</span>
                         </div>
                         <div className="d-flex justify-content-between mt-3 align-items-center">

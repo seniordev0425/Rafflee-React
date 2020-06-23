@@ -16,7 +16,7 @@ import { useTranslation } from 'react-i18next'
 function ForgotPassword(props) {
     const { t } = useTranslation()
 
-    const { open, onToggle, toggle } = props
+    const { open, onToggle } = props
     const isLoading = useSelector(state => state.userInfo.RESET_PASSWORD_REQUEST)
     const RESET_PASSWORD_REQUEST_SUCCESS = useSelector(state => state.userInfo.RESET_PASSWORD_REQUEST_SUCCESS)
     const dispatch = useDispatch()

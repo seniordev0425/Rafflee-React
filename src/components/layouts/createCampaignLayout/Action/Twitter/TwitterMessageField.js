@@ -1,6 +1,6 @@
 import React from 'react'
 import { Row, Col, Input } from 'reactstrap'
-import { Tooltip, Checkbox, Select } from 'antd'
+import { Tooltip, Checkbox } from 'antd'
 import images from '../../../../../utils/images'
 
 import { useTranslation } from 'react-i18next'
@@ -10,8 +10,6 @@ function TwitterMessageField(props) {
 
     const { params, setAction } = props
 
-    const { Option } = Select
-
     return (
         <div className="mt-3 mt-sm-5">
             <div
@@ -19,12 +17,12 @@ function TwitterMessageField(props) {
                 style={{ height: 50, backgroundColor: '#1EA1F1', borderTopLeftRadius: 6, borderTopRightRadius: 6 }}
             >
                 <div>
-                    <img src={images.twitter_action_icon} width={18} height={16} />
+                    <img src={images.twitter_action_icon} width={18} height={16} alt="" />
                     <span className="ml-3">{t('create_campaign_page.comment_tweet')}</span>
                 </div>
                 <div>
                     <Tooltip title="Tooltip will show on mouse enter.">
-                        <img src={images.question_mark_white_icon} width={22} />
+                        <img src={images.question_mark_white_icon} width={22} alt="" />
                     </Tooltip>
                     <span
                         className="ml-3 pointer"

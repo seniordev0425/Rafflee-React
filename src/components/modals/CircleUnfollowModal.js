@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Modal, ModalHeader, ModalBody } from 'reactstrap'
-import { Checkbox, Button } from 'antd'
+import { Button } from 'antd'
 import { unfollowCircle } from '../../actions/userInfo'
 import { useTranslation } from 'react-i18next'
 

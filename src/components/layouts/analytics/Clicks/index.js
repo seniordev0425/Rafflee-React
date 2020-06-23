@@ -6,11 +6,9 @@ import ClickTotalSplineChart from './ClickTotalSplineChart'
 import ProductBenefitSplineChart from './ProductBenefitSplineChart'
 import Loading from '../../../common/Loading'
 import { getClicksData } from '../../../../actions/analytics'
-import { useTranslation } from 'react-i18next'
 
 function Clicks(props) {
-    const { t } = useTranslation()
-
+    
     const { time, campaignID } = props
 
     const clicksData = useSelector(state => state.analytics.clicksData)

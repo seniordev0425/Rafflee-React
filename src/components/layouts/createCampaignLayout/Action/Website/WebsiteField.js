@@ -17,12 +17,12 @@ function WebsiteField(props) {
                 style={{ height: 50, backgroundColor: '#95A5A6', borderTopLeftRadius: 6, borderTopRightRadius: 6 }}
             >
                 <div>
-                    <img src={images.website_action_icon} width={18} height={16} />
+                    <img src={images.website_action_icon} width={18} height={16} alt="" />
                     <span className="ml-3">{t('create_campaign_page.create_website_action')}</span>
                 </div>
                 <div>
                     <Tooltip title="Tooltip will show on mouse enter.">
-                        <img src={images.question_mark_white_icon} width={22} />
+                        <img src={images.question_mark_white_icon} width={22} alt="" />
                     </Tooltip>
                     <span
                         className="ml-3 pointer"

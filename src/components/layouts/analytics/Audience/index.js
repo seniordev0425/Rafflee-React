@@ -2,8 +2,6 @@ import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Row, Col } from 'reactstrap'
 import { Progress } from 'antd'
-import ReactCountryFlag from "react-country-flag"
-import { getCode } from 'country-list'
 import AudienceSplineChart from './AudienceSplineChart'
 import MapChart from './MapChart'
 import Loading from '../../../common/Loading'

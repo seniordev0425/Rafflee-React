@@ -11,7 +11,7 @@ function GoogleSignBtn() {
     return (
         <Row className="pointer">
             <Col xs="2" className="pl-0 pr-0 google-icon-container1">
-                <img src={images.google_icon} />
+                <img src={images.google_icon} alt="" />
             </Col>
             <Col xs="10" className="pl-0 pr-0 google-icon-container2">
                 {isLoading ? <Spinner /> : t('login_modal.signup_with_google')}

@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next'
 
 function CircleFollowModal(props) {
     const { t } = useTranslation()
-    const { open, onToggle, pk, companyName } = props
+    const { open, onToggle, pk } = props
 
     const FOLLOW_CIRCLE_PROCESS = useSelector(state => state.userInfo.FOLLOW_CIRCLE)
     const FOLLOW_CIRCLE_SUCCESS = useSelector(state => state.userInfo.SUCCESS_FOLLOW_CIRCLE)

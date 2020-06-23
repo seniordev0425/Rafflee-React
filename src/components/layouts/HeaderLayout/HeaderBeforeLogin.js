@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Button, Drawer } from 'antd'
-import { Row, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap'
+import { Row } from 'reactstrap'
 import LoginSignupBaseModal from '../../modals/LoginSignupBaseModal'
 import SelectLanguage from './SelectLanguage'
 import images from '../../../utils/images'
@@ -58,12 +58,12 @@ function HeaderBeforeLogin() {
                     <Link to="/deals"><Button type="link" className="no-border-btn mr-3 h-100">{t('header.campaigns')}</Button></Link>
                     <Button className="white-btn mr-3" style={{ width: 140 }} onClick={() => toggle(false)}>{t('header.sign_in')}</Button>
                     <Button type="primary" className="ant-blue-btn" style={{ width: 140 }} onClick={() => toggle(true)}>{t('header.log_in')}</Button>
-                    <img src={images.question_icon} className="mx-4" />
+                    <img src={images.question_icon} className="mx-4" alt="" />
                     <SelectLanguage />
                 </Row>
             ) : (
                 <>
-                    <img src={images.menu_icon} width={40} height={40} onClick={showDrawer} />
+                    <img src={images.menu_icon} width={40} height={40} onClick={showDrawer} alt="" />
                     <Drawer
                         placement="left"
                         closable={false}

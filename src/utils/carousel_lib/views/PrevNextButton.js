@@ -1,7 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChevronCircleRight, faChevronCircleLeft } from '@fortawesome/free-solid-svg-icons'
 import images from '../../images'
 
 export const PrevNextButton = ({ name, disabled, onClick, onMouseEnter, onMouseLeave }) => {
@@ -12,10 +10,10 @@ export const PrevNextButton = ({ name, disabled, onClick, onMouseEnter, onMouseL
       <div className={`alice-carousel__${name}-btn-wrapper`} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
         <p className={className} onClick={onClick}>
           {name === 'next' ? (
-              <img src={images.right_icon} width={30} />
+              <img src={images.right_icon} width={30} alt="" />
             ) : 
             (
-              <img src={images.left_icon} width={30} />
+              <img src={images.left_icon} width={30} alt="" />
             )
           }
         </p>

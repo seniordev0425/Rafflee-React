@@ -80,6 +80,7 @@ function Homepage(state = initialFeedState, action) {
                     )
                 }
             }
+            break;
         default:
             return state
     }

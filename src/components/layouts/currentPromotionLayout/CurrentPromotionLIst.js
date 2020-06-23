@@ -12,7 +12,7 @@ import Loading from '../../common/Loading'
 
 import { useTranslation } from 'react-i18next'
 
-function CurrentPromotionList(props) {
+function CurrentPromotionList() {
     const { t } = useTranslation()
 
     const hotPromotions = useSelector(state => state.homepage.hotPromotions)

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Menu } from 'antd'
 import { Row, Col } from 'reactstrap'
 import PasswordSection from './PasswordSection'
@@ -6,7 +6,7 @@ import DeactivateSection from './DeactivateSection'
 
 import { useTranslation } from 'react-i18next'
 
-function UserSettings(props) {
+function UserSettings() {
     const { t } = useTranslation()
 
     const [currentSection, setCurrentSection] = useState('password')

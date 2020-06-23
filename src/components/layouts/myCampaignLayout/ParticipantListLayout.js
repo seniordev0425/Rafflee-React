@@ -59,7 +59,7 @@ function ParticipantListLayout(props) {
                 <Col xs="12" sm={{ size: 10, offset: 1 }}>
                     <Row>
                         <Col sm="2" xs="3" className="promotion-list-item-img">
-                            <img src={images.profile_img} />
+                            <img src={images.profile_img} alt="" />
                         </Col>
                         <Col sm="10" xs="9">
                             <div className="promotion-list-item-text">{t('my_campaign_page.campaign_analytics')}</div>

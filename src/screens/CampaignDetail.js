@@ -28,7 +28,6 @@ import {
     campaignParticipateInstagramProfile,
     campaignParticipateInstagramPublication,
 } from '../actions/campaign'
-import { getUserProfile } from '../actions/userInfo'
 
 import { useTranslation } from 'react-i18next'
 import VideoPlayerModal from '../components/modals/VideoPlayerModal'
@@ -229,15 +228,6 @@ function CampaignDetail(props) {
         dispatch(campaignParticipateWebsite({ promotion_id: campaignData.pk }))
     }
 
-    const participateInstagramProfile = () => {
-        dispatch(campaignParticipateInstagramProfile({ promotion_id: campaignData.pk }))
-    }
-
-    const participateInstagramPublication = () => {
-        dispatch(campaignParticipateInstagramPublication({ promotion_id: campaignData.pk }))
-    }
-
-
     const update = () => {
         var body = {
             promotion_id: match.params.id
@@ -268,7 +258,7 @@ function CampaignDetail(props) {
                         <Col lg="1" md="2" sm="2" xs="3" className="promotion-list-item-img">
                             <Link to={`/company/${campaignData.company_id}/`}>
                                 <div>
-                                    <img src={campaignData.company_logo ? campaignData.company_logo : images.profile_img} />
+                                    <img src={campaignData.company_logo ? campaignData.company_logo : images.profile_img} alt="" />
                                     <div className="mt-3 color-blue font-weight-bold">{campaignData.company_name}</div>
                                 </div>
                             </Link>
@@ -279,7 +269,7 @@ function CampaignDetail(props) {
                                 <div style={{ width: "70%" }} className="promotion-list-item-text">{campaignData.long_description}</div>
                                 {(token && !company) && (
                                     <div className="promotion-list-item-star" onClick={update}>
-                                        <img src={campaignData.favorite ? images.trans_star_favorite : images.trans_star} />
+                                        <img src={campaignData.favorite ? images.trans_star_favorite : images.trans_star} alt="" />
                                     </div>
                                 )}
                             </div>
@@ -288,13 +278,13 @@ function CampaignDetail(props) {
                     <Row className="campaign-main-panel mt-4 mb-5">
                         <Col className="px-0 left">
                             <div className="w-100">
-                                <img src={campaignData.campaign_image ? campaignData.campaign_image : images.campaign} width="100%" height="100%" />
+                                <img src={campaignData.campaign_image ? campaignData.campaign_image : images.campaign} width="100%" height="100%" alt="" />
                             </div>
                         </Col>
                         <Col className="px-0 center">
                             <div className="mt-3 ml-3 mt-lg-5 ml-lg-5">{t('campaign_detail_page.giveaways')}</div>
                             <div className="d-flex ml-3 ml-lg-5 mt-3">
-                                <img src={images.award} width="30" height="40" />
+                                <img src={images.award} width="30" height="40" alt="" />
                                 <div className="ml-4">
                                     {renderWinnings()}
                                 </div>
@@ -308,21 +298,21 @@ function CampaignDetail(props) {
                                 <div className="" style={{ lineHeight: "2.5rem" }}>
                                     {Date.parse(campaignData.end_date) > Date.now() ? t('campaign_detail_page.prize_ends_in') : t('campaign_detail_page.prize_ended')}
                                 </div>
-                                <img src={images.clock} width="25" height="25" />
+                                <img src={images.clock} width="25" height="25" alt="" />
                                 <span className="ml-3 color-blue">{calcRemainingDates()} {t('campaign_detail_page.days')}</span>
                             </div>
                             <div className="div-item ">
                                 <div className="" style={{ lineHeight: "2.5rem" }}>
                                     {t('campaign_detail_page.your_entries')}
                                 </div>
-                                <img src={images.entry} width="25" height="25" />
+                                <img src={images.entry} width="25" height="25" alt="" />
                                 <span className="ml-3 color-blue">0 {t('campaign_detail_page.entries')}</span>
                             </div>
                             <div className="div-item ">
                                 <div className="" style={{ lineHeight: "2.5rem" }}>
                                     {t('campaign_detail_page.maximum_participants')}
                                 </div>
-                                <img src={images.user} width="25" height="25" />
+                                <img src={images.user} width="25" height="25" alt="" />
                                 <span className="ml-3 color-blue">{campaignData.number_of_eligible_people || 0} {t('campaign_detail_page.participants')}</span>
                             </div>
                         </Col>
@@ -331,14 +321,14 @@ function CampaignDetail(props) {
                     <Row className="campaign-main-panel-mobile mt-3 mb-3">
                         <Col className="px-0 left">
                             <div className="w-100">
-                                <img src={campaignData.campaign_image ? campaignData.campaign_image : images.campaign} width="100%" />
+                                <img src={campaignData.campaign_image ? campaignData.campaign_image : images.campaign} width="100%" alt="" />
                             </div>
                         </Col>
                         <Col className="px-0 center d-flex justify-content-center">
                             <div>
                                 <div className="mt-2 ml-2">{t('campaign_detail_page.giveaways')}</div>
                                 <div className="d-flex mt-2 ml-2">
-                                    <img src={images.award} width="20" height="25" />
+                                    <img src={images.award} width="20" height="25" alt="" />
                                     <div className="ml-4">
                                         {renderWinnings()}
                                     </div>
@@ -348,15 +338,15 @@ function CampaignDetail(props) {
                     </Row>
                     <Row className="campaign-main-panel-mobile-footer px-3">
                         <Col className="px-0" style={{ borderRight: "1px solid #8ACDFF" }}>
-                            <div className="d-flex justify-content-center"><img src={images.clock} width="25" height="25" /></div>
+                            <div className="d-flex justify-content-center"><img src={images.clock} width="25" height="25" alt="" /></div>
                             <div className="color-blue mt-2 text-center">{calcRemainingDates()} {t('campaign_detail_page.days')}</div>
                         </Col>
                         <Col className="px-0" style={{ borderRight: "1px solid #8ACDFF" }}>
-                            <div className="d-flex justify-content-center"><img src={images.entry} width="25" height="25" /></div>
+                            <div className="d-flex justify-content-center"><img src={images.entry} width="25" height="25" alt="" /></div>
                             <div className="color-blue mt-2 text-center">0 {t('campaign_detail_page.entries')}</div>
                         </Col>
                         <Col className="px-0">
-                            <div className="d-flex justify-content-center"><img src={images.user} width="25" height="25" /></div>
+                            <div className="d-flex justify-content-center"><img src={images.user} width="25" height="25" alt="" /></div>
                             <div className="color-blue mt-2 text-center">{campaignData.number_of_eligible_people || 0} {t('campaign_detail_page.participants')}</div>
                         </Col>
                     </Row>

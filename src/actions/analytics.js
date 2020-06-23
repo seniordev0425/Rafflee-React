@@ -2,7 +2,6 @@ import { APIROUTE } from '../utils/constants'
 import { API } from "./types";
 import { openNotification } from '../utils/notification'
 
-const qs = require('querystring')
 
 function onFailed(error) {
     openNotification('warning', error)

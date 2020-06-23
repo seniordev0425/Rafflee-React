@@ -17,12 +17,12 @@ function TwitchFollowField(props) {
                 style={{ height: 50, backgroundColor: '#9147FF', borderTopLeftRadius: 6, borderTopRightRadius: 6 }}
             >
                 <div className="d-flex align-items-center">
-                    <img src={images.twitch_action_icon} width={16} height={16} />
+                    <img src={images.twitch_action_icon} width={16} height={16} alt="" />
                     <span className="ml-3">{t('create_campaign_page.follow_tweet')}</span>
                 </div>
                 <div>
                     <Tooltip title="Tooltip will show on mouse enter.">
-                        <img src={images.question_mark_white_icon} width={22} />
+                        <img src={images.question_mark_white_icon} width={22} alt="" />
                     </Tooltip>
                     <span
                         className="ml-3 pointer"

@@ -12,7 +12,7 @@ function MyCircleItem(props) {
                 <Row>
                     <Col lg="1" md="2" sm="2" xs="3" className="promotion-list-item-img">
                         <Link to={`/company/${item.id}/`}>
-                            <img src={item.logo_url ? item.logo_url : images.profile_img} className="pointer rounded-circle" />
+                            <img src={item.logo_url ? item.logo_url : images.profile_img} className="pointer rounded-circle" alt="" />
                         </Link>
                     </Col>
                     <Col lg="11" md="10" sm="10" xs="9" className="pl-sm-5">
@@ -22,7 +22,7 @@ function MyCircleItem(props) {
                                     <div className="font-size-12 font-weight-bold color-blue pointer">
                                         {item.company_name}
                                         {item.certified &&
-                                            <img src={images.verified_icon} width={20} height={20} className="ml-3 mt-n1" />
+                                            <img src={images.verified_icon} width={20} height={20} className="ml-3 mt-n1" alt="" />
                                         }
                                     </div>
                                 </Link>
