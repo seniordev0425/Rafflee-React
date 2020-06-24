@@ -19,6 +19,9 @@ body {
 .color-purple {
     color: #7479EE;
 }
+.color-pink {
+    color: #ff55fe;
+}
 .color-gray {
     color: #9399A3;
 }
@@ -26,7 +29,7 @@ body {
     color: white;
 }
 .color-red {
-    color: rgb(220, 53, 69);
+    color: rgb(255, 0, 24);
 }
 .font-size-8 {
     font-size: 0.8rem;

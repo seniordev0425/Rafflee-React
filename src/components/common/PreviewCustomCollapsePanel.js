@@ -8,10 +8,25 @@ import CheckBoxButtonForAction from '../common/Buttons/CheckBoxButtonForAction'
 
 import { useTranslation } from 'react-i18next'
 
+const Required = () => {
+    return (
+        <span className="ml-2 font-size-12 color-red font-weight-bold">*</span>
+    )
+}
+
 function CustomCollapsePanel(props) {
     const { t } = useTranslation()
 
-    const { type, actions, onParticipate, isVideoEnded, tryToOpenValidationModal, url } = props
+    const {
+        type,
+        actions,
+        onParticipate,
+        isVideoEnded,
+        tryToOpenValidationModal,
+        url,
+        mandatories,
+        entries
+    } = props
 
     const renderIcons = () => {
         switch (type) {
@@ -63,70 +78,90 @@ function CustomCollapsePanel(props) {
                     <div>
                         {t(`campaign_detail_page.${type}.text`)}
                     </div>
+                    {entries && <div className="color-pink mt-2">{entries}</div>}
 
                     <div className="mt-2 mt-sm-3">
                         {actions.like && (
-                            <CheckBoxButtonForAction
-                                socialName={type}
-                                btnString='like'
-                                onParticipate={onParticipate}
-                                tryToOpenValidationModal={tryToOpenValidationModal}
-                            />
+                            <>
+                                <CheckBoxButtonForAction
+                                    socialName={type}
+                                    btnString='like'
+                                    onParticipate={onParticipate}
+                                    tryToOpenValidationModal={tryToOpenValidationModal}
+                                />
+                                {mandatories.like && <Required />}
+                            </>
                         )}
                         {actions.follow && (
-                            <CheckBoxButtonForAction
-                                socialName={type}
-                                btnString='follow'
-                                onParticipate={onParticipate}
-                                tryToOpenValidationModal={tryToOpenValidationModal}
-                            />
+                            <>
+                                <CheckBoxButtonForAction
+                                    socialName={type}
+                                    btnString='follow'
+                                    onParticipate={onParticipate}
+                                    tryToOpenValidationModal={tryToOpenValidationModal}
+                                />
+                                {mandatories.follow && <Required />}
+                            </>
                         )}
                         {actions.comment && (
-                            <CheckBoxButtonForAction
-                                socialName={type}
-                                btnString='comment'
-                                onParticipate={onParticipate}
-                                tryToOpenValidationModal={tryToOpenValidationModal}
-                            />
+                            <>
+                                <CheckBoxButtonForAction
+                                    socialName={type}
+                                    btnString='comment'
+                                    onParticipate={onParticipate}
+                                    tryToOpenValidationModal={tryToOpenValidationModal}
+                                />
+                                {mandatories.comment && <Required />}
+                            </>
                         )}
                         {actions.retweet && (
-                            <CheckBoxButtonForAction
-                                socialName={type}
-                                btnString='retweet'
-                                onParticipate={onParticipate}
-                                tryToOpenValidationModal={tryToOpenValidationModal}
-                            />
+                            <>
+                                <CheckBoxButtonForAction
+                                    socialName={type}
+                                    btnString='retweet'
+                                    onParticipate={onParticipate}
+                                    tryToOpenValidationModal={tryToOpenValidationModal}
+                                />
+                                {mandatories.retweet && <Required />}
+                            </>
                         )}
                         {actions.profile_url && (
-                            <CheckBoxButtonForAction
-                                socialName={type}
-                                btnString='follow'
-                                onParticipate={onParticipate}
-                                tryToOpenValidationModal={tryToOpenValidationModal}
-                            />
+                            <>
+                                <CheckBoxButtonForAction
+                                    socialName={type}
+                                    btnString='follow'
+                                    onParticipate={onParticipate}
+                                    tryToOpenValidationModal={tryToOpenValidationModal}
+                                />
+                                {mandatories.profile && <Required />}
+                            </>
                         )}
                         {actions.publication_url && (
-                            <CheckBoxButtonForAction
-                                socialName={type}
-                                btnString='like'
-                                onParticipate={onParticipate}
-                                tryToOpenValidationModal={tryToOpenValidationModal}
-                            />
+                            <>
+                                <CheckBoxButtonForAction
+                                    socialName={type}
+                                    btnString='like'
+                                    onParticipate={onParticipate}
+                                    tryToOpenValidationModal={tryToOpenValidationModal}
+                                />
+                                {mandatories.publication && <Required />}
+                            </>
                         )}
                         {actions.video && (
-                            <CheckBoxButtonForAction
-                                socialName={type}
-                                btnString='video'
-                                onParticipate={onParticipate}
-                                isVideoEnded={isVideoEnded}
-                            />
+                            <>
+                                <CheckBoxButtonForAction
+                                    socialName={type}
+                                    btnString='video'
+                                    onParticipate={onParticipate}
+                                    isVideoEnded={isVideoEnded}
+                                />
+                                {mandatories.video && <Required />}
+                            </>
                         )}
                         {actions.website && (
-                            // <a rel={'external'} href={url.includes("http") ? url : `https://${url}`} target='_blank' className="" onClick={participateWebsite}>{url}</a>
-                            <div className="color-blue">{url}</div>
+                            <div className="color-blue d-flex">{url}{mandatories.website && <Required />}</div>
                         )}
                     </div>
-
                 </ExpansionPanelDetails>
             </ExpansionPanel>
             {renderIcons()}

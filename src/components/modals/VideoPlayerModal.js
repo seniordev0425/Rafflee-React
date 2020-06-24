@@ -31,11 +31,11 @@ function VideoPlayerModal(props) {
         <Modal isOpen={open} toggle={onToggle} size="lg">
             <ModalBody>
                 <div className="promotion-list-item-title text-center mb-3">
-                    {campaignData.action_participate[0] ? campaignData.action_participate[0].video_name : ''}
+                    {(campaignData.action_participate[0] && campaignData.action_participate[0].video) ? campaignData.action_participate[0].video.video_name : ''}
                 </div>
                 <ReactPlayer
                     controls
-                    url={campaignData.action_participate[0] ? campaignData.action_participate[0].url_video : ''}
+                    url={(campaignData.action_participate[0] && campaignData.action_participate[0].video) ? (campaignData.action_participate[0].video.url_video || campaignData.action_participate[0].video.url_video_mobile) : ''}
                     playing={playing}
                     width='100%'
                     // height="100%"

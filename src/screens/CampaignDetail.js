@@ -244,6 +244,66 @@ function CampaignDetail(props) {
         dispatch(campaignParticipate(body))
     }
 
+    const getTwitterEntries = () => {
+        let rlt = ''
+        if (action.social_action[3].twitter_like) {
+            rlt += `${t('create_campaign_page.like')} ${t('create_campaign_page.entries')}: ${action.social_action[3].twitter_like_entries}`
+        }
+        if (action.social_action[3].twitter_follow) {
+            rlt += `,   ${t('create_campaign_page.follow')} ${t('create_campaign_page.entries')}: ${action.social_action[3].twitter_follow_entries}`
+        }
+        if (action.social_action[3].twitter_tweet) {
+            rlt += `,   ${t('create_campaign_page.comment')} ${t('create_campaign_page.entries')}: ${action.social_action[3].twitter_tweet_entries}`
+        }
+        if (action.social_action[3].twitter_retweet) {
+            rlt += `,   ${t('create_campaign_page.retweet')} ${t('create_campaign_page.entries')}: ${action.social_action[3].twitter_retweet_entries}`
+        }
+        return rlt
+    }
+
+    const getTwitchEntries = () => {
+        let rlt = ''
+        if (action.social_action[4].twitch_follow) {
+            rlt += `${t('create_campaign_page.follow')} ${t('create_campaign_page.entries')}: ${action.social_action[4].twitch_follow_entries}`
+        }
+        return rlt
+    }
+
+    const getInstagramEntries = () => {
+        let rlt = ''
+        if (action.social_action[2].instagram_profile) {
+            rlt += `${t('create_campaign_page.follow')} ${t('create_campaign_page.entries')}: ${action.social_action[2].instagram_profile_entries}`
+        }
+        if (action.social_action[2].instagram_publication) {
+            rlt += `,   ${t('create_campaign_page.like')} ${t('create_campaign_page.entries')}: ${action.social_action[2].instagram_publication_entries}`
+        }
+        return rlt
+    }
+
+    const getVideoEntries = () => {
+        let rlt = ''
+        if (action.video) {
+            rlt += `${t('create_campaign_page.entries')}: ${action.video.entries}`
+        }
+        return rlt
+    }
+
+    const getWebsiteEntries = () => {
+        let rlt = ''
+        if (action.website) {
+            rlt += `${t('create_campaign_page.entries')}: ${action.website.entries}`
+        }
+        return rlt
+    }
+
+    const getPollEntries = () => {
+        let rlt = ''
+        if (action.poll) {
+            rlt += `${t('create_campaign_page.entries')}: ${action.poll.entries}`
+        }
+        return rlt
+    }
+
     if (GET_CAMPAIGN_DATA_SUCCESS) {
         return <Loading />
     }
@@ -306,7 +366,7 @@ function CampaignDetail(props) {
                                     {t('campaign_detail_page.your_entries')}
                                 </div>
                                 <img src={images.entry} width="25" height="25" alt="" />
-                                <span className="ml-3 color-blue">0 {t('campaign_detail_page.entries')}</span>
+                                <span className="ml-3 color-blue">{`${((campaignData.user_actions || {}).entries_user || 0)} ${t('campaign_detail_page.entries')}`}</span>
                             </div>
                             <div className="div-item ">
                                 <div className="" style={{ lineHeight: "2.5rem" }}>
@@ -343,7 +403,7 @@ function CampaignDetail(props) {
                         </Col>
                         <Col className="px-0" style={{ borderRight: "1px solid #8ACDFF" }}>
                             <div className="d-flex justify-content-center"><img src={images.entry} width="25" height="25" alt="" /></div>
-                            <div className="color-blue mt-2 text-center">0 {t('campaign_detail_page.entries')}</div>
+                            <div className="color-blue mt-2 text-center">{`${((campaignData.user_actions || {}).entries_user || 0)} ${t('campaign_detail_page.entries')}`}</div>
                         </Col>
                         <Col className="px-0">
                             <div className="d-flex justify-content-center"><img src={images.user} width="25" height="25" alt="" /></div>
@@ -396,9 +456,14 @@ function CampaignDetail(props) {
                                             instagram_publication: action.social_action[2].instagram_publication_url,
                                         }
                                     }
+                                    mandatories={
+                                        {
+                                            profile: action.social_action[2].instagram_profile_mandatory || false,
+                                            publication: action.social_action[2].instagram_publication_mandatory || false
+                                        }
+                                    }
+                                    entries={getInstagramEntries()}
                                     didActions={didActions}
-                                    // participateInstagramProfile={participateInstagramProfile}
-                                    // participateInstagramPublication={participateInstagramPublication}
                                     onParticipate={onParticipate}
                                     tryToOpenValidationModal={tryToOpenValidationModal}
                                 />
@@ -418,6 +483,15 @@ function CampaignDetail(props) {
                                             retweet: action.social_action[3].twitter_retweet,
                                         }
                                     }
+                                    mandatories={
+                                        {
+                                            like: action.social_action[3].twitter_like_mandatory,
+                                            follow: action.social_action[3].twitter_follow_mandatory,
+                                            comment: action.social_action[3].twitter_tweet_mandatory,
+                                            retweet: action.social_action[3].twitter_retweet_mandatory,
+                                        }
+                                    }
+                                    entries={getTwitterEntries()}
                                     didActions={didActions}
                                     onParticipate={onParticipate}
                                     tryToOpenValidationModal={tryToOpenValidationModal}
@@ -435,6 +509,12 @@ function CampaignDetail(props) {
                                             follow: action.social_action[4].twitch_follow,
                                         }
                                     }
+                                    mandatories={
+                                        {
+                                            follow: action.social_action[4].twitch_follow_mandatory,
+                                        }
+                                    }
+                                    entries={getTwitchEntries()}
                                     didActions={didActions}
                                     onParticipate={onParticipate}
                                     tryToOpenValidationModal={tryToOpenValidationModal}
@@ -442,12 +522,14 @@ function CampaignDetail(props) {
                             </Col>
                         </Row>
                     )}
-                    {action.url_video && (
+                    {action.video && (
                         <Row className="mb-4 mt-4">
                             <Col style={{ paddingLeft: 40 }}>
                                 <CustomCollapsePanel
                                     type="video"
                                     actions={{ video: true }}
+                                    mandatories={{ video: action.video.mandatory }}
+                                    entries={getVideoEntries()}
                                     didActions={didActions}
                                     onParticipate={onParticipate}
                                     isVideoEnded={isVideoEnded}
@@ -461,6 +543,8 @@ function CampaignDetail(props) {
                                 <CustomCollapsePanel
                                     type="website"
                                     actions={{ website: action.website }}
+                                    mandatories={{ website: action.website.mandatory }}
+                                    entries={getWebsiteEntries()}
                                     didActions={didActions}
                                     participateWebsite={participateWebsite}
                                 />
@@ -475,6 +559,8 @@ function CampaignDetail(props) {
                                     multiple_choice={action.poll.multiple_choices}
                                     responses={action.poll.responses}
                                     question={action.poll.question}
+                                    mandatory={action.poll.mandatory}
+                                    entries={getPollEntries()}
                                     participatePoll={participatePoll}
                                 />
                             </Col>

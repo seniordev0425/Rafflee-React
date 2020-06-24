@@ -41,6 +41,66 @@ function PreviewSection(props) {
         return max_participants
     }
 
+    const getTwitterEntries = () => {
+        let rlt = ''
+        if (params.twitter.like) {
+            rlt += `${t('create_campaign_page.like')} ${t('create_campaign_page.entries')}: ${params.twitter.like_entries}`
+        }
+        if (params.twitter.follow) {
+            rlt += `,   ${t('create_campaign_page.follow')} ${t('create_campaign_page.entries')}: ${params.twitter.follow_entries}`
+        }
+        if (params.twitter.comment) {
+            rlt += `,   ${t('create_campaign_page.comment')} ${t('create_campaign_page.entries')}: ${params.twitter.comment_entries}`
+        }
+        if (params.twitter.retweet) {
+            rlt += `,   ${t('create_campaign_page.retweet')} ${t('create_campaign_page.entries')}: ${params.twitter.retweet_entries}`
+        }
+        return rlt
+    }
+
+    const getTwitchEntries = () => {
+        let rlt = ''
+        if (params.twitch.follow) {
+            rlt += `${t('create_campaign_page.follow')} ${t('create_campaign_page.entries')}: ${params.twitch.follow_entries}`
+        }
+        return rlt
+    }
+
+    const getInstagramEntries = () => {
+        let rlt = ''
+        if (params.instagram.profile_url) {
+            rlt += `${t('create_campaign_page.follow')} ${t('create_campaign_page.entries')}: ${params.instagram.profile_entries}`
+        }
+        if (params.instagram.publication_url) {
+            rlt += `,   ${t('create_campaign_page.like')} ${t('create_campaign_page.entries')}: ${params.instagram.publication_entries}`
+        }
+        return rlt
+    }
+
+    const getVideoEntries = () => {
+        let rlt = ''
+        if (params.url_video.video) {
+            rlt += `${t('create_campaign_page.entries')}: ${params.url_video.entries}`
+        }
+        return rlt
+    }
+
+    const getWebsiteEntries = () => {
+        let rlt = ''
+        if (params.url_website.website) {
+            rlt += `${t('create_campaign_page.entries')}: ${params.url_website.entries}`
+        }
+        return rlt
+    }
+
+    const getPollEntries = () => {
+        let rlt = ''
+        if (params.poll !== 'false') {
+            rlt += `${t('create_campaign_page.entries')}: ${params.poll.entries}`
+        }
+        return rlt
+    }
+
     return (
         <Row>
             <Col sm={{ size: "10", offset: "1" }} xs="12" className="px-sm-3">
@@ -147,6 +207,15 @@ function PreviewSection(props) {
                                             retweet: params.twitter.retweet,
                                         }
                                     }
+                                    mandatories={
+                                        {
+                                            like: params.twitter.like_mandatory,
+                                            follow: params.twitter.follow_mandatory,
+                                            comment: params.twitter.comment_mandatory,
+                                            retweet: params.twitter.retweet_mandatory,
+                                        }
+                                    }
+                                    entries={getTwitterEntries()}
                                     onParticipate={() => void 0}
                                     tryToOpenValidationModal={() => void 0}
                                 />
@@ -164,6 +233,13 @@ function PreviewSection(props) {
                                             publication_url: params.instagram.publication_url,
                                         }
                                     }
+                                    mandatories={
+                                        {
+                                            profile: params.instagram.profile_mandatory,
+                                            publication: params.instagram.publication_mandatory
+                                        }
+                                    }
+                                    entries={getInstagramEntries()}
                                     onParticipate={() => void 0}
                                     tryToOpenValidationModal={() => void 0}
                                 />
@@ -180,6 +256,12 @@ function PreviewSection(props) {
                                             follow: params.twitch.follow,
                                         }
                                     }
+                                    mandatories={
+                                        {
+                                            follow: params.twitch.follow_mandatory,
+                                        }
+                                    }
+                                    entries={getTwitchEntries()}
                                     onParticipate={() => void 0}
                                     tryToOpenValidationModal={() => void 0}
                                 />
@@ -192,6 +274,8 @@ function PreviewSection(props) {
                                 <PreviewCustomCollapsePanel
                                     type="video"
                                     actions={{ video: true }}
+                                    mandatories={{ video: params.url_video.mandatory }}
+                                    entries={getVideoEntries()}
                                     onParticipate={() => void 0}
                                     isVideoEnded={false}
                                 />
@@ -204,6 +288,8 @@ function PreviewSection(props) {
                                 <PreviewCustomCollapsePanel
                                     type="website"
                                     actions={{ website: true }}
+                                    mandatories={{ website: params.url_website.mandatory }}
+                                    entries={getWebsiteEntries()}
                                     url={params.url_website.url}
                                     participateWebsite={() => void 0}
                                 />
@@ -219,6 +305,8 @@ function PreviewSection(props) {
                                     responses={params.poll.response}
                                     question={params.poll.question}
                                     participatePoll={() => void 0}
+                                    mandatory={params.poll.mandatory}
+                                    entries={getPollEntries()}
                                 />
                             </Col>
                         </Row>
