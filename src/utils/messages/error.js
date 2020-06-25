@@ -79,7 +79,8 @@ const errorMessages = {
         MSG_ERROR_WITH_TWITCH_OAUTH_TOKEN: "Error with twitch connect",
         MSG_ERROR_USER_NOT_CONNECTED_TO_TWITCH: "Please connect to twitch",
         MSG_ERROR_USER_NOT_CONNECTED_TO_TWITTER: "Please connect to twitter",
-        MSG_PARTICIPATION_NOT_VALIDATED: "You have to validate actions."
+        MSG_PARTICIPATION_NOT_VALIDATED: "You have to validate actions",
+        MSG_MANDATORY_ACTION_IS_NOT_VALIDATED: "Mandatory Actions are not validated"
     },
 
 
@@ -162,7 +163,8 @@ const errorMessages = {
         MSG_ERROR_WITH_TWITCH_OAUTH_TOKEN: "Erreur avec la connection à twitch",
         MSG_ERROR_USER_NOT_CONNECTED_TO_TWITCH: "Connecte toi à Twitch",
         MSG_ERROR_USER_NOT_CONNECTED_TO_TWITTER: "Connecte toi à Twitter",
-        MSG_PARTICIPATION_NOT_VALIDATED: "Valide les actions."
+        MSG_PARTICIPATION_NOT_VALIDATED: "Valide les actions",
+        MSG_MANDATORY_ACTION_IS_NOT_VALIDATED: "Mandatory Actions are not validated"
     }
 }
 

@@ -78,7 +78,7 @@ function CustomCollapsePanel(props) {
                     <div>
                         {t(`campaign_detail_page.${type}.text`)}
                     </div>
-                    {entries && <div className="color-pink mt-2">{entries}</div>}
+                    {entries && <div className="color-pink mt-2" style={{whiteSpace: 'pre-wrap'}}>{entries}</div>}
 
                     <div className="mt-2 mt-sm-3">
                         {actions.like && (

@@ -84,6 +84,10 @@ function PaymentSection(props) {
             }
         }
 
+        console.log(url_video)
+        console.log(url_website)
+        console.log(params.poll)
+
         setMessages(required_messages)
         
         if (required_messages.length > 0) {

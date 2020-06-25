@@ -41,8 +41,8 @@ function Report() {
                 <div className="min-height-container">
                     <div className="d-flex justify-content-center">
                         <Radio.Group onChange={handleModeChange} value={mode} style={{ marginBottom: 8 }} buttonStyle='solid'>
-                            <Radio.Button value="bug">{t('report_page.bug')}</Radio.Button>
-                            <Radio.Button value="feedback">{t('report_page.feedback')}</Radio.Button>
+                            <Radio.Button value="bug" style={{ width: 100, textAlign: 'center', borderRadius: 0 }} className="mr-2">{t('report_page.bug')}</Radio.Button>
+                            <Radio.Button value="feedback" style={{ width: 100, textAlign: 'center', borderRadius: 0 }} className="ml-2">{t('report_page.feedback')}</Radio.Button>
                         </Radio.Group>
                     </div>
                     <div className="mt-5" style={{ width: 350 }}>

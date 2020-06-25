@@ -80,9 +80,6 @@ function CampaignDetail(props) {
             token: token
         }
         dispatch(getCampaignData(match.params.id, body))
-        // if (token && !company) {
-        //     dispatch(getUserProfile())
-        // }
         actionParams = []
     }, [token])
 
@@ -247,16 +244,16 @@ function CampaignDetail(props) {
     const getTwitterEntries = () => {
         let rlt = ''
         if (action.social_action[3].twitter_like) {
-            rlt += `${t('create_campaign_page.like')} ${t('create_campaign_page.entries')}: ${action.social_action[3].twitter_like_entries}`
+            rlt += `${t('create_campaign_page.like')} ${t('create_campaign_page.entries')}: ${action.social_action[3].twitter_like_entries}   `
         }
         if (action.social_action[3].twitter_follow) {
-            rlt += `,   ${t('create_campaign_page.follow')} ${t('create_campaign_page.entries')}: ${action.social_action[3].twitter_follow_entries}`
+            rlt += `${t('create_campaign_page.follow')} ${t('create_campaign_page.entries')}: ${action.social_action[3].twitter_follow_entries}   `
         }
         if (action.social_action[3].twitter_tweet) {
-            rlt += `,   ${t('create_campaign_page.comment')} ${t('create_campaign_page.entries')}: ${action.social_action[3].twitter_tweet_entries}`
+            rlt += `${t('create_campaign_page.comment')} ${t('create_campaign_page.entries')}: ${action.social_action[3].twitter_tweet_entries}   `
         }
         if (action.social_action[3].twitter_retweet) {
-            rlt += `,   ${t('create_campaign_page.retweet')} ${t('create_campaign_page.entries')}: ${action.social_action[3].twitter_retweet_entries}`
+            rlt += `${t('create_campaign_page.retweet')} ${t('create_campaign_page.entries')}: ${action.social_action[3].twitter_retweet_entries}`
         }
         return rlt
     }
@@ -272,10 +269,10 @@ function CampaignDetail(props) {
     const getInstagramEntries = () => {
         let rlt = ''
         if (action.social_action[2].instagram_profile) {
-            rlt += `${t('create_campaign_page.follow')} ${t('create_campaign_page.entries')}: ${action.social_action[2].instagram_profile_entries}`
+            rlt += `${t('create_campaign_page.follow')} ${t('create_campaign_page.entries')}: ${action.social_action[2].instagram_profile_entries}   `
         }
         if (action.social_action[2].instagram_publication) {
-            rlt += `,   ${t('create_campaign_page.like')} ${t('create_campaign_page.entries')}: ${action.social_action[2].instagram_publication_entries}`
+            rlt += `${t('create_campaign_page.like')} ${t('create_campaign_page.entries')}: ${action.social_action[2].instagram_publication_entries}`
         }
         return rlt
     }

@@ -44,16 +44,16 @@ function PreviewSection(props) {
     const getTwitterEntries = () => {
         let rlt = ''
         if (params.twitter.like) {
-            rlt += `${t('create_campaign_page.like')} ${t('create_campaign_page.entries')}: ${params.twitter.like_entries}`
+            rlt += `${t('create_campaign_page.like')} ${t('create_campaign_page.entries')}: ${params.twitter.like_entries}   `
         }
         if (params.twitter.follow) {
-            rlt += `,   ${t('create_campaign_page.follow')} ${t('create_campaign_page.entries')}: ${params.twitter.follow_entries}`
+            rlt += `${t('create_campaign_page.follow')} ${t('create_campaign_page.entries')}: ${params.twitter.follow_entries}   `
         }
         if (params.twitter.comment) {
-            rlt += `,   ${t('create_campaign_page.comment')} ${t('create_campaign_page.entries')}: ${params.twitter.comment_entries}`
+            rlt += `${t('create_campaign_page.comment')} ${t('create_campaign_page.entries')}: ${params.twitter.comment_entries}   `
         }
         if (params.twitter.retweet) {
-            rlt += `,   ${t('create_campaign_page.retweet')} ${t('create_campaign_page.entries')}: ${params.twitter.retweet_entries}`
+            rlt += `${t('create_campaign_page.retweet')} ${t('create_campaign_page.entries')}: ${params.twitter.retweet_entries}`
         }
         return rlt
     }
@@ -69,10 +69,10 @@ function PreviewSection(props) {
     const getInstagramEntries = () => {
         let rlt = ''
         if (params.instagram.profile_url) {
-            rlt += `${t('create_campaign_page.follow')} ${t('create_campaign_page.entries')}: ${params.instagram.profile_entries}`
+            rlt += `${t('create_campaign_page.follow')} ${t('create_campaign_page.entries')}: ${params.instagram.profile_entries}   `
         }
         if (params.instagram.publication_url) {
-            rlt += `,   ${t('create_campaign_page.like')} ${t('create_campaign_page.entries')}: ${params.instagram.publication_entries}`
+            rlt += `${t('create_campaign_page.like')} ${t('create_campaign_page.entries')}: ${params.instagram.publication_entries}`
         }
         return rlt
     }
