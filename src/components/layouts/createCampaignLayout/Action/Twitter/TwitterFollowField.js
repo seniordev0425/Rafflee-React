@@ -1,10 +1,9 @@
 import React from 'react'
 import { Row, Col, Input } from 'reactstrap'
 import { Tooltip, Checkbox, Select } from 'antd'
-import images from '../../../../../utils/images'
-
-import { useTranslation } from 'react-i18next'
 import TwitterFollowScreenName from './TwitterFollowScreenName'
+import images from '../../../../../utils/images'
+import { useTranslation } from 'react-i18next'
 
 function TwitterFollowField(props) {
     const { t } = useTranslation()
@@ -43,7 +42,7 @@ function TwitterFollowField(props) {
                     <Col xs="12" sm="6" className="p-0">
                         {params.twitter.follow_type === 'screen_name'
                             ?
-                            <TwitterFollowScreenName />
+                            <TwitterFollowScreenName setAction={setAction} />
                             :
                             <Input
                                 type="text"

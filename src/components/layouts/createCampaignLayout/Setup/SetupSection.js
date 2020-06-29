@@ -40,6 +40,7 @@ function SetupSection(props) {
     }, [categoryArr])
 
     const handleCategories = (val) => {
+        console.log(val)
         setParams('temp_categories', val)
     }
 
@@ -194,7 +195,6 @@ function SetupSection(props) {
                             placeholder={t('create_campaign_page.categories_placeholder')}
                             onChange={handleCategories}
                             size="large"
-                            maxTagCount={1}
                         >
                             {children}
                         </Select>

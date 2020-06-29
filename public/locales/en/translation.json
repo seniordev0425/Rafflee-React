@@ -372,7 +372,9 @@
         "embed_page_blog_post": "Embed in a Page or Blog Post",
         "add_tab_site": "Add Tab to your Site",
         "need_to_pay_text": "You need to pay to get access to this widget.",
-        "pay": "PAY"
+        "pay": "PAY",
+        "connection_error": "Connection Error",
+        "select_user": "Select User"
     },
     "profile_activated_page": {
         "successfully_activated": "Your account has been activated",

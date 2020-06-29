@@ -1537,6 +1537,9 @@ h2 span {
 .ant-btn-loading-icon {
     display: inline-flex !important;
 }
+.ant-select-multiple .ant-select-selection-item-remove > .anticon {
+    vertical-align: 0.2em !important;
+}
 
 
 

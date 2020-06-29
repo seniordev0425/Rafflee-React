@@ -371,7 +371,9 @@
         "embed_page_blog_post": "intégré dans une page ou un blog",
         "add_tab_site": "Ajouter à votre site",
         "need_to_pay_text": "Vous devez payer pour accéder au widget.",
-        "pay": "PAY"
+        "pay": "PAY",
+        "connection_error": "Connection Error",
+        "select_user": "Select User"
     },
     "profile_activated_page": {
         "successfully_activated": "Ton compte a été activé",

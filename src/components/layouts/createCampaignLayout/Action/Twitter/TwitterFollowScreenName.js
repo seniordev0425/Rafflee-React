@@ -2,19 +2,27 @@ import React, { useState } from 'react'
 import { Select, Spin } from 'antd'
 import debounce from 'lodash/debounce'
 import { openNotification } from '../../../../../utils/notification'
+import images from '../../../../../utils/images'
+
+import { useTranslation } from 'react-i18next'
 
 const { Option } = Select
 
-function TwitterFollowScreenName() {
+function TwitterFollowScreenName(props) {
+    const { t } = useTranslation()
+
+    const { setAction } = props
+
     const [data, setData] = useState([])
     const [value, setValue] = useState([])
     const [fetching, setFetching] = useState(false)
 
     const fetchUser = value => {
+        if (value === '') return
         setData([])
         setFetching(true)
 
-        var myHeaders = new Headers();
+        var myHeaders = new Headers()
         myHeaders.append("Authorization", "JWT " + sessionStorage.getItem('token'))
 
         var formdata = new FormData()
@@ -23,37 +31,36 @@ function TwitterFollowScreenName() {
         var requestOptions = {
             method: 'GET',
             headers: myHeaders,
-            body: formdata,
             redirect: 'follow'
-        };
+        }
 
-        fetch("https://rafflee.io/api/twitter/users/search/", requestOptions)
+        fetch(`https://rafflee.io/api/twitter/users/search/?search=${value}`, requestOptions)
             .then(response => response.json())
             .then(result => {
-                console.log(result)
+                if (result.status === 200) {
+                    const data = result.search.map((user, index) => ({
+                        id: index,
+                        profile_image_url: user.profile_image_url,
+                        screen_name: user.screen_name,
+                        followers_count: user.followers_count,
+                        verified: user.verified
+                    }))
+                    setData(data)
+                } else {
+                    openNotification('warning', t('create_campaign_page.connection_error'))
+                }
                 setFetching(false)
-                openNotification('warning', 'Connection Error')
             })
             .catch(error => {
-                console.log('error', error)
-            });
-
-        // fetch('https://randomuser.me/api/?results=5')
-        //     .then(response => response.json())
-        //     .then(body => {
-        //         const data = body.results.map(user => ({
-        //             text: `${user.name.first} ${user.name.last}`,
-        //             value: user.login.username,
-        //         }))
-        //         setData(data)
-        //         setFetching(false)
-        //     })
+                setFetching(false)
+            })
     }
 
     const handleChange = value => {
         setData([])
         setValue(value)
         setFetching(false)
+        setAction('twitter', 'follow_id', value.length > 0 ? value[0].value : '')
     }
 
     return (
@@ -61,7 +68,7 @@ function TwitterFollowScreenName() {
             mode="multiple"
             labelInValue
             value={value}
-            placeholder="Select users"
+            placeholder={t('create_campaign_page.select_user')}
             notFoundContent={fetching ? <Spin size="small" /> : null}
             filterOption={false}
             onSearch={debounce(fetchUser, 800)}
@@ -71,7 +78,14 @@ function TwitterFollowScreenName() {
             size='large'
         >
             {data.map(d => (
-                <Option key={d.value}><span>{d.text}</span><img alt="#" /></Option>
+                <Option key={d.id} value={d.screen_name}>
+                    <img src={d.profile_image_url} width={25} height={25} className="rounded-circle" alt="" />
+                    <span className="ml-2 font-weight-bold">{d.screen_name}</span>
+                    {d.verified && 
+                        <img src={images.verified_icon} width={15} height={15} className="ml-2" alt="" />
+                    }
+                    <span className="ml-2">{`${d.followers_count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")} ${t('my_circle_page.followers')}`}</span>
+                </Option>
             ))}
         </Select>
     )

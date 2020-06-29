@@ -92,6 +92,7 @@ function CreateCampaignLayout() {
         let temp_params = { ...params }
         temp_params[socialName][actionType] = val
         setParams(temp_params)
+        console.log(params)
     }
 
     const _setSection = (section) => {
