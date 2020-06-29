@@ -21,7 +21,8 @@ const initialFeedState = {
         region: '',
         twitter: false,
         twitch: false,
-        snapchat: false
+        snapchat: false,
+        instagram: false
     },
 
     phone_number_verified: false,
@@ -38,7 +39,8 @@ const initialFeedState = {
         email: '',
         twitter: false,
         twitch: false,
-        snapchat: false
+        snapchat: false,
+        instagram: false
     },
 
     signUpSuccess: false,

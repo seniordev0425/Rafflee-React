@@ -465,7 +465,8 @@
     },
     "social_oauth": {
         "twitter": "Twitter Connected",
-        "twitch": "Twitch Connected"
+        "twitch": "Twitch Connected",
+        "instagram": "Instagram Connected"
     },
     "twitter_like_modal": {
         "header": "LIKE ID",

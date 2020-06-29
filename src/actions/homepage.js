@@ -2,11 +2,12 @@ import { APIROUTE } from '../utils/constants'
 import { API } from "./types";
 import { openNotification } from '../utils/notification'
 import successMessages from '../utils/messages/success'
+import errorMessages from '../utils/messages/error'
 
 const qs = require('querystring')
 
 function onFailed(error) {
-    openNotification('warning', error)
+    openNotification('warning', errorMessages[localStorage.getItem('i18nextLng')][error])
     return {
         type: 'API_FAILED',
         error: error
@@ -140,6 +141,7 @@ export function betaReport(params) {
         onSuccess: onSuccessBetaReport,
         onFailure: onFailed,
         label: 'BETA_REPORT',
+        requireErrorMessage: true
     });
 }
 function onSuccessBetaReport(data) {

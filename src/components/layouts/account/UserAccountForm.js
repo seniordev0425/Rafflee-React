@@ -406,8 +406,13 @@ function UserAccountForm() {
 
                                 <div className="mt-4 d-flex justify-content-end">
                                     <div className="half-width">
-                                        <div className="footer-link-bold mb-3">Instagram</div>
-                                        <InstagramConnectBtn />
+                                        <div className="footer-link-bold mb-3 d-flex align-items-center">
+                                            <span>Instagram</span>
+                                            {userProfile.instagram &&
+                                                <FontAwesomeIcon icon={faCheckCircle} className="color-blue font-size-12 ml-3" />
+                                            }
+                                        </div>
+                                        <InstagramConnectBtn connected={userProfile.instagram} />
                                     </div>
                                 </div>
                                 <div className="mt-4 d-flex justify-content-end">

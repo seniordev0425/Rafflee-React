@@ -4,6 +4,7 @@ import { Tooltip, Checkbox, Select } from 'antd'
 import images from '../../../../../utils/images'
 
 import { useTranslation } from 'react-i18next'
+import TwitterFollowScreenName from './TwitterFollowScreenName'
 
 function TwitterFollowField(props) {
     const { t } = useTranslation()
@@ -40,13 +41,19 @@ function TwitterFollowField(props) {
             >
                 <Row>
                     <Col xs="12" sm="6" className="p-0">
-                        <Input
-                            type="text"
-                            className="custom-form-control"
-                            placeholder={t('create_campaign_page.follow_id')}
-                            value={params.twitter.follow_id}
-                            onChange={(e) => setAction('twitter', 'follow_id', e.target.value)}
-                        />
+                        {params.twitter.follow_type === 'screen_name'
+                            ?
+                            <TwitterFollowScreenName />
+                            :
+                            <Input
+                                type="text"
+                                className="custom-form-control"
+                                placeholder={t('create_campaign_page.follow_id')}
+                                value={params.twitter.follow_id}
+                                onChange={(e) => setAction('twitter', 'follow_id', e.target.value)}
+                            />
+                        }
+
                     </Col>
                     <Col size="12" className="p-0 justify-content-between align-items-center mt-3 mt-sm-0">
                         <Row>

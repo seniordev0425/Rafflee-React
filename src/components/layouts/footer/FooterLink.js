@@ -2,6 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Row, Col } from 'reactstrap'
 import { useTranslation } from 'react-i18next'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faFacebookF, faTwitter, faLinkedinIn, faInstagram, faTwitch } from '@fortawesome/free-brands-svg-icons'
 
 function FooterLink() {
     const { t } = useTranslation()
@@ -15,13 +17,13 @@ function FooterLink() {
                             <div className="footer-link-bold">
                                 {t('footer.enterprise')}
                             </div>
-                            <div className="footer-link" style={{ marginTop: "15px" }}>
+                            <div className="footer-link mt-3">
                                 {t('footer.who_are_we')}
                             </div>
-                            <div className="footer-link" style={{ marginTop: "15px" }}>
+                            <div className="footer-link mt-3">
                                 {t('footer.the_team')}
                             </div>
-                            <div className="footer-link" style={{ marginTop: "15px" }}>
+                            <div className="footer-link mt-3">
                                 {t('footer.we_are_hiring')}
                             </div>
                         </Col>
@@ -29,16 +31,16 @@ function FooterLink() {
                             <div className="footer-link-bold">
                                 {t('footer.community')}
                             </div>
-                            <div className="footer-link" style={{ marginTop: "15px" }}>
+                            <div className="footer-link mt-3">
                                 {t('footer.company_contact_us')}
                             </div>
-                            <div className="footer-link" style={{ marginTop: "15px" }}>
+                            <div className="footer-link mt-3">
                                 {t('footer.influencer_contact_us')}
                             </div>
-                            <div className="footer-link" style={{ marginTop: "15px" }}>
+                            <div className="footer-link mt-3">
                                 {t('footer.faq')}
                             </div>
-                            <div style={{ marginTop: "15px" }}>
+                            <div className="mt-3">
                                 <Link to="/report">
                                     <span className="footer-link">{t('footer.report')}</span>
                                 </Link>
@@ -48,18 +50,18 @@ function FooterLink() {
                             <div className="footer-link-bold">
                                 {t('footer.legal')}
                             </div>
-                            <div style={{ marginTop: "15px" }}>
+                            <div className="mt-3">
                                 <Link to="/privacy-policy">
                                     <span className="footer-link">{t('footer.privacy_policy')}</span>
                                 </Link>
                             </div>
-                            <div className="footer-link" style={{ marginTop: "15px" }}>
+                            <div className="footer-link mt-3">
                                 {t('footer.cookies_policy')}
                             </div>
-                            <div className="footer-link" style={{ marginTop: "15px" }}>
+                            <div className="footer-link mt-3">
                                 {t('footer.legal_notice')}
                             </div>
-                            <div style={{ marginTop: "15px" }}>
+                            <div className="mt-3">
                                 <Link to="/general-conditions">
                                     <span className="footer-link">{t('footer.terms_of_service')}</span>
                                 </Link>
@@ -68,6 +70,13 @@ function FooterLink() {
                         <Col xs="6" md="3">
                             <div className="footer-link-bold">
                                 {t('footer.follow_us')}
+                            </div>
+                            <div>
+                                <FontAwesomeIcon icon={faFacebookF} color='gray' className="font-size-13 mr-3 mt-3" />
+                                <FontAwesomeIcon icon={faTwitter} color='gray' className="font-size-13 mr-3 mt-3" />
+                                <FontAwesomeIcon icon={faLinkedinIn} color='gray' className="font-size-13 mr-3 mt-3" />
+                                <FontAwesomeIcon icon={faInstagram} color='gray' className="font-size-13 mr-3 mt-3" />
+                                <FontAwesomeIcon icon={faTwitch} color='gray' className="font-size-13 mr-3 mt-3" />
                             </div>
                         </Col>
                     </Row>

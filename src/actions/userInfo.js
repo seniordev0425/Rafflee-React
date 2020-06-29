@@ -581,6 +581,24 @@ function onSuccessTwitchConnect(data) {
     data: ''
   }
 }
+/////////////////////////////////////////////// INSTAGRAM_CONNECT
+export function instagramConnect(params) {
+  return apiAction({
+    url: APIROUTE + `instagram/connect/`,
+    method: 'POST',
+    data: qs.stringify(params),
+    accessToken: sessionStorage.getItem('token'),
+    onSuccess: onSuccessInstagramConnect,
+    onFailure: onFailed,
+    label: 'INSTAGRAM_CONNECT',
+  });
+}
+function onSuccessInstagramConnect(data) {
+  return {
+    type: '',
+    data: ''
+  }
+}
 /////////////////////////////////////////////// PARTICIPATION_RESULT_ACTION
 export function participationResult(id) {
   return apiAction({

@@ -19,6 +19,7 @@ import CompanyPage from '../screens/CompanyPage'
 import ParticipationResult from '../screens/ParticipationResult'
 import TwitterAuthPage from '../screens/SocialAuth/TwitterAuthPage'
 import TwitchAuthPage from '../screens/SocialAuth/TwitchAuthPage'
+import InstagramAuthPage from '../screens/SocialAuth/InstagramAuthPage'
 
 import Loading from '../components/common/Loading'
 import ScrollToTop from '../components/common/ScrollToTop'
@@ -193,6 +194,7 @@ function Routes(props) {
                 <Route exact path="/company/:id" component={CompanyPage} />
                 <Route exact path="/twitter/login/callback/" component={TwitterAuthPage} />
                 <Route exact path="/twitch/connect/" component={TwitchAuthPage} />
+                <Route exact path="/instagram/connect/" component={InstagramAuthPage} />
                 <Route exact path="/participation-result/:id" component={ParticipationResult} />
                 <Route exact path="/report" component={Report} />
                 {!token &&
