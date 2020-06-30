@@ -20,16 +20,16 @@ function MapChart(props) {
     setCountry('')
     setCity('')
   }, [overralDemographics])
-
+  
   const getCountryList = (continent) => {
     let country_arr = []
-    overralDemographics.filter((item) => item.continent === continent).map((item) => country_arr.push(item.country))
+    overralDemographics.filter((item) => item.continent === continent).map((item) => country_arr.indexOf(item.country) < 0 && country_arr.push(item.country))
     return country_arr
   }
 
   const getCityList = (country) => {
     let city_arr = []
-    overralDemographics.filter((item) => item.country === country).map((item) => city_arr.push(item.city))
+    overralDemographics.filter((item) => item.country === country).map((item) => city_arr.indexOf(item.city) < 0 && city_arr.push(item.city))
     return city_arr
   }
 
@@ -39,11 +39,11 @@ function MapChart(props) {
         <TileLayer
           url='https://{s}.tile.osm.org/{z}/{x}/{y}.png'
         />
-        {(overralDemographics).filter((item) => item.continent.includes(continent) && item.country.includes(country) && item.city.includes(city)).map((item, index) => (
+        {(overralDemographics).filter((item) => (item.continent || '').includes(continent) && (item.country || '').includes(country) && (item.city || '').includes(city)).map((item, index) => (
           <Marker key={index} position={{ lat: item.latitude, lng: item.longitude }}>
             <Tooltip direction="top" offset={[0, 0]} opacity={1} permanent>
-              <span className="font-size-9 color-blue">{`${item.city}: ${item.number}`}</span>
-              <div className="text-center color-red font-weight-bold">{item.country}</div>
+              <div className="text-center font-size-9 color-blue">{`${item.city || ''} ${item.number}`}</div>
+              <div className="text-center color-red font-weight-bold">{item.country || ''}</div>
             </Tooltip>
           </Marker>
         ))}

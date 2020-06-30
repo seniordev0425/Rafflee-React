@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Row, Col } from 'reactstrap'
-import { Button, Tooltip } from 'antd'
+import { Button, Tooltip, Checkbox } from 'antd'
 import { withRouter } from 'react-router-dom'
+import ReactPlayer from 'react-player'
 import JoinHeader from '../components/layouts/HeaderLayout/JoinHeader'
 import Header from '../components/layouts/HeaderLayout/Header'
 import FooterLink from '../components/layouts/footer/FooterLink'
@@ -21,13 +22,15 @@ function CompanyPage(props) {
     const { id } = props.match.params
 
     const token = useSelector(state => state.userInfo.token)
-    // const company = useSelector(state => state.userInfo.company)
     const companyInformation = useSelector(state => state.userInfo.companyInformation)
     const GET_COMPANY_INFORMATION_PROCESS = useSelector(state => state.userInfo.GET_COMPANY_INFORMATION)
     const dispatch = useDispatch()
 
     const [openFollowModal, setFollowModal] = useState(false)
     const [openUnfollowModal, setUnfollowModal] = useState(false)
+
+    const [twitterVisible, setTwitterVisible] = useState(true)
+    const [instagramVisible, setInstagramVisible] = useState(true)
 
     useEffect(() => {
         document.title = "Company Page"
@@ -49,32 +52,108 @@ function CompanyPage(props) {
         </div>
     )
 
+    const getSocialWalls = () => {
+        let socialWalls = [];
+
+        (((companyInformation.social_wall || {}).twitter || {}).tweets || []).forEach((item) =>
+            socialWalls.push({ ...item, social_name: 'twitter' })
+        );
+
+        (((companyInformation.social_wall || {}).instagram || {}).publication || []).forEach((item) =>
+            socialWalls.push({ ...item, social_name: 'instagram' })
+        );
+
+        socialWalls.sort((a, b) => {
+            var keyA = Date.parse(a.created_at)
+            var keyB = Date.parse(b.created_at)
+            // Compare the 2 dates
+            if (keyA < keyB) return 1
+            if (keyA > keyB) return -1
+            return 0
+        })
+        return socialWalls
+    }
+
     const renderCompanyWall = () => {
+        let socialWalls = getSocialWalls()
+
         return (
-            (((companyInformation.social_wall || {}).twitter || {}).tweets || []).map((item, index) =>
-                <Row className="social-wall-container" key={index}>
-                    <Col xs="12" sm={{ size: 10, offset: 1 }}>
-                        <Row>
-                            <Col lg="1" md="2" sm="2" xs="3" className="company-wall-img">
-                                <img src={((companyInformation.social_wall || {}).twitter || {}).profile_image_url} alt="" />
-                            </Col>
-                            <Col lg="11" md="10" sm="10" xs="9" className="pl-sm-5">
-                                <div className="d-sm-flex">
-                                    <div>
-                                        <Tooltip title={twitter_tooltip}>
-                                            <img src={images.twitter_icon} width={20} height={20} className="pointer" alt="" />
-                                        </Tooltip>
-                                        <span className="font-size-10 font-weight-bold color-blue ml-3">{((companyInformation.social_wall || {}).twitter || {}).name}</span>
-                                    </div>
-                                </div>
-                                <div className="mt-4 font-size-9">
-                                    <div>{item.text}</div>
-                                    <div className="color-gray">{moment(item.created_at).format("ddd, MMM Do YYYY")}</div>
-                                </div>
+            socialWalls.map((item, index) =>
+                <div key={index}>
+                    {item.social_name === 'twitter' && twitterVisible &&
+                        <Row className="social-wall-container">
+                            <Col xs="12" sm={{ size: 10, offset: 1 }}>
+                                <Row>
+                                    <Col lg="1" md="2" sm="2" xs="3" className="company-wall-img">
+                                        <img src={((companyInformation.social_wall || {}).twitter || {}).profile_image_url} alt="" />
+                                    </Col>
+                                    <Col lg="11" md="10" sm="10" xs="9" className="pl-sm-5">
+                                        <div className="d-sm-flex">
+                                            <div>
+                                                <Tooltip title={twitter_tooltip}>
+                                                    <img src={images.twitter_icon} width={22} height={20} className="pointer" alt="" />
+                                                </Tooltip>
+                                                <span className="font-size-10 font-weight-bold color-blue ml-3">{((companyInformation.social_wall || {}).twitter || {}).name}</span>
+                                            </div>
+                                        </div>
+                                        <div className="mt-2 font-size-9">
+                                            <div>{item.text}</div>
+                                            <div className="color-gray">{moment(item.created_at).format("ddd, MMM Do YYYY")}</div>
+                                        </div>
+                                    </Col>
+                                </Row>
                             </Col>
                         </Row>
-                    </Col>
-                </Row>
+                    }
+                    {item.social_name === 'instagram' && instagramVisible &&
+                        <Row className="social-wall-container">
+                            <Col xs="12" sm={{ size: 10, offset: 1 }}>
+                                <Row>
+                                    <Col lg="1" md="2" sm="2" xs="3" className="company-wall-img">
+                                        <img src={images.profile_img} alt="" />
+                                    </Col>
+                                    <Col lg="11" md="10" sm="10" xs="9" className="pl-sm-5">
+                                        <Row>
+                                            <Col sm="12" md="4" className="px-0">
+                                                <div className="d-sm-flex">
+                                                    <div>
+                                                        <img src={images.instagram_icon} width={20} height={20} alt="" />
+                                                        <span className="font-size-10 font-weight-bold color-blue ml-3">{((companyInformation.social_wall || {}).instagram || {}).name}</span>
+                                                    </div>
+                                                </div>
+                                                <div className="mt-2 font-size-9">
+                                                    <div>{item.text}</div>
+                                                    <div className="color-gray">{moment(item.created_at).format("ddd, MMM Do YYYY")}</div>
+                                                </div>
+                                            </Col>
+                                            <Col sm="12" md="8" className="px-0 mt-3 mt-md-0">
+                                                <div className="d-flex justify-content-center">
+                                                    <a href={item.permalink} target='blank'>
+                                                        {item.media_type === 'IMAGE' &&
+                                                            <img src={item.media_url} className="instagram-wall-img" />
+                                                        }
+                                                        {item.media_type === 'VIDEO' &&
+                                                            <ReactPlayer
+                                                                // controls
+                                                                loop
+                                                                playing
+                                                                url={item.media_url}
+                                                                width='100%'
+                                                                height="100%"
+                                                                style={{ borderRadius: 10}}
+                                                            />
+                                                        }
+                                                    </a>
+                                                </div>
+                                            </Col>
+                                        </Row>
+                                    </Col>
+                                </Row>
+                            </Col>
+                        </Row>
+                    }
+                </div>
+
             )
         )
     }
@@ -141,6 +220,26 @@ function CompanyPage(props) {
                 </Row>
             </div>
             <div className="min-height-container">
+                <div className="d-flex align-items-center justify-content-center mt-3">
+                    {(((companyInformation.social_wall || {}).twitter || {}).tweets || []).length > 0 &&
+                        <div className="d-flex align-items-center justify-content-center">
+                            <Checkbox
+                                checked={twitterVisible}
+                                onChange={(e) => setTwitterVisible(e.target.checked)}
+                            />
+                            <img src={images.twitter_icon} width={17} height={15} className="ml-2" alt="" />
+                        </div>
+                    }
+                    {(((companyInformation.social_wall || {}).instagram || {}).publication || []).length > 0 &&
+                        <div className="d-flex align-items-center justify-content-center ml-4">
+                            <Checkbox
+                                checked={instagramVisible}
+                                onChange={(e) => setInstagramVisible(e.target.checked)}
+                            />
+                            <img src={images.instagram_icon} width={15} height={15} className="ml-2" alt="" />
+                        </div>
+                    }
+                </div>
                 {renderCompanyWall()}
             </div>
             <FooterLink />
