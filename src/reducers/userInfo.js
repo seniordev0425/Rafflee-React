@@ -22,7 +22,8 @@ const initialFeedState = {
         twitter: false,
         twitch: false,
         snapchat: false,
-        instagram: false
+        instagram: false,
+        facebook: false
     },
 
     phone_number_verified: false,
@@ -40,7 +41,8 @@ const initialFeedState = {
         twitter: false,
         twitch: false,
         snapchat: false,
-        instagram: false
+        instagram: false,
+        facebook: false
     },
 
     signUpSuccess: false,
@@ -284,6 +286,18 @@ function UserInfo(state = initialFeedState, action) {
                 myCampaigns: state.myCampaigns.map(promotion => promotion.pk === action.data.promotion_id ?
                     { ...promotion, end_date: `${action.data.end_date}Z` } : promotion
                 )
+            }
+        case 'SET_USER_FACEBOOK_CONNECT':
+            if (action.company) {
+                return {
+                    ...state,
+                    companyProfile: { ...state.companyProfile, facebook: action.data }
+                }
+            } else {
+                return {
+                    ...state,
+                    userProfile: { ...state.userProfile, facebook: action.data }
+                }
             }
         default:
             return state

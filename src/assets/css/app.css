@@ -1545,6 +1545,12 @@ h2 span {
     max-width: 100%;
     max-height: 500px;
 }
-
+.big-checkbox .ant-checkbox-inner {
+    width: 25px;
+    height: 25px;
+}
+.big-checkbox .ant-checkbox-inner::after {
+    left: 33%;
+}
 
 

@@ -140,7 +140,7 @@ function CompanyPage(props) {
                                                                 url={item.media_url}
                                                                 width='100%'
                                                                 height="100%"
-                                                                style={{ borderRadius: 10}}
+                                                                style={{ borderRadius: 10 }}
                                                             />
                                                         }
                                                     </a>
@@ -204,14 +204,42 @@ function CompanyPage(props) {
                                 </div>
                                 <div className="font-size-12 mt-4">{companyInformation.company.description}</div>
                                 {(token) &&
-                                    <div style={{ marginTop: "20px", height: "40px" }}>
-                                        <Button
-                                            type="primary"
-                                            className="ant-blue-btn promotion-list-item-btn"
-                                            onClick={companyInformation.company.follow ? handleUnfollowModal : handleFollowModal}
-                                        >
-                                            {companyInformation.company.follow ? t('button_group.unfollow_circle') : t('button_group.follow_circle')}
-                                        </Button>
+                                    <div style={{ marginTop: "20px" }}>
+                                        <Row>
+                                            <Col className="px-0">
+                                                <Button
+                                                    type="primary"
+                                                    className="ant-blue-btn promotion-list-item-btn"
+                                                    onClick={companyInformation.company.follow ? handleUnfollowModal : handleFollowModal}
+                                                >
+                                                    {companyInformation.company.follow ? t('button_group.unfollow_circle') : t('button_group.follow_circle')}
+                                                </Button>
+                                            </Col>
+                                            <Col className="d-flex align-items-center mt-3 justify-content-start justify-content-md-end px-0">
+                                                <div className="d-flex align-items-center">
+                                                    {(((companyInformation.social_wall || {}).twitter || {}).tweets || []).length > 0 &&
+                                                        <div className="d-flex align-items-center justify-content-center">
+                                                            <Checkbox
+                                                                className="big-checkbox"
+                                                                checked={twitterVisible}
+                                                                onChange={(e) => setTwitterVisible(e.target.checked)}
+                                                            />
+                                                            <img src={images.twitter_icon} width={23} height={20} className="ml-2" alt="" />
+                                                        </div>
+                                                    }
+                                                    {(((companyInformation.social_wall || {}).instagram || {}).publication || []).length > 0 &&
+                                                        <div className="d-flex align-items-center justify-content-center ml-4">
+                                                            <Checkbox
+                                                                className="big-checkbox"
+                                                                checked={instagramVisible}
+                                                                onChange={(e) => setInstagramVisible(e.target.checked)}
+                                                            />
+                                                            <img src={images.instagram_icon} width={20} height={20} className="ml-2" alt="" />
+                                                        </div>
+                                                    }
+                                                </div>
+                                            </Col>
+                                        </Row>
                                     </div>
                                 }
                             </Col>
@@ -220,26 +248,6 @@ function CompanyPage(props) {
                 </Row>
             </div>
             <div className="min-height-container">
-                <div className="d-flex align-items-center justify-content-center mt-3">
-                    {(((companyInformation.social_wall || {}).twitter || {}).tweets || []).length > 0 &&
-                        <div className="d-flex align-items-center justify-content-center">
-                            <Checkbox
-                                checked={twitterVisible}
-                                onChange={(e) => setTwitterVisible(e.target.checked)}
-                            />
-                            <img src={images.twitter_icon} width={17} height={15} className="ml-2" alt="" />
-                        </div>
-                    }
-                    {(((companyInformation.social_wall || {}).instagram || {}).publication || []).length > 0 &&
-                        <div className="d-flex align-items-center justify-content-center ml-4">
-                            <Checkbox
-                                checked={instagramVisible}
-                                onChange={(e) => setInstagramVisible(e.target.checked)}
-                            />
-                            <img src={images.instagram_icon} width={15} height={15} className="ml-2" alt="" />
-                        </div>
-                    }
-                </div>
                 {renderCompanyWall()}
             </div>
             <FooterLink />

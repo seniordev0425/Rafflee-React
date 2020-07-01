@@ -599,6 +599,25 @@ function onSuccessInstagramConnect(data) {
     data: ''
   }
 }
+/////////////////////////////////////////////// FACEBOOK_CONNECT
+export function facebookConnect(params, company) {
+  return apiAction({
+    url: APIROUTE + `facebook/connect/`,
+    method: 'POST',
+    data: qs.stringify(params),
+    accessToken: sessionStorage.getItem('token'),
+    onSuccess: (data) => onSuccessFacebookConnect(data, company),
+    onFailure: onFailed,
+    label: 'FACEBOOK_CONNECT',
+  });
+}
+function onSuccessFacebookConnect(data, company) {
+  return {
+    type: 'SET_USER_FACEBOOK_CONNECT',
+    data: true,
+    company: company
+  }
+}
 /////////////////////////////////////////////// PARTICIPATION_RESULT_ACTION
 export function participationResult(id) {
   return apiAction({

@@ -261,8 +261,13 @@ function CompanyAccountForm(props) {
                         <Row>
                             <Col xs="12" sm="6">
                                 <div className="mt-4 half-width">
-                                    <div className="footer-link-bold mb-3">Facebook</div>
-                                    <FaceBookConnectBtn />
+                                    <div className="footer-link-bold mb-3 d-flex align-items-center">
+                                        <span>Facebook</span>
+                                        {companyProfile.facebook &&
+                                            <FontAwesomeIcon icon={faCheckCircle} className="color-blue font-size-12 ml-3" />
+                                        }
+                                    </div>
+                                    <FaceBookConnectBtn connected={companyProfile.facebook} />
                                 </div>
                                 <div className="mt-4 half-width">
                                     <div className="footer-link-bold mb-3 d-flex align-items-center">
