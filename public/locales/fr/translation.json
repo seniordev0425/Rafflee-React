@@ -373,7 +373,10 @@
         "need_to_pay_text": "Vous devez payer pour accéder au widget.",
         "pay": "PAY",
         "connection_error": "Connection Error",
-        "select_user": "Select User"
+        "select_user": "Select User",
+        "select_page": "Select Page",
+        "select_publication": "Select Publication",
+        "model": "Enter Model"
     },
     "profile_activated_page": {
         "successfully_activated": "Ton compte a été activé",

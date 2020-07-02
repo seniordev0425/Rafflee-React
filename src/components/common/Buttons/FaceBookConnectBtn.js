@@ -28,6 +28,7 @@ function FaceBookConnectBtn(props) {
     )
 
     const responseFacebook = (response) => {
+        console.log(response)
         var body = {
             token: response.accessToken
         }
@@ -41,7 +42,7 @@ function FaceBookConnectBtn(props) {
             fields="email,user_likes,user_posts,user_gender,publish_to_groups,groups_access_member_info"
             callback={responseFacebook}
             render={renderProps => (
-                <div onClick={() => connected ? void 0 : renderProps.onClick}><CustomButton /></div>
+                <div onClick={renderProps.onClick}><CustomButton /></div>
             )}
         />
     )

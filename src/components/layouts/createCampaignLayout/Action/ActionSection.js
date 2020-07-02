@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import { Row, Col } from 'reactstrap'
 import { Menu, Dropdown, Button, Checkbox } from 'antd'
 import FacebookActionButton from './Facebook/FacebookActionButton'
@@ -18,6 +19,7 @@ import SteamActionButton from './Steam/SteamActionButton'
 import WebsiteActionButton from './Website/WebsiteActionButton'
 import SoundcloudActionButton from './Soundcloud/SoundcloudActionButton'
 
+import FacebookActionMenu from './Facebook/FacebookActionMenu'
 import TwitterActionMenu from './Twitter/TwitterActionMenu'
 import InstagramActionMenu from './Instagram/InstagramActionMenu'
 import TwitchActionMenu from './Twitch/TwitchActionMenu'
@@ -25,6 +27,9 @@ import PollActionMenu from './Poll/PollActionMenu'
 import VideoActionMenu from './Video/VideoActionMenu'
 import WebsiteActionMenu from './Website/WebsiteActionMenu'
 
+import FacebookLikeField from './Facebook/FacebookLikeField'
+import FacebookMessageField from './Facebook/FacebookMessageField'
+import FacebookPostField from './Facebook/FacebookPostField'
 import TwitterLikeField from './Twitter/TwitterLikeField'
 import TwitterFollowField from './Twitter/TwitterFollowField'
 import TwitterMessageField from './Twitter/TwitterMessageField'
@@ -36,12 +41,20 @@ import PollField from './Poll/PollField'
 import VideoField from './Video/VideoField'
 import WebsiteField from './Website/WebsiteField'
 
+import { getFacebookPages } from '../../../../actions/social'
+
 import { useTranslation } from 'react-i18next'
 
 function ActionSection(props) {
     const { t } = useTranslation()
 
     const { params, setParams, setSection, setAction } = props
+
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(getFacebookPages())
+    }, [])
 
     const menu = (
         <Menu>
@@ -64,7 +77,7 @@ function ActionSection(props) {
                             <span className="ml-3 font-size-12" style={{ color: 'red', verticalAlign: 'sub' }}>*</span>
                         </div>
                         <div className="mt-3 d-flex flex-wrap font-size-9 color-white">
-                            <Dropdown placement="bottomLeft" disabled>
+                            <Dropdown overlay={<FacebookActionMenu params={params} setAction={setAction} />} placement="bottomLeft">
                                 <FacebookActionButton />
                             </Dropdown>
                             <Dropdown overlay={<TwitterActionMenu params={params} setAction={setAction} />} placement="bottomLeft">
@@ -119,6 +132,15 @@ function ActionSection(props) {
             <Row>
                 <Col sm={{ size: "10", offset: "1" }} xs="12" className="px-sm-3 font-size-9 color-white">
                     <div className="mx-3">
+                        {params.facebook.like &&
+                            <FacebookLikeField params={params} setAction={setAction} />
+                        }
+                        {params.facebook.comment &&
+                            <FacebookMessageField params={params} setAction={setAction} />
+                        }
+                        {params.facebook.post &&
+                            <FacebookPostField params={params} setAction={setAction} />
+                        }
                         {params.twitter.like &&
                             <TwitterLikeField params={params} setAction={setAction} />
                         }

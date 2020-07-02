@@ -30,6 +30,25 @@ function CreateCampaignLayout() {
         live_draw: false,
         limit_participants: false,
         limitation_participation: 0,
+        facebook: {
+            comment: false,
+            comment_id: '',
+            comment_model: '',
+            comment_entries: '',
+            comment_mandatory: false,
+            like: false,
+            like_id: '',
+            like_entries: '',
+            like_mandatory: false,
+            post: false,
+            post_model: '',
+            post_entries: '',
+            post_mandatory: false,
+            follow: false,
+            follow_id: '',
+            follow_entries: '',
+            follow_mandatory: false
+        },  
         twitter: {
             comment: false,
             comment_model: '',
@@ -92,7 +111,7 @@ function CreateCampaignLayout() {
         let temp_params = { ...params }
         temp_params[socialName][actionType] = val
         setParams(temp_params)
-        console.log(params)
+        // console.log(params)
     }
 
     const _setSection = (section) => {
