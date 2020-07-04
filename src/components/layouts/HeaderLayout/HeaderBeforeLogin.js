@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import { Button, Drawer } from 'antd'
 import { Row } from 'reactstrap'
 import LoginSignupBaseModal from '../../modals/LoginSignupBaseModal'
-import SelectLanguage from './SelectLanguage'
 import images from '../../../utils/images'
 import { useTranslation } from 'react-i18next'
 
@@ -55,11 +54,9 @@ function HeaderBeforeLogin() {
         <>
             {!hide ? (
                 <Row>
-                    <Link to="/deals"><Button type="link" className="no-border-btn mr-3 h-100">{t('header.campaigns')}</Button></Link>
-                    <Button className="white-btn mr-3" style={{ width: 140 }} onClick={() => toggle(false)}>{t('header.sign_in')}</Button>
-                    <Button type="primary" className="ant-blue-btn" style={{ width: 140 }} onClick={() => toggle(true)}>{t('header.log_in')}</Button>
-                    <img src={images.question_icon} className="mx-4" alt="" />
-                    <SelectLanguage />
+                    <Link to="/deals"><Button type="link" className="no-border-btn h-100 font-weight-bold">{t('header.campaigns')}</Button></Link>
+                    <Button type="link" className="no-border-btn h-100 font-weight-bold" onClick={() => toggle(true)}>{t('header.log_in')}</Button>
+                    <Button type="link" className="no-border-btn h-100 font-weight-bold" onClick={() => toggle(false)}>{t('header.sign_in')}</Button>
                 </Row>
             ) : (
                 <>
@@ -70,10 +67,9 @@ function HeaderBeforeLogin() {
                         onClose={onClose}
                         visible={visible}
                     >
-                        <div className="mb-2 font-size-10"><Link to="/deals">{t('header.campaigns')}</Link></div>
-                        <div className="mb-2 font-size-10 color-blue" onClick={() => toggle(false)}>{t('header.sign_in')}</div>
-                        <div className="mb-2 font-size-10 color-blue" onClick={() => toggle(false)}>{t('header.log_in')}</div>
-                        <div><SelectLanguage /></div>
+                        <div className="mb-2 font-size-10 font-weight-bold"><Link to="/deals"  style={{color: '#767B83'}}>{t('header.campaigns')}</Link></div>
+                        <div className="mb-2 font-size-10 color-blue font-weight-bold" style={{color: '#767B83'}} onClick={() => toggle(false)}>{t('header.sign_in')}</div>
+                        <div className="mb-2 font-size-10 color-blue font-weight-bold" style={{color: '#767B83'}} onClick={() => toggle(false)}>{t('header.log_in')}</div>
                     </Drawer>
                 </>
             )}

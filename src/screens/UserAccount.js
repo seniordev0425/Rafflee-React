@@ -26,8 +26,10 @@ const UserAccount = (props) => {
 
     return (
         <div style={{ fontFamily: "sofiapro" }}>
-            <JoinHeader />
-            <Header />
+            <div className="parent-header-container">
+                <JoinHeader />
+                <Header />
+            </div>
             <div className="menubar-container">
                 <Row>
                     <Col xs="12" sm={{ size: 10, offset: 1 }}>

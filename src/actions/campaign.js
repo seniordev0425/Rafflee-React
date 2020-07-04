@@ -446,8 +446,8 @@ export function campaignParticipateVideo(params) {
 function onSuccessCampaignParticipateVideo(data) {
   openNotification('success', successMessages[localStorage.getItem('i18nextLng')].completeToWatchVideo)
   return {
-    type: '',
-    data: '',
+    type: 'SET_ACTION_VALIDATION_STATUS',
+    data: 'video_watch_validation',
   }
 }
 /////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_POLL_ACTION
@@ -485,8 +485,8 @@ export function campaignParticipateWebsite(params) {
 }
 function onSuccessCampaignParticipateWebsite(data) {
   return {
-    type: '',
-    data: '',
+    type: 'SET_ACTION_VALIDATION_STATUS',
+    data: 'website_visit_validation',
   }
 }
 /////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_INSTAGRAM_PROFILE_ACTION

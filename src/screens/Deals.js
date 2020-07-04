@@ -12,8 +12,10 @@ import Footer from '../components/layouts/footer/Footer'
 function Deals() {
     return (
         <div style={{ fontFamily: "sofiapro" }}>
-            <JoinHeader />
-            <Header />
+            <div className="parent-header-container">
+                <JoinHeader />
+                <Header />
+            </div>
             <CurrentPromotionList />
             <FooterLink />
             <Footer />

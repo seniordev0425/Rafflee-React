@@ -46,7 +46,6 @@ function CampaignDetail(props) {
     const { match } = props
 
     const GET_CAMPAIGN_DATA_SUCCESS = useSelector(state => state.userInfo.GET_CAMPAIGN_DATA_SUCCESS)
-    // const GET_USER_PROFILE_SUCCESS = useSelector(state => state.userInfo.GET_USER_PROFILE_SUCCESS)
     const CAMPAIGN_PARTICIPATE_PROCESS = useSelector(state => state.userInfo.CAMPAIGN_PARTICIPATE)
     const CAMPAIGN_PARTICIPATE_SUCCESS = useSelector(state => state.userInfo.SUCCESS_CAMPAIGN_PARTICIPATE)
 
@@ -64,7 +63,6 @@ function CampaignDetail(props) {
     const [action, setAction] = useState({})
     const [didActions, setDidActions] = useState({})
     const [openVideo, setOpenVideo] = useState(false)
-    const [isVideoEnded, setIsVideoEnded] = useState(false)
     const [openConfirm, setOpenConfirm] = useState(false)
     const [answers, setAnswers] = useState([])
 
@@ -153,7 +151,7 @@ function CampaignDetail(props) {
     const renderWinnings = () => {
         return (
             (campaignData.winnings || []).map((item, index) =>
-                <div key={index} className="mb-lg-3 color-blue">{item}</div>
+                <div key={index} className="mt-3 color-blue font-size-11">{`- ${item}`}</div>
             )
         )
     }
@@ -175,9 +173,6 @@ function CampaignDetail(props) {
     }
 
     const videoEnded = () => {
-        setIsVideoEnded(true)
-        actionParams = actionParams.filter((item) => item['social_name'] !== 'video')
-        actionParams.push({ social_name: 'video', action_type: true })
         dispatch(campaignParticipateVideo({ promotion_id: campaignData.pk }))
     }
 
@@ -200,29 +195,24 @@ function CampaignDetail(props) {
             dispatch(campaignParticipateTwitchFollow({ promotion_id: campaignData.pk }))
         }
         else if (socialName === 'instagram' && actionType === 'follow') {
+            window.open(`https://instagram.com/${action.social_action[2].instagram_profile_url}`, '_blank')
             dispatch(campaignParticipateInstagramProfile({ promotion_id: campaignData.pk }))
         }
         else if (socialName === 'instagram' && actionType === 'like') {
+            window.open(`https://instagram.com/p/${action.social_action[2].instagram_publication_url}`, '_blank')
             dispatch(campaignParticipateInstagramPublication({ promotion_id: campaignData.pk }))
         }
-    }
-
-    const onParticipate = (socialName, actionType, checked, pollData) => {
-        if (socialName === 'video') {
+        else if (socialName === 'video' && actionType === 'watch') {
             openVideoModal()
         }
-        else {
-            actionParams = actionParams.filter((item) => item['social_name'] !== socialName)
-            if (checked) actionParams.push({ social_name: socialName, action_type: actionType })
+        else if (socialName === 'website' && actionType === 'visit') {
+            window.open(action.website.url.includes("http") ? action.website.url : `https://${action.website.url}`, '_blank')
+            dispatch(campaignParticipateWebsite({ promotion_id: campaignData.pk }))
         }
     }
 
     const participatePoll = (val) => {
         dispatch(campaignParticipatePoll({ promotion_id: campaignData.pk, response: JSON.stringify(val) }))
-    }
-
-    const participateWebsite = () => {
-        dispatch(campaignParticipateWebsite({ promotion_id: campaignData.pk }))
     }
 
     const update = () => {
@@ -241,76 +231,46 @@ function CampaignDetail(props) {
         dispatch(campaignParticipate(body))
     }
 
-    const getTwitterEntries = () => {
-        let rlt = ''
-        if (action.social_action[3].twitter_like) {
-            rlt += `${t('create_campaign_page.like')} ${t('create_campaign_page.entries')}: ${action.social_action[3].twitter_like_entries}   `
-        }
-        if (action.social_action[3].twitter_follow) {
-            rlt += `${t('create_campaign_page.follow')} ${t('create_campaign_page.entries')}: ${action.social_action[3].twitter_follow_entries}   `
-        }
-        if (action.social_action[3].twitter_tweet) {
-            rlt += `${t('create_campaign_page.comment')} ${t('create_campaign_page.entries')}: ${action.social_action[3].twitter_tweet_entries}   `
-        }
-        if (action.social_action[3].twitter_retweet) {
-            rlt += `${t('create_campaign_page.retweet')} ${t('create_campaign_page.entries')}: ${action.social_action[3].twitter_retweet_entries}`
-        }
-        return rlt
-    }
-
-    const getTwitchEntries = () => {
-        let rlt = ''
-        if (action.social_action[4].twitch_follow) {
-            rlt += `${t('create_campaign_page.follow')} ${t('create_campaign_page.entries')}: ${action.social_action[4].twitch_follow_entries}`
-        }
-        return rlt
-    }
-
-    const getInstagramEntries = () => {
-        let rlt = ''
-        if (action.social_action[2].instagram_profile) {
-            rlt += `${t('create_campaign_page.follow')} ${t('create_campaign_page.entries')}: ${action.social_action[2].instagram_profile_entries}   `
-        }
-        if (action.social_action[2].instagram_publication) {
-            rlt += `${t('create_campaign_page.like')} ${t('create_campaign_page.entries')}: ${action.social_action[2].instagram_publication_entries}`
-        }
-        return rlt
-    }
-
-    const getVideoEntries = () => {
-        let rlt = ''
-        if (action.video) {
-            rlt += `${t('create_campaign_page.entries')}: ${action.video.entries}`
-        }
-        return rlt
-    }
-
-    const getWebsiteEntries = () => {
-        let rlt = ''
-        if (action.website) {
-            rlt += `${t('create_campaign_page.entries')}: ${action.website.entries}`
-        }
-        return rlt
-    }
-
-    const getPollEntries = () => {
-        let rlt = ''
-        if (action.poll) {
-            rlt += `${t('create_campaign_page.entries')}: ${action.poll.entries}`
-        }
-        return rlt
-    }
-
     if (GET_CAMPAIGN_DATA_SUCCESS) {
         return <Loading />
     }
 
     return (
         <div style={{ fontFamily: "sofiapro" }}>
-            <JoinHeader />
-            <Header />
-            <Row style={{ borderTop: "2px solid #7e9aa817" }}>
+            <div className="parent-header-container">
+                <JoinHeader />
+                <Header />
+            </div>
+            <Row className="mt-0 mt-sm-5">
                 <Col xs="12" sm={{ size: 10, offset: 1 }}>
+                    <Row className="px-3 mt-5">
+                        <Col className="px-0" style={{ borderRight: "1px solid #767b8378" }}>
+                            <div className="color-gray mt-2 text-center font-weight-bold font-size-20">{calcRemainingDates()}</div>
+                            <div className="color-gray mt-2 text-center">{t('campaign_detail_page.days')}</div>
+                        </Col>
+                        <Col className="px-0" style={{ borderRight: "1px solid #767b8378" }}>
+                            <div className="color-gray mt-2 text-center font-weight-bold font-size-20">{`${((campaignData.user_actions || {}).entries_user || 0)}`}</div>
+                            <div className="color-gray mt-2 text-center">{t('campaign_detail_page.entries')}</div>
+                        </Col>
+                        <Col className="px-0">
+                            <div className="color-gray mt-2 text-center font-weight-bold font-size-20">{campaignData.number_of_eligible_people || 0}</div>
+                            <div className="color-gray mt-2 text-center">{t('campaign_detail_page.participants')}</div>
+                        </Col>
+                    </Row>
+                    <Row className="mt-5">
+                        <Col xs="12" sm="5">
+                            <div className="">
+                                <img src={campaignData.campaign_image ? campaignData.campaign_image : images.campaign} width="100%" alt="" />
+                            </div>
+                        </Col>
+                        <Col xs="0" sm="2">
+                        </Col>
+                        <Col xs="12" sm="5" className="mt-3 mt-sm-0">
+                            <div className="color-blue font-size-14 font-weight-bold">{t('campaign_detail_page.the_prize')}</div>
+                            <div className="mt-3 color-gray font-size-11">{t('campaign_detail_page.prize_description')}</div>
+                            {renderWinnings()}
+                        </Col>
+                    </Row>
                     <Row className="my-5">
                         <Col lg="1" md="2" sm="2" xs="3" className="promotion-list-item-img">
                             <Link to={`/company/${campaignData.company_id}/`}>
@@ -332,237 +292,167 @@ function CampaignDetail(props) {
                             </div>
                         </Col>
                     </Row>
-                    <Row className="campaign-main-panel mt-4 mb-5">
-                        <Col className="px-0 left">
-                            <div className="w-100">
-                                <img src={campaignData.campaign_image ? campaignData.campaign_image : images.campaign} width="100%" height="100%" alt="" />
-                            </div>
-                        </Col>
-                        <Col className="px-0 center">
-                            <div className="mt-3 ml-3 mt-lg-5 ml-lg-5">{t('campaign_detail_page.giveaways')}</div>
-                            <div className="d-flex ml-3 ml-lg-5 mt-3">
-                                <img src={images.award} width="30" height="40" alt="" />
-                                <div className="ml-4">
-                                    {renderWinnings()}
-                                </div>
-                            </div>
-                        </Col>
-                        <Col className="px-0 dotted-left-border right" >
-                            <div className="top-half-circle"></div>
-                            <div className="bottom-half-circle"></div>
 
-                            <div className="div-item ">
-                                <div className="" style={{ lineHeight: "2.5rem" }}>
-                                    {Date.parse(campaignData.end_date) > Date.now() ? t('campaign_detail_page.prize_ends_in') : t('campaign_detail_page.prize_ended')}
-                                </div>
-                                <img src={images.clock} width="25" height="25" alt="" />
-                                <span className="ml-3 color-blue">{calcRemainingDates()} {t('campaign_detail_page.days')}</span>
-                            </div>
-                            <div className="div-item ">
-                                <div className="" style={{ lineHeight: "2.5rem" }}>
-                                    {t('campaign_detail_page.your_entries')}
-                                </div>
-                                <img src={images.entry} width="25" height="25" alt="" />
-                                <span className="ml-3 color-blue">{`${((campaignData.user_actions || {}).entries_user || 0)} ${t('campaign_detail_page.entries')}`}</span>
-                            </div>
-                            <div className="div-item ">
-                                <div className="" style={{ lineHeight: "2.5rem" }}>
-                                    {t('campaign_detail_page.maximum_participants')}
-                                </div>
-                                <img src={images.user} width="25" height="25" alt="" />
-                                <span className="ml-3 color-blue">{campaignData.number_of_eligible_people || 0} {t('campaign_detail_page.participants')}</span>
-                            </div>
-                        </Col>
-                    </Row>
-
-                    <Row className="campaign-main-panel-mobile mt-3 mb-3">
-                        <Col className="px-0 left">
-                            <div className="w-100">
-                                <img src={campaignData.campaign_image ? campaignData.campaign_image : images.campaign} width="100%" alt="" />
-                            </div>
-                        </Col>
-                        <Col className="px-0 center d-flex justify-content-center">
-                            <div>
-                                <div className="mt-2 ml-2">{t('campaign_detail_page.giveaways')}</div>
-                                <div className="d-flex mt-2 ml-2">
-                                    <img src={images.award} width="20" height="25" alt="" />
-                                    <div className="ml-4">
-                                        {renderWinnings()}
-                                    </div>
-                                </div>
-                            </div>
-                        </Col>
-                    </Row>
-                    <Row className="campaign-main-panel-mobile-footer px-3">
-                        <Col className="px-0" style={{ borderRight: "1px solid #8ACDFF" }}>
-                            <div className="d-flex justify-content-center"><img src={images.clock} width="25" height="25" alt="" /></div>
-                            <div className="color-blue mt-2 text-center">{calcRemainingDates()} {t('campaign_detail_page.days')}</div>
-                        </Col>
-                        <Col className="px-0" style={{ borderRight: "1px solid #8ACDFF" }}>
-                            <div className="d-flex justify-content-center"><img src={images.entry} width="25" height="25" alt="" /></div>
-                            <div className="color-blue mt-2 text-center">{`${((campaignData.user_actions || {}).entries_user || 0)} ${t('campaign_detail_page.entries')}`}</div>
-                        </Col>
-                        <Col className="px-0">
-                            <div className="d-flex justify-content-center"><img src={images.user} width="25" height="25" alt="" /></div>
-                            <div className="color-blue mt-2 text-center">{campaignData.number_of_eligible_people || 0} {t('campaign_detail_page.participants')}</div>
-                        </Col>
-                    </Row>
-                    {(action.social_action && (action.social_action[0].facebook_like || action.social_action[0].facebook_follow || action.social_action[0].facebook_comment)) && (
+                    {(action.social_action && action.social_action[2].instagram_profile) &&
                         <Row className="mb-4 mt-4">
                             <Col style={{ paddingLeft: 40 }}>
                                 <CustomCollapsePanel
-                                    type="facebook"
-                                    actions={
-                                        {
-                                            like: action.social_action[0].facebook_like,
-                                            follow: action.social_action[0].facebook_follow,
-                                            comment: action.social_action[0].facebook_comment,
-                                        }
-                                    }
-                                    didActions={didActions}
-                                    onParticipate={onParticipate}
-                                />
-                            </Col>
-                        </Row>
-                    )}
-                    {(action.social_action && (action.social_action[1].youtube_like || action.social_action[1].youtube_follow)) && (
-                        <Row className="mb-4 mt-4">
-                            <Col style={{ paddingLeft: 40 }}>
-                                <CustomCollapsePanel
-                                    type="youtube"
-                                    actions={
-                                        {
-                                            like: action.social_action[1].youtube_like,
-                                            follow: action.social_action[1].youtube_follow,
-                                        }
-                                    }
-                                    didActions={didActions}
-                                    onParticipate={onParticipate}
-                                />
-                            </Col>
-                        </Row>
-                    )}
-                    {(action.social_action && (action.social_action[2].instagram_profile || action.social_action[2].instagram_publication)) && (
-                        <Row className="mb-4 mt-4">
-                            <Col style={{ paddingLeft: 40 }}>
-                                <CustomCollapsePanel
-                                    type="instagram"
-                                    actions={
-                                        {
-                                            instagram_profile: action.social_action[2].instagram_profile_url,
-                                            instagram_publication: action.social_action[2].instagram_publication_url,
-                                        }
-                                    }
-                                    mandatories={
-                                        {
-                                            profile: action.social_action[2].instagram_profile_mandatory || false,
-                                            publication: action.social_action[2].instagram_publication_mandatory || false
-                                        }
-                                    }
-                                    entries={getInstagramEntries()}
-                                    didActions={didActions}
-                                    onParticipate={onParticipate}
+                                    title={t('campaign_detail_page.instagram_follow.title')}
+                                    text={t('campaign_detail_page.instagram_follow.text')}
+                                    socialName="instagram"
+                                    actionType="follow"
+                                    mandatory={action.social_action[2].instagram_profile_mandatory}
+                                    entries={action.social_action[2].instagram_profile_entries}
+                                    didAction={(campaignData.user_actions || {}).instagram_profile}
                                     tryToOpenValidationModal={tryToOpenValidationModal}
                                 />
                             </Col>
                         </Row>
-                    )}
-                    {(action.social_action && (action.social_action[3].twitter_like || action.social_action[3].twitter_follow || action.social_action[3].twitter_tweet || action.social_action[3].twitter_retweet)) && (
+                    }
+                    {(action.social_action && action.social_action[2].instagram_publication) &&
                         <Row className="mb-4 mt-4">
                             <Col style={{ paddingLeft: 40 }}>
                                 <CustomCollapsePanel
-                                    type="twitter"
-                                    actions={
-                                        {
-                                            like: action.social_action[3].twitter_like,
-                                            follow: action.social_action[3].twitter_follow,
-                                            comment: action.social_action[3].twitter_tweet,
-                                            retweet: action.social_action[3].twitter_retweet,
-                                        }
-                                    }
-                                    mandatories={
-                                        {
-                                            like: action.social_action[3].twitter_like_mandatory,
-                                            follow: action.social_action[3].twitter_follow_mandatory,
-                                            comment: action.social_action[3].twitter_tweet_mandatory,
-                                            retweet: action.social_action[3].twitter_retweet_mandatory,
-                                        }
-                                    }
-                                    entries={getTwitterEntries()}
-                                    didActions={didActions}
-                                    onParticipate={onParticipate}
+                                    title={t('campaign_detail_page.instagram_like.title')}
+                                    text={t('campaign_detail_page.instagram_like.text')}
+                                    socialName="instagram"
+                                    actionType="like"
+                                    mandatory={action.social_action[2].instagram_publication_mandatory}
+                                    entries={action.social_action[2].instagram_publication_entries}
+                                    didAction={(campaignData.user_actions || {}).instagram_publication}
                                     tryToOpenValidationModal={tryToOpenValidationModal}
                                 />
                             </Col>
                         </Row>
-                    )}
-                    {(action.social_action && (action.social_action[4].twitch_like || action.social_action[4].twitch_follow || action.social_action[4].twitch_comment)) && (
+                    }
+                    {(action.social_action && action.social_action[3].twitter_like) &&
                         <Row className="mb-4 mt-4">
                             <Col style={{ paddingLeft: 40 }}>
                                 <CustomCollapsePanel
-                                    type="twitch"
-                                    actions={
-                                        {
-                                            follow: action.social_action[4].twitch_follow,
-                                        }
-                                    }
-                                    mandatories={
-                                        {
-                                            follow: action.social_action[4].twitch_follow_mandatory,
-                                        }
-                                    }
-                                    entries={getTwitchEntries()}
-                                    didActions={didActions}
-                                    onParticipate={onParticipate}
+                                    title={t('campaign_detail_page.twitter_like.title')}
+                                    text={t('campaign_detail_page.twitter_like.text')}
+                                    socialName="twitter"
+                                    actionType="like"
+                                    mandatory={action.social_action[3].twitter_like_mandatory}
+                                    entries={action.social_action[3].twitter_like_entries}
+                                    didAction={(campaignData.user_actions || {}).twitter_like}
                                     tryToOpenValidationModal={tryToOpenValidationModal}
                                 />
                             </Col>
                         </Row>
-                    )}
-                    {action.video && (
+                    }
+                    {(action.social_action && action.social_action[3].twitter_follow) &&
                         <Row className="mb-4 mt-4">
                             <Col style={{ paddingLeft: 40 }}>
                                 <CustomCollapsePanel
-                                    type="video"
-                                    actions={{ video: true }}
-                                    mandatories={{ video: action.video.mandatory }}
-                                    entries={getVideoEntries()}
-                                    didActions={didActions}
-                                    onParticipate={onParticipate}
-                                    isVideoEnded={isVideoEnded}
+                                    title={t('campaign_detail_page.twitter_follow.title')}
+                                    text={t('campaign_detail_page.twitter_follow.text')}
+                                    socialName="twitter"
+                                    actionType="follow"
+                                    mandatory={action.social_action[3].twitter_follow_mandatory}
+                                    entries={action.social_action[3].twitter_follow_entries}
+                                    didAction={(campaignData.user_actions || {}).twitter_follow}
+                                    tryToOpenValidationModal={tryToOpenValidationModal}
                                 />
                             </Col>
                         </Row>
-                    )}
-                    {action.website && (
+                    }
+                    {(action.social_action && action.social_action[3].twitter_tweet) &&
                         <Row className="mb-4 mt-4">
                             <Col style={{ paddingLeft: 40 }}>
                                 <CustomCollapsePanel
-                                    type="website"
-                                    actions={{ website: action.website }}
-                                    mandatories={{ website: action.website.mandatory }}
-                                    entries={getWebsiteEntries()}
-                                    didActions={didActions}
-                                    participateWebsite={participateWebsite}
+                                    title={t('campaign_detail_page.twitter_tweet.title')}
+                                    text={t('campaign_detail_page.twitter_tweet.text')}
+                                    socialName="twitter"
+                                    actionType="comment"
+                                    mandatory={action.social_action[3].twitter_tweet_mandatory}
+                                    entries={action.social_action[3].twitter_tweet_entries}
+                                    didAction={(campaignData.user_actions || {}).twitter_tweet}
+                                    tryToOpenValidationModal={tryToOpenValidationModal}
                                 />
                             </Col>
                         </Row>
-                    )}
-                    {action.poll && (
+                    }
+                    {(action.social_action && action.social_action[3].twitter_retweet) &&
+                        <Row className="mb-4 mt-4">
+                            <Col style={{ paddingLeft: 40 }}>
+                                <CustomCollapsePanel
+                                    title={t('campaign_detail_page.twitter_retweet.title')}
+                                    text={t('campaign_detail_page.twitter_retweet.text')}
+                                    socialName="twitter"
+                                    actionType="retweet"
+                                    mandatory={action.social_action[3].twitter_retweet_mandatory}
+                                    entries={action.social_action[3].twitter_retweet_entries}
+                                    didAction={(campaignData.user_actions || {}).twitter_retweet}
+                                    tryToOpenValidationModal={tryToOpenValidationModal}
+                                />
+                            </Col>
+                        </Row>
+                    }
+                    {(action.social_action && action.social_action[4].twitch_follow) &&
+                        <Row className="mb-4 mt-4">
+                            <Col style={{ paddingLeft: 40 }}>
+                                <CustomCollapsePanel
+                                    title={t('campaign_detail_page.twitch_follow.title')}
+                                    text={t('campaign_detail_page.twitch_follow.text')}
+                                    socialName="twitch"
+                                    actionType="follow"
+                                    mandatory={action.social_action[4].twitch_follow_mandatory}
+                                    entries={action.social_action[4].twitch_follow_entries}
+                                    didAction={(campaignData.user_actions || {}).twitch_follow}
+                                    tryToOpenValidationModal={tryToOpenValidationModal}
+                                />
+                            </Col>
+                        </Row>
+                    }
+                    {action.video &&
+                        <Row className="mb-4 mt-4">
+                            <Col style={{ paddingLeft: 40 }}>
+                                <CustomCollapsePanel
+                                    title={t('campaign_detail_page.video.title')}
+                                    text={t('campaign_detail_page.video.text')}
+                                    socialName="video"
+                                    actionType="watch"
+                                    mandatory={action.video.mandatory}
+                                    entries={action.video.entries}
+                                    didAction={(campaignData.user_actions || {}).video}
+                                    tryToOpenValidationModal={tryToOpenValidationModal}
+                                />
+                            </Col>
+                        </Row>
+                    }
+                    {action.website &&
+                        <Row className="mb-4 mt-4">
+                            <Col style={{ paddingLeft: 40 }}>
+                                <CustomCollapsePanel
+                                    title={t('campaign_detail_page.website.title')}
+                                    text={action.website.url}
+                                    socialName="website"
+                                    actionType="visit"
+                                    mandatory={action.website.mandatory}
+                                    entries={action.website.entries}
+                                    didAction={(campaignData.user_actions || {}).website}
+                                    tryToOpenValidationModal={tryToOpenValidationModal}
+                                />
+                            </Col>
+                        </Row>
+                    }
+                    {action.poll &&
                         <Row className="mb-4 mt-4">
                             <Col style={{ paddingLeft: 40 }}>
                                 <CustomCollapsePanelForPoll
-                                    type="other"
+                                    title={action.poll.question}
+                                    text={t('campaign_detail_page.poll.text')}
                                     multiple_choice={action.poll.multiple_choices}
                                     responses={action.poll.responses}
-                                    question={action.poll.question}
                                     mandatory={action.poll.mandatory}
-                                    entries={getPollEntries()}
+                                    entries={action.poll.entries}
+                                    didAction={(campaignData.user_actions || {}).poll}
                                     participatePoll={participatePoll}
                                 />
                             </Col>
                         </Row>
-                    )}
+                    }
                     <Row className="justify-content-center mb-4">
                         <Button
                             type="primary"

@@ -18,10 +18,10 @@ function FacebookMessageField(props) {
     const facebookPublications = useSelector(state => state.social.facebookPublications)
     const dispatch = useDispatch()
 
-    const fetchPublications = (page) => {
+    const fetchPublications = (id) => {
         var body = {
-            page_id: page.id,
-            page_access_token: page.access_token
+            page_id: facebookPages[id].id,
+            page_access_token: facebookPages[id].access_token
         }
         dispatch(getFacebookPublications(body))
     }
@@ -57,11 +57,11 @@ function FacebookMessageField(props) {
                         <Select
                             className="w-100"
                             placeholder={t('create_campaign_page.select_page')}
-                            onChange={(page) => page ? fetchPublications(page) : void 0}
+                            onChange={(id) => fetchPublications(id)}
                             size="large"
                         >
                             {facebookPages.map((page, id) => (
-                                <Option key={id} value={page}>
+                                <Option key={id} value={id}>
                                     {page.name}
                                 </Option>
                             ))}
@@ -69,13 +69,14 @@ function FacebookMessageField(props) {
                     </Col>
                     <Col xs="12" sm="6" className="p-0 pl-sm-2 mt-3 mt-sm-0">
                         <Select
+                            defaultValue={params.facebook.like_id}
                             className="w-100"
                             placeholder={t('create_campaign_page.select_publication')}
-                            // onChange={(page) => page ? fetchPublications(page) : void 0}
+                            onChange={(id) => setAction('facebook', 'comment_id', id)}
                             size="large"
                         >
-                            {facebookPublications.map((publication, id) => (
-                                <Option key={id} value={publication}>
+                            {facebookPublications.map((publication) => (
+                                <Option key={publication.id} value={publication.id}>
                                     {publication.message}
                                 </Option>
                             ))}

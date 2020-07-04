@@ -84,7 +84,12 @@ const initialFeedState = {
         giveway_name: ''
     },
     tempActionData: null,
-    twitterDirectConnect: false
+    twitterDirectConnect: false,
+    wallSetting: {
+        twitter: false,
+        instagram: false,
+        facebook: {}
+    }
 }
 
 function UserInfo(state = initialFeedState, action) {
@@ -298,6 +303,11 @@ function UserInfo(state = initialFeedState, action) {
                     ...state,
                     userProfile: { ...state.userProfile, facebook: action.data }
                 }
+            }
+        case 'SET_WALL_SETTING': 
+            return {
+                ...state,
+                wallSetting: action.data
             }
         default:
             return state

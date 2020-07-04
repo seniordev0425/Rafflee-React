@@ -8,6 +8,7 @@ import Home from '../screens/Home'
 import Deals from '../screens/Deals'
 import UserAccount from '../screens/UserAccount'
 import Dashboard from '../screens/Dashboard'
+import MyCircle from '../screens/MyCircle'
 import CampaignDetail from '../screens/CampaignDetail'
 import ProfileActivated from '../screens/ProfileActivated'
 import ResetPassword from '../screens/ResetPassword'
@@ -184,6 +185,9 @@ function Routes(props) {
                 {token &&
                     <Route exact path="/dashboard/:menu" component={Dashboard} />
                 }
+                {token &&
+                    <Route exact path="/my-circle" component={MyCircle} />
+                }
                 <Route exact path="/campaign-detail/:id" component={CampaignDetail} />
                 <Route exact path="/deals" component={Deals} />
                 <Route exact path="/profile/activate/:id/:token" component={ProfileActivated} />
@@ -202,6 +206,9 @@ function Routes(props) {
                 }
                 {!token &&
                     <Redirect exact from="/dashboard/:menu" to="/" />
+                }
+                {!token &&
+                    <Redirect exact from="/my-circle" to="/" />
                 }
                 <Route component={NotFound} />
             </Switch>

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { Row, Col } from 'reactstrap'
 import { Menu, Dropdown, Button, Checkbox } from 'antd'
 import FacebookActionButton from './Facebook/FacebookActionButton'
@@ -28,6 +28,7 @@ import VideoActionMenu from './Video/VideoActionMenu'
 import WebsiteActionMenu from './Website/WebsiteActionMenu'
 
 import FacebookLikeField from './Facebook/FacebookLikeField'
+import FacebookFollowField from './Facebook/FacebookFollowField'
 import FacebookMessageField from './Facebook/FacebookMessageField'
 import FacebookPostField from './Facebook/FacebookPostField'
 import TwitterLikeField from './Twitter/TwitterLikeField'
@@ -134,6 +135,9 @@ function ActionSection(props) {
                     <div className="mx-3">
                         {params.facebook.like &&
                             <FacebookLikeField params={params} setAction={setAction} />
+                        }
+                        {params.facebook.follow &&
+                            <FacebookFollowField params={params} setAction={setAction} />
                         }
                         {params.facebook.comment &&
                             <FacebookMessageField params={params} setAction={setAction} />

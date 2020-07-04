@@ -33,8 +33,10 @@ function ParticipationResult(props) {
     
     return (
         <div style={{ fontFamily: "sofiapro" }}>
-            <JoinHeader />
-            <Header />
+           <div className="parent-header-container">
+                <JoinHeader />
+                <Header />
+            </div>
             <Row style={{ borderTop: "2px solid #7e9aa817" }}>
                 <Col xs="12" sm={{ size: 10, offset: 1 }}>
                     <Row className="my-5">

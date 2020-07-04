@@ -3,10 +3,11 @@
         "join_header_text": "Rafflee is tool that everyone wants.",
         "join_now": "Join now",
         "campaigns": "Campaigns",
-        "sign_in": "Sign In",
-        "log_in": "Log In",
+        "sign_in": "Register",
+        "log_in": "Login",
         "account": "Account",
         "dashboard": "Dashboard",
+        "inventory": "Inventory",
         "log_out": "Logout"
     },
     "footer": {
@@ -25,7 +26,8 @@
         "cookies_policy": "Cookies Policy",
         "legal_notice": "Legal Notice",
         "terms_of_service": "Terms of Service",
-        "follow_us": "Follow Us"
+        "follow_us": "Follow Us",
+        "language": "Language"
     },
     "banner": {
         "search_placeholder": "Search...",
@@ -39,8 +41,8 @@
         "all": "All",
         "highlights": "Highlights",
         "new": "New",
-        "hot": "Hot",
-        "endsoon": "End Soon",
+        "hot": "Best Offer",
+        "endsoon": "Favorites",
         "user_profile": "Profile",
         "company_profile": "Company Profile",
         "inventory": "Inventory",
@@ -62,11 +64,12 @@
         "payment": "Payment",
         "settings": "Settings",
         "password": "Password",
-        "deactivate": "Deactivate"
+        "deactivate": "Deactivate",
+        "wall": "Wall"
     },
     "empty_result_to_display": "There is no result to display.",
     "button_group": {
-        "see_campaign": "SEE CAMPAIGN",
+        "see_campaign": "View Campaign",
         "verify": "Verify",
         "update": "Update",
         "delete": "Delete",
@@ -96,7 +99,9 @@
         "follow_circle": "FOLLOW",
         "unfollow_circle": "UNFOLLOW",
         "remove": "Remove",
-        "close": "Close"
+        "close": "Close",
+        "validate": "Validate",
+        "validated": "Validated"
     },
     "homepage": {
         "hot_new_contest_everyday": "Hot new contest everyday.",
@@ -153,30 +158,38 @@
         "prize_ended": "PRIZE ENDED",
         "your_entries": "YOUR ENTRIES",
         "maximum_participants": "MAXIMUM PARTICIPANTS",
-        "days": "days",
-        "entries": "Entries",
+        "days": "Days Left",
+        "entries": "Your Entries",
         "participants": "Participants",
-        "twitter": {
-            "title": "Tweet about the giveaway",
-            "text": "To get credit for this entry, you must tweet about this on your twitter page. Likes & comments are appreciated, but no required. Thanks!"
+        "twitter_like": {
+            "title": "Twitter Like Title",
+            "text": "Twitter Like Text"
         },
-        "facebook": {
-            "title": "Visit Converse on Facebook",
-            "text": "To get credit for this entry, you must tweet about this on your twitter page. Likes & comments are appreciated, but no required. Thanks!"
+        "twitter_follow": {
+            "title": "Twitter Follow Title",
+            "text": "Twitter Follow Text"
         },
-        "youtube": {
-            "title": "Follow Converse on Youtube",
-            "text": "To get credit for this entry, you must tweet about this on your twitter page. Likes & comments are appreciated, but no required. Thanks!"
+        "twitter_tweet": {
+            "title": "Twitter Tweet Title",
+            "text": "Twitter Tweet Text"
         },
-        "twitch": {
-            "title": "Follow on Twitch",
-            "text": "To get credit for this entry, follow on twitch. Thanks!"
+        "twitter_retweet": {
+            "title": "Twitter retweet Title",
+            "text": "Twitter retweet Text"
         },
-        "instagram": {
-            "title": "Visit below profile or publication on Instagram",
-            "text": "To get entries for this action, you are redirected on the instagram page. Likes & comments are appreciated. Thanks!"
+        "twitch_follow": {
+            "title": "Twitch Follow Title",
+            "text": "Twitch Follow Text"
         },
-        "other": {
+        "instagram_like": {
+            "title": "Instagram Like Title",
+            "text": "Instagram Like Text"
+        },
+        "instagram_follow": {
+            "title": "Instagram Follow Title",
+            "text": "Instagram Follow Text"
+        },
+        "poll": {
             "title": "",
             "text": "To get credit for this entry, you must answer this question. Thanks!"
         },
@@ -190,7 +203,10 @@
         },
         "watch_video": "Run video",
         "select_answer": "Select your answers",
-        "social_detail_alert": "This part is only for phone number verified users."
+        "social_detail_alert": "This part is only for phone number verified users.",
+        "mandatory_action": "It is a mandatory action to participate",
+        "prize_description": "The winner will receive prizes below:",
+        "the_prize": "The Prizes"
     },
     "my_campaign_page": {
         "live_page": "Live Page",
@@ -404,7 +420,10 @@
     "user_settings_page": {
         "current_password": "Current Password",
         "new_password": "New Password",
-        "confirm_new_password": "Confirm New Password"
+        "confirm_new_password": "Confirm New Password",
+        "show_twitter": "Twitter Wall",
+        "show_instagram": "Instagram Wall",
+        "show_facebook": "Facebook Wall"
     },
     "signin_modal": {
         "username": "Username",

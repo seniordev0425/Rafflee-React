@@ -14,8 +14,10 @@ function SearchResult(props) {
 
     return (
         <div style={{ fontFamily: "sofiapro" }}>
-            <JoinHeader />
-            <Header />
+           <div className="parent-header-container">
+                <JoinHeader />
+                <Header />
+            </div>
             <SearchResultLayout searchKey={props.location.state.searchKey} />
             <FooterLink />
             <Footer />

@@ -32,25 +32,26 @@ function Home() {
 
     return (
         <div style={{ fontFamily: "sofiapro" }}>
-            <JoinHeader />
-            <Header />
-            <Banner />
-            <div className="hot-new-text banner-text">
-                {t('homepage.hot_new_contest_everyday')}
+            <div className="parent-header-container">
+                <JoinHeader />
+                <Header />
             </div>
-            <div className="premium-prize-text">
-                {t('homepage.premium_prizes_giveaways')}
+            <div>
+                <Banner />
+                <div className="hot-new-text banner-text">
+                    {t('homepage.hot_new_contest_everyday')}
+                </div>
+                <div className="premium-prize-text">
+                    {t('homepage.premium_prizes_giveaways')}
+                </div>
+                {!isLoading_1
+                    ?
+                    (<Carousel hotPromotions={hotPromotions} />)
+                    :
+                    <Loading />
+                }
+                <CurrentPromotionList />
             </div>
-            {!isLoading_1
-                ?
-                (<Carousel hotPromotions={hotPromotions} />)
-                :
-                <Loading />
-            }
-            <div className="find-deal-text mb-4 banner-text">
-                {t('homepage.find_campaign')}
-            </div>
-            <CurrentPromotionList />
             <FooterLink />
             <Footer />
         </div>

@@ -74,6 +74,7 @@ const images = {
     question_mark_gray_icon: require('../assets/image/question_icon_gray.png'),
     menu_icon: require('../assets/image/menu_icon.png'),
     rafflee_icon: require('../assets/image/rafflee.png'),
+    required_icon: require('../assets/image/required_icon.png'),
 }
 
 export default images;

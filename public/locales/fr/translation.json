@@ -7,6 +7,7 @@
         "log_in": "Connecte toi",
         "account": "Compte",
         "dashboard": "Profil",
+        "inventory": "Inventory",
         "log_out": "Logout"
     },
     "footer": {
@@ -25,7 +26,8 @@
         "cookies_policy": "Cookies Policy",
         "legal_notice": "Legal Notice",
         "terms_of_service": "Terms of Service",
-        "follow_us": "Follow Us"
+        "follow_us": "Follow Us",
+        "language": "Language"
     },
     "banner": {
         "search_placeholder": "Recherche…",
@@ -62,7 +64,8 @@
         "payment": "Paiement",
         "settings": "Settings",
         "password": "Password",
-        "deactivate": "Désactiver"
+        "deactivate": "Désactiver",
+        "wall": "Wall"
     },
     "empty_result_to_display": "Aucuns résultats.",
     "button_group": {
@@ -96,7 +99,9 @@
         "follow_circle": "SUIVRE",
         "unfollow_circle": "NE PLUS SUIVRE",
         "remove": "ENLEVER",
-        "close": "FERMER"
+        "close": "FERMER",
+        "validate": "Validate",
+        "validated": "Validated"
     },
     "homepage": {
         "hot_new_contest_everyday": "Des raffles et giveaways tous les jours.",
@@ -147,50 +152,61 @@
     },
     "campaign_detail_page": {
         "giveaways": "GIVEAWAYS",
-        "giveway_name": "Nom du Giveway",
-        "giveway_description": "Description du Giveway",
-        "prize_ends_in": "Finit dans",
-        "prize_ended": "terminé",
-        "your_entries": "Tes entrées",
-        "maximum_participants": "PARTICIPANTS MAXIMUM",
-        "days": "jours",
-        "entries": "Entrées",
+        "giveway_name": "Giveway Name",
+        "giveway_description": "Giveway Description",
+        "prize_ends_in": "PRIZE ENDS IN",
+        "prize_ended": "PRIZE ENDED",
+        "your_entries": "YOUR ENTRIES",
+        "maximum_participants": "MAXIMUM PARTICIPANTS",
+        "days": "Days Left",
+        "entries": "Your Entries",
         "participants": "Participants",
-        "twitter": {
-            "title": "Tweet à propos de ce giveaway",
-            "text": "Tweet a propos de ce giveaway  . Thanks!"
+        "twitter_like": {
+            "title": "Twitter Like Title",
+            "text": "Twitter Like Text"
         },
-        "facebook": {
-            "title": "Visit on Facebook",
-            "text": "Visite la page Facebook de . Likes & commentairess seront appréciés. Merci!!"
+        "twitter_follow": {
+            "title": "Twitter Follow Title",
+            "text": "Twitter Follow Text"
         },
-        "youtube": {
-            "title": "Follow on    Youtube",
-            "text": "Abonne toi à la chaine Youtube de        . Likes & commentaires seront appréciés. Merci!"
+        "twitter_tweet": {
+            "title": "Twitter Tweet Title",
+            "text": "Twitter Tweet Text"
         },
-        "twitch": {
-            "title": "Suit la chaine de       sur twitch",
-            "text": "Suit sur Twitch. Merci!"
+        "twitter_retweet": {
+            "title": "Twitter retweet Title",
+            "text": "Twitter retweet Text"
         },
-        "instagram": {
-            "title": "Visit below profile or publication on Instagram",
-            "text": "Visite le profil instagram de . Likes & commentaires seront appréciés. Merci!!"
+        "twitch_follow": {
+            "title": "Twitch Follow Title",
+            "text": "Twitch Follow Text"
         },
-        "other": {
+        "instagram_like": {
+            "title": "Instagram Like Title",
+            "text": "Instagram Like Text"
+        },
+        "instagram_follow": {
+            "title": "Instagram Follow Title",
+            "text": "Instagram Follow Text"
+        },
+        "poll": {
             "title": "",
-            "text": "Répond à ces questions. Thanks!"
+            "text": "To get credit for this entry, you must answer this question. Thanks!"
         },
         "video": {
-            "title": "regarder une vidéo",
-            "text": "Regarder une video"
+            "title": "Watch Video",
+            "text": "Watch Video to participate"
         },
         "website": {
-            "title": "Visiter la page de",
-            "text": "Visite la page"
+            "title": "Visit Website",
+            "text": "Visit Website to participate"
         },
-        "watch_video": "regarde cette vidéo",
-        "select_answer": "Choisis une réponse",
-        "social_detail_alert": "Accessible que si vous avez vérifié votre mobile"
+        "watch_video": "Run video",
+        "select_answer": "Select your answers",
+        "social_detail_alert": "This part is only for phone number verified users.",
+        "mandatory_action": "It is a mandatory action to participate",
+        "prize_description": "The winner will receive prizes below:",
+        "the_prize": "The Prizes"
     },
     "my_campaign_page": {
         "live_page": "Live Page",
@@ -402,7 +418,10 @@
     "user_settings_page": {
         "current_password": "Mot de passe actuel",
         "new_password": "Nouveau mot de passe",
-        "confirm_new_password": "Confirme le nouveau mot de passe"
+        "confirm_new_password": "Confirme le nouveau mot de passe",
+        "show_twitter": "Twitter Wall",
+        "show_instagram": "Instagram Wall",
+        "show_facebook": "Facebook Wall"
     },
     "signin_modal": {
         "username": "Nom d'utilisateur",

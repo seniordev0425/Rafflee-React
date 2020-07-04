@@ -4,6 +4,7 @@ import { Row, Col } from 'reactstrap'
 import { useTranslation } from 'react-i18next'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFacebookF, faTwitter, faLinkedinIn, faInstagram, faTwitch } from '@fortawesome/free-brands-svg-icons'
+import SelectLanguage from '../HeaderLayout/SelectLanguage'
 
 function FooterLink() {
     const { t } = useTranslation()
@@ -77,6 +78,12 @@ function FooterLink() {
                                 <FontAwesomeIcon icon={faLinkedinIn} color='gray' className="font-size-13 mr-3 mt-3" />
                                 <FontAwesomeIcon icon={faInstagram} color='gray' className="font-size-13 mr-3 mt-3" />
                                 <FontAwesomeIcon icon={faTwitch} color='gray' className="font-size-13 mr-3 mt-3" />
+                            </div>
+                            <div className="footer-link-bold mt-3">
+                                Language
+                            </div>
+                            <div className="mt-3">
+                                <SelectLanguage />
                             </div>
                         </Col>
                     </Row>

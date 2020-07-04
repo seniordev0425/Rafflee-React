@@ -51,8 +51,8 @@ function Dashboard(props) {
                 return <InventoryLayout />
             case 'following':
                 return <MyFollowingLayout />
-            case 'my-circle':
-                return <MyCircleLayout />
+            // case 'my-circle':
+            //     return <MyCircleLayout />
             default:
                 return <MyCampaignLayout />;
         }
@@ -60,8 +60,10 @@ function Dashboard(props) {
     
     return (
         <div style={{ fontFamily: "sofiapro" }}>
-            <JoinHeader />
-            <Header />
+            <div className="parent-header-container">
+                <JoinHeader />
+                <Header />
+            </div>
 
             <div className="menubar-container">
                 <Row>
@@ -112,12 +114,12 @@ function Dashboard(props) {
                                             <span className="ml-3"> {t('menubar.following')} {`(${(myFollowing || []).length})`}</span>
                                         </Link>
                                     </Menu.Item>
-                                    <Menu.Item key="my-circle">
+                                    {/* <Menu.Item key="my-circle">
                                         <Link to="/dashboard/my-circle">
                                             <img src={match.params.menu === 'my-circle' ? images.my_circle_icon_blue : images.my_circle_icon} alt="" />
                                             <span className="ml-3"> {t('menubar.my_circle')} {`(${(myFavoriteCompanies || []).length})`}</span>
                                         </Link>
-                                    </Menu.Item>
+                                    </Menu.Item> */}
                                 </Menu>
                             )}
                     </Col>

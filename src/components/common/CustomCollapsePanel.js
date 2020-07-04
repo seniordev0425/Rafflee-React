@@ -1,40 +1,45 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
+import React, { useState, useEffect } from 'react'
+import { Button, Tooltip } from 'antd'
+import { useSelector, useDispatch } from 'react-redux'
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import images from '../../utils/images'
-import CheckBoxButtonForAction from '../common/Buttons/CheckBoxButtonForAction'
 
 import { useTranslation } from 'react-i18next'
 
-const Required = () => {
-    return (
-        <span className="ml-2 font-size-12 color-red font-weight-bold">*</span>
-    )
-}
-
 function CustomCollapsePanel(props) {
     const { t } = useTranslation()
+
+    const {
+        title,
+        text,
+        socialName,
+        actionType,
+        mandatory,
+        entries,
+        didAction,
+        tryToOpenValidationModal
+    } = props
+
     const userProfile = useSelector(state => state.userInfo.userProfile)
     const token = useSelector(state => state.userInfo.token)
     const company = useSelector(state => state.userInfo.company)
+    const validation = useSelector(state => state.userInfo[`${socialName}_${actionType}_validation`])
+    const dispatch = useDispatch()
 
-    const {
-        type,
-        actions,
-        didActions,
-        onParticipate,
-        isVideoEnded,
-        tryToOpenValidationModal,
-        participateWebsite,
-        mandatories,
-        entries
-    } = props
+    const [validated, setValidated] = useState(false)
+
+    useEffect(() => {
+        if (validation) {
+            dispatch({ type: 'INIT_STATE', state: `${socialName}_${actionType}_validation`, data: false })
+            setValidated(true)
+        }
+    }, [validation])
 
     const renderIcons = () => {
-        switch (type) {
+        switch (socialName) {
             case 'twitter':
                 return (<div className="collapse-twitter-icon">
                     <img src={images.twitter_icon} alt="" />
@@ -70,7 +75,7 @@ function CustomCollapsePanel(props) {
     }
 
     return (
-        <>
+        <div className="d-flex justify-content-between">
             <ExpansionPanel className="collapse-panel-body">
                 <ExpansionPanelSummary
                     className="collapse-panel-summary"
@@ -79,129 +84,29 @@ function CustomCollapsePanel(props) {
                     aria-label="Expand"
                     id="panel1a-header"
                 >
-                    <span className="promotion-list-item-title">{t(`campaign_detail_page.${type}.title`)}</span>
+                    {mandatory &&
+                        <Tooltip title={t('campaign_detail_page.mandatory_action')} color='#e72f30'>
+                            <img src={images.required_icon} alt="" width="20" height="20" className="mt-1 mt-sm-2 mr-2" />
+                        </Tooltip>
+                    }
+                    <span className="promotion-list-item-title">{title}</span>
                 </ExpansionPanelSummary>
 
                 <ExpansionPanelDetails>
                     {(token && !company && userProfile.phone_number_verification) ?
                         <div>
-                            <div>
-                                {t(`campaign_detail_page.${type}.text`)}
+                            <div style={{ color: '#767B83' }}>
+                                {text}
                             </div>
-                            {entries && <div className="color-pink mt-2" style={{ whiteSpace: 'pre-wrap' }}>{entries}</div>}
                             <div className="mt-2 mt-sm-3">
-                                {actions.like && (
-                                    <>
-                                        <CheckBoxButtonForAction
-                                            socialName={type}
-                                            btnString='like'
-                                            onParticipate={onParticipate}
-                                            tryToOpenValidationModal={tryToOpenValidationModal}
-                                            defaultValue={didActions[type].like}
-                                        />
-                                        {mandatories.like &&
-                                            <Required />
-                                        }
-                                    </>
-                                )}
-                                {actions.follow && (
-                                    <>
-                                        <CheckBoxButtonForAction
-                                            socialName={type}
-                                            btnString='follow'
-                                            onParticipate={onParticipate}
-                                            tryToOpenValidationModal={tryToOpenValidationModal}
-                                            defaultValue={didActions[type].follow}
-                                        />
-                                        {mandatories.follow &&
-                                            <Required />
-                                        }
-                                    </>
-                                )}
-                                {actions.comment && (
-                                    <>
-                                        <CheckBoxButtonForAction
-                                            socialName={type}
-                                            btnString='comment'
-                                            onParticipate={onParticipate}
-                                            tryToOpenValidationModal={tryToOpenValidationModal}
-                                            defaultValue={didActions[type].comment}
-                                        />
-                                        {mandatories.comment &&
-                                            <Required />
-                                        }
-                                    </>
-                                )}
-                                {actions.retweet && (
-                                    <>
-                                        <CheckBoxButtonForAction
-                                            socialName={type}
-                                            btnString='retweet'
-                                            onParticipate={onParticipate}
-                                            tryToOpenValidationModal={tryToOpenValidationModal}
-                                            defaultValue={didActions[type].retweet}
-                                        />
-                                        {mandatories.retweet &&
-                                            <Required />
-                                        }
-                                    </>
-                                )}
-                                {actions.video && (
-                                    <>
-                                        <CheckBoxButtonForAction
-                                            socialName={type}
-                                            btnString='video'
-                                            onParticipate={onParticipate}
-                                            isVideoEnded={isVideoEnded}
-                                            defaultValue={didActions.video}
-                                        />
-                                        {mandatories.video &&
-                                            <Required />
-                                        }
-                                    </>
-                                )}
-                                {actions.website && (
-                                    <a
-                                        rel={'noopener noreferrer'}
-                                        href={actions.website.url.includes("http") ? actions.website.url : `https://${actions.website.url}`}
-                                        target='_blank'
-                                        className="d-flex"
-                                        onClick={participateWebsite}
-                                    >
-                                        <span>{actions.website.url}</span>
-                                        {mandatories.website && <Required />}
-                                    </a>
-                                )}
-                                {actions.instagram_profile && (
-                                    <>
-                                        <CheckBoxButtonForAction
-                                            socialName={type}
-                                            btnString='follow'
-                                            onParticipate={onParticipate}
-                                            tryToOpenValidationModal={tryToOpenValidationModal}
-                                            defaultValue={didActions.instagram_profile}
-                                            instagram_profile={`https://instagram.com/${actions.instagram_profile}`}
-                                        />
-                                        {mandatories.profile &&
-                                            <Required />
-                                        }
-                                    </>
-                                )}
-                                {actions.instagram_publication && (
-                                    <>
-                                        <CheckBoxButtonForAction
-                                            socialName={type}
-                                            btnString='like'
-                                            onParticipate={onParticipate}
-                                            tryToOpenValidationModal={tryToOpenValidationModal}
-                                            defaultValue={didActions.instagram_publication}
-                                            instagram_publication={`https://instagram.com/p/${actions.instagram_publication}`}
-                                        />
-                                        {mandatories.publication &&
-                                            <Required />
-                                        }
-                                    </>
-                                )}
+                                <Button
+                                    style={{ width: 100 }}
+                                    type="primary"
+                                    className="ant-blue-btn"
+                                    onClick={() => tryToOpenValidationModal(socialName, actionType)}
+                                >
+                                    {(didAction || validated) ? t('button_group.validated') : t('button_group.validate')}
+                                </Button>
                             </div>
                         </div>
                         :
@@ -209,8 +114,11 @@ function CustomCollapsePanel(props) {
                     }
                 </ExpansionPanelDetails>
             </ExpansionPanel>
+            <div className="d-flex align-items-center justify-content-center campaign-detail-entries-container">
+                {entries}
+            </div>
             {renderIcons()}
-        </>
+        </div>
     )
 }
 

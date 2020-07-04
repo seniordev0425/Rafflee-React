@@ -5,7 +5,6 @@ import { Button, Drawer } from 'antd'
 import { Row } from 'reactstrap';
 import images from '../../../utils/images'
 import { logOut } from '../../../actions/userInfo'
-import SelectLanguage from './SelectLanguage'
 import { useTranslation } from 'react-i18next'
 
 function HeaderAfterLogin(props) {
@@ -59,18 +58,18 @@ function HeaderAfterLogin(props) {
         <>
             {!hide ? (
                 <Row>
-                    <Link to="/deals"><Button type="link" className="no-border-btn mr-3 h-100">{t('header.campaigns')}</Button></Link>
+                    <Link to="/deals"><Button type="link" className="no-border-btn mr-3 h-100 font-weight-bold">{t('header.campaigns')}</Button></Link>
+                    <Link to="/my-circle"><Button type="link" className="no-border-btn mr-3 h-100 font-weight-bold">{t('menubar.my_circle')}</Button></Link>
                     <Link to={company ? "/dashboard/my-campaign" : "/dashboard/participation-history"}>
-                        <Button type="primary" className="ant-blue-btn mr-3" style={{ width: 140 }}>{t('header.dashboard')}</Button>
+                        <Button type="link" className="no-border-btn mr-3 h-100 font-weight-bold">{t('header.inventory')}</Button>
                     </Link>
                     <Link to="/user-account/profile" className="d-flex align-items-center mx-3">
                         <img src={company ? (companyProfile.logo || images.account_icon) : (userProfile.profile_picture || images.account_icon)} width={27} height={27} className="rounded-circle" alt="" />
                     </Link>
                     <div onClick={log_Out} className="pointer mr-3">
-                        <Button type="link" className="no-border-btn h-100">{t('header.log_out')}</Button>
+                        <Button type="link" className="no-border-btn h-100 font-weight-bold">{t('header.log_out')}</Button>
                         <img src={images.logout_icon} className="logout-icon" alt="" />
                     </div>
-                    <SelectLanguage />
                 </Row>
             ) : (
                     <>
@@ -81,11 +80,11 @@ function HeaderAfterLogin(props) {
                             onClose={onClose}
                             visible={visible}
                         >
-                            <div className="mb-2 font-size-10"><Link to="/deals">{t('header.campaigns')}</Link></div>
-                            <div className="mb-2 font-size-10"><Link to="/user-account/profile">{t('header.account')}</Link></div>
-                            <div className="mb-2 font-size-10"><Link to={company ? "/dashboard/my-campaign" : "/dashboard/participation-history"}>{t('header.dashboard')}</Link></div>
-                            <div className="mb-2 font-size-10" onClick={log_Out}><Link to="/">{t('header.log_out')}</Link></div>
-                            <div><SelectLanguage /></div>
+                            <div className="mb-2 font-size-10 font-weight-bold"><Link to="/deals" style={{color: '#767B83'}}>{t('header.campaigns')}</Link></div>
+                            <div className="mb-2 font-size-10 font-weight-bold"><Link to="/my-circle" style={{color: '#767B83'}}>{t('menubar.my_circle')}</Link></div>
+                            <div className="mb-2 font-size-10 font-weight-bold"><Link to={company ? "/dashboard/my-campaign" : "/dashboard/participation-history"} style={{color: '#767B83'}}>{t('header.inventory')}</Link></div>
+                            <div className="mb-2 font-size-10 font-weight-bold"><Link to="/user-account/profile" style={{color: '#767B83'}}>{t('header.account')}</Link></div>
+                            <div className="mb-2 font-size-10 font-weight-bold" onClick={log_Out}><Link to="/" style={{color: '#767B83'}}>{t('header.log_out')}</Link></div>
                         </Drawer>
                     </>
                 )

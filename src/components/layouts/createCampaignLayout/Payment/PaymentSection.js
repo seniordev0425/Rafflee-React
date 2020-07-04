@@ -31,6 +31,20 @@ function PaymentSection(props) {
         let categories = []
         params.temp_categories.map((item) => categories.push({ name: item }))
 
+        let facebook = []
+        if (params.facebook.comment) {
+            facebook.push({ action: 'comment', id: params.facebook.comment_id, model: params.facebook.comment_model, entries: params.facebook.comment_entries || 1, mandatory: params.facebook.comment_mandatory })
+        }
+        if (params.facebook.like) {
+            facebook.push({ action: 'like', id: params.facebook.like_id, entries: params.facebook.like_entries || 1, mandatory: params.facebook.like_mandatory })
+        }
+        if (params.facebook.follow) {
+            facebook.push({ action: 'follow', entries: params.facebook.follow_entries || 1, mandatory: params.facebook.follow_mandatory })
+        }
+        if (params.facebook.post) {
+            facebook.push({ action: 'post', model: params.facebook.post_model, entries: params.facebook.post_entries || 1, mandatory: params.facebook.post_mandatory })
+        }
+
         let twitter = []
         if (params.twitter.comment) {
             twitter.push({ action: 'tweet', model: params.twitter.comment_model, entries: params.twitter.comment_entries || 1, mandatory: params.twitter.comment_mandatory })
@@ -74,7 +88,7 @@ function PaymentSection(props) {
         if (params.promotion_long_description === '') required_messages.push(t('create_campaign_page.required_fields.complete_description'))
         if (params.start_date === '') required_messages.push(t('create_campaign_page.required_fields.start_date'))
         if (params.end_date === '') required_messages.push(t('create_campaign_page.required_fields.end_date'))
-        if (!twitter.length && !twitch.length && !instagram.length && !params.url_video.video && !params.url_website.website && params.poll === 'false') {
+        if (!facebook.length && !twitter.length && !twitch.length && !instagram.length && !params.url_video.video && !params.url_website.website && params.poll === 'false') {
             required_messages.push(t('create_campaign_page.required_fields.action'))
         }
         for (let i = 0; i < params.winnings.length; i ++) {
@@ -83,10 +97,6 @@ function PaymentSection(props) {
                 break;
             }
         }
-
-        console.log(url_video)
-        console.log(url_website)
-        console.log(params.poll)
 
         setMessages(required_messages)
         
@@ -121,7 +131,7 @@ function PaymentSection(props) {
         } else {
             formdata.append('poll', JSON.stringify(params.poll))
         }
-        formdata.append('facebook', JSON.stringify([]))
+        formdata.append('facebook', JSON.stringify(facebook))
         formdata.append('youtube', JSON.stringify([]))
         formdata.append('twitter', JSON.stringify(twitter))
         formdata.append('instagram', JSON.stringify(instagram))

@@ -35,8 +35,10 @@ function Report() {
 
     return (
         <div style={{ fontFamily: "sofiapro" }}>
-            <JoinHeader />
-            <Header />
+           <div className="parent-header-container">
+                <JoinHeader />
+                <Header />
+            </div>
             <div className="d-flex justify-content-center pt-4">
                 <div className="min-height-container">
                     <div className="d-flex justify-content-center">

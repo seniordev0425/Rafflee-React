@@ -45,7 +45,7 @@ function PromotionListItem(props) {
                                 {item.campaign_name}
                             </div>
                             <div className="promotion-list-item-text">{item.description}</div>
-                            <div style={{ marginTop: "20px", height: "40px" }}>
+                            <div style={{ marginTop: "20px", height: "40px" }} className="d-flex justify-content-between align-items-center">
                                 <Link to={"/campaign-detail/" + item.pk}>
                                     <Button
                                         type="primary"

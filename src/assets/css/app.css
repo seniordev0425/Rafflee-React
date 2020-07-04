@@ -23,7 +23,7 @@ body {
     color: #ff55fe;
 }
 .color-gray {
-    color: #9399A3;
+    color: #767B83;
 }
 .color-white {
     color: white;
@@ -66,8 +66,16 @@ body {
         font-size: 0.8rem;
     }
 }
+.parent-header-container {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    border-bottom: 1px solid #eeeeee4f;
+}
 .default-border {
-    border: 1px solid rgba(126, 154, 168, 0.15);
+    border: 1px solid #eeeeee;
     border-radius: 6px;
 }
 .join-header {
@@ -227,7 +235,7 @@ body {
 }
 
 .no-border-btn {
-    color: #0091ff !important;
+    color: #767B83 !important;
     font-size: 1rem !important;
     font-family: 'sofiapro' !important;
 }
@@ -478,10 +486,10 @@ h2 span {
 .header-container {
     display: flex;
     align-items: center;
-    width: 90%;
-    margin-left: 5%;
-    margin-right: 5%;
+    padding-left: 8%;
+    padding-right: 8%;
     height: 100px;
+    background-color: #fffffff0;
 }
 .header-right-part {
     float: right;
@@ -581,7 +589,7 @@ h2 span {
 }
 .premium-prize-text {
     font-size: 20px;
-    color: #7E9AA8;
+    color: #767B83;
     text-align: center;
     margin-top: 15px;
 }
@@ -635,6 +643,7 @@ h2 span {
     font-size: 0.9rem;
     max-height: 70px;
     overflow-y: auto;
+    color: #767B83;
 }
 .campaign-card-star {
     display: flex;
@@ -654,12 +663,14 @@ h2 span {
     font-weight: bold;
 }
 .menubar-container {
-    background: #e9f7ff78 0% 0% no-repeat padding-box;
+    /* background: #e9f7ff78 0% 0% no-repeat padding-box;
     border-top: 1.5px solid #0091ff6b;
-    border-bottom: 1.5px solid #0091ff6b;
+    border-bottom: 1.5px solid #0091ff6b; */
+    border-top: 1px solid #eeeeee;
+    border-bottom: 1px solid #eeeeee;
 }
 .menubar {
-    color: #000000e6;
+    color: #767B83;
     font-size: 1.1rem;
     border-bottom: 0px;
     line-height: 4.5rem;
@@ -669,7 +680,7 @@ h2 span {
 .promotion-list-item-container {
     padding-top: 40px;
     padding-bottom: 40px;
-    border-bottom: 1px solid #cccccc;
+    border-bottom: 1px solid #eeeeee;
 
 }
 .promotion-list-item-img {
@@ -690,6 +701,7 @@ h2 span {
     font-size: 1.1rem;
     margin-top: 20px;
     overflow-wrap: break-word;
+    color: #767B83;
 }
 @media (max-width: 575px) {
     .promotion-list-item-img img{
@@ -707,8 +719,8 @@ h2 span {
     width: 200px;   
 }
 .promotion-list-item-star {
-    height: 40px;
-    width: 40px;
+    height: 35px;
+    width: 42px;
     float: right;
     background: #7778ED;
     border-radius: 6px;
@@ -935,6 +947,7 @@ h2 span {
 .collapse-panel-body {
     background: #EFF9FF !important;
     box-shadow: none !important;
+    width: calc(100% - 100px);
 }
 .collapse-panel-summary {
     height: 70px;
@@ -1140,8 +1153,7 @@ h2 span {
     position: absolute;
     right: 10vw;
     z-index: 10;
-    box-shadow: 0px 5px 10px #0000001A;
-    border: 1px solid #0091FF;
+    border: 1px solid #F3F4F7;
     border-radius: 6px;
 }
 .category-item {
@@ -1552,6 +1564,30 @@ h2 span {
 }
 .big-checkbox .ant-checkbox-inner::after {
     left: 33%;
+}
+.ant-menu-horizontal > .ant-menu-item a {
+    color: #767B83;
+}
+.ant-menu-horizontal > .ant-menu-item-selected a {
+    color: #1890ff;
+}
+.campaign-detail-entries-container {
+    width: 70px;
+    height: 70px;
+    background: #EFFCF6 0% 0% no-repeat padding-box;
+    border: 1px solid #4FDD9E;
+    border-radius: 6px;
+    font-size: 18px;
+    color: #4FDD9E;
+}
+@media (max-width: 575px) {
+    .campaign-detail-entries-container {
+        width: 40px;
+        height: 40px;
+    }
+    .collapse-panel-body {
+        width: calc(100% - 50px);
+    }
 }
 
 

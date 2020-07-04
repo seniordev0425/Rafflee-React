@@ -651,6 +651,41 @@ function onSuccessGetCompanyWall(data) {
     data: data.wall
   }
 }
+/////////////////////////////////////////////// GET_WALL_SETTING_ACTION
+export function getWallSetting() {
+  return apiAction({
+    url: APIROUTE + `account/wall/settings/`,
+    accessToken: sessionStorage.getItem('token'),
+    onSuccess: onSuccessGetWallSetting,
+    onFailure: onFailed,
+    label: 'GET_WALL_SETTING',
+  });
+}
+function onSuccessGetWallSetting(data) {
+  return {
+    type: 'SET_WALL_SETTING',
+    data: data
+  }
+}
+/////////////////////////////////////////////// UPDATE_WALL_SETTING_ACTION
+export function updateWallSetting(params) {
+  return apiAction({
+    url: APIROUTE + `account/wall/settings/`,
+    data: qs.stringify(params),
+    method: 'POST',
+    accessToken: sessionStorage.getItem('token'),
+    onSuccess: onSuccessUpdateWallSetting,
+    onFailure: onFailed,
+    label: 'UPDATE_WALL_SETTING',
+  });
+}
+function onSuccessUpdateWallSetting(data) {
+  openNotification('success', successMessages[localStorage.getItem('i18nextLng')].success)
+  return {
+    type: '',
+    data: ''
+  }
+}
 
 
 function apiAction({

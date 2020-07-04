@@ -1,22 +1,25 @@
 import React, { useState } from 'react'
 import { Select } from 'antd'
+import { Button, Tooltip } from 'antd'
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
-import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary'
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails'
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
+import images from '../../utils/images'
 
 import { useTranslation } from 'react-i18next'
-
-const Required = () => {
-    return (
-        <span className="ml-2 font-size-12 color-red font-weight-bold">*</span>
-    )
-}
 
 function PreviewCustomCollapsePanelForPoll(props) {
     const { t } = useTranslation()
 
-    const { type, multiple_choice, responses, question, mandatory, entries } = props
+    const {
+        title,
+        text,
+        multiple_choice,
+        responses,
+        mandatory,
+        entries,
+    } = props
 
     const [answers, setAnswers] = useState(null)
 
@@ -31,7 +34,7 @@ function PreviewCustomCollapsePanelForPoll(props) {
     }
 
     return (
-        <>
+        <div className="d-flex justify-content-between">
             <ExpansionPanel className="collapse-panel-body">
                 <ExpansionPanelSummary
                     className="collapse-panel-summary"
@@ -40,30 +43,48 @@ function PreviewCustomCollapsePanelForPoll(props) {
                     aria-label="Expand"
                     id="panel1a-header"
                 >
-                    <div className="promotion-list-item-title">{question}</div>
+                    {mandatory &&
+                        <Tooltip title={t('campaign_detail_page.mandatory_action')} color='#e72f30'>
+                            <img src={images.required_icon} alt="" width="20" height="20" className="mt-1 mt-sm-2 mr-2" />
+                        </Tooltip>
+                    }
+                    <span className="promotion-list-item-title">{title}</span>
                 </ExpansionPanelSummary>
+
                 <ExpansionPanelDetails>
-                    <div className="d-flex">
-                        {t(`campaign_detail_page.${type}.text`)}
-                        {mandatory && <Required />}
+                    <div>
+                        <div className="d-flex">
+                            {text}
+                        </div>
+                        <Select
+                            mode={multiple_choice ? "multiple" : "single"}
+                            className="w-100 mt-2 mt-sm-3"
+                            placeholder={t('create_campaign_page.categories_placeholder')}
+                            onChange={(val) => setAnswers(val)}
+                            size="large"
+                        >
+                            {renderChildren()}
+                        </Select>
+                        <div className="mt-3">
+                            <Button
+                                type="primary"
+                                className="ant-blue-btn promotion-list-item-btn"
+                                onClick={() => void 0}
+                            >
+                                {t('button_group.confirm')}
+                            </Button>
+                        </div>
                     </div>
-                    {entries && <div className="color-pink mt-2">{entries}</div>}
-                    <Select
-                        mode={multiple_choice ? "multiple" : "single"}
-                        className="w-100 mt-2 mt-sm-3"
-                        placeholder={t('create_campaign_page.categories_placeholder')}
-                        onChange={(val) => setAnswers(val)}
-                        size="large"
-                    >
-                        {renderChildren()}
-                    </Select>
                 </ExpansionPanelDetails>
             </ExpansionPanel>
+            <div className="d-flex align-items-center justify-content-center campaign-detail-entries-container">
+                {entries}
+            </div>
             <div className="collapse-other-icon">
                 ?
             </div>
-        </>
+        </div>
     )
 }
 
-export default PreviewCustomCollapsePanelForPoll;
+export default PreviewCustomCollapsePanelForPoll

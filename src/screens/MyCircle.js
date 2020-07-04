@@ -3,21 +3,22 @@ import JoinHeader from '../components/layouts/HeaderLayout/JoinHeader'
 import Header from '../components/layouts/HeaderLayout/Header'
 import FooterLink from '../components/layouts/footer/FooterLink'
 import Footer from '../components/layouts/footer/Footer'
-import PdfLayout from '../components/layouts/pdfLayout'
+import MyCircleLayout from '../components/layouts/myCircleLayout/MyCircleLayout'
 
-
-function GeneralConditions() {
+function MyCircle() {
     return (
         <div style={{ fontFamily: "sofiapro" }}>
             <div className="parent-header-container">
                 <JoinHeader />
                 <Header />
             </div>
-            <PdfLayout name="general" />
+            <div>
+                <MyCircleLayout />
+            </div>
             <FooterLink />
             <Footer />
         </div>
     )
 }
 
-export default GeneralConditions
+export default MyCircle
