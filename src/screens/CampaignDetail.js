@@ -61,7 +61,6 @@ function CampaignDetail(props) {
     const dispatch = useDispatch()
 
     const [action, setAction] = useState({})
-    const [didActions, setDidActions] = useState({})
     const [openVideo, setOpenVideo] = useState(false)
     const [openConfirm, setOpenConfirm] = useState(false)
     const [answers, setAnswers] = useState([])
@@ -83,33 +82,6 @@ function CampaignDetail(props) {
 
     useEffect(() => {
         setAction(campaignData.action_participate[0])
-        let tempDidActions = {}
-        tempDidActions = {
-            twitter: {
-                like: (campaignData.user_actions || {}).twitter_like,
-                follow: (campaignData.user_actions || {}).twitter_follow,
-                comment: (campaignData.user_actions || {}).twitter_tweet,
-                retweet: (campaignData.user_actions || {}).twitter_retweet
-            },
-            twitch: {
-                follow: (campaignData.user_actions || {}).twitch_follow
-            },
-            instagram_profile: (campaignData.user_actions || {}).instagram_profile,
-            instagram_publication: (campaignData.user_actions || {}).instagram_publication,
-            poll: false,
-            video: (campaignData.user_actions || {}).video,
-            website: false,
-            youtube: {
-                like: false,
-                follow: false
-            },
-            facebook: {
-                like: false,
-                follow: false,
-                comment: false
-            }
-        }
-        setDidActions(tempDidActions)
     }, [campaignData])
 
     useEffect(() => {

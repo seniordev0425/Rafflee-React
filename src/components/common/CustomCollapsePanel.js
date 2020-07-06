@@ -115,7 +115,7 @@ function CustomCollapsePanel(props) {
                 </ExpansionPanelDetails>
             </ExpansionPanel>
             <div className="d-flex align-items-center justify-content-center campaign-detail-entries-container">
-                {entries}
+                {`+${entries}`}
             </div>
             {renderIcons()}
         </div>
