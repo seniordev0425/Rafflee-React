@@ -488,7 +488,7 @@ h2 span {
     align-items: center;
     padding-left: 8%;
     padding-right: 8%;
-    height: 100px;
+    height: 80px;
     background-color: #fffffff0;
 }
 .header-right-part {
@@ -546,6 +546,7 @@ h2 span {
 .banner-search-input {
     height: 100%;
     width: 440px;
+    padding-left: 1.75rem;
     border: 0px;
     border-radius: 5px 0px 0px 5px;
     box-shadow: 0px 3px 10px #181b1d1a;
@@ -584,14 +585,15 @@ h2 span {
 .hot-new-text {
     color:#0091ff;
     text-align: center;
-    margin-top: 40px;
+    margin-top: 60px;
     font-weight: bold;
 }
 .premium-prize-text {
     font-size: 20px;
     color: #767B83;
     text-align: center;
-    margin-top: 15px;
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
 .campaign-card {
     height: 100%;
@@ -1518,7 +1520,7 @@ h2 span {
     line-height: 43px !important;
 } */
 .min-height-container {
-    min-height: 60vh;
+    min-height: 50vh;
 }
 .ant-message-custom-content {
     display: flex;

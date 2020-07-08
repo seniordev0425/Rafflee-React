@@ -230,17 +230,10 @@ function CampaignDetail(props) {
                         </Col>
                     </Row>
                     <Row className="mt-5">
-                        <Col xs="12" sm="5">
-                            <div className="">
-                                <img src={campaignData.campaign_image ? campaignData.campaign_image : images.campaign} width="100%" alt="" />
+                        <Col>
+                            <div className="d-flex justify-content-center">
+                                <img src={campaignData.campaign_image ? campaignData.campaign_image : images.campaign} width="100%" style={{ maxHeight: 500, objectFit: 'contain' }} alt="" />
                             </div>
-                        </Col>
-                        <Col xs="0" sm="2">
-                        </Col>
-                        <Col xs="12" sm="5" className="mt-3 mt-sm-0">
-                            <div className="color-blue font-size-14 font-weight-bold">{t('campaign_detail_page.the_prize')}</div>
-                            <div className="mt-3 color-gray font-size-11">{t('campaign_detail_page.prize_description')}</div>
-                            {renderWinnings()}
                         </Col>
                     </Row>
                     <Row className="my-5">
@@ -261,6 +254,15 @@ function CampaignDetail(props) {
                                         <img src={campaignData.favorite ? images.trans_star_favorite : images.trans_star} alt="" />
                                     </div>
                                 )}
+                            </div>
+                        </Col>
+                    </Row>
+                    <Row className="my-5">
+                        <Col>
+                            <div className="pb-5" style={{ borderBottom: '2px solid #F3F4F7' }}>
+                                <div className="color-blue font-size-14 font-weight-bold">{t('campaign_detail_page.the_prize')}</div>
+                                <div className="mt-3 color-gray font-size-11">{t('campaign_detail_page.prize_description')}</div>
+                                {renderWinnings()}
                             </div>
                         </Col>
                     </Row>

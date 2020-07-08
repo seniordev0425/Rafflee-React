@@ -15,7 +15,7 @@ function Header(props) {
             window.removeEventListener('resize', resize)
         }
     }, [])
-    
+
     const resize = () => {
         setHideNav(window.innerWidth <= 1000)
     }
@@ -23,17 +23,11 @@ function Header(props) {
     return (
         <div className="header-container">
             <div style={{ width: "100%", height: 40 }}>
-                <Link to="/"> <img src={images.logo} alt="logo" width="150" /> </Link>
+                <Link to="/"> <img src={images.logo} alt="logo" width="120" /> </Link>
                 <div className="header-right-part">
-                    {hideNav
-                        ?
-                        (
-                            props.token ? <HeaderAfterLogin /> : <HeaderBeforeLogin />
-                        )
-                        :
-                        (
-                            props.token ? <HeaderAfterLogin /> : <HeaderBeforeLogin />
-                        )}
+                    {
+                        props.token ? <HeaderAfterLogin /> : <HeaderBeforeLogin />
+                    }
                 </div>
             </div>
         </div>

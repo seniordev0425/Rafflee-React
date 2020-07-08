@@ -4,6 +4,7 @@ import { createBrowserHistory } from 'history'
 import { createStore, applyMiddleware } from 'redux';
 import { Router } from 'react-router-dom'
 import { Provider } from 'react-redux'
+import { composeWithDevTools } from 'redux-devtools-extension'
 import AppReducer from './reducers/index'
 import apiMiddleware from './middleware/api'
 import Routes from './routes/Routes'
@@ -21,7 +22,7 @@ import './i18next'
 
 
 const history = createBrowserHistory()
-const store = createStore(AppReducer, applyMiddleware(apiMiddleware))
+const store = createStore(AppReducer, composeWithDevTools(applyMiddleware(apiMiddleware)))
 
 ReactDOM.render(
     <Suspense fallback="loading">

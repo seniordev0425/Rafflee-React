@@ -38,13 +38,14 @@ function WallSection() {
     }, [wallSetting])
 
     const updateSetting = () => {
+        let facebook_para = {
+            id: fbPageId,
+            activate: facebook
+        }
         var body = {
             twitter: twitter,
             instagram: instagram,
-            facebook: {
-                "id": fbPageId,
-                "activate": facebook
-            }
+            facebook: JSON.stringify(facebook_para)
         }
         dispatch(updateWallSetting(body))
     }
