@@ -38,7 +38,7 @@ function ParticipationResult(props) {
                 <Header />
             </div>
             <Row style={{ borderTop: "2px solid #7e9aa817" }}>
-                <Col xs="12" sm={{ size: 10, offset: 1 }}>
+                <Col xs="12" sm={{ size: 10, offset: 1 }} className="padding-x">
                     <Row className="my-5">
                         <Col lg="1" md="2" sm="2" xs="3" className="promotion-list-item-img">
                             <img src={participation_result.campaign_image ? participation_result.campaign_image : images.profile_img} alt="" />

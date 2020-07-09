@@ -18,7 +18,7 @@ function PreviewSection(props) {
 
     const renderWinnings = () => {
         return (
-            (params.winnings || []).map((item, index) =>
+            (params.winnings).map((item, index) =>
                 <div key={index} className="mt-3 color-blue font-size-11">{`- ${item.name}`}</div>
             )
         )
@@ -43,7 +43,7 @@ function PreviewSection(props) {
 
     return (
         <Row>
-            <Col sm={{ size: "10", offset: "1" }} xs="12" className="px-sm-3">
+            <Col sm={{ size: "10", offset: "1" }} xs="12" className="padding-x">
                 <div className="mt-5 mb-3 mx-3">
                     <Row className="px-3 mt-5">
                         <Col className="px-0" style={{ borderRight: "1px solid #767b8378" }}>
@@ -60,17 +60,10 @@ function PreviewSection(props) {
                         </Col>
                     </Row>
                     <Row className="mt-5">
-                        <Col xs="12" sm="5">
-                            <div className="">
-                                <img src={params.promotion_picture ? params.promotion_picture : images.campaign} width="100%" alt="" />
+                        <Col>
+                            <div className="d-flex justify-content-center">
+                                <img src={params.promotion_picture ? params.promotion_picture : images.campaign} width="100%" style={{ maxHeight: 500, objectFit: 'contain' }} alt="" />
                             </div>
-                        </Col>
-                        <Col xs="0" sm="2">
-                        </Col>
-                        <Col xs="12" sm="5" className="mt-3 mt-sm-0">
-                            <div className="color-blue font-size-14 font-weight-bold">{t('campaign_detail_page.the_prize')}</div>
-                            <div className="mt-3 color-gray font-size-11">{t('campaign_detail_page.prize_description')}</div>
-                            {renderWinnings()}
                         </Col>
                     </Row>
                     <Row className="my-5">
@@ -85,6 +78,16 @@ function PreviewSection(props) {
                             <div style={{ width: "70%" }} className="promotion-list-item-text">{params.promotion_long_description}</div>
                         </Col>
                     </Row>
+                    <Row className="mt-5">
+                        <Col>
+                            <div className="pb-5" style={{ borderBottom: '2px solid #F3F4F7' }}>
+                                <div className="color-blue font-size-14 font-weight-bold">{t('campaign_detail_page.the_prize')}</div>
+                                <div className="mt-3 color-gray font-size-11">{t('campaign_detail_page.prize_description')}</div>
+                                {renderWinnings()}
+                            </div>
+                        </Col>
+                    </Row>
+
                     {params.instagram.profile &&
                         <Row className="mb-4 mt-4">
                             <Col style={{ paddingLeft: 40 }}>

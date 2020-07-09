@@ -12,7 +12,7 @@ function CampaignType(props) {
 
     return (
         <Row>
-            <Col sm={{ size: "10", offset: "1" }} xs="12" className="px-sm-3">
+            <Col sm={{ size: "10", offset: "1" }} xs="12" className="padding-x">
                 <div className="mt-5 mb-3 ml-3">
                     <div className="footer-link-bold">{t('create_campaign_page.campaign_sort')}</div>
                     <div className="m-3">

@@ -10,9 +10,9 @@ function Following() {
     const { t } = useTranslation()
 
     return (
-        <>
+        <div className="mx-0 mx-sm-3">
             <Row>
-                <Col xs="12" sm={{ size: 10, offset: 1 }} className="px-4 followers-container">
+                <Col xs="12" sm={{ size: 10, offset: 1 }} className="padding-x followers-container">
                     <div className="audience-bottom-div d-flex flex-column justify-content-between">
                         <div className="default-border p-4">
                             <div>
@@ -65,7 +65,7 @@ function Following() {
                 </Col>
             </Row>
             <Row className="mt-4">
-                <Col xs="12" sm={{ size: 10, offset: 1 }} className="px-4">
+                <Col xs="12" sm={{ size: 10, offset: 1 }} className="padding-x">
                     <div className="default-border p-4 mb-5 d-flex justify-content-between flex-column">
                         <div className="d-flex justify-content-between">
                             <div className="font-size-13 font-weight-bold">{t('analytics_page.following_base')}</div>
@@ -95,7 +95,7 @@ function Following() {
                     </div>
                 </Col>
             </Row>
-        </>
+        </div>
     )
 }
 

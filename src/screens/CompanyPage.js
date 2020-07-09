@@ -31,6 +31,7 @@ function CompanyPage(props) {
 
     const [twitterVisible, setTwitterVisible] = useState(true)
     const [instagramVisible, setInstagramVisible] = useState(true)
+    const [facebookVisible, setFacebookVisible] = useState(true)
 
     useEffect(() => {
         document.title = "Company Page"
@@ -52,6 +53,12 @@ function CompanyPage(props) {
         </div>
     )
 
+    const facebook_tooltip = (
+        <div className="font-size-10">
+            <span><span className="font-weight-bold">{((companyInformation.social_wall.facebook || {}).page_informations || {}).fan_count}</span> {t('my_circle_page.fans')}</span>
+        </div>
+    )
+
     const getSocialWalls = () => {
         let socialWalls = [];
 
@@ -62,6 +69,11 @@ function CompanyPage(props) {
         (((companyInformation.social_wall || {}).instagram || {}).publication || []).forEach((item) =>
             socialWalls.push({ ...item, social_name: 'instagram' })
         );
+
+        (((companyInformation.social_wall || {}).facebook || {}).publication || []).forEach((item) =>
+            socialWalls.push({ ...item, social_name: 'facebook' })
+        );
+
 
         socialWalls.sort((a, b) => {
             var keyA = Date.parse(a.created_at)
@@ -82,14 +94,14 @@ function CompanyPage(props) {
                 <div key={index}>
                     {item.social_name === 'twitter' && twitterVisible &&
                         <Row className="social-wall-container">
-                            <Col xs="12" sm={{ size: 10, offset: 1 }}>
+                            <Col xs="12" sm={{ size: 10, offset: 1 }} className="padding-x">
                                 <Row>
                                     <Col lg="1" md="2" sm="2" xs="3" className="company-wall-img">
                                         <img src={((companyInformation.social_wall || {}).twitter || {}).profile_image_url} alt="" />
                                     </Col>
                                     <Col lg="11" md="10" sm="10" xs="9" className="pl-sm-5">
                                         <div className="d-sm-flex">
-                                            <div>
+                                            <div className="d-flex align-items-center">
                                                 <Tooltip title={twitter_tooltip}>
                                                     <img src={images.twitter_icon} width={22} height={20} className="pointer" alt="" />
                                                 </Tooltip>
@@ -107,7 +119,7 @@ function CompanyPage(props) {
                     }
                     {item.social_name === 'instagram' && instagramVisible &&
                         <Row className="social-wall-container">
-                            <Col xs="12" sm={{ size: 10, offset: 1 }}>
+                            <Col xs="12" sm={{ size: 10, offset: 1 }} className="padding-x">
                                 <Row>
                                     <Col lg="1" md="2" sm="2" xs="3" className="company-wall-img">
                                         <img src={images.profile_img} alt="" />
@@ -116,7 +128,7 @@ function CompanyPage(props) {
                                         <Row>
                                             <Col sm="12" md="4" className="px-0">
                                                 <div className="d-sm-flex">
-                                                    <div>
+                                                    <div className="d-flex align-items-center">
                                                         <img src={images.instagram_icon} width={20} height={20} alt="" />
                                                         <span className="font-size-10 font-weight-bold color-blue ml-3">{((companyInformation.social_wall || {}).instagram || {}).name}</span>
                                                     </div>
@@ -152,8 +164,43 @@ function CompanyPage(props) {
                             </Col>
                         </Row>
                     }
+                    {item.social_name === 'facebook' && facebookVisible &&
+                        <Row className="social-wall-container">
+                            <Col xs="12" sm={{ size: 10, offset: 1 }} className="padding-x">
+                                <Row>
+                                    <Col lg="1" md="2" sm="2" xs="3" className="company-wall-img">
+                                        <img src={companyInformation.social_wall.facebook.page_informations.picture.data.url || images.profile_img} alt="" />
+                                    </Col>
+                                    <Col lg="11" md="10" sm="10" xs="9" className="pl-sm-5">
+                                        <Row>
+                                            <Col sm="12" md="4" className="px-0">
+                                                <div className="d-sm-flex">
+                                                    <div className="d-flex align-items-center">
+                                                        <Tooltip title={facebook_tooltip}>
+                                                            <img src={images.facebook_icon} width={20} height={20} alt="" />
+                                                        </Tooltip>
+                                                        <span className="font-size-10 font-weight-bold color-blue ml-3">{companyInformation.social_wall.facebook.page_informations.name}</span>
+                                                    </div>
+                                                </div>
+                                                <div className="mt-2 font-size-9">
+                                                    <div>{item.message}</div>
+                                                    <div className="color-gray">{moment(item.created_at).format("ddd, MMM Do YYYY")}</div>
+                                                </div>
+                                            </Col>
+                                            <Col sm="12" md="8" className="px-0 mt-3 mt-md-0">
+                                                <div className="d-flex justify-content-center">
+                                                    <a href={item.permalink_url} target='blank' style={{ width: '100%' }}>
+                                                        <img src={item.picture} className="instagram-wall-img" />
+                                                    </a>
+                                                </div>
+                                            </Col>
+                                        </Row>
+                                    </Col>
+                                </Row>
+                            </Col>
+                        </Row>
+                    }
                 </div>
-
             )
         )
     }
@@ -168,7 +215,7 @@ function CompanyPage(props) {
             </div>
             <div className="company-page-header">
                 <Row>
-                    <Col xs="12" sm={{ size: 10, offset: 1 }}>
+                    <Col xs="12" sm={{ size: 10, offset: 1 }} className="padding-x">
                         <Row>
                             <Col lg="1" md="2" sm="2" xs="3" className="promotion-list-item-img">
                                 <img src={companyInformation.company.logo_url ? companyInformation.company.logo_url : images.profile_img} className="rounded-circle" alt="" />
@@ -205,10 +252,10 @@ function CompanyPage(props) {
                                     </div>
                                 </div>
                                 <div className="font-size-12 mt-4">{companyInformation.company.description}</div>
-                                {(token) &&
-                                    <div style={{ marginTop: "20px" }}>
-                                        <Row>
-                                            <Col className="px-0">
+                                <div style={{ marginTop: "20px" }}>
+                                    <Row>
+                                        <Col className="px-0">
+                                            {(token) &&
                                                 <Button
                                                     type="primary"
                                                     className="ant-blue-btn promotion-list-item-btn"
@@ -216,34 +263,44 @@ function CompanyPage(props) {
                                                 >
                                                     {companyInformation.company.follow ? t('button_group.unfollow_circle') : t('button_group.follow_circle')}
                                                 </Button>
-                                            </Col>
-                                            <Col className="d-flex align-items-center mt-3 justify-content-start justify-content-md-end px-0">
-                                                <div className="d-flex align-items-center">
-                                                    {(((companyInformation.social_wall || {}).twitter || {}).tweets || []).length > 0 &&
-                                                        <div className="d-flex align-items-center justify-content-center">
-                                                            <Checkbox
-                                                                className="big-checkbox"
-                                                                checked={twitterVisible}
-                                                                onChange={(e) => setTwitterVisible(e.target.checked)}
-                                                            />
-                                                            <img src={images.twitter_icon} width={23} height={20} className="ml-2" alt="" />
-                                                        </div>
-                                                    }
-                                                    {(((companyInformation.social_wall || {}).instagram || {}).publication || []).length > 0 &&
-                                                        <div className="d-flex align-items-center justify-content-center ml-4">
-                                                            <Checkbox
-                                                                className="big-checkbox"
-                                                                checked={instagramVisible}
-                                                                onChange={(e) => setInstagramVisible(e.target.checked)}
-                                                            />
-                                                            <img src={images.instagram_icon} width={20} height={20} className="ml-2" alt="" />
-                                                        </div>
-                                                    }
-                                                </div>
-                                            </Col>
-                                        </Row>
-                                    </div>
-                                }
+                                            }
+                                        </Col>
+                                        <Col className="d-flex align-items-center mt-3 justify-content-start justify-content-md-end px-0">
+                                            <div className="d-flex align-items-center">
+                                                {(((companyInformation.social_wall || {}).twitter || {}).tweets || []).length > 0 &&
+                                                    <div className="d-flex align-items-center justify-content-center mr-4">
+                                                        <Checkbox
+                                                            className="big-checkbox"
+                                                            checked={twitterVisible}
+                                                            onChange={(e) => setTwitterVisible(e.target.checked)}
+                                                        />
+                                                        <img src={images.twitter_icon} width={23} height={20} className="ml-2" alt="" />
+                                                    </div>
+                                                }
+                                                {(((companyInformation.social_wall || {}).instagram || {}).publication || []).length > 0 &&
+                                                    <div className="d-flex align-items-center justify-content-center mr-4">
+                                                        <Checkbox
+                                                            className="big-checkbox"
+                                                            checked={instagramVisible}
+                                                            onChange={(e) => setInstagramVisible(e.target.checked)}
+                                                        />
+                                                        <img src={images.instagram_icon} width={20} height={20} className="ml-2" alt="" />
+                                                    </div>
+                                                }
+                                                {(((companyInformation.social_wall || {}).facebook || {}).publication || []).length > 0 &&
+                                                    <div className="d-flex align-items-center justify-content-center mr-4">
+                                                        <Checkbox
+                                                            className="big-checkbox"
+                                                            checked={facebookVisible}
+                                                            onChange={(e) => setFacebookVisible(e.target.checked)}
+                                                        />
+                                                        <img src={images.facebook_icon} width={20} height={20} className="ml-2" alt="" />
+                                                    </div>
+                                                }
+                                            </div>
+                                        </Col>
+                                    </Row>
+                                </div>
                             </Col>
                         </Row>
                     </Col>

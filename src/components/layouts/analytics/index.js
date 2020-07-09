@@ -53,10 +53,10 @@ function AnalyticsLayout() {
     return (
         <>
             <Row style={{ borderBottom: "1px solid rgba(126, 154, 168, 0.15)" }}>
-                <Col sm={{ size: 10, offset: 1 }} xs="12" className="px-0">
+                <Col sm={{ size: 10, offset: 1 }} xs="12" className="padding-x">
                     <Menu mode="horizontal" className="menubar analytics-menu" selectedKeys={[currentTab]}>
                         <Menu.Item key="overview" className="analytics-menuitem" onClick={() => setCurrentTab("overview")}>
-                            <span className={currentTab === 'overview' ? "ml-3 underline" : "ml-3"}> {t('menubar.overview')}</span>
+                            <span className={currentTab === 'overview' ? "underline" : ""}> {t('menubar.overview')}</span>
                         </Menu.Item>
                         <Menu.Item key="audience" className="analytics-menuitem" onClick={() => setCurrentTab("audience")}>
                             <span className={currentTab === 'audience' ? "ml-3 underline" : "ml-3"}> {t('menubar.audience')}</span>
@@ -74,7 +74,7 @@ function AnalyticsLayout() {
                 </Col>
             </Row>
             <Row className="py-5">
-                <Col sm={{ size: 10, offset: 1 }} xs="12">
+                <Col sm={{ size: 10, offset: 1 }} xs="12" className="padding-x">
                     <Row>
                         <Col lg="6" xs="12" className="d-flex">
                             <img src={companyProfile.logo || images.profile_img} width="100px" height="100px" className="mr-4 rounded-circle" alt="" />

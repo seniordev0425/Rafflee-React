@@ -22,23 +22,23 @@ function Clicks(props) {
     if (GET_CLICKS_DATA_PROCESS) return <div className="min-height-container"><Loading /></div>
 
     return (
-        <>
+        <div className="mx-0 mx-sm-3">
             <Row>
-                <Col xs="12" sm={{ size: 10, offset: 1 }} className="p-4">
+                <Col xs="12" sm={{ size: 10, offset: 1 }} className="padding-x">
                     <ClickSplineChart clicksData={clicksData} time={time} campaignID={campaignID} />
                 </Col>
             </Row>
-            <Row>
-                <Col xs="12" sm={{ size: 10, offset: 1 }} className="p-4">
+            <Row className="mt-4">
+                <Col xs="12" sm={{ size: 10, offset: 1 }} className="padding-x">
                     <ClickTotalSplineChart clicksData={clicksData} time={time} campaignID={campaignID} />
                 </Col>
             </Row>
-            <Row>
-                <Col xs="12" sm={{ size: 10, offset: 1 }} className="p-4">
+            <Row className="my-4">
+                <Col xs="12" sm={{ size: 10, offset: 1 }} className="padding-x">
                     <ProductBenefitSplineChart clicksData={clicksData} time={time} campaignID={campaignID} />
                 </Col>
             </Row>
-        </>
+        </div>
     )
 }
 

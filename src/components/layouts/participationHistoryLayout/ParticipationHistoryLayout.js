@@ -57,6 +57,7 @@ function ParticipationHistoryLayout() {
                 </div>
             )}
             <Pagination
+                responsive
                 defaultCurrent={1}
                 defaultPageSize={NUMBER_PER_PAGE}
                 onChange={handlePagination}

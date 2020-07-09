@@ -51,6 +51,7 @@ const images = {
     retweet_icon: require('../assets/image/retweet.png'),
     globe_gray_icon: require('../assets/image/globe_gray_icon.png'),
     facebook_gray_icon: require('../assets/image/facebook_gray_icon.png'),
+    facebook_icon: require('../assets/image/facebook_icon.png'),
     instagram_gray_icon: require('../assets/image/instagram_gray_icon.png'),
     verified_icon: require('../assets/image/verified_icon.png'),
     question_icon: require('../assets/image/question_icon.svg'),

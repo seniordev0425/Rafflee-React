@@ -88,7 +88,7 @@ function SetupSection(props) {
 
     return (
         <Row>
-            <Col sm={{ size: "10", offset: "1" }} xs="12" className="px-sm-3">
+            <Col sm={{ size: "10", offset: "1" }} xs="12" className="padding-x">
                 <Row>
                     <Col xs="12" sm="6">
                         <div className="mt-5 half-width">

@@ -61,7 +61,7 @@ function LivePageLayout(props) {
         return (
             (participants.filter((item, index) => item.email.toLowerCase().includes(keyword) || item.username.toLowerCase().includes(keyword))).map((item, index) =>
                 <Row key={index} className="pt-3 pb-3" style={!(index % 2) ? { background: "rgba(191, 232, 254, 0.25)" } : { background: "white" }}>
-                    <Col xs="12" sm={{ size: 10, offset: 1 }} className="pl-4 pr-4 font-size-11">
+                    <Col xs="12" sm={{ size: 10, offset: 1 }} className="padding-x font-size-11">
                         <div className="float-left">{item.username}</div>
                         <div className="float-right view-profile-link">{t('my_campaign_page.view_profile')}</div>
                     </Col>
@@ -97,13 +97,13 @@ function LivePageLayout(props) {
     return (
         <>
             <Row className="mt-4 mb-3">
-                <Col xs="12" sm={{ size: 10, offset: 1 }} className="pl-4 pr-4">
+                <Col xs="12" sm={{ size: 10, offset: 1 }} className="padding-x">
                     <div className="float-left blue-link-btn" onClick={() => goBack(null)}>{t('my_campaign_page.back_to_campaign_page')}</div>
                     <div className="float-right"><img src={images.video_player} alt="" /></div>
                 </Col>
             </Row>
             <Row className="mt-5 mb-3">
-                <Col xs="12" sm={{ size: 10, offset: 1 }} className="pl-4 pr-4">
+                <Col xs="12" sm={{ size: 10, offset: 1 }} className="padding-x">
                     <div className="float-left" style={{ fontSize: "1.1rem", fontWeight: "bold" }}>{t('my_campaign_page.participants')} ({participants.length})</div>
                     <div className="float-right d-flex align-items-center">
                         <Input
@@ -119,7 +119,7 @@ function LivePageLayout(props) {
             </Row>
             {renderParticipants()}
             <Row className="mt-5 mb-5">
-                <Col xs="12" sm={{ size: 10, offset: 1 }} className="px-2">
+                <Col xs="12" sm={{ size: 10, offset: 1 }} className="padding-x">
                     <Row>
                         <Col xs="12" md="4">
                             <span className="footer-link-bold mr-3">{t('my_campaign_page.draw_type')}: </span>

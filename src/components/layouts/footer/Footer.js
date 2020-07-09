@@ -6,7 +6,7 @@ function Footer() {
     const { t } = useTranslation()
 
     return (
-        <div className="footer-link py-3">
+        <div className="footer-link py-3 padding-x">
             <Row>
                 <Col xs={{ size: 10, offset: 1 }}>
                     <Row className="justify-content-center">

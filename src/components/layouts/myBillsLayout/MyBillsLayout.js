@@ -59,6 +59,7 @@ function MyBillsLayout() {
         <div className="min-height-container">
             {renderMyBillsList()}
             <Pagination
+                responsive
                 defaultCurrent={1}
                 defaultPageSize={NUMBER_PER_PAGE}
                 onChange={handlePagination}

@@ -13,7 +13,7 @@ function ResumeSection(props) {
 
     return (
         <Row>
-            <Col sm={{ size: "10", offset: "1" }} xs="12" className="px-sm-3">
+            <Col sm={{ size: "10", offset: "1" }} xs="12" className="padding-x">
                 <div className="mt-5 mb-3 mx-3">
                     <div
                         className="pl-3 py-2 d-flex align-items-center font-size-9"

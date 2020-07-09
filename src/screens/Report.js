@@ -39,7 +39,7 @@ function Report() {
                 <JoinHeader />
                 <Header />
             </div>
-            <div className="d-flex justify-content-center pt-4">
+            <div className="d-flex justify-content-center py-4">
                 <div className="min-height-container">
                     <div className="d-flex justify-content-center">
                         <Radio.Group onChange={handleModeChange} value={mode} style={{ marginBottom: 8 }} buttonStyle='solid'>

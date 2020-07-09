@@ -28,7 +28,6 @@ function FaceBookConnectBtn(props) {
     )
 
     const responseFacebook = (response) => {
-        console.log(response)
         var body = {
             token: response.accessToken
         }

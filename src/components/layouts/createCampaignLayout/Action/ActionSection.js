@@ -71,7 +71,7 @@ function ActionSection(props) {
     return (
         <div className="min-height-container">
             <Row style={{ borderBottom: "1px solid rgba(126, 154, 168, 0.15)" }}>
-                <Col sm={{ size: "10", offset: "1" }} xs="12" className="px-sm-3">
+                <Col sm={{ size: "10", offset: "1" }} xs="12" className="padding-x">
                     <div className="mt-5 mb-3 ml-3">
                         <div className="footer-link-bold mb-3">
                             <span>{t('create_campaign_page.actions')}</span>
@@ -131,7 +131,7 @@ function ActionSection(props) {
                 </Col>
             </Row>
             <Row>
-                <Col sm={{ size: "10", offset: "1" }} xs="12" className="px-sm-3 font-size-9 color-white">
+                <Col sm={{ size: "10", offset: "1" }} xs="12" className="padding-x font-size-9 color-white">
                     <div className="mx-3">
                         {params.facebook.like &&
                             <FacebookLikeField params={params} setAction={setAction} />

@@ -12,7 +12,7 @@ function FooterLink() {
     return (
         <div className="footer-link-container">
             <Row>
-                <Col xs="12" sm={{ size: 10, offset: 1 }}>
+                <Col xs="12" sm={{ size: 10, offset: 1 }} className="padding-x">
                     <Row>
                         <Col xs="6" md="3" className="mb-4 mb-md-0">
                             <div className="footer-link-bold">

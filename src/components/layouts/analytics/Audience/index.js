@@ -35,9 +35,9 @@ function Audience(props) {
     }
 
     return (
-        <>
+        <div className="mx-0 mx-sm-3">
             <Row className="">
-                <Col xs="12" sm={{ size: 10, offset: 1 }} className="px-4">
+                <Col xs="12" sm={{ size: 10, offset: 1 }} className="padding-x">
                     <div className="p-2 p-sm-4 default-border">
                             <div className="font-size-11 font-weight-bold mb-3">{t('analytics_page.demographics')}</div>
                             <MapChart
@@ -48,7 +48,7 @@ function Audience(props) {
                 </Col>
             </Row>
             <Row className="my-5">
-                <Col xs="12" sm={{ size: 10, offset: 1 }} className="px-4 followers-container">
+                <Col xs="12" sm={{ size: 10, offset: 1 }} className="padding-x followers-container">
                     <div className="default-border audience-bottom-div p-3 p-sm-4 d-flex justify-content-between flex-column">
                         <div className="d-flex justify-content-between">
                             <div className="font-size-11 font-weight-bold">{t('analytics_page.active_clients')}</div>
@@ -81,7 +81,7 @@ function Audience(props) {
                     </div>
                 </Col>
             </Row>
-        </>
+        </div>
     )
 }
 

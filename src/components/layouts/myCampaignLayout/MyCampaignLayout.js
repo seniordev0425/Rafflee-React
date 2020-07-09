@@ -51,6 +51,7 @@ function MyCampaignLayout() {
                     </div>
                 )}
                 <Pagination
+                    responsive
                     defaultCurrent={currentPage}
                     defaultPageSize={NUMBER_PER_PAGE}
                     onChange={handlePagination}

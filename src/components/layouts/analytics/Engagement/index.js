@@ -9,9 +9,9 @@ function Engagement() {
     const { t } = useTranslation()
 
     return (
-        <>
+        <div className="mx-0 mx-sm-3">
             <Row className="">
-                <Col xs="12" sm={{ size: 10, offset: 1 }} className="px-4 followers-container">
+                <Col xs="12" sm={{ size: 10, offset: 1 }} className="padding-x followers-container">
                     <div className="default-border audience-bottom-div p-4">
                         <div>
                             <span className="font-weight-bold font-size-11">{t('analytics_page.campaigns_engagement')}</span>
@@ -35,11 +35,11 @@ function Engagement() {
                 </Col>
             </Row>
             <Row>
-                <Col xs="12" sm={{ size: 10, offset: 1 }} className="p-4">
+                <Col xs="12" sm={{ size: 10, offset: 1 }} className="padding-x">
                     <EngagementBarChart />
                 </Col>
             </Row>
-        </>
+        </div>
     )
 }
 

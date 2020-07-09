@@ -67,7 +67,7 @@ function Dashboard(props) {
 
             <div className="menubar-container">
                 <Row>
-                    <Col sm={{ size: 10, offset: 1 }} xs="12">
+                    <Col sm={{ size: 10, offset: 1 }} xs="12" className="padding-x">
                         {props.company ? (
                             <Menu mode="horizontal" className="menubar" selectedKeys={[match.params.menu]}>
                                 <Menu.Item key="my-campaign">

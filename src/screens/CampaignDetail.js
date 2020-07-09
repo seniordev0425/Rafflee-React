@@ -214,7 +214,7 @@ function CampaignDetail(props) {
                 <Header />
             </div>
             <Row className="mt-0 mt-sm-5">
-                <Col xs="12" sm={{ size: 10, offset: 1 }}>
+                <Col xs="12" sm={{ size: 10, offset: 1 }} className="padding-x">
                     <Row className="px-3 mt-5">
                         <Col className="px-0" style={{ borderRight: "1px solid #767b8378" }}>
                             <div className="color-gray mt-2 text-center font-weight-bold font-size-20">{calcRemainingDates()}</div>

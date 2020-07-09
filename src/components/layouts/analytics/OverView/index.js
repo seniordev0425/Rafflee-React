@@ -60,9 +60,9 @@ function OverView(props) {
     }
 
     return (
-        <>
+        <div className="mx-0 mx-sm-3">
             <Row>
-                <Col xs="12" sm={{ size: 10, offset: 1 }} className="px-4 followers-container">
+                <Col xs="12" sm={{ size: 10, offset: 1 }} className="padding-x followers-container">
                     <div className="follower-div">
                         <div className="d-flex align-items-center">
                             <img src={images.rafflee_icon} width="30px" height="30px" alt="" />
@@ -99,12 +99,12 @@ function OverView(props) {
                 </Col>
             </Row>
             <Row>
-                <Col xs="12" sm={{ size: 10, offset: 1 }} className="p-4 mt-5">
+                <Col xs="12" sm={{ size: 10, offset: 1 }} className="padding-x mt-5">
                     <OverViewSplineChart overviewFollowersArr={overviewFollowersArr} time={time} />
                 </Col>
             </Row>
             <Row className="my-5">
-                <Col xs="12" sm={{ size: 10, offset: 1 }} className="px-4">
+                <Col xs="12" sm={{ size: 10, offset: 1 }} className="padding-x">
                     <div className="default-border">
                         <Row className="justify-content-between p-2 p-sm-4">
                             <div className="float-left font-weight-bold font-size-11">{t('analytics_page.most_active_users')}</div>
@@ -126,7 +126,7 @@ function OverView(props) {
                     </div>
                 </Col>
             </Row>
-        </>
+        </div>
     )
 }
 

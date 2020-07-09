@@ -47,6 +47,42 @@ function onSuccessGetFacebookPublications(data) {
         data: data.search
     }
 }
+/////////////////////////////////////////////// GET_INSTAGRAM_BUSINESS_PAGES
+export function instagramBusinessConnect(params) {
+    return apiAction({
+        url: APIROUTE + `facebook/connect/instagram_business/`,
+        method: 'POST',
+        data: qs.stringify(params),
+        accessToken: sessionStorage.getItem('token'),
+        onSuccess: onSuccessInstagramBusinessConnect,
+        onFailure: onFailed,
+        label: 'GET_INSTAGRAM_BUSINESS_PAGES'
+    });
+}
+function onSuccessInstagramBusinessConnect(data) {
+    return {
+        type: 'SET_INSTAGRAM_BUSINESS_PAGES',
+        data: data.business_pages
+    }
+}
+/////////////////////////////////////////////// INSTAGRAM_BUSINESS_CONNECT_VALIDATION
+export function instagramBusinessConnectValidation(params) {
+    return apiAction({
+        url: APIROUTE + `facebook/connect/instagram_business/validation/`,
+        method: 'POST',
+        data: qs.stringify(params),
+        accessToken: sessionStorage.getItem('token'),
+        onSuccess: onSuccessInstagramBusinessConnectValidation,
+        onFailure: onFailed,
+        label: 'VALIDATE_INSTAGRAM_BUSINESS_CONNECT'
+    });
+}
+function onSuccessInstagramBusinessConnectValidation(data) {
+    return {
+        type: '',
+        data: ''
+    }
+}
 
 function apiAction({
     url = "",

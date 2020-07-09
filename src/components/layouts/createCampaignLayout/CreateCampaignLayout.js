@@ -140,10 +140,10 @@ function CreateCampaignLayout() {
     return (
         <>
             <Row style={{ borderBottom: "1px solid rgba(126, 154, 168, 0.15)" }}>
-                <Col sm={{ size: 10, offset: 1 }} xs="12" className="px-0">
+                <Col sm={{ size: 10, offset: 1 }} xs="12" className="padding-x">
                     <Menu mode="horizontal" className="menubar analytics-menu" selectedKeys={[currentSection]}>
                         <Menu.Item key="setup" className="analytics-menuitem" onClick={() => setCurrentSection("setup")}>
-                            <span className={currentSection === 'setup' ? "ml-3 underline font-weight-bold" : "ml-3"}> {t('menubar.setup')}</span>
+                            <span className={currentSection === 'setup' ? "underline font-weight-bold" : ""}> {t('menubar.setup')}</span>
                         </Menu.Item>
                         <Menu.Item key="campaign_type" className="analytics-menuitem" onClick={() => setCurrentSection("campaign_type")}>
                             <span className={currentSection === 'campaign_type' ? "ml-3 underline font-weight-bold" : "ml-3"}> {t('menubar.campaign_type')}</span>

@@ -176,7 +176,7 @@ function SearchResultLayout(props) {
         <>
             <div className="menubar-container">
                 <Row>
-                    <Col xs="12" sm={{ size: 10, offset: 1 }}>
+                    <Col xs="12" sm={{ size: 10, offset: 1 }} className="padding-x">
                         <Menu mode="horizontal" className="menubar" selectedKeys={[currentMenu]}>
                             <Menu.Item key="all" className="menu-item-mr" onClick={() => changeMenu('all')}>
                                 {t('menubar.all')}
@@ -228,6 +228,7 @@ function SearchResultLayout(props) {
                     )}
 
                     <Pagination
+                        responsive
                         defaultCurrent={1}
                         defaultPageSize={NUMBER_PER_PAGE}
                         onChange={handlePagination}

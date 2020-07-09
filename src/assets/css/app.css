@@ -71,7 +71,7 @@ body {
     position: sticky;
     top: 0;
     width: 100%;
-    z-index: 100;
+    z-index: 1000;
     border-bottom: 1px solid #eeeeee4f;
 }
 .default-border {
@@ -486,8 +486,8 @@ h2 span {
 .header-container {
     display: flex;
     align-items: center;
-    padding-left: 8%;
-    padding-right: 8%;
+    padding-left: 11%;
+    padding-right: 11%;
     height: 80px;
     background-color: #fffffff0;
 }
@@ -1557,8 +1557,9 @@ h2 span {
     border-radius: 6px !important;
 }
 .instagram-wall-img {
-    max-width: 100%;
-    max-height: 500px;
+    width: 100%;
+    max-height: 400px;
+    object-fit: contain;
 }
 .big-checkbox .ant-checkbox-inner {
     width: 25px;
@@ -1591,5 +1592,14 @@ h2 span {
         width: calc(100% - 50px);
     }
 }
-
+.padding-x {
+    padding-left: 80px;
+    padding-right: 80px;
+}
+@media (max-width: 775px) {
+    .padding-x {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}
 

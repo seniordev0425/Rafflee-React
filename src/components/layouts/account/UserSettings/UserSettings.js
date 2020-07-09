@@ -26,10 +26,10 @@ function UserSettings() {
     return (
         <div>
             <Row style={{ borderBottom: "1px solid rgba(126, 154, 168, 0.15)" }}>
-                <Col sm={{ size: 10, offset: 1 }} xs="12" className="px-0">
+                <Col sm={{ size: 10, offset: 1 }} xs="12" className="padding-x">
                     <Menu mode="horizontal" className="menubar analytics-menu" selectedKeys={[currentSection]}>
                         <Menu.Item key="wall" className="analytics-menuitem" onClick={() => setCurrentSection("wall")}>
-                            <span className={currentSection === 'wall' ? "ml-3 underline font-weight-bold" : "ml-3"}> {t('menubar.wall')}</span>
+                            <span className={currentSection === 'wall' ? "underline font-weight-bold" : ""}> {t('menubar.wall')}</span>
                         </Menu.Item>
                         <Menu.Item key="password" className="analytics-menuitem" onClick={() => setCurrentSection("password")}>
                             <span className={currentSection === 'password' ? "ml-3 underline font-weight-bold" : "ml-3"}> {t('menubar.password')}</span>

@@ -143,7 +143,7 @@ function PaymentSection(props) {
 
     return (
         <Row>
-            <Col sm={{ size: "10", offset: "1" }} xs="12" className="px-sm-3">
+            <Col sm={{ size: "10", offset: "1" }} xs="12" className="padding-x">
                 <div className="mt-5 mb-3 ml-3">
                     <Row>
                         <Col xs="12" sm="6" className="p-0">

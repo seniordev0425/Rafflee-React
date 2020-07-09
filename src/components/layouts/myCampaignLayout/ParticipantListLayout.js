@@ -30,7 +30,7 @@ function ParticipantListLayout(props) {
         return (
             participants.filter((item, index) => item.email.toLowerCase().includes(keyword) || item.username.toLowerCase().includes(keyword)).map((item, index) =>
                 <Row key={index} className="pt-3 pb-3" style={!(index % 2) ? { background: "rgba(191, 232, 254, 0.25)" } : { background: "white" }}>
-                    <Col xs="12" sm={{ size: 10, offset: 1 }} className="pl-4 pr-4 responsive-font-size-11">
+                    <Col xs="12" sm={{ size: 10, offset: 1 }} className="padding-x responsive-font-size-11">
                         <Row>
                             <Col sm="5" xs="3" className="px-0" style={{ overflowWrap: 'anywhere' }}><div>{item.username}</div></Col>
                             <Col sm="7" xs="9" className="d-flex justify-content-between px-0">
@@ -51,12 +51,12 @@ function ParticipantListLayout(props) {
     return (
         <>
             <Row className="mt-4 mb-3">
-                <Col xs="12" sm={{ size: 10, offset: 1 }} className="pl-4 pr-4">
+                <Col xs="12" sm={{ size: 10, offset: 1 }} className="padding-x">
                     <div className="float-left blue-link-btn" onClick={() => goBack(null)}>{t('my_campaign_page.back_to_campaign_page')}</div>
                 </Col>
             </Row>
             <Row className="mt-5 mb-5">
-                <Col xs="12" sm={{ size: 10, offset: 1 }}>
+                <Col xs="12" sm={{ size: 10, offset: 1 }} className="padding-x">
                     <Row>
                         <Col sm="2" xs="3" className="promotion-list-item-img">
                             <img src={images.profile_img} alt="" />
@@ -70,7 +70,7 @@ function ParticipantListLayout(props) {
                 </Col>
             </Row>
             <Row className="pt-3 pb-3" style={{ background: "rgba(191, 232, 254, 0.25)" }}>
-                <Col xs="12" sm={{ size: 10, offset: 1 }} className="pl-4 pr-4 responsive-font-size-11">
+                <Col xs="12" sm={{ size: 10, offset: 1 }} className="padding-x responsive-font-size-11">
                     <Row>
                         <Col sm="5" xs="3" className="px-0" style={{ overflowWrap: 'anywhere' }}><div>{t('my_campaign_page.generated_likes')}</div></Col>
                         <Col sm="7" xs="9" className="d-flex justify-content-between px-0">
@@ -81,7 +81,7 @@ function ParticipantListLayout(props) {
                 </Col>
             </Row>
             <Row className="mt-3 mb-3">
-                <Col xs="12" sm={{ size: 10, offset: 1 }} className="pl-4 pr-4">
+                <Col xs="12" sm={{ size: 10, offset: 1 }} className="padding-x">
                     <div className="float-left responsive-font-size-11 font-weight-bold">{t('my_campaign_page.participants')} ({participants.length})</div>
                     <div className="float-right d-flex align-items-center">
                         <Input
@@ -97,7 +97,7 @@ function ParticipantListLayout(props) {
             </Row>
             {renderParticipants()}
             <Row className="pt-3 pb-3">
-                <Col xs="12" sm={{ size: 10, offset: 1 }} className="pl-4 pr-4">
+                <Col xs="12" sm={{ size: 10, offset: 1 }} className="padding-x">
                     <div className="policy-button float-right" style={{ fontSize: "1.1rem" }}>{t('my_campaign_page.buy_data')}</div>
                 </Col>
             </Row>

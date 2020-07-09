@@ -24,7 +24,7 @@ function MyFollowingItem(props) {
     return (
         <div>
             <Row>
-                <Col xs="12" sm={{ size: 10, offset: 1 }}>
+                <Col xs="12" sm={{ size: 10, offset: 1 }} className="padding-x">
                     <Row>
                         <Col lg="1" md="2" sm="2" xs="3" className="promotion-list-item-img">
                             <img src={item.campaign_image ? item.campaign_image : images.profile_img} alt="" />

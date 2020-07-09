@@ -150,7 +150,7 @@ function CurrentPromotionList() {
         <>
             <div className="menubar-container">
                 <Row>
-                    <Col xs="12" sm={{ size: 10, offset: 1 }}>
+                    <Col xs="12" sm={{ size: 10, offset: 1 }} className="padding-x">
                         <Menu mode="horizontal" className="menubar" selectedKeys={[currentMenu]}>
                             <Menu.Item key="highlight" className="menu-item-mr" onClick={() => changeMenu('highlight')}>
                                 {t('menubar.highlights')}
@@ -188,6 +188,7 @@ function CurrentPromotionList() {
                         </div>
                     )}
                     <Pagination
+                        responsive
                         defaultCurrent={1}
                         defaultPageSize={NUMBER_PER_PAGE}
                         onChange={handlePagination}

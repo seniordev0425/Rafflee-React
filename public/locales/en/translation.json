@@ -415,7 +415,8 @@
         "back": "Back",
         "followers": "Followers",
         "friends": "Friends",
-        "search_for_circle_name": "Search for circle name"
+        "search_for_circle_name": "Search for circle name",
+        "fans": "Fans"
     },
     "user_settings_page": {
         "current_password": "Current Password",
@@ -514,6 +515,12 @@
     "twitter_comment_validation_modal": {
         "template": "Template",
         "comment": "Tweet"
+    },
+    "instagram_connect_modal": {
+        "instagram_connect": "Instagram Connect",
+        "instagram_basic_connect": "INSTAGRAM BASIC CONNECT",
+        "instagram_business_connect": "INSTAGRAM BUSINESS CONNECT",
+        "select_page": "Select business page"
     },
     "required": "Required"
 }
