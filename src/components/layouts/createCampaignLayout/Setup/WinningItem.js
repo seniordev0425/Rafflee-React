@@ -44,7 +44,7 @@ function WinningItem(props) {
 
     return (
         <Row>
-            <Col xs="12" sm="4" md="3">
+            <Col xs="12" md="4" lg="3">
                 <div className="mt-4">
                     <FormGroup>
                         <div className="footer-link-bold mb-3">
@@ -62,7 +62,7 @@ function WinningItem(props) {
                     </FormGroup>
                 </div>
             </Col>
-            <Col xs="12" sm="4" md="3">
+            <Col xs="12" md="4" lg="3">
                 <div className="mt-4">
                     <FormGroup>
                         <div className="footer-link-bold mb-3">
@@ -80,7 +80,7 @@ function WinningItem(props) {
                     </FormGroup>
                 </div>
             </Col>
-            <Col xs="12" sm="4" md="2">
+            <Col xs="12" md="4" lg="3">
                 <div className="mt-4">
                     <FormGroup>
                         <div className="footer-link-bold mb-3">
@@ -98,16 +98,16 @@ function WinningItem(props) {
                     </FormGroup>
                 </div>
             </Col>
-            <Col sm="12" md="4" className={imgBase64Data ? "mt-md-n3" : "mt-md-3"}>
+            <Col lg="12" xl="3" className={imgBase64Data ? "mt-md-n3" : "mt-md-3"}>
                 <div className="d-flex justify-content-between align-items-center p-0 mb-md-0 mb-sm-3 mt-md-5">
                     <div className="pl-0 pl-sm-2 d-flex align-items-center" style={{ marginTop: imgBase64Data ? 20 : 0 }}>
                         {imgBase64Data &&
                             <div>
-                                <img src={`data:image/jpeg;base64,${imgBase64Data}`} style={{ width: 60, height: 60, borderRadius: 6 }} alt="" />
+                                <img src={`data:image/jpeg;base64,${imgBase64Data}`} style={{ width: 60, height: 60, borderRadius: 6 }} className="mr-2" alt="" />
                                 <Button
                                     onClick={handleImageCropModal}
                                     type="primary"
-                                    className="ant-blue-btn mx-2 mt-3"
+                                    className="ant-blue-btn mr-2 mt-3"
                                     style={{ width: 60, height: 30, fontSize: '1rem', lineHeight: 1 }}
                                 >
                                     {t('button_group.edit')}

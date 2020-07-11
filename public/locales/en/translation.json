@@ -237,6 +237,7 @@
     "analytics_page": {
         "rafflee_followers": "Rafflee Followers",
         "instagram_followers": "Instagram Followers",
+        "facebook_followers": "Facebook Followers",
         "twitter_followers": "Twitter Followers",
         "youtube_followers": "Youtube Followers",
         "twitch_followers": "Twitch Followers",
@@ -269,6 +270,8 @@
         "rafflee": "Rafflee",
         "twitter": "Twitter",
         "twitch": "Twitch",
+        "facebook": "Facebook",
+        "instagram": "Instagram",
         "continent": "Continent:",
         "country": "Country:",
         "city": "City:",

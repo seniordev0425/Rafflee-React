@@ -34,7 +34,7 @@ function InstagramConnectModal(props) {
     const [selectedPageId, setSelectedPageId] = useState('')
 
     const CustomButton = () => (
-        <Row className="pointer mt-5">
+        <Row className="pointer my-5">
             <Col xs="2" className="pl-0 pr-0 instagram-icon-container1">
                 <img src={images.instagram_icon} alt="" />
             </Col>
@@ -109,7 +109,7 @@ function InstagramConnectModal(props) {
                     {instagramBusinessPages.length > 0 &&
                         <div>
                             <Select
-                                className="w-100 my-3"
+                                className="w-100 mb-5"
                                 placeholder={t('create_campaign_page.select_page')}
                                 onChange={(id) => setSelectedPageId(id)}
                                 size="large"
@@ -120,7 +120,7 @@ function InstagramConnectModal(props) {
                                     </Option>
                                 ))}
                             </Select>
-                            <div className="mb-4 d-flex justify-content-center">
+                            <div className="mb-5 d-flex justify-content-center">
                                 <Button
                                     onClick={validateInstagramBusinessConnect}
                                     type="primary"

@@ -96,6 +96,28 @@ function OverView(props) {
                         </div>
                         <ColorBar width={100} color="#0091ff" />
                     </div>
+                    <div className="follower-div">
+                        <div className="d-flex align-items-center">
+                            <img src={images.facebook_icon} width="30px" height="30px" alt="" />
+                            <span className="font-weight-bold font-size-11 ml-3">{t('analytics_page.facebook_followers')}</span>
+                        </div>
+                        <div className="d-flex justify-content-between mt-3 align-items-center">
+                            <span className="font-weight-bold font-size-11">{t('analytics_page.total')}{getTotalFollowerNumber('facebook')}</span>
+                            <span className="font-size-11 mt-3" style={{ color: "#55C97B" }}>(+{getIncreaseFollowerNumber('facebook')})</span>
+                        </div>
+                        <ColorBar width={100} color="#0091ff" />
+                    </div>
+                    <div className="follower-div">
+                        <div className="d-flex align-items-center">
+                            <img src={images.instagram_icon} width="30px" height="30px" alt="" />
+                            <span className="font-weight-bold font-size-11 ml-3">{t('analytics_page.instagram_followers')}</span>
+                        </div>
+                        <div className="d-flex justify-content-between mt-3 align-items-center">
+                            <span className="font-weight-bold font-size-11">{t('analytics_page.total')}{getTotalFollowerNumber('instagram')}</span>
+                            <span className="font-size-11 mt-3" style={{ color: "#55C97B" }}>(+{getIncreaseFollowerNumber('instagram')})</span>
+                        </div>
+                        <ColorBar width={100} color="#0091ff" />
+                    </div>
                 </Col>
             </Row>
             <Row>

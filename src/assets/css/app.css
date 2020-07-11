@@ -1273,26 +1273,20 @@ h2 span {
 }
 .followers-container {
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
 }
 .follower-div {
-    width: 27%;
+    width: 280px;
     border: 1px solid rgba(126, 154, 168, 0.15);
     border-radius: 6px;
+    margin-right: 30px;
+    margin-top: 20px;
     padding: 20px;
 }
-@media (max-width: 1200px) {
-    .follower-div {
-        width: 32%;
-    }
-}
-@media (max-width: 800px) {
+@media (max-width: 450px) {
     .follower-div {
         width: 100%;
-        margin-top: 20px;
-    }
-    .followers-container {
-        display: block;
+        margin-right: 0px;
     }
 }
 .audience-bottom-div {
@@ -1593,8 +1587,8 @@ h2 span {
     }
 }
 .padding-x {
-    padding-left: 80px;
-    padding-right: 80px;
+    padding-left: 100px;
+    padding-right: 100px;
 }
 @media (max-width: 775px) {
     .padding-x {

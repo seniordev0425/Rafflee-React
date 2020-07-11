@@ -16,11 +16,11 @@ function Social(state = initialFeedState, action) {
                 ...state,
                 facebookPublications: action.data
             }
-            case 'SET_INSTAGRAM_BUSINESS_PAGES':
-                return {
-                    ...state,
-                    instagramBusinessPages: action.data
-                }
+        case 'SET_INSTAGRAM_BUSINESS_PAGES':
+            return {
+                ...state,
+                instagramBusinessPages: action.data
+            }
         default:
             return state
     }
