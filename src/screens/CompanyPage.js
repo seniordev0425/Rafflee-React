@@ -190,7 +190,7 @@ function CompanyPage(props) {
                                             <Col sm="12" md="8" className="px-0 mt-3 mt-md-0">
                                                 <div className="d-flex justify-content-center">
                                                     <a href={item.permalink_url} target='blank' style={{ width: '100%' }}>
-                                                        <img src={item.picture} className="instagram-wall-img" />
+                                                        <img src={item.picture} className="instagram-wall-img" alt="" />
                                                     </a>
                                                 </div>
                                             </Col>

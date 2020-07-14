@@ -18,7 +18,7 @@ import CreateCampaignLayout from '../components/layouts/createCampaignLayout/Cre
 import InventoryLayout from '../components/layouts/inventoryLayout/InventoryLayout'
 import ParticipationHistoryLayout from '../components/layouts/participationHistoryLayout/ParticipationHistoryLayout'
 import MyFollowingLayout from '../components/layouts/myFollowingLayout/MyFollowingLayout'
-import MyCircleLayout from '../components/layouts/myCircleLayout/MyCircleLayout'
+// import MyCircleLayout from '../components/layouts/myCircleLayout/MyCircleLayout'
 
 import { useTranslation } from 'react-i18next'
 
@@ -29,7 +29,7 @@ function Dashboard(props) {
     const userInventory = useSelector(state => state.userInfo.userInventory)
     const userParticipationHistory = useSelector(state => state.userInfo.userParticipationHistory)
     const myFollowing = useSelector(state => state.userInfo.myFollowing)
-    const myFavoriteCompanies = useSelector(state => state.userInfo.myFavoriteCompanies)
+    // const myFavoriteCompanies = useSelector(state => state.userInfo.myFavoriteCompanies)
 
     useEffect(() => {
         document.title = "Dashboard"

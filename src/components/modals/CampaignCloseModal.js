@@ -13,7 +13,12 @@ import { useTranslation } from 'react-i18next'
 
 function CampaignCloseModal(props) {
     const { t } = useTranslation()
-    const { open, onToggle, promotion_id, onClose } = props
+    const {
+        open,
+        onToggle,
+        promotion_id,
+        onClose 
+    } = props
 
     const CLOSE_CAMPAIGN_PROCESS = useSelector(state => state.userInfo.CLOSE_CAMPAIGN)
     const CLOSE_CAMPAIGN_SUCCESS = useSelector(state => state.userInfo.SUCCESS_CLOSE_CAMPAIGN)
