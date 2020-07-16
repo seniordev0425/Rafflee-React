@@ -1,22 +1,12 @@
 import React from 'react'
-import JoinHeader from '../components/layouts/HeaderLayout/JoinHeader'
-import Header from '../components/layouts/HeaderLayout/Header'
-import FooterLink from '../components/layouts/footer/FooterLink'
-import Footer from '../components/layouts/footer/Footer'
+import AppLayout from '../components/layouts/AppLayout'
 import PdfLayout from '../components/layouts/pdfLayout'
-
 
 function GeneralConditions() {
     return (
-        <div style={{ fontFamily: "sofiapro" }}>
-            <div className="parent-header-container">
-                <JoinHeader />
-                <Header />
-            </div>
+        <AppLayout>
             <PdfLayout name="general" />
-            <FooterLink />
-            <Footer />
-        </div>
+        </AppLayout>
     )
 }
 

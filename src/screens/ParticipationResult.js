@@ -1,11 +1,7 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Row, Col } from 'reactstrap'
-
-import JoinHeader from '../components/layouts/HeaderLayout/JoinHeader'
-import Header from '../components/layouts/HeaderLayout/Header'
-import FooterLink from '../components/layouts/footer/FooterLink'
-import Footer from '../components/layouts/footer/Footer'
+import AppLayout from '../components/layouts/AppLayout'
 import { participationResult } from '../actions/userInfo'
 import images from '../utils/images'
 import Loading from '../components/common/Loading'
@@ -13,6 +9,7 @@ import { useTranslation } from 'react-i18next'
 
 function ParticipationResult(props) {
     const { t } = useTranslation()
+    
     const { match } = props
     const participation_result = useSelector(state => state.userInfo.participationResult)
     const PARTICIPATION_RESULT_PROCESS = useSelector(state => state.userInfo.PARTICIPATION_RESULT)
@@ -25,18 +22,14 @@ function ParticipationResult(props) {
 
     useEffect(() => {
         if (PARTICIPATION_RESULT_SUCCESS) {
-            dispatch({type: 'INIT_STATE', state: 'SUCCESS_PARTICIPATION_RESULT', data: false})
+            dispatch({ type: 'INIT_STATE', state: 'SUCCESS_PARTICIPATION_RESULT', data: false })
         }
     }, [PARTICIPATION_RESULT_SUCCESS])
 
     if (PARTICIPATION_RESULT_PROCESS) return <Loading />
-    
+
     return (
-        <div style={{ fontFamily: "sofiapro" }}>
-           <div className="parent-header-container">
-                <JoinHeader />
-                <Header />
-            </div>
+        <AppLayout>
             <Row style={{ borderTop: "2px solid #7e9aa817" }}>
                 <Col xs="12" sm={{ size: 10, offset: 1 }} className="padding-x">
                     <Row className="my-5">
@@ -99,9 +92,7 @@ function ParticipationResult(props) {
                     </Row>
                 </Col>
             </Row>
-            <FooterLink />
-            <Footer />
-        </div>
+        </AppLayout>
     )
 }
 

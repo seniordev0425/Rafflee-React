@@ -2,24 +2,14 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
 import { withRouter } from 'react-router-dom'
-import JoinHeader from '../components/layouts/HeaderLayout/JoinHeader'
-import Header from '../components/layouts/HeaderLayout/Header'
+import AppLayout from '../components/layouts/AppLayout'
 import CurrentPromotionList from '../components/layouts/currentPromotionLayout/CurrentPromotionLIst'
-import FooterLink from '../components/layouts/footer/FooterLink'
-import Footer from '../components/layouts/footer/Footer'
-
 
 function Deals() {
     return (
-        <div style={{ fontFamily: "sofiapro" }}>
-            <div className="parent-header-container">
-                <JoinHeader />
-                <Header />
-            </div>
+        <AppLayout>
             <CurrentPromotionList />
-            <FooterLink />
-            <Footer />
-        </div>
+        </AppLayout>
     )
 }
 

@@ -63,6 +63,7 @@ function InstagramConnectModal(props) {
     }
 
     const getInstagramBusinessPages = (response) => {
+        console.log(response)
         var body = {
             token: response.accessToken
         }
@@ -100,7 +101,7 @@ function InstagramConnectModal(props) {
                     </Row>
                     <FacebookLogin
                         appId={FACEBOOK_APP_ID}
-                        fields="instagram_basic,manage_pages"
+                        fields="instagram_basic,pages_show_list"
                         callback={getInstagramBusinessPages}
                         render={renderProps => (
                             <div onClick={renderProps.onClick}><CustomButton /></div>

@@ -3,10 +3,7 @@ import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Row, Col } from 'reactstrap'
 import { Menu } from 'antd'
-import JoinHeader from '../components/layouts/HeaderLayout/JoinHeader'
-import Header from '../components/layouts/HeaderLayout/Header'
-import FooterLink from '../components/layouts/footer/FooterLink'
-import Footer from '../components/layouts/footer/Footer'
+import AppLayout from '../components/layouts/AppLayout'
 import UserAccountForm from '../components/layouts/account/UserAccountForm'
 import CompanyAccountForm from '../components/layouts/account/CompanyAccountForm'
 import UserSettings from '../components/layouts/account/UserSettings/UserSettings'
@@ -25,11 +22,7 @@ const UserAccount = (props) => {
     }, [])
 
     return (
-        <div style={{ fontFamily: "sofiapro" }}>
-            <div className="parent-header-container">
-                <JoinHeader />
-                <Header />
-            </div>
+        <AppLayout>
             <div className="menubar-container">
                 <Row>
                     <Col xs="12" sm={{ size: 10, offset: 1 }} className="padding-x">
@@ -68,9 +61,7 @@ const UserAccount = (props) => {
                     <UserSettings />
                 }
             </div>
-            <FooterLink />
-            <Footer />
-        </div>
+        </AppLayout>
     )
 }
 

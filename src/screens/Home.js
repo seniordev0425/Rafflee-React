@@ -2,13 +2,10 @@ import React, { useEffect } from 'react'
 import { connect, useSelector, useDispatch } from 'react-redux'
 import { compose } from 'redux'
 import { withRouter } from 'react-router-dom'
-import JoinHeader from '../components/layouts/HeaderLayout/JoinHeader'
-import Header from '../components/layouts/HeaderLayout/Header'
+import AppLayout from '../components/layouts/AppLayout'
 import Banner from '../components/layouts/Banner'
 import Carousel from '../components/layouts/hotPromotionLayout/Carousel'
 import CurrentPromotionList from '../components/layouts/currentPromotionLayout/CurrentPromotionLIst'
-import FooterLink from '../components/layouts/footer/FooterLink'
-import Footer from '../components/layouts/footer/Footer'
 import { getHotPromotions, getHighlightedPromotions } from '../actions/homepage'
 import Loading from '../components/common/Loading'
 
@@ -31,11 +28,7 @@ function Home() {
     }, [])
 
     return (
-        <div style={{ fontFamily: "sofiapro" }}>
-            <div className="parent-header-container">
-                <JoinHeader />
-                <Header />
-            </div>
+        <AppLayout>
             <div>
                 <Banner />
                 <div className="hot-new-text banner-text">
@@ -52,9 +45,7 @@ function Home() {
                 }
                 <CurrentPromotionList />
             </div>
-            <FooterLink />
-            <Footer />
-        </div>
+        </AppLayout>
     )
 }
 

@@ -4,11 +4,7 @@ import { withRouter, Link } from 'react-router-dom'
 import { Row, Col } from 'reactstrap'
 import { Button } from 'antd'
 import moment from 'moment'
-
-import JoinHeader from '../components/layouts/HeaderLayout/JoinHeader'
-import Header from '../components/layouts/HeaderLayout/Header'
-import FooterLink from '../components/layouts/footer/FooterLink'
-import Footer from '../components/layouts/footer/Footer'
+import AppLayout from '../components/layouts/AppLayout'
 import images from '../utils/images'
 import CustomCollapsePanel from '../components/common/CustomCollapsePanel'
 import CustomCollapsePanelForPoll from '../components/common/CustomCollapsePanelForPoll'
@@ -208,11 +204,7 @@ function CampaignDetail(props) {
     }
 
     return (
-        <div style={{ fontFamily: "sofiapro" }}>
-            <div className="parent-header-container">
-                <JoinHeader />
-                <Header />
-            </div>
+        <AppLayout>
             <Row className="mt-0 mt-sm-5">
                 <Col xs="12" sm={{ size: 10, offset: 1 }} className="padding-x">
                     <Row className="px-3 mt-5">
@@ -439,8 +431,7 @@ function CampaignDetail(props) {
                     </Row>
                 </Col>
             </Row>
-            <FooterLink />
-            <Footer />
+
 
             <ParticipateConfirmModal open={openConfirm} onToggle={handleOpenConfirm} promotion_id={campaignData.pk} company_name={campaignData.company_name} />
             <VideoPlayerModal open={openVideo} onToggle={handleOpenVideo} videoEnded={videoEnded} />
@@ -475,7 +466,7 @@ function CampaignDetail(props) {
                 closeModal={() => setOpenTwitchFollowModal(false)}
                 promotion_id={campaignData.pk}
             />
-        </div>
+        </AppLayout>
     )
 }
 

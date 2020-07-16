@@ -4,21 +4,17 @@ import { compose } from 'redux'
 import { withRouter, Link } from 'react-router-dom'
 import { Row, Col } from 'reactstrap'
 import { Menu } from 'antd'
-import JoinHeader from '../components/layouts/HeaderLayout/JoinHeader'
-import Header from '../components/layouts/HeaderLayout/Header'
-import FooterLink from '../components/layouts/footer/FooterLink'
-import Footer from '../components/layouts/footer/Footer'
-import images from '../utils/images'
+import AppLayout from '../components/layouts/AppLayout'
 
 import MyCampaignLayout from '../components/layouts/myCampaignLayout/MyCampaignLayout'
 import MyBillsLayout from '../components/layouts/myBillsLayout/MyBillsLayout'
 import AnalyticsLayout from '../components/layouts/analytics'
 import CreateCampaignLayout from '../components/layouts/createCampaignLayout/CreateCampaignLayout'
-
 import InventoryLayout from '../components/layouts/inventoryLayout/InventoryLayout'
 import ParticipationHistoryLayout from '../components/layouts/participationHistoryLayout/ParticipationHistoryLayout'
 import MyFollowingLayout from '../components/layouts/myFollowingLayout/MyFollowingLayout'
-// import MyCircleLayout from '../components/layouts/myCircleLayout/MyCircleLayout'
+
+import images from '../utils/images'
 
 import { useTranslation } from 'react-i18next'
 
@@ -57,14 +53,9 @@ function Dashboard(props) {
                 return <MyCampaignLayout />;
         }
     }
-    
-    return (
-        <div style={{ fontFamily: "sofiapro" }}>
-            <div className="parent-header-container">
-                <JoinHeader />
-                <Header />
-            </div>
 
+    return (
+        <AppLayout>
             <div className="menubar-container">
                 <Row>
                     <Col sm={{ size: 10, offset: 1 }} xs="12" className="padding-x">
@@ -128,9 +119,7 @@ function Dashboard(props) {
             <div>
                 {renderBody()}
             </div>
-            <FooterLink />
-            <Footer />
-        </div>
+        </AppLayout>
     )
 }
 

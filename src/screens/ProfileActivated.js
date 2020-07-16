@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Button, Col, Container, Row } from 'reactstrap'
 import { Link, withRouter } from 'react-router-dom'
 import { profileActivate } from '../actions/userInfo'
-import Header from '../components/layouts/HeaderLayout/Header'
+import AppLayout from '../components/layouts/AppLayout'
 import Loading from '../components/common/Loading'
 
 import { useTranslation } from 'react-i18next'
@@ -23,8 +23,7 @@ function ProfileActivated(props) {
   if (isLoading) return <Loading />
 
   return (
-    <>
-      <Header />
+    <AppLayout>
       <Container fluid className="mt-5">
         <section className="py-5 px-sm-5 px-4">
           <Row className="mt-5">
@@ -35,7 +34,7 @@ function ProfileActivated(props) {
           </Row>
         </section>
       </Container>
-    </>
+    </AppLayout>
   )
 }
 

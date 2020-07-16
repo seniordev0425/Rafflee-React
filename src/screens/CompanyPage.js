@@ -4,10 +4,7 @@ import { Row, Col } from 'reactstrap'
 import { Button, Tooltip, Checkbox } from 'antd'
 import { withRouter } from 'react-router-dom'
 import ReactPlayer from 'react-player'
-import JoinHeader from '../components/layouts/HeaderLayout/JoinHeader'
-import Header from '../components/layouts/HeaderLayout/Header'
-import FooterLink from '../components/layouts/footer/FooterLink'
-import Footer from '../components/layouts/footer/Footer'
+import AppLayout from '../components/layouts/AppLayout'
 import Loading from '../components/common/Loading'
 import CircleFollowModal from '../components/modals/CircleFollowModal'
 import CircleUnfollowModal from '../components/modals/CircleUnfollowModal'
@@ -20,7 +17,7 @@ import { useTranslation } from 'react-i18next'
 function CompanyPage(props) {
     const { t } = useTranslation()
     const { id } = props.match.params
-
+        
     const token = useSelector(state => state.userInfo.token)
     const companyInformation = useSelector(state => state.userInfo.companyInformation)
     const GET_COMPANY_INFORMATION_PROCESS = useSelector(state => state.userInfo.GET_COMPANY_INFORMATION)
@@ -142,7 +139,7 @@ function CompanyPage(props) {
                                                 <div className="d-flex justify-content-center">
                                                     <a href={item.permalink} target='blank'>
                                                         {item.media_type === 'IMAGE' &&
-                                                            <img src={item.media_url} className="instagram-wall-img" />
+                                                            <img src={item.media_url} className="instagram-wall-img" alt="" />
                                                         }
                                                         {item.media_type === 'VIDEO' &&
                                                             <ReactPlayer
@@ -208,11 +205,7 @@ function CompanyPage(props) {
     if (GET_COMPANY_INFORMATION_PROCESS) return <Loading />
 
     return (
-        <div style={{ fontFamily: "sofiapro" }}>
-            <div className="parent-header-container">
-                <JoinHeader />
-                <Header />
-            </div>
+        <AppLayout>
             <div className="company-page-header">
                 <Row>
                     <Col xs="12" sm={{ size: 10, offset: 1 }} className="padding-x">
@@ -309,11 +302,9 @@ function CompanyPage(props) {
             <div className="min-height-container">
                 {renderCompanyWall()}
             </div>
-            <FooterLink />
-            <Footer />
             <CircleFollowModal open={openFollowModal} onToggle={handleFollowModal} pk={companyInformation.company.pk} companyName={companyInformation.company.company_name} />
             <CircleUnfollowModal open={openUnfollowModal} onToggle={handleUnfollowModal} pk={companyInformation.company.pk} companyName={companyInformation.company.company_name} />
-        </div>
+        </AppLayout>
     )
 }
 

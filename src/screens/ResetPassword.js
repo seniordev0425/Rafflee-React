@@ -6,8 +6,8 @@ import { Form as FinalForm, Field } from 'react-final-form'
 import { Form, FormGroup } from 'reactstrap'
 import { Button } from 'antd'
 import FormInput from '../components/common/FormInput'
+import AppLayout from '../components/layouts/AppLayout'
 import { resetPassword } from '../actions/userInfo'
-import Header from '../components/layouts/HeaderLayout/Header'
 import { required } from '../utils/validation'
 
 import { useTranslation } from 'react-i18next'
@@ -39,8 +39,7 @@ function ResetPassword(props) {
     }
 
     return (
-        <>
-            <Header />
+        <AppLayout>
             <div className="reset-password-form">
                 <FinalForm
                     onSubmit={onSubmit}
@@ -78,7 +77,7 @@ function ResetPassword(props) {
                     )}
                 />
             </div>
-        </>
+        </AppLayout>
     )
 }
 

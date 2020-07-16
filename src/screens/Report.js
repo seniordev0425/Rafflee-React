@@ -4,10 +4,7 @@ import { Radio, Button } from 'antd'
 import { Form as FinalForm, Field } from 'react-final-form'
 import { Form, FormGroup } from 'reactstrap'
 import FormInput from '../components/common/FormInput'
-import JoinHeader from '../components/layouts/HeaderLayout/JoinHeader'
-import Header from '../components/layouts/HeaderLayout/Header'
-import FooterLink from '../components/layouts/footer/FooterLink'
-import Footer from '../components/layouts/footer/Footer'
+import AppLayout from '../components/layouts/AppLayout'
 import { required } from '../utils/validation'
 import { betaReport } from '../actions/homepage'
 import { useTranslation } from 'react-i18next'
@@ -34,11 +31,7 @@ function Report() {
     }
 
     return (
-        <div style={{ fontFamily: "sofiapro" }}>
-           <div className="parent-header-container">
-                <JoinHeader />
-                <Header />
-            </div>
+        <AppLayout>
             <div className="d-flex justify-content-center py-4">
                 <div className="min-height-container">
                     <div className="d-flex justify-content-center">
@@ -88,9 +81,7 @@ function Report() {
                     </div>
                 </div>
             </div>
-            <FooterLink />
-            <Footer />
-        </div>
+        </AppLayout>
     )
 }
 
