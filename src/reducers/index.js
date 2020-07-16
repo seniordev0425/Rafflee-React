@@ -6,11 +6,11 @@ import analytics from './analytics'
 import social from './social'
 
 const AppReducer = combineReducers({
-    userInfo,
-    campaign,
-    homepage,
-    analytics,
-    social
+  userInfo,
+  campaign,
+  homepage,
+  analytics,
+  social
 });
 
 

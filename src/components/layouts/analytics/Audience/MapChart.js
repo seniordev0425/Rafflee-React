@@ -20,7 +20,7 @@ function MapChart(props) {
     setCountry('')
     setCity('')
   }, [overralDemographics])
-  
+
   const getCountryList = (continent) => {
     let country_arr = []
     overralDemographics.filter((item) => item.continent === continent).map((item) => country_arr.indexOf(item.country) < 0 && country_arr.push(item.country))

@@ -6,18 +6,18 @@ import AppLayout from '../components/layouts/AppLayout'
 import CurrentPromotionList from '../components/layouts/currentPromotionLayout/CurrentPromotionLIst'
 
 function Deals() {
-    return (
-        <AppLayout>
-            <CurrentPromotionList />
-        </AppLayout>
-    )
+  return (
+    <AppLayout>
+      <CurrentPromotionList />
+    </AppLayout>
+  )
 }
 
 function mapStateToProps(state) {
-    return {
-        myInfo: state.userInfo.myInfo,
-        token: state.userInfo.token
-    }
+  return {
+    myInfo: state.userInfo.myInfo,
+    token: state.userInfo.token
+  }
 }
 
 export default compose(withRouter, connect(mapStateToProps))(Deals)

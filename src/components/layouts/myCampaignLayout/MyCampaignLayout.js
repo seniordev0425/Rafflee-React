@@ -11,71 +11,71 @@ import { NUMBER_PER_PAGE } from '../../../utils/constants'
 
 function MyCampaignLayout() {
 
-    const isLoading = useSelector(state => state.userInfo.GET_MY_CAMPAIGNS_SUCCESS)
-    const campaignList = useSelector(state => state.userInfo.myCampaigns)
-    const dispatch = useDispatch()
+  const isLoading = useSelector(state => state.userInfo.GET_MY_CAMPAIGNS_SUCCESS)
+  const campaignList = useSelector(state => state.userInfo.myCampaigns)
+  const dispatch = useDispatch()
 
-    const [live_page_id, setLivePageId] = useState(null)
-    const [participant_id, setParticipantId] = useState(null)
+  const [live_page_id, setLivePageId] = useState(null)
+  const [participant_id, setParticipantId] = useState(null)
 
-    const [minValue, setMinValue] = useState(0)
-    const [maxValue, setMaxValue] = useState(NUMBER_PER_PAGE)
-    const [currentPage, setCurrentPage] = useState(1)
+  const [minValue, setMinValue] = useState(0)
+  const [maxValue, setMaxValue] = useState(NUMBER_PER_PAGE)
+  const [currentPage, setCurrentPage] = useState(1)
 
-    useEffect(() => {
-        dispatch(getMyCampaigns())
-    }, [])
+  useEffect(() => {
+    dispatch(getMyCampaigns())
+  }, [])
 
-    const goToLivePage = (val) => {
-        setLivePageId(val)
-        setParticipantId(null)
-    }
+  const goToLivePage = (val) => {
+    setLivePageId(val)
+    setParticipantId(null)
+  }
 
-    const goToParticipatePage = (val) => {
-        setLivePageId(null)
-        setParticipantId(val)
-    }
+  const goToParticipatePage = (val) => {
+    setLivePageId(null)
+    setParticipantId(val)
+  }
 
-    const handlePagination = (value) => {
-        setCurrentPage(value)
-        setMinValue((value - 1) * NUMBER_PER_PAGE)
-        setMaxValue((value) * NUMBER_PER_PAGE)
-    }
+  const handlePagination = (value) => {
+    setCurrentPage(value)
+    setMinValue((value - 1) * NUMBER_PER_PAGE)
+    setMaxValue((value) * NUMBER_PER_PAGE)
+  }
 
-    const renderMyCampaignList = () => {
-        return (
-            <>
-                {campaignList.slice(minValue, maxValue).map((item, index) =>
-                    <div key={index} className="promotion-list-item-container">
-                        <MyCampaignItem item={item} goToLivePage={goToLivePage} goToParticipatePage={goToParticipatePage} />
-                    </div>
-                )}
-                <Pagination
-                    responsive
-                    defaultCurrent={currentPage}
-                    defaultPageSize={NUMBER_PER_PAGE}
-                    onChange={handlePagination}
-                    total={campaignList.length}
-                    className="py-5 d-flex justify-content-center"
-                />
-            </>
-        )
-    }
-
-    if (isLoading) {
-        return <div className="min-height-container"><Loading /></div>
-    }
-
+  const renderMyCampaignList = () => {
     return (
-        <div className="min-height-container">
-            {live_page_id
-                ?
-                (<LivePageLayout id={live_page_id} goBack={goToLivePage} />)
-                :
-                (participant_id ? <ParticipantListLayout id={participant_id} goBack={goToParticipatePage} /> : renderMyCampaignList())
-            }
-        </div>
+      <>
+        {campaignList.slice(minValue, maxValue).map((item, index) =>
+          <div key={index} className="promotion-list-item-container">
+            <MyCampaignItem item={item} goToLivePage={goToLivePage} goToParticipatePage={goToParticipatePage} />
+          </div>
+        )}
+        <Pagination
+          responsive
+          defaultCurrent={currentPage}
+          defaultPageSize={NUMBER_PER_PAGE}
+          onChange={handlePagination}
+          total={campaignList.length}
+          className="py-5 d-flex justify-content-center"
+        />
+      </>
     )
+  }
+
+  if (isLoading) {
+    return <div className="min-height-container"><Loading /></div>
+  }
+
+  return (
+    <div className="min-height-container">
+      {live_page_id
+        ?
+        (<LivePageLayout id={live_page_id} goBack={goToLivePage} />)
+        :
+        (participant_id ? <ParticipantListLayout id={participant_id} goBack={goToParticipatePage} /> : renderMyCampaignList())
+      }
+    </div>
+  )
 }
 
 export default MyCampaignLayout

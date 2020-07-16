@@ -25,15 +25,15 @@ const history = createBrowserHistory()
 const store = createStore(AppReducer, composeWithDevTools(applyMiddleware(apiMiddleware)))
 
 ReactDOM.render(
-    <Suspense fallback="loading">
-        <Provider store={store}>
-            <Router history={history}>
-                <Routes />
-            </Router>
-        </Provider>
-    </Suspense>
-    ,
-    document.getElementById('root')
+  <Suspense fallback="loading">
+    <Provider store={store}>
+      <Router history={history}>
+        <Routes />
+      </Router>
+    </Provider>
+  </Suspense>
+  ,
+  document.getElementById('root')
 );
 
 // If you want your app to work offline and load faster, you can change

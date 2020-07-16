@@ -3,13 +3,13 @@ import AppLayout from '../components/layouts/AppLayout'
 import MyCircleLayout from '../components/layouts/myCircleLayout/MyCircleLayout'
 
 function MyCircle() {
-    return (
-        <AppLayout>
-            <div>
-                <MyCircleLayout />
-            </div>
-        </AppLayout>
-    )
+  return (
+    <AppLayout>
+      <div>
+        <MyCircleLayout />
+      </div>
+    </AppLayout>
+  )
 }
 
 export default MyCircle

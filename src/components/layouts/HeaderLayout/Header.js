@@ -6,39 +6,39 @@ import HeaderBeforeLogin from './HeaderBeforeLogin'
 import HeaderAfterLogin from './HeaderAfterLogin'
 
 function Header(props) {
-    const [hideNav, setHideNav] = useState(false)
+  const [hideNav, setHideNav] = useState(false)
 
-    useEffect(() => {
-        setHideNav(window.innerWidth <= 1000)
-        window.addEventListener('resize', resize)
-        return () => {
-            window.removeEventListener('resize', resize)
-        }
-    }, [])
-
-    const resize = () => {
-        setHideNav(window.innerWidth <= 1000)
+  useEffect(() => {
+    setHideNav(window.innerWidth <= 1000)
+    window.addEventListener('resize', resize)
+    return () => {
+      window.removeEventListener('resize', resize)
     }
+  }, [])
 
-    return (
-        <div className="header-container">
-            <div style={{ width: "100%", height: 40 }}>
-                <Link to="/"> <img src={images.logo} alt="logo" width="120" /> </Link>
-                <div className="header-right-part">
-                    {
-                        props.token ? <HeaderAfterLogin /> : <HeaderBeforeLogin />
-                    }
-                </div>
-            </div>
+  const resize = () => {
+    setHideNav(window.innerWidth <= 1000)
+  }
+
+  return (
+    <div className="header-container">
+      <div style={{ width: "100%", height: 40 }}>
+        <Link to="/"> <img src={images.logo} alt="logo" width="120" /> </Link>
+        <div className="header-right-part">
+          {
+            props.token ? <HeaderAfterLogin /> : <HeaderBeforeLogin />
+          }
         </div>
-    )
+      </div>
+    </div>
+  )
 }
 
 function mapStateToProps(state) {
-    return {
-        myInfo: state.userInfo.myInfo,
-        token: state.userInfo.token
-    }
+  return {
+    myInfo: state.userInfo.myInfo,
+    token: state.userInfo.token
+  }
 }
 
 export default connect(mapStateToProps)(Header)

@@ -5,15 +5,15 @@ import SearchResultLayout from '../components/layouts/searchResultLayout'
 
 function SearchResult(props) {
 
-    useEffect(() => {
-        document.title = 'Search'
-    }, [])
+  useEffect(() => {
+    document.title = 'Search'
+  }, [])
 
-    return (
-        <AppLayout>
-            <SearchResultLayout searchKey={props.location.state.searchKey} />
-        </AppLayout>
-    )
+  return (
+    <AppLayout>
+      <SearchResultLayout searchKey={props.location.state.searchKey} />
+    </AppLayout>
+  )
 }
 
 export default withRouter(SearchResult)

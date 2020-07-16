@@ -11,7 +11,7 @@ function onFailed(error) {
   openNotification('warning', errorMessages[localStorage.getItem('i18nextLng')][error])
   if (error === 'MSG_ERROR_USER_NOT_CONNECTED_TO_TWITCH') {
     window.open(`https://id.twitch.tv/oauth2/authorize?response_type=code&client_id=${TWITCH_CLIENT_ID}&redirect_uri=https://rafflee.io/twitch/connect/&scope=openid+viewing_activity_read+user_follows_edit`, '_blank')
-  } 
+  }
   else if (error === 'MSG_ERROR_USER_NOT_CONNECTED_TO_TWITTER') {
     return { type: 'TWITTER_DIRECT_CONNECT', data: true }
   }
@@ -545,7 +545,7 @@ function onSuccessCloseCampaign(data) {
   openNotification('success', successMessages[localStorage.getItem('i18nextLng')].closeCampaign)
   return {
     type: 'UPDATE_MYCAMPAIGN_ENDDATE',
-    data: {promotion_id: data.promotion_id, end_date: data.end_date}
+    data: { promotion_id: data.promotion_id, end_date: data.end_date }
   }
 }
 

@@ -13,79 +13,79 @@ import { required } from '../utils/validation'
 import { useTranslation } from 'react-i18next'
 
 function ResetPassword(props) {
-    const { t } = useTranslation()
+  const { t } = useTranslation()
 
-    const { match, history } = props
+  const { match, history } = props
 
-    const isLoading = useSelector(state => state.userInfo.RESET_PASSWORD)
-    const RESET_PASSWORD_SUCCESS = useSelector(state => state.userInfo.RESET_PASSWORD_SUCCESS)
-    const dispatch = useDispatch()
+  const isLoading = useSelector(state => state.userInfo.RESET_PASSWORD)
+  const RESET_PASSWORD_SUCCESS = useSelector(state => state.userInfo.RESET_PASSWORD_SUCCESS)
+  const dispatch = useDispatch()
 
-    useEffect(() => {
-        if (RESET_PASSWORD_SUCCESS) {
-            dispatch({ type: 'RESET_PASSWORD_SUCCESS', flag: false })
-            history.push('/')
-        }
-    }, [RESET_PASSWORD_SUCCESS])
-
-    const onSubmit = (values) => {
-        var body = {
-            token: match.params.token,
-            id: match.params.id,
-            password: values.password,
-            password_confirmation: values.password_confirmation
-        }
-        dispatch(resetPassword(body))
+  useEffect(() => {
+    if (RESET_PASSWORD_SUCCESS) {
+      dispatch({ type: 'RESET_PASSWORD_SUCCESS', flag: false })
+      history.push('/')
     }
+  }, [RESET_PASSWORD_SUCCESS])
 
-    return (
-        <AppLayout>
-            <div className="reset-password-form">
-                <FinalForm
-                    onSubmit={onSubmit}
-                    render={({ handleSubmit }) => (
-                        <Form onSubmit={handleSubmit}>
-                            <FormGroup>
-                                <Field
-                                    name="password"
-                                    component={FormInput}
-                                    className="custom-form-control"
-                                    type="password"
-                                    placeholder={t('signin_modal.password')}
-                                    validate={required(t('signin_modal.password_required'))}
-                                />
-                            </FormGroup>
-                            <FormGroup>
-                                <Field
-                                    name="password_confirmation"
-                                    component={FormInput}
-                                    className="custom-form-control"
-                                    type="password"
-                                    placeholder={t('signin_modal.confirm_password')}
-                                    validate={required(t('signin_modal.confirm_password_required'))}
-                                />
-                            </FormGroup>
-                            <Button
-                                htmlType="submit"
-                                type="primary"
-                                className="ant-blue-btn mt-4"
-                                loading={isLoading}
-                            >
-                                {!isLoading && t('button_group.reset')}
-                            </Button>
-                        </Form>
-                    )}
+  const onSubmit = (values) => {
+    var body = {
+      token: match.params.token,
+      id: match.params.id,
+      password: values.password,
+      password_confirmation: values.password_confirmation
+    }
+    dispatch(resetPassword(body))
+  }
+
+  return (
+    <AppLayout>
+      <div className="reset-password-form">
+        <FinalForm
+          onSubmit={onSubmit}
+          render={({ handleSubmit }) => (
+            <Form onSubmit={handleSubmit}>
+              <FormGroup>
+                <Field
+                  name="password"
+                  component={FormInput}
+                  className="custom-form-control"
+                  type="password"
+                  placeholder={t('signin_modal.password')}
+                  validate={required(t('signin_modal.password_required'))}
                 />
-            </div>
-        </AppLayout>
-    )
+              </FormGroup>
+              <FormGroup>
+                <Field
+                  name="password_confirmation"
+                  component={FormInput}
+                  className="custom-form-control"
+                  type="password"
+                  placeholder={t('signin_modal.confirm_password')}
+                  validate={required(t('signin_modal.confirm_password_required'))}
+                />
+              </FormGroup>
+              <Button
+                htmlType="submit"
+                type="primary"
+                className="ant-blue-btn mt-4"
+                loading={isLoading}
+              >
+                {!isLoading && t('button_group.reset')}
+              </Button>
+            </Form>
+          )}
+        />
+      </div>
+    </AppLayout>
+  )
 }
 
 function mapStateToProps(state) {
-    return {
-        myInfo: state.userInfo.myInfo,
-        token: state.userInfo.token,
-        company: state.userInfo.company,
-    }
+  return {
+    myInfo: state.userInfo.myInfo,
+    token: state.userInfo.token,
+    company: state.userInfo.company,
+  }
 }
 export default compose(withRouter, connect(mapStateToProps))(ResetPassword)

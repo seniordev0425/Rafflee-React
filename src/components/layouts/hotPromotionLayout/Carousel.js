@@ -4,56 +4,56 @@ import AliceCarousel from '../../../utils/carousel_lib/react-alice-carousel'
 import CampaignCard from './CampaignCard'
 
 function Carousel(props) {
-    const { hotPromotions } = props
+  const { hotPromotions } = props
 
-    const responsive = {
-        0: { items: 1 },
-        600: { items: 2 },
-        960: { items: 3 },
-        1320: { items: 6 },
-    }
+  const responsive = {
+    0: { items: 1 },
+    600: { items: 2 },
+    960: { items: 3 },
+    1320: { items: 6 },
+  }
 
-    const stagePadding = {
-        paddingLeft: 50,
-        paddingRight: 50,
-    }
+  const stagePadding = {
+    paddingLeft: 50,
+    paddingRight: 50,
+  }
 
-    const galleryItems = (hotPromotions || []).map((item) =>
-        <CampaignCard
-            description={item.description}
-            campaign_name={item.campaign_name}
-            campaign_image={item.campaign_image}
-            pk={item.pk}
-            company_logo={item.company_logo}
-            company_id={item.company_id}
-        />
-    )
+  const galleryItems = (hotPromotions || []).map((item) =>
+    <CampaignCard
+      description={item.description}
+      campaign_name={item.campaign_name}
+      campaign_image={item.campaign_image}
+      pk={item.pk}
+      company_logo={item.company_logo}
+      company_id={item.company_id}
+    />
+  )
 
-    if (hotPromotions.length < 1) return <></>
-        
-    return (
-        <div className="app" style={{ maxWidth: galleryItems.length > 1 ? galleryItems.length * 350 : galleryItems.length * 400 }}>
-            <AliceCarousel
-                items={galleryItems}
-                showSlideInfo={true}
-                preventEventOnTouchMove={false}
-                mouseTrackingEnabled={false}
-                onSlideChanged={console.debug}
-                responsive={responsive}
-                stagePadding={stagePadding}
-                dotsDisabled={true}
-                infinite={true}
-                autoPlay={true}
-                autoPlayInterval={2000}
-                duration={800}
-                // fadeOutAnimation={true}
-            />
-        </div>
-    )
+  if (hotPromotions.length < 1) return <></>
+
+  return (
+    <div className="app" style={{ maxWidth: galleryItems.length > 1 ? galleryItems.length * 350 : galleryItems.length * 400 }}>
+      <AliceCarousel
+        items={galleryItems}
+        showSlideInfo={true}
+        preventEventOnTouchMove={false}
+        mouseTrackingEnabled={false}
+        onSlideChanged={console.debug}
+        responsive={responsive}
+        stagePadding={stagePadding}
+        dotsDisabled={true}
+        infinite={true}
+        autoPlay={true}
+        autoPlayInterval={2000}
+        duration={800}
+      // fadeOutAnimation={true}
+      />
+    </div>
+  )
 }
 
 Carousel.propTypes = {
-    hotPromotions: PropTypes.array.isRequired,
+  hotPromotions: PropTypes.array.isRequired,
 }
 
 export default Carousel

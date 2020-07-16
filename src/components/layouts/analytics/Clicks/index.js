@@ -8,38 +8,38 @@ import Loading from '../../../common/Loading'
 import { getClicksData } from '../../../../actions/analytics'
 
 function Clicks(props) {
-    
-    const { time, campaignID } = props
 
-    const clicksData = useSelector(state => state.analytics.clicksData)
-    const GET_CLICKS_DATA_PROCESS = useSelector(state => state.userInfo.GET_CLICKS_DATA)
-    const dispatch = useDispatch()
+  const { time, campaignID } = props
 
-    useEffect(() => {
-        dispatch(getClicksData(campaignID, time))
-    }, [time, campaignID])
+  const clicksData = useSelector(state => state.analytics.clicksData)
+  const GET_CLICKS_DATA_PROCESS = useSelector(state => state.userInfo.GET_CLICKS_DATA)
+  const dispatch = useDispatch()
 
-    if (GET_CLICKS_DATA_PROCESS) return <div className="min-height-container"><Loading /></div>
+  useEffect(() => {
+    dispatch(getClicksData(campaignID, time))
+  }, [time, campaignID])
 
-    return (
-        <div className="mx-0 mx-sm-3">
-            <Row>
-                <Col xs="12" sm={{ size: 10, offset: 1 }} className="padding-x">
-                    <ClickSplineChart clicksData={clicksData} time={time} campaignID={campaignID} />
-                </Col>
-            </Row>
-            <Row className="mt-4">
-                <Col xs="12" sm={{ size: 10, offset: 1 }} className="padding-x">
-                    <ClickTotalSplineChart clicksData={clicksData} time={time} campaignID={campaignID} />
-                </Col>
-            </Row>
-            <Row className="my-4">
-                <Col xs="12" sm={{ size: 10, offset: 1 }} className="padding-x">
-                    <ProductBenefitSplineChart clicksData={clicksData} time={time} campaignID={campaignID} />
-                </Col>
-            </Row>
-        </div>
-    )
+  if (GET_CLICKS_DATA_PROCESS) return <div className="min-height-container"><Loading /></div>
+
+  return (
+    <div className="mx-0 mx-sm-3">
+      <Row>
+        <Col xs="12" sm={{ size: 10, offset: 1 }} className="padding-x">
+          <ClickSplineChart clicksData={clicksData} time={time} campaignID={campaignID} />
+        </Col>
+      </Row>
+      <Row className="mt-4">
+        <Col xs="12" sm={{ size: 10, offset: 1 }} className="padding-x">
+          <ClickTotalSplineChart clicksData={clicksData} time={time} campaignID={campaignID} />
+        </Col>
+      </Row>
+      <Row className="my-4">
+        <Col xs="12" sm={{ size: 10, offset: 1 }} className="padding-x">
+          <ProductBenefitSplineChart clicksData={clicksData} time={time} campaignID={campaignID} />
+        </Col>
+      </Row>
+    </div>
+  )
 }
 
 export default Clicks

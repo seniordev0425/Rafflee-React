@@ -9,65 +9,65 @@ import { NUMBER_PER_PAGE } from '../../../utils/constants'
 
 function MyBillsLayout() {
 
-    const isLoading = useSelector(state => state.userInfo.GET_MY_BILLS_SUCCESS)
-    const billsList = useSelector(state => state.userInfo.myBills)
-    const pdfInvoice = useSelector(state => state.userInfo.pdfInvoice)
-    
-    const dispatch = useDispatch()
+  const isLoading = useSelector(state => state.userInfo.GET_MY_BILLS_SUCCESS)
+  const billsList = useSelector(state => state.userInfo.myBills)
+  const pdfInvoice = useSelector(state => state.userInfo.pdfInvoice)
 
-    const [minValue, setMinValue] = useState(0)
-    const [maxValue, setMaxValue] = useState(NUMBER_PER_PAGE)
+  const dispatch = useDispatch()
 
-    useEffect(() => {
-        dispatch(getMyBills())
-    }, [])
+  const [minValue, setMinValue] = useState(0)
+  const [maxValue, setMaxValue] = useState(NUMBER_PER_PAGE)
 
-    useEffect(() => {
-        if (pdfInvoice) {    
-            var fileName = 'download.pdf';
-            var link = document.createElement("a");
-            link.setAttribute("href", `data:application/octet-stream;base64,${pdfInvoice}`);
-            link.setAttribute("download", fileName);    
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
+  useEffect(() => {
+    dispatch(getMyBills())
+  }, [])
 
-            dispatch({type: 'INIT_STATE', state: 'pdfInvoice', data: ''})
-        }
-    }, [pdfInvoice])
+  useEffect(() => {
+    if (pdfInvoice) {
+      var fileName = 'download.pdf';
+      var link = document.createElement("a");
+      link.setAttribute("href", `data:application/octet-stream;base64,${pdfInvoice}`);
+      link.setAttribute("download", fileName);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
 
-    const handlePagination = (value) => {
-        setMinValue((value - 1) * NUMBER_PER_PAGE)
-        setMaxValue((value) * NUMBER_PER_PAGE)
+      dispatch({ type: 'INIT_STATE', state: 'pdfInvoice', data: '' })
     }
+  }, [pdfInvoice])
 
-    const renderMyBillsList = () => {
-        return (
-            billsList.slice(minValue, maxValue).map((item, index) =>
-                <div key={index} className="promotion-list-item-container">
-                    <MyBillsItem item={item} />
-                </div>
-            )
-        )
-    }
+  const handlePagination = (value) => {
+    setMinValue((value - 1) * NUMBER_PER_PAGE)
+    setMaxValue((value) * NUMBER_PER_PAGE)
+  }
 
-    if (isLoading) {
-        return <div className="min-height-container"><Loading /></div>
-    }
-
+  const renderMyBillsList = () => {
     return (
-        <div className="min-height-container">
-            {renderMyBillsList()}
-            <Pagination
-                responsive
-                defaultCurrent={1}
-                defaultPageSize={NUMBER_PER_PAGE}
-                onChange={handlePagination}
-                total={billsList.length}
-                className="py-5 d-flex justify-content-center"
-            />
+      billsList.slice(minValue, maxValue).map((item, index) =>
+        <div key={index} className="promotion-list-item-container">
+          <MyBillsItem item={item} />
         </div>
+      )
     )
+  }
+
+  if (isLoading) {
+    return <div className="min-height-container"><Loading /></div>
+  }
+
+  return (
+    <div className="min-height-container">
+      {renderMyBillsList()}
+      <Pagination
+        responsive
+        defaultCurrent={1}
+        defaultPageSize={NUMBER_PER_PAGE}
+        onChange={handlePagination}
+        total={billsList.length}
+        className="py-5 d-flex justify-content-center"
+      />
+    </div>
+  )
 }
 
 export default MyBillsLayout

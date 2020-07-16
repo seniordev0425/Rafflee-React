@@ -13,93 +13,93 @@ import { required } from '../../utils/validation'
 import { useTranslation } from 'react-i18next'
 
 function LogInModal(props) {
-    const { t } = useTranslation()
+  const { t } = useTranslation()
 
-    const { toggle } = props
+  const { toggle } = props
 
-    const isLoading = useSelector(state => state.userInfo.LOG_IN_SUCCESS)
-    const ip = useSelector(state => state.userInfo.ip)
-    const dispatch = useDispatch()
+  const isLoading = useSelector(state => state.userInfo.LOG_IN_SUCCESS)
+  const ip = useSelector(state => state.userInfo.ip)
+  const dispatch = useDispatch()
 
-    const [openForgotModal, setOpenForgotModal] = useState(false)
+  const [openForgotModal, setOpenForgotModal] = useState(false)
 
-    const handleForgotModal = () => setOpenForgotModal(!openForgotModal)
+  const handleForgotModal = () => setOpenForgotModal(!openForgotModal)
 
-    const onSubmit = (values) => {
-        var body = {
-            username: values.username,
-            password: values.password,
-            device_id: isMobile ? deviceDetect().model : 'Laptop',
-            ip: ip
-        }
-        dispatch(logIn(body, values.rememberMe))
+  const onSubmit = (values) => {
+    var body = {
+      username: values.username,
+      password: values.password,
+      device_id: isMobile ? deviceDetect().model : 'Laptop',
+      ip: ip
     }
+    dispatch(logIn(body, values.rememberMe))
+  }
 
-    return (
+  return (
 
-        <div>
-            <FinalForm
-                onSubmit={onSubmit}
-                render={({ handleSubmit }) => (
-                    <Form onSubmit={handleSubmit}>
-                        <FormGroup>
-                            <Field
-                                name="username"
-                                component={FormInput}
-                                className="custom-form-control"
-                                type="text"
-                                placeholder={t('signin_modal.username')}
-                                validate={required(t('signin_modal.username_required'))}
+    <div>
+      <FinalForm
+        onSubmit={onSubmit}
+        render={({ handleSubmit }) => (
+          <Form onSubmit={handleSubmit}>
+            <FormGroup>
+              <Field
+                name="username"
+                component={FormInput}
+                className="custom-form-control"
+                type="text"
+                placeholder={t('signin_modal.username')}
+                validate={required(t('signin_modal.username_required'))}
 
-                            />
-                        </FormGroup>
-                        <FormGroup>
-                            <Field
-                                name="password"
-                                component={FormInput}
-                                className="custom-form-control"
-                                type="password"
-                                placeholder={t('signin_modal.password')}
-                                validate={required(t('signin_modal.password_required'))}
-                            />
-                        </FormGroup>
-                        <FormGroup className="d-flex align-items-center justify-content-between">
-                            <div className="d-flex align-items-center">
-                                <Field
-                                    name="rememberMe"
-                                    component={FormCheckbox}
-                                    type="checkbox"
-                                />
-                                <span className="ml-1" style={{color: '#7E9AA8'}}> {t('login_modal.remember_me')}</span>
-                            </div>
-                            <span className="policy-button" onClick={handleForgotModal} style={{color: '#7E9AA8'}}>{t('login_modal.forgot_password')}</span>
-                        </FormGroup>
-                        <Button
-                            htmlType="submit"
-                            type="primary"
-                            className="ant-blue-btn mt-4"
-                            loading={isLoading}
-                        >
-                            {!isLoading && t('button_group.log_in')}
-                        </Button>
-                    </Form>
-                )}
-            />
-            <ForgotPassword
-                open={openForgotModal}
-                onToggle={handleForgotModal}
-                toggle={toggle}
-            />
-        </div>
-    )
+              />
+            </FormGroup>
+            <FormGroup>
+              <Field
+                name="password"
+                component={FormInput}
+                className="custom-form-control"
+                type="password"
+                placeholder={t('signin_modal.password')}
+                validate={required(t('signin_modal.password_required'))}
+              />
+            </FormGroup>
+            <FormGroup className="d-flex align-items-center justify-content-between">
+              <div className="d-flex align-items-center">
+                <Field
+                  name="rememberMe"
+                  component={FormCheckbox}
+                  type="checkbox"
+                />
+                <span className="ml-1" style={{ color: '#7E9AA8' }}> {t('login_modal.remember_me')}</span>
+              </div>
+              <span className="policy-button" onClick={handleForgotModal} style={{ color: '#7E9AA8' }}>{t('login_modal.forgot_password')}</span>
+            </FormGroup>
+            <Button
+              htmlType="submit"
+              type="primary"
+              className="ant-blue-btn mt-4"
+              loading={isLoading}
+            >
+              {!isLoading && t('button_group.log_in')}
+            </Button>
+          </Form>
+        )}
+      />
+      <ForgotPassword
+        open={openForgotModal}
+        onToggle={handleForgotModal}
+        toggle={toggle}
+      />
+    </div>
+  )
 }
 
 function mapStateToProps(state) {
-    return {
-        myInfo: state.userInfo.myInfo,
-        token: state.userInfo.token,
-        company: state.userInfo.company,
-    }
+  return {
+    myInfo: state.userInfo.myInfo,
+    token: state.userInfo.token,
+    company: state.userInfo.company,
+  }
 }
 
 export default connect(mapStateToProps)(LogInModal)
