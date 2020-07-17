@@ -204,7 +204,7 @@
         "watch_video": "Run video",
         "select_answer": "Select your answers",
         "social_detail_alert": "This part is only for phone number verified users.",
-        "mandatory_action": "It is a mandatory action to participate",
+        "mandatory_action": "Mandatory action to participate",
         "prize_description": "The winner will receive prizes below:",
         "the_prize": "The Prizes"
     },
@@ -525,6 +525,11 @@
         "instagram_basic_connect": "INSTAGRAM BASIC CONNECT",
         "instagram_business_connect": "INSTAGRAM BUSINESS CONNECT",
         "select_page": "Select business page"
+    },
+    "winning_detail_modal": {
+      "name": "Name",
+      "number_of_eligible_people": "Number of eligible people",
+      "description": "Description"
     },
     "required": "Required"
 }

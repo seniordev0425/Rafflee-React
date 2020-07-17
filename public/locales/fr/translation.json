@@ -524,5 +524,10 @@
         "instagram_business_connect": "Instagram Business Connect",
         "select_page": "Select business page"
     },
+    "winning_detail_modal": {
+      "name": "Name",
+      "number_of_eligible_people": "Number of eligible people",
+      "description": "Description"
+    },
     "required": "Obligatoire"
 }

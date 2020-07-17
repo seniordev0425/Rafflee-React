@@ -19,7 +19,14 @@ const initialFeedState = {
   campaignWinnings: [],
   winnerArr: [],
   TOGGLE_WINNERS_MODAL: false,
-  created_promotion_id: ''
+  created_promotion_id: '',
+  winningData: {
+    name: '',
+    number_of_eligible_people: '',
+    description: '',
+    image_url: ''
+  }
+
 }
 
 function Campaign(state = initialFeedState, action) {
@@ -59,6 +66,11 @@ function Campaign(state = initialFeedState, action) {
       return {
         ...state,
         created_promotion_id: action.data
+      }
+    case 'SET_WINNING_DATA':
+      return {
+        ...state,
+        winningData: action.data
       }
     default:
       return state

@@ -13,6 +13,7 @@ import Loading from '../components/common/Loading'
 import {
   campaignParticipate,
   getCampaignData,
+  getWinningData,
   updateFavorite,
   campaignParticipateTwitterLike,
   campaignParticipateTwitterRetweet,
@@ -27,6 +28,7 @@ import {
 } from '../actions/campaign'
 
 import { useTranslation } from 'react-i18next'
+import WinningDetailModal from '../components/modals/WinningDetailModal'
 import VideoPlayerModal from '../components/modals/VideoPlayerModal'
 import ParticipateConfirmModal from '../components/modals/ParticipateConfirmModal'
 import TwitterLikeValidationModal from '../components/modals/ActionValidationModals/TwitterLikeValidationModal'
@@ -62,6 +64,7 @@ function CampaignDetail(props) {
   const [openConfirm, setOpenConfirm] = useState(false)
   const [answers, setAnswers] = useState([])
 
+  const [openWinningDetailModal, setOpenWinningDetailModal] = useState(false)
   const [openTwitterLikeModal, setOpenTwitterLikeModal] = useState(false)
   const [openTwitterRetweetModal, setOpenTwitterRetweetModal] = useState(false)
   const [openTwitterCommentModal, setOpenTwitterCommentModal] = useState(false)
@@ -117,10 +120,17 @@ function CampaignDetail(props) {
     OPEN_TWITCH_FOLLOW_VALIDATION_MODAL,
   ])
 
+  const goToWinningDetail = (winningName, id) => {
+    setOpenWinningDetailModal(true)
+    dispatch(getWinningData(id, winningName))
+  }
+
   const renderWinnings = () => {
     return (
       (campaignData.winnings || []).map((item, index) =>
-        <div key={index} className="mt-3 color-blue font-size-11">{`- ${item}`}</div>
+        <div key={index} className="mt-3 color-blue font-size-11">
+          <span className="pointer" onClick={() => goToWinningDetail(item, campaignData.pk)}>{`- ${item}`}</span>
+        </div>
       )
     )
   }
@@ -260,9 +270,9 @@ function CampaignDetail(props) {
             </Col>
           </Row>
 
-          <FacebookProvider appId="569090800341241">
+          {/* <FacebookProvider appId="569090800341241">
             <EmbeddedPost href="https://www.facebook.com/permalink.php?story_fbid=101580514958135&id=101514858298034" width="500" />
-          </FacebookProvider>
+          </FacebookProvider> */}
 
           {(action.social_action && action.social_action[2].instagram_profile) &&
             <Row className="mb-4 mt-4">
@@ -440,6 +450,10 @@ function CampaignDetail(props) {
       <ParticipateConfirmModal open={openConfirm} onToggle={handleOpenConfirm} promotion_id={campaignData.pk} company_name={campaignData.company_name} />
       <VideoPlayerModal open={openVideo} onToggle={handleOpenVideo} videoEnded={videoEnded} />
 
+      <WinningDetailModal
+        open={openWinningDetailModal}
+        onToggle={() => setOpenWinningDetailModal(!openWinningDetailModal)}
+      />
       <TwitterLikeValidationModal
         open={openTwitterLikeModal}
         onToggle={() => setOpenTwitterLikeModal(!openTwitterLikeModal)}

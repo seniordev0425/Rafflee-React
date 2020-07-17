@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Select } from 'antd'
 import { Map, Marker, Tooltip, TileLayer } from 'react-leaflet'
+import MarkerClusterGroup from "react-leaflet-markercluster";
 
 import { useTranslation } from 'react-i18next'
 
@@ -39,14 +40,16 @@ function MapChart(props) {
         <TileLayer
           url='https://{s}.tile.osm.org/{z}/{x}/{y}.png'
         />
-        {(overralDemographics).filter((item) => (item.continent || '').includes(continent) && (item.country || '').includes(country) && (item.city || '').includes(city)).map((item, index) => (
-          <Marker key={index} position={{ lat: item.latitude, lng: item.longitude }}>
-            <Tooltip direction="top" offset={[0, 0]} opacity={1} permanent>
-              <div className="text-center font-size-9 color-blue">{`${item.city || ''} ${item.number}`}</div>
-              <div className="text-center color-red font-weight-bold">{item.country || ''}</div>
-            </Tooltip>
-          </Marker>
-        ))}
+        <MarkerClusterGroup>
+          {(overralDemographics).filter((item) => (item.continent || '').includes(continent) && (item.country || '').includes(country) && (item.city || '').includes(city)).map((item, index) => (
+            <Marker key={index} position={{ lat: item.latitude, lng: item.longitude }}>
+              <Tooltip direction="top" offset={[0, 0]} opacity={1} permanent>
+                <div className="text-center font-size-9 color-blue">{`${item.city || ''} ${item.number}`}</div>
+                <div className="text-center color-red font-weight-bold">{item.country || ''}</div>
+              </Tooltip>
+            </Marker>
+          ))}
+        </MarkerClusterGroup>
       </Map>
       <div className="d-block d-lg-flex mt-3">
         <div className="d-flex align-items-center mr-3 mt-3">

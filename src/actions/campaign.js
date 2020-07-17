@@ -548,6 +548,21 @@ function onSuccessCloseCampaign(data) {
     data: { promotion_id: data.promotion_id, end_date: data.end_date }
   }
 }
+/////////////////////////////////////////////// CLOSE_CAMPAIGN_ACTION
+export function getWinningData(id, name) {
+  return apiAction({
+    url: APIROUTE + `campaign/prizes/details/${id}/${name}/`,
+    onSuccess: onSuccessGetWinningData,
+    onFailure: onFailed,
+    label: 'GET_WINNING_DATA',
+  });
+}
+function onSuccessGetWinningData(data) {
+  return {
+    type: 'SET_WINNING_DATA',
+    data: data
+  }
+}
 
 function apiAction({
   url = "",
