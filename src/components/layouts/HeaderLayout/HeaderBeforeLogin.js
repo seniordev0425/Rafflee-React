@@ -14,6 +14,8 @@ function HeaderBeforeLogin() {
   const [isLogin, setIsLogin] = useState(false)
   const [visible, setVisible] = useState(false)
 
+  const [hide, setHide] = useState(false)
+
   useEffect(() => {
     setHide(window.innerWidth <= 1000)
     window.addEventListener('resize', resize)
@@ -35,8 +37,6 @@ function HeaderBeforeLogin() {
   const switch_login_signin = (val) => {
     setIsLogin(val)
   }
-
-  const [hide, setHide] = useState(false)
 
   const resize = () => {
     setHide(window.innerWidth <= 1000)

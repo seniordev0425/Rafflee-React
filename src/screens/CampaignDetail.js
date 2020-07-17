@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom'
 import { Row, Col } from 'reactstrap'
 import { Button } from 'antd'
+import { FacebookProvider, EmbeddedPost } from 'react-facebook';
 import moment from 'moment'
 import AppLayout from '../components/layouts/AppLayout'
 import images from '../utils/images'
@@ -258,6 +259,10 @@ function CampaignDetail(props) {
               </div>
             </Col>
           </Row>
+
+          <FacebookProvider appId="569090800341241">
+            <EmbeddedPost href="https://www.facebook.com/permalink.php?story_fbid=101580514958135&id=101514858298034" width="500" />
+          </FacebookProvider>
 
           {(action.social_action && action.social_action[2].instagram_profile) &&
             <Row className="mb-4 mt-4">

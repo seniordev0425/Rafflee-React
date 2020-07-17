@@ -105,12 +105,6 @@ function Dashboard(props) {
                       <span className="ml-3"> {t('menubar.following')} {`(${(myFollowing || []).length})`}</span>
                     </Link>
                   </Menu.Item>
-                  {/* <Menu.Item key="my-circle">
-                                        <Link to="/dashboard/my-circle">
-                                            <img src={match.params.menu === 'my-circle' ? images.my_circle_icon_blue : images.my_circle_icon} alt="" />
-                                            <span className="ml-3"> {t('menubar.my_circle')} {`(${(myFavoriteCompanies || []).length})`}</span>
-                                        </Link>
-                                    </Menu.Item> */}
                 </Menu>
               )}
           </Col>

@@ -48,7 +48,7 @@ function Audience(props) {
         </Col>
       </Row>
       <Row className="my-5">
-        <Col xs="12" sm={{ size: 10, offset: 1 }} className="padding-x followers-container">
+        <Col xs="12" sm={{ size: 10, offset: 1 }} className="padding-x d-block justify-content-between d-md-flex">
           <div className="default-border audience-bottom-div p-3 p-sm-4 d-flex justify-content-between flex-column">
             <div className="d-flex justify-content-between">
               <div className="font-size-11 font-weight-bold">{t('analytics_page.active_clients')}</div>

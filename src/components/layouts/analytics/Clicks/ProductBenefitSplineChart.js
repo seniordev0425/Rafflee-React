@@ -12,7 +12,7 @@ function SplineChart(props) {
 
   const getLabelArr = () => {
     let labelArr = []
-    clicksData.map((item) => {
+    clicksData.forEach((item) => {
       if (time === 'year') labelArr.push(moment(item.date).format('MMM'))
       else labelArr.push(moment(item.date).format('M.D'))
     })
@@ -21,7 +21,7 @@ function SplineChart(props) {
 
   const getClicks = (name) => {
     let clicks = []
-    clicksData.map((item) => {
+    clicksData.forEach((item) => {
       clicks.push(item[name])
     })
     return clicks
@@ -96,6 +96,28 @@ function SplineChart(props) {
           pointRadius: clicksData.length === 1 ? 2 : 0,
           pointHitRadius: 10,
           data: getClicks('product_benefit_by_participations')
+        },
+        {
+          label: t('analytics_page.benefit_by_follower'),
+          fill: true,
+          lineTension: 0.3,
+          backgroundColor: "rgba(255, 255,255, .3)",
+          borderColor: "#4103A3",
+          borderCapStyle: "butt",
+          borderDash: [],
+          borderWidth: isMobile ? 1 : 3,
+          borderDashOffset: 0.0,
+          borderJoinStyle: "miter",
+          pointBorderColor: "#4103A3",
+          pointBackgroundColor: "#4103A3",
+          pointBorderWidth: 10,
+          pointHoverRadius: 5,
+          pointHoverBackgroundColor: "#4103A3",
+          pointHoverBorderColor: "#4103A3",
+          pointHoverBorderWidth: 2,
+          pointRadius: clicksData.length === 1 ? 2 : 0,
+          pointHitRadius: 10,
+          data: getClicks('product_benefit_followers')
         },
         {
           label: t('analytics_page.benefit_by_total'),
@@ -195,6 +217,28 @@ function SplineChart(props) {
             data: getClicks('product_benefit_by_participations')
           },
           {
+            label: t('analytics_page.benefit_by_follower'),
+            fill: true,
+            lineTension: 0.3,
+            backgroundColor: "rgba(255, 255,255, .3)",
+            borderColor: "#4103A3",
+            borderCapStyle: "butt",
+            borderDash: [],
+            borderWidth: isMobile ? 1 : 3,
+            borderDashOffset: 0.0,
+            borderJoinStyle: "miter",
+            pointBorderColor: "#4103A3",
+            pointBackgroundColor: "#4103A3",
+            pointBorderWidth: 10,
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: "#4103A3",
+            pointHoverBorderColor: "#4103A3",
+            pointHoverBorderWidth: 2,
+            pointRadius: clicksData.length === 1 ? 2 : 0,
+            pointHitRadius: 10,
+            data: getClicks('product_benefit_followers')
+          },
+          {
             label: t('analytics_page.benefit_by_total'),
             fill: true,
             lineTension: 0.3,
@@ -233,6 +277,8 @@ function SplineChart(props) {
             <span className="ml-2 mr-3 font-size-8">{t('analytics_page.benefit_by_action')}</span>
             <span style={{ width: 10, height: 10, background: "#7e3aac", borderRadius: 3, display: "inline-block" }} />
             <span className="ml-2 mr-3 font-size-8">{t('analytics_page.benefit_by_participation')}</span>
+            <span style={{ width: 10, height: 10, background: "#4103A3", borderRadius: 3, display: "inline-block" }} />
+            <span className="ml-2 mr-3 font-size-8">{t('analytics_page.benefit_by_follower')}</span>
             <span style={{ width: 10, height: 10, background: "#0dcde1", borderRadius: 3, display: "inline-block" }} />
             <span className="ml-2 font-size-8">{t('analytics_page.benefit_by_total')}</span>
           </div>

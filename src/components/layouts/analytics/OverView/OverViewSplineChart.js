@@ -81,6 +81,50 @@ function SplineChart(props) {
           fill: true,
           lineTension: 0.3,
           backgroundColor: "rgba(255, 255,255, .3)",
+          borderColor: "#4103a2",
+          borderCapStyle: "butt",
+          borderDash: [],
+          borderWidth: isMobile ? 1 : 3,
+          borderDashOffset: 0.0,
+          borderJoinStyle: "miter",
+          pointBorderColor: "#4103a2",
+          pointBackgroundColor: "#4103a2",
+          pointBorderWidth: 10,
+          pointHoverRadius: 5,
+          pointHoverBackgroundColor: "#4103a2",
+          pointHoverBorderColor: "#4103a2",
+          pointHoverBorderWidth: 2,
+          pointRadius: overviewFollowersArr[time].length === 1 ? 2 : 0,
+          pointHitRadius: 10,
+          data: getFollowers('twitch')
+        },
+        {
+          label: t('analytics_page.facebook'),
+          fill: true,
+          lineTension: 0.3,
+          backgroundColor: "rgba(255, 255,255, .3)",
+          borderColor: "#3b5999",
+          borderCapStyle: "butt",
+          borderDash: [],
+          borderWidth: isMobile ? 1 : 3,
+          borderDashOffset: 0.0,
+          borderJoinStyle: "miter",
+          pointBorderColor: "#3b5999",
+          pointBackgroundColor: "#3b5999",
+          pointBorderWidth: 10,
+          pointHoverRadius: 5,
+          pointHoverBackgroundColor: "#3b5999",
+          pointHoverBorderColor: "#3b5999",
+          pointHoverBorderWidth: 2,
+          pointRadius: overviewFollowersArr[time].length === 1 ? 2 : 0,
+          pointHitRadius: 10,
+          data: getFollowers('facebook')
+        },
+        {
+          label: t('analytics_page.instagram'),
+          fill: true,
+          lineTension: 0.3,
+          backgroundColor: "rgba(255, 255,255, .3)",
           borderColor: "#7e3aac",
           borderCapStyle: "butt",
           borderDash: [],
@@ -96,7 +140,7 @@ function SplineChart(props) {
           pointHoverBorderWidth: 2,
           pointRadius: overviewFollowersArr[time].length === 1 ? 2 : 0,
           pointHitRadius: 10,
-          data: getFollowers('twitch')
+          data: getFollowers('instagram')
         }
       ]
     }
@@ -172,6 +216,50 @@ function SplineChart(props) {
             pointRadius: overviewFollowersArr[time].length === 1 ? 2 : 0,
             pointHitRadius: 10,
             data: getFollowers('twitch')
+          },
+          {
+            label: t('analytics_page.facebook'),
+            fill: true,
+            lineTension: 0.3,
+            backgroundColor: "rgba(255, 255,255, .3)",
+            borderColor: "#3b5999",
+            borderCapStyle: "butt",
+            borderDash: [],
+            borderWidth: isMobile ? 1 : 3,
+            borderDashOffset: 0.0,
+            borderJoinStyle: "miter",
+            pointBorderColor: "#3b5999",
+            pointBackgroundColor: "#3b5999",
+            pointBorderWidth: 10,
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: "#3b5999",
+            pointHoverBorderColor: "#3b5999",
+            pointHoverBorderWidth: 2,
+            pointRadius: overviewFollowersArr[time].length === 1 ? 2 : 0,
+            pointHitRadius: 10,
+            data: getFollowers('facebook')
+          },
+          {
+            label: t('analytics_page.instagram'),
+            fill: true,
+            lineTension: 0.3,
+            backgroundColor: "rgba(255, 255,255, .3)",
+            borderColor: "#7e3aac",
+            borderCapStyle: "butt",
+            borderDash: [],
+            borderWidth: isMobile ? 1 : 3,
+            borderDashOffset: 0.0,
+            borderJoinStyle: "miter",
+            pointBorderColor: "#7e3aac",
+            pointBackgroundColor: "#7e3aac",
+            pointBorderWidth: 10,
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: "#7e3aac",
+            pointHoverBorderColor: "#7e3aac",
+            pointHoverBorderWidth: 2,
+            pointRadius: overviewFollowersArr[time].length === 1 ? 2 : 0,
+            pointHitRadius: 10,
+            data: getFollowers('instagram')
           }
         ]
       }
@@ -225,7 +313,8 @@ function SplineChart(props) {
               }],
             }
           }
-        } />
+        } 
+      />
     </div>
   )
 }

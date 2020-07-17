@@ -12,7 +12,7 @@ function SplineChart(props) {
 
   const getLabelArr = () => {
     let labelArr = []
-    clicksData.map((item) => {
+    clicksData.forEach((item) => {
       if (time === 'year') labelArr.push(moment(item.date).format('MMM'))
       else labelArr.push(moment(item.date).format('M.D'))
     })
@@ -21,7 +21,7 @@ function SplineChart(props) {
 
   const getClicks = (name) => {
     let clicks = []
-    clicksData.map((item) => {
+    clicksData.forEach((item) => {
       clicks.push(item[name])
     })
     return clicks
@@ -96,6 +96,28 @@ function SplineChart(props) {
           pointRadius: clicksData.length === 1 ? 2 : 0,
           pointHitRadius: 10,
           data: getClicks('click_participations')
+        },
+        {
+          label: t('analytics_page.followers'),
+          fill: true,
+          lineTension: 0.3,
+          backgroundColor: "rgba(255, 255,255, .3)",
+          borderColor: "#0dcde1",
+          borderCapStyle: "butt",
+          borderDash: [],
+          borderWidth: isMobile ? 1 : 3,
+          borderDashOffset: 0.0,
+          borderJoinStyle: "miter",
+          pointBorderColor: "#0dcde1",
+          pointBackgroundColor: "#0dcde1",
+          pointBorderWidth: 10,
+          pointHoverRadius: 5,
+          pointHoverBackgroundColor: "#0dcde1",
+          pointHoverBorderColor: "#0dcde1",
+          pointHoverBorderWidth: 2,
+          pointRadius: clicksData.length === 1 ? 2 : 0,
+          pointHitRadius: 10,
+          data: getClicks('number_of_followers')
         }
       ]
     }
@@ -171,6 +193,28 @@ function SplineChart(props) {
             pointRadius: clicksData.length === 1 ? 2 : 0,
             pointHitRadius: 10,
             data: getClicks('click_participations')
+          },
+          {
+            label: t('analytics_page.followers'),
+            fill: true,
+            lineTension: 0.3,
+            backgroundColor: "rgba(255, 255,255, .3)",
+            borderColor: "#0dcde1",
+            borderCapStyle: "butt",
+            borderDash: [],
+            borderWidth: isMobile ? 1 : 3,
+            borderDashOffset: 0.0,
+            borderJoinStyle: "miter",
+            pointBorderColor: "#0dcde1",
+            pointBackgroundColor: "#0dcde1",
+            pointBorderWidth: 10,
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: "#0dcde1",
+            pointHoverBorderColor: "#0dcde1",
+            pointHoverBorderWidth: 2,
+            pointRadius: clicksData.length === 1 ? 2 : 0,
+            pointHitRadius: 10,
+            data: getClicks('number_of_followers')
           }
         ]
       }
@@ -188,7 +232,9 @@ function SplineChart(props) {
             <span style={{ width: 10, height: 10, background: "#0091ff", borderRadius: 3, display: "inline-block" }} />
             <span className="ml-2 mr-3 font-size-8">{t('analytics_page.actions')}</span>
             <span style={{ width: 10, height: 10, background: "#7e3aac", borderRadius: 3, display: "inline-block" }} />
-            <span className="ml-2 font-size-8">{t('analytics_page.participations')}</span>
+            <span className="ml-2 mr-3 font-size-8">{t('analytics_page.participations')}</span>
+            <span style={{ width: 10, height: 10, background: "#0dcde1", borderRadius: 3, display: "inline-block" }} />
+            <span className="ml-2 font-size-8">{t('analytics_page.followers')}</span>
           </div>
         </div>
       </div>

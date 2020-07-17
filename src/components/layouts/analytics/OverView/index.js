@@ -70,7 +70,12 @@ function OverView(props) {
             </div>
             <div className="d-flex justify-content-between mt-3 align-items-center">
               <span className="font-weight-bold font-size-11">{t('analytics_page.total')}{getTotalFollowerNumber('rafflee')}</span>
-              <span className="font-size-11 mt-3" style={{ color: "#55C97B" }}>(+{getIncreaseFollowerNumber('rafflee')})</span>
+              <span
+                className="font-size-11 mt-3"
+                style={{ color: getIncreaseFollowerNumber('rafflee') >= 0 ? "#55C97B" : "rgb(255, 0, 24)" }}
+              >
+                ({getIncreaseFollowerNumber('rafflee') >= 0 ? `+${getIncreaseFollowerNumber('rafflee')}` : `${getIncreaseFollowerNumber('rafflee')}`})
+              </span>
             </div>
             <ColorBar width={100} color="#0091ff" />
           </div>
@@ -81,7 +86,12 @@ function OverView(props) {
             </div>
             <div className="d-flex justify-content-between mt-3 align-items-center">
               <span className="font-weight-bold font-size-11">{t('analytics_page.total')}{getTotalFollowerNumber('twitter')}</span>
-              <span className="font-size-11 mt-3" style={{ color: "#55C97B" }}>(+{getIncreaseFollowerNumber('twitter')})</span>
+              <span
+                className="font-size-11 mt-3"
+                style={{ color: getIncreaseFollowerNumber('twitter') >= 0 ? "#55C97B" : "rgb(255, 0, 24)" }}
+              >
+                ({getIncreaseFollowerNumber('twitter') >= 0 ? `+${getIncreaseFollowerNumber('twitter')}` : `${getIncreaseFollowerNumber('twitter')}`})
+              </span>
             </div>
             <ColorBar width={100} color="#0091ff" />
           </div>
@@ -92,7 +102,12 @@ function OverView(props) {
             </div>
             <div className="d-flex justify-content-between mt-3 align-items-center">
               <span className="font-weight-bold font-size-11">{t('analytics_page.total')}{getTotalFollowerNumber('twitch')}</span>
-              <span className="font-size-11 mt-3" style={{ color: "#55C97B" }}>(+{getIncreaseFollowerNumber('twitch')})</span>
+              <span
+                className="font-size-11 mt-3"
+                style={{ color: getIncreaseFollowerNumber('twitch') >= 0 ? "#55C97B" : "rgb(255, 0, 24)" }}
+              >
+                ({getIncreaseFollowerNumber('twitch') >= 0 ? `+${getIncreaseFollowerNumber('twitch')}` : `${getIncreaseFollowerNumber('twitch')}`})
+              </span>
             </div>
             <ColorBar width={100} color="#0091ff" />
           </div>
@@ -103,7 +118,12 @@ function OverView(props) {
             </div>
             <div className="d-flex justify-content-between mt-3 align-items-center">
               <span className="font-weight-bold font-size-11">{t('analytics_page.total')}{getTotalFollowerNumber('facebook')}</span>
-              <span className="font-size-11 mt-3" style={{ color: "#55C97B" }}>(+{getIncreaseFollowerNumber('facebook')})</span>
+              <span
+                className="font-size-11 mt-3"
+                style={{ color: getIncreaseFollowerNumber('facebook') >= 0 ? "#55C97B" : "rgb(255, 0, 24)" }}
+              >
+                ({getIncreaseFollowerNumber('facebook') >= 0 ? `+${getIncreaseFollowerNumber('facebook')}` : `${getIncreaseFollowerNumber('facebook')}`})
+              </span>
             </div>
             <ColorBar width={100} color="#0091ff" />
           </div>
@@ -114,7 +134,12 @@ function OverView(props) {
             </div>
             <div className="d-flex justify-content-between mt-3 align-items-center">
               <span className="font-weight-bold font-size-11">{t('analytics_page.total')}{getTotalFollowerNumber('instagram')}</span>
-              <span className="font-size-11 mt-3" style={{ color: "#55C97B" }}>(+{getIncreaseFollowerNumber('instagram')})</span>
+              <span
+                className="font-size-11 mt-3"
+                style={{ color: getIncreaseFollowerNumber('instagram') >= 0 ? "#55C97B" : "rgb(255, 0, 24)" }}
+              >
+                ({getIncreaseFollowerNumber('instagram') >= 0 ? `+${getIncreaseFollowerNumber('instagram')}` : `${getIncreaseFollowerNumber('instagram')}`})
+              </span>
             </div>
             <ColorBar width={100} color="#0091ff" />
           </div>

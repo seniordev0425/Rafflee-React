@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
 import images from '../../../utils/images'
@@ -6,20 +6,6 @@ import HeaderBeforeLogin from './HeaderBeforeLogin'
 import HeaderAfterLogin from './HeaderAfterLogin'
 
 function Header(props) {
-  const [hideNav, setHideNav] = useState(false)
-
-  useEffect(() => {
-    setHideNav(window.innerWidth <= 1000)
-    window.addEventListener('resize', resize)
-    return () => {
-      window.removeEventListener('resize', resize)
-    }
-  }, [])
-
-  const resize = () => {
-    setHideNav(window.innerWidth <= 1000)
-  }
-
   return (
     <div className="header-container">
       <div style={{ width: "100%", height: 40 }}>

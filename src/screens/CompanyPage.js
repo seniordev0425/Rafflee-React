@@ -302,8 +302,19 @@ function CompanyPage(props) {
       <div className="min-height-container">
         {renderCompanyWall()}
       </div>
-      <CircleFollowModal open={openFollowModal} onToggle={handleFollowModal} pk={companyInformation.company.pk} companyName={companyInformation.company.company_name} />
-      <CircleUnfollowModal open={openUnfollowModal} onToggle={handleUnfollowModal} pk={companyInformation.company.pk} companyName={companyInformation.company.company_name} />
+      
+      <CircleFollowModal
+        open={openFollowModal}
+        onToggle={handleFollowModal}
+        pk={companyInformation.company.pk}
+        companyName={companyInformation.company.company_name}
+      />
+      <CircleUnfollowModal
+        open={openUnfollowModal}
+        onToggle={handleUnfollowModal}
+        pk={companyInformation.company.pk}
+        companyName={companyInformation.company.company_name}
+      />
     </AppLayout>
   )
 }

@@ -223,7 +223,7 @@ function Routes(props) {
         declineButtonStyle={{ background: "#f01212", borderRadius: 3, margin: 0, marginLeft: 15 }}
       >
         This site uses cookies, by continuing to use the service, you accept our Cookie Policy
-            </CookieConsent>
+      </CookieConsent>
     </ScrollToTop>
   )
 }

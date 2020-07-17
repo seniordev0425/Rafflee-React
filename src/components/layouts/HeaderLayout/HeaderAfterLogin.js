@@ -21,6 +21,8 @@ function HeaderAfterLogin(props) {
 
   const [visible, setVisible] = useState(false)
 
+  const [hide, setHide] = useState(false)
+
   useEffect(() => {
     if (SUCCESS_LOG_OUT) {
       history.push('/')
@@ -39,8 +41,6 @@ function HeaderAfterLogin(props) {
   const log_Out = () => {
     dispatch(logOut())
   }
-
-  const [hide, setHide] = useState(false)
 
   const resize = () => {
     setHide(window.innerWidth <= 1000)
