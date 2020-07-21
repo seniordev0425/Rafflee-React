@@ -1,9 +1,20 @@
 const initialFeedState = {
+  ///////////////////////////////////////////// This state is for all promotions
   allPromotions: [],
+
+  ///////////////////////////////////////////// This state is for hot promotions array in homepage(first page)
   hotPromotions: [],
+
+  ///////////////////////////////////////////// This state is for highlight promotions array in homepage(first page)
   highlightedPromotions: [],
+
+  ///////////////////////////////////////////// This state is for new promotions array in homepage(first page)
   newPromotions: [],
+
+  ///////////////////////////////////////////// This state is for bestoffer promotions array in homepage(first page)
   bestOfferPromotions: [],
+
+  ///////////////////////////////////////////// This state is for categories array in homepage(first page)
   categories: []
 }
 

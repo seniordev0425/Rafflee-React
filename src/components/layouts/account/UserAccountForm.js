@@ -58,8 +58,6 @@ function UserAccountForm() {
 
   const [initialDate, setInitialDate] = useState('1970-01-01')
 
-  const [imgFormData, setImgFormData] = useState([])
-
   const [genderState, setGenderState] = useState('')
 
   const [imgBase64Data, setImgBase64Data] = useState('')
@@ -78,6 +76,7 @@ function UserAccountForm() {
   const { country_code, national_number, profile_picture, birth_date, country, gender } = userProfile
 
   useEffect(() => {
+    ///////////////////////////////////////////// Load user profile data
     dispatch(getUserProfile())
   }, [])
 
@@ -89,6 +88,7 @@ function UserAccountForm() {
   }, [toggleVerificationModal])
 
   useEffect(() => {
+    ///////////////////////////////////////////// Initialize phone number, country name and gender
     var tmpNum = {}
     tmpNum.phone_country = country_code
     tmpNum.phone_number = national_number
@@ -103,6 +103,7 @@ function UserAccountForm() {
   useEffect(() => {
     if (UPDATE_USER_PROFILE_SUCCESS) {
       if (imgBase64Data) {
+        ///////////////////////////////////////////// Update user profile picture in header after update user profile
         dispatch({ type: 'UPDATE_USER_PICTURE', data: imgBase64Data })
         dispatch({ type: 'INIT_STATE', state: 'SUCCESS_UPDATE_USER_PROFILE', data: false })
       }
@@ -114,6 +115,7 @@ function UserAccountForm() {
 
     var blob = null
     if (imgBase64Data) {
+      ///////////////////////////////////////////// Convert base64 img data to blob data
       var block = imgBase64Data.split(";");
       var contentType = block[0].split(":")[1];
       var realData = block[1].split(",")[1];
@@ -143,10 +145,9 @@ function UserAccountForm() {
     setCountryName(getName(countryCode))
   }
 
+  ///////////////////////////////////////////// Callback function that is called whenever profile picture changes
   const onDrop = (picture) => {
     if (picture && picture[0]) {
-      setImgFormData(picture[0])
-
       var file_read = new FileReader()
       file_read.addEventListener('load', (e) => {
         setImgBase64Data(e.target.result)
@@ -154,7 +155,8 @@ function UserAccountForm() {
       file_read.readAsDataURL(picture[0])
     }
   }
-
+  
+  ///////////////////////////////////////////// Send sms
   const sendSMS = () => {
     var body = {
       number: `+${verifyPhoneNumber.phone_country}${verifyPhoneNumber.phone_number}`
@@ -413,11 +415,11 @@ function UserAccountForm() {
                   <div className="half-width">
                     <div className="footer-link-bold mb-3 d-flex align-items-center">
                       <span>Instagram</span>
-                      {userProfile.instagram &&
+                      {(userProfile.instagram || userProfile.instagram_business) &&
                         <FontAwesomeIcon icon={faCheckCircle} className="color-blue font-size-12 ml-3" />
                       }
                     </div>
-                    <InstagramConnectBtn connected={userProfile.instagram} />
+                    <InstagramConnectBtn connected={userProfile.instagram_business || false} />
                   </div>
                 </div>
                 <div className="mt-4 d-flex justify-content-end">

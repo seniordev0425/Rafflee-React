@@ -16,10 +16,12 @@ function PaymentSection(props) {
   const CREATE_CAMPAIGN_SUCCESS = useSelector(state => state.userInfo.SUCCESS_CREATE_CAMPAIGN)
   const dispatch = useDispatch()
 
+  // Required messages array which are displayed when click on create campaign
   const [messages, setMessages] = useState([])
 
   useEffect(() => {
     if (CREATE_CAMPAIGN_SUCCESS) {
+      // if success then switch current section to resume
       dispatch({ type: 'INIT_STATE', state: 'SUCCESS_CREATE_CAMPAIGN', data: false })
       setSection('resume')
     }
@@ -29,8 +31,9 @@ function PaymentSection(props) {
     let required_messages = []
 
     let categories = []
-    params.temp_categories.map((item) => categories.push({ name: item }))
+    params.temp_categories.forEach((item) => categories.push({ name: item }))
 
+    // Make facebook action para
     let facebook = []
     if (params.facebook.comment) {
       facebook.push({ action: 'comment', id: params.facebook.comment_id, model: params.facebook.comment_model, entries: params.facebook.comment_entries || 1, mandatory: params.facebook.comment_mandatory })
@@ -45,6 +48,7 @@ function PaymentSection(props) {
       facebook.push({ action: 'post', model: params.facebook.post_model, entries: params.facebook.post_entries || 1, mandatory: params.facebook.post_mandatory })
     }
 
+    // Make twitter action para
     let twitter = []
     if (params.twitter.comment) {
       twitter.push({ action: 'tweet', model: params.twitter.comment_model, entries: params.twitter.comment_entries || 1, mandatory: params.twitter.comment_mandatory })
@@ -59,6 +63,7 @@ function PaymentSection(props) {
       twitter.push({ action: 'follow', type: params.twitter.follow_type, id: params.twitter.follow_id, entries: params.twitter.follow_entries || 1, mandatory: params.twitter.follow_mandatory })
     }
 
+    // Make instagram action para
     let instagram = []
     if (params.instagram.profile) {
       instagram.push({ action: 'instagram_profile', url: params.instagram.profile_url, entries: params.instagram.profile_entries || 1, mandatory: params.instagram.profile_mandatory })
@@ -67,21 +72,25 @@ function PaymentSection(props) {
       instagram.push({ action: 'instagram_publication', url: params.instagram.publication_url, entries: params.instagram.publication_entries || 1, mandatory: params.instagram.publication_mandatory })
     }
 
+    // Make twitch action para
     let twitch = []
     if (params.twitch.follow) {
       twitch.push({ action: 'follow', follow_name: params.twitch.follow_name, entries: params.twitch.follow_entries || 1, mandatory: params.twitch.follow_mandatory })
     }
 
+    // Make video action para
     let url_video = {}
     if (params.url_video.video) {
       url_video = { url: params.url_video.url, url_mobile: params.url_video.url_mobile, video_name: params.url_video.video_name, entries: params.url_video.entries || 1, mandatory: params.url_video.mandatory }
     }
 
+    // Make website action para
     let url_website = {}
     if (params.url_website.website) {
       url_website = { url: params.url_website.url, entries: params.url_website.entries || 1, mandatory: params.url_website.mandatory }
     }
 
+    // Check required fields and add messages
     if (params.promotion_name === '') required_messages.push(t('create_campaign_page.required_fields.campaign_name'))
     if (params.promotion_picture === '') required_messages.push(t('create_campaign_page.required_fields.campaign_image'))
     if (params.promotion_description === '') required_messages.push(t('create_campaign_page.required_fields.short_description'))
@@ -104,6 +113,7 @@ function PaymentSection(props) {
       return
     }
 
+    // Genarate form data to create campaign
     let promotion_picture = null
     let block = params.promotion_picture.split(";")
     let contentType = block[0].split(":")[1]

@@ -51,7 +51,7 @@ function TwitterFollowScreenName(props) {
         }
         setFetching(false)
       })
-      .catch(error => {
+      .catch(() => {
         setFetching(false)
       })
   }

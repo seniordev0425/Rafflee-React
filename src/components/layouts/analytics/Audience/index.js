@@ -17,6 +17,7 @@ function Audience(props) {
 
   const { campaignID, demographics_type } = props
 
+  // Following Redux states are defined in reducer with comments
   const activeGender = useSelector(state => state.analytics.activeGender)
   const overralActionDemographics = useSelector(state => state.analytics.overralActionDemographics)
   const overralParitipationDemographics = useSelector(state => state.analytics.overralParitipationDemographics)
@@ -25,6 +26,7 @@ function Audience(props) {
   const dispatch = useDispatch()
 
   useEffect(() => {
+    // Update data according campaignID
     dispatch(getActiveGender(campaignID))
     dispatch(getDemographics(campaignID, 'action'))
     dispatch(getDemographics(campaignID, 'participation'))

@@ -21,8 +21,8 @@ function SignUpModal(props) {
 
   const { showCompanyModal, toggle, history } = props
 
-  const isLoading = useSelector(state => state.userInfo.SIGN_UP_SUCCESS)
-  const signUpSuccess = useSelector(state => state.userInfo.signUpSuccess)
+  const isLoading = useSelector(state => state.userInfo.SIGN_UP)
+  const SIGN_UP_SUCCESS = useSelector(state => state.userInfo.SUCCESS_SIGN_UP)
 
   const dispatch = useDispatch()
   const [agree, setAgree] = useState(false)
@@ -34,11 +34,11 @@ function SignUpModal(props) {
   const [containEnoughLen, setContainEnoughLen] = useState(false)
 
   useEffect(() => {
-    if (signUpSuccess) {
-      dispatch({ type: 'SIGN_UP_SUCCESS', data: false })
+    if (SIGN_UP_SUCCESS) {
+      dispatch({ type: 'INIT_STATE', state: 'SUCCESS_SIGN_UP', data: false })
       toggle()
     }
-  }, [signUpSuccess])
+  }, [SIGN_UP_SUCCESS])
 
   const onSubmit = (values) => {
     if (!containCapital || !containSpecial || !containLowercase || !containCapital || !containNumber) return

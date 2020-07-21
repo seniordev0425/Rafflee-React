@@ -24,6 +24,7 @@ function PreviewSection(props) {
     )
   }
 
+  // Returns remaining dates
   const calcRemainingDates = () => {
     const currentDate = moment(Date.now())
     const endDate = moment(Date.parse(params.end_date))
@@ -34,10 +35,12 @@ function PreviewSection(props) {
     return diffDuration.days() > 0 ? diffDuration.days() : 0
   }
 
+  // Returns maximum participants
   const calcMaximumParticipants = () => {
     if (params.campaign_type === 'giveaway') return 0
     let max_participants = 0
-    params.winnings.map(item => max_participants += parseInt(item.number_of_people || '0'))
+    // if campaign type is 'reward' then maximum participants is calculated by sum of every prize's number of people
+    params.winnings.forEach(item => max_participants += parseInt(item.number_of_people || '0'))
     return max_participants
   }
 

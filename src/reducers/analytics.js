@@ -1,9 +1,19 @@
 const initialFeedState = {
-  overviewDayFollowers: [],
-  overviewWeekFollowers: [],
-  overviewMonthFollowers: [],
-  overviewYearFollowers: [],
-  activeGender: {
+
+  ///////////////////////////////////////////// Daily followers data in overview section
+  overviewDayFollowers: [],  
+
+  ///////////////////////////////////////////// Weekly followers data in overview section           
+  overviewWeekFollowers: [],   
+
+  ///////////////////////////////////////////// Monthly followers data in overview section         
+  overviewMonthFollowers: [],    
+
+  ///////////////////////////////////////////// Yearly followers data in overview section       
+  overviewYearFollowers: [],     
+
+  ///////////////////////////////////////////// Gender percentages in audience section   
+  activeGender: {                       
     unknow: 0,
     female_percentage: 0,
     male: 0,
@@ -11,10 +21,18 @@ const initialFeedState = {
     unknow_percentage: 0,
     female: 0
   },
-  overralActionDemographics: [],
-  overralParitipationDemographics: [],
-  campaignsInformations: [],
-  clicksData: []
+
+  ///////////////////////////////////////////// ActionDemographics data for google map in audience section
+  overralActionDemographics: [],     
+  
+  ///////////////////////////////////////////// ParticipationDemographics data for google map in audience section
+  overralParitipationDemographics: [],  
+
+  ///////////////////////////////////////////// This state is a campaign list for google map filter in audience section
+  campaignsInformations: [],  
+  
+  ///////////////////////////////////////////// This state is a clicks data for graphs in clicks section
+  clicksData: []                        
 }
 
 function Analytics(state = initialFeedState, action) {

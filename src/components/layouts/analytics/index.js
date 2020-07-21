@@ -21,15 +21,22 @@ function AnalyticsLayout() {
   const GET_CAMPAIGNS_INFORMATIONS_PROCESS = useSelector(state => state.userInfo.GET_CAMPAIGNS_INFORMATIONS)
   const dispatch = useDispatch()
 
+  /////////////////////////////////////////// Enum (overview, audience, engagement, clicks, following)
   const [currentTab, setCurrentTab] = useState('overview')
 
+  /////////////////////////////////////////// Enum (day, week, month, year)
   const [time, setTime] = useState('week')
+
+  /////////////////////////////////////////// Enum (action, participation)
   const [demographics_type, setDemographicsType] = useState('action')
+
+  /////////////////////////////////////////// campaignID('all' or campaignID)
   const [campaignID, setCampaignID] = useState('all')
 
   const { Option } = Select
 
   useEffect(() => {
+    /////////////////////////////////////////// Load campaigns
     dispatch(getCampaignsInformations())
   }, [])
 

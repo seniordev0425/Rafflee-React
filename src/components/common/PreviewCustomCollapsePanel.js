@@ -8,6 +8,7 @@ import images from '../../utils/images'
 
 import { useTranslation } from 'react-i18next'
 
+///////////////////////////////////////////// This component is similar to CustomCollapsePanel component but is used in preview section of create campaign page
 function PreviewCustomCollapsePanel(props) {
   const { t } = useTranslation()
 

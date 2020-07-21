@@ -16,6 +16,7 @@ function OverView(props) {
 
   const { time } = props
 
+  /////////////////////////////////////////// Following Redux states are defined in reducer with comments
   const overviewDayFollowers = useSelector(state => state.analytics.overviewDayFollowers)
   const overviewWeekFollowers = useSelector(state => state.analytics.overviewWeekFollowers)
   const overviewMonthFollowers = useSelector(state => state.analytics.overviewMonthFollowers)
@@ -42,7 +43,7 @@ function OverView(props) {
     dispatch(overviewFollowers('year'))
   }, [])
 
-  const getIncreaseFollowerNumber = (socialName) => {
+  const getIncreasedFollowerNumber = (socialName) => {
     let arr_len = overviewFollowersArr[time].length
     if (arr_len === 0) return 0
     else if (arr_len === 1) return overviewFollowersArr[time][0][socialName]
@@ -72,9 +73,9 @@ function OverView(props) {
               <span className="font-weight-bold font-size-11">{t('analytics_page.total')}{getTotalFollowerNumber('rafflee')}</span>
               <span
                 className="font-size-11 mt-3"
-                style={{ color: getIncreaseFollowerNumber('rafflee') >= 0 ? "#55C97B" : "rgb(255, 0, 24)" }}
+                style={{ color: getIncreasedFollowerNumber('rafflee') >= 0 ? "#55C97B" : "rgb(255, 0, 24)" }}
               >
-                ({getIncreaseFollowerNumber('rafflee') >= 0 ? `+${getIncreaseFollowerNumber('rafflee')}` : `${getIncreaseFollowerNumber('rafflee')}`})
+                ({getIncreasedFollowerNumber('rafflee') >= 0 ? `+${getIncreasedFollowerNumber('rafflee')}` : `${getIncreasedFollowerNumber('rafflee')}`})
               </span>
             </div>
             <ColorBar width={100} color="#0091ff" />
@@ -88,9 +89,9 @@ function OverView(props) {
               <span className="font-weight-bold font-size-11">{t('analytics_page.total')}{getTotalFollowerNumber('twitter')}</span>
               <span
                 className="font-size-11 mt-3"
-                style={{ color: getIncreaseFollowerNumber('twitter') >= 0 ? "#55C97B" : "rgb(255, 0, 24)" }}
+                style={{ color: getIncreasedFollowerNumber('twitter') >= 0 ? "#55C97B" : "rgb(255, 0, 24)" }}
               >
-                ({getIncreaseFollowerNumber('twitter') >= 0 ? `+${getIncreaseFollowerNumber('twitter')}` : `${getIncreaseFollowerNumber('twitter')}`})
+                ({getIncreasedFollowerNumber('twitter') >= 0 ? `+${getIncreasedFollowerNumber('twitter')}` : `${getIncreasedFollowerNumber('twitter')}`})
               </span>
             </div>
             <ColorBar width={100} color="#0091ff" />
@@ -104,9 +105,9 @@ function OverView(props) {
               <span className="font-weight-bold font-size-11">{t('analytics_page.total')}{getTotalFollowerNumber('twitch')}</span>
               <span
                 className="font-size-11 mt-3"
-                style={{ color: getIncreaseFollowerNumber('twitch') >= 0 ? "#55C97B" : "rgb(255, 0, 24)" }}
+                style={{ color: getIncreasedFollowerNumber('twitch') >= 0 ? "#55C97B" : "rgb(255, 0, 24)" }}
               >
-                ({getIncreaseFollowerNumber('twitch') >= 0 ? `+${getIncreaseFollowerNumber('twitch')}` : `${getIncreaseFollowerNumber('twitch')}`})
+                ({getIncreasedFollowerNumber('twitch') >= 0 ? `+${getIncreasedFollowerNumber('twitch')}` : `${getIncreasedFollowerNumber('twitch')}`})
               </span>
             </div>
             <ColorBar width={100} color="#0091ff" />
@@ -120,9 +121,9 @@ function OverView(props) {
               <span className="font-weight-bold font-size-11">{t('analytics_page.total')}{getTotalFollowerNumber('facebook')}</span>
               <span
                 className="font-size-11 mt-3"
-                style={{ color: getIncreaseFollowerNumber('facebook') >= 0 ? "#55C97B" : "rgb(255, 0, 24)" }}
+                style={{ color: getIncreasedFollowerNumber('facebook') >= 0 ? "#55C97B" : "rgb(255, 0, 24)" }}
               >
-                ({getIncreaseFollowerNumber('facebook') >= 0 ? `+${getIncreaseFollowerNumber('facebook')}` : `${getIncreaseFollowerNumber('facebook')}`})
+                ({getIncreasedFollowerNumber('facebook') >= 0 ? `+${getIncreasedFollowerNumber('facebook')}` : `${getIncreasedFollowerNumber('facebook')}`})
               </span>
             </div>
             <ColorBar width={100} color="#0091ff" />
@@ -136,9 +137,9 @@ function OverView(props) {
               <span className="font-weight-bold font-size-11">{t('analytics_page.total')}{getTotalFollowerNumber('instagram')}</span>
               <span
                 className="font-size-11 mt-3"
-                style={{ color: getIncreaseFollowerNumber('instagram') >= 0 ? "#55C97B" : "rgb(255, 0, 24)" }}
+                style={{ color: getIncreasedFollowerNumber('instagram') >= 0 ? "#55C97B" : "rgb(255, 0, 24)" }}
               >
-                ({getIncreaseFollowerNumber('instagram') >= 0 ? `+${getIncreaseFollowerNumber('instagram')}` : `${getIncreaseFollowerNumber('instagram')}`})
+                ({getIncreasedFollowerNumber('instagram') >= 0 ? `+${getIncreasedFollowerNumber('instagram')}` : `${getIncreasedFollowerNumber('instagram')}`})
               </span>
             </div>
             <ColorBar width={100} color="#0091ff" />

@@ -43,7 +43,8 @@ function CampaignType(props) {
                         <img src={images.question_icon} width={26} height={26} alt="" />
                       </Tooltip>
                     )
-                    : (<img src={images.question_mark_gray_icon} width={26} height={26} alt="" />)
+                    : 
+                    (<img src={images.question_mark_gray_icon} width={26} height={26} alt="" />)
                   }
                 </div>
               </div>

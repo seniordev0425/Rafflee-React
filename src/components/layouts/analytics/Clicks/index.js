@@ -11,11 +11,13 @@ function Clicks(props) {
 
   const { time, campaignID } = props
 
+  // Following Redux states are defined in reducer with comments
   const clicksData = useSelector(state => state.analytics.clicksData)
   const GET_CLICKS_DATA_PROCESS = useSelector(state => state.userInfo.GET_CLICKS_DATA)
   const dispatch = useDispatch()
 
   useEffect(() => {
+    // Update clicks data according campaignID and time props
     dispatch(getClicksData(campaignID, time))
   }, [time, campaignID])
 

@@ -30,7 +30,6 @@ function CategoryFilter(props) {
         />
       </div>
       {renderList()}
-
     </div>
   )
 }

@@ -13,8 +13,10 @@ import { useTranslation } from 'react-i18next'
 function CreateCampaignLayout() {
   const { t } = useTranslation()
 
+  // Enum (setup, campaign_type, action, preview, payment, resume)
   const [currentSection, setCurrentSection] = useState('setup')
 
+  // This state includes all params to create campaign
   const [params, setParams] = useState({
     promotion_name: '',
     promotion_picture: '',
@@ -101,12 +103,14 @@ function CreateCampaignLayout() {
     }
   })
 
+  // Update params
   const _setParams = (key, val) => {
     let temp_params = { ...params }
     temp_params[key] = val
     setParams(temp_params)
   }
 
+  // Update params too. But this function is for only social action update
   const _setAction = (socialName, actionType, val) => {
     let temp_params = { ...params }
     temp_params[socialName][actionType] = val
@@ -114,6 +118,7 @@ function CreateCampaignLayout() {
     console.log(params)
   }
 
+  // Switch section
   const _setSection = (section) => {
     setCurrentSection(section)
   }

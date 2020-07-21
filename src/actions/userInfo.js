@@ -110,15 +110,15 @@ export function signUp(params) {
     data: qs.stringify(params),
     onSuccess: onSuccessSignUp,
     onFailure: onFailed,
-    label: 'SIGN_UP_SUCCESS',
+    label: 'SIGN_UP',
     requireErrorMessage: true
   });
 }
 function onSuccessSignUp(data) {
   openNotification('success', successMessages[localStorage.getItem('i18nextLng')].signUp)
   return {
-    type: 'SIGN_UP_SUCCESS',
-    data: true
+    type: '',
+    data: ''  
   }
 }
 /////////////////////////////////////////////// COMPANY-CONTACT-ACTION

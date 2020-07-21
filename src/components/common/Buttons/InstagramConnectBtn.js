@@ -14,7 +14,7 @@ function InstagramConnectBtn(props) {
   const handleModal = () => setOpenModal(!openModal)
 
   const openInstagramConnectModal = () => {
-    // if (connected) return
+    if (connected) return
     setOpenModal(true)
   }
 

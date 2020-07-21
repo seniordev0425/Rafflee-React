@@ -57,7 +57,6 @@ function JoinHeader(props) {
 
 function mapStateToProps(state) {
   return {
-    myInfo: state.userInfo.myInfo,
     token: state.userInfo.token,
   }
 }

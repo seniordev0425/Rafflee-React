@@ -18,32 +18,38 @@ function SetupSection(props) {
 
   const { params, setParams, setSection } = props
 
+  // Following Redux state is defined in reducer with comments
   const categoryArr = useSelector(state => state.homepage.categories)
   const dispatch = useDispatch()
 
   const { Option } = Select
+
+  // This state is option children of category select
   const [children, setChildren] = useState([])
   const [openImageCropModal, setOpenImageCropModal] = useState(false)
 
   const handleImageCropModal = () => setOpenImageCropModal(!openImageCropModal)
 
   useEffect(() => {
+    // Load categories
     dispatch(getCategories())
   }, [])
 
   useEffect(() => {
+    // Generate option component array using cagetory list
     let temp = []
-    categoryArr.map((item) =>
+    categoryArr.forEach((item) =>
       temp.push(<Option key={item.name}>{item.name}</Option>)
     )
     setChildren(temp)
   }, [categoryArr])
 
+  // Update categories
   const handleCategories = (val) => {
-    console.log(val)
     setParams('temp_categories', val)
   }
 
+  // Update prize
   const setWinningVal = (e, id, type) => {
     let newArr = [...params.winnings]
     if (type === 'image') {
@@ -55,6 +61,7 @@ function SetupSection(props) {
     }
   }
 
+  // Remove prize
   const removeWinning = (id) => {
     if (params.winnings.length === 1) {
       openNotification('warning', t('create_campaign_page.must_have_one_winning_at_least'))
@@ -63,11 +70,13 @@ function SetupSection(props) {
     setParams('winnings', params.winnings.filter((item, i) => (i !== id)))
   }
 
+  // Add prize
   const addWinning = () => {
     let newWinning = { name: '', number_of_people: '', description: '', image: '' }
     setParams('winnings', [...params.winnings, newWinning])
   }
 
+  // Render winning items based on winnings array (winning item is equal to prize)
   const renderWinningItems = () => {
     return (
       params.winnings.map((item, id) =>
@@ -76,6 +85,7 @@ function SetupSection(props) {
     )
   }
 
+  // Update promotion picture
   const setPromotionPicture = (picture) => {
     if (picture && picture[0]) {
       var file_read = new FileReader()

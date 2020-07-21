@@ -33,7 +33,7 @@ import Loading from '../../common/Loading';
 import { useTranslation } from 'react-i18next'
 
 
-function CompanyAccountForm(props) {
+function CompanyAccountForm() {
   const { t } = useTranslation()
 
   const companyProfile = useSelector(state => state.userInfo.companyProfile)
@@ -46,7 +46,6 @@ function CompanyAccountForm(props) {
   const [initialPhoneNum, setInitialPhoneNum] = useState({ phone_number: null, phone_country: null })
   const [countryName, setCountryName] = useState('')
   const [imgBase64Data, setImgBase64Data] = useState('')
-  const [imgFormData, setImgFormData] = useState([])
   const [openDeleteModal, setOpenDeleteModal] = useState(false)
   const [openImageCropModal, setOpenImageCropModal] = useState(false)
 
@@ -56,10 +55,12 @@ function CompanyAccountForm(props) {
   const { logo, country_code, national_number, country } = companyProfile
 
   useEffect(() => {
+    ///////////////////////////////////////////// Load company profile data
     dispatch(getCompanyProfile())
   }, [])
 
   useEffect(() => {
+    ///////////////////////////////////////////// Initialize phone number and country name
     var tmpNum = {}
     tmpNum.phone_country = country_code
     tmpNum.phone_number = national_number
@@ -70,6 +71,7 @@ function CompanyAccountForm(props) {
   useEffect(() => {
     if (UPDATE_COMPANY_PROFILE_SUCCESS) {
       if (imgBase64Data) {
+        ///////////////////////////////////////////// Update company profile picture in header after update company profile
         dispatch({ type: 'UPDATE_COMPANY_LOGO', data: imgBase64Data })
         dispatch({ type: 'INIT_STATE', state: 'SUCCESS_UPDATE_COMPANY_PROFILE', data: false })
       }
@@ -81,6 +83,7 @@ function CompanyAccountForm(props) {
 
     var blob = null
     if (imgBase64Data) {
+      ///////////////////////////////////////////// Convert base64 img data to blob data
       var block = imgBase64Data.split(";");
       var contentType = block[0].split(":")[1];
       var realData = block[1].split(",")[1];
@@ -102,10 +105,9 @@ function CompanyAccountForm(props) {
     setCountryName(getName(countryCode))
   }
 
+  ///////////////////////////////////////////// Callback function that is called whenever profile picture changes
   const onDrop = (picture) => {
     if (picture && picture[0]) {
-      setImgFormData(picture[0])
-
       var file_read = new FileReader()
       file_read.addEventListener('load', (e) => {
         setImgBase64Data(e.target.result)
@@ -159,7 +161,6 @@ function CompanyAccountForm(props) {
                   </FormGroup>
                 </div>
 
-
                 <div className="mt-4 half-width">
                   <FormGroup>
                     <div className="footer-link-bold mb-3">{t('account_page.company_name')}</div>
@@ -173,8 +174,8 @@ function CompanyAccountForm(props) {
                       validate={required(t('account_page.company_name_required'))}
                     />
                   </FormGroup>
-
                 </div>
+
                 <div className="mt-4 half-width">
                   <FormGroup>
                     <div className="footer-link-bold mb-3">{t('account_page.country')}</div>
@@ -308,11 +309,11 @@ function CompanyAccountForm(props) {
                   <div className="mt-4 half-width">
                     <div className="footer-link-bold mb-3 d-flex align-items-center">
                       <span>Instagram</span>
-                      {companyProfile.instagram &&
+                      {(companyProfile.instagram || companyProfile.instagram_business) &&
                         <FontAwesomeIcon icon={faCheckCircle} className="color-blue font-size-12 ml-3" />
                       }
                     </div>
-                    <InstagramConnectBtn connected={companyProfile.instagram} />
+                    <InstagramConnectBtn connected={companyProfile.instagram_business || false} />
                   </div>
                 </Row>
                 <Row style={{ justifyContent: "flex-end" }}>

@@ -11,6 +11,7 @@ function SplineChart(props) {
 
   const { overviewFollowersArr, time } = props
 
+  // Get X-axis labels. Depends on time prop
   const getLabelArr = () => {
     let labelArr = []
     overviewFollowersArr[time].map((item) => {
@@ -20,6 +21,7 @@ function SplineChart(props) {
     return labelArr
   }
 
+  // Get Y-axis values. Depends on time prop and social name
   const getFollowers = (name) => {
     let followers = []
     overviewFollowersArr[time].map((item) => {
@@ -28,6 +30,7 @@ function SplineChart(props) {
     return followers
   }
 
+  // Init data for graph
   const [data, setData] = useState({
     dataLine: {
       labels: getLabelArr(),
@@ -147,6 +150,7 @@ function SplineChart(props) {
   })
 
   useEffect(() => {
+    // Update data according time prop
     setData({
       dataLine: {
         labels: getLabelArr(),

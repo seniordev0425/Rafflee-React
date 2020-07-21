@@ -1,6 +1,11 @@
 const initialFeedState = {
+  ///////////////////////////////////////////// This state is an available facebook pages of account
   facebookPages: [],
+
+  ///////////////////////////////////////////// This state is an available publications depend on facebook pages
   facebookPublications: [],
+
+  ///////////////////////////////////////////// This state is an available instagram pages of account
   instagramBusinessPages: []
 }
 

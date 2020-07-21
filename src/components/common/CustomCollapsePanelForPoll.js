@@ -11,6 +11,7 @@ import { openNotification } from '../../utils/notification'
 
 import { useTranslation } from 'react-i18next'
 
+///////////////////////////////////////////// This component is similar to CustomCollapsePanel
 function CustomCollapsePanelForPoll(props) {
   const { t } = useTranslation()
 

@@ -1,10 +1,15 @@
 const initialFeedState = {
+
+  ///////////////////////////////////////////// This state is a token of account
   token: '',
+
+  ///////////////////////////////////////////// This state is a company status of account
   company: false,
-  myInfo: null,
-  isLoading: false,
+
+  ///////////////////////////////////////////// This state is an ip address of device
   ip: '1.1.1.1',
 
+  ///////////////////////////////////////////// This state is a profile data of common user account
   userProfile: {
     address: '',
     national_number: '',
@@ -28,6 +33,7 @@ const initialFeedState = {
 
   phone_number_verified: false,
 
+  ///////////////////////////////////////////// This state is a profile data of company account
   companyProfile: {
     city: '',
     national_number: '',
@@ -45,15 +51,31 @@ const initialFeedState = {
     facebook: false
   },
 
-  signUpSuccess: false,
+  ///////////////////////////////////////////// This state is an inventory array of common user account which is displayed in inventory page
   userInventory: [],
+
+  ///////////////////////////////////////////// This state is a participation record array of common user account which is displayed in participation history page
   userParticipationHistory: [],
+
+  ///////////////////////////////////////////// This state is a followed campaign array of common user account
   myFollowing: [],
+
+  ///////////////////////////////////////////// This state is a followed company array of users
   myFavoriteCompanies: [],
+
+  ///////////////////////////////////////////// This state is company social wall data
   companyWall: {},
+
+  ///////////////////////////////////////////// This state is a campaigns array of company account
   myCampaigns: [],
+
+  ///////////////////////////////////////////// This state is a bills array of company account
   myBills: [],
+
+
   pdfInvoice: '',
+  
+  ///////////////////////////////////////////// This state is a company information which is used in company page
   companyInformation: {
     company: {
       description: null,
@@ -73,7 +95,11 @@ const initialFeedState = {
     },
     social_wall: {}
   },
+
+
   twitter_oauth_token: '',
+  
+  ///////////////////////////////////////////// This state is used when click on button 'ALREAY WON' in rafflee history page of common user account
   participationResult: {
     giveway_description: '',
     number_of_eligible_people: '',
@@ -83,8 +109,12 @@ const initialFeedState = {
     campaign_name: '',
     giveway_name: ''
   },
+
+
   tempActionData: null,
   twitterDirectConnect: false,
+
+  ///////////////////////////////////////////// This state is used in section wall of account settings page
   wallSetting: {
     twitter: false,
     instagram: false,
@@ -141,11 +171,6 @@ function UserInfo(state = initialFeedState, action) {
         ...state,
         token: action.data.token,
         company: action.data.company
-      }
-    case 'SIGN_UP_SUCCESS':
-      return {
-        ...state,
-        signUpSuccess: action.data
       }
     case 'DELETE_ACCOUNT_SUCCESS':
       return {

@@ -1,5 +1,7 @@
 const initialFeedState = {
-  campaignData: {
+
+  ///////////////////////////////////////////// Campaign data in campaign detail page
+  campaignData: {                                 
     pk: '',
     categories: null,
     winnings: null,
@@ -15,18 +17,29 @@ const initialFeedState = {
     action_participate: [],
     user_actions: []
   },
-  participants: [],
-  campaignWinnings: [],
+
+  ///////////////////////////////////////////// This state is participants array of campaign which is used in live page or participants page of company account
+  participants: [],     
+  
+  ///////////////////////////////////////////// This state is campaign prizes array of campaign which is used in live page of company account 
+  campaignWinnings: [],                           
+
+  ///////////////////////////////////////////// This state is winner array of campaign which is displayed in congratulation modal 
   winnerArr: [],
+
+
   TOGGLE_WINNERS_MODAL: false,
+  
+  ///////////////////////////////////////////// This state is created campaign id which is used in result section of create campaign page
   created_promotion_id: '',
+
+  ///////////////////////////////////////////// This state is prize data which is displayed when click on prizes in campaign detail page
   winningData: {
     name: '',
     number_of_eligible_people: '',
     description: '',
     image_url: ''
   }
-
 }
 
 function Campaign(state = initialFeedState, action) {

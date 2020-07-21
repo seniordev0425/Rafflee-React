@@ -9,6 +9,7 @@ function ResumeSection(props) {
 
   const { params } = props
 
+  // Following Redux state is defined in reducer with comments
   const created_promotion_id = useSelector(state => state.campaign.created_promotion_id)
 
   return (

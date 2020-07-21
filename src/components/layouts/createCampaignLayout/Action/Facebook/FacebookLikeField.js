@@ -14,10 +14,12 @@ function FacebookLikeField(props) {
 
   const { params, setAction } = props
 
+  // Following Redux states are defined in reducer with comments
   const facebookPages = useSelector(state => state.social.facebookPages)
   const facebookPublications = useSelector(state => state.social.facebookPublications)
   const dispatch = useDispatch()
 
+  // Fetch facebook publications when switch facebook pages
   const fetchPublications = (id) => {
     var body = {
       page_id: facebookPages[id].id,

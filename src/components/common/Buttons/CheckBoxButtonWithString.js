@@ -1,3 +1,5 @@
+///////////////////////////////////////////// Unused component at the moment
+
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Checkbox } from 'antd'

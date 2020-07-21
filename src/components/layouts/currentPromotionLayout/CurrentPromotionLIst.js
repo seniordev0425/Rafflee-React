@@ -15,6 +15,7 @@ import { useTranslation } from 'react-i18next'
 function CurrentPromotionList() {
   const { t } = useTranslation()
 
+  // Following Redux states are defined in reducer with comments
   const hotPromotions = useSelector(state => state.homepage.hotPromotions)
   const highlightedPromotions = useSelector(state => state.homepage.highlightedPromotions)
   const newPromotions = useSelector(state => state.homepage.newPromotions)
@@ -31,9 +32,16 @@ function CurrentPromotionList() {
 
   const dispatch = useDispatch()
 
+  // Enum (highlight, new, bestoffer, hot)
   const [currentMenu, setCurrentMenu] = useState('highlight')
+
+  // Category opening status (boolen)
   const [openCategory, setOpenCategory] = useState(false)
+
+  // Category list
   const [categories, setCategories] = useState([])
+
+  // 'All' checked status (boolean)
   const [allChecked, setAllChecked] = useState(true)
 
   const [minValue, setMinValue] = useState(0)
@@ -47,24 +55,28 @@ function CurrentPromotionList() {
   }
 
   useEffect(() => {
+    // Load categories and highlighted promotions. It's because highlighted promotions are displayed at first
     dispatch(getCategories())
     dispatch(getHighlightedPromotions({ token: token }))
   }, [])
 
   useEffect(() => {
+    // Regenerating category array with check status
     let temp = []
-    categoryArr.map((item) =>
+    categoryArr.forEach((item) =>
       temp.push({ name: item.name, checked: true })
     )
     setCategories(temp)
   }, [categoryArr])
 
   useEffect(() => {
+    // Initialize page number to 1 when switch current menu
     setMinValue(0)
     setMaxValue(NUMBER_PER_PAGE)
   }, [currentMenu])
 
   useEffect(() => {
+    // We need to load new promotion array whenever token changes because these array depends on token
     if (currentMenu === 'highlight')
       dispatch(getHighlightedPromotions({ token: token }))
     else if (currentMenu === 'new')
@@ -76,8 +88,13 @@ function CurrentPromotionList() {
   }, [token])
 
   const changeMenu = (val) => {
+    // Switch current menu
     setCurrentMenu(val)
+
+    // Close categories popup
     setOpenCategory(false)
+    
+    // Load new promotion array based on current menu
     if (val === 'highlight')
       dispatch(getHighlightedPromotions({ token: token }))
     else if (val === 'new')
@@ -88,6 +105,7 @@ function CurrentPromotionList() {
       dispatch(getHotPromotions({ token: token }))
   }
 
+  // Toggle categories popup
   const toggleCategory = () => setOpenCategory(!openCategory)
 
   const handleChange = (e) => {
@@ -95,11 +113,13 @@ function CurrentPromotionList() {
     let checked = e.target.checked
     let tempArr = [...categories]
     if (itemVal === "all") {
+      // if 'all' item is clicked update all items with value of checked
       setAllChecked(checked)
       tempArr = tempArr.map(item => ({ ...item, checked: checked }))
       setCategories(tempArr)
     }
     else {
+      // update checked item with value of checked
       tempArr = tempArr.map(item =>
         item.name === itemVal ? { ...item, checked: checked } : item
       )
@@ -109,9 +129,11 @@ function CurrentPromotionList() {
   }
 
   const filter = (list) => {
+    // if 'all' is checked return same list
     if (allChecked)
       return list
 
+    // otherwise return filtered list based on checked categories
     let tempArr = []
     let flag = false
     for (let i = 0; i < list.length; i++) {
@@ -131,6 +153,7 @@ function CurrentPromotionList() {
     return tempArr
   }
 
+  // Update the min, max index which decide the range of current visible promotions
   const handlePagination = (value) => {
     setMinValue((value - 1) * NUMBER_PER_PAGE)
     setMaxValue((value) * NUMBER_PER_PAGE)

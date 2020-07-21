@@ -13,19 +13,21 @@ function CustomCollapsePanel(props) {
   const { t } = useTranslation()
 
   const {
-    title,
-    text,
-    socialName,
-    actionType,
-    mandatory,
-    entries,
-    didAction,
-    tryToOpenValidationModal
+    title,                        /////// campaign action title (string)
+    text,                         /////// campaign action description (string)
+    socialName,                   /////// campaign action name (facebook, twitter, etc.)
+    actionType,                   /////// campaign action type (like, follow, comment, etc.)
+    mandatory,                    /////// campaign action mandatory value (boolean)
+    entries,                      /////// campaign action entries number (integer)
+    didAction,                    /////// already validated this action or not (boolean)
+    tryToOpenValidationModal      /////// action performance function
   } = props
 
   const userProfile = useSelector(state => state.userInfo.userProfile)
   const token = useSelector(state => state.userInfo.token)
   const company = useSelector(state => state.userInfo.company)
+
+  ///////////////////////////////////////////// action validation result. Redux state (boolean)
   const validation = useSelector(state => state.userInfo[`${socialName}_${actionType}_validation`])
   const dispatch = useDispatch()
 
@@ -93,7 +95,8 @@ function CustomCollapsePanel(props) {
         </ExpansionPanelSummary>
 
         <ExpansionPanelDetails>
-          {(token && !company && userProfile.phone_number_verification) ?
+          {(token && !company && userProfile.phone_number_verification)
+            ?
             <div>
               <div style={{ color: '#767B83' }}>
                 {text}

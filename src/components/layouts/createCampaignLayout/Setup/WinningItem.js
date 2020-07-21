@@ -12,17 +12,19 @@ function WinningItem(props) {
 
   const { id, item, removeWinning, setWinningVal } = props
 
+  // Prize image data
   const [imgBase64Data, setImgBase64Data] = useState(item.image)
   const [exceedMaxSize, setExceedMaxSize] = useState(false)
   const [openImageCropModal, setOpenImageCropModal] = useState(false)
 
   useMemo(() => {
+    // Initialize prize image data
     setImgBase64Data(item.image)
   }, [item.image])
 
   const handleImageCropModal = () => setOpenImageCropModal(!openImageCropModal)
 
-  const handleClick = event => {
+  const handleClick = () => {
     document.getElementById('hiddenFileInput' + id).click();
   }
 

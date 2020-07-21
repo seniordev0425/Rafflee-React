@@ -83,7 +83,6 @@ function ResetPassword(props) {
 
 function mapStateToProps(state) {
   return {
-    myInfo: state.userInfo.myInfo,
     token: state.userInfo.token,
     company: state.userInfo.company,
   }

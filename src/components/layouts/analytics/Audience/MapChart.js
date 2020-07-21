@@ -12,22 +12,30 @@ function MapChart(props) {
 
   const { overralDemographics } = props
 
+  // Continent filter state
   const [continent, setContinent] = useState('')
+
+  // Country filter state
   const [country, setCountry] = useState('')
+
+  // City filter state
   const [city, setCity] = useState('')
 
   useEffect(() => {
+    // Initialize following state whenever demographics data change
     setContinent('')
     setCountry('')
     setCity('')
   }, [overralDemographics])
 
+  // Returns countries which continent name is equal to paramter
   const getCountryList = (continent) => {
     let country_arr = []
     overralDemographics.filter((item) => item.continent === continent).map((item) => country_arr.indexOf(item.country) < 0 && country_arr.push(item.country))
     return country_arr
   }
 
+  // Returns cities which country name is equal to paramter
   const getCityList = (country) => {
     let city_arr = []
     overralDemographics.filter((item) => item.country === country).map((item) => city_arr.indexOf(item.city) < 0 && city_arr.push(item.city))

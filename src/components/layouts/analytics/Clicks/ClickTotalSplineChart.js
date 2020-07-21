@@ -10,6 +10,7 @@ function SplineChart(props) {
 
   const { clicksData, time, campaignID } = props
 
+  // Get X-axis labels. Depends on time prop
   const getLabelArr = () => {
     let labelArr = []
     clicksData.map((item) => {
@@ -19,6 +20,7 @@ function SplineChart(props) {
     return labelArr
   }
 
+  // Get Y-axis values. Depends on social name
   const getClicks = (name) => {
     let clicks = []
     clicksData.map((item) => {
@@ -27,6 +29,7 @@ function SplineChart(props) {
     return clicks
   }
 
+  // Init clicks data for graph
   const [data, setData] = useState({
     dataLine: {
       labels: getLabelArr(),
@@ -102,6 +105,7 @@ function SplineChart(props) {
   })
 
   useEffect(() => {
+    // Update clicks data according time and campaignID props
     setData({
       dataLine: {
         labels: getLabelArr(),
