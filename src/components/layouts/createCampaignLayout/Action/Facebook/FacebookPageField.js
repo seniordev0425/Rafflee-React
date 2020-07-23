@@ -9,23 +9,22 @@ import { useTranslation } from 'react-i18next'
 
 const { Option } = Select
 
-function FacebookLikeField(props) {
+function FacebookPageField(props) {
   const { t } = useTranslation()
 
   const { params, setAction } = props
 
   // Following Redux states are defined in reducer with comments
   const facebookPages = useSelector(state => state.social.facebookPages)
-  const facebookPublications = useSelector(state => state.social.facebookPublications)
-  const dispatch = useDispatch()
 
-  // Fetch facebook publications when switch facebook pages
-  const fetchPublications = (id) => {
-    var body = {
-      page_id: facebookPages[id].id,
-      page_access_token: facebookPages[id].access_token
-    }
-    dispatch(getFacebookPublications(body))
+  // Update page id and page name
+  const updatePage = (id) => {
+    facebookPages.forEach((page) => {
+      if (page.id === id) {
+        setAction('facebook', 'page_page_id', id)
+        setAction('facebook', 'page_page_name', page.name)
+      }
+    })
   }
 
   return (
@@ -36,7 +35,7 @@ function FacebookLikeField(props) {
       >
         <div className="d-flex align-items-center">
           <img src={images.facebook_action_icon} width={10} height={16} alt="" />
-          <span className="ml-3">{t('create_campaign_page.like')}</span>
+          <span className="ml-3">{t('create_campaign_page.page')}</span>
         </div>
         <div>
           <Tooltip title="Tooltip will show on mouse enter.">
@@ -44,7 +43,7 @@ function FacebookLikeField(props) {
           </Tooltip>
           <span
             className="ml-3 pointer"
-            onClick={() => setAction('facebook', 'like', false)}
+            onClick={() => setAction('facebook', 'page', false)}
           >
             {t('button_group.remove')}
           </span>
@@ -57,46 +56,48 @@ function FacebookLikeField(props) {
         <Row>
           <Col xs="12" sm="6" className="p-0 pr-sm-2">
             <Select
+              defaultValue={params.facebook.post_page_id}
               className="w-100"
               placeholder={t('create_campaign_page.select_page')}
-              onChange={(id) => fetchPublications(id)}
+              onChange={(id) => updatePage(id)}
               size="large"
             >
-              {facebookPages.map((page, id) => (
-                <Option key={id} value={id}>
+              {facebookPages.map((page) => (
+                <Option key={page.id} value={page.id}>
                   {page.name}
-                </Option>
-              ))}
-            </Select>
-          </Col>
-          <Col xs="12" sm="6" className="p-0 pl-sm-2 mt-3 mt-sm-0">
-            <Select
-              defaultValue={params.facebook.like_id}
-              className="w-100"
-              placeholder={t('create_campaign_page.select_publication')}
-              onChange={(id) => setAction('facebook', 'like_id', id)}
-              size="large"
-            >
-              {facebookPublications.map((publication) => (
-                <Option key={publication.id} value={publication.id}>
-                  {publication.message}
                 </Option>
               ))}
             </Select>
           </Col>
         </Row>
         <Row className="mt-3">
+          <div>
+            <Checkbox
+              checked={params.facebook.page_follow}
+              onChange={(e) => setAction('facebook', 'page_follow', e.target.checked)}
+            >
+              {t('create_campaign_page.follow')}
+            </Checkbox>
+            <Checkbox
+              checked={params.facebook.page_share}
+              onChange={(e) => setAction('facebook', 'page_share', e.target.checked)}
+            >
+              {t('create_campaign_page.share')}
+            </Checkbox>
+          </div>
+        </Row>
+        <Row className="mt-5">
           <Col xs="12" sm="6" className="p-0 pr-sm-2">
             <Input
-              value={params.facebook.like_entries}
-              onChange={(e) => setAction('facebook', 'like_entries', e.target.value)}
+              value={params.facebook.page_entries}
+              onChange={(e) => setAction('facebook', 'page_entries', e.target.value)}
               className="custom-form-control w-100"
               type="number"
               placeholder={t('create_campaign_page.entries')}
             />
           </Col>
           <Col xs="12" sm="6" className="p-0 d-flex align-items-center justify-content-end mt-3 mt-sm-0">
-            <Checkbox checked={params.facebook.like_mandatory} onChange={(e) => setAction('facebook', 'like_mandatory', e.target.checked)} />
+            <Checkbox checked={params.facebook.page_mandatory} onChange={(e) => setAction('facebook', 'page_mandatory', e.target.checked)} />
             <span className="ml-3 footer-link">{t('create_campaign_page.mandatory')}</span>
           </Col>
         </Row>
@@ -105,4 +106,4 @@ function FacebookLikeField(props) {
   )
 }
 
-export default FacebookLikeField
+export default FacebookPageField

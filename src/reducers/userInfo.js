@@ -28,7 +28,8 @@ const initialFeedState = {
     twitch: false,
     snapchat: false,
     instagram: false,
-    facebook: false
+    facebook: false,
+    username: ''
   },
 
   phone_number_verified: false,
@@ -48,7 +49,8 @@ const initialFeedState = {
     twitch: false,
     snapchat: false,
     instagram: false,
-    facebook: false
+    facebook: false,
+    username: ''
   },
 
   ///////////////////////////////////////////// This state is an inventory array of common user account which is displayed in inventory page
@@ -74,7 +76,7 @@ const initialFeedState = {
 
 
   pdfInvoice: '',
-  
+
   ///////////////////////////////////////////// This state is a company information which is used in company page
   companyInformation: {
     company: {
@@ -98,7 +100,7 @@ const initialFeedState = {
 
 
   twitter_oauth_token: '',
-  
+
   ///////////////////////////////////////////// This state is used when click on button 'ALREAY WON' in rafflee history page of common user account
   participationResult: {
     giveway_description: '',
@@ -119,7 +121,10 @@ const initialFeedState = {
     twitter: false,
     instagram: false,
     facebook: {}
-  }
+  },
+
+  ///////////////////////////////////////////// This state is used to check available username in account page
+  usernameCheckedStatus: true
 }
 
 function UserInfo(state = initialFeedState, action) {
@@ -333,6 +338,16 @@ function UserInfo(state = initialFeedState, action) {
       return {
         ...state,
         wallSetting: action.data
+      }
+    case 'SET_USER_NAME_CHECKED_STATUS':
+      return {
+        ...state,
+        usernameCheckedStatus: action.data
+      }
+    case 'UPDATE_TOKEN':
+      return {
+        ...state,
+        token: action.data
       }
     default:
       return state

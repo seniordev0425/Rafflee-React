@@ -28,9 +28,9 @@ function MyCircleLayout() {
 
   useEffect(() => {
     dispatch(getFavoriteCompanies())
-    dispatch(getUserInventory())
-    dispatch(getParticipationHistory())
-    dispatch(getFollowing())
+    // dispatch(getUserInventory())
+    // dispatch(getParticipationHistory())
+    // dispatch(getFollowing())
   }, [])
 
   const handlePagination = (value) => {

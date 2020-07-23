@@ -35,19 +35,39 @@ function PaymentSection(props) {
 
     // Make facebook action para
     let facebook = []
-    if (params.facebook.comment) {
-      facebook.push({ action: 'comment', id: params.facebook.comment_id, model: params.facebook.comment_model, entries: params.facebook.comment_entries || 1, mandatory: params.facebook.comment_mandatory })
-    }
-    if (params.facebook.like) {
-      facebook.push({ action: 'like', id: params.facebook.like_id, entries: params.facebook.like_entries || 1, mandatory: params.facebook.like_mandatory })
-    }
-    if (params.facebook.follow) {
-      facebook.push({ action: 'follow', entries: params.facebook.follow_entries || 1, mandatory: params.facebook.follow_mandatory })
-    }
     if (params.facebook.post) {
-      facebook.push({ action: 'post', model: params.facebook.post_model, entries: params.facebook.post_entries || 1, mandatory: params.facebook.post_mandatory })
+      facebook.push({
+        action: 'post',
+        entries: params.facebook.post_entries || 1,
+        mandatory: params.facebook.post_mandatory,
+        url: `https://www.facebook.com/${params.facebook.post_page_id}/posts/${params.facebook.post_publication_id}/`,
+        like: params.facebook.post_like,
+        comment: params.facebook.post_comment,
+        share: params.facebook.post_share
+      })
+    }
+    if (params.facebook.url) {
+      facebook.push({
+        action: 'url',
+        entries: params.facebook.url_entries || 1,
+        mandatory: params.facebook.url_mandatory,
+        url: params.facebook.url_url,
+        like: params.facebook.url_like,
+        share: params.facebook.url_share
+      })
+    }
+    if (params.facebook.page) {
+      facebook.push({
+        action: 'page',
+        entries: params.facebook.page_entries || 1,
+        mandatory: params.facebook.page_mandatory,
+        url: `https://www.facebook.com/${params.facebook.page_page_name}-${params.facebook.page_page_id}/`,
+        follow: params.facebook.page_follow,
+        share: params.facebook.page_share
+      })
     }
 
+    console.log(facebook)
     // Make twitter action para
     let twitter = []
     if (params.twitter.comment) {

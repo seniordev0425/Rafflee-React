@@ -170,9 +170,17 @@ export function updateUserProfile(params) {
 }
 function onSuccessUpdateUserProfile(data) {
   openNotification('success', successMessages[localStorage.getItem('i18nextLng')].accountUpdate)
-  return {
-    type: 'UPDATE_USER_PROFILE',
-    data: ''
+  if (data.token) {
+    if (localStorage.getItem('token')) localStorage.setItem('token', data.token)
+    sessionStorage.setItem('token', data.token)
+    return {
+      type: 'UPDATE_TOKEN',
+      data: data.token
+    }
+  } else {
+    return {
+      type: ''
+    }
   }
 }
 /////////////////////////////////////////////// GET-COMPANY-PROFILE-ACTION
@@ -207,9 +215,17 @@ export function updateCompanyProfile(params) {
 }
 function onSuccessUpdateCompanyProfile(data) {
   openNotification('success', successMessages[localStorage.getItem('i18nextLng')].accountUpdate)
-  return {
-    type: 'UPDATE_COMPANY_PROFILE',
-    data: ''
+  if (data.token) {
+    if (localStorage.getItem('token')) localStorage.setItem('token', data.token)
+    sessionStorage.setItem('token', data.token)
+    return {
+      type: 'UPDATE_TOKEN',
+      data: data.token
+    }
+  } else {
+    return {
+      type: ''
+    }
   }
 }
 /////////////////////////////////////////////// RESEND-SMS-ACTION
@@ -686,7 +702,24 @@ function onSuccessUpdateWallSetting(data) {
     data: ''
   }
 }
-
+/////////////////////////////////////////////// CHECK_USER_NAME_ACTION
+export function checkUserName(params) {
+  return apiAction({
+    url: APIROUTE + `account/profile/username/`,
+    data: qs.stringify(params),
+    method: 'POST',
+    accessToken: sessionStorage.getItem('token'),
+    onSuccess: onSuccessCheckUserName,
+    onFailure: onFailed,
+    label: 'CHECK_USER_NAME',
+  });
+}
+function onSuccessCheckUserName(data) {
+  return {
+    type: 'SET_USER_NAME_CHECKED_STATUS',
+    data: !data.exist
+  }
+}
 
 function apiAction({
   url = "",

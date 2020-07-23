@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux"
 import { Form as FinalForm, Field } from 'react-final-form'
+import debounce from 'lodash/debounce'
 import { OnChange } from 'react-final-form-listeners'
 import { Form, FormGroup, Row, Col } from 'reactstrap'
-import { Select, Button } from 'antd'
+import { Select, Button, Spin } from 'antd'
 import ImageUploader from 'react-images-upload'
 import ReactFlagsSelect from 'react-flags-select'
 import { getCode, getName } from 'country-list'
@@ -21,7 +22,12 @@ import YoutubeConnectBtn from '../../common/Buttons/YoutubeConnectBtn'
 import InstagramConnectBtn from '../../common/Buttons/InstagramConnectBtn'
 import SteamConnectBtn from '../../common/Buttons/SteamConnectBtn'
 import SnapchatConnectBtn from '../../common/Buttons/SnapchatConnectBtn'
-import { getUserProfile, sendSms, updateUserProfile } from '../../../actions/userInfo'
+import {
+  getUserProfile,
+  sendSms,
+  updateUserProfile,
+  checkUserName
+} from '../../../actions/userInfo'
 import moment from 'moment'
 import { b64toBlob } from '../../../utils/others'
 import { UPLOAD_MAX_SIZE } from '../../../utils/constants'
@@ -39,8 +45,10 @@ function UserAccountForm() {
 
   const userProfile = useSelector(state => state.userInfo.userProfile)
   const phone_number_verified = useSelector(state => state.userInfo.phone_number_verified)
+  const usernameCheckedStatus = useSelector(state => state.userInfo.usernameCheckedStatus)
   const isLoading = useSelector(state => state.userInfo.GET_USER_PROFILE_SUCCESS)
   const isUpdating = useSelector(state => state.userInfo.UPDATE_USER_PROFILE)
+  const CHECK_USER_NAME_PROCESS = useSelector(state => state.userInfo.CHECK_USER_NAME)
   const UPDATE_USER_PROFILE_SUCCESS = useSelector(state => state.userInfo.SUCCESS_UPDATE_USER_PROFILE)
   const isSendingSms = useSelector(state => state.userInfo.SEND_SMS)
   const toggleVerificationModal = useSelector(state => state.userInfo.SUCCESS_SEND_SMS)
@@ -127,6 +135,7 @@ function UserAccountForm() {
     formdata.append("prefix_number", values.phonenumber.phone_country)
     formdata.append("country", countryName || '')
     formdata.append("birth_date", initialDate)
+    formdata.append("username", values.username)
     formdata.append("first_name", values.first_name)
     formdata.append("last_name", values.last_name)
     formdata.append("address", values.address || '')
@@ -155,13 +164,25 @@ function UserAccountForm() {
       file_read.readAsDataURL(picture[0])
     }
   }
-  
+
   ///////////////////////////////////////////// Send sms
   const sendSMS = () => {
     var body = {
       number: `+${verifyPhoneNumber.phone_country}${verifyPhoneNumber.phone_number}`
     }
     dispatch(sendSms(body))
+  }
+
+  const debounceCheck = debounce(username => {
+    var body = {
+      username: username
+    }
+    dispatch(checkUserName(body))
+  }, 1000)
+
+  ///////////////////////////////////////////// Check username exists or not
+  const checkNickname = (username) => {
+    debounceCheck(username)
   }
 
   if (isLoading) return <div className="min-height-container"><Loading /></div>
@@ -205,6 +226,30 @@ function UserAccountForm() {
                       maxFileSize={UPLOAD_MAX_SIZE}
                       fileSizeError='file size is too big. Max 1MB'
                     />
+                  </FormGroup>
+                </div>
+                <div className="mt-4 half-width">
+                  <FormGroup>
+                    <div className="footer-link-bold mb-3">
+                      {t('account_page.username')}
+                      {CHECK_USER_NAME_PROCESS &&
+                        <Spin size="small" className="ml-3" />
+                      }
+                    </div>
+                    <Field
+                      defaultValue={userProfile.username}
+                      name="username"
+                      component={FormInput}
+                      className="custom-form-control"
+                      type="text"
+                      placeholder={t('account_page.username')}
+                    />
+                    <OnChange name="username">
+                      {checkNickname}
+                    </OnChange>
+                    {!usernameCheckedStatus &&
+                      <div className="text-left invalid-feedback" style={{ display: 'block' }}>{t('account_page.username_exists')}</div>
+                    }
                   </FormGroup>
                 </div>
                 <div className="mt-4 half-width">
@@ -431,6 +476,7 @@ function UserAccountForm() {
 
                 <div className="mt-4 d-flex justify-content-sm-end justify-content-start">
                   <Button
+                    disabled={!usernameCheckedStatus}
                     htmlType='submit'
                     type="primary"
                     className="ant-blue-btn mt-2"

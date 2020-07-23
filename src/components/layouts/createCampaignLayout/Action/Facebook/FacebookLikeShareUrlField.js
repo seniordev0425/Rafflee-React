@@ -1,11 +1,12 @@
 import React from 'react'
 import { Row, Col, Input } from 'reactstrap'
-import { Tooltip, Checkbox, Select } from 'antd'
+import { Tooltip, Checkbox } from 'antd'
 import images from '../../../../../utils/images'
 
 import { useTranslation } from 'react-i18next'
 
-function FacebookFollowField(props) {
+
+function FacebookLikeShareUrl(props) {
   const { t } = useTranslation()
 
   const { params, setAction } = props
@@ -18,7 +19,7 @@ function FacebookFollowField(props) {
       >
         <div className="d-flex align-items-center">
           <img src={images.facebook_action_icon} width={10} height={16} alt="" />
-          <span className="ml-3">{t('create_campaign_page.follow')}</span>
+          <span className="ml-3">{t('create_campaign_page.like_share_url')}</span>
         </div>
         <div>
           <Tooltip title="Tooltip will show on mouse enter.">
@@ -26,7 +27,7 @@ function FacebookFollowField(props) {
           </Tooltip>
           <span
             className="ml-3 pointer"
-            onClick={() => setAction('facebook', 'follow', false)}
+            onClick={() => setAction('facebook', 'url', false)}
           >
             {t('button_group.remove')}
           </span>
@@ -37,17 +38,44 @@ function FacebookFollowField(props) {
         style={{ borderColor: '#E6ECEE', borderWidth: 1, borderStyle: 'solid', borderBottomLeftRadius: 6, borderBottomRightRadius: 6 }}
       >
         <Row>
-          <Col xs="12" sm="6" className="p-0 pr-sm-2">
+          <Col xs="12" sm="6" className="p-0">
             <Input
-              value={params.facebook.follow_entries}
-              onChange={(e) => setAction('facebook', 'follow_entries', e.target.value)}
+              type="text"
+              className="custom-form-control"
+              placeholder={t('create_campaign_page.like_share_url')}
+              value={params.facebook.url_url}
+              onChange={(e) => setAction('facebook', 'url_url', e.target.value)}
+            />
+          </Col>
+        </Row>
+        <Row className="mt-3">
+          <div>
+            <Checkbox
+              checked={params.facebook.url_like}
+              onChange={(e) => setAction('facebook', 'url_like', e.target.checked)}
+            >
+              {t('create_campaign_page.like')}
+            </Checkbox>
+            <Checkbox
+              checked={params.facebook.url_share}
+              onChange={(e) => setAction('facebook', 'url_share', e.target.checked)}
+            >
+              {t('create_campaign_page.share')}
+            </Checkbox>
+          </div>
+        </Row>
+        <Row className="mt-5">
+          <Col xs="12" sm="6" className="p-0">
+            <Input
+              value={params.facebook.url_entries}
+              onChange={(e) => setAction('facebook', 'url_entries', e.target.value)}
               className="custom-form-control w-100"
               type="number"
               placeholder={t('create_campaign_page.entries')}
             />
           </Col>
           <Col xs="12" sm="6" className="p-0 d-flex align-items-center justify-content-end mt-3 mt-sm-0">
-            <Checkbox checked={params.facebook.follow_mandatory} onChange={(e) => setAction('facebook', 'follow_mandatory', e.target.checked)} />
+            <Checkbox checked={params.facebook.url_mandatory} onChange={(e) => setAction('facebook', 'url_mandatory', e.target.checked)} />
             <span className="ml-3 footer-link">{t('create_campaign_page.mandatory')}</span>
           </Col>
         </Row>
@@ -56,4 +84,4 @@ function FacebookFollowField(props) {
   )
 }
 
-export default FacebookFollowField
+export default FacebookLikeShareUrl

@@ -27,10 +27,9 @@ import PollActionMenu from './Poll/PollActionMenu'
 import VideoActionMenu from './Video/VideoActionMenu'
 import WebsiteActionMenu from './Website/WebsiteActionMenu'
 
-import FacebookLikeField from './Facebook/FacebookLikeField'
-import FacebookFollowField from './Facebook/FacebookFollowField'
-import FacebookMessageField from './Facebook/FacebookMessageField'
 import FacebookPostField from './Facebook/FacebookPostField'
+import FacebookLikeShareUrlField from './Facebook/FacebookLikeShareUrlField'
+import FacebookPageField from './Facebook/FacebookPageField'
 import TwitterLikeField from './Twitter/TwitterLikeField'
 import TwitterFollowField from './Twitter/TwitterFollowField'
 import TwitterMessageField from './Twitter/TwitterMessageField'
@@ -133,17 +132,14 @@ function ActionSection(props) {
       <Row>
         <Col sm={{ size: "10", offset: "1" }} xs="12" className="padding-x font-size-9 color-white">
           <div className="mx-3">
-            {params.facebook.like &&
-              <FacebookLikeField params={params} setAction={setAction} />
-            }
-            {params.facebook.follow &&
-              <FacebookFollowField params={params} setAction={setAction} />
-            }
-            {params.facebook.comment &&
-              <FacebookMessageField params={params} setAction={setAction} />
-            }
             {params.facebook.post &&
               <FacebookPostField params={params} setAction={setAction} />
+            }
+            {params.facebook.url &&
+              <FacebookLikeShareUrlField params={params} setAction={setAction} />
+            }
+            {params.facebook.page &&
+              <FacebookPageField params={params} setAction={setAction} />
             }
             {params.twitter.like &&
               <TwitterLikeField params={params} setAction={setAction} />
