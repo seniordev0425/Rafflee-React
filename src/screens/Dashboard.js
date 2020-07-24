@@ -102,7 +102,7 @@ function Dashboard(props) {
                   </Menu.Item>
                   <Menu.Item key="in-progress">
                     <Link to="/dashboard/in-progress">
-                      <img src={match.params.menu === 'in-progress' ? images.ph_icon_blue : images.ph_icon} alt="" />
+                      <img src={match.params.menu === 'in-progress' ? images.my_circle_icon_blue : images.my_circle_icon} alt="" />
                       <span className="ml-3"> {t('menubar.in_progress')} {`(${(userInProgress || []).length})`}</span>
                     </Link>
                   </Menu.Item>

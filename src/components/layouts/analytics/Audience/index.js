@@ -62,19 +62,19 @@ function Audience(props) {
             <div className="d-flex font-size-10 mt-3 mt-sm-0">
               <div style={{ width: "25%" }}>{t('analytics_page.male')}</div>
               <div style={{ width: "75%" }}>
-                <Progress strokeWidth={10} percent={activeGender.male_percentage} />
+                <Progress strokeWidth={10} percent={activeGender.male_percentage} status="normal" />
               </div>
             </div>
             <div className="d-flex font-size-10 mt-3 mt-sm-0">
               <div style={{ width: "25%" }}>{t('analytics_page.female')}</div>
               <div style={{ width: "75%" }}>
-                <Progress strokeWidth={10} percent={activeGender.female_percentage} />
+                <Progress strokeWidth={10} percent={activeGender.female_percentage} status="normal" />
               </div>
             </div>
             <div className="d-flex font-size-10 mt-3 mt-sm-0">
               <div style={{ width: "25%" }}>{t('analytics_page.unknown')}</div>
               <div style={{ width: "75%" }}>
-                <Progress strokeWidth={10} percent={activeGender.unknow_percentage} />
+                <Progress strokeWidth={10} percent={activeGender.unknow_percentage} status="normal" />
               </div>
             </div>
           </div>

@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom'
 import { Row, Col } from 'reactstrap'
 import { Button } from 'antd'
-import { FacebookProvider, EmbeddedPost, Page, Like } from 'react-facebook';
+import { FacebookProvider, EmbeddedPost, Page, Like, ShareButton } from 'react-facebook';
 import moment from 'moment'
 import AppLayout from '../components/layouts/AppLayout'
 import images from '../utils/images'
@@ -272,9 +272,9 @@ function CampaignDetail(props) {
 
           {/*https://developers.facebook.com/permalink.php?story_fbid=101580514958135&id=101514858298034 */}
           <FacebookProvider appId="569090800341241">
-            {/* <EmbeddedPost href="https://www.facebook.com/101514858298034/posts/101580514958135/" width="500"  /> */}
+            <EmbeddedPost href="https://www.facebook.com/101514858298034/posts/107530157696504/" width="500"  />
             <Page href="https://www.facebook.com/Rafflee-101514858298034/" tabs="timeline" />
-            <Like href="https://www.facebook.com/101514858298034/posts/101580514958135/" colorScheme="dark" showFaces share />
+            <Like href="https://www.google.com/" colorScheme="dark" showFaces share />
           </FacebookProvider>
 
 

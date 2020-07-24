@@ -49,7 +49,7 @@ function CreateCampaignLayout() {
       url_share: false,
       page: false,
       page_entries: '',
-      page_mandatory: '',
+      page_mandatory: false,
       page_page_id: '',
       page_page_name: '',
       page_follow: false,
