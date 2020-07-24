@@ -286,32 +286,48 @@ function onSuccessVerifyPhoneNumber(data) {
 /////////////////////////////////////////////// GET-USER-INVENTORY-ACTION
 export function getUserInventory() {
   return apiAction({
-    url: APIROUTE + "campaign/user/historical/",
+    url: APIROUTE + "campaign/user/inventory/",
     accessToken: sessionStorage.getItem('token'),
     onSuccess: onSuccessGetUserInventory,
     onFailure: onFailed,
-    label: 'GET_USER_INVENTORY_SUCCESS',
+    label: 'GET_USER_INVENTORY',
   });
 }
 function onSuccessGetUserInventory(data) {
   return {
-    type: 'GET_USER_INVENTORY_SUCCESS',
+    type: 'SET_USER_INVENTORY',
     data: data.result_data
   }
 }
 /////////////////////////////////////////////// GET-PARTICIPATION-HISTORY-ACTION
 export function getParticipationHistory() {
   return apiAction({
-    url: APIROUTE + "campaign/user/in-progress/",
+    url: APIROUTE + "campaign/user/historical/",
     accessToken: sessionStorage.getItem('token'),
     onSuccess: onSuccessGetParticipationHistory,
     onFailure: onFailed,
-    label: 'GET_PARTICIPATION_HISTORY_SUCCESS',
+    label: 'GET_PARTICIPATION_HISTORY',
   });
 }
 function onSuccessGetParticipationHistory(data) {
   return {
-    type: 'GET_PARTICIPATION_HISTORY_SUCCESS',
+    type: 'SET_PARTICIPATION_HISTORY',
+    data: data.result_data
+  }
+}
+/////////////////////////////////////////////// GET-USER-INPROGRESS-ACTION
+export function getUserInProgress() {
+  return apiAction({
+    url: APIROUTE + "campaign/user/in-progress/",
+    accessToken: sessionStorage.getItem('token'),
+    onSuccess: onSuccessGetUserInProgress,
+    onFailure: onFailed,
+    label: 'GET_USER_IN_PROGRESS',
+  });
+}
+function onSuccessGetUserInProgress(data) {
+  return {
+    type: 'SET_USER_IN_PROGRESS',
     data: data.result_data
   }
 }
@@ -322,12 +338,12 @@ export function getFollowing() {
     accessToken: sessionStorage.getItem('token'),
     onSuccess: onSuccessGetFollowing,
     onFailure: onFailed,
-    label: 'GET_FOLLOWING_SUCCESS',
+    label: 'GET_FOLLOWING_CAMPAIGNS',
   });
 }
 function onSuccessGetFollowing(data) {
   return {
-    type: 'GET_FOLLOWING_SUCCESS',
+    type: 'SET_FOLLOWING_CAMPAIGNS',
     data: data.result_data
   }
 }

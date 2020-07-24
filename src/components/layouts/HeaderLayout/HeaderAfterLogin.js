@@ -60,7 +60,7 @@ function HeaderAfterLogin(props) {
         <Row>
           <Link to="/deals"><Button type="link" className="no-border-btn mr-3 h-100 font-weight-bold">{t('header.campaigns')}</Button></Link>
           <Link to="/my-circle"><Button type="link" className="no-border-btn mr-3 h-100 font-weight-bold">{t('menubar.my_circle')}</Button></Link>
-          <Link to={company ? "/dashboard/my-campaign" : "/dashboard/participation-history"}>
+          <Link to={company ? "/dashboard/my-campaign" : "/dashboard/inventory"}>
             <Button type="link" className="no-border-btn mr-3 h-100 font-weight-bold">{t('header.inventory')}</Button>
           </Link>
           <Link to="/user-account/profile" className="d-flex align-items-center mx-3">
@@ -80,11 +80,21 @@ function HeaderAfterLogin(props) {
               onClose={onClose}
               visible={visible}
             >
-              <div className="mb-2 font-size-10 font-weight-bold"><Link to="/deals" style={{ color: '#767B83' }}>{t('header.campaigns')}</Link></div>
-              <div className="mb-2 font-size-10 font-weight-bold"><Link to="/my-circle" style={{ color: '#767B83' }}>{t('menubar.my_circle')}</Link></div>
-              <div className="mb-2 font-size-10 font-weight-bold"><Link to={company ? "/dashboard/my-campaign" : "/dashboard/participation-history"} style={{ color: '#767B83' }}>{t('header.inventory')}</Link></div>
-              <div className="mb-2 font-size-10 font-weight-bold"><Link to="/user-account/profile" style={{ color: '#767B83' }}>{t('header.account')}</Link></div>
-              <div className="mb-2 font-size-10 font-weight-bold" onClick={log_Out}><Link to="/" style={{ color: '#767B83' }}>{t('header.log_out')}</Link></div>
+              <div className="mb-2 font-size-10 font-weight-bold">
+                <Link to="/deals" style={{ color: '#767B83' }}>{t('header.campaigns')}</Link>
+                </div>
+              <div className="mb-2 font-size-10 font-weight-bold">
+                <Link to="/my-circle" style={{ color: '#767B83' }}>{t('menubar.my_circle')}</Link>
+                </div>
+              <div className="mb-2 font-size-10 font-weight-bold">
+                <Link to={company ? "/dashboard/my-campaign" : "/dashboard/inventory"} style={{ color: '#767B83' }}>{t('header.inventory')}</Link>
+                </div>
+              <div className="mb-2 font-size-10 font-weight-bold">
+                <Link to="/user-account/profile" style={{ color: '#767B83' }}>{t('header.account')}</Link>
+                </div>
+              <div className="mb-2 font-size-10 font-weight-bold" onClick={log_Out}>
+                <Link to="/" style={{ color: '#767B83' }}>{t('header.log_out')}</Link>
+                </div>
             </Drawer>
           </>
         )

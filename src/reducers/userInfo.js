@@ -59,6 +59,9 @@ const initialFeedState = {
   ///////////////////////////////////////////// This state is a participation record array of common user account which is displayed in participation history page
   userParticipationHistory: [],
 
+  ///////////////////////////////////////////// This state is a in progress campaign array of common user account which is displayed in progress page
+  userInProgress: [],
+
   ///////////////////////////////////////////// This state is a followed campaign array of common user account
   myFollowing: [],
 
@@ -198,17 +201,22 @@ function UserInfo(state = initialFeedState, action) {
         phone_number_verified: true,
         VERIFY_PHONE_NUMBER_SUCCESS: action.flag
       }
-    case 'GET_USER_INVENTORY_SUCCESS':
+    case 'SET_USER_INVENTORY':
       return {
         ...state,
         userInventory: action.data
       }
-    case 'GET_PARTICIPATION_HISTORY_SUCCESS':
+    case 'SET_PARTICIPATION_HISTORY':
       return {
         ...state,
         userParticipationHistory: action.data
       }
-    case 'GET_FOLLOWING_SUCCESS':
+    case 'SET_USER_IN_PROGRESS':
+      return {
+        ...state,
+        userInProgress: action.data
+      }
+    case 'SET_FOLLOWING_CAMPAIGNS':
       return {
         ...state,
         myFollowing: (action.data || [])
@@ -252,6 +260,15 @@ function UserInfo(state = initialFeedState, action) {
         return {
           ...state,
           userParticipationHistory: state.userParticipationHistory.map(promotion => promotion.pk === action.id ?
+            { ...promotion, favorite: !promotion.favorite } : promotion
+          ),
+          myFollowing: action.result === 'MSG_FAVORITE_ADDED' ? [...state.myFollowing, { id: 10 }] : state.myFollowing.filter((_, i) => i !== state.myFollowing.length - 1)
+        }
+      }
+      else if (action.arrname === 'in_progress') {
+        return {
+          ...state,
+          userInProgress: state.userInProgress.map(promotion => promotion.pk === action.id ?
             { ...promotion, favorite: !promotion.favorite } : promotion
           ),
           myFollowing: action.result === 'MSG_FAVORITE_ADDED' ? [...state.myFollowing, { id: 10 }] : state.myFollowing.filter((_, i) => i !== state.myFollowing.length - 1)

@@ -8,16 +8,16 @@ import {
   getUserInProgress,
   getFollowing,
 } from '../../../actions/userInfo'
+import InProgressItem from './InProgressItem'
 import { NUMBER_PER_PAGE } from '../../../utils/constants'
-import MyFollowingItem from './MyFollowingItem'
 
 import { useTranslation } from 'react-i18next'
 
-function MyFollowingLayout() {
+function InProgressLayout() {
   const { t } = useTranslation()
 
-  const GET_FOLLOWING_CAMPAIGNS_PROCESS = useSelector(state => state.userInfo.GET_FOLLOWING_CAMPAIGNS)
-  const myFollowing = useSelector(state => state.userInfo.myFollowing)
+  const GET_USER_IN_PROGRESS_PROCESS = useSelector(state => state.userInfo.GET_USER_IN_PROGRESS)
+  const userInProgress = useSelector(state => state.userInfo.userInProgress)
 
   const [minValue, setMinValue] = useState(0)
   const [maxValue, setMaxValue] = useState(NUMBER_PER_PAGE)
@@ -25,9 +25,9 @@ function MyFollowingLayout() {
   const dispatch = useDispatch()
 
   useEffect(() => {
+    dispatch(getUserInProgress())
     dispatch(getUserInventory())
     dispatch(getParticipationHistory())
-    dispatch(getUserInProgress())
     dispatch(getFollowing())
   }, [])
 
@@ -36,22 +36,22 @@ function MyFollowingLayout() {
     setMaxValue((value) * NUMBER_PER_PAGE)
   }
 
-  const renderHistoryList = () => {
+  const renderInProgressList = () => {
     return (
-      (myFollowing || []).slice(minValue, maxValue).map((item, index) =>
+      userInProgress.slice(minValue, maxValue).map((item, index) =>
         <div key={index} className="promotion-list-item-container">
-          <MyFollowingItem item={item} />
+          <InProgressItem item={item} />
         </div>
       )
     )
   }
 
-  if (GET_FOLLOWING_CAMPAIGNS_PROCESS) return <div className="min-height-container"><Loading /></div>
+  if (GET_USER_IN_PROGRESS_PROCESS) return <div className="min-height-container"><Loading /></div>
 
   return (
     <div className="min-height-container">
-      {renderHistoryList()}
-      {myFollowing.length < 1 && (
+      {renderInProgressList()}
+      {userInProgress.length < 1 && (
         <div className="empty-result mt-5">
           <span className="promotion-list-item-title">{t('empty_result_to_display')}</span>
         </div>
@@ -61,11 +61,11 @@ function MyFollowingLayout() {
         defaultCurrent={1}
         defaultPageSize={NUMBER_PER_PAGE}
         onChange={handlePagination}
-        total={myFollowing.length}
+        total={userInProgress.length}
         className="py-5 d-flex justify-content-center"
       />
     </div>
   )
 }
 
-export default MyFollowingLayout
+export default InProgressLayout

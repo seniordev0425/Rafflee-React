@@ -13,6 +13,7 @@ import CreateCampaignLayout from '../components/layouts/createCampaignLayout/Cre
 import InventoryLayout from '../components/layouts/inventoryLayout/InventoryLayout'
 import ParticipationHistoryLayout from '../components/layouts/participationHistoryLayout/ParticipationHistoryLayout'
 import MyFollowingLayout from '../components/layouts/myFollowingLayout/MyFollowingLayout'
+import InProgressLayout from '../components/layouts/inProgressLayout/InProgressLayout'
 
 import images from '../utils/images'
 
@@ -24,8 +25,8 @@ function Dashboard(props) {
   const { match } = props
   const userInventory = useSelector(state => state.userInfo.userInventory)
   const userParticipationHistory = useSelector(state => state.userInfo.userParticipationHistory)
+  const userInProgress = useSelector(state => state.userInfo.userInProgress)
   const myFollowing = useSelector(state => state.userInfo.myFollowing)
-  // const myFavoriteCompanies = useSelector(state => state.userInfo.myFavoriteCompanies)
 
   useEffect(() => {
     document.title = "Dashboard"
@@ -42,13 +43,13 @@ function Dashboard(props) {
       case 'create-campaign':
         return <CreateCampaignLayout />;
       case 'inventory':
-        return <ParticipationHistoryLayout />
-      case 'participation-history':
         return <InventoryLayout />
+      case 'participation-history':
+        return <ParticipationHistoryLayout />
+      case 'in-progress':
+        return <InProgressLayout />
       case 'following':
         return <MyFollowingLayout />
-      // case 'my-circle':
-      //     return <MyCircleLayout />
       default:
         return <MyCampaignLayout />;
     }
@@ -87,16 +88,22 @@ function Dashboard(props) {
               </Menu>
             ) : (
                 <Menu mode="horizontal" className="menubar" selectedKeys={[match.params.menu]}>
-                  <Menu.Item key="participation-history">
-                    <Link to="/dashboard/participation-history">
-                      <img src={match.params.menu === 'participation-history' ? images.ph_icon_blue : images.ph_icon} alt="" />
-                      <span className="ml-3"> {t('menubar.rafflee_history')} {`(${(userInventory || []).length})`}</span>
-                    </Link>
-                  </Menu.Item>
                   <Menu.Item key="inventory">
                     <Link to="/dashboard/inventory">
                       <img src={match.params.menu === 'inventory' ? images.inventory_icon_blue : images.inventory_icon} alt="" />
-                      <span className="ml-3"> {t('menubar.inventory')} {`(${(userParticipationHistory || []).length})`}</span>
+                      <span className="ml-3"> {t('menubar.inventory')} {`(${(userInventory || []).length})`}</span>
+                    </Link>
+                  </Menu.Item>
+                  <Menu.Item key="participation-history">
+                    <Link to="/dashboard/participation-history">
+                      <img src={match.params.menu === 'participation-history' ? images.ph_icon_blue : images.ph_icon} alt="" />
+                      <span className="ml-3"> {t('menubar.rafflee_history')} {`(${(userParticipationHistory || []).length})`}</span>
+                    </Link>
+                  </Menu.Item>
+                  <Menu.Item key="in-progress">
+                    <Link to="/dashboard/in-progress">
+                      <img src={match.params.menu === 'in-progress' ? images.ph_icon_blue : images.ph_icon} alt="" />
+                      <span className="ml-3"> {t('menubar.in_progress')} {`(${(userInProgress || []).length})`}</span>
                     </Link>
                   </Menu.Item>
                   <Menu.Item key="following">
