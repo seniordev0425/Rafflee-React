@@ -527,6 +527,63 @@ function onSuccessCampaignParticipateInstagramPublication(data) {
     data: 'instagram_like_validation',
   }
 }
+/////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_FACEBOOK_PAGE_ACTION
+export function campaignParticipateFacebookPage(params) {
+  return apiAction({
+    url: APIROUTE + "campaign/participate/facebook/page/",
+    method: 'POST',
+    data: qs.stringify(params),
+    accessToken: sessionStorage.getItem('token'),
+    onSuccess: onSuccessCampaignParticipateFacebookPage,
+    onFailure: onFailed,
+    label: 'CAMPAIGN_PARTICIPATE_FACEBOOK_PAGE',
+    requireErrorMessage: true
+  });
+}
+function onSuccessCampaignParticipateFacebookPage(data) {
+  return {
+    type: 'SET_ACTION_VALIDATION_STATUS',
+    data: 'facebook_page_validation',
+  }
+}
+/////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_FACEBOOK_URL_ACTION
+export function campaignParticipateFacebookUrl(params) {
+  return apiAction({
+    url: APIROUTE + "campaign/participate/facebook/url/",
+    method: 'POST',
+    data: qs.stringify(params),
+    accessToken: sessionStorage.getItem('token'),
+    onSuccess: onSuccessCampaignParticipateFacebookUrl,
+    onFailure: onFailed,
+    label: 'CAMPAIGN_PARTICIPATE_FACEBOOK_URL',
+    requireErrorMessage: true
+  });
+}
+function onSuccessCampaignParticipateFacebookUrl(data) {
+  return {
+    type: 'SET_ACTION_VALIDATION_STATUS',
+    data: 'facebook_url_validation',
+  }
+}
+/////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_FACEBOOK_POST_ACTION
+export function campaignParticipateFacebookPost(params) {
+  return apiAction({
+    url: APIROUTE + "campaign/participate/facebook/post/",
+    method: 'POST',
+    data: qs.stringify(params),
+    accessToken: sessionStorage.getItem('token'),
+    onSuccess: onSuccessCampaignParticipateFacebookPost,
+    onFailure: onFailed,
+    label: 'CAMPAIGN_PARTICIPATE_FACEBOOK_POST',
+    requireErrorMessage: true
+  });
+}
+function onSuccessCampaignParticipateFacebookPost(data) {
+  return {
+    type: 'SET_ACTION_VALIDATION_STATUS',
+    data: 'facebook_post_validation',
+  }
+}
 /////////////////////////////////////////////// CLOSE_CAMPAIGN_ACTION
 export function closeCampaign(params) {
   return apiAction({

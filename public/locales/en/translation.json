@@ -164,6 +164,18 @@
     "days": "Days Left",
     "entries": "Your Entries",
     "participants": "Participants",
+    "facebook_page": {
+      "title": "Facebook Page Action Title",
+      "text": "Facebook Page Action Text"
+    },
+    "facebook_post": {
+      "title": "Facebook Post Action Title",
+      "text": "Facebook Post Action Text"
+    },
+    "facebook_url": {
+      "title": "Facebook Url Action Title",
+      "text": "Facebook Url Action Text"
+    },
     "twitter_like": {
       "title": "Twitter Like Title",
       "text": "Twitter Like Text"

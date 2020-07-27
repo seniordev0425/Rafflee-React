@@ -25,6 +25,9 @@ import {
   campaignParticipateWebsite,
   campaignParticipateInstagramProfile,
   campaignParticipateInstagramPublication,
+  campaignParticipateFacebookPage,
+  campaignParticipateFacebookPost,
+  campaignParticipateFacebookUrl
 } from '../actions/campaign'
 
 import { useTranslation } from 'react-i18next'
@@ -194,6 +197,18 @@ function CampaignDetail(props) {
       window.open(action.website.url.includes("http") ? action.website.url : `https://${action.website.url}`, '_blank')
       dispatch(campaignParticipateWebsite({ promotion_id: campaignData.pk }))
     }
+    else if (socialName === 'facebook' && actionType === 'page') {
+      window.open(action.social_action[0].facebook_page_url, '_blank')
+      dispatch(campaignParticipateFacebookPage({ promotion_id: campaignData.pk, action: '' }))
+    }
+    else if (socialName === 'facebook' && actionType === 'post') {
+      window.open(action.social_action[0].facebook_post_url, '_blank')
+      dispatch(campaignParticipateFacebookPost({ promotion_id: campaignData.pk, action: '' }))
+    }
+    else if (socialName === 'facebook' && actionType === 'url') {
+      window.open(action.social_action[0].facebook_url_url, '_blank')
+      dispatch(campaignParticipateFacebookUrl({ promotion_id: campaignData.pk, action: '' }))
+    }
   }
 
   const participatePoll = (val) => {
@@ -276,14 +291,59 @@ function CampaignDetail(props) {
             </Col>
           </Row>
 
-          {/*https://developers.facebook.com/permalink.php?story_fbid=101580514958135&id=101514858298034 */}
-          <FacebookProvider appId="569090800341241">
+          {/* <FacebookProvider appId="569090800341241">
             <EmbeddedPost href="https://www.facebook.com/101514858298034/posts/107530157696504/" width="500"  />
             <Page href="https://www.facebook.com/Rafflee-101514858298034" tabs="timeline" width="300" height="300" />
-            {/* <Like href="https://www.google.com/" colorScheme="dark" showFaces share /> */}
-          </FacebookProvider>
+          </FacebookProvider> */}
 
-
+          {(action.social_action && action.social_action[0].facebook_page) &&
+            <Row className="mb-4 mt-4">
+              <Col style={{ paddingLeft: 40 }}>
+                <CustomCollapsePanel
+                  title={t('campaign_detail_page.facebook_page.title')}
+                  text={t('campaign_detail_page.facebook_page.text')}
+                  socialName="facebook"
+                  actionType="page"
+                  mandatory={action.social_action[0].facebook_page_mandatory}
+                  entries={action.social_action[0].facebook_page_entries}
+                  didAction={(campaignData.user_actions || {}).facebook_page}
+                  tryToOpenValidationModal={tryToOpenValidationModal}
+                />
+              </Col>
+            </Row>
+          }
+          {(action.social_action && action.social_action[0].facebook_post) &&
+            <Row className="mb-4 mt-4">
+              <Col style={{ paddingLeft: 40 }}>
+                <CustomCollapsePanel
+                  title={t('campaign_detail_page.facebook_post.title')}
+                  text={t('campaign_detail_page.facebook_post.text')}
+                  socialName="facebook"
+                  actionType="post"
+                  mandatory={action.social_action[0].facebook_post_mandatory}
+                  entries={action.social_action[0].facebook_post_entries}
+                  didAction={(campaignData.user_actions || {}).facebook_post}
+                  tryToOpenValidationModal={tryToOpenValidationModal}
+                />
+              </Col>
+            </Row>
+          }
+          {(action.social_action && action.social_action[0].facebook_url) &&
+            <Row className="mb-4 mt-4">
+              <Col style={{ paddingLeft: 40 }}>
+                <CustomCollapsePanel
+                  title={t('campaign_detail_page.facebook_url.title')}
+                  text={t('campaign_detail_page.facebook_url.text')}
+                  socialName="facebook"
+                  actionType="url"
+                  mandatory={action.social_action[0].facebook_url_mandatory}
+                  entries={action.social_action[0].facebook_url_entries}
+                  didAction={(campaignData.user_actions || {}).facebook_url}
+                  tryToOpenValidationModal={tryToOpenValidationModal}
+                />
+              </Col>
+            </Row>
+          }
           {(action.social_action && action.social_action[2].instagram_profile) &&
             <Row className="mb-4 mt-4">
               <Col style={{ paddingLeft: 40 }}>
