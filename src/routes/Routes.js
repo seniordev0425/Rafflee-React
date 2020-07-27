@@ -64,6 +64,7 @@ function Routes(props) {
 
   useEffect(() => {
     setIsFethingIP(true)
+    // Fetch device ip address
     fetch(API, { method: 'GET', headers: {} })
       .then(response => {
         return response.text()
@@ -74,14 +75,18 @@ function Routes(props) {
       })
       .catch(error => setIsFethingIP(false))
 
+    // Check whether online or offline
     const _handleOnline = handleOnline
     const _handleOffline = handleOffline
+    // Add 2 listeners
     window.addEventListener('online', _handleOnline)
     window.addEventListener('offline', _handleOffline)
 
+    // Load session token
     const session_token = sessionStorage.getItem('token')
     const company = sessionStorage.getItem('company')
 
+    // Load remember token
     const rememberToken = localStorage.getItem('token')
     const rememberCompany = localStorage.getItem('company')
 
@@ -89,7 +94,7 @@ function Routes(props) {
       return
     }
 
-    if (session_token) {
+    if (session_token) { // if session token exists then verify this token. If success keep this token, otherwise remove
       verifyToken(session_token)
         .then(response => response.text())
         .then(result => {
@@ -112,7 +117,7 @@ function Routes(props) {
       return
     }
 
-    if (rememberToken) {
+    if (rememberToken) { // if remember token which is in localstorage exists then verify this token. If success keep this token and put it into session storage
       verifyToken(rememberToken)
         .then(response => response.text())
         .then(result => {
@@ -136,6 +141,7 @@ function Routes(props) {
         });
     }
 
+    // Remove listeners when component will unmount
     return () => {
       window.removeEventListener('online', _handleOnline)
       window.removeEventListener('offline', _handleOffline)
@@ -157,8 +163,8 @@ function Routes(props) {
   }, [twitterDirectConnect])
 
   useEffect(() => {
+    // if 401 error occurs then redirect to home page and remove tokens
     if (AUTH_ERROR) {
-      // openNotification('warning', 'Login to continue')
       history.push('/')
       dispatch({ type: 'INIT_STATE', state: 'AUTH_ERROR', data: false })
       dispatch({ type: "LOG_IN_SUCCESS", data: { token: '', company: false } })
@@ -212,7 +218,9 @@ function Routes(props) {
         }
         <Route component={NotFound} />
       </Switch>
-      <CookieConsent
+
+
+      <CookieConsent // Cookie bar
         style={{ justifyContent: "center", background: "#7778edd9" }}
         contentStyle={{ flex: null, textAlign: "center" }}
         buttonText={t('button_group.accept')}

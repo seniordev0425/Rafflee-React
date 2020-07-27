@@ -44,7 +44,7 @@ function CampaignDetail(props) {
 
   const { match } = props
 
-  const GET_CAMPAIGN_DATA_SUCCESS = useSelector(state => state.userInfo.GET_CAMPAIGN_DATA_SUCCESS)
+  const GET_CAMPAIGN_DATA_PROCESS = useSelector(state => state.userInfo.GET_CAMPAIGN_DATA)
   const CAMPAIGN_PARTICIPATE_PROCESS = useSelector(state => state.userInfo.CAMPAIGN_PARTICIPATE)
   const CAMPAIGN_PARTICIPATE_SUCCESS = useSelector(state => state.userInfo.SUCCESS_CAMPAIGN_PARTICIPATE)
 
@@ -72,6 +72,7 @@ function CampaignDetail(props) {
   const [openTwitchFollowModal, setOpenTwitchFollowModal] = useState(false)
 
   useEffect(() => {
+    // Load campaign data after render
     document.title = "Campaign Detail"
     var body = {
       token: token
@@ -81,17 +82,20 @@ function CampaignDetail(props) {
   }, [token])
 
   useEffect(() => {
+    // Extract social action data from campaign data
     setAction(campaignData.action_participate[0])
   }, [campaignData])
 
   useEffect(() => {
     if (CAMPAIGN_PARTICIPATE_SUCCESS) {
+      // if campaign participation is success then open confirm modal
       dispatch({ type: 'INIT_STATE', state: 'SUCCESS_CAMPAIGN_PARTICIPATE', data: false })
       setOpenConfirm(true)
     }
   }, [CAMPAIGN_PARTICIPATE_SUCCESS])
 
   useEffect(() => {
+    // Open social actions validation modal after click on social actions button
     if (OPEN_TWITTER_LIKE_VALIDATION_MODAL) {
       dispatch({ type: 'INIT_STATE', state: 'OPEN_TWITTER_LIKE_VALIDATION_MODAL', data: false })
       setOpenTwitterLikeModal(true)
@@ -121,6 +125,7 @@ function CampaignDetail(props) {
   ])
 
   const goToWinningDetail = (winningName, id) => {
+    // Load prize data of campaign and open prize modal
     setOpenWinningDetailModal(true)
     dispatch(getWinningData(id, winningName))
   }
@@ -152,6 +157,7 @@ function CampaignDetail(props) {
   }
 
   const videoEnded = () => {
+    // if user has looked the video to the end then validate video cation
     dispatch(campaignParticipateVideo({ promotion_id: campaignData.pk }))
   }
 
@@ -210,7 +216,7 @@ function CampaignDetail(props) {
     dispatch(campaignParticipate(body))
   }
 
-  if (GET_CAMPAIGN_DATA_SUCCESS) {
+  if (GET_CAMPAIGN_DATA_PROCESS) {
     return <Loading />
   }
 
@@ -273,8 +279,8 @@ function CampaignDetail(props) {
           {/*https://developers.facebook.com/permalink.php?story_fbid=101580514958135&id=101514858298034 */}
           <FacebookProvider appId="569090800341241">
             <EmbeddedPost href="https://www.facebook.com/101514858298034/posts/107530157696504/" width="500"  />
-            <Page href="https://www.facebook.com/Rafflee-101514858298034/" tabs="timeline" />
-            <Like href="https://www.google.com/" colorScheme="dark" showFaces share />
+            <Page href="https://www.facebook.com/Rafflee-101514858298034" tabs="timeline" width="300" height="300" />
+            {/* <Like href="https://www.google.com/" colorScheme="dark" showFaces share /> */}
           </FacebookProvider>
 
 

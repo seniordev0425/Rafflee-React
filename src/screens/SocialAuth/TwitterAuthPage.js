@@ -14,17 +14,20 @@ function TwitterAuthPage(props) {
   const dispatch = useDispatch()
 
   useEffect(() => {
+    // Get oauthToken from redirected url
     let search = window.location.search
     let params = new URLSearchParams(search)
     let body = {
       oauth_token: params.get('oauth_token'),
       oauth_verifier: params.get('oauth_verifier')
     }
+    // Call twitter connect endpoint with oauthToken
     dispatch(twitterConnectStep2(body))
   }, [])
 
   useEffect(() => {
     if (SUCCESS_TWITTER_CONNECT_STEP2) {
+      // If twitch connect is success then redirect user to account page
       dispatch({ type: 'INIT_STATE', state: 'SUCCESS_TWITTER_CONNECT_STEP2', data: false })
       openNotification('success', t('social_oauth.twitter'))
       history.push('/user-account/profile')

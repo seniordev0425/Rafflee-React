@@ -9,7 +9,9 @@ import {
   getUserInProgress,
   getFollowing
 } from '../../../actions/userInfo'
+import { getWinningData } from '../../../actions/campaign'
 import Loading from '../../common/Loading'
+import WinningDetailModal from '../../../components/modals/WinningDetailModal'
 import { NUMBER_PER_PAGE } from '../../../utils/constants'
 
 import { useTranslation } from 'react-i18next'
@@ -20,12 +22,16 @@ function InventoryLayout() {
   const GET_USER_INVENTORY_PROCESS = useSelector(state => state.userInfo.GET_USER_INVENTORY)
   const userInventory = useSelector(state => state.userInfo.userInventory)
 
+  // min, max values are for pagination
   const [minValue, setMinValue] = useState(0)
   const [maxValue, setMaxValue] = useState(NUMBER_PER_PAGE)
+
+  const [openWinningDetailModal, setOpenWinningDetailModal] = useState(false)
 
   const dispatch = useDispatch()
 
   useEffect(() => {
+    // After render method, call these 4 endpoints.
     dispatch(getUserInventory())
     dispatch(getParticipationHistory())
     dispatch(getUserInProgress())
@@ -37,11 +43,17 @@ function InventoryLayout() {
     setMaxValue((value) * NUMBER_PER_PAGE)
   }
 
+  const goToWinningDetail = (id, winningName) => {
+    // When click on prize open prize modal and load prize information
+    setOpenWinningDetailModal(true)
+    dispatch(getWinningData(id, winningName))
+  }
+
   const renderInventoryList = () => {
     return (
       userInventory.slice(minValue, maxValue).map((item, index) =>
         <div key={index} className="promotion-list-item-container">
-          <InventoryItem item={item} />
+          <InventoryItem item={item} goToWinningDetail={goToWinningDetail} />
         </div>
       )
     )
@@ -64,6 +76,10 @@ function InventoryLayout() {
         onChange={handlePagination}
         total={userInventory.length}
         className="py-5 d-flex justify-content-center"
+      />
+      <WinningDetailModal
+        open={openWinningDetailModal}
+        onToggle={() => setOpenWinningDetailModal(!openWinningDetailModal)}
       />
     </div>
   )

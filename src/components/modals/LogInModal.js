@@ -17,7 +17,7 @@ function LogInModal(props) {
 
   const { toggle } = props
 
-  const isLoading = useSelector(state => state.userInfo.LOG_IN_SUCCESS)
+  const isLoading = useSelector(state => state.userInfo.LOG_IN)
   const ip = useSelector(state => state.userInfo.ip)
   const dispatch = useDispatch()
 

@@ -8,7 +8,15 @@ import { useTranslation } from 'react-i18next'
 function CampaignCard(props) {
   const { t } = useTranslation()
 
-  const { description, campaign_name, pk, campaign_image, company_logo, company_id } = props
+  const { 
+    description, 
+    campaign_name, 
+    pk, 
+    campaign_image, 
+    company_logo, 
+    company_id 
+  } = props
+
   return (
     <div className="item campaign-card-body">
       <div>

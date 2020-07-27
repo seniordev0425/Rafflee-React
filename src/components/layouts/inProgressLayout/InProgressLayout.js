@@ -19,12 +19,14 @@ function InProgressLayout() {
   const GET_USER_IN_PROGRESS_PROCESS = useSelector(state => state.userInfo.GET_USER_IN_PROGRESS)
   const userInProgress = useSelector(state => state.userInfo.userInProgress)
 
+  // min, max values are for pagination
   const [minValue, setMinValue] = useState(0)
   const [maxValue, setMaxValue] = useState(NUMBER_PER_PAGE)
 
   const dispatch = useDispatch()
 
   useEffect(() => {
+    // After render method, call these 4 endpoints.
     dispatch(getUserInProgress())
     dispatch(getUserInventory())
     dispatch(getParticipationHistory())

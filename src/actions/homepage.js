@@ -21,7 +21,7 @@ export function getAllPromotions(params) {
     data: qs.stringify(params),
     onSuccess: onSuccessGetAllPromotions,
     onFailure: onFailed,
-    label: 'GET_ALL_PROMOTIONS_SUCCESS',
+    label: 'GET_ALL_PROMOTIONS',
   });
 }
 function onSuccessGetAllPromotions(data) {
@@ -38,7 +38,7 @@ export function getHotPromotions(params) {
     data: qs.stringify(params),
     onSuccess: onSuccessGetHotPromotions,
     onFailure: onFailed,
-    label: 'GET_HOT_PROMOTIONS_SUCCESS',
+    label: 'GET_HOT_PROMOTIONS',
   });
 }
 function onSuccessGetHotPromotions(data) {
@@ -55,7 +55,7 @@ export function getHighlightedPromotions(params) {
     data: qs.stringify(params),
     onSuccess: onSuccessGetHighlightedPromotions,
     onFailure: onFailed,
-    label: 'GET_HIGHLIGHTED_PROMOTIONS_SUCCESS',
+    label: 'GET_HIGHLIGHTED_PROMOTIONS',
   });
 }
 function onSuccessGetHighlightedPromotions(data) {
@@ -72,7 +72,7 @@ export function getNewPromotions(params) {
     data: qs.stringify(params),
     onSuccess: onSuccessGetNewPromotions,
     onFailure: onFailed,
-    label: 'GET_NEW_PROMOTIONS_SUCCESS',
+    label: 'GET_NEW_PROMOTIONS',
   });
 }
 function onSuccessGetNewPromotions(data) {
@@ -89,7 +89,7 @@ export function getBestPromotions(params) {
     data: qs.stringify(params),
     onSuccess: onSuccessGetBestPromotions,
     onFailure: onFailed,
-    label: 'GET_BEST_PROMOTIONS_SUCCESS',
+    label: 'GET_BEST_PROMOTIONS',
   });
 }
 function onSuccessGetBestPromotions(data) {

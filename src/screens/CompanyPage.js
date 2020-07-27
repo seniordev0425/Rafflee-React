@@ -31,6 +31,7 @@ function CompanyPage(props) {
   const [facebookVisible, setFacebookVisible] = useState(true)
 
   useEffect(() => {
+    // Load company information after render
     document.title = "Company Page"
     dispatch(getCompanyInformation(id, { token: token }))
   }, [])
@@ -57,6 +58,7 @@ function CompanyPage(props) {
   )
 
   const getSocialWalls = () => {
+    // Extract social wall data from company information
     let socialWalls = [];
 
     (((companyInformation.social_wall || {}).twitter || {}).tweets || []).forEach((item) =>
@@ -71,7 +73,7 @@ function CompanyPage(props) {
       socialWalls.push({ ...item, social_name: 'facebook' })
     );
 
-
+    // Sort social walls in descending order by created_at
     socialWalls.sort((a, b) => {
       var keyA = Date.parse(a.created_at)
       var keyB = Date.parse(b.created_at)

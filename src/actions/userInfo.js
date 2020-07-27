@@ -22,7 +22,7 @@ export function logIn(params, rememberMe) {
     data: qs.stringify(params),
     onSuccess: (data) => onSuccessLogIn(data, rememberMe),
     onFailure: onFailed,
-    label: 'LOG_IN_SUCCESS',
+    label: 'LOG_IN',
     requireErrorMessage: true
 
   });
@@ -129,7 +129,7 @@ export function companyContact(params) {
     data: qs.stringify(params),
     onSuccess: onSuccessCompanyContact,
     onFailure: onFailed,
-    label: 'COMPANY_CONTACT_SUCCESS',
+    label: 'COMPANY_CONTACT',
   });
 }
 function onSuccessCompanyContact(data) {
@@ -146,7 +146,7 @@ export function getUserProfile() {
     accessToken: sessionStorage.getItem('token'),
     onSuccess: onSuccessGetUserProfile,
     onFailure: onFailed,
-    label: 'GET_USER_PROFILE_SUCCESS',
+    label: 'GET_USER_PROFILE',
   });
 }
 function onSuccessGetUserProfile(data) {
@@ -165,7 +165,6 @@ export function updateUserProfile(params) {
     onSuccess: onSuccessUpdateUserProfile,
     onFailure: onFailed,
     label: 'UPDATE_USER_PROFILE',
-
   });
 }
 function onSuccessUpdateUserProfile(data) {
@@ -190,13 +189,13 @@ export function getCompanyProfile() {
     accessToken: sessionStorage.getItem('token'),
     onSuccess: onSuccessGetCompanyProfile,
     onFailure: onFailed,
-    label: 'GET_COMPANY_PROFILE_SUCCESS',
+    label: 'GET_COMPANY_PROFILE',
 
   });
 }
 function onSuccessGetCompanyProfile(data) {
   return {
-    type: 'GET_COMPANY_PROFILE_SUCCESS',
+    type: '',
     data: data.user_informations
   }
 }
@@ -237,7 +236,7 @@ export function resendSms(params) {
     accessToken: sessionStorage.getItem('token'),
     onSuccess: onSuccessResendSms,
     onFailure: onFailed,
-    label: 'RESEND_SMS_SUCCESS',
+    label: 'RESEND_SMS',
   });
 }
 function onSuccessResendSms(data) {
@@ -370,7 +369,7 @@ export function getMyCampaigns() {
     accessToken: sessionStorage.getItem('token'),
     onSuccess: onSuccessGetMyCampaigns,
     onFailure: onFailed,
-    label: 'GET_MY_CAMPAIGNS_SUCCESS',
+    label: 'GET_MY_CAMPAIGNS',
   });
 }
 function onSuccessGetMyCampaigns(data) {
@@ -386,7 +385,7 @@ export function getMyBills() {
     accessToken: sessionStorage.getItem('token'),
     onSuccess: onSuccessGetMyBills,
     onFailure: onFailed,
-    label: 'GET_MY_BILLS_SUCCESS',
+    label: 'GET_MY_BILLS',
   });
 }
 function onSuccessGetMyBills(data) {
@@ -417,7 +416,7 @@ export function profileActivate(id, token) {
     url: APIROUTE + `account/profile/activate/${id}/${token}/`,
     onSuccess: onSuccessProfileActivate,
     onFailure: onFailed,
-    label: 'GET_USER_INVENTORY_SUCCESS',
+    label: 'GET_USER_INVENTORY',
   });
 }
 function onSuccessProfileActivate(data) {
@@ -435,7 +434,7 @@ export function updateFavorite(params, name) {
     accessToken: sessionStorage.getItem('token'),
     onSuccess: (data) => onSuccessUpdateFavorite(data, name),
     onFailure: onFailed,
-    label: 'UPDATE_DASHBOARD_FAVORITE_SUCCESS',
+    label: 'UPDATE_DASHBOARD_FAVORITE',
   });
 }
 function onSuccessUpdateFavorite(data, name) {

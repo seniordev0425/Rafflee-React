@@ -9,12 +9,13 @@ import { NUMBER_PER_PAGE } from '../../../utils/constants'
 
 function MyBillsLayout() {
 
-  const isLoading = useSelector(state => state.userInfo.GET_MY_BILLS_SUCCESS)
+  const isLoading = useSelector(state => state.userInfo.GET_MY_BILLS)
   const billsList = useSelector(state => state.userInfo.myBills)
   const pdfInvoice = useSelector(state => state.userInfo.pdfInvoice)
 
   const dispatch = useDispatch()
 
+  // min, max values are for pagination
   const [minValue, setMinValue] = useState(0)
   const [maxValue, setMaxValue] = useState(NUMBER_PER_PAGE)
 
@@ -24,6 +25,7 @@ function MyBillsLayout() {
 
   useEffect(() => {
     if (pdfInvoice) {
+      // Generate pdf file and download it
       var fileName = 'download.pdf';
       var link = document.createElement("a");
       link.setAttribute("href", `data:application/octet-stream;base64,${pdfInvoice}`);

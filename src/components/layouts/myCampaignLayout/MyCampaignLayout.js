@@ -11,7 +11,7 @@ import { NUMBER_PER_PAGE } from '../../../utils/constants'
 
 function MyCampaignLayout() {
 
-  const isLoading = useSelector(state => state.userInfo.GET_MY_CAMPAIGNS_SUCCESS)
+  const isLoading = useSelector(state => state.userInfo.GET_MY_CAMPAIGNS)
   const campaignList = useSelector(state => state.userInfo.myCampaigns)
   const dispatch = useDispatch()
 
@@ -23,15 +23,18 @@ function MyCampaignLayout() {
   const [currentPage, setCurrentPage] = useState(1)
 
   useEffect(() => {
+    // This action is to load my campaigns
     dispatch(getMyCampaigns())
   }, [])
 
   const goToLivePage = (val) => {
+    // Set live page as current page
     setLivePageId(val)
     setParticipantId(null)
   }
 
   const goToParticipatePage = (val) => {
+    // Set participant page as current page
     setLivePageId(null)
     setParticipantId(val)
   }

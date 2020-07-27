@@ -9,7 +9,7 @@ import { useTranslation } from 'react-i18next'
 function InventoryItem(props) {
   const { t } = useTranslation()
 
-  const { item } = props
+  const { item, goToWinningDetail } = props
 
   return (
     <div>
@@ -24,6 +24,27 @@ function InventoryItem(props) {
                 {item.campaign_name}
               </div>
               <div className="promotion-list-item-text">{item.campaign_description}</div>
+              <div style={{ marginTop: "20px", height: "40px" }} className="d-flex justify-content-between align-items-center">
+                <Link to={"/campaign-detail/" + item.promotion_id}>
+                  <Button
+                    type="primary"
+                    className="ant-blue-btn promotion-list-item-btn"
+                  >
+                    {t('button_group.see_campaign')}
+                  </Button>
+                </Link>
+                <div>
+                  <img
+                    src={images.prize_icon}
+                    width={40}
+                    height={30}
+                    onClick={() => goToWinningDetail(item.promotion_id, item.giveaway_name)}
+                    className="pointer"
+                    title={item.giveaway_name}
+                    alt=""
+                  />
+                </div>
+              </div>
             </Col>
           </Row>
         </Col>

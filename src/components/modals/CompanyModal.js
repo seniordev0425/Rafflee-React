@@ -16,7 +16,7 @@ import { useTranslation } from 'react-i18next'
 function CompanyModal() {
   const { t } = useTranslation()
 
-  const isLoading = useSelector(state => state.userInfo.COMPANY_CONTACT_SUCCESS)
+  const isLoading = useSelector(state => state.userInfo.COMPANY_CONTACT)
   const dispatch = useDispatch()
 
   const onSubmit = (values) => {

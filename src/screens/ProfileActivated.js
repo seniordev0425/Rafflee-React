@@ -13,7 +13,7 @@ function ProfileActivated(props) {
 
   const { match } = props
 
-  const isLoading = useSelector(state => state.userInfo.GET_USER_INVENTORY_SUCCESS)
+  const isLoading = useSelector(state => state.userInfo.GET_USER_INVENTORY)
   const dispatch = useDispatch()
 
   useEffect(() => {

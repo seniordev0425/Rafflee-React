@@ -30,7 +30,7 @@ function Dashboard(props) {
 
   useEffect(() => {
     document.title = "Dashboard"
-  })
+  }, [])
 
   const renderBody = () => {
     switch (match.params.menu) {

@@ -19,7 +19,7 @@ function Carousel(props) {
   }
 
   const galleryItems = (hotPromotions || []).map((item) =>
-    <CampaignCard
+    <CampaignCard 
       description={item.description}
       campaign_name={item.campaign_name}
       campaign_image={item.campaign_image}
@@ -46,7 +46,6 @@ function Carousel(props) {
         autoPlay={true}
         autoPlayInterval={2000}
         duration={800}
-      // fadeOutAnimation={true}
       />
     </div>
   )

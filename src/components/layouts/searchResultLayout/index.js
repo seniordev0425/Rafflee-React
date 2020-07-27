@@ -33,11 +33,11 @@ function SearchResultLayout(props) {
   const bestOfferPromotions = useSelector(state => state.homepage.bestOfferPromotions)
   const categoryArr = useSelector(state => state.homepage.categories)
 
-  const isLoading_1 = useSelector(state => state.userInfo.GET_HOT_PROMOTIONS_SUCCESS)
-  const isLoading_2 = useSelector(state => state.userInfo.GET_HIGHLIGHTED_PROMOTIONS_SUCCESS)
-  const isLoading_3 = useSelector(state => state.userInfo.GET_NEW_PROMOTIONS_SUCCESS)
-  const isLoading_4 = useSelector(state => state.userInfo.GET_BEST_PROMOTIONS_SUCCESS)
-  const isLoading_5 = useSelector(state => state.userInfo.GET_ALL_PROMOTIONS_SUCCESS)
+  const isLoading_1 = useSelector(state => state.userInfo.GET_HOT_PROMOTIONS)
+  const isLoading_2 = useSelector(state => state.userInfo.GET_HIGHLIGHTED_PROMOTIONS)
+  const isLoading_3 = useSelector(state => state.userInfo.GET_NEW_PROMOTIONS)
+  const isLoading_4 = useSelector(state => state.userInfo.GET_BEST_PROMOTIONS)
+  const isLoading_5 = useSelector(state => state.userInfo.GET_ALL_PROMOTIONS)
   const isLoading_6 = useSelector(state => state.userInfo.GET_CATEGORIES)
 
   const token = useSelector(state => state.userInfo.token)
@@ -61,13 +61,15 @@ function SearchResultLayout(props) {
   }
 
   useEffect(() => {
+    // Load categories and all promotions array after render.
     dispatch(getCategories())
     dispatch(getAllPromotions({ token: token }))
   }, [])
 
   useEffect(() => {
+    // Generate new category array based on loaded data
     let temp = []
-    categoryArr.map((item) =>
+    categoryArr.forEach((item) =>
       temp.push({ name: item.name, checked: true })
     )
     setCategories(temp)
@@ -79,6 +81,7 @@ function SearchResultLayout(props) {
   }, [currentMenu])
 
   useEffect(() => {
+    // Need to reload these data whenever token changes
     if (currentMenu === 'all')
       dispatch(getAllPromotions({ token: token }))
     else if (currentMenu === 'highlight')
@@ -94,6 +97,7 @@ function SearchResultLayout(props) {
   const changeMenu = (val) => {
     setCurrentMenu(val)
     setOpenCategory(false)
+
     if (val === 'all')
       dispatch(getAllPromotions({ token: token }))
     else if (val === 'highlight')

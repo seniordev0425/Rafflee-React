@@ -4,7 +4,7 @@ import Header from './HeaderLayout/Header'
 import FooterLink from './footer/FooterLink'
 import Footer from './footer/Footer'
 
-function AppLayout(props) {
+function AppLayout(props) { // Top parent container
   const { children } = props
 
   return (

@@ -15,6 +15,7 @@ function MyCampaignItem(props) {
   const [openCloseModal, setOpenCloseModal] = useState(false)
 
   const handleCloseModal = () => {
+    // if campaign is already closed return, otherwise open modal
     if (Date.parse(item.end_date) <= Date.now()) return
     setOpenCloseModal(!openCloseModal)
   }

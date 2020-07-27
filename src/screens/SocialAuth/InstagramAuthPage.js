@@ -14,17 +14,19 @@ function InstagramAuthPage(props) {
   const dispatch = useDispatch()
 
   useEffect(() => {
+    // Get oauthToken from redirected url
     let search = window.location.search
     let params = new URLSearchParams(search)
-    console.log(params.get('code'))
     let body = {
       token: params.get('code')
     }
+    // Call instagram connect endpoint with oauthToken
     dispatch(instagramConnect(body))
   }, [])
 
   useEffect(() => {
     if (SUCCESS_INSTAGRAM_CONNECT) {
+      // If instagram connect is success then redirect user to account page
       dispatch({ type: 'INIT_STATE', state: 'SUCCESS_INSTAGRAM_CONNECT', data: false })
       openNotification('success', t('social_oauth.instagram'))
       history.push('/user-account/profile')

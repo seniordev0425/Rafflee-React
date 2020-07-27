@@ -1,6 +1,4 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import { compose } from 'redux'
 import { withRouter } from 'react-router-dom'
 import AppLayout from '../components/layouts/AppLayout'
 import CurrentPromotionList from '../components/layouts/currentPromotionLayout/CurrentPromotionLIst'
@@ -13,10 +11,4 @@ function Deals() {
   )
 }
 
-function mapStateToProps(state) {
-  return {
-    token: state.userInfo.token
-  }
-}
-
-export default compose(withRouter, connect(mapStateToProps))(Deals)
+export default withRouter(Deals)

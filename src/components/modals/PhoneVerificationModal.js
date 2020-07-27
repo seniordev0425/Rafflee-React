@@ -27,7 +27,6 @@ function PhoneVerificationModal(props) {
       onToggle()
       dispatch({ type: 'VERIFY_PHONE_NUMBER_SUCCESS', flag: false })
     }
-
   }, [isVerified])
 
   const onSubmit = () => {

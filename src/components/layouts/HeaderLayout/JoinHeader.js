@@ -11,6 +11,8 @@ function JoinHeader(props) {
   const [modal, setModal] = useState(false)
   const [companyStatus, setCompanyStatus] = useState(false)
   const [isLogin, setIsLogin] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
+
   const showCompanyModal = () => setCompanyStatus(true)
 
   const toggle = () => {
@@ -20,10 +22,9 @@ function JoinHeader(props) {
   const switch_login_signin = (val) => {
     setIsLogin(val)
   }
-  const [hide, setHide] = useState(false)
 
   useEffect(() => {
-    setHide(window.innerWidth <= 1000)
+    setIsMobile(window.innerWidth <= 1000)
     window.addEventListener('resize', resize)
     return () => {
       window.removeEventListener('resize', resize)
@@ -31,11 +32,11 @@ function JoinHeader(props) {
 
   }, [])
   const resize = () => {
-    setHide(window.innerWidth <= 1000)
+    setIsMobile(window.innerWidth <= 1000)
   }
   return (
     <>
-      {(!props.token && !hide) &&
+      {(!props.token && !isMobile) &&
         <>
           <div className="join-header">
             {t('header.join_header_text')}

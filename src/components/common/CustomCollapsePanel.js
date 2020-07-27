@@ -31,14 +31,9 @@ function CustomCollapsePanel(props) {
   const validation = useSelector(state => state.userInfo[`${socialName}_${actionType}_validation`])
   const dispatch = useDispatch()
 
-  const [validated, setValidated] = useState(false)
-
   useEffect(() => {
-    if (validation) {
-      dispatch({ type: 'INIT_STATE', state: `${socialName}_${actionType}_validation`, data: false })
-      setValidated(true)
-    }
-  }, [validation])
+    dispatch({ type: 'INIT_STATE', state: `${socialName}_${actionType}_validation`, data: false })
+  }, [])
 
   const renderIcons = () => {
     switch (socialName) {
@@ -77,7 +72,7 @@ function CustomCollapsePanel(props) {
   }
 
   return (
-    <div className="d-flex justify-content-between">
+    <div className="d-flex justify-content-between align-items-center">
       <ExpansionPanel className="collapse-panel-body">
         <ExpansionPanelSummary
           className="collapse-panel-summary"
@@ -108,7 +103,7 @@ function CustomCollapsePanel(props) {
                   className="ant-blue-btn"
                   onClick={() => tryToOpenValidationModal(socialName, actionType)}
                 >
-                  {(didAction || validated) ? t('button_group.validated') : t('button_group.validate')}
+                  {(didAction || validation) ? t('button_group.validated') : t('button_group.validate')}
                 </Button>
               </div>
             </div>
@@ -117,9 +112,14 @@ function CustomCollapsePanel(props) {
           }
         </ExpansionPanelDetails>
       </ExpansionPanel>
-      <div className="d-flex align-items-center justify-content-center campaign-detail-entries-container">
-        {`+${entries}`}
-      </div>
+      {(didAction || validation)
+        ?
+        <img src={images.verified_icon} width={40} height={40} alt="" />
+        :
+        <div className="d-flex align-items-center justify-content-center campaign-detail-entries-container">
+          {`+${entries}`}
+        </div>
+      }
       {renderIcons()}
     </div>
   )

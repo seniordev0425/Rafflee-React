@@ -22,10 +22,10 @@ function CurrentPromotionList() {
   const bestOfferPromotions = useSelector(state => state.homepage.bestOfferPromotions)
   const categoryArr = useSelector(state => state.homepage.categories)
 
-  const isLoading_1 = useSelector(state => state.userInfo.GET_HOT_PROMOTIONS_SUCCESS)
-  const isLoading_2 = useSelector(state => state.userInfo.GET_HIGHLIGHTED_PROMOTIONS_SUCCESS)
-  const isLoading_3 = useSelector(state => state.userInfo.GET_NEW_PROMOTIONS_SUCCESS)
-  const isLoading_4 = useSelector(state => state.userInfo.GET_BEST_PROMOTIONS_SUCCESS)
+  const isLoading_1 = useSelector(state => state.userInfo.GET_HOT_PROMOTIONS)
+  const isLoading_2 = useSelector(state => state.userInfo.GET_HIGHLIGHTED_PROMOTIONS)
+  const isLoading_3 = useSelector(state => state.userInfo.GET_NEW_PROMOTIONS)
+  const isLoading_4 = useSelector(state => state.userInfo.GET_BEST_PROMOTIONS)
   const isLoading_5 = useSelector(state => state.userInfo.GET_CATEGORIES)
 
   const token = useSelector(state => state.userInfo.token)

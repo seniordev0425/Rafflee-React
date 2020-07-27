@@ -14,10 +14,10 @@ function HeaderBeforeLogin() {
   const [isLogin, setIsLogin] = useState(false)
   const [visible, setVisible] = useState(false)
 
-  const [hide, setHide] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
-    setHide(window.innerWidth <= 1000)
+    setIsMobile(window.innerWidth <= 1000)
     window.addEventListener('resize', resize)
 
     return () => {
@@ -35,11 +35,13 @@ function HeaderBeforeLogin() {
   }
 
   const switch_login_signin = (val) => {
+    // Switch login, sign up modals depends on 'isLogin' state
     setIsLogin(val)
   }
 
   const resize = () => {
-    setHide(window.innerWidth <= 1000)
+    // if screen width is less than 1000 then this device is mobile or tablet
+    setIsMobile(window.innerWidth <= 1000)
   }
 
   const showDrawer = () => {
@@ -52,7 +54,7 @@ function HeaderBeforeLogin() {
 
   return (
     <>
-      {!hide ? (
+      {!isMobile ? (
         <Row>
           <Link to="/deals"><Button type="link" className="no-border-btn h-100 font-weight-bold">{t('header.campaigns')}</Button></Link>
           <Button type="link" className="no-border-btn h-100 font-weight-bold" onClick={() => toggle(true)}>{t('header.log_in')}</Button>
@@ -72,7 +74,8 @@ function HeaderBeforeLogin() {
               <div className="mb-2 font-size-10 color-blue font-weight-bold" style={{ color: '#767B83' }} onClick={() => toggle(false)}>{t('header.log_in')}</div>
             </Drawer>
           </>
-        )}
+        )
+      }
       <LoginSignupBaseModal
         modal={modal}
         isLogin={isLogin ? true : false}

@@ -21,6 +21,7 @@ function PromotionListItem(props) {
     var body = {
       promotion_id: item.pk
     }
+    // Update favorite status. Menuname can be 'hot', 'highlight', 'new', 'bestoffer' and 'all'
     dispatch(updateFavorite(body, menuname))
   }
 

@@ -21,17 +21,17 @@ function HeaderAfterLogin(props) {
 
   const [visible, setVisible] = useState(false)
 
-  const [hide, setHide] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
-    if (SUCCESS_LOG_OUT) {
+    if (SUCCESS_LOG_OUT) { // Redirect user to home page after logout
       history.push('/')
       dispatch({ type: 'INIT_STATE', state: 'SUCCESS_LOG_OUT', data: false })
     }
   }, [SUCCESS_LOG_OUT])
 
   useEffect(() => {
-    setHide(window.innerWidth <= 1000)
+    setIsMobile(window.innerWidth <= 1000)
     window.addEventListener('resize', resize)
     return () => {
       window.removeEventListener('resize', resize)
@@ -43,7 +43,8 @@ function HeaderAfterLogin(props) {
   }
 
   const resize = () => {
-    setHide(window.innerWidth <= 1000)
+    // if screen width is less than 1000 then this device is mobile or tablet
+    setIsMobile(window.innerWidth <= 1000)
   }
 
   const showDrawer = () => {
@@ -56,7 +57,7 @@ function HeaderAfterLogin(props) {
 
   return (
     <>
-      {!hide ? (
+      {!isMobile ? (
         <Row>
           <Link to="/deals"><Button type="link" className="no-border-btn mr-3 h-100 font-weight-bold">{t('header.campaigns')}</Button></Link>
           <Link to="/my-circle"><Button type="link" className="no-border-btn mr-3 h-100 font-weight-bold">{t('menubar.my_circle')}</Button></Link>

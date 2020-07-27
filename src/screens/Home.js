@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
-import { connect, useSelector, useDispatch } from 'react-redux'
-import { compose } from 'redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import AppLayout from '../components/layouts/AppLayout'
 import Banner from '../components/layouts/Banner'
@@ -16,7 +15,7 @@ function Home() {
   const { t } = useTranslation()
 
   const hotPromotions = useSelector(state => state.homepage.hotPromotions)
-  const isLoading_1 = useSelector(state => state.userInfo.GET_HOT_PROMOTIONS_SUCCESS)
+  const GET_HOT_PROMOTIONS_PROCESS = useSelector(state => state.userInfo.GET_HOT_PROMOTIONS)
 
   const token = useSelector(state => state.userInfo.token)
   const dispatch = useDispatch()
@@ -37,11 +36,11 @@ function Home() {
         <div className="premium-prize-text">
           {t('homepage.premium_prizes_giveaways')}
         </div>
-        {!isLoading_1
+        {GET_HOT_PROMOTIONS_PROCESS
           ?
-          (<Carousel hotPromotions={hotPromotions} />)
-          :
           <Loading />
+          :
+          (<Carousel hotPromotions={hotPromotions} />)
         }
         <CurrentPromotionList />
       </div>
@@ -49,10 +48,4 @@ function Home() {
   )
 }
 
-function mapStateToProps(state) {
-  return {
-    token: state.userInfo.token
-  }
-}
-
-export default compose(withRouter, connect(mapStateToProps))(Home)
+export default withRouter(Home)

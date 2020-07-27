@@ -14,16 +14,19 @@ function TwitchAuthPage(props) {
   const dispatch = useDispatch()
 
   useEffect(() => {
+    // Get oauthToken from redirected url
     let search = window.location.search
     let params = new URLSearchParams(search)
     let body = {
       token: params.get('code')
     }
+    // Call twitch connect endpoint with oauthToken
     dispatch(twitchConnect(body))
   }, [])
 
   useEffect(() => {
     if (SUCCESS_TWITCH_CONNECT) {
+      // If twitch connect is success then redirect user to account page
       dispatch({ type: 'INIT_STATE', state: 'SUCCESS_TWITCH_CONNECT', data: false })
       openNotification('success', t('social_oauth.twitch'))
       history.push('/user-account/profile')

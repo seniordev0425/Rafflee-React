@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
+import React, { useState, useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import { Select } from 'antd'
 import { Button, Tooltip } from 'antd'
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
@@ -22,6 +22,7 @@ function CustomCollapsePanelForPoll(props) {
     responses,
     mandatory,
     entries,
+    didAction,
     participatePoll
   } = props
 
@@ -31,10 +32,16 @@ function CustomCollapsePanelForPoll(props) {
   const company = useSelector(state => state.userInfo.company)
 
   const CAMPAIGN_PARTICIPATE_POLL_PROCESS = useSelector(state => state.userInfo.CAMPAIGN_PARTICIPATE_POLL)
+  const validation = useSelector(state => state.userInfo.poll_action_validation)
+  const dispatch = useDispatch()
 
   const [answers, setAnswers] = useState(null)
 
   const { Option } = Select
+
+  useEffect(() => {
+    dispatch({ type: 'INIT_STATE', state: 'poll_action_validation', data: false })
+  }, [])
 
   const renderChildren = () => {
     return (
@@ -53,7 +60,7 @@ function CustomCollapsePanelForPoll(props) {
   }
 
   return (
-    <div className="d-flex justify-content-between">
+    <div className="d-flex justify-content-between align-items-center">
       <ExpansionPanel className="collapse-panel-body">
         <ExpansionPanelSummary
           className="collapse-panel-summary"
@@ -102,9 +109,14 @@ function CustomCollapsePanelForPoll(props) {
           }
         </ExpansionPanelDetails>
       </ExpansionPanel>
-      <div className="d-flex align-items-center justify-content-center campaign-detail-entries-container">
-        {`+${entries}`}
-      </div>
+      {(didAction || validation)
+        ?
+        <img src={images.verified_icon} width={40} height={40} alt="" />
+        :
+        <div className="d-flex align-items-center justify-content-center campaign-detail-entries-container">
+          {`+${entries}`}
+        </div>
+      }
       <div className="collapse-other-icon">
         ?
             </div>

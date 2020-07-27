@@ -20,12 +20,13 @@ function LivePageLayout(props) {
 
   const { id, goBack } = props
 
+  // These Redux states are defined in reducer. Please check there.
   const participants = useSelector(state => state.campaign.participants)
   const campaignWinnings = useSelector(state => state.campaign.campaignWinnings)
   const winnerArr = useSelector(state => state.campaign.winnerArr)
-  const isFetchingParticipants = useSelector(state => state.userInfo.GET_CAMPAIGN_PARTICIPANTS_SUCCESS)
-  const isFetchingWinnings = useSelector(state => state.userInfo.GET_CAMPAIGN_WINNINGS_SUCCESS)
-  const isDrawing = useSelector(state => state.userInfo.DRAW_CAMPAIGN_SUCCESS)
+  const isFetchingParticipants = useSelector(state => state.userInfo.GET_CAMPAIGN_PARTICIPANTS)
+  const isFetchingWinnings = useSelector(state => state.userInfo.GET_CAMPAIGN_WINNINGS)
+  const isDrawing = useSelector(state => state.userInfo.DRAW_CAMPAIGN)
   const toggleWinnersModal = useSelector(state => state.campaign.TOGGLE_WINNERS_MODAL)
 
   const dispatch = useDispatch()
@@ -50,10 +51,12 @@ function LivePageLayout(props) {
   }, [toggleWinnersModal])
 
   useEffect(() => {
+    // Initialize winning type as the first one of campaign winnings array
     setWinningType(campaignWinnings.length ? campaignWinnings[0].name : '')
   }, [campaignWinnings])
 
   const onToggle = () => {
+    // Toggle winning modal
     setOpen(!open)
   }
 

@@ -68,7 +68,7 @@ export function getCampaignData(id, params) {
     data: qs.stringify(params),
     onSuccess: onSuccessGetCampaignData,
     onFailure: onFailed,
-    label: 'GET_CAMPAIGN_DATA_SUCCESS',
+    label: 'GET_CAMPAIGN_DATA',
   });
 }
 function onSuccessGetCampaignData(data) {
@@ -85,7 +85,7 @@ export function getCampaignParticipants(id) {
     accessToken: sessionStorage.getItem('token'),
     onSuccess: onSuccessGetCampaignParticipants,
     onFailure: onFailed,
-    label: 'GET_CAMPAIGN_PARTICIPANTS_SUCCESS',
+    label: 'GET_CAMPAIGN_PARTICIPANTS',
   });
 }
 function onSuccessGetCampaignParticipants(data) {
@@ -102,7 +102,7 @@ export function getCampaignWinnings(id) {
     accessToken: sessionStorage.getItem('token'),
     onSuccess: onSuccessGetCampaignWinnings,
     onFailure: onFailed,
-    label: 'GET_CAMPAIGN_WINNINGS_SUCCESS',
+    label: 'GET_CAMPAIGN_WINNINGS',
   });
 }
 function onSuccessGetCampaignWinnings(data) {
@@ -130,7 +130,7 @@ export function drawCampaign(id, drawType, winning_name) {
     accessToken: sessionStorage.getItem('token'),
     onSuccess: (data) => onSuccessDrawCampaign(data, drawType),
     onFailure: (data) => onFailedDrawCampaign(data, winning_name),
-    label: 'DRAW_CAMPAIGN_SUCCESS',
+    label: 'DRAW_CAMPAIGN',
     requireErrorMessage: true
   });
 }
@@ -163,7 +163,7 @@ export function updateFavorite(params, name) {
     accessToken: sessionStorage.getItem('token'),
     onSuccess: (data) => onSuccessUpdateFavorite(data, name),
     onFailure: onFailed,
-    label: 'UPDATE_CAMPAIGN_DETAIL_FAVORITE_SUCCESS',
+    label: 'UPDATE_CAMPAIGN_DETAIL_FAVORITE',
   });
 }
 function onSuccessUpdateFavorite(data, name) {
@@ -466,8 +466,8 @@ export function campaignParticipatePoll(params) {
 function onSuccessCampaignParticipatePoll(data) {
   openNotification('success', successMessages[localStorage.getItem('i18nextLng')].completeToSubmitPoll)
   return {
-    type: '',
-    data: '',
+    type: 'SET_ACTION_VALIDATION_STATUS',
+    data: 'poll_action_validation',
   }
 }
 /////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_WEBSITE_ACTION

@@ -15,8 +15,8 @@ function MyBillsItem(props) {
   const dispatch = useDispatch()
 
   const download = () => {
+    // This endpoint is to get pdf base64 data from server.
     dispatch(getPdfInvoice(item.id))
-
   }
 
   return (

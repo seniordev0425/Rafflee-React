@@ -76,6 +76,7 @@ const images = {
   menu_icon: require('../assets/image/menu_icon.png'),
   rafflee_icon: require('../assets/image/rafflee.png'),
   required_icon: require('../assets/image/required_icon.png'),
+  prize_icon: require('../assets/image/prize_icon.png'),
 }
 
 export default images;

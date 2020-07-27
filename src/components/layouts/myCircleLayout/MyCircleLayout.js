@@ -7,9 +7,6 @@ import MyCircleItem from './MyCircleItem'
 import Loading from '../../common/Loading'
 import {
   getFavoriteCompanies,
-  getUserInventory,
-  getParticipationHistory,
-  getFollowing
 } from '../../../actions/userInfo'
 import { NUMBER_PER_PAGE } from '../../../utils/constants'
 import { useTranslation } from 'react-i18next'
@@ -27,10 +24,8 @@ function MyCircleLayout() {
   const [keyword, setKeyword] = useState('')
 
   useEffect(() => {
+    // This action is to load followed companies
     dispatch(getFavoriteCompanies())
-    // dispatch(getUserInventory())
-    // dispatch(getParticipationHistory())
-    // dispatch(getFollowing())
   }, [])
 
   const handlePagination = (value) => {
@@ -41,12 +36,12 @@ function MyCircleLayout() {
   const renderMyFavoriteCompanies = () => {
     return (
       <>
-        {((myFavoriteCompanies || []).filter((item, index) => item.company_name.toLowerCase().includes(keyword))).slice(minValue, maxValue).map((item, index) =>
+        {((myFavoriteCompanies || []).filter((item) => item.company_name.toLowerCase().includes(keyword))).slice(minValue, maxValue).map((item, index) =>
           <div key={index} className="promotion-list-item-container">
             <MyCircleItem item={item} />
           </div>
         )}
-        {((myFavoriteCompanies || []).filter((item, index) => item.company_name.toLowerCase().includes(keyword))).length < 1 && (
+        {((myFavoriteCompanies || []).filter((item) => item.company_name.toLowerCase().includes(keyword))).length < 1 && (
           <div className="empty-result mt-5">
             <span className="promotion-list-item-title">{t('empty_result_to_display')}</span>
           </div>
@@ -56,7 +51,7 @@ function MyCircleLayout() {
           defaultCurrent={1}
           defaultPageSize={NUMBER_PER_PAGE}
           onChange={handlePagination}
-          total={((myFavoriteCompanies || []).filter((item, index) => item.company_name.toLowerCase().includes(keyword))).length}
+          total={((myFavoriteCompanies || []).filter((item) => item.company_name.toLowerCase().includes(keyword))).length}
           className="py-5 d-flex justify-content-center"
         />
       </>

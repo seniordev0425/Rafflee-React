@@ -16,13 +16,14 @@ function ParticipantListLayout(props) {
   const { goBack, id } = props
 
   const participants = useSelector(state => state.campaign.participants)
-  const isFetchingParticipants = useSelector(state => state.userInfo.GET_CAMPAIGN_PARTICIPANTS_SUCCESS)
+  const isFetchingParticipants = useSelector(state => state.userInfo.GET_CAMPAIGN_PARTICIPANTS)
 
   const dispatch = useDispatch()
 
   const [keyword, setKeyword] = useState('')
 
   useEffect(() => {
+    // This action is to load participants array
     dispatch(getCampaignParticipants(id))
   }, [])
 
@@ -64,7 +65,6 @@ function ParticipantListLayout(props) {
             <Col sm="10" xs="9">
               <div className="promotion-list-item-text">{t('my_campaign_page.campaign_analytics')}</div>
               <div className="promotion-list-item-title">Ultimate Edition (Digital Code)</div>
-
             </Col>
           </Row>
         </Col>

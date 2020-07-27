@@ -4,7 +4,13 @@ import { compose } from 'redux'
 import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { Form as FinalForm, Field } from 'react-final-form'
-import { Form, FormGroup, Modal, ModalHeader, ModalBody } from 'reactstrap'
+import { 
+  Form, 
+  FormGroup, 
+  Modal, 
+  ModalHeader, 
+  ModalBody 
+} from 'reactstrap'
 import { Button } from 'antd'
 import FormInput from '../common/FormInput'
 import {

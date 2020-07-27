@@ -46,7 +46,7 @@ function UserAccountForm() {
   const userProfile = useSelector(state => state.userInfo.userProfile)
   const phone_number_verified = useSelector(state => state.userInfo.phone_number_verified)
   const usernameCheckedStatus = useSelector(state => state.userInfo.usernameCheckedStatus)
-  const isLoading = useSelector(state => state.userInfo.GET_USER_PROFILE_SUCCESS)
+  const isLoading = useSelector(state => state.userInfo.GET_USER_PROFILE)
   const isUpdating = useSelector(state => state.userInfo.UPDATE_USER_PROFILE)
   const CHECK_USER_NAME_PROCESS = useSelector(state => state.userInfo.CHECK_USER_NAME)
   const UPDATE_USER_PROFILE_SUCCESS = useSelector(state => state.userInfo.SUCCESS_UPDATE_USER_PROFILE)

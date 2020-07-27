@@ -19,6 +19,7 @@ function InProgressItem(props) {
     var body = {
       promotion_id: item.pk
     }
+    // Update favorite status
     dispatch(updateFavorite(body, 'in_progress'))
   }
 

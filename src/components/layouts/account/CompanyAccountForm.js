@@ -40,7 +40,7 @@ function CompanyAccountForm() {
 
   const companyProfile = useSelector(state => state.userInfo.companyProfile)
   const usernameCheckedStatus = useSelector(state => state.userInfo.usernameCheckedStatus)
-  const isLoading = useSelector(state => state.userInfo.GET_COMPANY_PROFILE_SUCCESS)
+  const isLoading = useSelector(state => state.userInfo.GET_COMPANY_PROFILE)
   const isUpdating = useSelector(state => state.userInfo.UPDATE_COMPANY_PROFILE)
   const CHECK_USER_NAME_PROCESS = useSelector(state => state.userInfo.CHECK_USER_NAME)
   const UPDATE_COMPANY_PROFILE_SUCCESS = useSelector(state => state.userInfo.SUCCESS_UPDATE_COMPANY_PROFILE)
