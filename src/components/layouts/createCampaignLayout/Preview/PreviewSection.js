@@ -32,7 +32,7 @@ function PreviewSection(props) {
     const diff = endDate.diff(currentDate)
     const diffDuration = moment.duration(diff)
 
-    return diffDuration.days() > 0 ? diffDuration.days() : 0
+    return diffDuration.asDays() > 0 ? Math.round(diffDuration.asDays()) : 0
   }
 
   // Returns maximum participants

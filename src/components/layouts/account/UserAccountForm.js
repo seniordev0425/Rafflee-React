@@ -19,7 +19,8 @@ import FaceBookConnectBtn from '../../common/Buttons/FaceBookConnectBtn'
 import TwitterConnectBtn from '../../common/Buttons/TwitterConnectBtn'
 import TwitchConnectBtn from '../../common/Buttons/TwitchConnectBtn'
 import YoutubeConnectBtn from '../../common/Buttons/YoutubeConnectBtn'
-import InstagramConnectBtn from '../../common/Buttons/InstagramConnectBtn'
+import InstagramNormalConnectBtn from '../../common/Buttons/InstagramNormalConnectBtn'
+import InstagramBusinessConnectBtn from '../../common/Buttons/InstagramBusinessConnectBtn'
 import SteamConnectBtn from '../../common/Buttons/SteamConnectBtn'
 import SnapchatConnectBtn from '../../common/Buttons/SnapchatConnectBtn'
 import {
@@ -459,14 +460,27 @@ function UserAccountForm() {
                 <div className="mt-4 d-flex justify-content-end">
                   <div className="half-width">
                     <div className="footer-link-bold mb-3 d-flex align-items-center">
-                      <span>Instagram</span>
-                      {(userProfile.instagram || userProfile.instagram_business) &&
+                      <span>Instagram Normal</span>
+                      {userProfile.instagram &&
                         <FontAwesomeIcon icon={faCheckCircle} className="color-blue font-size-12 ml-3" />
                       }
                     </div>
-                    <InstagramConnectBtn connected={userProfile.instagram_business || false} />
+                    <InstagramNormalConnectBtn connected={userProfile.instagram} />
                   </div>
                 </div>
+
+                <div className="mt-4 d-flex justify-content-end">
+                  <div className="half-width">
+                    <div className="footer-link-bold mb-3 d-flex align-items-center">
+                      <span>Instagram Business</span>
+                      {userProfile.instagram_business &&
+                        <FontAwesomeIcon icon={faCheckCircle} className="color-blue font-size-12 ml-3" />
+                      }
+                    </div>
+                    <InstagramBusinessConnectBtn connected={userProfile.instagram_business} />
+                  </div>
+                </div>
+                
                 <div className="mt-4 d-flex justify-content-end">
                   <div className="half-width">
                     <div className="footer-link-bold mb-3">Steam</div>

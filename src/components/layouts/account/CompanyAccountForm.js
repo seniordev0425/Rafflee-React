@@ -18,7 +18,8 @@ import FaceBookConnectBtn from '../../common/Buttons/FaceBookConnectBtn'
 import TwitterConnectBtn from '../../common/Buttons/TwitterConnectBtn'
 import TwitchConnectBtn from '../../common/Buttons/TwitchConnectBtn'
 import YoutubeConnectBtn from '../../common/Buttons/YoutubeConnectBtn'
-import InstagramConnectBtn from '../../common/Buttons/InstagramConnectBtn'
+import InstagramNormalConnectBtn from '../../common/Buttons/InstagramNormalConnectBtn'
+import InstagramBusinessConnectBtn from '../../common/Buttons/InstagramBusinessConnectBtn'
 import SnapchatConnectBtn from '../../common/Buttons/SnapchatConnectBtn'
 import SteamConnectBtn from '../../common/Buttons/SteamConnectBtn'
 import { updateCompanyProfile } from '../../../actions/userInfo'
@@ -349,12 +350,23 @@ function CompanyAccountForm() {
                 <Row style={{ justifyContent: "flex-end" }}>
                   <div className="mt-4 half-width">
                     <div className="footer-link-bold mb-3 d-flex align-items-center">
-                      <span>Instagram</span>
-                      {(companyProfile.instagram || companyProfile.instagram_business) &&
+                      <span>Instagram Normal</span>
+                      {companyProfile.instagram &&
                         <FontAwesomeIcon icon={faCheckCircle} className="color-blue font-size-12 ml-3" />
                       }
                     </div>
-                    <InstagramConnectBtn connected={companyProfile.instagram_business || false} />
+                    <InstagramNormalConnectBtn connected={companyProfile.instagram} />
+                  </div>
+                </Row>
+                <Row style={{ justifyContent: "flex-end" }}>
+                  <div className="mt-4 half-width">
+                    <div className="footer-link-bold mb-3 d-flex align-items-center">
+                      <span>Instagram Business</span>
+                      {companyProfile.instagram_business &&
+                        <FontAwesomeIcon icon={faCheckCircle} className="color-blue font-size-12 ml-3" />
+                      }
+                    </div>
+                    <InstagramBusinessConnectBtn connected={companyProfile.instagram_business} />
                   </div>
                 </Row>
                 <Row style={{ justifyContent: "flex-end" }}>

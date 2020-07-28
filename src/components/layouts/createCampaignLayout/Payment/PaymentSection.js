@@ -16,7 +16,7 @@ function PaymentSection(props) {
   const CREATE_CAMPAIGN_SUCCESS = useSelector(state => state.userInfo.SUCCESS_CREATE_CAMPAIGN)
   const dispatch = useDispatch()
 
-  // Required messages array which are displayed when click on create campaign
+  // Required messages array which should appear when click on create campaign
   const [messages, setMessages] = useState([])
 
   useEffect(() => {
@@ -67,7 +67,6 @@ function PaymentSection(props) {
       })
     }
 
-    console.log(facebook)
     // Make twitter action para
     let twitter = []
     if (params.twitter.comment) {
@@ -110,7 +109,7 @@ function PaymentSection(props) {
       url_website = { url: params.url_website.url, entries: params.url_website.entries || 1, mandatory: params.url_website.mandatory }
     }
 
-    // Check required fields and add messages
+    // Check required fields and prepare required messages
     if (params.promotion_name === '') required_messages.push(t('create_campaign_page.required_fields.campaign_name'))
     if (params.promotion_picture === '') required_messages.push(t('create_campaign_page.required_fields.campaign_image'))
     if (params.promotion_description === '') required_messages.push(t('create_campaign_page.required_fields.short_description'))

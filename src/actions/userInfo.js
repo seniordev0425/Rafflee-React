@@ -190,12 +190,11 @@ export function getCompanyProfile() {
     onSuccess: onSuccessGetCompanyProfile,
     onFailure: onFailed,
     label: 'GET_COMPANY_PROFILE',
-
   });
 }
 function onSuccessGetCompanyProfile(data) {
   return {
-    type: '',
+    type: 'GET_COMPANY_PROFILE_SUCCESS',
     data: data.user_informations
   }
 }

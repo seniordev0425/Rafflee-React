@@ -21,18 +21,6 @@ function FacebookActionMenu(props) {
         <label>{t('create_campaign_page.page')}</label>
         <Checkbox checked={params.facebook.page} onChange={(e) => setAction('facebook', 'page', e.target.checked)} />
       </div>
-      {/* <div className="action-list-item">
-        <label>{t('create_campaign_page.follow')}</label>
-        <Checkbox checked={params.facebook.follow} onChange={(e) => setAction('facebook', 'follow', e.target.checked)} />
-      </div>
-      <div className="action-list-item">
-        <label>{t('create_campaign_page.comment')}</label>
-        <Checkbox checked={params.facebook.comment} onChange={(e) => setAction('facebook', 'comment', e.target.checked)} />
-      </div>
-      <div className="action-list-item">
-        <label>{t('create_campaign_page.post')}</label>
-        <Checkbox checked={params.facebook.post} onChange={(e) => setAction('facebook', 'post', e.target.checked)} />
-      </div> */}
     </div>
   )
 }

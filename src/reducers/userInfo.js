@@ -28,6 +28,7 @@ const initialFeedState = {
     twitch: false,
     snapchat: false,
     instagram: false,
+    instagram_business: false,
     facebook: false,
     username: ''
   },
@@ -49,6 +50,7 @@ const initialFeedState = {
     twitch: false,
     snapchat: false,
     instagram: false,
+    instagram_business: false,
     facebook: false,
     username: ''
   },
@@ -349,6 +351,18 @@ function UserInfo(state = initialFeedState, action) {
         return {
           ...state,
           userProfile: { ...state.userProfile, facebook: action.data }
+        }
+      }
+    case 'SET_USER_INSTAGRAM_BUSINESS_CONNECT':
+      if (action.company) {
+        return {
+          ...state,
+          companyProfile: { ...state.companyProfile, instagram_business: action.data }
+        }
+      } else {
+        return {
+          ...state,
+          userProfile: { ...state.userProfile, instagram_business: action.data }
         }
       }
     case 'SET_WALL_SETTING':

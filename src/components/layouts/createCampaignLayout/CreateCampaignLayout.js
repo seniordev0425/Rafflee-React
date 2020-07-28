@@ -114,7 +114,7 @@ function CreateCampaignLayout() {
     setParams(temp_params)
   }
 
-  // Update params too. But this function is for only social action update
+  // Update params too. But this function is for only social action params
   const _setAction = (socialName, actionType, val) => {
     let temp_params = { ...params }
     temp_params[socialName][actionType] = val
