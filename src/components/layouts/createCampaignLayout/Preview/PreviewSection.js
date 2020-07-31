@@ -91,6 +91,45 @@ function PreviewSection(props) {
             </Col>
           </Row>
 
+          {params.facebook.page &&
+            <Row className="mb-4 mt-4">
+              <Col style={{ paddingLeft: 40 }}>
+                <PreviewCustomCollapsePanel
+                  title={t('campaign_detail_page.facebook_page.title')}
+                  text={t('campaign_detail_page.facebook_page.text')}
+                  socialName="facebook"
+                  mandatory={params.facebook.page_mandatory}
+                  entries={params.facebook.page_entries}
+                />
+              </Col>
+            </Row>
+          }
+          {params.facebook.post &&
+            <Row className="mb-4 mt-4">
+              <Col style={{ paddingLeft: 40 }}>
+                <PreviewCustomCollapsePanel
+                  title={t('campaign_detail_page.facebook_post.title')}
+                  text={t('campaign_detail_page.facebook_post.text')}
+                  socialName="facebook"
+                  mandatory={params.facebook.post_mandatory}
+                  entries={params.facebook.post_entries}
+                />
+              </Col>
+            </Row>
+          }
+          {params.facebook.url &&
+            <Row className="mb-4 mt-4">
+              <Col style={{ paddingLeft: 40 }}>
+                <PreviewCustomCollapsePanel
+                  title={t('campaign_detail_page.facebook_url.title')}
+                  text={t('campaign_detail_page.facebook_url.text')}
+                  socialName="facebook"
+                  mandatory={params.facebook.url_mandatory}
+                  entries={params.facebook.url_entries}
+                />
+              </Col>
+            </Row>
+          } 
           {params.instagram.profile &&
             <Row className="mb-4 mt-4">
               <Col style={{ paddingLeft: 40 }}>

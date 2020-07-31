@@ -87,9 +87,28 @@ function CustomCollapsePanel(props) {
       case 'page':
         return (
           <div className="mt-3">
-            <FacebookProvider appId={FACEBOOK_APP_ID} className="mt-3">
-              <Page href={facebookActionUrl} tabs="timeline" />
-            </FacebookProvider>
+            {/* <div
+              className="fb-page"
+              data-href="https://www.facebook.com/Rafflee-101514858298034"
+              data-tabs="timeline"
+              data-width=""
+              data-height=""
+              data-small-header="false"
+              data-adapt-container-width="true"
+              data-hide-cover="false"
+              data-show-facepile="true"
+            >
+              <blockquote
+                cite="https://www.facebook.com/Rafflee-101514858298034"
+                className="fb-xfbml-parse-ignore"
+              >
+                <a href="https://www.facebook.com/Rafflee-101514858298034">Rafflee</a>
+              </blockquote>
+            </div> */}
+            {/* <FacebookProvider appId={FACEBOOK_APP_ID}>
+              <Page href={"https://www.facebook.com/20531316728/posts/10154009990506729/"} className="mt-3" />
+            </FacebookProvider> */}
+            <a href={facebookActionUrl} target="_blank">{facebookActionUrl}</a>
           </div>
         )
       case 'post':
