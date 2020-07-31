@@ -45,6 +45,23 @@ function onSuccessGetActiveGender(data) {
     data: data
   }
 }
+/////////////////////////////////////////////// ANALYTICS-GET-PARTICIPANTS-BY-AGE-ACTION
+export function getParticipantsByAge(id, type) {
+  return apiAction({
+    url: APIROUTE + `analytics/age/${id}/${type}/`,
+    method: 'GET',
+    accessToken: sessionStorage.getItem('token'),
+    onSuccess: onSuccessGetParticipantsByAge,
+    onFailure: onFailed,
+    label: `GET_PARTICIPANTS_BY_AGE`,
+  });
+}
+function onSuccessGetParticipantsByAge(data) {
+  return {
+    type: 'SET_PARTICIPANTS_BY_AGE',
+    data: data
+  }
+}
 /////////////////////////////////////////////// ANALYTICS-GET-DEMOGRAPHICS-ACTION
 export function getDemographics(id, demographics_type) {
   return apiAction({

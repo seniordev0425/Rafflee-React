@@ -17,13 +17,17 @@ function InventoryItem(props) {
         <Col xs="12" sm={{ size: 10, offset: 1 }} className="padding-x">
           <Row>
             <Col lg="1" md="2" sm="2" xs="3" className="promotion-list-item-img">
-              <img src={item.campaign_image ? item.campaign_image : images.profile_img} alt="" />
+              <img
+                src={item.giveaway_image_url ? item.giveaway_image_url : images.prize_icon}
+                className="pointer"
+                onClick={() => goToWinningDetail(item.promotion_id, item.giveaway_name)}
+                alt="" />
             </Col>
             <Col lg="11" md="10" sm="10" xs="9" className="pl-sm-5">
               <div className="promotion-list-item-title">
-                {item.campaign_name}
+                {item.giveaway_name}
               </div>
-              <div className="promotion-list-item-text">{item.campaign_description}</div>
+              <div className="promotion-list-item-text">{item.giveaway_description}</div>
               <div style={{ marginTop: "20px", height: "40px" }} className="d-flex justify-content-between align-items-center">
                 <Link to={"/campaign-detail/" + item.promotion_id}>
                   <Button
@@ -33,17 +37,6 @@ function InventoryItem(props) {
                     {t('button_group.see_campaign')}
                   </Button>
                 </Link>
-                <div>
-                  <img
-                    src={images.prize_icon}
-                    width={40}
-                    height={30}
-                    onClick={() => goToWinningDetail(item.promotion_id, item.giveaway_name)}
-                    className="pointer"
-                    title={item.giveaway_name}
-                    alt=""
-                  />
-                </div>
               </div>
             </Col>
           </Row>

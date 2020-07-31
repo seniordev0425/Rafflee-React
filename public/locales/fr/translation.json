@@ -7,39 +7,39 @@
     "log_in": "Connecte toi",
     "account": "Compte",
     "dashboard": "Profil",
-    "inventory": "Inventory",
-    "log_out": "Logout"
+    "inventory": "Inventaire",
+    "log_out": "Déconnexion"
   },
   "footer": {
-    "all_rights_reserved": "©2020 Rafflee, all rights reserved.",
+    "all_rights_reserved": "©2020 Rafflee, tous droits réservés.",
     "enterprise": "Enterprise",
-    "who_are_we": "Who are we?",
-    "the_team": "The team",
-    "we_are_hiring": "We are hiring!",
-    "community": "Community",
-    "company_contact_us": "Company, contact us!",
-    "influencer_contact_us": "Influencer, contact us!",
+    "who_are_we": "Qui sommes nous?",
+    "the_team": "L'équipe",
+    "we_are_hiring": "On recrute!",
+    "community": "Communauté",
+    "company_contact_us": "Entreprises, contactez nous!",
+    "influencer_contact_us": "Influenceurs, contactez nous!",
     "faq": "FAQ",
-    "report": "Report",
+    "report": "Rapport",
     "legal": "Legal",
-    "privacy_policy": "Privacy Policy",
-    "cookies_policy": "Cookies Policy",
-    "legal_notice": "Legal Notice",
-    "terms_of_service": "Terms of Service",
-    "follow_us": "Follow Us",
-    "language": "Language"
+    "privacy_policy": "Politique de confidentialité",
+    "cookies_policy": "Politique de cookies",
+    "legal_notice": "Mention légale",
+    "terms_of_service": "Conditions d'utilisation",
+    "follow_us": "Suivez nous!",
+    "language": "Langues"
   },
   "banner": {
     "search_placeholder": "Recherche…",
-    "thousands_of": "Thousands of",
-    "prizes": "prizes",
-    "and": "and",
-    "giveaways": "giveaways",
-    "for_you": "for you."
+    "thousands_of": "Des milliers de",
+    "prizes": "prix",
+    "and": "et",
+    "giveaways": "cadeaux",
+    "for_you": "pour vous."
   },
   "menubar": {
     "all": "Tous",
-    "highlights": "Highlights",
+    "highlights": "À la une",
     "new": "Nouveau",
     "hot": "Hot",
     "endsoon": "Se finit bientôt",
@@ -47,17 +47,17 @@
     "company_profile": "Profil entreprise",
     "inventory": "Inventaire",
     "rafflee_history": "Historique",
-    "in_progress": "In progress",
+    "in_progress": "En cours",
     "following": "Following",
-    "my_circle": "My Circle",
+    "my_circle": "Mon Cercle",
     "my_campaign": "Ma campagne",
     "my_bills": "Mes factures",
     "analytics": "Analytics",
     "create_campaign": "Créé une campagne",
-    "overview": "Overview",
+    "overview": "Aperçu",
     "audience": "Audience",
     "engagement": "Engagement",
-    "clicks": "Clicks",
+    "clicks": "Clics",
     "setup": "1. Setup",
     "campaign_type": "2. Type de campagne",
     "action": "3. Action",
@@ -85,13 +85,14 @@
     "delete_account": "Effacer un compte",
     "pick_another": "Choisir un autre",
     "participate": "PARTICIPER",
+    "promotion_ended": "Promotion Ended",
     "already_won": "Tu as déjà gagné",
     "draw": "Tirage",
-    "download_pdf": "DOWNLOAD PDF",
+    "download_pdf": "TÉLÉCHARGER PDF",
     "next": "SUIVANT",
     "create_poll": "CREER UN SONDAGE",
-    "create_campaign": "CREER UNE CAMPAGNE",
-    "reset": "REINITIALISER",
+    "create_campaign": "CRÉER UNE CAMPAGNE",
+    "reset": "RÉINITIALISER",
     "continue": "CONTINUER",
     "accept": "Accepter",
     "decline": "Refuser",
@@ -99,10 +100,10 @@
     "edit": "Editer",
     "follow_circle": "SUIVRE",
     "unfollow_circle": "NE PLUS SUIVRE",
-    "remove": "ENLEVER",
+    "remove": "SUPPRIMER",
     "close": "FERMER",
-    "validate": "Validate",
-    "validated": "Validated"
+    "validate": "Valider",
+    "validated": "Validé"
   },
   "homepage": {
     "hot_new_contest_everyday": "Des raffles et giveaways tous les jours.",
@@ -113,13 +114,13 @@
     "bug": "Bug",
     "feedback": "Feedback",
     "context": "Context",
-    "context_required": "Context required",
+    "context_required": "Contexte requis",
     "description": "Description",
-    "description_required": "Description required"
+    "description_required": "Description requis"
   },
   "account_page": {
-    "username": "Username",
-    "username_exists": "This username exists",
+    "username": "Nom d'utilisateur",
+    "username_exists": "Ce nom d'utilisateur existe",
     "first_name": "Prénom",
     "last_name": "Nom",
     "gender": "Sexe",
@@ -138,90 +139,78 @@
     "last_name_required": "Nom ,de famille est requis",
     "company_name_required": "Nom de l'entreprise est requis",
     "enter_valid_email": "Renseigne un email valide",
-    "facebook_connect": "CONNECT WITH FACEBOOK",
-    "facebook_connected": "CONNECTED WITH FACEBOOK",
-    "twitter_connect": "CONNECT WITH TWITTER",
-    "twitter_connected": "CONNECTED WITH TWITTER",
-    "twitch_connect": "CONNECT WITH TWITCH",
-    "twitch_connected": "CONNECTED WITH TWITCH",
-    "snapchat_connect": "CONNECT WITH SNAPCHAT",
-    "snapchat_connected": "CONNECTED WITH SNAPCHAT",
-    "youtube_connect": "CONNECT WITH YOUTUBE",
-    "youtube_connected": "CONNECTED WITH YOUTUBE",
-    "instagram_connect": "CONNECT WITH INSTAGRAM",
-    "instagram_connected": "CONNECTED WITH INSTAGRAM",
-    "steam_connect": "CONNECT WITH STEAM",
-    "steam_connected": "CONNECTED WITH STEAM"
+    "facebook_connect": "CONNECTER AVEC FACEBOOK",
+    "facebook_connected": "CONNECTÉ AVEC FACEBOOK",
+    "twitter_connect": "CONNECTEZ-VOUS AVEC TWITTER",
+    "twitter_connected": "CONNECTÉ AVEC TWITTER",
+    "twitch_connect": "CONNECTEZ-VOUS AVEC TWITCH",
+    "twitch_connected": "CONNECTÉ AVEC TWITCH",
+    "snapchat_connect": "CONNECTER AVEC SNAPCHAT",
+    "snapchat_connected": "CONNECTÉ AVEC SNAPCHAT",
+    "youtube_connect": "CONNECTER AVEC YOUTUBE",
+    "youtube_connected": "CONNECTÉ AVEC YOUTUBE",
+    "instagram_connect": "CONNECTER AVEC INSTAGRAM",
+    "instagram_connected": "CONNECTÉ AVEC INSTAGRAM",
+    "steam_connect": "CONNEXION AVEC STEAM",
+    "steam_connected": "CONNECTÉ AVEC STEAM"
   },
   "campaign_detail_page": {
-    "giveaways": "GIVEAWAYS",
-    "giveway_name": "Giveway Name",
-    "giveway_description": "Giveway Description",
-    "prize_ends_in": "PRIZE ENDS IN",
-    "prize_ended": "PRIZE ENDED",
-    "your_entries": "YOUR ENTRIES",
-    "maximum_participants": "MAXIMUM PARTICIPANTS",
-    "days": "Days Left",
-    "entries": "Your Entries",
+    "giveaways": "CADEAUX",
+    "giveway_name": "Nom du cadeau",
+    "giveway_description": "Description du cadeau",
+    "prize_ends_in": "LE PRIX SE TERMINE DANS",
+    "prize_ended": "PRIX TERMINÉ",
+    "your_entries": "VOS ENTRIES",
+    "maximum_participants": "PARTICIPANTS MAXIMUM",
+    "days": "Jours restants",
+    "entries": "Vos entrées",
     "participants": "Participants",
-    "facebook_page": {
-      "title": "Facebook Page Action Title",
-      "text": "Facebook Page Action Text"
-    },
-    "facebook_post": {
-      "title": "Facebook Post Action Title",
-      "text": "Facebook Post Action Text"
-    },
-    "facebook_url": {
-      "title": "Facebook Url Action Title",
-      "text": "Facebook Url Action Text"
-    },
     "twitter_like": {
-      "title": "Twitter Like Title",
-      "text": "Twitter Like Text"
+      "title": "Twitter Like",
+      "text": "Likez le tweet pour valider l'action!"
     },
     "twitter_follow": {
-      "title": "Twitter Follow Title",
-      "text": "Twitter Follow Text"
+      "title": "Twitter Follow",
+      "text": "Follow le compte pour valider l'action!"
     },
     "twitter_tweet": {
-      "title": "Twitter Tweet Title",
-      "text": "Twitter Tweet Text"
+      "title": "Twitter Tweet",
+      "text": "Tweet le text pour valider l'action!"
     },
     "twitter_retweet": {
-      "title": "Twitter retweet Title",
-      "text": "Twitter retweet Text"
+      "title": "Twitter Retweet",
+      "text": "Retweet le tweet pour valider l'action!"
     },
     "twitch_follow": {
-      "title": "Twitch Follow Title",
-      "text": "Twitch Follow Text"
+      "title": "Twitch Follow",
+      "text": "Follow le compte pour valider l'action!"
     },
     "instagram_like": {
-      "title": "Instagram Like Title",
-      "text": "Instagram Like Text"
+      "title": "Instagram Like",
+      "text": "Like le post pour valider l'action!"
     },
     "instagram_follow": {
-      "title": "Instagram Follow Title",
-      "text": "Instagram Follow Text"
+      "title": "Instagram Follow",
+      "text": "Follow le compte pour valider l'action"
     },
     "poll": {
-      "title": "",
-      "text": "To get credit for this entry, you must answer this question. Thanks!"
+      "title": "Sondage",
+      "text": "Pour obtenir un crédit pour cette entrée, vous devez répondre à cette question. Merci!"
     },
     "video": {
-      "title": "Watch Video",
-      "text": "Watch Video to participate"
+      "title": "Video",
+      "text": "Regarde la vidéo pour participer!"
     },
     "website": {
-      "title": "Visit Website",
-      "text": "Visit Website to participate"
+      "title": "Visite le site",
+      "text": "Visite le site pour participer"
     },
-    "watch_video": "Run video",
-    "select_answer": "Select your answers",
-    "social_detail_alert": "This part is only for phone number verified users.",
-    "mandatory_action": "It is a mandatory action to participate",
-    "prize_description": "The winner will receive prizes below:",
-    "the_prize": "The Prizes"
+    "watch_video": "Lancer la vidéo",
+    "select_answer": "Sélectionnez vos réponses",
+    "social_detail_alert": "Cette partie est réservée aux utilisateurs vérifiés par numéro de téléphone.",
+    "mandatory_action": "C'est une action obligatoire pour participer",
+    "prize_description": "Le gagnant recevra un des prix ci-dessous:",
+    "the_prize": "Les prix"
   },
   "my_campaign_page": {
     "live_page": "Live Page",
@@ -230,10 +219,10 @@
     "participants": "Participants",
     "view_profile": "Vue du Profil",
     "draw_type": "Type de tirage",
-    "draw_by_gift": "DRAW BY GIFT",
-    "draw_all_by_gift": "DRAW ALL BY GIFT",
-    "draw": "DRAW",
-    "draw_all": "DRAW ALL",
+    "draw_by_gift": "TIRER PAR CADEAU",
+    "draw_all_by_gift": "TOUT TIRER PAR CADEAU",
+    "draw": "TIRER AU SORT",
+    "draw_all": "TOUT TIRER AU SORT",
     "prize_type": "Type de cadeaux",
     "campaign_analytics": "Campagne Analytics",
     "generated_likes": "Likes générés",
@@ -241,9 +230,9 @@
     "tweets_generated": "Tweets Generated",
     "buy_data": "Acheter de la data",
     "number_of_views": "Nombre de vue de la journée: ",
-    "percentage_of_interest": "Percentage of Interest: ",
-    "in_progress": "In progress. End date:",
-    "ended_at": "Ended at"
+    "percentage_of_interest": "Pourcentage d'intérêt: ",
+    "in_progress": "En cours. Date de fin:",
+    "ended_at": "Terminé à"
   },
   "my_bills_page": {
     "emission_date": "Date",
@@ -269,7 +258,7 @@
     "male": "Homme",
     "female": "Femme",
     "unknown": "Inconnu",
-    "audience_growth": "Croissance de l' Audience",
+    "audience_growth": "Croissance de l'Audience",
     "campaigns_engagement": "taux d'engagement",
     "brand_engagement": "Brand Engagement",
     "engagement_score_by_day": "Engagement Score par jour",
@@ -290,20 +279,20 @@
     "continent": "Continent:",
     "country": "Pays:",
     "city": "Ville:",
-    "benefit_by_action": "Benefit by action",
-    "benefit_by_click": "Benefit by click",
-    "benefit_by_participation": "Benefit by participation",
-    "benefit_by_follower": "By follower",
-    "benefit_by_total": "Total benefit",
-    "click_data": "Click Data",
-    "click_total_data": "Click Total Data",
+    "benefit_by_action": "Intérêt par actions",
+    "benefit_by_click": "Intérêt par clics",
+    "benefit_by_participation": "Intérêt par participation",
+    "benefit_by_follower": "Intérêt par followers",
+    "benefit_by_total": "Intérêt total",
+    "click_data": "Clics Data",
+    "click_total_data": "Clics Total Data",
     "action": "Action",
-    "participation": "Pariticipation",
-    "all": "All",
-    "today": "Today",
-    "this_week": "This Week",
-    "this_month": "This Month",
-    "this_year": "This Year",
+    "participation": "Participation",
+    "all": "Tous",
+    "today": "Aujourd'hui",
+    "this_week": "Cette semaine",
+    "this_month": "Ce mois",
+    "this_year": "Cette année",
     "total": "Total: "
   },
   "create_campaign_page": {
@@ -331,20 +320,20 @@
     "add_more": "Ajouter plus",
     "results": "Resultats",
     "direct": "Direct",
-    "live_draw": "Live Draw",
+    "live_draw": "Tirage au sort live",
     "end_date": "Date de fin",
     "actions": "Actions",
     "like": "LIKE",
     "follow": "FOLLOW",
     "retweet": "RETWEET",
-    "comment": "MESSAGE",
-    "share": "SHARE",
-    "create_poll": "CREATE POLL",
+    "comment": "COMMENTE",
+    "share": "PARTAGE",
+    "create_poll": "CRÉER UN SONDAGE",
     "poll_created": "Creation de sondage",
     "back_to_create_campaign": "retour création de campagne",
     "ask_question": "Pose une Question",
     "type_here": "Tappe ici",
-    "question_required": "Question est obligatoire",
+    "question_required": "La question est obligatoire",
     "choose_at_least_two_answer": "Et choisis 2 réponses",
     "choose_answer": "Choisis une réponse",
     "allow_multiple_choices": "Choix multiples autorisé",
@@ -395,7 +384,7 @@
       "campaign_image": "* image de campagne obligatoire",
       "short_description": "* Petite description obligatoire",
       "complete_description": "* Description complète obligatoire",
-      "start_date": "* date de départ obligatoire",
+      "start_date": "* date de commencement obligatoire",
       "end_date": "* Date de fin obligatoire",
       "action": "* Une action au minimum obligatoire",
       "winnings": "* Merci de remplir les champs cadeaux"
@@ -407,12 +396,12 @@
     "embed_page_blog_post": "intégré dans une page ou un blog",
     "add_tab_site": "Ajouter à votre site",
     "need_to_pay_text": "Vous devez payer pour accéder au widget.",
-    "pay": "PAY",
-    "connection_error": "Connection Error",
-    "select_user": "Select User",
-    "select_page": "Select Page",
-    "select_publication": "Select Publication",
-    "model": "Enter Model"
+    "pay": "PAYER",
+    "connection_error": "Erreur de connexion",
+    "select_user": "Sélectionnez un utilisateur",
+    "select_page": "Sélectionnez une page",
+    "select_publication": "Sélectionnez une publication",
+    "model": "Entrez un model"
   },
   "profile_activated_page": {
     "successfully_activated": "Ton compte a été activé",
@@ -420,7 +409,7 @@
   },
   "search_result_page": {
     "search": "Recherche",
-    "search_placeholder": "Search for name, description, company..."
+    "search_placeholder": "Recherche de nom, description, entreprise ..."
   },
   "company_page": {
     "member_since": "Membre depuis",
@@ -433,8 +422,8 @@
     "back": "Retour",
     "followers": "Followers",
     "friends": "Amis",
-    "search_for_circle_name": "Search for circle name",
-    "fans": "Fans"
+    "search_for_circle_name": "Rechercher le nom du cercle",
+    "fans": "Followers"
   },
   "user_settings_page": {
     "current_password": "Mot de passe actuel",
@@ -461,23 +450,23 @@
     "or": "OU",
     "enter_valid_email": "Entrer une adresse de mail valide",
     "username_required": "Nom d'utilisateur obligatoire",
-    "password_required": "Mot depose obligatoire",
+    "password_required": "Mot de passe obligatoire",
     "confirm_password_required": "Confirmer le mot de passe est nécessaire"
   },
   "login_modal": {
     "remember_me": "Se rappeler de moi",
     "forgot_password": "Password oublié",
-    "signup_with_google": "SIGN UP WITH GOOGLE",
-    "signup_with_facebook": "SIGN UP WITH FACEBOOK"
+    "signup_with_google": "INSCRIVEZ-VOUS AVEC GOOGLE",
+    "signup_with_facebook": "INSCRIVEZ-VOUS AVEC FACEBOOK"
   },
   "company_modal": {
     "company_form": "Formulaire d'entreprise",
     "email": "Addresse email",
-    "email_required": "Email Address obligatoire",
+    "email_required": "Email obligatoire",
     "phone_number_required": "Numéro de téléphone obligatoire",
-    "company_name": "Company Nom",
-    "company_name_required": "Nom de l'entreprise obligatoire",
-    "your_message": "Your Message",
+    "company_name": "Nom d'entreprise",
+    "company_name_required": "Le nom de l'entreprise obligatoire",
+    "your_message": "Votre message",
     "your_message_required": "Ecris ton message",
     "need_help": "Besoin d'aide?",
     "contact_us": "Contacter nous",
@@ -517,32 +506,32 @@
     "id": "ID"
   },
   "twitter_follow_modal": {
-    "header": "FOLLOW TYPE & ID",
-    "select_type": "Select Type",
+    "header": "TYPE DE FOLLOW ET ID",
+    "select_type": "Selectionnez le type",
     "screen_name": "Screen Name",
     "user_id": "User ID",
-    "enter_id": "Enter ID"
+    "enter_id": "Entrez l'ID"
   },
   "twitter_comment_modal": {
-    "header": "TWEET MODEL",
-    "comment_model": "Enter Tweet Model"
+    "header": "MODÈLE TWEET",
+    "comment_model": "Entrez le modèle de Tweet"
   },
   "twitter_retweet_modal": {
-    "header": "RETWEET ID"
+    "header": "ID RETWEET"
   },
   "twitter_comment_validation_modal": {
     "template": "Template",
     "comment": "Tweet"
   },
   "instagram_connect_modal": {
-    "instagram_connect": "Instagram Connect",
-    "instagram_basic_connect": "Instagram Basic Connect",
-    "instagram_business_connect": "Instagram Business Connect",
-    "select_page": "Select business page"
+    "instagram_connect": "Connexion Instagram",
+    "instagram_basic_connect": "Connexion à Instagram",
+    "instagram_business_connect": "Connexion à Instagram Business",
+    "select_page": "Selectionnez la page business"
   },
   "winning_detail_modal": {
-    "name": "Name",
-    "number_of_eligible_people": "Number of eligible people",
+    "name": "Nom",
+    "number_of_eligible_people": "Nombre de personnes éligibles",
     "description": "Description"
   },
   "required": "Obligatoire"

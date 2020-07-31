@@ -1,19 +1,19 @@
 const initialFeedState = {
 
   ///////////////////////////////////////////// Daily followers data in overview section
-  overviewDayFollowers: [],  
+  overviewDayFollowers: [],
 
   ///////////////////////////////////////////// Weekly followers data in overview section           
-  overviewWeekFollowers: [],   
+  overviewWeekFollowers: [],
 
   ///////////////////////////////////////////// Monthly followers data in overview section         
-  overviewMonthFollowers: [],    
+  overviewMonthFollowers: [],
 
   ///////////////////////////////////////////// Yearly followers data in overview section       
-  overviewYearFollowers: [],     
+  overviewYearFollowers: [],
 
   ///////////////////////////////////////////// Gender percentages in audience section   
-  activeGender: {                       
+  activeGender: {
     unknow: 0,
     female_percentage: 0,
     male: 0,
@@ -23,16 +23,38 @@ const initialFeedState = {
   },
 
   ///////////////////////////////////////////// ActionDemographics data for google map in audience section
-  overralActionDemographics: [],     
-  
+  overralActionDemographics: [],
+
   ///////////////////////////////////////////// ParticipationDemographics data for google map in audience section
-  overralParitipationDemographics: [],  
+  overralParitipationDemographics: [],
 
   ///////////////////////////////////////////// This state is a campaign list for google map filter in audience section
-  campaignsInformations: [],  
-  
+  campaignsInformations: [],
+
   ///////////////////////////////////////////// This state is a clicks data for graphs in clicks section
-  clicksData: []                        
+  clicksData: [],
+
+  ///////////////////////////////////////////// This state is a participants range data by age in audience section
+  participantsRangeByAge: {
+    range_percentage: {
+      "25_34": 0,
+      "18_24": 0,
+      "13_17": 0,
+      "35_44": 0,
+      "45_54": 0,
+      "55_65": 0,
+      "65": 0
+    },
+    range: {
+      "25_34": 0,
+      "18_24": 0,
+      "13_17": 0,
+      "35_44": 0,
+      "45_54": 0,
+      "55_65": 0,
+      "65": 0
+    }
+  }
 }
 
 function Analytics(state = initialFeedState, action) {
@@ -85,6 +107,11 @@ function Analytics(state = initialFeedState, action) {
       return {
         ...state,
         clicksData: action.data
+      }
+    case 'SET_PARTICIPANTS_BY_AGE':
+      return {
+        ...state,
+        participantsRangeByAge: action.data
       }
     default:
       return state

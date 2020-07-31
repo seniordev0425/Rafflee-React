@@ -1,10 +1,18 @@
 import React, { useEffect } from 'react'
 import { Button, Tooltip } from 'antd'
 import { useSelector, useDispatch } from 'react-redux'
-import ExpansionPanel from '@material-ui/core/ExpansionPanel';
-import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import ExpansionPanel from '@material-ui/core/ExpansionPanel'
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary'
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails'
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
+import {
+  FacebookProvider,
+  EmbeddedPost,
+  Page,
+  Like
+} from 'react-facebook'
+import { isMobile } from 'react-device-detect'
+import { FACEBOOK_APP_ID } from '../../utils/constants'
 import images from '../../utils/images'
 
 import { useTranslation } from 'react-i18next'
@@ -20,7 +28,8 @@ function CustomCollapsePanel(props) {
     mandatory,                    // campaign action mandatory value (boolean)
     entries,                      // campaign action entries number (integer)
     didAction,                    // already validated this action or not (boolean)
-    tryToOpenValidationModal      // action performance function
+    tryToOpenValidationModal,     // action performance function
+    facebookActionUrl
   } = props
 
   const userProfile = useSelector(state => state.userInfo.userProfile)
@@ -71,6 +80,39 @@ function CustomCollapsePanel(props) {
     }
   }
 
+  const renderFacebookAction = () => {
+    if (isMobile) return null
+
+    switch (actionType) {
+      case 'page':
+        return (
+          <div className="mt-3">
+            <FacebookProvider appId={FACEBOOK_APP_ID} className="mt-3">
+              <Page href={facebookActionUrl} tabs="timeline" />
+            </FacebookProvider>
+          </div>
+        )
+      case 'post':
+        return (
+          <div className="mt-3">
+            <FacebookProvider appId={FACEBOOK_APP_ID}>
+              <EmbeddedPost href={facebookActionUrl} className="mt-3" />
+            </FacebookProvider>
+          </div>
+        )
+      case 'url':
+        return (
+          <div className="mt-3">
+            <FacebookProvider appId={FACEBOOK_APP_ID}>
+              <Like href={facebookActionUrl} colorScheme="dark" showFaces share />
+            </FacebookProvider>
+          </div>
+        )
+      default:
+        return null
+    }
+  }
+
   return (
     <div className="d-flex justify-content-between align-items-center">
       <ExpansionPanel className="collapse-panel-body">
@@ -95,6 +137,9 @@ function CustomCollapsePanel(props) {
             <div>
               <div style={{ color: '#767B83' }}>
                 {text}
+                {facebookActionUrl &&
+                  renderFacebookAction()
+                }
               </div>
               <div className="mt-2 mt-sm-3">
                 <Button

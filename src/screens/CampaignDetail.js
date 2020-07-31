@@ -290,12 +290,6 @@ function CampaignDetail(props) {
               </div>
             </Col>
           </Row>
-
-          {/* <FacebookProvider appId="569090800341241">
-            <EmbeddedPost href="https://www.facebook.com/101514858298034/posts/107530157696504/" width="500"  />
-            <Page href="https://www.facebook.com/Rafflee-101514858298034" tabs="timeline" width="300" height="300" />
-          </FacebookProvider> */}
-
           {(action.social_action && action.social_action[0].facebook_page) &&
             <Row className="mb-4 mt-4">
               <Col style={{ paddingLeft: 40 }}>
@@ -308,6 +302,7 @@ function CampaignDetail(props) {
                   entries={action.social_action[0].facebook_page_entries}
                   didAction={(campaignData.user_actions || {}).facebook_page}
                   tryToOpenValidationModal={tryToOpenValidationModal}
+                  facebookActionUrl={action.social_action[0].facebook_page_url}
                 />
               </Col>
             </Row>
@@ -324,6 +319,7 @@ function CampaignDetail(props) {
                   entries={action.social_action[0].facebook_post_entries}
                   didAction={(campaignData.user_actions || {}).facebook_post}
                   tryToOpenValidationModal={tryToOpenValidationModal}
+                  facebookActionUrl={action.social_action[0].facebook_post_url}
                 />
               </Col>
             </Row>
@@ -340,6 +336,7 @@ function CampaignDetail(props) {
                   entries={action.social_action[0].facebook_url_entries}
                   didAction={(campaignData.user_actions || {}).facebook_url}
                   tryToOpenValidationModal={tryToOpenValidationModal}
+                  facebookActionUrl={action.social_action[0].facebook_url_url}
                 />
               </Col>
             </Row>
@@ -506,12 +503,14 @@ function CampaignDetail(props) {
           }
           <Row className="justify-content-center mb-4">
             <Button
-              type="primary"
-              className="ant-blue-btn promotion-list-item-btn"
-              onClick={participate}
+              type={campaignData.close_promotion ? "danger" : "primary"}
+              className={campaignData.close_promotion ? "ant-red-btn promotion-list-item-btn" : "ant-blue-btn promotion-list-item-btn"}
+              onClick={campaignData.close_promotion ? null : participate}
               loading={CAMPAIGN_PARTICIPATE_PROCESS}
             >
-              {!CAMPAIGN_PARTICIPATE_PROCESS && t('button_group.participate')}
+              {!CAMPAIGN_PARTICIPATE_PROCESS &&
+                campaignData.close_promotion ? t('button_group.promotion_ended') : t('button_group.participate')
+              }
             </Button>
           </Row>
         </Col>

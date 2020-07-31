@@ -14,7 +14,7 @@ function SplineChart(props) {
   // Get X-axis labels. Depends on time prop
   const getLabelArr = () => {
     let labelArr = []
-    overviewFollowersArr[time].map((item) => {
+    overviewFollowersArr[time].forEach((item) => {
       if (time === 'year') labelArr.push(moment(item.date).format('MMM'))
       else labelArr.push(moment(item.date).format('M.D'))
     })
@@ -24,7 +24,7 @@ function SplineChart(props) {
   // Get Y-axis values. Depends on time prop and social name
   const getFollowers = (name) => {
     let followers = []
-    overviewFollowersArr[time].map((item) => {
+    overviewFollowersArr[time].forEach((item) => {
       followers.push(item[name])
     })
     return followers
@@ -307,11 +307,10 @@ function SplineChart(props) {
               yAxes: [{
                 ticks: {
                   beginAtZero: true,
-                  userCallback: function (label, index, labels) {
+                  userCallback: function (label) {
                     if (Math.floor(label) === label) {
                       return label;
                     }
-
                   },
                 }
               }],
