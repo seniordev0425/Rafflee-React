@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom'
 import { Row, Col } from 'reactstrap'
 import { Button } from 'antd'
-import { FacebookProvider, EmbeddedPost, Page, Like, ShareButton } from 'react-facebook';
 import moment from 'moment'
 import AppLayout from '../components/layouts/AppLayout'
 import images from '../utils/images'
@@ -29,6 +28,7 @@ import {
   campaignParticipateFacebookPost,
   campaignParticipateFacebookUrl
 } from '../actions/campaign'
+import { twitterConnectStep1 } from '../actions/userInfo'
 
 import { useTranslation } from 'react-i18next'
 import WinningDetailModal from '../components/modals/WinningDetailModal'
@@ -57,6 +57,9 @@ function CampaignDetail(props) {
   const OPEN_TWITTER_FOLLOW_VALIDATION_MODAL = useSelector(state => state.userInfo.OPEN_TWITTER_FOLLOW_VALIDATION_MODAL)
   const OPEN_TWITCH_FOLLOW_VALIDATION_MODAL = useSelector(state => state.userInfo.OPEN_TWITCH_FOLLOW_VALIDATION_MODAL)
 
+  const twitter_oauth_token = useSelector(state => state.userInfo.twitter_oauth_token)
+  const twitterDirectConnect = useSelector(state => state.userInfo.twitterDirectConnect)
+
   const campaignData = useSelector(state => state.campaign.campaignData)
   const token = useSelector(state => state.userInfo.token)
   const company = useSelector(state => state.userInfo.company)
@@ -65,7 +68,6 @@ function CampaignDetail(props) {
   const [action, setAction] = useState({})
   const [openVideo, setOpenVideo] = useState(false)
   const [openConfirm, setOpenConfirm] = useState(false)
-  const [answers, setAnswers] = useState([])
 
   const [openWinningDetailModal, setOpenWinningDetailModal] = useState(false)
   const [openTwitterLikeModal, setOpenTwitterLikeModal] = useState(false)
@@ -83,6 +85,20 @@ function CampaignDetail(props) {
     dispatch(getCampaignData(match.params.id, body))
     actionParams = []
   }, [token])
+
+  useEffect(() => {
+    if (twitter_oauth_token) { // Redirect to twitter login after getting twitter oauth token
+      dispatch({ type: 'INIT_STATE', state: 'twitter_oauth_token', data: '' })
+      window.open(`https://api.twitter.com/oauth/authorize?oauth_token=${twitter_oauth_token}`, '_blank')
+    }
+  }, [twitter_oauth_token])
+
+  useEffect(() => {
+    if (twitterDirectConnect) { // If user is not connected to twitter then dispatch action to get twitter oauth token
+      dispatch({ type: 'INIT_STATE', state: 'twitterDirectConnect', data: false })
+      dispatch(twitterConnectStep1())
+    }
+  }, [twitterDirectConnect])
 
   useEffect(() => {
     // Extract social action data from campaign data
@@ -223,7 +239,6 @@ function CampaignDetail(props) {
   }
 
   const participate = () => {
-    if (answers) actionParams.push({ social_name: 'poll', action_type: answers })
     var body = {
       promotion_id: campaignData.pk,
       social_actions: JSON.stringify(actionParams)

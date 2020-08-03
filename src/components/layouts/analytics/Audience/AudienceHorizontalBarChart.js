@@ -59,7 +59,7 @@ function AudienceHorizontalBarChart({ campaignID }) {
   return (
     <div>
       <div className="d-block d-sm-flex justify-content-between align-items-center mb-4 mt-2 mt-sm-0">
-        <div className="font-size-11 font-weight-bold">{t('analytics_page.engagement_score_by_day')}</div>
+        <div className="font-size-11 font-weight-bold">{t('analytics_page.audience_growth')}</div>
         <Select
           size="large"
           style={{ width: 140 }}

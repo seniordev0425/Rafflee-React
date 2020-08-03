@@ -2,6 +2,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Available Scripts
 
+First you need to run 'yarn install' to download node modules.
+
 In the project directory, you can run:
 
 ### `yarn start`
@@ -66,3 +68,40 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `yarn build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+## Project Structure  
+
+We start this project from src/index.js.
+We integrate Redux Store and api middleware in this file.
+
+### public
+  The part in this directory what we should focus on is locales directory.
+  All of translations are here. (en/fr)
+### src
+
+  #### actions
+  All actions are defined here. All of them are api actions.
+
+  #### assets
+  css, font, image, pdf(Terms of service & Privacy Policy)
+
+  #### components
+  Reusable common components, sub-layout of screens and modals are defined here.
+
+  #### middleware
+  axios middleware.
+  All endpoints go through this middleware.
+
+  #### reducers
+  All reducers are defined here. Redux store is handled in this directory.
+
+  #### routes
+  All routes are defined here.
+
+  #### screens
+  We can find all screens here.
+  Every Screen has its own layout.
+
+  #### utils
+  Success & Error messages, image variables, constants and notification.
+

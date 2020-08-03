@@ -28,7 +28,7 @@ import NotFound from '../components/common/NotFound'
 import { openNotification } from '../utils/notification'
 
 import { verifyToken } from '../apis/apiCalls'
-import { getUserProfile, getCompanyProfile, twitterConnectStep1 } from '../actions/userInfo'
+import { getUserProfile, getCompanyProfile } from '../actions/userInfo'
 
 import { useTranslation } from 'react-i18next'
 
@@ -39,8 +39,7 @@ function Routes(props) {
 
   const token = useSelector(state => state.userInfo.token)
   const company = useSelector(state => state.userInfo.company)
-  const twitter_oauth_token = useSelector(state => state.userInfo.twitter_oauth_token)
-  const twitterDirectConnect = useSelector(state => state.userInfo.twitterDirectConnect)
+  
   const AUTH_ERROR = useSelector(state => state.userInfo.AUTH_ERROR)
 
   const { dispatch, history } = props
@@ -147,21 +146,7 @@ function Routes(props) {
       window.removeEventListener('offline', _handleOffline)
     };
   }, [])
-
-  useEffect(() => {
-    if (twitter_oauth_token) {
-      dispatch({ type: 'INIT_STATE', state: 'twitter_oauth_token', data: '' })
-      window.open(`https://api.twitter.com/oauth/authorize?oauth_token=${twitter_oauth_token}`, '_blank')
-    }
-  }, [twitter_oauth_token])
-
-  useEffect(() => {
-    if (twitterDirectConnect) {
-      dispatch({ type: 'INIT_STATE', state: 'twitterDirectConnect', data: false })
-      dispatch(twitterConnectStep1())
-    }
-  }, [twitterDirectConnect])
-
+ 
   useEffect(() => {
     // if 401 error occurs then redirect to home page and remove tokens
     if (AUTH_ERROR) {
@@ -180,20 +165,11 @@ function Routes(props) {
 
   return (
     <ScrollToTop>
-      {
+      { // Show this notification if user is not online
         !online && openNotification('warning', 'No internet connection detected. Make sure Wi-Fi or mobile data is turned on, then try again.')
       }
       <Switch>
         <Route exact path="/" component={Home} />
-        {token &&
-          <Route exact path="/user-account/:menu" component={UserAccount} />
-        }
-        {token &&
-          <Route exact path="/dashboard/:menu" component={Dashboard} />
-        }
-        {token &&
-          <Route exact path="/my-circle" component={MyCircle} />
-        }
         <Route exact path="/campaign-detail/:id" component={CampaignDetail} />
         <Route exact path="/deals" component={Deals} />
         <Route exact path="/profile/activate/:id/:token" component={ProfileActivated} />
@@ -207,6 +183,15 @@ function Routes(props) {
         <Route exact path="/instagram/connect/" component={InstagramAuthPage} />
         <Route exact path="/participation-result/:id" component={ParticipationResult} />
         <Route exact path="/report" component={Report} />
+        {token &&
+          <Route exact path="/user-account/:menu" component={UserAccount} />
+        }
+        {token &&
+          <Route exact path="/dashboard/:menu" component={Dashboard} />
+        }
+        {token &&
+          <Route exact path="/my-circle" component={MyCircle} />
+        }
         {!token &&
           <Redirect exact from="/user-account/:menu" to="/" />
         }
@@ -216,9 +201,9 @@ function Routes(props) {
         {!token &&
           <Redirect exact from="/my-circle" to="/" />
         }
+
         <Route component={NotFound} />
       </Switch>
-
 
       <CookieConsent // Cookie bar
         style={{ justifyContent: "center", background: "#7778edd9" }}
