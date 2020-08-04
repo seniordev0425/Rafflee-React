@@ -37,11 +37,11 @@ function CustomCollapsePanel(props) {
   const company = useSelector(state => state.userInfo.company)
 
   // action validation result. Redux state (boolean)
-  const validation = useSelector(state => state.userInfo[`${socialName}_${actionType}_validation`])
+  const validation = useSelector(state => state.campaign[`${socialName}_${actionType}_validation`])
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch({ type: 'INIT_STATE', state: `${socialName}_${actionType}_validation`, data: false })
+    dispatch({ type: 'CAMPAIGN_INIT_STATE', state: `${socialName}_${actionType}_validation`, data: false })
   }, [])
 
   const renderIcons = () => {

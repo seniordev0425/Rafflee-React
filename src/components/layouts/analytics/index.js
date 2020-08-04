@@ -30,8 +30,11 @@ function AnalyticsLayout() {
   /////////////////////////////////////////// Enum (action, participation)
   const [demographics_type, setDemographicsType] = useState('action')
 
-  /////////////////////////////////////////// campaignID('all' or campaignID)
-  const [campaignID, setCampaignID] = useState('all')
+  /////////////////////////////////////////// audienceCampaignID('all' or campaignID)
+  const [audienceCampaignID, setAudienceCampaignID] = useState('all')
+
+  /////////////////////////////////////////// clicksCampaignID(campaignID)
+  const [clicksCampaignID, setClicksCampaignID] = useState('')
 
   const { Option } = Select
 
@@ -40,16 +43,22 @@ function AnalyticsLayout() {
     dispatch(getCampaignsInformations())
   }, [])
 
+  useEffect(() => {
+    if (campaignsInformations.length) {
+      setClicksCampaignID(campaignsInformations[0].id)
+    }
+  }, [campaignsInformations])
+
   const renderBody = () => {
     switch (currentTab) {
       case 'overview':
         return <OverView time={time} />
       case 'audience':
-        return <Audience demographics_type={demographics_type} campaignID={campaignID} />
+        return <Audience demographics_type={demographics_type} campaignID={audienceCampaignID} />
       case 'engagement':
         return <Engagement />
       case 'clicks':
-        return <Clicks time={time} campaignID={campaignID} />
+        return <Clicks time={time} campaignID={clicksCampaignID} />
       case 'following':
         return <Following />
       default:
@@ -106,15 +115,29 @@ function AnalyticsLayout() {
                   </Select>
                 </div>
               }
-              {(currentTab === 'audience' || currentTab === 'clicks') &&
+              {(currentTab === 'audience') &&
                 <div className="mr-2">
                   <Select
                     size="large"
                     style={{ minWidth: 140 }}
-                    defaultValue={campaignID}
-                    onChange={val => setCampaignID(val)}
+                    value={audienceCampaignID}
+                    onChange={val => setAudienceCampaignID(val)}
                   >
                     <Option value='all'>{t('analytics_page.all')}</Option>
+                    {campaignsInformations.map((item, index) =>
+                      <Option key={index} value={item.id}>{item.name}</Option>
+                    )}
+                  </Select>
+                </div>
+              }
+              {(currentTab === 'clicks') &&
+                <div className="mr-2">
+                  <Select
+                    size="large"
+                    style={{ minWidth: 140 }}
+                    value={clicksCampaignID}
+                    onChange={val => setClicksCampaignID(val)}
+                  >
                     {campaignsInformations.map((item, index) =>
                       <Option key={index} value={item.id}>{item.name}</Option>
                     )}

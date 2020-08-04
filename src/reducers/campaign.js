@@ -1,7 +1,7 @@
 const initialFeedState = {
 
   ///////////////////////////////////////////// Campaign data in campaign detail page
-  campaignData: {                                 
+  campaignData: {
     pk: '',
     categories: null,
     winnings: null,
@@ -15,21 +15,21 @@ const initialFeedState = {
     campaign_image: '',
     poll: {},
     action_participate: [],
-    user_actions: []
+    user_actions: {}
   },
 
   ///////////////////////////////////////////// This state is participants array of campaign which is used in live page or participants page of company account
-  participants: [],     
-  
+  participants: [],
+
   ///////////////////////////////////////////// This state is campaign prizes array of campaign which is used in live page of company account 
-  campaignWinnings: [],                           
+  campaignWinnings: [],
 
   ///////////////////////////////////////////// This state is winner array of campaign which is displayed in congratulation modal 
   winnerArr: [],
 
 
   TOGGLE_WINNERS_MODAL: false,
-  
+
   ///////////////////////////////////////////// This state is created campaign id which is used in result section of create campaign page
   created_promotion_id: '',
 
@@ -44,6 +44,11 @@ const initialFeedState = {
 
 function Campaign(state = initialFeedState, action) {
   switch (action.type) {
+    case 'CAMPAIGN_INIT_STATE':
+      return {
+        ...state,
+        [action.state]: action.data
+      }
     case 'GET_CAMPAIGN_DATA_SUCCESS':
       return {
         ...state,
@@ -84,6 +89,16 @@ function Campaign(state = initialFeedState, action) {
       return {
         ...state,
         winningData: action.data
+      }
+    case 'SET_ACTION_VALIDATION_STATUS':
+      return {
+        ...state,
+        [action.data]: true,
+        campaignData: action.entries
+          ?
+          { ...state.campaignData, user_actions: { ...state.campaignData.user_actions, entries_user: action.entries } }
+          :
+          { ...state.campaignData }
       }
     default:
       return state

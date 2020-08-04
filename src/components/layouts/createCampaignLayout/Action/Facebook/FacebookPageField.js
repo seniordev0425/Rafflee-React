@@ -1,8 +1,7 @@
-import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import React, { useEffect } from 'react'
+import { useSelector } from 'react-redux'
 import { Row, Col, Input } from 'reactstrap'
 import { Tooltip, Checkbox, Select } from 'antd'
-import { getFacebookPublications } from '../../../../../actions/social'
 import images from '../../../../../utils/images'
 
 import { useTranslation } from 'react-i18next'
@@ -16,6 +15,16 @@ function FacebookPageField(props) {
 
   // Following Redux states are defined in reducer with comments
   const facebookPages = useSelector(state => state.social.facebookPages)
+
+  useEffect(() => {
+    // Set default facebook page
+    if (facebookPages.length) {
+      if (params.facebook.page_page_id === '') {
+        setAction('facebook', 'page_page_id', facebookPages[0].id)
+        setAction('facebook', 'page_page_name', facebookPages[0].name)
+      }
+    }
+  }, [facebookPages])
 
   // Update page id and page name
   const updatePage = (id) => {
@@ -56,7 +65,7 @@ function FacebookPageField(props) {
         <Row>
           <Col xs="12" sm="6" className="p-0 pr-sm-2">
             <Select
-              defaultValue={params.facebook.post_page_id}
+              value={params.facebook.page_page_id}
               className="w-100"
               placeholder={t('create_campaign_page.select_page')}
               onChange={(id) => updatePage(id)}

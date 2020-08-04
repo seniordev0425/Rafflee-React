@@ -32,24 +32,23 @@ function TwitterCommentValidationModal(props) {
   }, [twitter_comment_validation])
 
   const onSubmit = () => {
-    dispatch(campaignParticipateTwitterCommentValidation({ promotion_id: promotion_id, tweet: tweet }))
+    dispatch(campaignParticipateTwitterCommentValidation({ promotion_id: promotion_id }))
   }
 
   return (
     <Modal isOpen={open} toggle={onToggle}>
       <ModalBody>
         <div>
-          <span className="font-size-10 font-weight-bold">{t('twitter_comment_validation_modal.template')}</span>
-          <span className="font-size-10 font-weight-bold ml-3">{`"${(actionData || {}).tweet_template}"`}</span>
+          <span className="font-size-10 font-weight-bold">{`${(actionData || {}).tweet_template}`}</span>
         </div>
-        <div className="mt-3">
+        {/* <div className="mt-3">
           <span className="font-size-10 font-weight-bold">{t('twitter_comment_validation_modal.comment')}</span>
           <Input
             className="custom-form-control"
             value={tweet}
             onChange={(e) => setTweet(e.target.value)}
           />
-        </div>
+        </div> */}
         <div className="mt-3 d-flex justify-content-center">
           <Button
             type="primary"
@@ -57,7 +56,7 @@ function TwitterCommentValidationModal(props) {
             onClick={onSubmit}
             loading={CAMPAIGN_PARTICIPATE_TWITTER_COMMENT_VALIDATION_PROCESS}
           >
-            {!CAMPAIGN_PARTICIPATE_TWITTER_COMMENT_VALIDATION_PROCESS && t('button_group.confirm')}
+            {!CAMPAIGN_PARTICIPATE_TWITTER_COMMENT_VALIDATION_PROCESS && t('button_group.confirm_tweet')}
           </Button>
         </div>
       </ModalBody>

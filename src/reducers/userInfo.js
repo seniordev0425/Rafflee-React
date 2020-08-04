@@ -309,11 +309,6 @@ function UserInfo(state = initialFeedState, action) {
         tempActionData: action.data,
         [action.openModalName]: true
       }
-    case 'SET_ACTION_VALIDATION_STATUS':
-      return {
-        ...state,
-        [action.data]: true
-      }
     case 'UPDATE_COMPANY_LOGO':
       return {
         ...state,

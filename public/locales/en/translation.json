@@ -103,7 +103,8 @@
     "remove": "Remove",
     "close": "Close",
     "validate": "Validate",
-    "validated": "Validated"
+    "validated": "Validated",
+    "confirm_tweet": "Confirm Tweet"
   },
   "homepage": {
     "hot_new_contest_everyday": "Hot new contest everyday.",

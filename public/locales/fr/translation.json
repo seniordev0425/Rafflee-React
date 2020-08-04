@@ -103,7 +103,8 @@
     "remove": "SUPPRIMER",
     "close": "FERMER",
     "validate": "Valider",
-    "validated": "Validé"
+    "validated": "Validé",
+    "confirm_tweet": "Confirm Tweet"
   },
   "homepage": {
     "hot_new_contest_everyday": "Des raffles et giveaways tous les jours.",
