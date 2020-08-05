@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useMemo } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom'
 import { Row, Col } from 'reactstrap'
@@ -65,6 +65,7 @@ function CampaignDetail(props) {
   const company = useSelector(state => state.userInfo.company)
   const dispatch = useDispatch()
 
+  const [totalEntriesNum, setTotalEntriesNum] = useState(0)
   const [action, setAction] = useState({})
   const [openVideo, setOpenVideo] = useState(false)
   const [openConfirm, setOpenConfirm] = useState(false)
@@ -103,6 +104,57 @@ function CampaignDetail(props) {
   useEffect(() => {
     // Extract social action data from campaign data
     setAction(campaignData.action_participate[0])
+    
+    //Calculate total entries number
+    let totalTemp = 0
+    if ((campaignData.action_participate[0] || {}).social_action && (campaignData.action_participate[0] || {}).social_action[0].facebook_page) {
+      totalTemp += campaignData.action_participate[0].social_action[0].facebook_page_entries
+    }
+    if ((campaignData.action_participate[0] || {}).social_action && (campaignData.action_participate[0] || {}).social_action[0].facebook_post) {
+      totalTemp += campaignData.action_participate[0].social_action[0].facebook_post_entries
+    }
+    if ((campaignData.action_participate[0] || {}).social_action && (campaignData.action_participate[0] || {}).social_action[0].facebook_url) {
+      totalTemp += campaignData.action_participate[0].social_action[0].facebook_url_entries
+    }
+
+    if ((campaignData.action_participate[0] || {}).social_action && (campaignData.action_participate[0] || {}).social_action[2].instagram_profile) {
+      totalTemp += campaignData.action_participate[0].social_action[2].instagram_profile_entries
+    }
+    if ((campaignData.action_participate[0] || {}).social_action && (campaignData.action_participate[0] || {}).social_action[2].instagram_publication) {
+      totalTemp += campaignData.action_participate[0].social_action[2].instagram_publication_entries
+    }
+
+    if ((campaignData.action_participate[0] || {}).social_action && (campaignData.action_participate[0] || {}).social_action[3].twitter_like) {
+      totalTemp += campaignData.action_participate[0].social_action[3].twitter_like_entries
+    }
+    if ((campaignData.action_participate[0] || {}).social_action && (campaignData.action_participate[0] || {}).social_action[3].twitter_follow) {
+      totalTemp += campaignData.action_participate[0].social_action[3].twitter_follow_entries
+    }
+    if ((campaignData.action_participate[0] || {}).social_action && (campaignData.action_participate[0] || {}).social_action[3].twitter_tweet) {
+      totalTemp += campaignData.action_participate[0].social_action[3].twitter_tweet_entries
+    }
+    if ((campaignData.action_participate[0] || {}).social_action && (campaignData.action_participate[0] || {}).social_action[3].twitter_retweet) {
+      totalTemp += campaignData.action_participate[0].social_action[3].twitter_retweet_entries
+    }
+
+    if ((campaignData.action_participate[0] || {}).social_action && (campaignData.action_participate[0] || {}).social_action[4].twitch_follow) {
+      totalTemp += campaignData.action_participate[0].social_action[4].twitch_follow_entries
+    }
+
+    if ((campaignData.action_participate[0] || {}).video) {
+      totalTemp += campaignData.action_participate[0].video.entries
+    }
+
+    if ((campaignData.action_participate[0] || {}).website) {
+      totalTemp += campaignData.action_participate[0].website.entries
+    }
+
+    if ((campaignData.action_participate[0] || {}).poll) {
+      totalTemp += campaignData.action_participate[0].poll.entries
+    }
+
+    setTotalEntriesNum(totalTemp)
+
   }, [campaignData])
 
   useEffect(() => {
@@ -260,7 +312,9 @@ function CampaignDetail(props) {
               <div className="color-gray mt-2 text-center">{t('campaign_detail_page.days')}</div>
             </Col>
             <Col className="px-0" style={{ borderRight: "1px solid #767b8378" }}>
-              <div className="color-gray mt-2 text-center font-weight-bold font-size-20">{`${((campaignData.user_actions || {}).entries_user || 0)}`}</div>
+              <div className="color-gray mt-2 text-center font-weight-bold font-size-20">
+                {`${((campaignData.user_actions || {}).entries_user || 0)} / ${totalEntriesNum}`}
+              </div>
               <div className="color-gray mt-2 text-center">{t('campaign_detail_page.entries')}</div>
             </Col>
             <Col className="px-0">

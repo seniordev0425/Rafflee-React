@@ -14,8 +14,9 @@ import {
 import { isMobile } from 'react-device-detect'
 import { FACEBOOK_APP_ID } from '../../utils/constants'
 import images from '../../utils/images'
-
+import $ from 'jquery'
 import { useTranslation } from 'react-i18next'
+
 
 function CustomCollapsePanel(props) {
   const { t } = useTranslation()
@@ -42,6 +43,16 @@ function CustomCollapsePanel(props) {
 
   useEffect(() => {
     dispatch({ type: 'CAMPAIGN_INIT_STATE', state: `${socialName}_${actionType}_validation`, data: false })
+  }, [])
+
+  useEffect(() => {
+    var iframe = $('iframe').contents()
+    console.log(iframe.length)
+    // $("._2pi4").click(function(event) {
+    //   event.preventDefault()
+    //   alert('Hello world')
+    //   console.log('hello world')
+    // });
   }, [])
 
   const renderIcons = () => {

@@ -167,47 +167,47 @@
     "entries": "Your Entries",
     "participants": "Participants",
     "facebook_page": {
-      "title": "Facebook Page Action Title",
-      "text": "Facebook Page Action Text"
+      "title": "Facebook Page",
+      "text": "Like and follow the page to validate the action!"
     },
     "facebook_post": {
-      "title": "Facebook Post Action Title",
-      "text": "Facebook Post Action Text"
+      "title": "Facebook Post",
+      "text": "Like, comment or share to validate the action!"
     },
     "facebook_url": {
-      "title": "Facebook Url Action Title",
-      "text": "Facebook Url Action Text"
+      "title": "Facebook Url",
+      "text": "Like or share to validate the action!"
     },
     "twitter_like": {
-      "title": "Twitter Like Title",
-      "text": "Twitter Like Text"
+      "title": "Twitter Like",
+      "text": "Like the tweet to validate the action!"
     },
     "twitter_follow": {
-      "title": "Twitter Follow Title",
-      "text": "Twitter Follow Text"
+      "title": "Twitter Follow",
+      "text": "Follow the account to validate the action!"
     },
     "twitter_tweet": {
-      "title": "Twitter Tweet Title",
-      "text": "Twitter Tweet Text"
+      "title": "Twitter Tweet",
+      "text": "Tweet the text to validate the action!"
     },
     "twitter_retweet": {
-      "title": "Twitter retweet Title",
-      "text": "Twitter retweet Text"
+      "title": "Twitter Retweet",
+      "text": "Retweet the tweet to validate the action!"
     },
     "twitch_follow": {
-      "title": "Twitch Follow Title",
-      "text": "Twitch Follow Text"
+      "title": "Twitch Follow",
+      "text": "Follow the account to validate the action!"
     },
     "instagram_like": {
-      "title": "Instagram Like Title",
-      "text": "Instagram Like Text"
+      "title": "Instagram Like",
+      "text": "Like the post to validate the action!"
     },
     "instagram_follow": {
-      "title": "Instagram Follow Title",
-      "text": "Instagram Follow Text"
+      "title": "Instagram Follow",
+      "text": "Follow the account to validate the action!"
     },
     "poll": {
-      "title": "",
+      "title": "Survey",
       "text": "To get credit for this entry, you must answer this question. Thanks!"
     },
     "video": {
@@ -223,7 +223,7 @@
     "social_detail_alert": "This part is only for phone number verified users.",
     "mandatory_action": "Mandatory action to participate",
     "prize_description": "The winner will receive prizes below:",
-    "the_prize": "The Prizes"
+    "the_prize": "Prizes"
   },
   "my_campaign_page": {
     "live_page": "Live Page",

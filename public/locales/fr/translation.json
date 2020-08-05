@@ -12,7 +12,7 @@
   },
   "footer": {
     "all_rights_reserved": "©2020 Rafflee, tous droits réservés.",
-    "enterprise": "Enterprise",
+    "enterprise": "Entreprise",
     "who_are_we": "Qui sommes nous?",
     "the_team": "L'équipe",
     "we_are_hiring": "On recrute!",
@@ -53,7 +53,7 @@
     "my_campaign": "Ma campagne",
     "my_bills": "Mes factures",
     "analytics": "Analytics",
-    "create_campaign": "Créé une campagne",
+    "create_campaign": "Créer une campagne",
     "overview": "Aperçu",
     "audience": "Audience",
     "engagement": "Engagement",
@@ -68,7 +68,7 @@
     "deactivate": "Désactiver",
     "wall": "Wall"
   },
-  "empty_result_to_display": "Aucuns résultats.",
+  "empty_result_to_display": "Aucuns résultats",
   "button_group": {
     "see_campaign": "Voir la campagne",
     "verify": "Verifier",
@@ -85,7 +85,7 @@
     "delete_account": "Effacer un compte",
     "pick_another": "Choisir un autre",
     "participate": "PARTICIPER",
-    "promotion_ended": "Promotion Ended",
+    "promotion_ended": "Promotion terminée",
     "already_won": "Tu as déjà gagné",
     "draw": "Tirage",
     "download_pdf": "TÉLÉCHARGER PDF",
@@ -104,7 +104,7 @@
     "close": "FERMER",
     "validate": "Valider",
     "validated": "Validé",
-    "confirm_tweet": "Confirm Tweet"
+    "confirm_tweet": "Confirmez le Tweet"
   },
   "homepage": {
     "hot_new_contest_everyday": "Des raffles et giveaways tous les jours.",
@@ -140,17 +140,17 @@
     "last_name_required": "Nom ,de famille est requis",
     "company_name_required": "Nom de l'entreprise est requis",
     "enter_valid_email": "Renseigne un email valide",
-    "facebook_connect": "CONNECTER AVEC FACEBOOK",
+    "facebook_connect": "CONNEXION AVEC AVEC FACEBOOK",
     "facebook_connected": "CONNECTÉ AVEC FACEBOOK",
-    "twitter_connect": "CONNECTEZ-VOUS AVEC TWITTER",
+    "twitter_connect": "CONNEXION AVEC AVEC TWITTER",
     "twitter_connected": "CONNECTÉ AVEC TWITTER",
-    "twitch_connect": "CONNECTEZ-VOUS AVEC TWITCH",
+    "twitch_connect": "CONNEXION AVEC AVEC TWITCH",
     "twitch_connected": "CONNECTÉ AVEC TWITCH",
-    "snapchat_connect": "CONNECTER AVEC SNAPCHAT",
+    "snapchat_connect": "CONNEXION AVEC AVEC SNAPCHAT",
     "snapchat_connected": "CONNECTÉ AVEC SNAPCHAT",
-    "youtube_connect": "CONNECTER AVEC YOUTUBE",
+    "youtube_connect": "CONNEXION AVEC AVEC YOUTUBE",
     "youtube_connected": "CONNECTÉ AVEC YOUTUBE",
-    "instagram_connect": "CONNECTER AVEC INSTAGRAM",
+    "instagram_connect": "CONNEXION AVEC INSTAGRAM",
     "instagram_connected": "CONNECTÉ AVEC INSTAGRAM",
     "steam_connect": "CONNEXION AVEC STEAM",
     "steam_connected": "CONNECTÉ AVEC STEAM"
@@ -165,7 +165,19 @@
     "maximum_participants": "PARTICIPANTS MAXIMUM",
     "days": "Jours restants",
     "entries": "Vos entrées",
-    "participants": "Participants",
+    "participants": "Nombre de participation restantes",
+    "facebook_page": {
+      "title": "Facebook Page",
+      "text": "Like et follow la page pour valider l'action!"
+    },
+    "facebook_post": {
+      "title": "Facebook Post",
+      "text": "Like, comment ou partage pour valider l'action!"
+    },
+    "facebook_url": {
+      "title": "Facebook Url",
+      "text": "Like ou partage pour valider l'action!"
+    },
     "twitter_like": {
       "title": "Twitter Like",
       "text": "Likez le tweet pour valider l'action!"
@@ -192,7 +204,7 @@
     },
     "instagram_follow": {
       "title": "Instagram Follow",
-      "text": "Follow le compte pour valider l'action"
+      "text": "Follow le compte pour valider l'action!"
     },
     "poll": {
       "title": "Sondage",
@@ -208,7 +220,7 @@
     },
     "watch_video": "Lancer la vidéo",
     "select_answer": "Sélectionnez vos réponses",
-    "social_detail_alert": "Cette partie est réservée aux utilisateurs vérifiés par numéro de téléphone.",
+    "social_detail_alert": "Cette partie est réservée aux utilisateurs vérifiés par numéro de téléphone",
     "mandatory_action": "C'est une action obligatoire pour participer",
     "prize_description": "Le gagnant recevra un des prix ci-dessous:",
     "the_prize": "Les prix"
@@ -228,7 +240,7 @@
     "campaign_analytics": "Campagne Analytics",
     "generated_likes": "Likes générés",
     "earned_followers": "Followers gagnés",
-    "tweets_generated": "Tweets Generated",
+    "tweets_generated": "Tweets générés",
     "buy_data": "Acheter de la data",
     "number_of_views": "Nombre de vue de la journée: ",
     "percentage_of_interest": "Pourcentage d'intérêt: ",
@@ -254,7 +266,7 @@
     "most_active_users": "Utilisateurs les plus actifs",
     "view_profile": "Voir le profil",
     "demographics": "Demographics",
-    "active_clients": "Clients actifs",
+    "active_clients": "Utilisateurs actifs",
     "users": "Utilisateurs",
     "male": "Homme",
     "female": "Femme",
@@ -269,7 +281,7 @@
     "following_base": "Following Base",
     "following_data": "Following Data",
     "campaign": "Campagne",
-    "circle": "Circle",
+    "circle": "Cercle",
     "lost": "Perdu",
     "followers": "Followers",
     "rafflee": "Rafflee",
@@ -340,7 +352,7 @@
     "allow_multiple_choices": "Choix multiples autorisé",
     "allow_multiple_votes": "Choix multiples autorisé pour une IP",
     "name": "Nom",
-    "name_required": "Non obligatoire",
+    "name_required": "Nom obligatoire",
     "ccv": "CCV",
     "ccv_required": "CCV obligatoire",
     "card_number": "Numéro de carte",
@@ -375,17 +387,17 @@
     "twitch_follow_name": "Follow Name",
     "create_video_action": "VIDEO ACTION",
     "create_website_action": "WEBSITE ACTION",
-    "limit_participants": "Limite de  Participants",
+    "limit_participants": "Limite de participants",
     "maximum_number_of_participants": "Maximum de participants",
     "public": "Public",
     "private": "Privée",
     "entries": "Entrées",
     "required_fields": {
       "campaign_name": "* Nom de campagne obligatoire",
-      "campaign_image": "* image de campagne obligatoire",
+      "campaign_image": "* Image de campagne obligatoire",
       "short_description": "* Petite description obligatoire",
       "complete_description": "* Description complète obligatoire",
-      "start_date": "* date de commencement obligatoire",
+      "start_date": "* Date de commencement obligatoire",
       "end_date": "* Date de fin obligatoire",
       "action": "* Une action au minimum obligatoire",
       "winnings": "* Merci de remplir les champs cadeaux"
@@ -438,10 +450,10 @@
     "username": "Nom d'utilisateur",
     "password": "Mot de passe",
     "confirm_password": "Confirme le mot de passe",
-    "password_special_alert": "Password doit contenir un caractère spécial.",
-    "password_lowercase_alert": "Mot de passe doit contenir une lettre minuscule.",
-    "password_capital_alert": "Mot de passe doit contenir une lettre majuscule.",
-    "password_number_alert": "Mot de passe doit contenir un chiffre.",
+    "password_special_alert": "Le mot de passe doit contenir un caractère spécial.",
+    "password_lowercase_alert": "Le mot de passe doit contenir une lettre minuscule.",
+    "password_capital_alert": "Le mot de passe doit contenir une lettre majuscule.",
+    "password_number_alert": "Le mot de passe doit contenir un chiffre.",
     "password_length_alert": "Le mot de passe doit contenir au minimum 8 caractères",
     "i_agree": "Je suis d'accord",
     "terms_of_use": "conditions d'utilisations",
