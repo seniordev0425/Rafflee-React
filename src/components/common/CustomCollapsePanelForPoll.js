@@ -81,7 +81,7 @@ function CustomCollapsePanelForPoll(props) {
           {(token && !company && userProfile.phone_number_verification)
             ?
             <div>
-              <div className="d-flex">
+              <div className="d-flex" style={{ color: '#767B83' }}>
                 {text}
               </div>
               <Select

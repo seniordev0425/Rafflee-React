@@ -46,8 +46,10 @@ function CustomCollapsePanel(props) {
   }, [])
 
   useEffect(() => {
-    var iframe = $('iframe').contents()
-    console.log(iframe.length)
+    $(document).ready(() => {
+      var iframe = $('iframe')
+      console.log('iframe length', iframe.length)
+    })
     // $("._2pi4").click(function(event) {
     //   event.preventDefault()
     //   alert('Hello world')
@@ -92,7 +94,7 @@ function CustomCollapsePanel(props) {
   }
 
   const renderFacebookAction = () => {
-    if (isMobile) return null
+    // if (isMobile) return null
 
     switch (actionType) {
       case 'page':
@@ -126,7 +128,7 @@ function CustomCollapsePanel(props) {
         return (
           <div className="mt-3">
             <FacebookProvider appId={FACEBOOK_APP_ID}>
-              <EmbeddedPost href={facebookActionUrl} className="mt-3" />
+              <EmbeddedPost href={facebookActionUrl} className="mt-3" width={'100%'} />
             </FacebookProvider>
           </div>
         )
@@ -134,7 +136,7 @@ function CustomCollapsePanel(props) {
         return (
           <div className="mt-3">
             <FacebookProvider appId={FACEBOOK_APP_ID}>
-              <Like href={facebookActionUrl} colorScheme="dark" showFaces share />
+              <Like href={facebookActionUrl} colorScheme="dark" share />
             </FacebookProvider>
           </div>
         )
