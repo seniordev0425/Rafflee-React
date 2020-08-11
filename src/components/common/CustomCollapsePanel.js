@@ -14,7 +14,6 @@ import {
 import { isMobile } from 'react-device-detect'
 import { FACEBOOK_APP_ID } from '../../utils/constants'
 import images from '../../utils/images'
-import $ from 'jquery'
 import { useTranslation } from 'react-i18next'
 
 
@@ -45,18 +44,6 @@ function CustomCollapsePanel(props) {
     dispatch({ type: 'CAMPAIGN_INIT_STATE', state: `${socialName}_${actionType}_validation`, data: false })
   }, [])
 
-  useEffect(() => {
-    $(document).ready(() => {
-      var iframe = $('iframe')
-      console.log('iframe length', iframe.length)
-    })
-    // $("._2pi4").click(function(event) {
-    //   event.preventDefault()
-    //   alert('Hello world')
-    //   console.log('hello world')
-    // });
-  }, [])
-
   const renderIcons = () => {
     switch (socialName) {
       case 'twitter':
@@ -79,7 +66,10 @@ function CustomCollapsePanel(props) {
         return (<div className="collapse-instagram-icon">
           <img src={images.instagram_icon} width="20" alt="" />
         </div>)
-
+      case 'tiktok':
+        return (<div className="collapse-tiktok-icon">
+          <img src={images.tiktok_action_icon} width="20" alt="" />
+        </div>)
       case 'video':
         return (<div className="collapse-video-icon">
           <img src={images.video_icon} width="25" alt="" />
@@ -94,39 +84,12 @@ function CustomCollapsePanel(props) {
   }
 
   const renderFacebookAction = () => {
-    // if (isMobile) return null
+    if (isMobile) return null
 
     switch (actionType) {
-      case 'page':
-        return (
-          <div className="mt-3">
-            {/* <div
-              className="fb-page"
-              data-href="https://www.facebook.com/Rafflee-101514858298034"
-              data-tabs="timeline"
-              data-width=""
-              data-height=""
-              data-small-header="false"
-              data-adapt-container-width="true"
-              data-hide-cover="false"
-              data-show-facepile="true"
-            >
-              <blockquote
-                cite="https://www.facebook.com/Rafflee-101514858298034"
-                className="fb-xfbml-parse-ignore"
-              >
-                <a href="https://www.facebook.com/Rafflee-101514858298034">Rafflee</a>
-              </blockquote>
-            </div> */}
-            {/* <FacebookProvider appId={FACEBOOK_APP_ID}>
-              <Page href={"https://www.facebook.com/20531316728/posts/10154009990506729/"} className="mt-3" />
-            </FacebookProvider> */}
-            <a href={facebookActionUrl} target="_blank">{facebookActionUrl}</a>
-          </div>
-        )
       case 'post':
         return (
-          <div className="mt-3">
+          <div className="mt-3" id="facebook-post">
             <FacebookProvider appId={FACEBOOK_APP_ID}>
               <EmbeddedPost href={facebookActionUrl} className="mt-3" width={'100%'} />
             </FacebookProvider>
@@ -134,7 +97,7 @@ function CustomCollapsePanel(props) {
         )
       case 'url':
         return (
-          <div className="mt-3">
+          <div className="mt-3" id="facebook-like">
             <FacebookProvider appId={FACEBOOK_APP_ID}>
               <Like href={facebookActionUrl} colorScheme="dark" share />
             </FacebookProvider>

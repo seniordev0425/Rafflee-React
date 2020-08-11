@@ -206,6 +206,14 @@
       "title": "Instagram Follow",
       "text": "Follow the account to validate the action!"
     },
+    "tiktok_like": {
+      "title": "Tiktok Like",
+      "text": "Like the post to validate the action!"
+    },
+    "tiktok_follow": {
+      "title": "Tiktok Follow",
+      "text": "Follow the account to validate the action!"
+    },
     "poll": {
       "title": "Survey",
       "text": "To get credit for this entry, you must answer this question. Thanks!"
@@ -386,6 +394,8 @@
     "follow_id": "Follow ID",
     "instagram_profile_url": "Instagram Profile Name",
     "instagram_publication_url": "Instagram Publication ID",
+    "tiktok_profile_url": "@username",
+    "tiktok_publication_url": "https://www.tiktok.com/@username/video/id",
     "instagram_profile": "PROFILE",
     "instagram_publication": "PUBLICATION",
     "twitch_follow_name": "Follow Name",

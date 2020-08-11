@@ -62,6 +62,7 @@ const images = {
   youtube_action_icon: require('../assets/image/action_buttons/youtube.png'),
   instagram_action_icon: require('../assets/image/action_buttons/instagram.png'),
   twitch_action_icon: require('../assets/image/action_buttons/twitch.png'),
+  tiktok_action_icon: require('../assets/image/action_buttons/tiktok.png'),
   blog_action_icon: require('../assets/image/action_buttons/blog.png'),
   podcast_action_icon: require('../assets/image/action_buttons/podcast.png'),
   tumblr_action_icon: require('../assets/image/action_buttons/tumblr.png'),

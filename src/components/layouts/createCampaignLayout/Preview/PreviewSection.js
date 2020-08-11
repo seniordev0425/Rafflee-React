@@ -221,6 +221,32 @@ function PreviewSection(props) {
               </Col>
             </Row>
           }
+          {params.tiktok.profile &&
+            <Row className="mb-4 mt-4">
+              <Col style={{ paddingLeft: 40 }}>
+                <PreviewCustomCollapsePanel
+                  title={t('campaign_detail_page.tiktok_follow.title')}
+                  text={t('campaign_detail_page.tiktok_follow.text')}
+                  socialName="tiktok"
+                  mandatory={params.tiktok.profile_mandatory}
+                  entries={params.tiktok.profile_entries}
+                />
+              </Col>
+            </Row>
+          }
+          {params.tiktok.publication &&
+            <Row className="mb-4 mt-4">
+              <Col style={{ paddingLeft: 40 }}>
+                <PreviewCustomCollapsePanel
+                  title={t('campaign_detail_page.tiktok_like.title')}
+                  text={t('campaign_detail_page.tiktok_like.text')}
+                  socialName="tiktok"
+                  mandatory={params.tiktok.publication_mandatory}
+                  entries={params.tiktok.publication_entries}
+                />
+              </Col>
+            </Row>
+          }
           {params.url_video.video &&
             <Row className="mb-4 mt-4">
               <Col style={{ paddingLeft: 40 }}>

@@ -91,6 +91,25 @@ function PaymentSection(props) {
       instagram.push({ action: 'instagram_publication', url: params.instagram.publication_url, entries: params.instagram.publication_entries || 1, mandatory: params.instagram.publication_mandatory })
     }
 
+    // Make tiktok action para
+    let tiktok = []
+    if (params.tiktok.profile) {
+      tiktok.push({
+        action: 'tiktok_profile',
+        url: `https://www.tiktok.com/${params.tiktok.profile_url}`,
+        entries: params.tiktok.profile_entries || 1,
+        mandatory: params.tiktok.profile_mandatory
+      })
+    }
+    if (params.tiktok.publication) {
+      tiktok.push({
+        action: 'tiktok_publication',
+        url: params.tiktok.publication_url,
+        entries: params.tiktok.publication_entries || 1,
+        mandatory: params.tiktok.publication_mandatory
+      })
+    }
+
     // Make twitch action para
     let twitch = []
     if (params.twitch.follow) {
@@ -116,7 +135,11 @@ function PaymentSection(props) {
     if (params.promotion_long_description === '') required_messages.push(t('create_campaign_page.required_fields.complete_description'))
     if (params.start_date === '') required_messages.push(t('create_campaign_page.required_fields.start_date'))
     if (params.end_date === '') required_messages.push(t('create_campaign_page.required_fields.end_date'))
-    if (!facebook.length && !twitter.length && !twitch.length && !instagram.length && !params.url_video.video && !params.url_website.website && params.poll === 'false') {
+    if (!facebook.length && !twitter.length &&
+      !twitch.length && !instagram.length &&
+      !params.url_video.video && !tiktok.length &&
+      !params.url_website.website &&
+      params.poll === 'false') {
       required_messages.push(t('create_campaign_page.required_fields.action'))
     }
     for (let i = 0; i < params.winnings.length; i++) {
@@ -164,6 +187,7 @@ function PaymentSection(props) {
     formdata.append('youtube', JSON.stringify([]))
     formdata.append('twitter', JSON.stringify(twitter))
     formdata.append('instagram', JSON.stringify(instagram))
+    formdata.append('tiktok', JSON.stringify(tiktok))
     formdata.append('twitch', JSON.stringify(twitch))
     formdata.append('url_website', JSON.stringify(url_website))
     formdata.append('url_video', JSON.stringify(url_video))

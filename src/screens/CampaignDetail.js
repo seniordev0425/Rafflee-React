@@ -24,6 +24,8 @@ import {
   campaignParticipateWebsite,
   campaignParticipateInstagramProfile,
   campaignParticipateInstagramPublication,
+  campaignParticipateTiktokProfile,
+  campaignParticipateTiktokPublication,
   campaignParticipateFacebookPage,
   campaignParticipateFacebookPost,
   campaignParticipateFacebookUrl
@@ -139,6 +141,13 @@ function CampaignDetail(props) {
 
     if ((campaignData.action_participate[0] || {}).social_action && (campaignData.action_participate[0] || {}).social_action[4].twitch_follow) {
       totalTemp += campaignData.action_participate[0].social_action[4].twitch_follow_entries
+    }
+
+    if ((campaignData.action_participate[0] || {}).social_action && (campaignData.action_participate[0] || {}).social_action[5].tiktok_profile) {
+      totalTemp += campaignData.action_participate[0].social_action[5].tiktok_profile_entries
+    }
+    if ((campaignData.action_participate[0] || {}).social_action && (campaignData.action_participate[0] || {}).social_action[5].tiktok_publication) {
+      totalTemp += campaignData.action_participate[0].social_action[5].tiktok_publication_entries
     }
 
     if ((campaignData.action_participate[0] || {}).video) {
@@ -257,6 +266,14 @@ function CampaignDetail(props) {
     else if (socialName === 'instagram' && actionType === 'like') {
       window.open(`https://instagram.com/p/${action.social_action[2].instagram_publication_url}`, '_blank')
       dispatch(campaignParticipateInstagramPublication({ promotion_id: campaignData.pk }))
+    }
+    else if (socialName === 'tiktok' && actionType === 'follow') {
+      window.open(action.social_action[5].tiktok_profile_url, '_blank')
+      dispatch(campaignParticipateTiktokProfile({ promotion_id: campaignData.pk }))
+    }
+    else if (socialName === 'tiktok' && actionType === 'like') {
+      window.open(action.social_action[5].tiktok_publication_url, '_blank')
+      dispatch(campaignParticipateTiktokPublication({ promotion_id: campaignData.pk }))
     }
     else if (socialName === 'video' && actionType === 'watch') {
       openVideoModal()
@@ -517,6 +534,38 @@ function CampaignDetail(props) {
                   mandatory={action.social_action[4].twitch_follow_mandatory}
                   entries={action.social_action[4].twitch_follow_entries}
                   didAction={(campaignData.user_actions || {}).twitch_follow}
+                  tryToOpenValidationModal={tryToOpenValidationModal}
+                />
+              </Col>
+            </Row>
+          }
+          {(action.social_action && action.social_action[5].tiktok_profile) &&
+            <Row className="mb-4 mt-4">
+              <Col style={{ paddingLeft: 40 }}>
+                <CustomCollapsePanel
+                  title={t('campaign_detail_page.tiktok_follow.title')}
+                  text={t('campaign_detail_page.tiktok_follow.text')}
+                  socialName="tiktok"
+                  actionType="follow"
+                  mandatory={action.social_action[5].tiktok_profile_mandatory}
+                  entries={action.social_action[5].tiktok_profile_entries}
+                  didAction={(campaignData.user_actions || {}).tiktok_profile}
+                  tryToOpenValidationModal={tryToOpenValidationModal}
+                />
+              </Col>
+            </Row>
+          }
+          {(action.social_action && action.social_action[5].tiktok_publication) &&
+            <Row className="mb-4 mt-4">
+              <Col style={{ paddingLeft: 40 }}>
+                <CustomCollapsePanel
+                  title={t('campaign_detail_page.tiktok_like.title')}
+                  text={t('campaign_detail_page.tiktok_like.text')}
+                  socialName="tiktok"
+                  actionType="like"
+                  mandatory={action.social_action[5].tiktok_publication_mandatory}
+                  entries={action.social_action[5].tiktok_publication_entries}
+                  didAction={(campaignData.user_actions || {}).tiktok_publication}
                   tryToOpenValidationModal={tryToOpenValidationModal}
                 />
               </Col>

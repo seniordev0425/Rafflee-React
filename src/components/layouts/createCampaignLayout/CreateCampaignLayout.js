@@ -90,6 +90,16 @@ function CreateCampaignLayout() {
       follow_entries: '',
       follow_mandatory: false
     },
+    tiktok: {
+      publication: false,
+      profile: false,
+      publication_url: '',
+      profile_url: '',
+      publication_entries: '',
+      publication_mandatory: false,
+      profile_entries: '',
+      profile_mandatory: false
+    },
     poll: 'false',
     url_video: {
       video: false,

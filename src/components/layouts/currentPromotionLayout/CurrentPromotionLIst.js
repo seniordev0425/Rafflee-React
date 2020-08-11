@@ -7,7 +7,13 @@ import { faSlidersH } from '@fortawesome/free-solid-svg-icons'
 import PromotionListItem from './PromotionListItem'
 import CategoryFilter from '../../common/CategoryFilter'
 import { NUMBER_PER_PAGE } from '../../../utils/constants'
-import { getHotPromotions, getHighlightedPromotions, getNewPromotions, getBestPromotions, getCategories } from '../../../actions/homepage'
+import {
+  getHotPromotions,
+  getHighlightedPromotions,
+  getNewPromotions,
+  getBestPromotions,
+  getCategories
+} from '../../../actions/homepage'
 import Loading from '../../common/Loading'
 
 import { useTranslation } from 'react-i18next'
@@ -93,7 +99,7 @@ function CurrentPromotionList() {
 
     // Close categories popup
     setOpenCategory(false)
-    
+
     // Load new promotion array based on current menu
     if (val === 'highlight')
       dispatch(getHighlightedPromotions({ token: token }))

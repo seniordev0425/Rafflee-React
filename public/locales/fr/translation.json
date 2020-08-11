@@ -206,6 +206,14 @@
       "title": "Instagram Follow",
       "text": "Follow le compte pour valider l'action!"
     },
+    "tiktok_like": {
+      "title": "Tiktok Like",
+      "text": "Like the post to validate the action!"
+    },
+    "tiktok_follow": {
+      "title": "Tiktok Follow",
+      "text": "Follow the account to validate the action!"
+    },
     "poll": {
       "title": "Sondage",
       "text": "Pour obtenir un crédit pour cette entrée, vous devez répondre à cette question. Merci!"
@@ -382,6 +390,8 @@
     "follow_id": "Follow ID",
     "instagram_profile_url": "Nom de profil Instagram",
     "instagram_publication_url": "Instagram Publication ID",
+    "tiktok_profile_url": "@username",
+    "tiktok_publication_url": "https://www.tiktok.com/@username/video/id",
     "instagram_profile": "Profile",
     "instagram_publication": "Publication",
     "twitch_follow_name": "Follow Name",
@@ -521,7 +531,7 @@
   "twitter_follow_modal": {
     "header": "TYPE DE FOLLOW ET ID",
     "select_type": "Selectionnez le type",
-    "screen_name": "Screen Name",
+    "screen_name": "Nom du channel",
     "user_id": "User ID",
     "enter_id": "Entrez l'ID"
   },

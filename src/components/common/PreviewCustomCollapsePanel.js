@@ -42,6 +42,10 @@ function PreviewCustomCollapsePanel(props) {
         return (<div className="collapse-instagram-icon">
           <img src={images.instagram_icon} width="20" alt="" />
         </div>)
+      case 'tiktok':
+        return (<div className="collapse-tiktok-icon">
+          <img src={images.tiktok_action_icon} width="20" alt="" />
+        </div>)
 
       case 'video':
         return (<div className="collapse-video-icon">

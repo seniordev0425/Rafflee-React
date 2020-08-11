@@ -537,6 +537,49 @@ function onSuccessCampaignParticipateInstagramPublication(data) {
     entries: data.entries
   }
 }
+
+
+
+/////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_TIKTOK_PROFILE_ACTION
+export function campaignParticipateTiktokProfile(params) {
+  return apiAction({
+    url: APIROUTE + "campaign/participate/tiktok/profile/",
+    method: 'POST',
+    data: qs.stringify(params),
+    accessToken: sessionStorage.getItem('token'),
+    onSuccess: onSuccessCampaignParticipateTiktokProfile,
+    onFailure: onFailed,
+    label: 'CAMPAIGN_PARTICIPATE_TIKTOK_PROFILE',
+    requireErrorMessage: true
+  });
+}
+function onSuccessCampaignParticipateTiktokProfile(data) {
+  return {
+    type: 'SET_ACTION_VALIDATION_STATUS',
+    data: 'tiktok_follow_validation',
+    entries: data.entries
+  }
+}
+/////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_INSTAGRAM_PUBLICATION_ACTION
+export function campaignParticipateTiktokPublication(params) {
+  return apiAction({
+    url: APIROUTE + "campaign/participate/tiktok/publication/",
+    method: 'POST',
+    data: qs.stringify(params),
+    accessToken: sessionStorage.getItem('token'),
+    onSuccess: onSuccessCampaignParticipateTiktokPublication,
+    onFailure: onFailed,
+    label: 'CAMPAIGN_PARTICIPATE_TIKTOK_PUBLICATION',
+    requireErrorMessage: true
+  });
+}
+function onSuccessCampaignParticipateTiktokPublication(data) {
+  return {
+    type: 'SET_ACTION_VALIDATION_STATUS',
+    data: 'tiktok_like_validation',
+    entries: data.entries
+  }
+}
 /////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_FACEBOOK_PAGE_ACTION
 export function campaignParticipateFacebookPage(params) {
   return apiAction({

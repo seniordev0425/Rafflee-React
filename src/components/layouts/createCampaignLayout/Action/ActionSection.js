@@ -7,6 +7,7 @@ import TwitterActionButton from './Twitter/TwitterActionButton'
 import YoutubeActionButton from './Youtube/YoutubeActionButton'
 import InstagramActionButton from './Instagram/InstagramActionButton'
 import TwitchActionButton from './Twitch/TwitchActionButton'
+import TiktokActionButton from './Tiktok/TiktokActionButton'
 import BlogActionButton from './Blog/BlogActionButton'
 import PodcastActionButton from './Podcast/PodcastActionButton'
 import TumblrActionButton from './Tumblr/TumblrActionButton'
@@ -26,6 +27,7 @@ import TwitchActionMenu from './Twitch/TwitchActionMenu'
 import PollActionMenu from './Poll/PollActionMenu'
 import VideoActionMenu from './Video/VideoActionMenu'
 import WebsiteActionMenu from './Website/WebsiteActionMenu'
+import TiktokActionMenu from './Tiktok/TiktokActionMenu'
 
 import FacebookPostField from './Facebook/FacebookPostField'
 import FacebookLikeShareUrlField from './Facebook/FacebookLikeShareUrlField'
@@ -37,6 +39,8 @@ import TwitterRetweetField from './Twitter/TwitterRetweetField'
 import InstagramProfileField from './Instagram/InstagramProfileField'
 import InstagramPublicationField from './Instagram/InstagramPublicationField'
 import TwitchFollowField from './Twitch/TwitchFollowField'
+import TiktokProfileField from './Tiktok/TiktokProfileField'
+import TiktokPublicationField from './Tiktok/TiktokPublicationField'
 import PollField from './Poll/PollField'
 import VideoField from './Video/VideoField'
 import WebsiteField from './Website/WebsiteField'
@@ -91,6 +95,9 @@ function ActionSection(props) {
               </Dropdown>
               <Dropdown overlay={<TwitchActionMenu params={params} setAction={setAction} />} placement="bottomLeft">
                 <TwitchActionButton />
+              </Dropdown>
+              <Dropdown overlay={<TiktokActionMenu params={params} setAction={setAction} />} placement="bottomLeft">
+                <TiktokActionButton />
               </Dropdown>
               <Dropdown overlay={menu} placement="bottomLeft" disabled>
                 <BlogActionButton />
@@ -161,6 +168,12 @@ function ActionSection(props) {
             }
             {params.twitch.follow &&
               <TwitchFollowField params={params} setAction={setAction} />
+            }
+            {params.tiktok.profile &&
+              <TiktokProfileField params={params} setAction={setAction} />
+            }
+            {params.tiktok.publication &&
+              <TiktokPublicationField params={params} setAction={setAction} />
             }
             {params.poll !== 'false' &&
               <PollField params={params} setParams={setParams} setAction={setAction} />
