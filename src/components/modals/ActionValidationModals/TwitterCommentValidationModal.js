@@ -38,7 +38,7 @@ function TwitterCommentValidationModal(props) {
   return (
     <Modal isOpen={open} toggle={onToggle}>
       <ModalBody>
-        <div>
+        <div className="text-center">
           <span className="font-size-10 font-weight-bold">{`${(actionData || {}).tweet_template}`}</span>
         </div>
         {/* <div className="mt-3">
