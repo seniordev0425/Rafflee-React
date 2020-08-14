@@ -46,14 +46,29 @@ function CompanyPage(props) {
 
   const twitter_tooltip = (
     <div className="font-size-10">
-      <span><span className="font-weight-bold">{((companyInformation.social_wall || {}).twitter || {}).followers}</span> {t('my_circle_page.followers')}</span>
-      <span className="ml-3"><span className="font-weight-bold">{((companyInformation.social_wall || {}).twitter || {}).friends}</span> {t('my_circle_page.friends')}</span>
+      <span>
+        <span className="font-weight-bold">
+          {((companyInformation.social_wall || {}).twitter || {}).followers}
+        </span>
+        {t('my_circle_page.followers')}
+      </span>
+      <span className="ml-3">
+        <span className="font-weight-bold">
+          {((companyInformation.social_wall || {}).twitter || {}).friends}
+        </span>
+        {t('my_circle_page.friends')}
+      </span>
     </div>
   )
 
   const facebook_tooltip = (
     <div className="font-size-10">
-      <span><span className="font-weight-bold">{((companyInformation.social_wall.facebook || {}).page_informations || {}).fan_count}</span> {t('my_circle_page.fans')}</span>
+      <span>
+        <span className="font-weight-bold">
+          {((companyInformation.social_wall.facebook || {}).page_informations || {}).fan_count}
+        </span>
+        {t('my_circle_page.fans')}
+      </span>
     </div>
   )
 
@@ -145,13 +160,12 @@ function CompanyPage(props) {
                             }
                             {item.media_type === 'VIDEO' &&
                               <ReactPlayer
-                                // controls
                                 loop
                                 playing
                                 url={item.media_url}
                                 width='100%'
-                                height="100%"
-                                style={{ borderRadius: 10 }}
+                                height='100%'
+                                style={{ borderRadius: 10, maxHeight: 400 }}
                               />
                             }
                           </a>
@@ -304,7 +318,7 @@ function CompanyPage(props) {
       <div className="min-height-container">
         {renderCompanyWall()}
       </div>
-      
+
       <CircleFollowModal
         open={openFollowModal}
         onToggle={handleFollowModal}

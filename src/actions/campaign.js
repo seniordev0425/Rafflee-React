@@ -216,6 +216,7 @@ function onSuccessCampaignParticipateTwitterLike(data) {
       openModalName: 'OPEN_TWITTER_LIKE_VALIDATION_MODAL'
     }
   } else {
+    openNotification('success', successMessages[localStorage.getItem('i18nextLng')][data.msg])
     return {
       type: 'SET_ACTION_VALIDATION_STATUS',
       data: 'twitter_like_validation',
@@ -264,6 +265,7 @@ function onSuccessCampaignParticipateTwitterRetweet(data) {
       openModalName: 'OPEN_TWITTER_RETWEET_VALIDATION_MODAL'
     }
   } else {
+    openNotification('success', successMessages[localStorage.getItem('i18nextLng')][data.msg])
     return {
       type: 'SET_ACTION_VALIDATION_STATUS',
       data: 'twitter_retweet_validation',
@@ -312,6 +314,7 @@ function onSuccessCampaignParticipateTwitterComment(data) {
       openModalName: 'OPEN_TWITTER_COMMENT_VALIDATION_MODAL'
     }
   } else {
+    openNotification('success', successMessages[localStorage.getItem('i18nextLng')][data.msg])
     return {
       type: 'SET_ACTION_VALIDATION_STATUS',
       data: 'twitter_comment_validation',
@@ -360,6 +363,7 @@ function onSuccessCampaignParticipateTwitterFollow(data) {
       openModalName: 'OPEN_TWITTER_FOLLOW_VALIDATION_MODAL'
     }
   } else {
+    openNotification('success', successMessages[localStorage.getItem('i18nextLng')][data.msg])
     return {
       type: 'SET_ACTION_VALIDATION_STATUS',
       data: 'twitter_follow_validation',
@@ -408,6 +412,7 @@ function onSuccessCampaignParticipateTwitchFollow(data) {
       openModalName: 'OPEN_TWITCH_FOLLOW_VALIDATION_MODAL'
     }
   } else {
+    openNotification('success', successMessages[localStorage.getItem('i18nextLng')][data.msg])
     return {
       type: 'SET_ACTION_VALIDATION_STATUS',
       data: 'twitch_follow_validation',

@@ -99,7 +99,8 @@ const errorMessages = {
     MSG_ERROR_CHANNEL_NOT_FOUND: "Error no channel founded",
     MSG_NO_CATEGORIES_FOUNDED: "No categories founded",
     MSG_ERROR_WITH_REPORT: "Error with the report",
-    MSG_ERROR_ACTION_ALREADY_VALIDATED: "Action already validated"
+    MSG_ERROR_ACTION_ALREADY_VALIDATED: "Action already validated",
+    MSG_ERROR_INSTAGRAM_BUSINESS_CONNECT: "Impossible to connect your instagram account. Please contact support"
   },
 
 
@@ -202,7 +203,8 @@ const errorMessages = {
     MSG_ERROR_CHANNEL_NOT_FOUND: "Erreur, aucun channel trouvé",
     MSG_NO_CATEGORIES_FOUNDED: "Aucunes categories trouvé",
     MSG_ERROR_WITH_REPORT: "Erreur avec la fonction de report",
-    MSG_ERROR_ACTION_ALREADY_VALIDATED: "L'action est déjà validé"
+    MSG_ERROR_ACTION_ALREADY_VALIDATED: "L'action est déjà validé",
+    MSG_ERROR_INSTAGRAM_BUSINESS_CONNECT: "Impossible de connecter votre compte instagram. Contactez le support"
   }
 }
 

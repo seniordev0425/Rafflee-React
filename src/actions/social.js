@@ -74,7 +74,8 @@ export function instagramBusinessConnectValidation(params) {
     accessToken: sessionStorage.getItem('token'),
     onSuccess: onSuccessInstagramBusinessConnectValidation,
     onFailure: onFailed,
-    label: 'VALIDATE_INSTAGRAM_BUSINESS_CONNECT'
+    label: 'VALIDATE_INSTAGRAM_BUSINESS_CONNECT',
+    requireErrorMessage: true
   });
 }
 function onSuccessInstagramBusinessConnectValidation(data) {
