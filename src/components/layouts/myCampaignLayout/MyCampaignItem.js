@@ -61,7 +61,7 @@ function MyCampaignItem(props) {
               <div className="mt-2 d-flex justify-content-between align-items-center">
                 <span className="footer-link-bold pointer" onClick={() => goToParticipatePage(item.pk)}>
                   {t('my_campaign_page.view_participants')} ({item.number_of_participants})
-                                </span>
+                </span>
                 <AntdButton
                   type="primary"
                   className={Date.parse(item.end_date) > (Date.now() + 1000) ? "ant-blue-btn" : "ant-disabled-btn"}

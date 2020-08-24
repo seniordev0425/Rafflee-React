@@ -29,10 +29,10 @@ import { openNotification } from '../utils/notification'
 
 import { verifyToken } from '../apis/apiCalls'
 import { getUserProfile, getCompanyProfile } from '../actions/userInfo'
+import { IP_ADDRESS_API } from '../utils/constants'
 
 import { useTranslation } from 'react-i18next'
 
-const API = 'https://api.ipify.org?format=jsonp?callback=?'
 
 function Routes(props) {
   const { t } = useTranslation()
@@ -64,7 +64,7 @@ function Routes(props) {
   useEffect(() => {
     setIsFethingIP(true)
     // Fetch device ip address
-    fetch(API, { method: 'GET', headers: {} })
+    fetch(IP_ADDRESS_API, { method: 'GET', headers: {} })
       .then(response => {
         return response.text()
       })

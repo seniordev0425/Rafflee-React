@@ -1,5 +1,6 @@
 export const APIROUTE = 'https://rafflee.io/api/'
-export const NUMBER_PER_PAGE = 2
+export const IP_ADDRESS_API = 'https://api.ipify.org?format=jsonp?callback=?'
+export const NUMBER_PER_PAGE = 5
 export const UPLOAD_MAX_SIZE = 1048576 //Image max size: 1MB
 
 export const FACEBOOK_APP_ID = 569090800341241
