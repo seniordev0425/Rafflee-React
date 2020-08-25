@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { withRouter } from 'react-router-dom'
-import { compose } from 'redux'
-import { connect, useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Route, Switch, Redirect } from 'react-router-dom'
 import CookieConsent from 'react-cookie-consent'
 import Home from '../screens/Home'
@@ -37,12 +36,14 @@ import { useTranslation } from 'react-i18next'
 function Routes(props) {
   const { t } = useTranslation()
 
+  const { history } = props
+
   const token = useSelector(state => state.userInfo.token)
   const company = useSelector(state => state.userInfo.company)
-  
   const AUTH_ERROR = useSelector(state => state.userInfo.AUTH_ERROR)
 
-  const { dispatch, history } = props
+  const dispatch = useDispatch()
+
   const [authLoading, setAuthLoading] = useState(true)
   const [isFetchingIP, setIsFethingIP] = useState(false)
 
@@ -146,7 +147,7 @@ function Routes(props) {
       window.removeEventListener('offline', _handleOffline)
     };
   }, [])
- 
+
   useEffect(() => {
     // if 401 error occurs then redirect to home page and remove tokens
     if (AUTH_ERROR) {
@@ -220,11 +221,5 @@ function Routes(props) {
     </ScrollToTop>
   )
 }
-function mapStateToProps(state) {
-  return {
-    token: state.userInfo.token,
-    company: state.userInfo.company
-  }
-}
 
-export default compose(withRouter, connect(mapStateToProps))(Routes)
+export default withRouter(Routes)

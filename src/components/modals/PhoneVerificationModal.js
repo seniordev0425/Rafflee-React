@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { connect, useSelector, useDispatch } from "react-redux";
-import { compose } from 'redux'
+import { useSelector, useDispatch } from "react-redux";
 import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import ReactCodeInput from 'react-verification-code-input'
@@ -83,11 +82,4 @@ PhoneVerificationModal.propTypes = {
   onToggle: PropTypes.func.isRequired,
 }
 
-function mapStateToProps(state) {
-  return {
-    token: state.userInfo.token,
-    company: state.userInfo.company,
-  }
-}
-
-export default compose(withRouter, connect(mapStateToProps))(PhoneVerificationModal)
+export default withRouter(PhoneVerificationModal)

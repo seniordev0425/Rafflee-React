@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
-import { connect, useSelector, useDispatch } from "react-redux";
-import { compose } from 'redux'
+import { useSelector, useDispatch } from "react-redux";
 import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { Form as FinalForm, Field } from 'react-final-form'
@@ -13,9 +12,7 @@ import {
 } from 'reactstrap'
 import { Button } from 'antd'
 import FormInput from '../common/FormInput'
-import {
-  required,
-} from '../../utils/validation'
+import { required } from '../../utils/validation'
 
 import { deleteAccount } from '../../actions/userInfo'
 
@@ -85,11 +82,4 @@ DeleteAccount.propTypes = {
   onToggle: PropTypes.func.isRequired,
 }
 
-function mapStateToProps(state) {
-  return {
-    token: state.userInfo.token,
-    company: state.userInfo.company,
-  }
-}
-
-export default compose(withRouter, connect(mapStateToProps))(DeleteAccount)
+export default withRouter(DeleteAccount)

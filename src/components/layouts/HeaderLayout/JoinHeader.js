@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react'
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import { Button } from 'reactstrap'
 import LoginSignupBaseModal from '../../modals/LoginSignupBaseModal'
 
 import { useTranslation } from 'react-i18next'
 
-function JoinHeader(props) {
+function JoinHeader() {
   const { t } = useTranslation()
+
+  const token = useSelector(state => state.userInfo.token)
 
   const [modal, setModal] = useState(false)
   const [companyStatus, setCompanyStatus] = useState(false)
@@ -36,7 +38,7 @@ function JoinHeader(props) {
   }
   return (
     <>
-      {(!props.token && !isMobile) &&
+      {(!token && !isMobile) &&
         <>
           <div className="join-header">
             {t('header.join_header_text')}
@@ -56,10 +58,4 @@ function JoinHeader(props) {
   )
 }
 
-function mapStateToProps(state) {
-  return {
-    token: state.userInfo.token,
-  }
-}
-
-export default connect(mapStateToProps)(JoinHeader)
+export default JoinHeader

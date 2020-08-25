@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
-import { connect, useSelector } from 'react-redux'
-import { compose } from 'redux'
+import { useSelector } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom'
 import { Row, Col } from 'reactstrap'
 import { Menu } from 'antd'
@@ -23,6 +22,8 @@ function Dashboard(props) {
   const { t } = useTranslation()
 
   const { match } = props
+
+  const company = useSelector(state => state.userInfo.company)
   const userInventory = useSelector(state => state.userInfo.userInventory)
   const userParticipationHistory = useSelector(state => state.userInfo.userParticipationHistory)
   const userInProgress = useSelector(state => state.userInfo.userInProgress)
@@ -60,7 +61,7 @@ function Dashboard(props) {
       <div className="menubar-container">
         <Row>
           <Col sm={{ size: 10, offset: 1 }} xs="12" className="padding-x">
-            {props.company ? (
+            {company ? (
               <Menu mode="horizontal" className="menubar" selectedKeys={[match.params.menu]}>
                 <Menu.Item key="my-campaign">
                   <Link to="/dashboard/my-campaign">
@@ -124,10 +125,4 @@ function Dashboard(props) {
   )
 }
 
-function mapStateToProps(state) {
-  return {
-    token: state.userInfo.token,
-    company: state.userInfo.company
-  }
-}
-export default compose(withRouter, connect(mapStateToProps))(Dashboard)
+export default withRouter(Dashboard)

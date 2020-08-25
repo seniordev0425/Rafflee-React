@@ -19,7 +19,15 @@ import { useTranslation } from 'react-i18next'
 function LoginSignupBaseModal(props) {
   const { t } = useTranslation()
 
-  const { isLogin, switch_login_signin, modal, toggle, companyStatus, showCompanyModal } = props
+  const {
+    isLogin,
+    switch_login_signin,
+    modal,
+    toggle,
+    companyStatus,
+    showCompanyModal
+  } = props
+
   const ip = useSelector(state => state.userInfo.ip)
   const token = useSelector(state => state.userInfo.token)
   const dispatch = useDispatch()
@@ -51,12 +59,30 @@ function LoginSignupBaseModal(props) {
           {companyStatus === true ? (<CompanyModal />) : (
             <div style={{ fontFamily: "sofiapro" }}>
               <Row style={{ margin: 0 }}>
-                <div className="modal-login-btn" style={isLogin ? { opacity: 1 } : { opacity: 0.25 }} onClick={() => switch_login_signin(true)}>{t('header.log_in')}</div>
-                <div className="modal-signin-btn" style={isLogin ? { opacity: 0.25 } : { opacity: 1 }} onClick={() => switch_login_signin(false)}>{t('header.sign_in')}</div>
+                <div
+                  className="modal-login-btn"
+                  style={isLogin ? { opacity: 1 } : { opacity: 0.25 }}
+                  onClick={() => switch_login_signin(true)}
+                >
+                  {t('header.log_in')}
+                </div>
+                <div
+                  className="modal-signin-btn"
+                  style={isLogin ? { opacity: 0.25 } : { opacity: 1 }}
+                  onClick={() => switch_login_signin(false)}
+                >
+                  {t('header.sign_in')}
+                </div>
               </Row>
-              <div style={{ marginTop: "2rem" }}>{isLogin ? (<LogInModal toggle={toggle} />) : (<SignUpModal toggle={toggle} showCompanyModal={showCompanyModal} />)}</div>
+              <div style={{ marginTop: "2rem" }}>
+                {isLogin ? (<LogInModal toggle={toggle} />) : (<SignUpModal toggle={toggle} showCompanyModal={showCompanyModal} />)}
+              </div>
               <div className="or-divider-container">
-                <h2><span className="or-divider-text">{t('signin_modal.or')}</span></h2>
+                <h2>
+                  <span className="or-divider-text">
+                    {t('signin_modal.or')}
+                  </span>
+                </h2>
               </div>
               <div style={{ marginTop: "2rem" }}>
                 <FacebookLogin
@@ -66,6 +92,7 @@ function LoginSignupBaseModal(props) {
                   render={renderProps => (
                     <div onClick={renderProps.onClick}><FaceBookSignBtn /></div>
                   )}
+                  onFailure={() => null}
                 />
               </div>
               <div style={{ marginTop: "1rem" }}>

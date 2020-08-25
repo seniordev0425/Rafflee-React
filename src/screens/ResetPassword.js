@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
-import { compose } from 'redux'
-import { connect, useSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { withRouter } from 'react-router-dom'
 import { Form as FinalForm, Field } from 'react-final-form'
 import { Form, FormGroup } from 'reactstrap'
@@ -81,10 +80,4 @@ function ResetPassword(props) {
   )
 }
 
-function mapStateToProps(state) {
-  return {
-    token: state.userInfo.token,
-    company: state.userInfo.company,
-  }
-}
-export default compose(withRouter, connect(mapStateToProps))(ResetPassword)
+export default withRouter(ResetPassword)

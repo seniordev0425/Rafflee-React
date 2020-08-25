@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { connect, useSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux"
 import { Form as FinalForm, Field } from 'react-final-form'
 import { Form, FormGroup } from 'reactstrap'
 import { Button } from 'antd'
@@ -17,7 +17,7 @@ function LogInModal(props) {
 
   const { toggle } = props
 
-  const isLoading = useSelector(state => state.userInfo.LOG_IN)
+  const LON_IN_PROCESS = useSelector(state => state.userInfo.LOG_IN)
   const ip = useSelector(state => state.userInfo.ip)
   const dispatch = useDispatch()
 
@@ -36,7 +36,6 @@ function LogInModal(props) {
   }
 
   return (
-
     <div>
       <FinalForm
         onSubmit={onSubmit}
@@ -50,7 +49,6 @@ function LogInModal(props) {
                 type="text"
                 placeholder={t('signin_modal.username')}
                 validate={required(t('signin_modal.username_required'))}
-
               />
             </FormGroup>
             <FormGroup>
@@ -72,15 +70,21 @@ function LogInModal(props) {
                 />
                 <span className="ml-1" style={{ color: '#7E9AA8' }}> {t('login_modal.remember_me')}</span>
               </div>
-              <span className="policy-button" onClick={handleForgotModal} style={{ color: '#7E9AA8' }}>{t('login_modal.forgot_password')}</span>
+              <span
+                className="policy-button"
+                onClick={handleForgotModal}
+                style={{ color: '#7E9AA8' }}
+              >
+                {t('login_modal.forgot_password')}
+              </span>
             </FormGroup>
             <Button
               htmlType="submit"
               type="primary"
               className="ant-blue-btn mt-4"
-              loading={isLoading}
+              loading={LON_IN_PROCESS}
             >
-              {!isLoading && t('button_group.log_in')}
+              {!LON_IN_PROCESS && t('button_group.log_in')}
             </Button>
           </Form>
         )}
@@ -94,11 +98,4 @@ function LogInModal(props) {
   )
 }
 
-function mapStateToProps(state) {
-  return {
-    token: state.userInfo.token,
-    company: state.userInfo.company,
-  }
-}
-
-export default connect(mapStateToProps)(LogInModal)
+export default LogInModal
