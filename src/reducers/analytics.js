@@ -22,6 +22,16 @@ const initialFeedState = {
     female: 0
   },
 
+  ///////////////////////////////////////////// Gender percentages in following section   
+  followingGender: {
+    unknow: 0,
+    percentage_unknow: 0,
+    male: 0,
+    percentage_male: 0,
+    percentage_female: 0,
+    female: 0
+  },
+
   ///////////////////////////////////////////// ActionDemographics data for google map in audience section
   overralActionDemographics: [],
 
@@ -85,6 +95,11 @@ function Analytics(state = initialFeedState, action) {
       return {
         ...state,
         activeGender: action.data
+      }
+    case 'SET_FOLLOWING_GENDER':
+      return {
+        ...state,
+        followingGender: action.data
       }
     case 'SET_OVERRAL_DEMOGRAPHICS':
       if (action.demographics_type === 'action') {

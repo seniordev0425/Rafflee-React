@@ -133,14 +133,15 @@ function SearchResultLayout(props) {
   const filter = (list) => {
     let tempArr = []
     for (let i = 0; i < list.length; i++) {
-      if (list[i].campaign_name.toLowerCase().includes(currentKey.toLowerCase()) || list[i].description.toLowerCase().includes(currentKey.toLowerCase()) ||
-        list[i].company_name.toLowerCase().includes(currentKey.toLowerCase())) {
+      if (list[i].campaign_name.toLowerCase().includes(currentKey.toLowerCase()) ||
+        list[i].description.toLowerCase().includes(currentKey.toLowerCase()) ||
+        list[i].company_name.toLowerCase().includes(currentKey.toLowerCase()) ||
+        list[i].winnings.filter(winning => winning.toLowerCase().includes(currentKey.toLowerCase())).length) {
         tempArr.push(list[i])
       }
     }
 
-    if (allChecked)
-      return tempArr
+    if (allChecked) return tempArr
 
     let resultArr = []
     let flag = false

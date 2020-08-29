@@ -33,6 +33,8 @@ function SignUpModal(props) {
   const [containNumber, setContainNumber] = useState(false)
   const [containEnoughLen, setContainEnoughLen] = useState(false)
 
+  const [password, setPassword] = useState('')
+
   useEffect(() => {
     if (SIGN_UP_SUCCESS) {
       dispatch({ type: 'INIT_STATE', state: 'SUCCESS_SIGN_UP', data: false })
@@ -52,6 +54,8 @@ function SignUpModal(props) {
   }
 
   const validatePassword = (val) => {
+    setPassword(val)
+
     let specialFormat = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/
     let lowercaseFormat = /[a-z]/
     let uppercaseFormat = /[A-Z]/
@@ -116,21 +120,25 @@ function SignUpModal(props) {
                 placeholder={t('signin_modal.confirm_password')}
                 validate={required(t('signin_modal.confirm_password_required'))}
               />
-              <div className="mt-3" style={containSpecial ? { color: "green" } : { color: "#dc3545" }}>
-                {t('signin_modal.password_special_alert')}
-              </div>
-              <div className="mt-2" style={containLowercase ? { color: "green" } : { color: "#dc3545" }}>
-                {t('signin_modal.password_lowercase_alert')}
-              </div>
-              <div className="mt-2" style={containCapital ? { color: "green" } : { color: "#dc3545" }}>
-                {t('signin_modal.password_capital_alert')}
-              </div>
-              <div className="mt-2" style={containNumber ? { color: "green" } : { color: "#dc3545" }}>
-                {t('signin_modal.password_number_alert')}
-              </div>
-              <div className="mt-2" style={containEnoughLen ? { color: "green" } : { color: "#dc3545" }}>
-                {t('signin_modal.password_length_alert')}
-              </div>
+              {password &&
+                <>
+                  <div className="mt-3" style={containSpecial ? { color: "green" } : { color: "#dc3545" }}>
+                    {t('signin_modal.password_special_alert')}
+                  </div>
+                  <div className="mt-2" style={containLowercase ? { color: "green" } : { color: "#dc3545" }}>
+                    {t('signin_modal.password_lowercase_alert')}
+                  </div>
+                  <div className="mt-2" style={containCapital ? { color: "green" } : { color: "#dc3545" }}>
+                    {t('signin_modal.password_capital_alert')}
+                  </div>
+                  <div className="mt-2" style={containNumber ? { color: "green" } : { color: "#dc3545" }}>
+                    {t('signin_modal.password_number_alert')}
+                  </div>
+                  <div className="mt-2" style={containEnoughLen ? { color: "green" } : { color: "#dc3545" }}>
+                    {t('signin_modal.password_length_alert')}
+                  </div>
+                </>
+              }
             </FormGroup>
             <FormGroup>
               <Switch onChange={() => setAgree(!agree)} />

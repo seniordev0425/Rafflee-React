@@ -1,18 +1,28 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Row, Col } from 'reactstrap'
-import { Progress } from 'antd'
+import { Progress, Tooltip } from 'antd'
 import ColorBar from '../../../common/ColorBar'
 import FollowingPieChart from './FollowingPieChart'
+import { getFollowingGender } from '../../../../actions/analytics'
 
 import { useTranslation } from 'react-i18next'
+import { T } from 'antd/lib/upload/utils'
 
 function Following() {
   const { t } = useTranslation()
 
+  const followingGender = useSelector(state => state.analytics.followingGender)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(getFollowingGender())
+  }, [])
+
   return (
     <div className="mx-0 mx-sm-3">
       <Row>
-        <Col xs="12" sm={{ size: 10, offset: 1 }} className="padding-x followers-container">
+        <Col xs="12" sm={{ size: 10, offset: 1 }} className="padding-x followers-container justify-content-between">
           <div className="audience-bottom-div d-flex flex-column justify-content-between">
             <div className="default-border p-4">
               <div>
@@ -77,19 +87,25 @@ function Following() {
             <div className="d-flex font-size-10 mt-4">
               <div style={{ width: "25%" }}>{t('analytics_page.male')}</div>
               <div style={{ width: "75%" }}>
-                <Progress strokeWidth={10} percent={30} />
+                <Tooltip title={`${t('analytics_page.male')}: ${followingGender.male}`} color='#0091ff'>
+                  <Progress strokeWidth={10} percent={followingGender.percentage_male} status='normal' />
+                </Tooltip>
               </div>
             </div>
             <div className="d-flex font-size-10 mt-4">
               <div style={{ width: "25%" }}>{t('analytics_page.female')}</div>
               <div style={{ width: "75%" }}>
-                <Progress strokeWidth={10} percent={74.5} />
+                <Tooltip title={`${t('analytics_page.female')}: ${followingGender.female}`} color='#0091ff'>
+                  <Progress strokeWidth={10} percent={followingGender.percentage_female} status='normal' />
+                </Tooltip>
               </div>
             </div>
             <div className="d-flex font-size-10 mt-4">
               <div style={{ width: "25%" }}>{t('analytics_page.unknown')}</div>
               <div style={{ width: "75%" }}>
-                <Progress strokeWidth={10} percent={10.4} />
+                <Tooltip title={`${t('analytics_page.unknown')}: ${followingGender.unknow}`} color='#0091ff'>
+                  <Progress strokeWidth={10} percent={followingGender.percentage_unknow} status='normal' />
+                </Tooltip>
               </div>
             </div>
           </div>

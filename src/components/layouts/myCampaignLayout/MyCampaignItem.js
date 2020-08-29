@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Row, Col, Button } from 'reactstrap'
+import { Link } from 'react-router-dom'
 import { Button as AntdButton, Tooltip } from 'antd'
 import CampaignCloseModal from '../../modals/CampaignCloseModal'
 import images from '../../../utils/images'
@@ -29,14 +30,16 @@ function MyCampaignItem(props) {
               <img src={item.campaign_image ? item.campaign_image : images.profile_img} alt="" />
             </Col>
             <Col lg="11" md="10" sm="10" xs="9" className="pl-sm-5">
-              <div className="promotion-list-item-title d-flex justify-content-between align-items-center">{item.campaign_name}
+              <div className="promotion-list-item-title d-flex justify-content-between align-items-center">
+                <Link to={"/campaign-detail/" + item.pk}>
+                  {item.campaign_name}
+                </Link>
                 <Tooltip
                   title={Date.parse(item.end_date) > (Date.now() + 1000) ? `${t('my_campaign_page.in_progress')} ${moment(item.end_date).format('YYYY-MM-DD')}` : `${t('my_campaign_page.ended_at')} ${moment(item.end_date).format('YYYY-MM-DD')}`}
                   placement="topRight"
                 >
                   <span className={Date.parse(item.end_date) > (Date.now() + 1000) ? "green-dot pointer" : "red-dot pointer"}></span>
                 </Tooltip>
-
               </div>
               <div className="font-size-9 d-block d-sm-flex">
                 <div>{`${t('my_campaign_page.number_of_views')}${item.nbr_of_views},`}</div>

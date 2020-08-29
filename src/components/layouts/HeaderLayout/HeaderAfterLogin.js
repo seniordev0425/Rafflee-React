@@ -58,17 +58,39 @@ function HeaderAfterLogin(props) {
   return (
     <>
       {!isMobile ? (
-        <Row>
-          <Link to="/deals"><Button type="link" className="no-border-btn mr-3 h-100 font-weight-bold">{t('header.campaigns')}</Button></Link>
-          <Link to="/my-circle"><Button type="link" className="no-border-btn mr-3 h-100 font-weight-bold">{t('menubar.my_circle')}</Button></Link>
+        <Row className="align-items-center">
+          <Link to="/deals">
+            <span className="mr-3 font-weight-bold header-btn">
+              {t('header.campaigns')}
+            </span>
+          </Link>
+
+          <Link to="/my-circle">
+            <span className="mx-3 font-weight-bold header-btn">
+              {t('menubar.my_circle')}
+            </span>
+          </Link>
+
           <Link to={company ? "/dashboard/my-campaign" : "/dashboard/inventory"}>
-            <Button type="link" className="no-border-btn mr-3 h-100 font-weight-bold">{t('header.inventory')}</Button>
+            <span className="mx-3 font-weight-bold header-btn">
+              {t('header.inventory')}
+            </span>
           </Link>
+
           <Link to="/user-account/profile" className="d-flex align-items-center mx-3">
-            <img src={company ? (companyProfile.logo || images.account_icon) : (userProfile.profile_picture || images.account_icon)} width={27} height={27} className="rounded-circle" alt="" />
+            <img
+              src={company ? (companyProfile.logo || images.account_icon) : (userProfile.profile_picture || images.account_icon)}
+              width={27}
+              height={27}
+              className="rounded-circle"
+              alt=""
+            />
           </Link>
-          <div onClick={log_Out} className="pointer mr-3">
-            <Button type="link" className="no-border-btn h-100 font-weight-bold">{t('header.log_out')}</Button>
+
+          <div onClick={log_Out} className="pointer mx-3">
+            <span className="mr-3 font-weight-bold header-btn">
+              {t('header.log_out')}
+            </span>
             <img src={images.logout_icon} className="logout-icon" alt="" />
           </div>
         </Row>
@@ -83,19 +105,23 @@ function HeaderAfterLogin(props) {
             >
               <div className="mb-2 font-size-10 font-weight-bold">
                 <Link to="/deals" style={{ color: '#767B83' }}>{t('header.campaigns')}</Link>
-                </div>
+              </div>
+
               <div className="mb-2 font-size-10 font-weight-bold">
                 <Link to="/my-circle" style={{ color: '#767B83' }}>{t('menubar.my_circle')}</Link>
-                </div>
+              </div>
+
               <div className="mb-2 font-size-10 font-weight-bold">
                 <Link to={company ? "/dashboard/my-campaign" : "/dashboard/inventory"} style={{ color: '#767B83' }}>{t('header.inventory')}</Link>
-                </div>
+              </div>
+
               <div className="mb-2 font-size-10 font-weight-bold">
                 <Link to="/user-account/profile" style={{ color: '#767B83' }}>{t('header.account')}</Link>
-                </div>
+              </div>
+
               <div className="mb-2 font-size-10 font-weight-bold" onClick={log_Out}>
                 <Link to="/" style={{ color: '#767B83' }}>{t('header.log_out')}</Link>
-                </div>
+              </div>
             </Drawer>
           </>
         )

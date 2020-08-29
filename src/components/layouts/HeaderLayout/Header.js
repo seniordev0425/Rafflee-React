@@ -11,9 +11,9 @@ function Header() {
 
   return (
     <div className="header-container">
-      <div style={{ width: "100%", height: 40 }}>
+      <div style={{ width: "100%", height: 40 }} className="d-flex justify-content-between align-items-center">
         <Link to="/"> <img src={images.logo} alt="logo" width="120" /> </Link>
-        <div className="header-right-part">
+        <div>
           {
             token ? <HeaderAfterLogin /> : <HeaderBeforeLogin />
           }

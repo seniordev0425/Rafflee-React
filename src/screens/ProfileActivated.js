@@ -4,7 +4,7 @@ import { Button, Col, Container, Row } from 'reactstrap'
 import { Link, withRouter } from 'react-router-dom'
 import { profileActivate } from '../actions/userInfo'
 import AppLayout from '../components/layouts/AppLayout'
-import Loading from '../components/common/Loading'
+import LoadingPage from '../components/common/LoadingPage'
 
 import { useTranslation } from 'react-i18next'
 
@@ -20,7 +20,7 @@ function ProfileActivated(props) {
     dispatch(profileActivate(match.params.id, match.params.token))
   }, [])
 
-  if (isLoading) return <Loading />
+  if (isLoading) return <LoadingPage />
 
   return (
     <AppLayout>

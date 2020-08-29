@@ -35,12 +35,14 @@ function MyFollowingItem(props) {
                   <Link to={`/company/${item.company_id}/`}>
                     <img
                       src={item.company_image ? item.company_image : images.profile_img}
-                      style={{ width: 40, height: 40, borderRadius: '50%', boxShadow: ' 0px 5px 20px #bec2c5d9' }}
+                      style={{ width: 40, height: 40, borderRadius: '50%' }}
                       className="mr-3"
                       alt=""
                     />
                   </Link>
-                  {item.promotion}
+                  <Link to={"/campaign-detail/" + item.promotion_id}>
+                    {item.promotion}
+                  </Link>
                 </div>
                 <Tooltip
                   title={Date.parse(item.end_date) > Date.now() ? `In progress. End date: ${moment(item.end_date).format('YYYY-MM-DD')}` : `Ended at ${moment(item.end_date).format('YYYY-MM-DD')}`}

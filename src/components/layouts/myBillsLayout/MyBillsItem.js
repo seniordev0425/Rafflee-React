@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { Row, Col } from 'reactstrap'
+import { Link } from 'react-router-dom'
 import images from '../../../utils/images'
 import { Button } from 'antd'
 import { useTranslation } from 'react-i18next'
@@ -29,13 +30,14 @@ function MyBillsItem(props) {
             </Col>
             <Col lg="11" md="10" sm="10" xs="9" className="pl-sm-5">
               <div className="promotion-list-item-title">
-                {item.promotion}
+                <Link to={"/campaign-detail/" + item.id}>
+                  {item.promotion}  
+                </Link>
                 <span className="footer-link-bold float-right">{t('my_bills_page.total')}:</span>
               </div>
               <div className="footer-link-bold mt-2">
                 {t('my_bills_page.emission_date')}: {moment(item.emission_date).format('DD/MM/YYYY')}
                 <span className="float-right">{item.price}</span>
-
               </div>
               <div className="mt-4">
                 <Button

@@ -16,7 +16,7 @@ function SplineChart(props) {
     let labelArr = []
     overviewFollowersArr[time].forEach((item) => {
       if (time === 'year') labelArr.push(moment(item.date).format('MMM'))
-      else labelArr.push(moment(item.date).format('M.D'))
+      else labelArr.push(moment(item.date).format('M / D'))
     })
     return labelArr
   }

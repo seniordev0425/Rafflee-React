@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { withRouter } from 'react-router'
 import { twitterConnectStep2 } from '../../actions/userInfo'
 import { openNotification } from '../../utils/notification'
-import Loading from '../../components/common/Loading'
+import LoadingPage from '../../components/common/LoadingPage'
 import { useTranslation } from 'react-i18next'
 
 function TwitterAuthPage(props) {
@@ -36,7 +36,7 @@ function TwitterAuthPage(props) {
 
   return (
     <>
-      <Loading />
+      <LoadingPage />
     </>
   )
 }

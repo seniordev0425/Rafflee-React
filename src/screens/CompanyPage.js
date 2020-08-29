@@ -5,7 +5,7 @@ import { Button, Tooltip, Checkbox } from 'antd'
 import { withRouter } from 'react-router-dom'
 import ReactPlayer from 'react-player'
 import AppLayout from '../components/layouts/AppLayout'
-import Loading from '../components/common/Loading'
+import LoadingPage from '../components/common/LoadingPage'
 import CircleFollowModal from '../components/modals/CircleFollowModal'
 import CircleUnfollowModal from '../components/modals/CircleUnfollowModal'
 import { getCompanyInformation } from '../actions/userInfo'
@@ -218,7 +218,7 @@ function CompanyPage(props) {
     )
   }
 
-  if (GET_COMPANY_INFORMATION_PROCESS) return <Loading />
+  if (GET_COMPANY_INFORMATION_PROCESS) return <LoadingPage />
 
   return (
     <AppLayout>

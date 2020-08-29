@@ -1,24 +1,24 @@
 {
   "header": {
-    "join_header_text": "Rafflee, la plateforme des raffles et giveaways.",
-    "join_now": "Rejoins nous",
-    "Campaign": "Campagne",
+    "join_header_text": "Rafflee, la plateforme des meilleurs jeux-concours et giveaways",
+    "join_now": "Rejoins notre communauté pour gagner de nombreux cadeaux gratuitement!",
+    "Campaign": "Giveaways",
     "sign_in": "Inscris toi",
     "log_in": "Connecte toi",
     "account": "Compte",
-    "dashboard": "Profil",
+    "dashboard": "Mon profil",
     "inventory": "Inventaire",
     "log_out": "Déconnexion"
   },
   "footer": {
     "all_rights_reserved": "©2020 Rafflee, tous droits réservés.",
     "enterprise": "Entreprise",
-    "who_are_we": "Qui sommes nous?",
-    "the_team": "L'équipe",
-    "we_are_hiring": "On recrute!",
+    "who_are_we": "Qui sommes-nous?",
+    "the_team": "Notre team",
+    "we_are_hiring": "La team recrute des nouveaux talents!",
     "community": "Communauté",
-    "company_contact_us": "Entreprises, contactez nous!",
-    "influencer_contact_us": "Influenceurs, contactez nous!",
+    "company_contact_us": "Entreprises, contactez-nous!",
+    "influencer_contact_us": "Influenceurs, contactez-nous!",
     "faq": "FAQ",
     "report": "Rapport",
     "legal": "Legal",
@@ -26,7 +26,7 @@
     "cookies_policy": "Politique de cookies",
     "legal_notice": "Mention légale",
     "terms_of_service": "Conditions d'utilisation",
-    "follow_us": "Suivez nous!",
+    "follow_us": "Suivez-nous!",
     "language": "Langues"
   },
   "banner": {
@@ -35,15 +35,15 @@
     "prizes": "prix",
     "and": "et",
     "giveaways": "cadeaux",
-    "for_you": "pour vous."
+    "for_you": "gratuits pour vous."
   },
   "menubar": {
     "all": "Tous",
     "highlights": "À la une",
     "new": "Nouveau",
     "hot": "Hot",
-    "endsoon": "Se finit bientôt",
-    "user_profile": "Profil",
+    "endsoon": "À ne pas louper",
+    "user_profile": "Mon profil",
     "company_profile": "Profil entreprise",
     "inventory": "Inventaire",
     "rafflee_history": "Historique",
@@ -79,14 +79,14 @@
     "upload_campaign_image": "Upload image de campagne",
     "prize_image": "Image des prix",
     "create_account": "CREER UN COMPTE",
-    "log_in": "Connecte toi",
+    "log_in": "Connecte-toi",
     "send_message": "ENVOYER UN MESSAGE",
     "reset_password": "Réinitialiser le mot de passe",
     "delete_account": "Effacer un compte",
     "pick_another": "Choisir un autre",
     "participate": "PARTICIPER",
     "promotion_ended": "Promotion terminée",
-    "already_won": "Tu as déjà gagné",
+    "already_won": "Voir le lot remporté",
     "draw": "Tirage",
     "download_pdf": "TÉLÉCHARGER PDF",
     "next": "SUIVANT",
@@ -108,7 +108,7 @@
   },
   "homepage": {
     "hot_new_contest_everyday": "Des raffles et giveaways tous les jours.",
-    "premium_prizes_giveaways": "Des giveaways sélectionné par Rafflee.",
+    "premium_prizes_giveaways": "Notre sélection Rafflee des meilleurs giveaways",
     "find_campaign": "Trouve la Raffle qui te plait."
   },
   "report_page": {
@@ -168,39 +168,39 @@
     "participants": "Nombre de participation restantes",
     "facebook_page": {
       "title": "Facebook Page",
-      "text": "Like et follow la page pour valider l'action!"
+      "text": "Like et follow la page pour valider l'action et augmenter tes chances de remporter le giveaway!"
     },
     "facebook_post": {
       "title": "Facebook Post",
-      "text": "Like, comment ou partage pour valider l'action!"
+      "text": "Like, comment ou partage pour valider l'action et augmenter tes chances de remporter le giveaway!"
     },
     "facebook_url": {
       "title": "Facebook Url",
-      "text": "Like ou partage pour valider l'action!"
+      "text": "Like ou partage pour valider l'action et augmenter tes chances de remporter le giveaway!"
     },
     "twitter_like": {
       "title": "Twitter Like",
-      "text": "Likez le tweet pour valider l'action!"
+      "text": "Like le tweet pour valider l'action et augmenter tes chances de remporter le giveaway!"
     },
     "twitter_follow": {
       "title": "Twitter Follow",
-      "text": "Follow le compte pour valider l'action!"
+      "text": "Follow le compte pour valider l'action et augmenter tes chances de remporter le giveaway!"
     },
     "twitter_tweet": {
       "title": "Twitter Tweet",
-      "text": "Tweet le text pour valider l'action!"
+      "text": "Tweet le text pour valider l'action et augmenter tes chances de remporter le giveaway!"
     },
     "twitter_retweet": {
       "title": "Twitter Retweet",
-      "text": "Retweet le tweet pour valider l'action!"
+      "text": "Retweet le tweet pour valider l'action et augmenter tes chances de remporter le giveaway!"
     },
     "twitch_follow": {
       "title": "Twitch Follow",
-      "text": "Follow le compte pour valider l'action!"
+      "text": "Follow le compte pour valider l'action et augmenter tes chances de remporter le giveaway!"
     },
     "instagram_like": {
       "title": "Instagram Like",
-      "text": "Like le post pour valider l'action!"
+      "text": "Like le post pour valider l'action et augmenter tes chances de remporter le giveaway!"
     },
     "instagram_follow": {
       "title": "Instagram Follow",
@@ -216,22 +216,24 @@
     },
     "poll": {
       "title": "Sondage",
-      "text": "Pour obtenir un crédit pour cette entrée, vous devez répondre à cette question. Merci!"
+      "text": "Répond à ce questionnaire pour valider l'action et augmenter tes chances de remporter le giveaway"
     },
     "video": {
-      "title": "Video",
-      "text": "Regarde la vidéo pour participer!"
+      "title": "Vidéo",
+      "text": "Regarde la vidéo pour participer et augmenter tes chances de remporter le giveaway!"
     },
     "website": {
       "title": "Visite le site",
-      "text": "Visite le site pour participer"
+      "text": "Visite le site pour participer et augmenter tes chances de remporter le giveaway"
     },
-    "watch_video": "Lancer la vidéo",
-    "select_answer": "Sélectionnez vos réponses",
-    "social_detail_alert": "Cette partie est réservée aux utilisateurs vérifiés par numéro de téléphone",
-    "mandatory_action": "C'est une action obligatoire pour participer",
+    "watch_video": "Visionne cette vidéo et augmenter tes chances de remporter le giveaway",
+    "select_answer": "Sélectionne tes réponses et augmente tes chances de remporter le giveaway",
+    "social_detail_alert": "Vérifie ton numéro de téléphone pour participer",
+    "mandatory_action": "Action obligatoire pour participer",
     "prize_description": "Le gagnant recevra un des prix ci-dessous:",
-    "the_prize": "Les prix"
+    "the_prize": "Les prix",
+    "chance_winning_prize": "Chance of winning the prize",
+    "action_left": "ACTION LEFT"
   },
   "my_campaign_page": {
     "live_page": "Live Page",
@@ -266,21 +268,21 @@
     "facebook_followers": "Facebook Followers",
     "youtube_followers": "Youtube Followers",
     "twitch_followers": "Twitch Followers",
-    "total_views_clicks": "Total Vues & Clicks",
+    "total_views_clicks": "Total Vues & Clics",
     "views": "Vues",
     "actions": "Actions",
     "participations": "Participations",
-    "clicks": "Clicks",
+    "clicks": "Clics",
     "most_active_users": "Utilisateurs les plus actifs",
     "view_profile": "Voir le profil",
-    "demographics": "Demographics",
+    "demographics": "Infos démographiques",
     "active_clients": "Utilisateurs actifs",
     "users": "Utilisateurs",
     "male": "Homme",
     "female": "Femme",
     "unknown": "Inconnu",
     "audience_growth": "Croissance de l'Audience",
-    "campaigns_engagement": "taux d'engagement",
+    "campaigns_engagement": "Taux d'engagement",
     "brand_engagement": "Brand Engagement",
     "engagement_score_by_day": "Engagement Score par jour",
     "campaign_followers": "Campaign Followers",
@@ -320,9 +322,9 @@
     "campaign_name": "Nom de la campagne",
     "campaign_sort": "Type de campagnes",
     "campaign_name_required": "Nom de campagne obligatoire",
-    "short_description": "Petite description",
+    "short_description": "Courte description",
     "complete_description": "Description Complete",
-    "short_description_required": "Petite Description obligatoire",
+    "short_description_required": "Courte Description obligatoire",
     "complete_description_required": "Description complète obligatoire",
     "upload_image": "Upload Image",
     "categories": "Catégories",
@@ -405,7 +407,7 @@
     "required_fields": {
       "campaign_name": "* Nom de campagne obligatoire",
       "campaign_image": "* Image de campagne obligatoire",
-      "short_description": "* Petite description obligatoire",
+      "short_description": "* Courte description obligatoire",
       "complete_description": "* Description complète obligatoire",
       "start_date": "* Date de commencement obligatoire",
       "end_date": "* Date de fin obligatoire",
@@ -514,7 +516,7 @@
   "participate_confirm_modal": {
     "thanks_for_participating": "Merci d'avoir participé!",
     "checkbox1": "Veux tu rejoindre ",
-    "checkbox2": "Veux recevoir des informations de    par email?"
+    "checkbox2": "Veux recevoir des informations par email?"
   },
   "campaign_close_modal": {
     "close_campaign": "Campagne terminé"
@@ -522,7 +524,7 @@
   "social_oauth": {
     "twitter": "Twitter Connecté",
     "twitch": "Twitch Connecté",
-    "instagram": "Instagram Connected"
+    "instagram": "Instagram connecté"
   },
   "twitter_like_modal": {
     "header": "LIKE ID",
@@ -554,8 +556,9 @@
   },
   "winning_detail_modal": {
     "name": "Nom",
-    "number_of_eligible_people": "Nombre de personnes éligibles",
+    "number_of_eligible_people": "Nombre de lots gagnants",
     "description": "Description"
   },
-  "required": "Obligatoire"
+  "required": "Obligatoire",
+  "in_progress": "En cours de creation"
 }

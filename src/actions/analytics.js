@@ -15,7 +15,7 @@ export function overviewFollowers(time) {
   return apiAction({
     url: APIROUTE + `analytics/followers/${time}/`,
     method: 'GET',
-    accessToken: sessionStorage.getItem('token'),
+    accessToken: localStorage.getItem('token'),
     onSuccess: (data) => onSuccessOverviewFollowers(data, time),
     onFailure: onFailed,
     label: `OVERVIEW_${time.toUpperCase()}_FOLLOWERS`,
@@ -33,7 +33,7 @@ export function getActiveGender(id) {
   return apiAction({
     url: APIROUTE + `analytics/gender/${id}/`,
     method: 'GET',
-    accessToken: sessionStorage.getItem('token'),
+    accessToken: localStorage.getItem('token'),
     onSuccess: onSuccessGetActiveGender,
     onFailure: onFailed,
     label: `GET_ACTIVE_GENDER`,
@@ -45,12 +45,29 @@ function onSuccessGetActiveGender(data) {
     data: data
   }
 }
+/////////////////////////////////////////////// ANALYTICS-GET-FOLLOWING-GENDER-ACTION
+export function getFollowingGender() {
+  return apiAction({
+    url: APIROUTE + `analytics/following/gender/`,
+    method: 'GET',
+    accessToken: localStorage.getItem('token'),
+    onSuccess: onSuccessGetFollowingGender,
+    onFailure: onFailed,
+    label: `GET_ACTIVE_GENDER`,
+  });
+}
+function onSuccessGetFollowingGender(data) {
+  return {
+    type: 'SET_FOLLOWING_GENDER',
+    data: data
+  }
+}
 /////////////////////////////////////////////// ANALYTICS-GET-PARTICIPANTS-BY-AGE-ACTION
 export function getParticipantsByAge(id, type) {
   return apiAction({
     url: APIROUTE + `analytics/age/${id}/${type}/`,
     method: 'GET',
-    accessToken: sessionStorage.getItem('token'),
+    accessToken: localStorage.getItem('token'),
     onSuccess: onSuccessGetParticipantsByAge,
     onFailure: onFailed,
     label: `GET_PARTICIPANTS_BY_AGE`,
@@ -67,7 +84,7 @@ export function getDemographics(id, demographics_type) {
   return apiAction({
     url: APIROUTE + `analytics/map/${id}/${demographics_type}/`,
     method: 'GET',
-    accessToken: sessionStorage.getItem('token'),
+    accessToken: localStorage.getItem('token'),
     onSuccess: (data) => onSuccessGetDemographics(data, id, demographics_type),
     onFailure: onFailed,
     label: `GET_DEMOGRAPHICS`,
@@ -85,7 +102,7 @@ export function getCampaignsInformations() {
   return apiAction({
     url: APIROUTE + `campaign/all-campaigns/informations/`,
     method: 'GET',
-    accessToken: sessionStorage.getItem('token'),
+    accessToken: localStorage.getItem('token'),
     onSuccess: onSuccessGetCampaignsInformations,
     onFailure: onFailed,
     label: `GET_CAMPAIGNS_INFORMATIONS`,
@@ -102,7 +119,7 @@ export function getClicksData(id, time) {
   return apiAction({
     url: APIROUTE + `analytics/click/${id}/${time}/`,
     method: 'GET',
-    accessToken: sessionStorage.getItem('token'),
+    accessToken: localStorage.getItem('token'),
     onSuccess: onSuccessGetClicksData,
     onFailure: onFailed,
     label: `GET_CLICKS_DATA`,

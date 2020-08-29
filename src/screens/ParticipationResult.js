@@ -4,7 +4,7 @@ import { Row, Col } from 'reactstrap'
 import AppLayout from '../components/layouts/AppLayout'
 import { participationResult } from '../actions/userInfo'
 import images from '../utils/images'
-import Loading from '../components/common/Loading'
+import LoadingPage from '../components/common/LoadingPage'
 import { useTranslation } from 'react-i18next'
 
 function ParticipationResult(props) {
@@ -26,7 +26,7 @@ function ParticipationResult(props) {
     }
   }, [PARTICIPATION_RESULT_SUCCESS])
 
-  if (PARTICIPATION_RESULT_PROCESS) return <Loading />
+  if (PARTICIPATION_RESULT_PROCESS) return <LoadingPage />
 
   return (
     <AppLayout>

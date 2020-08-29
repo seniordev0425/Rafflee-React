@@ -1,12 +1,12 @@
 {
   "header": {
-    "join_header_text": "Rafflee is tool that everyone wants.",
-    "join_now": "Join now",
-    "campaigns": "Campaigns",
+    "join_header_text": "Rafflee, the platform for the best contests and gifts",
+    "join_now": "Join our community to win lots of free gifts!",
+    "campaigns": "Giveaways",
     "sign_in": "Register",
     "log_in": "Login",
     "account": "Account",
-    "dashboard": "Dashboard",
+    "dashboard": "My profile",
     "inventory": "Inventory",
     "log_out": "Logout"
   },
@@ -14,8 +14,8 @@
     "all_rights_reserved": "©2020 Rafflee, all rights reserved.",
     "enterprise": "Enterprise",
     "who_are_we": "Who are we?",
-    "the_team": "The team",
-    "we_are_hiring": "We are hiring!",
+    "the_team": "Our team",
+    "we_are_hiring": "The team is recruiting new talents!",
     "community": "Community",
     "company_contact_us": "Company, contact us!",
     "influencer_contact_us": "Influencer, contact us!",
@@ -35,14 +35,14 @@
     "prizes": "prizes",
     "and": "and",
     "giveaways": "giveaways",
-    "for_you": "for you."
+    "for_you": "free for you."
   },
   "menubar": {
     "all": "All",
     "highlights": "Highlights",
     "new": "New",
     "hot": "Best Offer",
-    "endsoon": "Favorites",
+    "endsoon": "Not to miss",
     "user_profile": "Profile",
     "company_profile": "Company Profile",
     "inventory": "Inventory",
@@ -86,7 +86,7 @@
     "pick_another": "PICK ANOTHER",
     "participate": "PARTICIPATE",
     "promotion_ended": "Promotion Ended",
-    "already_won": "ALREADY WON",
+    "already_won": "See the prize won",
     "draw": "Draw",
     "download_pdf": "DOWNLOAD PDF",
     "next": "NEXT",
@@ -108,7 +108,7 @@
   },
   "homepage": {
     "hot_new_contest_everyday": "Hot new contest everyday.",
-    "premium_prizes_giveaways": "Premium prizes & giveaways chosen by Rafflee.",
+    "premium_prizes_giveaways": "Our Rafflee selection of the best giveaways",
     "find_campaign": "Find the campaign you have been looking for."
   },
   "report_page": {
@@ -168,43 +168,43 @@
     "participants": "Participants",
     "facebook_page": {
       "title": "Facebook Page",
-      "text": "Like and follow the page to validate the action!"
+      "text": "Like and follow the page to validate the action and increase your chances of winning the giveaway!"
     },
     "facebook_post": {
       "title": "Facebook Post",
-      "text": "Like, comment or share to validate the action!"
+      "text": "Like, how or share to validate the action and increase your chances of winning the giveaway!"
     },
     "facebook_url": {
       "title": "Facebook Url",
-      "text": "Like or share to validate the action!"
+      "text": "Like or share to validate the action and increase your chances of winning the giveaway!"
     },
     "twitter_like": {
       "title": "Twitter Like",
-      "text": "Like the tweet to validate the action!"
+      "text": "Like the tweet to validate the action and increase your chances of winning the giveaway!"
     },
     "twitter_follow": {
       "title": "Twitter Follow",
-      "text": "Follow the account to validate the action!"
+      "text": "Follow le compte pour valider l'action et augmenter tes chances de remporter le giveaway!"
     },
     "twitter_tweet": {
       "title": "Twitter Tweet",
-      "text": "Tweet the text to validate the action!"
+      "text": "Tweet the text to validate the action and increase your chances of winning the giveaway!"
     },
     "twitter_retweet": {
       "title": "Twitter Retweet",
-      "text": "Retweet the tweet to validate the action!"
+      "text": "Retweet the tweet to validate the action and increase your chances of winning the giveaway!"
     },
     "twitch_follow": {
       "title": "Twitch Follow",
-      "text": "Follow the account to validate the action!"
+      "text": "Follow the account to complete the action and increase your chances of winning the giveaway!"
     },
     "instagram_like": {
       "title": "Instagram Like",
-      "text": "Like the post to validate the action!"
+      "text": "Like the post to validate the action and increase your chances of winning the giveaway!"
     },
     "instagram_follow": {
       "title": "Instagram Follow",
-      "text": "Follow the account to validate the action!"
+      "text": "Follow the account to complete the action and increase your chances of winning the giveaway!"
     },
     "tiktok_like": {
       "title": "Tiktok Like",
@@ -216,22 +216,24 @@
     },
     "poll": {
       "title": "Survey",
-      "text": "To get credit for this entry, you must answer this question. Thanks!"
+      "text": "Answer this questionnaire to validate the action and increase your chances of winning the giveaway"
     },
     "video": {
       "title": "Watch Video",
-      "text": "Watch Video to participate"
+      "text": "Watch the video to participate and increase your chances of winning the giveaway!"
     },
     "website": {
       "title": "Visit Website",
-      "text": "Visit Website to participate"
+      "text": "Visit the site to participate and increase your chances of winning the giveaway"
     },
     "watch_video": "Run video",
     "select_answer": "Select your answers",
     "social_detail_alert": "This part is only for phone number verified users.",
     "mandatory_action": "Mandatory action to participate",
     "prize_description": "The winner will receive prizes below:",
-    "the_prize": "Prizes"
+    "the_prize": "Prizes",
+    "chance_winning_prize": "Chance of winning the prize",
+    "action_left": "ACTION LEFT"
   },
   "my_campaign_page": {
     "live_page": "Live Page",
@@ -558,8 +560,9 @@
   },
   "winning_detail_modal": {
     "name": "Name",
-    "number_of_eligible_people": "Number of eligible people",
+    "number_of_eligible_people": "Number of winning lots",
     "description": "Description"
   },
-  "required": "Required"
+  "required": "Required",
+  "in_progress": "In progress"
 }

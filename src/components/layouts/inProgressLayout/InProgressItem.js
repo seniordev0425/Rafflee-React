@@ -37,12 +37,14 @@ function InProgressItem(props) {
                   <Link to={`/company/${item.company_id}/`}>
                     <img
                       src={item.company_logo ? item.company_logo : images.profile_img}
-                      style={{ width: 40, height: 40, borderRadius: '50%', boxShadow: ' 0px 5px 20px #bec2c5d9' }}
+                      style={{ width: 40, height: 40, borderRadius: '50%' }}
                       className="mr-3"
                       alt=""
                     />
                   </Link>
-                  {item.campaign_name}
+                  <Link to={"/campaign-detail/" + item.pk}>
+                    {item.campaign_name}
+                  </Link>
                 </div>
                 <Tooltip
                   title={Date.parse(item.end_date) > Date.now() ? `In progress. End date: ${moment(item.end_date).format('YYYY-MM-DD')}` : `Ended at ${moment(item.end_date).format('YYYY-MM-DD')}`}

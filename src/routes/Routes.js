@@ -21,7 +21,7 @@ import TwitterAuthPage from '../screens/SocialAuth/TwitterAuthPage'
 import TwitchAuthPage from '../screens/SocialAuth/TwitchAuthPage'
 import InstagramAuthPage from '../screens/SocialAuth/InstagramAuthPage'
 
-import Loading from '../components/common/Loading'
+import LoadingPage from '../components/common/LoadingPage'
 import ScrollToTop from '../components/common/ScrollToTop'
 import NotFound from '../components/common/NotFound'
 import { openNotification } from '../utils/notification'
@@ -82,38 +82,12 @@ function Routes(props) {
     window.addEventListener('online', _handleOnline)
     window.addEventListener('offline', _handleOffline)
 
-    // Load session token
-    const session_token = sessionStorage.getItem('token')
-    const company = sessionStorage.getItem('company')
 
     // Load remember token
     const rememberToken = localStorage.getItem('token')
     const rememberCompany = localStorage.getItem('company')
 
-    if (!session_token && !rememberToken) {
-      return
-    }
-
-    if (session_token) { // if session token exists then verify this token. If success keep this token, otherwise remove
-      verifyToken(session_token)
-        .then(response => response.text())
-        .then(result => {
-          var json_rlt = JSON.parse(result)
-          if (json_rlt.token) {
-            dispatch({ type: "LOG_IN_SUCCESS", data: { token: session_token, company: company === 'true' } })
-          }
-          else {
-            sessionStorage.clear()
-            localStorage.removeItem('token')
-            localStorage.removeItem('company')
-            history.push('/')
-          }
-          setAuthLoading(false)
-        })
-        .catch(error => {
-          sessionStorage.clear()
-          setAuthLoading(false)
-        });
+    if (!rememberToken) {
       return
     }
 
@@ -124,8 +98,6 @@ function Routes(props) {
           var json_rlt = JSON.parse(result)
           if (json_rlt.token) {
             dispatch({ type: "LOG_IN_SUCCESS", data: { token: rememberToken, company: rememberCompany === 'true' } })
-            sessionStorage.setItem('token', rememberToken)
-            sessionStorage.setItem('company', rememberCompany)
           }
           else {
             localStorage.removeItem('token')
@@ -154,14 +126,13 @@ function Routes(props) {
       history.push('/')
       dispatch({ type: 'INIT_STATE', state: 'AUTH_ERROR', data: false })
       dispatch({ type: "LOG_IN_SUCCESS", data: { token: '', company: false } })
-      sessionStorage.clear()
       localStorage.removeItem('token')
       localStorage.removeItem('company')
     }
   }, [AUTH_ERROR])
 
-  if ((authLoading && sessionStorage.getItem('token') && !props.token) || isFetchingIP) {
-    return <Loading />
+  if ((authLoading && localStorage.getItem('token') && !token) || isFetchingIP) {
+    return <LoadingPage />
   }
 
   return (

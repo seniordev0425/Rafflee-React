@@ -1,14 +1,25 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom'
-import { Row, Col } from 'reactstrap'
+import { Row, Col, Progress } from 'reactstrap'
 import { Button } from 'antd'
 import moment from 'moment'
 import AppLayout from '../components/layouts/AppLayout'
 import images from '../utils/images'
 import CustomCollapsePanel from '../components/common/CustomCollapsePanel'
 import CustomCollapsePanelForPoll from '../components/common/CustomCollapsePanelForPoll'
-import Loading from '../components/common/Loading'
+
+import WinningDetailModal from '../components/modals/WinningDetailModal'
+import VideoPlayerModal from '../components/modals/VideoPlayerModal'
+import ParticipateConfirmModal from '../components/modals/ParticipateConfirmModal'
+import TwitterLikeValidationModal from '../components/modals/ActionValidationModals/TwitterLikeValidationModal'
+import TwitterRetweetValidationModal from '../components/modals/ActionValidationModals/TwitterRetweetValidationModal'
+import TwitterCommentValidationModal from '../components/modals/ActionValidationModals/TwitterCommentValidationModal'
+import TwitterFollowValidationModal from '../components/modals/ActionValidationModals/TwitterFollowValidationModal'
+import TwitchFollowValidationModal from '../components/modals/ActionValidationModals/TwitchFollowValidationModal'
+
+import LoadingPage from '../components/common/LoadingPage'
+
 import {
   campaignParticipate,
   getCampaignData,
@@ -30,17 +41,10 @@ import {
   campaignParticipateFacebookPost,
   campaignParticipateFacebookUrl
 } from '../actions/campaign'
+
 import { twitterConnectStep1 } from '../actions/userInfo'
 
 import { useTranslation } from 'react-i18next'
-import WinningDetailModal from '../components/modals/WinningDetailModal'
-import VideoPlayerModal from '../components/modals/VideoPlayerModal'
-import ParticipateConfirmModal from '../components/modals/ParticipateConfirmModal'
-import TwitterLikeValidationModal from '../components/modals/ActionValidationModals/TwitterLikeValidationModal'
-import TwitterRetweetValidationModal from '../components/modals/ActionValidationModals/TwitterRetweetValidationModal'
-import TwitterCommentValidationModal from '../components/modals/ActionValidationModals/TwitterCommentValidationModal'
-import TwitterFollowValidationModal from '../components/modals/ActionValidationModals/TwitterFollowValidationModal'
-import TwitchFollowValidationModal from '../components/modals/ActionValidationModals/TwitchFollowValidationModal'
 
 let actionParams = []
 
@@ -48,6 +52,12 @@ function CampaignDetail(props) {
   const { t } = useTranslation()
 
   const { match } = props
+
+  const campaignData = useSelector(state => state.campaign.campaignData)
+  const token = useSelector(state => state.userInfo.token)
+  const company = useSelector(state => state.userInfo.company)
+  const userProfile = useSelector(state => state.userInfo.userProfile)
+  const dispatch = useDispatch()
 
   const GET_CAMPAIGN_DATA_PROCESS = useSelector(state => state.userInfo.GET_CAMPAIGN_DATA)
   const CAMPAIGN_PARTICIPATE_PROCESS = useSelector(state => state.userInfo.CAMPAIGN_PARTICIPATE)
@@ -61,11 +71,6 @@ function CampaignDetail(props) {
 
   const twitter_oauth_token = useSelector(state => state.userInfo.twitter_oauth_token)
   const twitterDirectConnect = useSelector(state => state.userInfo.twitterDirectConnect)
-
-  const campaignData = useSelector(state => state.campaign.campaignData)
-  const token = useSelector(state => state.userInfo.token)
-  const company = useSelector(state => state.userInfo.company)
-  const dispatch = useDispatch()
 
   const [totalEntriesNum, setTotalEntriesNum] = useState(0)
   const [action, setAction] = useState({})
@@ -106,59 +111,59 @@ function CampaignDetail(props) {
   useEffect(() => {
     // Extract social action data from campaign data
     setAction(campaignData.action_participate[0])
-    
+
     //Calculate total entries number
     let totalTemp = 0
-    if ((campaignData.action_participate[0] || {}).social_action && (campaignData.action_participate[0] || {}).social_action[0].facebook_page) {
+    if (campaignData.action_participate[0]?.social_action[0].facebook_page) {
       totalTemp += campaignData.action_participate[0].social_action[0].facebook_page_entries
     }
-    if ((campaignData.action_participate[0] || {}).social_action && (campaignData.action_participate[0] || {}).social_action[0].facebook_post) {
+    if (campaignData.action_participate[0]?.social_action[0].facebook_post) {
       totalTemp += campaignData.action_participate[0].social_action[0].facebook_post_entries
     }
-    if ((campaignData.action_participate[0] || {}).social_action && (campaignData.action_participate[0] || {}).social_action[0].facebook_url) {
+    if (campaignData.action_participate[0]?.social_action[0].facebook_url) {
       totalTemp += campaignData.action_participate[0].social_action[0].facebook_url_entries
     }
 
-    if ((campaignData.action_participate[0] || {}).social_action && (campaignData.action_participate[0] || {}).social_action[2].instagram_profile) {
+    if (campaignData.action_participate[0]?.social_action[2].instagram_profile) {
       totalTemp += campaignData.action_participate[0].social_action[2].instagram_profile_entries
     }
-    if ((campaignData.action_participate[0] || {}).social_action && (campaignData.action_participate[0] || {}).social_action[2].instagram_publication) {
+    if (campaignData.action_participate[0]?.social_action[2].instagram_publication) {
       totalTemp += campaignData.action_participate[0].social_action[2].instagram_publication_entries
     }
 
-    if ((campaignData.action_participate[0] || {}).social_action && (campaignData.action_participate[0] || {}).social_action[3].twitter_like) {
+    if (campaignData.action_participate[0]?.social_action[3].twitter_like) {
       totalTemp += campaignData.action_participate[0].social_action[3].twitter_like_entries
     }
-    if ((campaignData.action_participate[0] || {}).social_action && (campaignData.action_participate[0] || {}).social_action[3].twitter_follow) {
+    if (campaignData.action_participate[0]?.social_action[3].twitter_follow) {
       totalTemp += campaignData.action_participate[0].social_action[3].twitter_follow_entries
     }
-    if ((campaignData.action_participate[0] || {}).social_action && (campaignData.action_participate[0] || {}).social_action[3].twitter_tweet) {
+    if (campaignData.action_participate[0]?.social_action[3].twitter_tweet) {
       totalTemp += campaignData.action_participate[0].social_action[3].twitter_tweet_entries
     }
-    if ((campaignData.action_participate[0] || {}).social_action && (campaignData.action_participate[0] || {}).social_action[3].twitter_retweet) {
+    if (campaignData.action_participate[0]?.social_action[3].twitter_retweet) {
       totalTemp += campaignData.action_participate[0].social_action[3].twitter_retweet_entries
     }
 
-    if ((campaignData.action_participate[0] || {}).social_action && (campaignData.action_participate[0] || {}).social_action[4].twitch_follow) {
+    if (campaignData.action_participate[0]?.social_action[4].twitch_follow) {
       totalTemp += campaignData.action_participate[0].social_action[4].twitch_follow_entries
     }
 
-    if ((campaignData.action_participate[0] || {}).social_action && (campaignData.action_participate[0] || {}).social_action[5].tiktok_profile) {
+    if (campaignData.action_participate[0]?.social_action[5].tiktok_profile) {
       totalTemp += campaignData.action_participate[0].social_action[5].tiktok_profile_entries
     }
-    if ((campaignData.action_participate[0] || {}).social_action && (campaignData.action_participate[0] || {}).social_action[5].tiktok_publication) {
+    if (campaignData.action_participate[0]?.social_action[5].tiktok_publication) {
       totalTemp += campaignData.action_participate[0].social_action[5].tiktok_publication_entries
     }
 
-    if ((campaignData.action_participate[0] || {}).video) {
+    if (campaignData.action_participate[0]?.video) {
       totalTemp += campaignData.action_participate[0].video.entries
     }
 
-    if ((campaignData.action_participate[0] || {}).website) {
+    if (campaignData.action_participate[0]?.website) {
       totalTemp += campaignData.action_participate[0].website.entries
     }
 
-    if ((campaignData.action_participate[0] || {}).poll) {
+    if (campaignData.action_participate[0]?.poll) {
       totalTemp += campaignData.action_participate[0].poll.entries
     }
 
@@ -316,7 +321,7 @@ function CampaignDetail(props) {
   }
 
   if (GET_CAMPAIGN_DATA_PROCESS) {
-    return <Loading />
+    return <LoadingPage />
   }
 
   return (
@@ -348,15 +353,21 @@ function CampaignDetail(props) {
           </Row>
           <Row className="my-5">
             <Col lg="1" md="2" sm="2" xs="3" className="promotion-list-item-img">
-              <Link to={`/company/${campaignData.company_id}/`}>
-                <div>
+              <div>
+                <Link to={`/company/${campaignData.company_id}/`}>
                   <img src={campaignData.company_logo ? campaignData.company_logo : images.profile_img} alt="" />
-                  <div className="mt-3 color-blue font-weight-bold">{campaignData.company_name}</div>
-                </div>
-              </Link>
+                </Link>
+              </div>
             </Col>
             <Col lg="11" md="10" sm="10" xs="9" className="pl-sm-5">
               <div className="promotion-list-item-title">{campaignData.campaign_name}</div>
+              <div className="mt-3 color-blue font-weight-bold">
+                <Link to={`/company/${campaignData.company_id}/`}>
+                  <span>
+                    {campaignData.company_name}
+                  </span>
+                </Link>
+              </div>
               <div className="d-flex justify-content-between">
                 <div style={{ width: "70%" }} className="promotion-list-item-text">{campaignData.long_description}</div>
                 {(token && !company) && (
@@ -376,7 +387,26 @@ function CampaignDetail(props) {
               </div>
             </Col>
           </Row>
-          {(action.social_action && action.social_action[0].facebook_page) &&
+          {token && !company && userProfile.phone_number_verification &&
+            <Row className="mb-5">
+              <Col className="font-size-11 color-gray">
+                <div className="d-flex justify-content-between mb-2">
+                  <div>
+                    {t('campaign_detail_page.chance_winning_prize')}
+                  </div>
+                  <div>
+                    {t('campaign_detail_page.action_left')}
+                  </div>
+                </div>
+                <Progress
+                  striped
+                  animated
+                  value={campaignData.user_actions?.entries_user * 100 / totalEntriesNum}
+                />
+              </Col>
+            </Row>
+          }
+          {(action.social_action?.[0].facebook_page) &&
             <Row className="mb-4 mt-4">
               <Col style={{ paddingLeft: 40 }}>
                 <CustomCollapsePanel
@@ -393,7 +423,7 @@ function CampaignDetail(props) {
               </Col>
             </Row>
           }
-          {(action.social_action && action.social_action[0].facebook_post) &&
+          {(action.social_action?.[0].facebook_post) &&
             <Row className="mb-4 mt-4">
               <Col style={{ paddingLeft: 40 }}>
                 <CustomCollapsePanel
@@ -410,7 +440,7 @@ function CampaignDetail(props) {
               </Col>
             </Row>
           }
-          {(action.social_action && action.social_action[0].facebook_url) &&
+          {(action.social_action?.[0].facebook_url) &&
             <Row className="mb-4 mt-4">
               <Col style={{ paddingLeft: 40 }}>
                 <CustomCollapsePanel
@@ -427,7 +457,7 @@ function CampaignDetail(props) {
               </Col>
             </Row>
           }
-          {(action.social_action && action.social_action[2].instagram_profile) &&
+          {(action.social_action?.[2].instagram_profile) &&
             <Row className="mb-4 mt-4">
               <Col style={{ paddingLeft: 40 }}>
                 <CustomCollapsePanel
@@ -443,7 +473,7 @@ function CampaignDetail(props) {
               </Col>
             </Row>
           }
-          {(action.social_action && action.social_action[2].instagram_publication) &&
+          {(action.social_action?.[2].instagram_publication) &&
             <Row className="mb-4 mt-4">
               <Col style={{ paddingLeft: 40 }}>
                 <CustomCollapsePanel
@@ -459,7 +489,7 @@ function CampaignDetail(props) {
               </Col>
             </Row>
           }
-          {(action.social_action && action.social_action[3].twitter_like) &&
+          {(action.social_action?.[3].twitter_like) &&
             <Row className="mb-4 mt-4">
               <Col style={{ paddingLeft: 40 }}>
                 <CustomCollapsePanel
@@ -475,7 +505,7 @@ function CampaignDetail(props) {
               </Col>
             </Row>
           }
-          {(action.social_action && action.social_action[3].twitter_follow) &&
+          {(action.social_action?.[3].twitter_follow) &&
             <Row className="mb-4 mt-4">
               <Col style={{ paddingLeft: 40 }}>
                 <CustomCollapsePanel
@@ -491,7 +521,7 @@ function CampaignDetail(props) {
               </Col>
             </Row>
           }
-          {(action.social_action && action.social_action[3].twitter_tweet) &&
+          {(action.social_action?.[3].twitter_tweet) &&
             <Row className="mb-4 mt-4">
               <Col style={{ paddingLeft: 40 }}>
                 <CustomCollapsePanel
@@ -507,7 +537,7 @@ function CampaignDetail(props) {
               </Col>
             </Row>
           }
-          {(action.social_action && action.social_action[3].twitter_retweet) &&
+          {(action.social_action?.[3].twitter_retweet) &&
             <Row className="mb-4 mt-4">
               <Col style={{ paddingLeft: 40 }}>
                 <CustomCollapsePanel
@@ -523,7 +553,7 @@ function CampaignDetail(props) {
               </Col>
             </Row>
           }
-          {(action.social_action && action.social_action[4].twitch_follow) &&
+          {(action.social_action?.[4].twitch_follow) &&
             <Row className="mb-4 mt-4">
               <Col style={{ paddingLeft: 40 }}>
                 <CustomCollapsePanel
@@ -539,7 +569,7 @@ function CampaignDetail(props) {
               </Col>
             </Row>
           }
-          {(action.social_action && action.social_action[5].tiktok_profile) &&
+          {(action.social_action?.[5].tiktok_profile) &&
             <Row className="mb-4 mt-4">
               <Col style={{ paddingLeft: 40 }}>
                 <CustomCollapsePanel
@@ -555,7 +585,7 @@ function CampaignDetail(props) {
               </Col>
             </Row>
           }
-          {(action.social_action && action.social_action[5].tiktok_publication) &&
+          {(action.social_action?.[5].tiktok_publication) &&
             <Row className="mb-4 mt-4">
               <Col style={{ paddingLeft: 40 }}>
                 <CustomCollapsePanel

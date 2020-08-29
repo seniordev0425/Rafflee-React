@@ -23,7 +23,7 @@ function TwitterFollowScreenName(props) {
     setFetching(true)
 
     var myHeaders = new Headers()
-    myHeaders.append("Authorization", "JWT " + sessionStorage.getItem('token'))
+    myHeaders.append("Authorization", "JWT " + localStorage.getItem('token'))
 
     var formdata = new FormData()
     formdata.append("search", value)

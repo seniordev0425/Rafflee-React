@@ -104,7 +104,7 @@ export function updateFavorite(params, name) {
     url: APIROUTE + "favorites/update/campaign/",
     method: 'POST',
     data: qs.stringify(params),
-    accessToken: sessionStorage.getItem('token'),
+    accessToken: localStorage.getItem('token'),
     onSuccess: (data) => onSuccessUpdateFavorite(data, name),
     onFailure: onFailed,
     label: 'UPDATE_FAVORITE_SUCCESS',

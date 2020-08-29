@@ -33,7 +33,6 @@ function DeleteAccount(props) {
       dispatch({ type: 'DELETE_ACCOUNT_SUCCESS', flag: false })
       localStorage.removeItem('token')
       localStorage.removeItem('company')
-      sessionStorage.clear()
       history.push('/')
     }
   }, [DELETE_ACCOUNT_SUCCESS])

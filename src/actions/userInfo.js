@@ -51,8 +51,8 @@ export function googleLogin(params) {
 }
 function onSuccessLogIn(data, rememberMe) {
   openNotification('success', successMessages[localStorage.getItem('i18nextLng')].logIn)
-  sessionStorage.setItem('token', data.token)
-  sessionStorage.setItem('company', data.company)
+  localStorage.setItem('token', data.token)
+  localStorage.setItem('company', data.company)
   if (rememberMe) {
     localStorage.setItem('token', data.token)
     localStorage.setItem('company', data.company)
@@ -67,14 +67,13 @@ export function logOut(params) {
   return apiAction({
     url: APIROUTE + "logout/",
     method: 'POST',
-    accessToken: sessionStorage.getItem('token'),
+    accessToken: localStorage.getItem('token'),
     onSuccess: onSuccessLogOut,
     onFailure: onFailed,
     label: 'LOG_OUT',
   });
 }
 function onSuccessLogOut(data) {
-  sessionStorage.clear()
   localStorage.removeItem('token')
   localStorage.removeItem('company')
   return {
@@ -88,7 +87,7 @@ export function deleteAccount(params) {
     url: APIROUTE + "account/profile/deactivate/",
     method: 'POST',
     data: qs.stringify(params),
-    accessToken: sessionStorage.getItem('token'),
+    accessToken: localStorage.getItem('token'),
     onSuccess: onSuccessDeleteAccount,
     onFailure: onFailed,
     label: 'DELETE_ACCOUNT',
@@ -143,7 +142,7 @@ function onSuccessCompanyContact(data) {
 export function getUserProfile() {
   return apiAction({
     url: APIROUTE + "account/profile/",
-    accessToken: sessionStorage.getItem('token'),
+    accessToken: localStorage.getItem('token'),
     onSuccess: onSuccessGetUserProfile,
     onFailure: onFailed,
     label: 'GET_USER_PROFILE',
@@ -161,7 +160,7 @@ export function updateUserProfile(params) {
     url: APIROUTE + "account/profile/update/",
     method: 'POST',
     data: params,
-    accessToken: sessionStorage.getItem('token'),
+    accessToken: localStorage.getItem('token'),
     onSuccess: onSuccessUpdateUserProfile,
     onFailure: onFailed,
     label: 'UPDATE_USER_PROFILE',
@@ -171,7 +170,7 @@ function onSuccessUpdateUserProfile(data) {
   openNotification('success', successMessages[localStorage.getItem('i18nextLng')].accountUpdate)
   if (data.token) {
     if (localStorage.getItem('token')) localStorage.setItem('token', data.token)
-    sessionStorage.setItem('token', data.token)
+    localStorage.setItem('token', data.token)
     return {
       type: 'UPDATE_TOKEN',
       data: data.token
@@ -186,7 +185,7 @@ function onSuccessUpdateUserProfile(data) {
 export function getCompanyProfile() {
   return apiAction({
     url: APIROUTE + "company/profile/",
-    accessToken: sessionStorage.getItem('token'),
+    accessToken: localStorage.getItem('token'),
     onSuccess: onSuccessGetCompanyProfile,
     onFailure: onFailed,
     label: 'GET_COMPANY_PROFILE',
@@ -204,7 +203,7 @@ export function updateCompanyProfile(params) {
     url: APIROUTE + "company/profile/update/",
     method: 'POST',
     data: params,
-    accessToken: sessionStorage.getItem('token'),
+    accessToken: localStorage.getItem('token'),
     onSuccess: onSuccessUpdateCompanyProfile,
     onFailure: onFailed,
     label: 'UPDATE_COMPANY_PROFILE',
@@ -215,7 +214,7 @@ function onSuccessUpdateCompanyProfile(data) {
   openNotification('success', successMessages[localStorage.getItem('i18nextLng')].accountUpdate)
   if (data.token) {
     if (localStorage.getItem('token')) localStorage.setItem('token', data.token)
-    sessionStorage.setItem('token', data.token)
+    localStorage.setItem('token', data.token)
     return {
       type: 'UPDATE_TOKEN',
       data: data.token
@@ -232,7 +231,7 @@ export function resendSms(params) {
     url: APIROUTE + "account/number/send-sms/",
     method: 'POST',
     data: qs.stringify(params),
-    accessToken: sessionStorage.getItem('token'),
+    accessToken: localStorage.getItem('token'),
     onSuccess: onSuccessResendSms,
     onFailure: onFailed,
     label: 'RESEND_SMS',
@@ -250,7 +249,7 @@ export function sendSms(params) {
     url: APIROUTE + "account/number/send-sms/",
     method: 'POST',
     data: qs.stringify(params),
-    accessToken: sessionStorage.getItem('token'),
+    accessToken: localStorage.getItem('token'),
     onSuccess: onSuccessSendSms,
     onFailure: onFailed,
     label: 'SEND_SMS',
@@ -269,7 +268,7 @@ export function verifyPhoneNumber(params) {
     url: APIROUTE + "account/number/verification/",
     method: 'POST',
     data: qs.stringify(params),
-    accessToken: sessionStorage.getItem('token'),
+    accessToken: localStorage.getItem('token'),
     onSuccess: onSuccessVerifyPhoneNumber,
     onFailure: onFailed,
     label: 'VERIFY_PHONE_NUMBER_REQUEST',
@@ -285,7 +284,7 @@ function onSuccessVerifyPhoneNumber(data) {
 export function getUserInventory() {
   return apiAction({
     url: APIROUTE + "campaign/user/inventory/",
-    accessToken: sessionStorage.getItem('token'),
+    accessToken: localStorage.getItem('token'),
     onSuccess: onSuccessGetUserInventory,
     onFailure: onFailed,
     label: 'GET_USER_INVENTORY',
@@ -301,7 +300,7 @@ function onSuccessGetUserInventory(data) {
 export function getParticipationHistory() {
   return apiAction({
     url: APIROUTE + "campaign/user/historical/",
-    accessToken: sessionStorage.getItem('token'),
+    accessToken: localStorage.getItem('token'),
     onSuccess: onSuccessGetParticipationHistory,
     onFailure: onFailed,
     label: 'GET_PARTICIPATION_HISTORY',
@@ -317,7 +316,7 @@ function onSuccessGetParticipationHistory(data) {
 export function getUserInProgress() {
   return apiAction({
     url: APIROUTE + "campaign/user/in-progress/",
-    accessToken: sessionStorage.getItem('token'),
+    accessToken: localStorage.getItem('token'),
     onSuccess: onSuccessGetUserInProgress,
     onFailure: onFailed,
     label: 'GET_USER_IN_PROGRESS',
@@ -333,7 +332,7 @@ function onSuccessGetUserInProgress(data) {
 export function getFollowing() {
   return apiAction({
     url: APIROUTE + "favorites/campaign/",
-    accessToken: sessionStorage.getItem('token'),
+    accessToken: localStorage.getItem('token'),
     onSuccess: onSuccessGetFollowing,
     onFailure: onFailed,
     label: 'GET_FOLLOWING_CAMPAIGNS',
@@ -349,7 +348,7 @@ function onSuccessGetFollowing(data) {
 export function getFavoriteCompanies() {
   return apiAction({
     url: APIROUTE + `favorites/company/`,
-    accessToken: sessionStorage.getItem('token'),
+    accessToken: localStorage.getItem('token'),
     onSuccess: onSuccessGetFavoriteCompanies,
     onFailure: onFailed,
     label: 'GET_FAVORITE_COMPANIES',
@@ -365,7 +364,7 @@ function onSuccessGetFavoriteCompanies(data) {
 export function getMyCampaigns() {
   return apiAction({
     url: APIROUTE + "company/campaign/",
-    accessToken: sessionStorage.getItem('token'),
+    accessToken: localStorage.getItem('token'),
     onSuccess: onSuccessGetMyCampaigns,
     onFailure: onFailed,
     label: 'GET_MY_CAMPAIGNS',
@@ -381,7 +380,7 @@ function onSuccessGetMyCampaigns(data) {
 export function getMyBills() {
   return apiAction({
     url: APIROUTE + "company/bills/",
-    accessToken: sessionStorage.getItem('token'),
+    accessToken: localStorage.getItem('token'),
     onSuccess: onSuccessGetMyBills,
     onFailure: onFailed,
     label: 'GET_MY_BILLS',
@@ -397,7 +396,7 @@ function onSuccessGetMyBills(data) {
 export function getPdfInvoice(id) {
   return apiAction({
     url: APIROUTE + `company/bill/${id}/`,
-    accessToken: sessionStorage.getItem('token'),
+    accessToken: localStorage.getItem('token'),
     onSuccess: onSuccessGetPdfInvoice,
     onFailure: onFailed,
     label: 'GET_PDF_INVOICE',
@@ -430,7 +429,7 @@ export function updateFavorite(params, name) {
     url: APIROUTE + "favorites/update/campaign/",
     method: 'POST',
     data: qs.stringify(params),
-    accessToken: sessionStorage.getItem('token'),
+    accessToken: localStorage.getItem('token'),
     onSuccess: (data) => onSuccessUpdateFavorite(data, name),
     onFailure: onFailed,
     label: 'UPDATE_DASHBOARD_FAVORITE',
@@ -488,7 +487,7 @@ export function updatePassword(params) {
     url: APIROUTE + "account/password/update/",
     method: 'POST',
     data: qs.stringify(params),
-    accessToken: sessionStorage.getItem('token'),
+    accessToken: localStorage.getItem('token'),
     onSuccess: onSuccessUpdatePassword,
     onFailure: onFailed,
     label: 'UPDATE_PASSWORD',
@@ -525,7 +524,7 @@ export function followCircle(params, id) {
     url: APIROUTE + `account/follow/${id}/`,
     method: 'POST',
     data: qs.stringify(params),
-    accessToken: sessionStorage.getItem('token'),
+    accessToken: localStorage.getItem('token'),
     onSuccess: onSuccessFollowCircle,
     onFailure: onFailed,
     label: 'FOLLOW_CIRCLE',
@@ -544,7 +543,7 @@ export function unfollowCircle(id) {
   return apiAction({
     url: APIROUTE + `account/unfollow/${id}/`,
     method: 'POST',
-    accessToken: sessionStorage.getItem('token'),
+    accessToken: localStorage.getItem('token'),
     onSuccess: onSuccessUnfollowCircle,
     onFailure: onFailed,
     label: 'UNFOLLOW_CIRCLE',
@@ -563,7 +562,7 @@ export function twitterConnectStep1() {
   return apiAction({
     url: APIROUTE + `twitter/connect/1/`,
     method: 'POST',
-    accessToken: sessionStorage.getItem('token'),
+    accessToken: localStorage.getItem('token'),
     onSuccess: onSuccessTwitterConnectStep1,
     onFailure: onFailed,
     label: 'TWITTER_CONNECT_STEP1',
@@ -581,7 +580,7 @@ export function twitterConnectStep2(params) {
     url: APIROUTE + `twitter/connect/2/`,
     method: 'POST',
     data: qs.stringify(params),
-    accessToken: sessionStorage.getItem('token'),
+    accessToken: localStorage.getItem('token'),
     onSuccess: onSuccessTwitterConnectStep2,
     onFailure: onFailed,
     label: 'TWITTER_CONNECT_STEP2',
@@ -599,7 +598,7 @@ export function twitchConnect(params) {
     url: APIROUTE + `twitch/connect/web/`,
     method: 'POST',
     data: qs.stringify(params),
-    accessToken: sessionStorage.getItem('token'),
+    accessToken: localStorage.getItem('token'),
     onSuccess: onSuccessTwitchConnect,
     onFailure: onFailed,
     label: 'TWITCH_CONNECT',
@@ -617,7 +616,7 @@ export function instagramConnect(params) {
     url: APIROUTE + `instagram/connect/`,
     method: 'POST',
     data: qs.stringify(params),
-    accessToken: sessionStorage.getItem('token'),
+    accessToken: localStorage.getItem('token'),
     onSuccess: onSuccessInstagramConnect,
     onFailure: onFailed,
     label: 'INSTAGRAM_CONNECT',
@@ -635,7 +634,7 @@ export function facebookConnect(params, company) {
     url: APIROUTE + `facebook/connect/`,
     method: 'POST',
     data: qs.stringify(params),
-    accessToken: sessionStorage.getItem('token'),
+    accessToken: localStorage.getItem('token'),
     onSuccess: (data) => onSuccessFacebookConnect(data, company),
     onFailure: onFailed,
     label: 'FACEBOOK_CONNECT',
@@ -652,7 +651,7 @@ function onSuccessFacebookConnect(data, company) {
 export function participationResult(id) {
   return apiAction({
     url: APIROUTE + `account/result/${id}/`,
-    accessToken: sessionStorage.getItem('token'),
+    accessToken: localStorage.getItem('token'),
     onSuccess: onSuccessParticipationResult,
     onFailure: onFailed,
     label: 'PARTICIPATION_RESULT',
@@ -669,7 +668,7 @@ function onSuccessParticipationResult(data) {
 export function getCompanyWall(id) {
   return apiAction({
     url: APIROUTE + `company/wall/${id}/`,
-    accessToken: sessionStorage.getItem('token'),
+    accessToken: localStorage.getItem('token'),
     onSuccess: onSuccessGetCompanyWall,
     onFailure: onFailed,
     label: 'GET_COMPANY_WALL',
@@ -685,7 +684,7 @@ function onSuccessGetCompanyWall(data) {
 export function getWallSetting() {
   return apiAction({
     url: APIROUTE + `account/wall/settings/`,
-    accessToken: sessionStorage.getItem('token'),
+    accessToken: localStorage.getItem('token'),
     onSuccess: onSuccessGetWallSetting,
     onFailure: onFailed,
     label: 'GET_WALL_SETTING',
@@ -703,7 +702,7 @@ export function updateWallSetting(params) {
     url: APIROUTE + `account/wall/settings/`,
     data: qs.stringify(params),
     method: 'POST',
-    accessToken: sessionStorage.getItem('token'),
+    accessToken: localStorage.getItem('token'),
     onSuccess: onSuccessUpdateWallSetting,
     onFailure: onFailed,
     label: 'UPDATE_WALL_SETTING',
@@ -722,7 +721,7 @@ export function checkUserName(params) {
     url: APIROUTE + `account/profile/username/`,
     data: qs.stringify(params),
     method: 'POST',
-    accessToken: sessionStorage.getItem('token'),
+    accessToken: localStorage.getItem('token'),
     onSuccess: onSuccessCheckUserName,
     onFailure: onFailed,
     label: 'CHECK_USER_NAME',

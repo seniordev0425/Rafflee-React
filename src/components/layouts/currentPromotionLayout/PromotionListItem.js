@@ -38,12 +38,14 @@ function PromotionListItem(props) {
                 <Link to={`/company/${item.company_id}/`}>
                   <img
                     src={item.company_logo ? item.company_logo : images.profile_img}
-                    style={{ width: 40, height: 40, borderRadius: '50%', boxShadow: ' 0px 5px 20px #bec2c5d9' }}
+                    style={{ width: 40, height: 40, borderRadius: '50%' }}
                     className="mr-3"
                     alt=""
                   />
                 </Link>
-                {item.campaign_name}
+                <Link to={"/campaign-detail/" + item.pk}>
+                  {item.campaign_name}
+                </Link>
               </div>
               <div className="promotion-list-item-text">{item.description}</div>
               <div style={{ marginTop: "20px", height: "40px" }} className="d-flex justify-content-between align-items-center">

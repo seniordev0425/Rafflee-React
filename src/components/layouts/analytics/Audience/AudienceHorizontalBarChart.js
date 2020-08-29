@@ -56,6 +56,40 @@ function AudienceHorizontalBarChart({ campaignID }) {
     }
   })
 
+  useEffect(() => {
+    setData({
+      dataLine: {
+        labels: ["13-17", "18-24", "25-34", "35-44", "45-54", "55-65", "65+"],
+        datasets: [
+          {
+            label: t('analytics_page.users'),
+            backgroundColor: "#0091ff",
+            borderColor: "#0091ff",
+            data: [
+              participantsRangeByAge.range_percentage['13_17'],
+              participantsRangeByAge.range_percentage['18_24'],
+              participantsRangeByAge.range_percentage['25_34'],
+              participantsRangeByAge.range_percentage['35_44'],
+              participantsRangeByAge.range_percentage['45_54'],
+              participantsRangeByAge.range_percentage['55_65'],
+              participantsRangeByAge.range_percentage['65']
+            ],
+            users: [
+              participantsRangeByAge.range['13_17'],
+              participantsRangeByAge.range['18_24'],
+              participantsRangeByAge.range['25_34'],
+              participantsRangeByAge.range['35_44'],
+              participantsRangeByAge.range['45_54'],
+              participantsRangeByAge.range['55_65'],
+              participantsRangeByAge.range['65']
+            ],
+            borderWidth: 1
+          },
+        ]
+      }
+    })
+  }, [participantsRangeByAge])
+
   return (
     <div>
       <div className="d-block d-sm-flex justify-content-between align-items-center mb-4 mt-2 mt-sm-0">
@@ -79,14 +113,14 @@ function AudienceHorizontalBarChart({ campaignID }) {
           responsive: true,
           legend: false,
           scales: {
-            xAxes: [{ 
-              gridLines: { display: false }, 
+            xAxes: [{
+              gridLines: { display: false },
               barPercentage: 0.1,
               ticks: {
                 userCallback: (label) => {
                   return `${label}%`
                 }
-              } 
+              }
             }],
             yAxes: [{ gridLines: { display: false } }]
           },

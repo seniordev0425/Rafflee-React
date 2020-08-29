@@ -17,7 +17,7 @@ export function getFacebookPages() {
   return apiAction({
     url: APIROUTE + `facebook/page/search/`,
     method: 'GET',
-    accessToken: sessionStorage.getItem('token'),
+    accessToken: localStorage.getItem('token'),
     onSuccess: onSuccessGetFacebookPages,
     onFailure: onFailed,
     label: 'GET_FACEBOOK_PAGES'
@@ -35,7 +35,7 @@ export function getFacebookPublications(params) {
     url: APIROUTE + `facebook/publication/search/`,
     method: 'POST',
     data: qs.stringify(params),
-    accessToken: sessionStorage.getItem('token'),
+    accessToken: localStorage.getItem('token'),
     onSuccess: onSuccessGetFacebookPublications,
     onFailure: onFailed,
     label: 'GET_FACEBOOK_PUBLICATIONS'
@@ -53,7 +53,7 @@ export function instagramBusinessConnect(params) {
     url: APIROUTE + `facebook/connect/instagram_business/`,
     method: 'POST',
     data: qs.stringify(params),
-    accessToken: sessionStorage.getItem('token'),
+    accessToken: localStorage.getItem('token'),
     onSuccess: onSuccessInstagramBusinessConnect,
     onFailure: onFailed,
     label: 'GET_INSTAGRAM_BUSINESS_PAGES'
@@ -71,7 +71,7 @@ export function instagramBusinessConnectValidation(params) {
     url: APIROUTE + `facebook/connect/instagram_business/validation/`,
     method: 'POST',
     data: qs.stringify(params),
-    accessToken: sessionStorage.getItem('token'),
+    accessToken: localStorage.getItem('token'),
     onSuccess: onSuccessInstagramBusinessConnectValidation,
     onFailure: onFailed,
     label: 'VALIDATE_INSTAGRAM_BUSINESS_CONNECT',

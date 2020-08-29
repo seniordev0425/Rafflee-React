@@ -55,10 +55,22 @@ function HeaderBeforeLogin() {
   return (
     <>
       {!isMobile ? (
-        <Row>
-          <Link to="/deals"><Button type="link" className="no-border-btn h-100 font-weight-bold">{t('header.campaigns')}</Button></Link>
-          <Button type="link" className="no-border-btn h-100 font-weight-bold" onClick={() => toggle(true)}>{t('header.log_in')}</Button>
-          <Button type="link" className="no-border-btn h-100 font-weight-bold" onClick={() => toggle(false)}>{t('header.sign_in')}</Button>
+        <Row className="align-items-center">
+          <Link to="/deals">
+            <span className="mx-3 font-weight-bold header-btn">
+              {t('header.campaigns')}
+            </span>
+          </Link>
+          <Link to=''>
+            <span className="mx-3 font-weight-bold header-btn" onClick={() => toggle(true)}>
+              {t('header.log_in')}
+            </span>
+          </Link>
+          <Link to=''>
+            <span className="mx-3 font-weight-bold header-btn" onClick={() => toggle(false)}>
+              {t('header.sign_in')}
+            </span>
+          </Link>
         </Row>
       ) : (
           <>

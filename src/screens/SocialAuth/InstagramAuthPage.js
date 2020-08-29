@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { withRouter } from 'react-router'
 import { instagramConnect } from '../../actions/userInfo'
 import { openNotification } from '../../utils/notification'
-import Loading from '../../components/common/Loading'
+import LoadingPage from '../../components/common/LoadingPage'
 import { useTranslation } from 'react-i18next'
 
 function InstagramAuthPage(props) {
@@ -35,7 +35,7 @@ function InstagramAuthPage(props) {
 
   return (
     <>
-      <Loading />
+      <LoadingPage />
     </>
   )
 }
