@@ -23,6 +23,7 @@ import InstagramAuthPage from '../screens/SocialAuth/InstagramAuthPage'
 
 import LoadingPage from '../components/common/LoadingPage'
 import ScrollToTop from '../components/common/ScrollToTop'
+import InProgress from '../screens/InProgress'
 import NotFound from '../components/common/NotFound'
 import { openNotification } from '../utils/notification'
 
@@ -31,7 +32,6 @@ import { getUserProfile, getCompanyProfile } from '../actions/userInfo'
 import { IP_ADDRESS_API } from '../utils/constants'
 
 import { useTranslation } from 'react-i18next'
-
 
 function Routes(props) {
   const { t } = useTranslation()
@@ -174,6 +174,7 @@ function Routes(props) {
           <Redirect exact from="/my-circle" to="/" />
         }
 
+        <Route exact path="/in-progress" component={InProgress} />
         <Route component={NotFound} />
       </Switch>
 
