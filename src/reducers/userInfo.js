@@ -314,10 +314,20 @@ function UserInfo(state = initialFeedState, action) {
         ...state,
         companyProfile: { ...state.companyProfile, logo: action.data }
       }
+    case 'UPDATE_COMPANY_USERNAME':
+      return {
+        ...state,
+        companyProfile: { ...state.companyProfile, username: action.data }
+      }
     case 'UPDATE_USER_PICTURE':
       return {
         ...state,
         userProfile: { ...state.userProfile, profile_picture: action.data }
+      }
+    case 'UPDATE_USER_USERNAME':
+      return {
+        ...state,
+        userProfile: { ...state.userProfile, username: action.data }
       }
     case 'SET_COMPANY_FOLLOW_VALUE':
       return {

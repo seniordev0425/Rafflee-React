@@ -51,6 +51,7 @@ function CompanyAccountForm() {
   const [initialPhoneNum, setInitialPhoneNum] = useState({ phone_number: null, phone_country: null })
   const [countryName, setCountryName] = useState('')
   const [imgBase64Data, setImgBase64Data] = useState('')
+  const [username, setUsername] = useState('') // this value is for update of username in header
   const [openDeleteModal, setOpenDeleteModal] = useState(false)
   const [openImageCropModal, setOpenImageCropModal] = useState(false)
 
@@ -76,8 +77,9 @@ function CompanyAccountForm() {
   useEffect(() => {
     if (UPDATE_COMPANY_PROFILE_SUCCESS) {
       if (imgBase64Data) {
-        ///////////////////////////////////////////// Update company profile picture in header after update company profile
+        ///////////////////////////////////////////// Update company profile picture and username in header after update company profile
         dispatch({ type: 'UPDATE_COMPANY_LOGO', data: imgBase64Data })
+        dispatch({ type: 'UPDATE_COMPANY_USERNAME', data: username })
         dispatch({ type: 'INIT_STATE', state: 'SUCCESS_UPDATE_COMPANY_PROFILE', data: false })
       }
     }
@@ -105,6 +107,8 @@ function CompanyAccountForm() {
     formdata.append("city", values.street || '')
 
     dispatch(updateCompanyProfile(formdata))
+
+    setUsername(values.username)
   }
 
   const onSelectFlag = (countryCode) => {

@@ -21,12 +21,9 @@ function FooterLink() {
         <Col xs="12" sm={{ size: 10, offset: 1 }} className="padding-x">
           <Row>
             <Col xs="6" md="3" className="mb-4 mb-md-0">
-              <div className="mt-3">
-                <Link to="/in-progress">
-                  <span className="footer-link">{t('footer.enterprise')}</span>
-                </Link>
+              <div className="footer-link-bold" style={{ fontSize: '1rem' }}>
+                {t('footer.enterprise')}
               </div>
-
               <div className="mt-3">
                 <Link to="/in-progress">
                   <span className="footer-link"> {t('footer.who_are_we')}</span>
@@ -46,12 +43,9 @@ function FooterLink() {
               </div>
             </Col>
             <Col xs="6" md="3" className="mb-4 mb-md-0">
-              <div className="mt-3">
-                <Link to="/in-progress">
-                  <span className="footer-link">{t('footer.community')}</span>
-                </Link>
+              <div className="footer-link-bold" style={{ fontSize: '1rem' }}>
+                {t('footer.community')}
               </div>
-
               <div className="mt-3">
                 <Link to="/in-progress">
                   <span className="footer-link">{t('footer.company_contact_us')}</span>
@@ -77,10 +71,8 @@ function FooterLink() {
               </div>
             </Col>
             <Col xs="6" md="3">
-              <div className="mt-3">
-                <Link to="/in-progress">
-                  <span className="footer-link">{t('footer.legal')}</span>
-                </Link>
+              <div className="footer-link-bold" style={{ fontSize: '1rem' }}>
+                {t('footer.legal')}
               </div>
               <div className="mt-3">
                 <Link to="/privacy-policy">
@@ -104,7 +96,7 @@ function FooterLink() {
               </div>
             </Col>
             <Col xs="6" md="3">
-              <div className="footer-link-bold">
+              <div className="footer-link-bold" style={{ fontSize: '1rem' }}>
                 {t('footer.follow_us')}
               </div>
               <div>
@@ -114,7 +106,7 @@ function FooterLink() {
                 <FontAwesomeIcon icon={faInstagram} color='gray' className="font-size-13 mr-3 mt-3" />
                 <FontAwesomeIcon icon={faTwitch} color='gray' className="font-size-13 mr-3 mt-3" />
               </div>
-              <div className="footer-link-bold mt-3">Language</div>
+              <div className="footer-link-bold mt-3" style={{ fontSize: '1rem' }}>Language</div>
               <div className="mt-3">
                 <SelectLanguage />
               </div>

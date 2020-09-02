@@ -8,11 +8,12 @@
     "account": "Account",
     "dashboard": "My profile",
     "inventory": "Inventory",
-    "log_out": "Logout"
+    "log_out": "Logout",
+    "about": "About"
   },
   "footer": {
     "all_rights_reserved": "©2020 Rafflee, all rights reserved.",
-    "enterprise": "Enterprise",
+    "enterprise": "Rafflee",
     "who_are_we": "Who are we?",
     "the_team": "Our team",
     "we_are_hiring": "The team is recruiting new talents!",

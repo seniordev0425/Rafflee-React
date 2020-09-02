@@ -8,11 +8,12 @@
     "account": "Compte",
     "dashboard": "Mon profil",
     "inventory": "Inventaire",
-    "log_out": "Déconnexion"
+    "log_out": "Déconnexion",
+    "about": "À propos"
   },
   "footer": {
     "all_rights_reserved": "©2020 Rafflee, tous droits réservés.",
-    "enterprise": "Entreprise",
+    "enterprise": "Rafflee",
     "who_are_we": "Qui sommes-nous?",
     "the_team": "Notre team",
     "we_are_hiring": "La team recrute des nouveaux talents!",
@@ -204,7 +205,7 @@
     },
     "instagram_follow": {
       "title": "Instagram Follow",
-      "text": "Follow le compte pour valider l'action!"
+      "text": "Follow le compte pour valider l'action et augmenter tes chances de remporter le giveaway!"
     },
     "tiktok_like": {
       "title": "Tiktok Like",

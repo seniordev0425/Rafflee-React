@@ -56,6 +56,11 @@ function HeaderBeforeLogin() {
     <>
       {!isMobile ? (
         <Row className="align-items-center">
+          <Link to="/about">
+            <span className="mx-3 font-weight-bold header-btn">
+              {t('header.about')}
+            </span>
+          </Link>
           <Link to="/deals">
             <span className="mx-3 font-weight-bold header-btn">
               {t('header.campaigns')}
@@ -81,6 +86,7 @@ function HeaderBeforeLogin() {
               onClose={onClose}
               visible={visible}
             >
+              <div className="mb-2 font-size-10 font-weight-bold"><Link to="/about" style={{ color: '#767B83' }}>{t('header.about')}</Link></div>
               <div className="mb-2 font-size-10 font-weight-bold"><Link to="/deals" style={{ color: '#767B83' }}>{t('header.campaigns')}</Link></div>
               <div className="mb-2 font-size-10 color-blue font-weight-bold" style={{ color: '#767B83' }} onClick={() => toggle(false)}>{t('header.sign_in')}</div>
               <div className="mb-2 font-size-10 color-blue font-weight-bold" style={{ color: '#767B83' }} onClick={() => toggle(false)}>{t('header.log_in')}</div>

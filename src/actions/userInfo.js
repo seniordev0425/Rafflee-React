@@ -169,7 +169,6 @@ export function updateUserProfile(params) {
 function onSuccessUpdateUserProfile(data) {
   openNotification('success', successMessages[localStorage.getItem('i18nextLng')].accountUpdate)
   if (data.token) {
-    if (localStorage.getItem('token')) localStorage.setItem('token', data.token)
     localStorage.setItem('token', data.token)
     return {
       type: 'UPDATE_TOKEN',
@@ -213,7 +212,6 @@ export function updateCompanyProfile(params) {
 function onSuccessUpdateCompanyProfile(data) {
   openNotification('success', successMessages[localStorage.getItem('i18nextLng')].accountUpdate)
   if (data.token) {
-    if (localStorage.getItem('token')) localStorage.setItem('token', data.token)
     localStorage.setItem('token', data.token)
     return {
       type: 'UPDATE_TOKEN',

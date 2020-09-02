@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Route, Switch, Redirect } from 'react-router-dom'
 import CookieConsent from 'react-cookie-consent'
 import Home from '../screens/Home'
+import About from '../screens/About'
 import Deals from '../screens/Deals'
 import UserAccount from '../screens/UserAccount'
 import Dashboard from '../screens/Dashboard'
@@ -143,6 +144,7 @@ function Routes(props) {
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/campaign-detail/:id" component={CampaignDetail} />
+        <Route exact path="/about" component={About} />
         <Route exact path="/deals" component={Deals} />
         <Route exact path="/profile/activate/:id/:token" component={ProfileActivated} />
         <Route exact path="/reset-password/:token/:id" component={ResetPassword} />

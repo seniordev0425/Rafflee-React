@@ -71,6 +71,8 @@ function UserAccountForm() {
 
   const [imgBase64Data, setImgBase64Data] = useState('')
 
+  const [username, setUsername] = useState('') // this value is for update of username in header
+
   const [openDeleteModal, setOpenDeleteModal] = useState(false)
 
   const [openImageCropModal, setOpenImageCropModal] = useState(false)
@@ -112,8 +114,9 @@ function UserAccountForm() {
   useEffect(() => {
     if (UPDATE_USER_PROFILE_SUCCESS) {
       if (imgBase64Data) {
-        ///////////////////////////////////////////// Update user profile picture in header after update user profile
+        ///////////////////////////////////////////// Update user profile picture and username in header after update user profile
         dispatch({ type: 'UPDATE_USER_PICTURE', data: imgBase64Data })
+        dispatch({ type: 'UPDATE_USER_USERNAME', data: username })
         dispatch({ type: 'INIT_STATE', state: 'SUCCESS_UPDATE_USER_PROFILE', data: false })
       }
     }
@@ -145,6 +148,8 @@ function UserAccountForm() {
     formdata.append("gender", genderState)
 
     dispatch(updateUserProfile(formdata))
+
+    setUsername(values.username) 
   }
 
   const onChangeInitialDate = (date, dateString) => {
