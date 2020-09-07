@@ -30,7 +30,8 @@ const initialFeedState = {
     instagram: false,
     instagram_business: false,
     facebook: false,
-    username: ''
+    username: '',
+    email_verified: false
   },
 
   phone_number_verified: false,
@@ -52,7 +53,8 @@ const initialFeedState = {
     instagram: false,
     instagram_business: false,
     facebook: false,
-    username: ''
+    username: '',
+    email_verified: false
   },
 
   ///////////////////////////////////////////// This state is an inventory array of common user account which is displayed in inventory page
@@ -384,6 +386,18 @@ function UserInfo(state = initialFeedState, action) {
       return {
         ...state,
         token: action.data
+      }
+    case 'UPDATE_EMAIL':
+      if (action.isCompany) {
+        return {
+          ...state,
+          companyProfile: { ...state.companyProfile, email_verified: false, email: action.newEmail }
+        }
+      } else {
+        return {
+          ...state,
+          userProfile: { ...state.userProfile, email_verified: false, email: action.newEmail }
+        }
       }
     default:
       return state

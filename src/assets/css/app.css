@@ -1261,9 +1261,14 @@ h2 span {
     height: 38px;
 }
 .profile-img {
-    width: 100px;
-    height: 100px;
+    width: 180px;
+    height: 180px;
     border-radius: 6px;
+}
+.upload-profile-img {
+  width: 205px;
+  height: 205px;
+  border-radius: 6px;
 }
 .ant-pagination-item-link .anticon {
     vertical-align: 0.08rem;
@@ -1629,5 +1634,18 @@ h2 span {
         padding-left: 15px;
         padding-right: 15px;
     }
+}
+.upload-btn {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin-right: 15px;
+  margin-bottom: 15px;
+}
+@media (max-width: 775px) {
+  .upload-btn {
+    position: relative;
+    margin-top: 20px;
+  }
 }
 

@@ -12,6 +12,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 import DeleteAccount from '../../modals/DeleteAccount'
 import ImageCropModal from '../../modals/ImageCropModal'
+import UpdateEmailModal from '../../modals/UpdateEmailModal'
 import FormInput from '../../common/FormInput'
 import FormPhoneInput from '../../common/FormPhoneInput'
 import FaceBookConnectBtn from '../../common/Buttons/FaceBookConnectBtn'
@@ -19,10 +20,9 @@ import TwitterConnectBtn from '../../common/Buttons/TwitterConnectBtn'
 import TwitchConnectBtn from '../../common/Buttons/TwitchConnectBtn'
 import YoutubeConnectBtn from '../../common/Buttons/YoutubeConnectBtn'
 import InstagramNormalConnectBtn from '../../common/Buttons/InstagramNormalConnectBtn'
-import InstagramBusinessConnectBtn from '../../common/Buttons/InstagramBusinessConnectBtn'
 import SnapchatConnectBtn from '../../common/Buttons/SnapchatConnectBtn'
 import SteamConnectBtn from '../../common/Buttons/SteamConnectBtn'
-import { updateCompanyProfile } from '../../../actions/userInfo'
+import { updateCompanyProfile, updateEmail } from '../../../actions/userInfo'
 import { getCompanyProfile, checkUserName } from '../../../actions/userInfo'
 import { b64toBlob } from '../../../utils/others'
 import { UPLOAD_MAX_SIZE } from '../../../utils/constants'
@@ -46,6 +46,9 @@ function CompanyAccountForm() {
   const CHECK_USER_NAME_PROCESS = useSelector(state => state.userInfo.CHECK_USER_NAME)
   const UPDATE_COMPANY_PROFILE_SUCCESS = useSelector(state => state.userInfo.SUCCESS_UPDATE_COMPANY_PROFILE)
 
+  const UPDATE_EMAIL_PROCESS = useSelector(state => state.userInfo.UPDATE_EMAIL)
+  const UPDATE_EMAIL_SUCCESS = useSelector(state => state.userInfo.SUCCESS_UPDATE_EMAIL)
+
   const dispatch = useDispatch()
 
   const [initialPhoneNum, setInitialPhoneNum] = useState({ phone_number: null, phone_country: null })
@@ -54,9 +57,11 @@ function CompanyAccountForm() {
   const [username, setUsername] = useState('') // this value is for update of username in header
   const [openDeleteModal, setOpenDeleteModal] = useState(false)
   const [openImageCropModal, setOpenImageCropModal] = useState(false)
+  const [openUpdateEmailModal, setOpenUpdateEmailModal] = useState(false)
 
   const handleDeleteModal = () => setOpenDeleteModal(!openDeleteModal)
   const handleImageCropModal = () => setOpenImageCropModal(!openImageCropModal)
+  const handleUpdateEmailModal = () => setOpenUpdateEmailModal(!openUpdateEmailModal)
 
   const { logo, country_code, national_number, country } = companyProfile
 
@@ -84,6 +89,13 @@ function CompanyAccountForm() {
       }
     }
   }, [UPDATE_COMPANY_PROFILE_SUCCESS])
+
+  useEffect(() => {
+    if (UPDATE_EMAIL_SUCCESS) {
+      dispatch({ type: 'INIT_STATE', state: 'SUCCESS_UPDATE_EMAIL', data: false })
+      setOpenUpdateEmailModal(false)
+    }
+  }, [UPDATE_EMAIL_SUCCESS])
 
   const onSubmit = (values) => {
     var formdata = new FormData()
@@ -139,6 +151,11 @@ function CompanyAccountForm() {
     debounceCheck(username)
   }
 
+  ///////////////////////////////////////////// Update email address
+  const updateEmailAddress = (newEmail) => {
+    dispatch(updateEmail({ email: newEmail }, true))
+  }
+
   if (isLoading)
     return <div className="min-height-container"><Loading /></div>
 
@@ -161,7 +178,7 @@ function CompanyAccountForm() {
                               onClick={handleImageCropModal}
                               type="primary"
                               className="ant-blue-btn mt-2"
-                              style={{ width: 100, height: 30, fontSize: '1rem', lineHeight: 1 }}
+                              style={{ width: 180, height: 30, fontSize: '1rem', lineHeight: 1 }}
                             >
                               {t('button_group.edit')}
                             </Button>
@@ -276,19 +293,55 @@ function CompanyAccountForm() {
                 </div>
                 <div className="mt-4 w-100" >
                   <FormGroup>
-                    <div className="footer-link-bold mb-3">{t('account_page.admin_email')}</div>
-                    <Field
-                      name="email"
-                      defaultValue={companyProfile.email}
-                      component={FormInput}
-                      className="custom-form-control"
-                      type="email"
-                      placeholder="name@example.com"
-                      validate={composeValidators(
-                        required(t('account_page.enter_valid_email')),
-                        isEmail(t('account_page.enter_valid_email'))
-                      )}
-                    />
+                    <div className="footer-link-bold mb-3 d-flex align-items-center">
+                      {t('account_page.admin_email')}
+                      {companyProfile.email_verified
+                        ?
+                        <FontAwesomeIcon icon={faCheckCircle} className="color-blue font-size-12 ml-3" />
+                        :
+                        <span className="font-size-9 color-blue ml-3">( {t('account_page.verify_your_email')} )</span>
+                      }
+                    </div>
+                    <div className="d-xl-flex d-block justify-content-between">
+                      <div className="w-xl-50 w-100">
+                        <Field
+                          name="email"
+                          defaultValue={companyProfile.email}
+                          component={FormInput}
+                          className="custom-form-control"
+                          type="email"
+                          placeholder="name@example.com"
+                          validate={composeValidators(
+                            required(t('account_page.enter_valid_email')),
+                            isEmail(t('account_page.enter_valid_email'))
+                          )}
+                          disabled
+                        />
+                      </div>
+                      <div className="w-xl-50 w-100 mt-xl-0 mt-3">
+                        <div className="d-flex justify-content-end">
+                          {companyProfile.email_verified
+                            ?
+                            <Button
+                              type="primary"
+                              className="ant-blue-btn w-50"
+                              onClick={handleUpdateEmailModal}
+                            >
+                              {t('button_group.update')}
+                            </Button>
+                            :
+                            <Button
+                              type="primary"
+                              className="ant-blue-btn w-75"
+                              onClick={() => updateEmailAddress(companyProfile.email)}
+                              loading={UPDATE_EMAIL_PROCESS}
+                            >
+                              {!UPDATE_EMAIL_PROCESS && t('button_group.resend_verification_email')}
+                            </Button>
+                          }
+                        </div>
+                      </div>
+                    </div>
                   </FormGroup>
                 </div>
 
@@ -302,6 +355,18 @@ function CompanyAccountForm() {
                       className="custom-form-control"
                     />
                   </FormGroup>
+                </div>
+                <div className="upload-btn">
+                  <Button
+                    disabled={!usernameCheckedStatus}
+                    htmlType='submit'
+                    type="primary"
+                    className="ant-blue-btn mt-2"
+                    style={{ width: 200 }}
+                    loading={isUpdating}
+                  >
+                    {!isUpdating && t('button_group.update')}
+                  </Button>
                 </div>
               </Col>
             </Row>
@@ -354,7 +419,7 @@ function CompanyAccountForm() {
                 <Row style={{ justifyContent: "flex-end" }}>
                   <div className="mt-4 half-width">
                     <div className="footer-link-bold mb-3 d-flex align-items-center">
-                      <span>Instagram Normal</span>
+                      <span>Instagram</span>
                       {companyProfile.instagram &&
                         <FontAwesomeIcon icon={faCheckCircle} className="color-blue font-size-12 ml-3" />
                       }
@@ -362,7 +427,7 @@ function CompanyAccountForm() {
                     <InstagramNormalConnectBtn connected={companyProfile.instagram} />
                   </div>
                 </Row>
-                <Row style={{ justifyContent: "flex-end" }}>
+                {/* <Row style={{ justifyContent: "flex-end" }}>
                   <div className="mt-4 half-width">
                     <div className="footer-link-bold mb-3 d-flex align-items-center">
                       <span>Instagram Business</span>
@@ -372,24 +437,12 @@ function CompanyAccountForm() {
                     </div>
                     <InstagramBusinessConnectBtn connected={companyProfile.instagram_business} />
                   </div>
-                </Row>
+                </Row> */}
                 <Row style={{ justifyContent: "flex-end" }}>
                   <div className="mt-4 half-width">
                     <div className="footer-link-bold mb-3">Steam</div>
                     <SteamConnectBtn />
                   </div>
-                </Row>
-                <Row className="justify-content-sm-end justify-content-start mt-4">
-                  <Button
-                    disabled={!usernameCheckedStatus}
-                    htmlType='submit'
-                    type="primary"
-                    className="ant-blue-btn mt-2"
-                    style={{ width: 200 }}
-                    loading={isUpdating}
-                  >
-                    {!isUpdating && t('button_group.update')}
-                  </Button>
                 </Row>
               </Col>
             </Row>
@@ -405,6 +458,11 @@ function CompanyAccountForm() {
         onToggle={handleImageCropModal}
         setBase64Data={(value) => setImgBase64Data(value)}
         src={imgBase64Data}
+      />
+      <UpdateEmailModal
+        open={openUpdateEmailModal}
+        onToggle={handleUpdateEmailModal}
+        updateEmail={updateEmailAddress}
       />
     </>
   )

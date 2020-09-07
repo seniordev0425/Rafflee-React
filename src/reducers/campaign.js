@@ -15,7 +15,8 @@ const initialFeedState = {
     campaign_image: '',
     poll: {},
     action_participate: [],
-    user_actions: {}
+    user_actions: {},
+    remaining_actions: {}
   },
 
   ///////////////////////////////////////////// This state is participants array of campaign which is used in live page or participants page of company account
@@ -96,7 +97,7 @@ function Campaign(state = initialFeedState, action) {
         [action.data]: true,
         campaignData: action.entries
           ?
-          { ...state.campaignData, user_actions: { ...state.campaignData.user_actions, entries_user: action.entries } }
+          { ...state.campaignData, user_actions: { ...state.campaignData.user_actions, entries_user: action.entries }, remaining_actions: action.remaining_actions }
           :
           { ...state.campaignData }
       }

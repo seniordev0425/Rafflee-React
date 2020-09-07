@@ -105,7 +105,8 @@
     "close": "Close",
     "validate": "Validate",
     "validated": "Validated",
-    "confirm_tweet": "Confirm Tweet"
+    "confirm_tweet": "Confirm Tweet",
+    "resend_verification_email": "Resend Email"
   },
   "homepage": {
     "hot_new_contest_everyday": "Hot new contest everyday.",
@@ -154,7 +155,8 @@
     "instagram_connect": "CONNECT WITH INSTAGRAM",
     "instagram_connected": "CONNECTED WITH INSTAGRAM",
     "steam_connect": "CONNECT WITH STEAM",
-    "steam_connected": "CONNECTED WITH STEAM"
+    "steam_connected": "CONNECTED WITH STEAM",
+    "verify_your_email": "Verify email address"
   },
   "campaign_detail_page": {
     "giveaways": "GIVEAWAYS",
@@ -234,7 +236,8 @@
     "prize_description": "The winner will receive prizes below:",
     "the_prize": "Prizes",
     "chance_winning_prize": "Chance of winning the prize",
-    "action_left": "ACTION LEFT"
+    "action_left": "ACTION LEFT",
+    "mandatory_action_left": "MANDATORY ACTION LEFT"
   },
   "my_campaign_page": {
     "live_page": "Live Page",
@@ -437,6 +440,10 @@
     "successfully_activated": "Your account has been activated",
     "goto_login": "Go to Homepage and Login!"
   },
+  "activate_email_page": {
+    "successfully_activated": "Your account has been activated",
+    "failed": "Something went wrong. Please try again later"
+  },
   "search_result_page": {
     "search": "Search",
     "search_placeholder": "Search for name, description, company..."
@@ -563,6 +570,11 @@
     "name": "Name",
     "number_of_eligible_people": "Number of winning lots",
     "description": "Description"
+  },
+  "update_email_modal": {
+    "enter_email": "Enter your email address",
+    "new_email": "New email",
+    "verify_email": "Verify Email"
   },
   "required": "Required",
   "in_progress": "In progress"

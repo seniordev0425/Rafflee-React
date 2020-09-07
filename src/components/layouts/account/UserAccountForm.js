@@ -12,6 +12,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 import DeleteAccount from '../../modals/DeleteAccount'
 import ImageCropModal from '../../modals/ImageCropModal'
+import UpdateEmailModal from '../../modals/UpdateEmailModal'
 import FormInput from '../../common/FormInput'
 import FormPhoneInput from '../../common/FormPhoneInput'
 import { DatePicker } from 'antd'
@@ -20,14 +21,14 @@ import TwitterConnectBtn from '../../common/Buttons/TwitterConnectBtn'
 import TwitchConnectBtn from '../../common/Buttons/TwitchConnectBtn'
 import YoutubeConnectBtn from '../../common/Buttons/YoutubeConnectBtn'
 import InstagramNormalConnectBtn from '../../common/Buttons/InstagramNormalConnectBtn'
-import InstagramBusinessConnectBtn from '../../common/Buttons/InstagramBusinessConnectBtn'
 import SteamConnectBtn from '../../common/Buttons/SteamConnectBtn'
 import SnapchatConnectBtn from '../../common/Buttons/SnapchatConnectBtn'
 import {
   getUserProfile,
   sendSms,
   updateUserProfile,
-  checkUserName
+  checkUserName,
+  updateEmail
 } from '../../../actions/userInfo'
 import moment from 'moment'
 import { b64toBlob } from '../../../utils/others'
@@ -54,37 +55,39 @@ function UserAccountForm() {
   const isSendingSms = useSelector(state => state.userInfo.SEND_SMS)
   const toggleVerificationModal = useSelector(state => state.userInfo.SUCCESS_SEND_SMS)
 
+  const UPDATE_EMAIL_PROCESS = useSelector(state => state.userInfo.UPDATE_EMAIL)
+  const UPDATE_EMAIL_SUCCESS = useSelector(state => state.userInfo.SUCCESS_UPDATE_EMAIL)
+
 
   const dispatch = useDispatch()
 
   const { Option } = Select
 
   const [countryName, setCountryName] = useState('')
-
   const [initialPhoneNum, setInitialPhoneNum] = useState({ phone_number: null, phone_country: null })
-
   const [verifyPhoneNumber, setVerifyPhoneNumber] = useState('')
-
   const [initialDate, setInitialDate] = useState('1970-01-01')
-
   const [genderState, setGenderState] = useState('')
-
   const [imgBase64Data, setImgBase64Data] = useState('')
-
   const [username, setUsername] = useState('') // this value is for update of username in header
 
   const [openDeleteModal, setOpenDeleteModal] = useState(false)
-
   const [openImageCropModal, setOpenImageCropModal] = useState(false)
-
   const [openVerificationModal, setOpenVerificationModal] = useState(false)
+  const [openUpdateEmailModal, setOpenUpdateEmailModal] = useState(false)
 
   const handleDeleteModal = () => setOpenDeleteModal(!openDeleteModal)
   const handleImageCropModal = () => setOpenImageCropModal(!openImageCropModal)
   const handleVerificationModal = () => setOpenVerificationModal(!openVerificationModal)
+  const handleUpdateEmailModal = () => setOpenUpdateEmailModal(!openUpdateEmailModal)
 
-
-  const { country_code, national_number, profile_picture, birth_date, country, gender } = userProfile
+  const {
+    country_code,
+    national_number,
+    profile_picture,
+    birth_date, country,
+    gender
+  } = userProfile
 
   useEffect(() => {
     ///////////////////////////////////////////// Load user profile data
@@ -122,6 +125,13 @@ function UserAccountForm() {
     }
   }, [UPDATE_USER_PROFILE_SUCCESS])
 
+  useEffect(() => {
+    if (UPDATE_EMAIL_SUCCESS) {
+      dispatch({ type: 'INIT_STATE', state: 'SUCCESS_UPDATE_EMAIL', data: false })
+      setOpenUpdateEmailModal(false)
+    }
+  }, [UPDATE_EMAIL_SUCCESS])
+
   const onSubmit = (values) => {
     var formdata = new FormData()
 
@@ -149,7 +159,7 @@ function UserAccountForm() {
 
     dispatch(updateUserProfile(formdata))
 
-    setUsername(values.username) 
+    setUsername(values.username)
   }
 
   const onChangeInitialDate = (date, dateString) => {
@@ -191,6 +201,11 @@ function UserAccountForm() {
     debounceCheck(username)
   }
 
+  ///////////////////////////////////////////// Update email address
+  const updateEmailAddress = (newEmail) => {
+    dispatch(updateEmail({ email: newEmail }, false))
+  }
+
   if (isLoading) return <div className="min-height-container"><Loading /></div>
 
   return (
@@ -212,7 +227,7 @@ function UserAccountForm() {
                               onClick={handleImageCropModal}
                               type="primary"
                               className="ant-blue-btn mt-2"
-                              style={{ width: 100, height: 30, fontSize: '1rem', lineHeight: 1 }}
+                              style={{ width: 180, height: 30, fontSize: '1rem', lineHeight: 1 }}
                             >
                               {t('button_group.edit')}
                             </Button>
@@ -363,24 +378,66 @@ function UserAccountForm() {
                 </div>
                 <div className="mt-4 w-100">
                   <FormGroup>
-                    <div className="footer-link-bold mb-3">{t('account_page.email')}</div>
-                    <Field
-                      name="email"
-                      defaultValue={userProfile.email}
-                      component={FormInput}
-                      className="custom-form-control"
-                      type="email"
-                      placeholder="name@example.com"
-                      validate={composeValidators(
-                        required(t('account_page.enter_valid_email')),
-                        isEmail(t('account_page.enter_valid_email'))
-                      )}
-                    />
+                    <div className="footer-link-bold mb-3 d-flex align-items-center">
+                      {t('account_page.email')}
+                      {userProfile.email_verified
+                        ?
+                        <FontAwesomeIcon icon={faCheckCircle} className="color-blue font-size-12 ml-3" />
+                        :
+                        <span className="font-size-9 color-blue ml-3">( {t('account_page.verify_your_email')} )</span>
+                      }
+                    </div>
+                    <div className="d-xl-flex d-block justify-content-between">
+                      <div className="w-xl-50 w-100">
+                        <Field
+                          name="email"
+                          defaultValue={userProfile.email}
+                          component={FormInput}
+                          className="custom-form-control"
+                          type="email"
+                          placeholder="name@example.com"
+                          validate={composeValidators(
+                            required(t('account_page.enter_valid_email')),
+                            isEmail(t('account_page.enter_valid_email'))
+                          )}
+                          disabled
+                        />
+                      </div>
+                      <div className="w-xl-50 w-100 mt-xl-0 mt-3">
+                        <div className="d-flex justify-content-end">
+                          {userProfile.email_verified
+                            ?
+                            <Button
+                              type="primary"
+                              className="ant-blue-btn w-50"
+                              onClick={handleUpdateEmailModal}
+                            >
+                              {t('button_group.update')}
+                            </Button>
+                            :
+                            <Button
+                              type="primary"
+                              className="ant-blue-btn w-75"
+                              onClick={() => updateEmailAddress(userProfile.email)}
+                              loading={UPDATE_EMAIL_PROCESS}
+                            >
+                              {!UPDATE_EMAIL_PROCESS && t('button_group.resend_verification_email')}
+                            </Button>
+                          }
+                        </div>
+                      </div>
+                    </div>
+
                   </FormGroup>
                 </div>
                 <div className="mt-4 w-100">
                   <FormGroup>
-                    <div className="footer-link-bold mb-3">{t('account_page.phone_number')}</div>
+                    <div className="footer-link-bold mb-3 d-flex align-items-center">
+                      {t('account_page.phone_number')}
+                      {phone_number_verified &&
+                        <FontAwesomeIcon icon={faCheckCircle} className="color-blue font-size-12 ml-3" />
+                      }
+                    </div>
                     <div className="d-flex justify-content-between">
                       <div style={{ width: "70%" }}>
                         <Field
@@ -396,22 +453,31 @@ function UserAccountForm() {
                         </OnChange>
                       </div>
                       <div className="d-flex justify-content-end align-items-center w-25">
-                        {!phone_number_verified
-                          ?
+                        {!phone_number_verified &&
                           <Button
                             type="primary"
-                            className="ant-blue-btn mt-1"
+                            className="ant-blue-btn"
                             onClick={sendSMS}
                             loading={isSendingSms}
                           >
                             {!isSendingSms && t('button_group.verify')}
                           </Button>
-                          :
-                          <FontAwesomeIcon icon={faCheckCircle} className="phone-verified-icon" />
                         }
                       </div>
                     </div>
                   </FormGroup>
+                </div>
+                <div className="upload-btn">
+                  <Button
+                    disabled={!usernameCheckedStatus}
+                    htmlType='submit'
+                    type="primary"
+                    className="ant-blue-btn mt-2"
+                    style={{ width: 200 }}
+                    loading={isUpdating}
+                  >
+                    {!isUpdating && t('button_group.update')}
+                  </Button>
                 </div>
               </Col>
             </Row>
@@ -465,7 +531,7 @@ function UserAccountForm() {
                 <div className="mt-4 d-flex justify-content-end">
                   <div className="half-width">
                     <div className="footer-link-bold mb-3 d-flex align-items-center">
-                      <span>Instagram Normal</span>
+                      <span>Instagram</span>
                       {userProfile.instagram &&
                         <FontAwesomeIcon icon={faCheckCircle} className="color-blue font-size-12 ml-3" />
                       }
@@ -474,7 +540,7 @@ function UserAccountForm() {
                   </div>
                 </div>
 
-                <div className="mt-4 d-flex justify-content-end">
+                {/* <div className="mt-4 d-flex justify-content-end">
                   <div className="half-width">
                     <div className="footer-link-bold mb-3 d-flex align-items-center">
                       <span>Instagram Business</span>
@@ -484,26 +550,13 @@ function UserAccountForm() {
                     </div>
                     <InstagramBusinessConnectBtn connected={userProfile.instagram_business} />
                   </div>
-                </div>
-                
+                </div> */}
+
                 <div className="mt-4 d-flex justify-content-end">
                   <div className="half-width">
                     <div className="footer-link-bold mb-3">Steam</div>
                     <SteamConnectBtn />
                   </div>
-                </div>
-
-                <div className="mt-4 d-flex justify-content-sm-end justify-content-start">
-                  <Button
-                    disabled={!usernameCheckedStatus}
-                    htmlType='submit'
-                    type="primary"
-                    className="ant-blue-btn mt-2"
-                    style={{ width: 200 }}
-                    loading={isUpdating}
-                  >
-                    {!isUpdating && t('button_group.update')}
-                  </Button>
                 </div>
               </Col>
             </Row>
@@ -524,6 +577,11 @@ function UserAccountForm() {
         open={openVerificationModal}
         onToggle={handleVerificationModal}
         phone_number={verifyPhoneNumber}
+      />
+      <UpdateEmailModal
+        open={openUpdateEmailModal}
+        onToggle={handleUpdateEmailModal}
+        updateEmail={updateEmailAddress}
       />
     </>
   )

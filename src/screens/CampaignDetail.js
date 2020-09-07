@@ -390,12 +390,21 @@ function CampaignDetail(props) {
           {token && !company && userProfile.phone_number_verification &&
             <Row className="mb-5">
               <Col className="font-size-11 color-gray">
-                <div className="d-flex justify-content-between mb-2">
+                <div className="d-md-flex d-block justify-content-between mb-2">
                   <div>
                     {t('campaign_detail_page.chance_winning_prize')}
                   </div>
                   <div>
-                    {t('campaign_detail_page.action_left')}
+                    {campaignData.remaining_actions?.remaining_mandatory_action > 0
+                      ?
+                      `${campaignData.remaining_actions.remaining_mandatory_action} ${t('campaign_detail_page.mandatory_action_left')}`
+                      :
+                      campaignData.remaining_actions?.remaining_normal_action > 0
+                        ?
+                        `${campaignData.remaining_actions.remaining_normal_action} ${t('campaign_detail_page.action_left')}`
+                        :
+                        ''
+                    }
                   </div>
                 </div>
                 <Progress

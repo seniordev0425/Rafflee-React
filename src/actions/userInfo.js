@@ -731,6 +731,44 @@ function onSuccessCheckUserName(data) {
     data: !data.exist
   }
 }
+/////////////////////////////////////////////// UPDATE_EMAIL_ACTION
+export function updateEmail(params, isCompany) {
+  return apiAction({
+    url: APIROUTE + `account/profile/update/email/`,
+    data: qs.stringify(params),
+    method: 'POST',
+    accessToken: localStorage.getItem('token'),
+    onSuccess: (data) => onSuccessUpdateEmail(data, isCompany, params.email),
+    onFailure: onFailed,
+    label: 'UPDATE_EMAIL',
+    requireErrorMessage: true
+  });
+}
+function onSuccessUpdateEmail(data, isCompany, newEmail) {
+  openNotification('success', successMessages[localStorage.getItem('i18nextLng')].updateEmail)
+  return {
+    type: 'UPDATE_EMAIL',
+    isCompany: isCompany,
+    newEmail: newEmail
+  }
+}
+/////////////////////////////////////////////// ACTIVATE_EMAIL_ACTION
+export function activateEmail(id, token) {
+  return apiAction({
+    url: APIROUTE + `account/profile/activate/email/${id}/${token}/`,
+    // method: 'POST',
+    accessToken: localStorage.getItem('token'),
+    onSuccess: onSuccessActivateEmail,
+    onFailure: onFailed,
+    label: 'ACTIVATE_EMAIL',
+    requireErrorMessage: true
+  });
+}
+function onSuccessActivateEmail(data) {
+  return {
+    type: ''
+  }
+}
 
 function apiAction({
   url = "",

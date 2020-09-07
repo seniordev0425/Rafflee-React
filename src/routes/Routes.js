@@ -11,6 +11,7 @@ import Dashboard from '../screens/Dashboard'
 import MyCircle from '../screens/MyCircle'
 import CampaignDetail from '../screens/CampaignDetail'
 import ProfileActivated from '../screens/ProfileActivated'
+import ActivateEmail from '../screens/ActivateEmail'
 import ResetPassword from '../screens/ResetPassword'
 import SearchResult from '../screens/SearchResult'
 import PrivacyPolicy from '../screens/PrivacyPolicy'
@@ -147,6 +148,7 @@ function Routes(props) {
         <Route exact path="/about" component={About} />
         <Route exact path="/deals" component={Deals} />
         <Route exact path="/profile/activate/:id/:token" component={ProfileActivated} />
+        <Route exact path="/profile/email/activate/:id/:token" component={ActivateEmail} />
         <Route exact path="/reset-password/:token/:id" component={ResetPassword} />
         <Route exact path="/search-result" component={SearchResult} />
         <Route exact path="/general-conditions" component={GeneralConditions} />

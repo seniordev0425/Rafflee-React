@@ -126,13 +126,13 @@ function SetupSection(props) {
                 </div>
                 {params.promotion_picture &&
                   <>
-                    <img className="profile-img" src={params.promotion_picture} alt="" />
+                    <img className="upload-profile-img" src={params.promotion_picture} alt="" />
                     <div>
                       <Button
                         onClick={handleImageCropModal}
                         type="primary"
                         className="ant-blue-btn mt-2"
-                        style={{ width: 100, height: 30, fontSize: '1rem', lineHeight: 1 }}
+                        style={{ width: 205, height: 30, fontSize: '1rem', lineHeight: 1 }}
                       >
                         {t('button_group.edit')}
                       </Button>

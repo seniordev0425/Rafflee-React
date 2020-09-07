@@ -105,7 +105,8 @@
     "close": "FERMER",
     "validate": "Valider",
     "validated": "Validé",
-    "confirm_tweet": "Confirmez le Tweet"
+    "confirm_tweet": "Confirmez le Tweet",
+    "resend_verification_email": "Resend Email"
   },
   "homepage": {
     "hot_new_contest_everyday": "Des raffles et giveaways tous les jours.",
@@ -154,7 +155,8 @@
     "instagram_connect": "CONNEXION AVEC INSTAGRAM",
     "instagram_connected": "CONNECTÉ AVEC INSTAGRAM",
     "steam_connect": "CONNEXION AVEC STEAM",
-    "steam_connected": "CONNECTÉ AVEC STEAM"
+    "steam_connected": "CONNECTÉ AVEC STEAM",
+    "verify_your_email": "Verify email address"
   },
   "campaign_detail_page": {
     "giveaways": "CADEAUX",
@@ -234,7 +236,8 @@
     "prize_description": "Le gagnant recevra un des prix ci-dessous:",
     "the_prize": "Les prix",
     "chance_winning_prize": "Chance of winning the prize",
-    "action_left": "ACTION LEFT"
+    "action_left": "ACTION LEFT",
+    "mandatory_action_left": "MANDATORY ACTION LEFT"
   },
   "my_campaign_page": {
     "live_page": "Live Page",
@@ -433,6 +436,10 @@
     "successfully_activated": "Ton compte a été activé",
     "goto_login": "Va à la page d'accueil pour t'identifier!"
   },
+  "activate_email_page": {
+    "successfully_activated": "Your account has been activated",
+    "failed": "Something went wrong. Please try again later"
+  },
   "search_result_page": {
     "search": "Recherche",
     "search_placeholder": "Recherche de nom, description, entreprise ..."
@@ -559,6 +566,11 @@
     "name": "Nom",
     "number_of_eligible_people": "Nombre de lots gagnants",
     "description": "Description"
+  },
+  "update_email_modal": {
+    "enter_email": "Enter your email address",
+    "new_email": "New email",
+    "verify_email": "Verify Email"
   },
   "required": "Obligatoire",
   "in_progress": "En cours de creation"

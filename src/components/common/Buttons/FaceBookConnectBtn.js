@@ -20,7 +20,7 @@ function FaceBookConnectBtn(props) {
     <Row className={connected ? "not-allowed" : "pointer"}>
       <Col xs="2" className="pl-0 pr-0 fb-icon-container1">
         f
-            </Col>
+      </Col>
       <Col xs="10" className="pl-0 pr-0 fb-icon-container2">
         {FACEBOOK_CONNECT_PROCESS ? <Spinner /> : connected ? t('account_page.facebook_connected') : t('account_page.facebook_connect')}
       </Col>
@@ -38,7 +38,7 @@ function FaceBookConnectBtn(props) {
   return (
     <FacebookLogin
       appId={FACEBOOK_APP_ID}
-      fields="email,user_likes,user_posts,user_gender,publish_to_groups,groups_access_member_info"
+      fields="public_profile,email,pages_show_list,pages_read_engagement"
       callback={responseFacebook}
       render={renderProps => (
         <div onClick={connected ? null : renderProps.onClick}><CustomButton /></div>
