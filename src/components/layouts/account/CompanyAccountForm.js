@@ -52,7 +52,7 @@ function CompanyAccountForm() {
   const dispatch = useDispatch()
 
   const [initialPhoneNum, setInitialPhoneNum] = useState({ phone_number: null, phone_country: null })
-  const [countryName, setCountryName] = useState('')
+  const [countryCode, setCountryCode] = useState('')
   const [imgBase64Data, setImgBase64Data] = useState('')
   const [username, setUsername] = useState('') // this value is for update of username in header
   const [openDeleteModal, setOpenDeleteModal] = useState(false)
@@ -63,7 +63,12 @@ function CompanyAccountForm() {
   const handleImageCropModal = () => setOpenImageCropModal(!openImageCropModal)
   const handleUpdateEmailModal = () => setOpenUpdateEmailModal(!openUpdateEmailModal)
 
-  const { logo, country_code, national_number, country } = companyProfile
+  const { 
+    logo, 
+    country_code, 
+    national_number, 
+    prefix_number 
+  } = companyProfile
 
   useEffect(() => {
     ///////////////////////////////////////////// Load company profile data
@@ -73,10 +78,9 @@ function CompanyAccountForm() {
   useEffect(() => {
     ///////////////////////////////////////////// Initialize phone number and country name
     var tmpNum = {}
-    tmpNum.phone_country = country_code
+    tmpNum.phone_country = prefix_number
     tmpNum.phone_number = national_number
     setInitialPhoneNum(tmpNum)
-    setCountryName(country)
   }, [companyProfile])
 
   useEffect(() => {
@@ -113,7 +117,7 @@ function CompanyAccountForm() {
     formdata.append("username", values.username)
     formdata.append("phone_number", values.phonenumber.phone_number)
     formdata.append("prefix_number", values.phonenumber.phone_country)
-    formdata.append("country", countryName || '')
+    formdata.append("country", countryCode)
     formdata.append("region", values.postal_code || '')
     formdata.append("address", values.address || '')
     formdata.append("city", values.street || '')
@@ -124,7 +128,7 @@ function CompanyAccountForm() {
   }
 
   const onSelectFlag = (countryCode) => {
-    setCountryName(getName(countryCode))
+    setCountryCode(countryCode)
   }
 
   ///////////////////////////////////////////// Callback function that is called whenever profile picture changes
@@ -244,7 +248,7 @@ function CompanyAccountForm() {
                     <div className="footer-link-bold mb-3">{t('account_page.country')}</div>
                     <ReactFlagsSelect
                       onSelect={onSelectFlag}
-                      defaultCountry={getCode(country || 'France')}
+                      defaultCountry={country_code || 'FR'}
                       searchable={true}
                       className="menu-flags"
                       name="country"

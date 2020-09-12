@@ -66,16 +66,16 @@ function HeaderBeforeLogin() {
               {t('header.campaigns')}
             </span>
           </Link>
-          <Link to=''>
+          <div>
             <span className="mx-3 font-weight-bold header-btn" onClick={() => toggle(true)}>
               {t('header.log_in')}
             </span>
-          </Link>
-          <Link to=''>
+          </div>
+          <div>
             <span className="mx-3 font-weight-bold header-btn" onClick={() => toggle(false)}>
               {t('header.sign_in')}
             </span>
-          </Link>
+          </div>
         </Row>
       ) : (
           <>

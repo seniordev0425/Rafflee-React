@@ -63,7 +63,7 @@ function UserAccountForm() {
 
   const { Option } = Select
 
-  const [countryName, setCountryName] = useState('')
+  const [countryCode, setCountryCode] = useState('')
   const [initialPhoneNum, setInitialPhoneNum] = useState({ phone_number: null, phone_country: null })
   const [verifyPhoneNumber, setVerifyPhoneNumber] = useState('')
   const [initialDate, setInitialDate] = useState('1970-01-01')
@@ -82,10 +82,11 @@ function UserAccountForm() {
   const handleUpdateEmailModal = () => setOpenUpdateEmailModal(!openUpdateEmailModal)
 
   const {
-    country_code,
+    prefix_number,
     national_number,
     profile_picture,
-    birth_date, country,
+    birth_date, 
+    country_code,
     gender
   } = userProfile
 
@@ -104,13 +105,12 @@ function UserAccountForm() {
   useEffect(() => {
     ///////////////////////////////////////////// Initialize phone number, country name and gender
     var tmpNum = {}
-    tmpNum.phone_country = country_code
+    tmpNum.phone_country = prefix_number
     tmpNum.phone_number = national_number
     setInitialPhoneNum(tmpNum)
     setVerifyPhoneNumber(tmpNum)
 
     if (birth_date) setInitialDate(birth_date)
-    setCountryName(country)
     setGenderState(gender)
   }, [userProfile])
 
@@ -147,7 +147,7 @@ function UserAccountForm() {
     formdata.append("profile_picture", blob)
     formdata.append("phone_number", values.phonenumber.phone_number)
     formdata.append("prefix_number", values.phonenumber.phone_country)
-    formdata.append("country", countryName || '')
+    formdata.append("country", countryCode)
     formdata.append("birth_date", initialDate)
     formdata.append("username", values.username)
     formdata.append("first_name", values.first_name)
@@ -167,7 +167,7 @@ function UserAccountForm() {
   }
 
   const onSelectFlag = (countryCode) => {
-    setCountryName(getName(countryCode))
+    setCountryCode(countryCode)
   }
 
   ///////////////////////////////////////////// Callback function that is called whenever profile picture changes
@@ -319,7 +319,7 @@ function UserAccountForm() {
                     <div className="footer-link-bold mb-3">{t('account_page.country')}</div>
                     <ReactFlagsSelect
                       onSelect={onSelectFlag}
-                      defaultCountry={getCode(country || 'France')}
+                      defaultCountry={country_code || 'FR'}
                       searchable={true}
                       className="menu-flags"
                       name="country"

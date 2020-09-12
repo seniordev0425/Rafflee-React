@@ -12,10 +12,11 @@ const initialFeedState = {
   ///////////////////////////////////////////// This state is a profile data of common user account
   userProfile: {
     address: '',
+    prefix_number: '',
     national_number: '',
     email: '',
     city: '',
-    country: '',
+    country_name: '',
     country_code: '',
     gender: '',
     profile_picture: '',
@@ -39,13 +40,14 @@ const initialFeedState = {
   ///////////////////////////////////////////// This state is a profile data of company account
   companyProfile: {
     city: '',
+    prefix_number: '',
     national_number: '',
     address: '',
     company_name: '',
-    country: '',
+    country_name: '',
+    country_code: '',
     region: '',
     logo: '',
-    country_code: '',
     email: '',
     twitter: false,
     twitch: false,
