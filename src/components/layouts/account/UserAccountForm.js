@@ -7,7 +7,6 @@ import { Form, FormGroup, Row, Col } from 'reactstrap'
 import { Select, Button, Spin } from 'antd'
 import ImageUploader from 'react-images-upload'
 import ReactFlagsSelect from 'react-flags-select'
-import { getCode, getName } from 'country-list'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 import DeleteAccount from '../../modals/DeleteAccount'
@@ -85,7 +84,7 @@ function UserAccountForm() {
     prefix_number,
     national_number,
     profile_picture,
-    birth_date, 
+    birth_date,
     country_code,
     gender
   } = userProfile
@@ -314,18 +313,7 @@ function UserAccountForm() {
                     </Select>
                   </FormGroup>
                 </div>
-                <div className="mt-4 half-width">
-                  <FormGroup>
-                    <div className="footer-link-bold mb-3">{t('account_page.country')}</div>
-                    <ReactFlagsSelect
-                      onSelect={onSelectFlag}
-                      defaultCountry={country_code || 'FR'}
-                      searchable={true}
-                      className="menu-flags"
-                      name="country"
-                    />
-                  </FormGroup>
-                </div>
+
                 <div className="mt-4 half-width">
                   <FormGroup>
                     <div className="footer-link-bold mb-3">{t('account_page.birth_date')}</div>
@@ -339,6 +327,18 @@ function UserAccountForm() {
                 </div>
               </Col>
               <Col xs="12" sm="6">
+                <div className="mt-4 half-width">
+                  <FormGroup>
+                    <div className="footer-link-bold mb-3">{t('account_page.country')}</div>
+                    <ReactFlagsSelect
+                      onSelect={onSelectFlag}
+                      defaultCountry={country_code || 'FR'}
+                      searchable={true}
+                      className="menu-flags"
+                      name="country"
+                    />
+                  </FormGroup>
+                </div>
                 <div className="mt-4" style={{ width: "100%" }}>
                   <FormGroup>
                     <div className="footer-link-bold mb-3">{t('account_page.address')}</div>
@@ -409,7 +409,8 @@ function UserAccountForm() {
                             ?
                             <Button
                               type="primary"
-                              className="ant-blue-btn w-50"
+                              className="ant-blue-btn"
+                              style={{ width: 200 }}
                               onClick={handleUpdateEmailModal}
                             >
                               {t('button_group.update')}
@@ -417,7 +418,8 @@ function UserAccountForm() {
                             :
                             <Button
                               type="primary"
-                              className="ant-blue-btn w-75"
+                              className="ant-blue-btn"
+                              style={{ width: 200 }}
                               onClick={() => updateEmailAddress(userProfile.email)}
                               loading={UPDATE_EMAIL_PROCESS}
                             >

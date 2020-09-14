@@ -27,6 +27,9 @@ import LoadingPage from '../components/common/LoadingPage'
 import ScrollToTop from '../components/common/ScrollToTop'
 import InProgress from '../screens/InProgress'
 import NotFound from '../components/common/NotFound'
+
+import AdminRoutes from './AdminRoutes'
+
 import { openNotification } from '../utils/notification'
 
 import { verifyToken } from '../apis/apiCalls'
@@ -42,6 +45,8 @@ function Routes(props) {
 
   const token = useSelector(state => state.userInfo.token)
   const company = useSelector(state => state.userInfo.company)
+  const is_admin = useSelector(state => state.userInfo.is_admin)
+
   const AUTH_ERROR = useSelector(state => state.userInfo.AUTH_ERROR)
 
   const dispatch = useDispatch()
@@ -88,6 +93,7 @@ function Routes(props) {
     // Load remember token
     const rememberToken = localStorage.getItem('token')
     const rememberCompany = localStorage.getItem('company')
+    const rememberAdmin = localStorage.getItem('is_admin')
 
     if (!rememberToken) {
       return
@@ -99,7 +105,14 @@ function Routes(props) {
         .then(result => {
           var json_rlt = JSON.parse(result)
           if (json_rlt.token) {
-            dispatch({ type: "LOG_IN_SUCCESS", data: { token: rememberToken, company: rememberCompany === 'true' } })
+            dispatch({
+              type: "LOG_IN_SUCCESS",
+              data: {
+                token: rememberToken,
+                company: rememberCompany === 'true',
+                is_admin: rememberAdmin === 'true'
+              }
+            })
           }
           else {
             localStorage.removeItem('token')
@@ -143,7 +156,12 @@ function Routes(props) {
         !online && openNotification('warning', 'No internet connection detected. Make sure Wi-Fi or mobile data is turned on, then try again.')
       }
       <Switch>
-        <Route exact path="/" component={Home} />
+        {is_admin && <Redirect exact from="/" to="/admin" />}
+        {is_admin && <Route path="/admin" component={AdminRoutes} />}
+
+        {!is_admin && <Redirect from="/admin" to="/" />}
+        {!is_admin && <Route exact path="/" component={Home} />}
+        
         <Route exact path="/campaign-detail/:id" component={CampaignDetail} />
         <Route exact path="/about" component={About} />
         <Route exact path="/deals" component={Deals} />
@@ -159,22 +177,22 @@ function Routes(props) {
         <Route exact path="/instagram/connect/" component={InstagramAuthPage} />
         <Route exact path="/participation-result/:id" component={ParticipationResult} />
         <Route exact path="/report" component={Report} />
-        {token &&
+        {(token && !is_admin) &&
           <Route exact path="/user-account/:menu" component={UserAccount} />
         }
-        {token &&
+        {(token && !is_admin) &&
           <Route exact path="/dashboard/:menu" component={Dashboard} />
         }
-        {token &&
+        {(token && !is_admin) &&
           <Route exact path="/my-circle" component={MyCircle} />
         }
-        {!token &&
+        {(!token && !is_admin) &&
           <Redirect exact from="/user-account/:menu" to="/" />
         }
-        {!token &&
+        {(!token && !is_admin) &&
           <Redirect exact from="/dashboard/:menu" to="/" />
         }
-        {!token &&
+        {(!token && !is_admin) &&
           <Redirect exact from="/my-circle" to="/" />
         }
 

@@ -67,7 +67,9 @@
     "settings": "Settings",
     "password": "Password",
     "deactivate": "Désactiver",
-    "wall": "Wall"
+    "wall": "Wall",
+    "business_create": "Business Creation",
+    "campaigns": "Campaigns"
   },
   "empty_result_to_display": "Aucuns résultats",
   "button_group": {
@@ -432,6 +434,20 @@
     "select_publication": "Sélectionnez une publication",
     "model": "Entrez un model"
   },
+  "business_create_page": {
+    "entity_name": "Entity name",
+    "entity_name_required": "Entity name required",
+    "username": "Username",
+    "username_required": "Username is required",
+    "email": "Email",
+    "enter_valid_email":"Enter a valid email address",
+    "password": "Password",
+    "password_required":"Password is required",
+    "password_confirm": "Password confirm",
+    "entity_type": "Entity type",
+    "company": "Company",
+    "influencer": "Influencer"
+  },
   "profile_activated_page": {
     "successfully_activated": "Ton compte a été activé",
     "goto_login": "Va à la page d'accueil pour t'identifier!"
@@ -573,5 +589,62 @@
     "verify_email": "Verify Email"
   },
   "required": "Obligatoire",
-  "in_progress": "En cours de creation"
+  "in_progress": "En cours de creation",
+  "helmets": {
+    "home": {
+      "title": "Rafflee | Les meilleurs jeux-concours & giveaways",
+      "meta1": {
+        "name": "Participez gratuitement aux jeux-concours Rafflee organisés par vos influenceurs favoris et tentez de remporter les meilleurs giveaways !",
+        "content": "texte"
+      },
+      "meta2": {
+        "name": "Rafflee, jeux concours, giveaways, jeu concours, giveaway, influenceur, jeu concours gratuit, jeu concours instagram, jeu concours Facebook, campagne influenceur, jeux concours gratuits, tirage au sort",
+        "content": "mots clés"
+      }
+    },
+    "about": {
+      "title": "Rafflee | Découvrez la nouvelle plateforme de jeux-concours",
+      "meta1": {
+        "name": "Vous souhaitez en savoir plus sur nos jeux-concours, nos tirages au sort et nos giveaways ?  Rafflee : la plateforme de jeux-concours influenceurs x Marques.",
+        "content": "texte"
+      },
+      "meta2": {
+        "name": "jeux concours, giveaways, giveaway, jeu concours, comment gagner un jeu concours, jeu concours gratuit, jeux concours influenceurs, tirage au sort",
+        "content": "mots clés"
+      }
+    },
+    "influencer": {
+      "title": "Rafflee | Influenceurs, créez de nouveaux partenariats",
+      "meta1": {
+        "name": "Profitez de Rafflee pour organiser des partenariats avec les marques à travers des jeux-concours gratuits. Un bon moyen de remercier votre communauté !",
+        "content": "texte"
+      },
+      "meta2": {
+        "name": "partenariats marques influenceurs, augmenter sa communauté, influenceurs, giveaway, giveaway influenceur, jeux-concours influenceur, influence, augmenter notoriété",
+        "content": "mots clés"
+      }
+    },
+    "entreprise": {
+      "title": "Rafflee | Marques, engagez votre communauté !",
+      "meta1": {
+        "name": "Améliorer votre audience et développez votre communauté avec des partenariats sur-mesure avec des influenceurs ! Créer du trafic n'a jamais été aussi simple.",
+        "content": "texte"
+      },
+      "meta2": {
+        "name": "marketing digital, partenariat influenceurs, jeux concours influenceurs, campagnes de publicité, growth marketing, développer communauté, Influenceurs, augmenter notoriété",
+        "content": "mots clés"
+      }
+    },
+    "campaign": {
+      "title": "Rafflee | Les giveaways à ne pas louper !",
+      "meta1": {
+        "name": "Consultez les jeux-concours en cours pour ne pas passer à côté de superbes giveaways. Mettez en favoris les prochains évènements pour être alerté.",
+        "content": "texte"
+      },
+      "meta2": {
+        "name": "Rafflee, jeux concours, giveaways, jeu concours, giveaway, influenceur, jeu concours gratuit, jeu concours instagram, jeu concours Facebook, campagne influenceur, jeux concours gratuits, tirage au sort, jeu concours influenceur",
+        "content": "mots clés"
+      }
+    }
+  }
 }

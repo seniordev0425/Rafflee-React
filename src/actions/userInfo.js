@@ -53,10 +53,11 @@ function onSuccessLogIn(data, rememberMe) {
   openNotification('success', successMessages[localStorage.getItem('i18nextLng')].logIn)
   localStorage.setItem('token', data.token)
   localStorage.setItem('company', data.company)
-  if (rememberMe) {
-    localStorage.setItem('token', data.token)
-    localStorage.setItem('company', data.company)
-  }
+  localStorage.setItem('is_admin', data.is_admin)
+  // if (rememberMe) {
+  //   localStorage.setItem('token', data.token)
+  //   localStorage.setItem('company', data.company)
+  // }
   return {
     type: 'LOG_IN_SUCCESS',
     data: data
@@ -765,6 +766,25 @@ export function activateEmail(id, token) {
   });
 }
 function onSuccessActivateEmail(data) {
+  return {
+    type: ''
+  }
+}
+/////////////////////////////////////////////// COMPANY_REGISTER_ACTION
+export function companyRegister(params) {
+  return apiAction({
+    url: APIROUTE + `company/register/`,
+    data: qs.stringify(params),
+    method: 'POST',
+    accessToken: localStorage.getItem('token'),
+    onSuccess: onSuccessCompanyRegister,
+    onFailure: onFailed,
+    label: 'COMPANY_REGISTER',
+    requireErrorMessage: true
+  });
+}
+function onSuccessCompanyRegister(data) {
+  openNotification('success', successMessages[localStorage.getItem('i18nextLng')].companyRegister)
   return {
     type: ''
   }

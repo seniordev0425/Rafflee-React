@@ -6,7 +6,7 @@
     "sign_in": "Register",
     "log_in": "Login",
     "account": "Account",
-    "dashboard": "My profile",
+    "dashboard": "Dashboard",
     "inventory": "Inventory",
     "log_out": "Logout",
     "about": "About"
@@ -67,7 +67,9 @@
     "settings": "Settings",
     "password": "Password",
     "deactivate": "Deactivate",
-    "wall": "Wall"
+    "wall": "Wall",
+    "business_create": "Business Creation",
+    "campaigns": "Campaigns"
   },
   "empty_result_to_display": "There is no result to display.",
   "button_group": {
@@ -436,6 +438,23 @@
     "select_publication": "Select Publication",
     "model": "Enter Model"
   },
+  "business_create_page": {
+    "entity_name": "Entity name",
+    "entity_name_required": "Entity name required",
+    "username": "Username",
+    "username_required": "Username is required",
+    "email": "Email",
+    "enter_valid_email":"Enter a valid email address",
+    "password": "Password",
+    "password_required":"Password is required",
+    "password_confirm": "Password confirm",
+    "entity_type": "Entity type",
+    "company": "Company",
+    "influencer": "Influencer"
+  },
+  "admin_campaigns_page": {
+    "search_placeholder": "Search by company, influencer"
+  },
   "profile_activated_page": {
     "successfully_activated": "Your account has been activated",
     "goto_login": "Go to Homepage and Login!"
@@ -577,5 +596,62 @@
     "verify_email": "Verify Email"
   },
   "required": "Required",
-  "in_progress": "In progress"
+  "in_progress": "In progress",
+  "helmets": {
+    "home": {
+      "title": "Rafflee | The best contests & giveaways",
+      "meta1": {
+        "name": "Participate for free in the Rafflee contests organized by your favorite influencers and try to win the best giveaways !",
+        "content": "texte"
+      },
+      "meta2": {
+        "name": "Rafflee, quizzes, giveaways, giveaway, influencers, free competition game, jeu Instagram contest, Facebook contest, influencer campaign, free contests, draw",
+        "content": "keywords"
+      }
+    },
+    "about": {
+      "title": "Rafflee | Discover the new competition platform",
+      "meta1": {
+        "name": "Would you like to know more about our contests, our raffles and our giveaways? Rafflee: the influencer x Marques competition platform.",
+        "content": "texte"
+      },
+      "meta2": {
+        "name": "quizzes, giveaways, giveaway, how to win a contest, free competition game, influencer contests, draw",
+        "content": "keywords"
+      }
+    },
+    "influencer": {
+      "title": "Rafflee | Influencers, create new partnerships",
+      "meta1": {
+        "name": "Take advantage of Rafflee to organize partnerships with brands through free contests. A good way to thank your community!",
+        "content": "texte"
+      },
+      "meta2": {
+        "name": "influencer brands partnerships, increase your community, influencers, giveaway, giveaway influencers, influencer contests, affecting, increase notoriety",
+        "content": "keywords"
+      }
+    },
+    "entreprise": {
+      "title": "Rafflee | Brands, engage your community !",
+      "meta1": {
+        "name": "Improve your audience and develop your community with tailor-made partnerships with influencers! Building traffic has never been easier.",
+        "content": "texte"
+      },
+      "meta2": {
+        "name": "digital marketing, influencer partnership, influencer contests, advertising campaigns, growth marketing, develop community, Influencers, increase notoriety",
+        "content": "keywords"
+      }
+    },
+    "campaign": {
+      "title": "Rafflee | The giveaways not to be missed !",
+      "meta1": {
+        "name": "Consult the competitions in progress so as not to miss out on superb giveaways. Bookmark upcoming events to be alerted.",
+        "content": "texte"
+      },
+      "meta2": {
+        "name": "Rafflee, quizzes, giveaways, giveaway, influencer, free competition game, instagram contest, facebook contest, influencer campaign, draw, influencer contest",
+        "content": "keywords"
+      }
+    }
+  }
 }

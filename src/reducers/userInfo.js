@@ -6,6 +6,9 @@ const initialFeedState = {
   ///////////////////////////////////////////// This state is a company status of account
   company: false,
 
+  ///////////////////////////////////////////// This state is a admin status of account
+  is_admin: false,
+
   ///////////////////////////////////////////// This state is an ip address of device
   ip: '1.1.1.1',
 
@@ -55,6 +58,14 @@ const initialFeedState = {
     instagram: false,
     instagram_business: false,
     facebook: false,
+    username: '',
+    email_verified: false
+  },
+
+  ///////////////////////////////////////////// This state is a profile data of admin account
+  adminProfile: {
+    email: '',
+    profile_picture: '',
     username: '',
     email_verified: false
   },
@@ -184,7 +195,8 @@ function UserInfo(state = initialFeedState, action) {
       return {
         ...state,
         token: action.data.token,
-        company: action.data.company
+        company: action.data.company,
+        is_admin: action.data.is_admin
       }
     case 'DELETE_ACCOUNT_SUCCESS':
       return {

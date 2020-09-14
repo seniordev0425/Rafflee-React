@@ -4,7 +4,6 @@ import { Form as FinalForm, Field } from 'react-final-form'
 import { Form, FormGroup, Row, Col } from 'reactstrap'
 import { Button, Spin } from 'antd'
 import ReactFlagsSelect from 'react-flags-select'
-import { getCode, getName } from 'country-list'
 import ImageUploader from 'react-images-upload'
 import debounce from 'lodash/debounce'
 import { OnChange } from 'react-final-form-listeners'
@@ -63,11 +62,11 @@ function CompanyAccountForm() {
   const handleImageCropModal = () => setOpenImageCropModal(!openImageCropModal)
   const handleUpdateEmailModal = () => setOpenUpdateEmailModal(!openUpdateEmailModal)
 
-  const { 
-    logo, 
-    country_code, 
-    national_number, 
-    prefix_number 
+  const {
+    logo,
+    country_code,
+    national_number,
+    prefix_number
   } = companyProfile
 
   useEffect(() => {
@@ -242,7 +241,8 @@ function CompanyAccountForm() {
                     />
                   </FormGroup>
                 </div>
-
+              </Col>
+              <Col xs="12" sm="6">
                 <div className="mt-4 half-width">
                   <FormGroup>
                     <div className="footer-link-bold mb-3">{t('account_page.country')}</div>
@@ -255,9 +255,6 @@ function CompanyAccountForm() {
                     />
                   </FormGroup>
                 </div>
-
-              </Col>
-              <Col xs="12" sm="6">
                 <div className="mt-4" style={{ width: "100%" }}>
                   <FormGroup>
                     <div className="footer-link-bold mb-3">{t('account_page.address')}</div>
@@ -307,7 +304,7 @@ function CompanyAccountForm() {
                       }
                     </div>
                     <div className="d-xl-flex d-block justify-content-between">
-                      <div className="w-xl-50 w-100">
+                      <div className="w-100">
                         <Field
                           name="email"
                           defaultValue={companyProfile.email}
@@ -322,13 +319,14 @@ function CompanyAccountForm() {
                           disabled
                         />
                       </div>
-                      <div className="w-xl-50 w-100 mt-xl-0 mt-3">
+                      <div className="w-100 mt-xl-0 mt-3">
                         <div className="d-flex justify-content-end">
                           {companyProfile.email_verified
                             ?
                             <Button
                               type="primary"
-                              className="ant-blue-btn w-50"
+                              className="ant-blue-btn"
+                              style={{ width: 200 }}
                               onClick={handleUpdateEmailModal}
                             >
                               {t('button_group.update')}
@@ -336,7 +334,8 @@ function CompanyAccountForm() {
                             :
                             <Button
                               type="primary"
-                              className="ant-blue-btn w-75"
+                              className="ant-blue-btn"
+                              style={{ width: 200 }}
                               onClick={() => updateEmailAddress(companyProfile.email)}
                               loading={UPDATE_EMAIL_PROCESS}
                             >
@@ -349,7 +348,7 @@ function CompanyAccountForm() {
                   </FormGroup>
                 </div>
 
-                <div className="mt-4 w-100">
+                <div className="mt-4 half-width">
                   <FormGroup>
                     <div className="footer-link-bold mb-3">{t('account_page.phone_number')}</div>
                     <Field
@@ -360,7 +359,7 @@ function CompanyAccountForm() {
                     />
                   </FormGroup>
                 </div>
-                <div className="upload-btn">
+                <div className="d-flex justify-content-end mt-5">
                   <Button
                     disabled={!usernameCheckedStatus}
                     htmlType='submit'

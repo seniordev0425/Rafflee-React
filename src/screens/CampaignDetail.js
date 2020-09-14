@@ -5,6 +5,7 @@ import { Row, Col, Progress } from 'reactstrap'
 import { Button } from 'antd'
 import moment from 'moment'
 import AppLayout from '../components/layouts/AppLayout'
+import CampaignHelmet from '../components/common/Helmets/CampaignHelmet'
 import images from '../utils/images'
 import CustomCollapsePanel from '../components/common/CustomCollapsePanel'
 import CustomCollapsePanelForPoll from '../components/common/CustomCollapsePanelForPoll'
@@ -326,6 +327,7 @@ function CampaignDetail(props) {
 
   return (
     <AppLayout>
+      <CampaignHelmet />
       <Row className="mt-0 mt-sm-5">
         <Col xs="12" sm={{ size: 10, offset: 1 }} className="padding-x">
           <Row className="px-3 mt-5">

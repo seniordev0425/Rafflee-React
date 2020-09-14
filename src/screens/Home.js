@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import AppLayout from '../components/layouts/AppLayout'
+import HomeHelmet from '../components/common/Helmets/HomeHelmet'
 import Banner from '../components/layouts/Banner'
 import Carousel from '../components/layouts/hotPromotionLayout/Carousel'
 import CurrentPromotionList from '../components/layouts/currentPromotionLayout/CurrentPromotionLIst'
@@ -21,13 +22,13 @@ function Home() {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    document.title = "Home"
     dispatch(getHotPromotions({ token: token }))
     dispatch(getHighlightedPromotions({ token: token }))
   }, [])
 
   return (
     <AppLayout>
+      <HomeHelmet />
       <div>
         <Banner />
         <div className="hot-new-text banner-text">
