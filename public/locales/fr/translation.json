@@ -38,6 +38,23 @@
     "giveaways": "cadeaux",
     "for_you": "gratuits pour vous."
   },
+  "lower_banner": {
+    "title": "We are the contest platform that everyone wants.",
+    "description1": "Free, simple and secure participation.",
+    "description2": "Effective prize draws and beautiful giveaways!",
+    "how_it_work": "How it works"
+  },
+  "about_page_banner": {
+    "platform_for": "The platform for",
+    "competition&giveaways": "competitions and giveaways",
+    "description1": "Rafflee is a raffle platform that run contests and distribute gifts. We are the first platform for contests between brands and influencers to reward their communities.",
+    "description2": "Our contests are completely free!"
+  },
+  "career_page_banner": {
+    "build_grow_together": "Build together. Grow together.",
+    "description1": "Like us, do you like giveaways and contests that put the extra in the ordinary? Social networks and contact with influencers and / or companies? Like us, do you like to embellish routines, surprise and make people smile by bringing gifts and a good mood?",
+    "description2": "Then Rafflee is for you!"
+  },
   "menubar": {
     "all": "Tous",
     "highlights": "À la une",
@@ -108,7 +125,11 @@
     "validate": "Valider",
     "validated": "Validé",
     "confirm_tweet": "Confirmez le Tweet",
-    "resend_verification_email": "Resend Email"
+    "resend_verification_email": "Resend Email",
+    "see_more": "See more",
+    "submit": "Submit",
+    "back_to_job_opening": "Back to Job openings",
+    "apply_for_job": "Apply for this Job"
   },
   "homepage": {
     "hot_new_contest_everyday": "Des raffles et giveaways tous les jours.",
@@ -482,6 +503,63 @@
     "show_instagram": "Instagram Wall",
     "show_facebook": "Facebook Wall"
   },
+  "about_page": {
+    "description1": "Our goal is to highlight the products of our partners.",
+    "description2": "Holding a raffle and winning freebies is a fantastic way to show a community that they are appreciated.",
+    "description3": "The Raffle draw, the assurance of an open-ended competition.",
+    "description4": "The principle of the draw is based on fairness: everyone has their chances, just perform the actions determined in the competition.",
+    "description5": "Our team makes the difference.",
+    "description6": "Looking for new challenges? Join the Rafflee team and be part of the adventure."
+  },
+  "faq_page": {
+    "faq": "FAQ",
+    "description1": "Easily use our platform to incentivize new product giveaways, drive coupon downloads, drive email list signups or even allow customers to answer to a poll.",
+    "question1": "Qu’est-ce que Raffle ?",
+    "answer1": "Rafflee c’est la plateforme web et mobile qui met en avant les giveaways d'entreprises par des influenceurs pour leurs communautés.",
+    "question2": "Est-ce que Rafflee fonctionne sur mon téléphone ?",
+    "answer2": "Rafflee est disponible sur iOS et sur Android gratuitement.",
+    "question3": "Qu’est-ce qu’un giveaway ?",
+    "answer3": "Un giveaway c’est l’action de gagner gratuitement un cadeau à la suite d’un jeu-concours.",
+    "question4": "Comment s’effectue le tirage au sort ?",
+    "answer4": "Chaque action effectuée rapporte des points, certaines actions sont obligatoires pour participer. Lorsque les conditions requises ont été remplies, l’utilisateur peut confirmer sa participation. À la date limite, le tirage au sort est effectué par notre algorithme maison. Tout le monde à ses chances. Néanmoins, ceux ayant fait le plus d’actions ont plus de chances de gagner. Il est possible d’enrichir sa participation pour augmenter ses chances de gain jusqu’à la date butoir précédant le tirage au sort.",
+    "users": "UTILISATEURS",
+    "question5": "Est-ce que c’est vraiment gratuit ?",
+    "answer5": "Oui, Rafflee est totalement gratuit pour l’utilisateur.",
+    "question6": "Comment s’inscrire à Raffle ? ",
+    "answer6": "Clique ici !",
+    "question7": "Comment mes données sont-elles utilisées ? ",
+    "answer7": "Les données récupérées pour les campagnes sont anonymisées. L'unique donnée communiquée est votre nom d'utilisateur pour vous identifier en cas de victoire. Le numéro de téléphone nous sert à confirmer votre inscription. L'adresse et le numéro de téléphone ne sont en aucun cas communiqués à de tierces personnes, ces données sont utilisées uniquement dans le cadre des envois des giveaways et pour la confirmation de votre inscription.",
+    "question8": "Comment participer à un de nos jeu-concours ? ",
+    "answer8": "Pour participer à nos jeux-concours, en fonction de la campagne, il existe ou non des actions obligatoires à effectuer. Le plus souvent, il s’agit d’actions telles que : liker une page, liker un post, follow un profil, regarder une vidéo, aller sur un site web et bien d'autres. Chaque action rapporte un nombre de points. Plus ce nombre de points est élevé, plus vous avez de chances de remporter le gain.",
+    "influencers_companies": "INFLUENCEURS & ENTREPRISES",
+    "question9": "Comment créer ma campagne de giveaway ?",
+    "register_here": "S'inscrire **ici",
+    "answer9": "en tant que marque ou influenceur. Les entreprises ont un compte particulier permettant de gérer les datas, les campagnes et leurs réseaux. ",
+    "answer10": "Dans le Dashboard, il est possible de créer ses propres campagnes, sélectionner les giveaways à gagner et les actions à effectuer (obligatoires ou non) pour participer.",
+    "answer11": "En fonction du type de campagne sélectionnée, le tirage au sort peut se faire en live ou automatiquement. ",
+    "question12": "Quels-sont les avantages à utiliser Rafflee ? ",
+    "answer12": "Rafflee est le nouveau canal de communication pour votre stratégie digitale. C'est un moyen rapide de développer votre notoriété et d'expérimenter de nouveaux partenariats tout en mesurant l'ampleur de vos campagnes sur vos réseaux sociaux. Rafflee a pour but de valoriser le marketing d’influence par sa plateforme marque/influenceurs."
+  },
+  "career_page": {
+    "available_job_offers": "Available Job Offers",
+    "jobs": "Jobs",
+    "dont_have_job": "We don’t have the job you are looking for?",
+    "suprise_us": "Surprise us with your summary.",
+    "first_name":"First Name",
+    "last_name":"Last Name",
+    "phone": "Phone (Optional)",
+    "email": "Email",
+    "message": "Message",
+    "resume": "Resume",
+    "upload_file": "Upload a file",
+    "description": "Description",
+    "about_you": "About you",
+    "what_you_will_do": "What you'll do",
+    "overview": "Overview",
+    "application": "Application",
+    "summary": "Summary",
+    "coverletter": "Cover Letter (Optional)"
+  },
   "signin_modal": {
     "username": "Nom d'utilisateur",
     "password": "Mot de passe",
@@ -491,9 +569,9 @@
     "password_capital_alert": "Le mot de passe doit contenir une lettre majuscule.",
     "password_number_alert": "Le mot de passe doit contenir un chiffre.",
     "password_length_alert": "Le mot de passe doit contenir au minimum 8 caractères",
-    "i_agree": "Je suis d'accord",
+    "i_agree": "Je suis d'accord avec les",
     "terms_of_use": "conditions d'utilisations",
-    "and": "et",
+    "and": "et la",
     "privacy_policy": "Politique de confidentialité",
     "are_you_company": "Êtes vous une entreprise ?",
     "or": "OU",

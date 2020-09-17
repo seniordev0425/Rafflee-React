@@ -8,7 +8,6 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import {
   FacebookProvider,
   EmbeddedPost,
-  Page,
   Like
 } from 'react-facebook'
 import { isMobile } from 'react-device-detect'

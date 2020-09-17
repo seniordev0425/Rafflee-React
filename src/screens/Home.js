@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom'
 import AppLayout from '../components/layouts/AppLayout'
 import HomeHelmet from '../components/common/Helmets/HomeHelmet'
 import Banner from '../components/layouts/Banner'
+import LowerBanner from '../components/layouts/LowerBanner'
 import Carousel from '../components/layouts/hotPromotionLayout/Carousel'
 import CurrentPromotionList from '../components/layouts/currentPromotionLayout/CurrentPromotionLIst'
 import { getHotPromotions, getHighlightedPromotions } from '../actions/homepage'
@@ -43,6 +44,9 @@ function Home() {
           :
           (<Carousel hotPromotions={hotPromotions} />)
         }
+        <div className="d-flex justify-content-center mb-5">
+          <LowerBanner />
+        </div>
         <CurrentPromotionList />
       </div>
     </AppLayout>

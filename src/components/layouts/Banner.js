@@ -38,8 +38,17 @@ function Banner(props) {
         <span className="banner-text-blue">{t('banner.for_you')}</span>
       </div>
       <div className="banner-search">
-        <Input placeholder={t('banner.search_placeholder')} className="banner-search-input" onChange={(e) => setSearchKey(e.target.value)} onKeyPress={handleKeyPress}></Input>
-        <div className="banner-search-btn" onClick={gotoSearchResult}><FontAwesomeIcon icon={faSearch} className="banner-search-icon" /></div>
+        <Input
+          placeholder={t('banner.search_placeholder')}
+          className="banner-search-input"
+          onChange={(e) => setSearchKey(e.target.value)} onKeyPress={handleKeyPress}>
+        </Input>
+        <div
+          className="banner-search-btn"
+          onClick={gotoSearchResult}
+        >
+          <FontAwesomeIcon icon={faSearch} className="banner-search-icon" />
+        </div>
       </div>
     </div>
   )

@@ -28,6 +28,9 @@ body {
 .color-white {
     color: white;
 }
+.color-black {
+  color: black;
+}
 .color-red {
     color: rgb(255, 0, 24);
 }
@@ -52,8 +55,14 @@ body {
 .font-size-14 {
     font-size: 1.4rem;
 }
+.font-size-15 {
+  font-size: 1.5rem;
+}
 .font-size-16 {
   font-size: 1.6rem;
+}
+.font-size-18 {
+  font-size: 1.8rem;
 }
 .font-size-19 {
     font-size: 1.9rem;
@@ -539,6 +548,11 @@ h2 span {
 }
 .banner-text-blue {
     color: #0091ff;
+}
+.shadow-text-blue {
+  color: #0091ff;
+  text-shadow: 0px 0.5px, 0.5px 0.5px, 0.5px 0px;
+  letter-spacing: 1px;
 }
 .banner-text-green {
     color: #06CBC7;
@@ -1648,5 +1662,118 @@ h2 span {
     position: relative;
     margin-top: 20px;
   }
+}
+.lower-banner {
+  width: 70%;
+  height: 12vw;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: sofiapro;
+  background-image: url('../image/banner_lower.svg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  border-radius: 6px;
+}
+.lower-banner-text {
+  font-size: 30px;
+}
+@media(max-width: 550px) {
+  .lower-banner {
+    width: 95%;
+  }
+  .lower-banner-text {
+      font-size: 20px;
+  }
+}
+.about-page-banner {
+  width: 100%;
+  height: 25vw;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url('../image/about_page/illustration.svg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-color: #fafafa;
+  padding: 10px;
+}
+.about-page-introduction-img {
+  width: 80%;
+}
+@media(max-width: 550px) {
+  .about-page-introduction-img {
+    width: 99%;
+  }
+}
+.faq-page-banner {
+  width: 100%;
+  height: 25vw;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url('../image/faq_page/illustration.svg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-color: #fafafa;
+  padding: 10px;
+}
+.faq-collapse-panel-body {
+  background: #ffffff !important;
+  box-shadow: none !important;
+  width: 100%;
+  border: 1px solid #cccccc9c;
+}
+.career-page-banner {
+  width: 100%;
+  height: 25vw;
+  min-height: 350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url('../image/faq_page/illustration.svg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-color: #fafafa;
+  padding: 10px;
+}
+.dropzone {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: dashed 2px #eeeeee;
+  border-radius: 6px;
+}
+.dropzone:focus {
+  border: dashed 2px #eeeeee !important;
+  outline: none;
+}
+.career-tab-active {
+  padding: 5px;
+  color: #0091ff;
+  border-bottom: 1px solid #0091ff;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+.career-tab {
+  padding: 5px;
+  color: #767B83;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
 }
 

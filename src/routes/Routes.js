@@ -17,6 +17,8 @@ import SearchResult from '../screens/SearchResult'
 import PrivacyPolicy from '../screens/PrivacyPolicy'
 import GeneralConditions from '../screens/GeneralConditions'
 import Report from '../screens/Report'
+import FAQ from '../screens/FAQ'
+import Careers from '../screens/Careers'
 import CompanyPage from '../screens/CompanyPage'
 import ParticipationResult from '../screens/ParticipationResult'
 import TwitterAuthPage from '../screens/SocialAuth/TwitterAuthPage'
@@ -171,12 +173,15 @@ function Routes(props) {
         <Route exact path="/search-result" component={SearchResult} />
         <Route exact path="/general-conditions" component={GeneralConditions} />
         <Route exact path="/privacy-policy" component={PrivacyPolicy} />
+        <Route exact path="/faq" component={FAQ} />
+        <Route exact path="/careers/:menu" component={Careers} />
         <Route exact path="/company/:id" component={CompanyPage} />
         <Route exact path="/twitter/login/callback/" component={TwitterAuthPage} />
         <Route exact path="/twitch/connect/" component={TwitchAuthPage} />
         <Route exact path="/instagram/connect/" component={InstagramAuthPage} />
         <Route exact path="/participation-result/:id" component={ParticipationResult} />
         <Route exact path="/report" component={Report} />
+
         {(token && !is_admin) &&
           <Route exact path="/user-account/:menu" component={UserAccount} />
         }
