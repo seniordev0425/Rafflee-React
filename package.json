@@ -64,6 +64,7 @@
     "react-select-search": "^2.0.4",
     "react-sidebar": "^3.0.2",
     "react-simple-maps": "^1.0.0-beta.0",
+    "react-slick": "0.26",
     "react-telephone-input": "^4.73.4",
     "react-twitter-login": "^1.1.2",
     "react-verification-code-input": "^1.2.3",
@@ -72,6 +73,7 @@
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.8",
     "semantic-ui-react": "^0.88.2",
+    "slick-carousel": "^1.8.1",
     "vanilla-swipe": "^1.1.1",
     "video-react": "^0.14.1"
   },

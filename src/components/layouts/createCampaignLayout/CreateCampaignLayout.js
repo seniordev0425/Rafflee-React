@@ -173,9 +173,6 @@ function CreateCampaignLayout() {
             <Menu.Item key="preview" className="analytics-menuitem" onClick={() => setCurrentSection("preview")}>
               <span className={currentSection === 'preview' ? "ml-3 underline font-weight-bold" : "ml-3"}> {t('menubar.preview')}</span>
             </Menu.Item>
-            <Menu.Item key="payment" className="analytics-menuitem" onClick={() => setCurrentSection("payment")}>
-              <span className={currentSection === 'payment' ? "ml-3 underline font-weight-bold" : "ml-3"}> {t('menubar.payment')}</span>
-            </Menu.Item>
           </Menu>
         </Col>
       </Row>

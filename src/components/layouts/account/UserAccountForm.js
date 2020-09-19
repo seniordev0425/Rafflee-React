@@ -244,7 +244,7 @@ function UserAccountForm() {
                       withIcon={false}
                       withLabel={false}
                       maxFileSize={UPLOAD_MAX_SIZE}
-                      fileSizeError='file size is too big. Max 1MB'
+                      fileSizeError='file size is too big. Max 5MB'
                     />
                   </FormGroup>
                 </div>
@@ -413,7 +413,7 @@ function UserAccountForm() {
                               style={{ width: 200 }}
                               onClick={handleUpdateEmailModal}
                             >
-                              {t('button_group.update')}
+                              {t('button_group.verify_email')}
                             </Button>
                             :
                             <Button

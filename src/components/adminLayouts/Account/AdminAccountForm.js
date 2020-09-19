@@ -112,7 +112,7 @@ const AdminAccountForm = () => {
                       withIcon={false}
                       withLabel={false}
                       maxFileSize={UPLOAD_MAX_SIZE}
-                      fileSizeError='file size is too big. Max 1MB'
+                      fileSizeError='file size is too big. Max 5MB'
                     />
                   </FormGroup>
                 </div>

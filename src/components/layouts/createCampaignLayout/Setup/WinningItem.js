@@ -132,7 +132,7 @@ function WinningItem(props) {
               {t('button_group.prize_image')}
             </Button>
             {exceedMaxSize &&
-              <span style={{ color: 'red' }}>Max file size 1MB.</span>
+              <span style={{ color: 'red' }}>Max file size 5MB.</span>
             }
           </div>
           <FontAwesomeIcon className="remove-winning-icon mt-3" icon={faTrash} onClick={() => removeWinning(id)} />

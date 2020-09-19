@@ -17,6 +17,8 @@ import './assets/css/app.css'
 import './utils/carousel_lib/scss/main.scss'
 import "video-react/dist/video-react.css"
 import 'react-image-crop/dist/ReactCrop.css'
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css"
 import './i18next'
 
 

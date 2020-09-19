@@ -129,7 +129,8 @@
     "see_more": "See more",
     "submit": "Submit",
     "back_to_job_opening": "Back to Job openings",
-    "apply_for_job": "Apply for this Job"
+    "apply_for_job": "Apply for this Job",
+    "verify_email": "Vérifier l'email"
   },
   "homepage": {
     "hot_new_contest_everyday": "Des raffles et giveaways tous les jours.",
@@ -461,9 +462,9 @@
     "username": "Username",
     "username_required": "Username is required",
     "email": "Email",
-    "enter_valid_email":"Enter a valid email address",
+    "enter_valid_email": "Enter a valid email address",
     "password": "Password",
-    "password_required":"Password is required",
+    "password_required": "Password is required",
     "password_confirm": "Password confirm",
     "entity_type": "Entity type",
     "company": "Company",
@@ -545,8 +546,8 @@
     "jobs": "Jobs",
     "dont_have_job": "We don’t have the job you are looking for?",
     "suprise_us": "Surprise us with your summary.",
-    "first_name":"First Name",
-    "last_name":"Last Name",
+    "first_name": "First Name",
+    "last_name": "Last Name",
     "phone": "Phone (Optional)",
     "email": "Email",
     "message": "Message",
@@ -691,16 +692,33 @@
         "content": "mots clés"
       }
     },
-    "influencer": {
-      "title": "Rafflee | Influenceurs, créez de nouveaux partenariats",
-      "meta1": {
-        "name": "Profitez de Rafflee pour organiser des partenariats avec les marques à travers des jeux-concours gratuits. Un bon moyen de remercier votre communauté !",
-        "content": "texte"
+    "influencer_page": {
+      "influencers": "Influencers",
+      "banner_description": "Influencers can easily create campaigns that promote their content on social networks while ensuring legitimacy to their contests.",
+      "start_now": "Start Now",
+      "slider1": {
+        "title": "1. The community:",
+        "text": "By carrying out your campaigns with Rafflee you thank your followers by offering them the possibility of winning giveaways or raffles with fair play contests. In exchange, these will highlight your different content on different social networks. This will ensure better exposure (an increase in your followers on a social network for example) and the satisfaction of a thanked audience!"
       },
-      "meta2": {
-        "name": "partenariats marques influenceurs, augmenter sa communauté, influenceurs, giveaway, giveaway influenceur, jeux-concours influenceur, influence, augmenter notoriété",
-        "content": "mots clés"
-      }
+      "slider2": {
+        "title": "2. The platform:",
+        "text": "Rafflee provides the first growth marketing platform for contests and giveaways. Thanks to our in-house algorithm, we can assure you of a random draw which will give priority to rewarding the most motivated participants. We take care of providing you with as much data as possible (anonymized to protect users) in order to be able to analyze the impact of your campaign on social networks and with your audience."
+      },
+      "slider3": {
+        "title": "3. The commitment:",
+        "text": "Thanks to the connection system with the various social networks, Rafflee guarantees you an exceptional engagement rate. Indeed, the inclusion of new participants in your campaigns is done only if the user has fulfilled all the conditions set beforehand when designing the campaign. Engage your community on your new social network, select the information to highlight by activating the desired actions for your community to participate."
+      },
+      "slider4": {
+        "title": "4. The security of a successful campaign:",
+        "text": "With Rafflee, you ensure a successful and secure campaign. The algorithm draws at random the winners of your contests or your giveaways. This also ensures you a certain distribution of the prizes without cheating. In addition, we check the accuracy of the 'call to action' performed via the connection to the various networks."
+      },
+      "thousands_of_brands": "Thousands of brands ",
+      "trust_us": "trust us.",
+      "get_in_touch": "Get in touch.",
+      "we_reach_out_to_you": "We will reach out to you within 8 working hours.",
+      "subject": "Subject",
+      "business_operation": "Business Operations",
+      "start_your_project": "Start now your project"
     },
     "entreprise": {
       "title": "Rafflee | Marques, engagez votre communauté !",

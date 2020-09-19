@@ -19,6 +19,7 @@ import GeneralConditions from '../screens/GeneralConditions'
 import Report from '../screens/Report'
 import FAQ from '../screens/FAQ'
 import Careers from '../screens/Careers'
+import Influencer from '../screens/Influencer'
 import CompanyPage from '../screens/CompanyPage'
 import ParticipationResult from '../screens/ParticipationResult'
 import TwitterAuthPage from '../screens/SocialAuth/TwitterAuthPage'
@@ -165,22 +166,23 @@ function Routes(props) {
         {!is_admin && <Route exact path="/" component={Home} />}
         
         <Route exact path="/campaign-detail/:id" component={CampaignDetail} />
-        <Route exact path="/about" component={About} />
         <Route exact path="/deals" component={Deals} />
         <Route exact path="/profile/activate/:id/:token" component={ProfileActivated} />
         <Route exact path="/profile/email/activate/:id/:token" component={ActivateEmail} />
         <Route exact path="/reset-password/:token/:id" component={ResetPassword} />
         <Route exact path="/search-result" component={SearchResult} />
-        <Route exact path="/general-conditions" component={GeneralConditions} />
-        <Route exact path="/privacy-policy" component={PrivacyPolicy} />
-        <Route exact path="/faq" component={FAQ} />
-        <Route exact path="/careers/:menu" component={Careers} />
         <Route exact path="/company/:id" component={CompanyPage} />
         <Route exact path="/twitter/login/callback/" component={TwitterAuthPage} />
         <Route exact path="/twitch/connect/" component={TwitchAuthPage} />
         <Route exact path="/instagram/connect/" component={InstagramAuthPage} />
         <Route exact path="/participation-result/:id" component={ParticipationResult} />
         <Route exact path="/report" component={Report} />
+        <Route exact path="/general-conditions" component={GeneralConditions} />
+        <Route exact path="/privacy-policy" component={PrivacyPolicy} />
+        <Route exact path="/faq" component={FAQ} />
+        <Route exact path="/careers/:menu" component={Careers} />
+        <Route exact path="/about" component={About} />
+        <Route exact path="/influencer" component={Influencer} />
 
         {(token && !is_admin) &&
           <Route exact path="/user-account/:menu" component={UserAccount} />

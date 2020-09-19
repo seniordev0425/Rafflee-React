@@ -6,6 +6,8 @@ import images from '../../../utils/images'
 import { Button } from 'antd'
 import { updateFavorite } from '../../../actions/homepage'
 
+import { getTotalEntries } from '../../../utils/campaign'
+
 import { useTranslation } from 'react-i18next'
 
 function PromotionListItem(props) {
@@ -34,18 +36,25 @@ function PromotionListItem(props) {
               <img src={item.campaign_image ? item.campaign_image : images.profile_img} alt="" />
             </Col>
             <Col lg="11" md="10" sm="10" xs="9" className="pl-sm-5">
-              <div className="promotion-list-item-title">
-                <Link to={`/company/${item.company_id}/`}>
-                  <img
-                    src={item.company_logo ? item.company_logo : images.profile_img}
-                    style={{ width: 40, height: 40, borderRadius: '50%' }}
-                    className="mr-3"
-                    alt=""
-                  />
-                </Link>
-                <Link to={"/campaign-detail/" + item.pk}>
-                  {item.campaign_name}
-                </Link>
+              <div className="d-block d-md-flex justify-content-between align-items-center">
+                <div className="promotion-list-item-title">
+                  <Link to={`/company/${item.company_id}/`}>
+                    <img
+                      src={item.company_logo ? item.company_logo : images.profile_img}
+                      style={{ width: 40, height: 40, borderRadius: '50%' }}
+                      className="mr-3"
+                      alt=""
+                    />
+                  </Link>
+                  <Link to={"/campaign-detail/" + item.pk}>
+                    {item.campaign_name}
+                  </Link>
+                </div>
+                {token && !company && 
+                  <div className="color-gray font-size-10">
+                  {`${item.user_actions?.entries_user || 0}/${getTotalEntries(item)}  ${t('create_campaign_page.entries')}`}
+                </div>
+                }
               </div>
               <div className="promotion-list-item-text">{item.description}</div>
               <div style={{ marginTop: "20px", height: "40px" }} className="d-flex justify-content-between align-items-center">

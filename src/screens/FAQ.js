@@ -39,7 +39,10 @@ function FAQ() {
               text={t('faq_page.answer4')}
             />
           </div>
-          <div className="mt-5">
+          <div className="mt-5 font-size-13 font-weight-bold color-gray">
+            {t('faq_page.users')}
+          </div>
+          <div className="mt-3">
             <CustomCollapsePanelForFAQ
               title={t('faq_page.question5')}
               text={t('faq_page.answer5')}
@@ -65,7 +68,10 @@ function FAQ() {
               text={t('faq_page.answer8')}
             />
           </div>
-          <div className="mt-5">
+          <div className="mt-5 font-size-13 font-weight-bold color-gray">
+            {t('faq_page.influencers_companies')}
+          </div>
+          <div className="mt-3">
             <CustomCollapsePanelForFAQ
               title={t('faq_page.question9')}
               textLink={t('faq_page.register_here')}

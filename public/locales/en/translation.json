@@ -129,7 +129,8 @@
     "see_more": "See more",
     "submit": "Submit",
     "back_to_job_opening": "Back to Job openings",
-    "apply_for_job": "Apply for this Job"
+    "apply_for_job": "Apply for this Job",
+    "verify_email": "Verify Email"
   },
   "homepage": {
     "hot_new_contest_everyday": "Hot new contest everyday.",
@@ -546,6 +547,34 @@
     "answer11": "Depending on the type of campaign selected, the draw can be done live or automatically.",
     "question12": "What are the benefits of using Rafflee?",
     "answer12": "Rafflee is the new communication channel for your digital strategy. It is a quick way to build your notoriety and experiment with new partnerships while measuring the scale of your campaigns on your social networks. Rafflee aims to enhance influencer marketing through its brand / influencer platform."
+  },
+  "influencer_page": {
+    "influencers": "Influencers",
+    "banner_description": "Influencers can easily create campaigns that promote their content on social networks while ensuring legitimacy to their contests.",
+    "start_now": "Start Now",
+    "slider1": {
+      "title": "1. The community:",
+      "text": "By carrying out your campaigns with Rafflee you thank your followers by offering them the possibility of winning giveaways or raffles with fair play contests. In exchange, these will highlight your different content on different social networks. This will ensure better exposure (an increase in your followers on a social network for example) and the satisfaction of a thanked audience!"
+    },
+    "slider2": {
+      "title": "2. The platform:",
+      "text": "Rafflee provides the first growth marketing platform for contests and giveaways. Thanks to our in-house algorithm, we can assure you of a random draw which will give priority to rewarding the most motivated participants. We take care of providing you with as much data as possible (anonymized to protect users) in order to be able to analyze the impact of your campaign on social networks and with your audience."
+    },
+    "slider3": {
+      "title": "3. The commitment:",
+      "text": "Thanks to the connection system with the various social networks, Rafflee guarantees you an exceptional engagement rate. Indeed, the inclusion of new participants in your campaigns is done only if the user has fulfilled all the conditions set beforehand when designing the campaign. Engage your community on your new social network, select the information to highlight by activating the desired actions for your community to participate."
+    },
+    "slider4": {
+      "title": "4. The security of a successful campaign:",
+      "text": "With Rafflee, you ensure a successful and secure campaign. The algorithm draws at random the winners of your contests or your giveaways. This also ensures you a certain distribution of the prizes without cheating. In addition, we check the accuracy of the 'call to action' performed via the connection to the various networks."
+    },
+    "thousands_of_brands": "Thousands of brands ",
+    "trust_us": "trust us.",
+    "get_in_touch": "Get in touch.",
+    "we_reach_out_to_you": "We will reach out to you within 8 working hours.",
+    "subject": "Subject",
+    "business_operation": "Business Operations",
+    "start_your_project": "Start now your project"
   },
   "career_page": {
     "available_job_offers": "Available Job Offers",
