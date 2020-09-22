@@ -157,17 +157,17 @@ function CampaignDetail(props) {
     OPEN_TWITCH_FOLLOW_VALIDATION_MODAL,
   ])
 
-  const goToWinningDetail = (winningName, id) => {
+  const goToWinningDetail = (item, id) => {
     // Load prize data of campaign and open prize modal
     setOpenWinningDetailModal(true)
-    dispatch(getWinningData(id, winningName))
+    dispatch(getWinningData(id, item.name))
   }
 
   const renderWinnings = () => {
     return (
       (campaignData.winnings || []).map((item, index) =>
         <div key={index} className="mt-3 color-blue font-size-11">
-          <span className="pointer" onClick={() => goToWinningDetail(item, campaignData.pk)}>{`- ${item}`}</span>
+          <span className="pointer" onClick={() => goToWinningDetail(item, campaignData.pk)}>{`${item.number} - ${item.name}`}</span>
         </div>
       )
     )

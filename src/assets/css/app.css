@@ -762,8 +762,14 @@ h2 span {
 }
 .footer-link-container {
     background: #f4f4f4;
-    padding-top: 40px;
-    padding-bottom: 40px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    border-bottom: 1px solid #cccccc;
+}
+.footer-container {
+  background: #f4f4f4;
+    padding-top: 20px;
+    padding-bottom: 50px;
 }
 .footer-link-bold {
     font-size: 0.9rem;

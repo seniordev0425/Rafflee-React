@@ -14,7 +14,7 @@
   "footer": {
     "all_rights_reserved": "©2020 Rafflee, tous droits réservés.",
     "enterprise": "Rafflee",
-    "who_are_we": "Qui sommes-nous?",
+    "who_are_we": "We are hiring",
     "the_team": "Notre team",
     "we_are_hiring": "La team recrute des nouveaux talents!",
     "community": "Communauté",
@@ -28,7 +28,12 @@
     "legal_notice": "Mention légale",
     "terms_of_service": "Conditions d'utilisation",
     "follow_us": "Suivez-nous!",
-    "language": "Langues"
+    "language": "Langues",
+    "resoureces": "Resources",
+    "brands": "Brands",
+    "influencers": "Influencers",
+    "contact_us": "Contact us",
+    "business": "Business"
   },
   "banner": {
     "search_placeholder": "Recherche…",
@@ -599,6 +604,9 @@
     "need_help": "Besoin d'aide?",
     "contact_us": "Contacter nous",
     "here": "ici."
+  },
+  "contact_modal": {
+    "contact_form": "Contact Form"
   },
   "forgot_password_modal": {
     "forgot_password": "Mot de passe oublié?"

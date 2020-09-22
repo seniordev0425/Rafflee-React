@@ -16,7 +16,7 @@
     "enterprise": "Rafflee",
     "who_are_we": "Who are we?",
     "the_team": "Our team",
-    "we_are_hiring": "The team is recruiting new talents!",
+    "we_are_hiring": "We are hiring",
     "community": "Community",
     "company_contact_us": "Company, contact us!",
     "influencer_contact_us": "Influencer, contact us!",
@@ -26,9 +26,14 @@
     "privacy_policy": "Privacy Policy",
     "cookies_policy": "Cookies Policy",
     "legal_notice": "Legal Notice",
-    "terms_of_service": "Terms of Service",
+    "terms_of_service": "Terms & Conditions",
     "follow_us": "Follow Us",
-    "language": "Language"
+    "language": "Language",
+    "resources": "Resources",
+    "brands": "Brands",
+    "influencers": "Influencers",
+    "contact_us": "Contact us",
+    "business": "Business"
   },
   "banner": {
     "search_placeholder": "Search...",
@@ -638,6 +643,9 @@
     "need_help": "Need help?",
     "contact_us": "Contact us",
     "here": "here."
+  },
+  "contact_modal": {
+    "contact_form": "Contact Form"
   },
   "forgot_password_modal": {
     "forgot_password": "Forgot Password?"
