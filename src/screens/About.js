@@ -1,5 +1,6 @@
 import React from 'react'
 import { Row, Col } from 'reactstrap'
+import { Link } from 'react-router-dom'
 import AppLayout from '../components/layouts/AppLayout'
 import AboutHelmet from '../components/common/Helmets/AboutHelmet'
 import Banner from '../components/layouts/about/Banner'
@@ -55,6 +56,14 @@ function About() {
                 <div className="color-black font-size-15 mt-4 font-weight-bold" style={{ maxWidth: 400 }}>
                   {t('about_page.description6')}
                 </div>
+                <Link to="/careers/openings">
+                  <div className="mt-2 cursor-pointer d-flex align-items-center">
+                    <span className="color-blue font-weight-bold font-size-12">
+                      {t('about_page.join_us')}
+                    </span>
+                    <img src={images.blue_right_arrow} className="ml-3" alt="" />
+                  </div>
+                </Link>
               </div>
             </Col>
             <Col xs="12" sm="6">

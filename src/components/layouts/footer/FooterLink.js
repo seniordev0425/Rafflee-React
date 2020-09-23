@@ -31,11 +31,15 @@ function FooterLink() {
                 {t('footer.resources')}
               </div>
               <div className="mt-3">
+                <Link to="/about">
+                  <span className="color-gray">{t('footer.discover_us')}</span>
+                </Link>
+              </div>
+              <div className="mt-3">
                 <Link to="/careers/openings">
                   <span className="color-gray">{t('footer.we_are_hiring')}</span>
                 </Link>
               </div>
-
               <div className="mt-3">
                 <Link to="/report">
                   <span className="color-gray">{t('footer.report')}</span>
@@ -64,7 +68,7 @@ function FooterLink() {
                 {t('footer.contact_us')}
               </div>
               <div className="mt-3" onClick={() => setOpenContactUsModal(true)}>
-                <span className="color-gray pointer">{CONTACT_EMAIL}</span>
+                <span className="color-gray pointer">{t('footer.contact_by_email')}</span>
               </div>
 
               <div className="footer-link-bold mt-3" style={{ fontSize: '1rem' }}>

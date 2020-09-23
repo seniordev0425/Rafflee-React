@@ -259,6 +259,7 @@ function PreviewSection(props) {
     promotion_picture = b64toBlob(realData, contentType)
 
     var formdata = new FormData()
+    formdata.append('pk', '')
     formdata.append('promotion_picture', promotion_picture)
     formdata.append('promotion_name', params.promotion_name)
     formdata.append('promotion_description', params.promotion_description)

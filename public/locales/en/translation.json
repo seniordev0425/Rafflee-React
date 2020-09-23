@@ -11,6 +11,12 @@
     "log_out": "Logout",
     "about": "About"
   },
+  "rgpd_banner": {
+    "i_agree": "I agree with the ",
+    "terms": "Terms ",
+    "and": "and ",
+    "privacy_policy": "Privacy policy"
+  },
   "footer": {
     "all_rights_reserved": "©2020 Rafflee, all rights reserved.",
     "enterprise": "Rafflee",
@@ -33,7 +39,9 @@
     "brands": "Brands",
     "influencers": "Influencers",
     "contact_us": "Contact us",
-    "business": "Business"
+    "business": "Business",
+    "contact_by_email": "Contact By Email",
+    "discover_us": "Discover us"
   },
   "banner": {
     "search_placeholder": "Search...",
@@ -111,6 +119,7 @@
     "pick_another": "PICK ANOTHER",
     "participate": "PARTICIPATE",
     "promotion_ended": "Promotion Ended",
+    "participation_validated": "Paritipation validated",
     "already_won": "See the prize won",
     "draw": "Draw",
     "download_pdf": "DOWNLOAD PDF",
@@ -266,7 +275,8 @@
     "the_prize": "Prizes",
     "chance_winning_prize": "Chance of winning the prize",
     "action_left": "ACTION LEFT",
-    "mandatory_action_left": "MANDATORY ACTION LEFT"
+    "mandatory_action_left": "MANDATORY ACTION LEFT",
+    "participation_validated": "You can always carry out actions these will be counted"
   },
   "my_campaign_page": {
     "live_page": "Live Page",
@@ -517,6 +527,7 @@
     "show_facebook": "Facebook Wall"
   },
   "about_page": {
+    "join_us": "Join Us",
     "description1": "Our goal is to highlight the products of our partners.",
     "description2": "Holding a raffle and winning freebies is a fantastic way to show a community that they are appreciated.",
     "description3": "The Raffle draw, the assurance of an open-ended competition.",

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom'
 import { Row, Col, Progress } from 'reactstrap'
-import { Button } from 'antd'
+import { Button, Tooltip } from 'antd'
 import moment from 'moment'
 import AppLayout from '../components/layouts/AppLayout'
 import CampaignHelmet from '../components/common/Helmets/CampaignHelmet'
@@ -608,16 +608,29 @@ function CampaignDetail(props) {
             </Row>
           }
           <Row className="justify-content-center mb-4">
-            <Button
-              type={campaignData.close_promotion ? "danger" : "primary"}
-              className={campaignData.close_promotion ? "ant-red-btn promotion-list-item-btn" : "ant-blue-btn promotion-list-item-btn"}
-              onClick={campaignData.close_promotion ? null : participate}
-              loading={CAMPAIGN_PARTICIPATE_PROCESS}
-            >
-              {!CAMPAIGN_PARTICIPATE_PROCESS &&
-                campaignData.close_promotion ? t('button_group.promotion_ended') : t('button_group.participate')
-              }
-            </Button>
+            {campaignData.participation_validated
+              ?
+              <Tooltip title={t('campaign_detail_page.participation_validated')} color='#0aa53e'>
+                <Button
+                  type="primary"
+                  className="ant-green-btn promotion-list-item-btn"
+                  onClick={null}
+                >
+                  {t('button_group.participation_validated')}
+                </Button>
+              </Tooltip>
+              :
+              <Button
+                type={campaignData.close_promotion ? "danger" : "primary"}
+                className={campaignData.close_promotion ? "ant-red-btn promotion-list-item-btn" : "ant-blue-btn promotion-list-item-btn"}
+                onClick={campaignData.close_promotion ? null : participate}
+                loading={CAMPAIGN_PARTICIPATE_PROCESS}
+              >
+                {!CAMPAIGN_PARTICIPATE_PROCESS &&
+                  campaignData.close_promotion ? t('button_group.promotion_ended') : t('button_group.participate')
+                }
+              </Button>
+            }
           </Row>
         </Col>
       </Row>

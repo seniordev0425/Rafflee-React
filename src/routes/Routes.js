@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 import { useSelector, useDispatch } from "react-redux";
 import { Route, Switch, Redirect } from 'react-router-dom'
 import CookieConsent from 'react-cookie-consent'
@@ -164,7 +164,7 @@ function Routes(props) {
 
         {!is_admin && <Redirect from="/admin" to="/" />}
         {!is_admin && <Route exact path="/" component={Home} />}
-        
+
         <Route exact path="/campaign-detail/:id" component={CampaignDetail} />
         <Route exact path="/deals" component={Deals} />
         <Route exact path="/profile/activate/:id/:token" component={ProfileActivated} />
@@ -217,7 +217,22 @@ function Routes(props) {
         declineButtonText={t('button_group.decline')}
         declineButtonStyle={{ background: "#f01212", borderRadius: 3, margin: 0, marginLeft: 15 }}
       >
-        This site uses cookies, by continuing to use the service, you accept our Cookie Policy
+        <span>
+          {t('rgpd_banner.i_agree')}
+        </span>
+        <Link to="/general-conditions">
+          <span className="color-white font-weight-bold">
+            {t('rgpd_banner.terms')}
+          </span>
+        </Link>
+        <span>
+          {t('rgpd_banner.and')}
+        </span>
+        <Link to="/privacy-policy">
+          <span className="color-white font-weight-bold">
+            {t('rgpd_banner.privacy_policy')}
+          </span>
+        </Link>
       </CookieConsent>
     </ScrollToTop>
   )

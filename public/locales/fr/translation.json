@@ -11,6 +11,12 @@
     "log_out": "Déconnexion",
     "about": "À propos"
   },
+  "rgpd_banner": {
+    "i_agree": "Je suis d'accord avec les ",
+    "terms": "conditions ",
+    "and": "et la ",
+    "privacy_policy": "politique de confidentialité"
+  },
   "footer": {
     "all_rights_reserved": "©2020 Rafflee, tous droits réservés.",
     "enterprise": "Rafflee",
@@ -33,7 +39,9 @@
     "brands": "Brands",
     "influencers": "Influencers",
     "contact_us": "Contact us",
-    "business": "Business"
+    "business": "Business",
+    "contact_by_email": "Contact By Email",
+    "discover_us": "Discover us"
   },
   "banner": {
     "search_placeholder": "Recherche…",
@@ -111,6 +119,7 @@
     "pick_another": "Choisir un autre",
     "participate": "PARTICIPER",
     "promotion_ended": "Promotion terminée",
+    "participation_validated": "Participation validée",
     "already_won": "Voir le lot remporté",
     "draw": "Tirage",
     "download_pdf": "TÉLÉCHARGER PDF",
@@ -266,7 +275,8 @@
     "the_prize": "Les prix",
     "chance_winning_prize": "Chance of winning the prize",
     "action_left": "ACTION LEFT",
-    "mandatory_action_left": "MANDATORY ACTION LEFT"
+    "mandatory_action_left": "MANDATORY ACTION LEFT",
+    "participation_validated": "Vous pouvez toujours effectuer des actions celles ci seront comptabilisé"
   },
   "my_campaign_page": {
     "live_page": "Live Page",
@@ -510,6 +520,7 @@
     "show_facebook": "Facebook Wall"
   },
   "about_page": {
+    "join_us": "Rejoignez nous",
     "description1": "Our goal is to highlight the products of our partners.",
     "description2": "Holding a raffle and winning freebies is a fantastic way to show a community that they are appreciated.",
     "description3": "The Raffle draw, the assurance of an open-ended competition.",
@@ -539,7 +550,7 @@
     "answer8": "Pour participer à nos jeux-concours, en fonction de la campagne, il existe ou non des actions obligatoires à effectuer. Le plus souvent, il s’agit d’actions telles que : liker une page, liker un post, follow un profil, regarder une vidéo, aller sur un site web et bien d'autres. Chaque action rapporte un nombre de points. Plus ce nombre de points est élevé, plus vous avez de chances de remporter le gain.",
     "influencers_companies": "INFLUENCEURS & ENTREPRISES",
     "question9": "Comment créer ma campagne de giveaway ?",
-    "register_here": "S'inscrire **ici",
+    "register_here": "S'inscrire ici",
     "answer9": "en tant que marque ou influenceur. Les entreprises ont un compte particulier permettant de gérer les datas, les campagnes et leurs réseaux. ",
     "answer10": "Dans le Dashboard, il est possible de créer ses propres campagnes, sélectionner les giveaways à gagner et les actions à effectuer (obligatoires ou non) pour participer.",
     "answer11": "En fonction du type de campagne sélectionnée, le tirage au sort peut se faire en live ou automatiquement. ",

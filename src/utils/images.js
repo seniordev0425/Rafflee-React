@@ -74,6 +74,7 @@ const images = {
   required_icon: require('../assets/image/required_icon.png'),
   prize_icon: require('../assets/image/prize_icon.png'),
   purple_right_arrow: require('../assets/image/purple_right_arrow.svg'),
+  blue_right_arrow: require('../assets/image/blue_right_arrow.svg'),
   about_page_user_approach: require('../assets/image/about_page/user_approach.png'),
   about_page_client_approach: require('../assets/image/about_page/client_approach.png'),
 }

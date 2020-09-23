@@ -36,8 +36,8 @@ export function campaignParticipate(params) {
 function onSuccessCampaignParticipate(data) {
   openNotification('success', successMessages[localStorage.getItem('i18nextLng')].participate)
   return {
-    type: '',
-    data: ''
+    type: 'UPDATE_PARTICIPATION_VALIDATED',
+    data: true
   }
 }
 /////////////////////////////////////////////// CAMPAIGN_SUBSCRIBE_ACTION
