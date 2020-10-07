@@ -41,7 +41,9 @@ const initialFeedState = {
     number_of_eligible_people: '',
     description: '',
     image_url: ''
-  }
+  },
+
+  beingCreatedCampaigns: []
 }
 
 function Campaign(state = initialFeedState, action) {
@@ -106,6 +108,11 @@ function Campaign(state = initialFeedState, action) {
       return {
         ...state,
         campaignData: {...state.campaignData, participation_validated: true}
+      }
+    case 'SET_BEING_CREATED_CAMPAIGNS':
+      return {
+        ...state,
+        beingCreatedCampaigns: action.data
       }
     default:
       return state

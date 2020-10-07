@@ -99,7 +99,8 @@
     "deactivate": "Désactiver",
     "wall": "Wall",
     "business_create": "Business Creation",
-    "campaigns": "Campaigns"
+    "campaigns": "Campaigns",
+    "being_created": "Being Created"
   },
   "empty_result_to_display": "Aucuns résultats",
   "button_group": {
@@ -144,7 +145,8 @@
     "submit": "Submit",
     "back_to_job_opening": "Back to Job openings",
     "apply_for_job": "Apply for this Job",
-    "verify_email": "Vérifier l'email"
+    "verify_email": "Vérifier l'email",
+    "save": "Save"
   },
   "homepage": {
     "hot_new_contest_everyday": "Des raffles et giveaways tous les jours.",
@@ -202,10 +204,10 @@
     "giveway_description": "Description du cadeau",
     "prize_ends_in": "LE PRIX SE TERMINE DANS",
     "prize_ended": "PRIX TERMINÉ",
-    "your_entries": "VOS ENTRIES",
+    "your_entries": "VOS POINTS",
     "maximum_participants": "PARTICIPANTS MAXIMUM",
     "days": "Jours restants",
-    "entries": "Vos entrées",
+    "entries": "Vos points",
     "participants": "Nombre de participation restantes",
     "facebook_page": {
       "title": "Facebook Page",
@@ -446,7 +448,7 @@
     "maximum_number_of_participants": "Maximum de participants",
     "public": "Public",
     "private": "Privée",
-    "entries": "Entrées",
+    "entries": "Points",
     "required_fields": {
       "campaign_name": "* Nom de campagne obligatoire",
       "campaign_image": "* Image de campagne obligatoire",
@@ -472,26 +474,26 @@
     "model": "Entrez un model"
   },
   "business_create_page": {
-    "entity_name": "Entity name",
-    "entity_name_required": "Entity name required",
-    "username": "Username",
-    "username_required": "Username is required",
+    "entity_name": "Nom de l'entité",
+    "entity_name_required": "Nom d'entité requis",
+    "username": "Nom d'utilisateur",
+    "username_required": "Le nom d'utilisateur est nécessaire",
     "email": "Email",
-    "enter_valid_email": "Enter a valid email address",
-    "password": "Password",
-    "password_required": "Password is required",
-    "password_confirm": "Password confirm",
-    "entity_type": "Entity type",
-    "company": "Company",
-    "influencer": "Influencer"
+    "enter_valid_email": "Entrez une adresse mail valide",
+    "password": "Mot de passe",
+    "password_required": "Un mot de passe est requis",
+    "password_confirm": "Confirmer le mot de passe",
+    "entity_type": "Type d'entité",
+    "company": "Entreprise",
+    "influencer": "Influenceur"
   },
   "profile_activated_page": {
     "successfully_activated": "Ton compte a été activé",
     "goto_login": "Va à la page d'accueil pour t'identifier!"
   },
   "activate_email_page": {
-    "successfully_activated": "Your account has been activated",
-    "failed": "Something went wrong. Please try again later"
+    "successfully_activated": "Ton compte a été activé",
+    "failed": "Un problème est survenu. Veuillez réessayer plus tard"
   },
   "search_result_page": {
     "search": "Recherche",
@@ -521,12 +523,12 @@
   },
   "about_page": {
     "join_us": "Rejoignez nous",
-    "description1": "Our goal is to highlight the products of our partners.",
-    "description2": "Holding a raffle and winning freebies is a fantastic way to show a community that they are appreciated.",
-    "description3": "The Raffle draw, the assurance of an open-ended competition.",
-    "description4": "The principle of the draw is based on fairness: everyone has their chances, just perform the actions determined in the competition.",
-    "description5": "Our team makes the difference.",
-    "description6": "Looking for new challenges? Join the Rafflee team and be part of the adventure."
+    "description1": "Notre objectif est de mettre en valeur les produits de nos partenaires.",
+    "description2": "Organiser un jeux concours pour faire gagner des cadeaux est un moyen fantastique de montrer à une communauté qu'elle est appréciée.",
+    "description3": "Le tirage au sort Rafflee, l’assurance d’un jeux-concours non truqué.",
+    "description4": "Le principe du tirage au sort repose sur l’équité : tout le monde a ses chances, il suffit d’effectuer les actions déterminées dans le jeu-concours.",
+    "description5": "Rafflee recrute !",
+    "description6": "En quête de nouveaux challenges ? Rejoignez l’équipe Rafflee et participez à l’aventure."
   },
   "faq_page": {
     "faq": "FAQ",
@@ -558,24 +560,24 @@
     "answer12": "Rafflee est le nouveau canal de communication pour votre stratégie digitale. C'est un moyen rapide de développer votre notoriété et d'expérimenter de nouveaux partenariats tout en mesurant l'ampleur de vos campagnes sur vos réseaux sociaux. Rafflee a pour but de valoriser le marketing d’influence par sa plateforme marque/influenceurs."
   },
   "career_page": {
-    "available_job_offers": "Available Job Offers",
-    "jobs": "Jobs",
-    "dont_have_job": "We don’t have the job you are looking for?",
-    "suprise_us": "Surprise us with your summary.",
-    "first_name": "First Name",
-    "last_name": "Last Name",
-    "phone": "Phone (Optional)",
+    "available_job_offers": "Offres d'emploi disponibles",
+    "jobs": "Emplois",
+    "dont_have_job": "Nous n’avons pas l’emploi que vous recherchez?",
+    "suprise_us": "Surprenez-nous avec votre candidature.",
+    "first_name": "Prénom",
+    "last_name": "Nom",
+    "phone": "Numéro de téléphone (facultatif)",
     "email": "Email",
     "message": "Message",
     "resume": "Resume",
-    "upload_file": "Upload a file",
+    "upload_file": "Télécharger un fichier",
     "description": "Description",
-    "about_you": "About you",
-    "what_you_will_do": "What you'll do",
-    "overview": "Overview",
+    "about_you": "A propors de vous",
+    "what_you_will_do": "Qu'aimeriez vous faire",
+    "overview": "Aperçu",
     "application": "Application",
-    "summary": "Summary",
-    "coverletter": "Cover Letter (Optional)"
+    "summary": "Resume",
+    "coverletter": "Lettre de motivation (facultatif)"
   },
   "signin_modal": {
     "username": "Nom d'utilisateur",
@@ -682,9 +684,9 @@
     "description": "Description"
   },
   "update_email_modal": {
-    "enter_email": "Enter your email address",
-    "new_email": "New email",
-    "verify_email": "Verify Email"
+    "enter_email": "Entrez votre adresse email",
+    "new_email": "Nouvel email",
+    "verify_email": "Vérifier l'email"
   },
   "required": "Obligatoire",
   "in_progress": "En cours de creation",
@@ -712,32 +714,32 @@
       }
     },
     "influencer_page": {
-      "influencers": "Influencers",
-      "banner_description": "Influencers can easily create campaigns that promote their content on social networks while ensuring legitimacy to their contests.",
-      "start_now": "Start Now",
+      "influencers": "Influenceurs",
+      "banner_description": "Les influenceurs peuvent facilement créer des campagnes qui promeuvent leur contenu sur les réseaux sociaux tout en assurant la légitimité de leurs concours.",
+      "start_now": "Commencez maintenant !",
       "slider1": {
-        "title": "1. The community:",
-        "text": "By carrying out your campaigns with Rafflee you thank your followers by offering them the possibility of winning giveaways or raffles with fair play contests. In exchange, these will highlight your different content on different social networks. This will ensure better exposure (an increase in your followers on a social network for example) and the satisfaction of a thanked audience!"
+        "title": "1. La communauté:",
+        "text": "En effectuant vos campagnes avec Rafflee vous remerciez vos followers en leurs offrant la possibilité de remporter des giveaways ou des raffles avec des jeux-concours fair-play. En échange, ceux ci mettront en avant vos différents contenus sur les différents réseaux sociaux. Vous vous assurez ainsi une meilleure exposition (une augmentation de vos followers sur un réseau sociale par exemple) et la satisfaction d'un public remercié !"
       },
       "slider2": {
-        "title": "2. The platform:",
-        "text": "Rafflee provides the first growth marketing platform for contests and giveaways. Thanks to our in-house algorithm, we can assure you of a random draw which will give priority to rewarding the most motivated participants. We take care of providing you with as much data as possible (anonymized to protect users) in order to be able to analyze the impact of your campaign on social networks and with your audience."
+        "title": "2. La plateforme:",
+        "text": "Rafflee met a disposition la premiere plateforme de growth marketing pour les jeux-concours et giveaway. Grâce à notre algorithme maison nous vous assurons un tirage au sort aléatoire qui récompensera en priorité les participants les plus motivés. Nous nous chargeons de vous fournir un maximum de données (anonymisé pour protéger les utilisateurs) afin de pouvoir analyser l'impact de votre campagne sur les réseaux sociaux et auprès de votre public."
       },
       "slider3": {
-        "title": "3. The commitment:",
-        "text": "Thanks to the connection system with the various social networks, Rafflee guarantees you an exceptional engagement rate. Indeed, the inclusion of new participants in your campaigns is done only if the user has fulfilled all the conditions set beforehand when designing the campaign. Engage your community on your new social network, select the information to highlight by activating the desired actions for your community to participate."
+        "title": "3. L'engagement:",
+        "text": " Grace au système de connection avec les différents réseaux sociaux, Rafflee vous assure un taux d'engagement exceptionnel. En effet, la prise en compte de nouveaux participants dans vos campagnes est faite seulement si l'utilisateur a rempli toutes les conditions fixe au préalable lors de la conception de la campagne. Engagez votre communauté sur votre nouveau réseau social, sélectionnez les informations à mettre en avant en activant les actions désirées pour que votre communauté participe."
       },
       "slider4": {
-        "title": "4. The security of a successful campaign:",
-        "text": "With Rafflee, you ensure a successful and secure campaign. The algorithm draws at random the winners of your contests or your giveaways. This also ensures you a certain distribution of the prizes without cheating. In addition, we check the accuracy of the 'call to action' performed via the connection to the various networks."
+        "title": "4. La sécurité d'une campagne réussie:",
+        "text": "Avec Rafflee, vous vous assurez une campagne réussie et sécurisé. L'algorithme, tire au hasard, les gagnants de votre jeux concours ou de vos giveaways. Cela vous assure aussi, une distribution certaine des lots sans triche. De plus nous vérifions via la connection aux différents réseaux l'exactitude du 'call to action' accompli."
       },
-      "thousands_of_brands": "Thousands of brands ",
-      "trust_us": "trust us.",
-      "get_in_touch": "Get in touch.",
-      "we_reach_out_to_you": "We will reach out to you within 8 working hours.",
-      "subject": "Subject",
-      "business_operation": "Business Operations",
-      "start_your_project": "Start now your project"
+      "thousands_of_brands": "Des milliers de marques ",
+      "trust_us": "faites nous confiance.",
+      "get_in_touch": "Restons en contact.",
+      "we_reach_out_to_you": "Nous vous contacterons le plus rapidement possible.",
+      "subject": "Sujet",
+      "business_operation": "Operations commerciales",
+      "start_your_project": "Commencez maintenant votre projet"
     },
     "entreprise": {
       "title": "Rafflee | Marques, engagez votre communauté !",

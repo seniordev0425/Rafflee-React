@@ -7,8 +7,11 @@ const HomeHelmet = () => {
 
   return (
     <Helmet>
-      <title>
-        {t('helmets.home.title')}
+      <title lang="fr">
+        Rafflee | Les meilleurs jeux-concours & giveaways
+      </title>
+      <title lang="en">
+        Rafflee | The best contests & giveaway
       </title>
       <meta name={t('helmets.home.meta1.name')} content={t('helmets.home.meta1.content')} />
       <meta name={t('helmets.home.meta2.name')} content={t('helmets.home.meta2.content')} />

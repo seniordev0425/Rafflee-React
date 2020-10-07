@@ -54,7 +54,7 @@ function ActionSection(props) {
 
   const { params, setParams, setSection, setAction } = props
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch() 
 
   useEffect(() => {
     dispatch(getFacebookPages())

@@ -695,6 +695,42 @@ function onSuccessGetWinningData(data) {
     data: data
   }
 }
+/////////////////////////////////////////////// GET_BEING_CREATED_CAMPAIGN_ACTION
+export function getBeingCreatedCampaigns() {
+  return apiAction({
+    url: APIROUTE + "company/campaign/being-created/",
+    method: 'GET',
+    accessToken: localStorage.getItem('token'),
+    onSuccess: onSuccessGetBeingCreatedCampaigns,
+    onFailure: onFailed,
+    label: 'GET_BEING_CREATED_CAMPAIGNS',
+  });
+}
+function onSuccessGetBeingCreatedCampaigns(data) {
+  return {
+    type: 'SET_BEING_CREATED_CAMPAIGNS',
+    data: data.result_data
+  }
+}
+/////////////////////////////////////////////// GET_BEING_CREATED_CAMPAIGN_ACTION
+export function saveCampaign(params) {
+  return apiAction({
+    url: APIROUTE + "campaign/save/",
+    method: 'POST',
+    data: params,
+    accessToken: localStorage.getItem('token'),
+    onSuccess: onSuccessSaveCampaign,
+    onFailure: onFailed,
+    label: 'SAVE_CAMPAIGN',
+    requireErrorMessage: true
+  });
+}
+function onSuccessSaveCampaign(data) {
+  openNotification('success', successMessages[localStorage.getItem('i18nextLng')].saveCampaign)
+  return {
+    type: '',
+  }
+}
 
 function apiAction({
   url = "",

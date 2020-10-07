@@ -24,7 +24,6 @@ function Home() {
 
   useEffect(() => {
     dispatch(getHotPromotions({ token: token }))
-    dispatch(getHighlightedPromotions({ token: token }))
   }, [])
 
   return (

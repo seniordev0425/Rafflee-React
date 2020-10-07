@@ -20,7 +20,8 @@ const successMessages = {
     MSG_YOU_ARE_ALREADY_FOLLOWING_THIS_ACCOUNT: "You have already followed this account",
     MSG_YOU_HAVE_ALREADY_RETWEETED_THIS_TWEET: "You have already retweeted this tweet",
     updateEmail: "Please confirm your email to update email",
-    companyRegister: "Successfully registered"
+    companyRegister: "Successfully registered",
+    saveCampaign: "Successfully saved"
   },
 
 
@@ -45,7 +46,8 @@ const successMessages = {
     MSG_YOU_ARE_ALREADY_FOLLOWING_THIS_ACCOUNT: "Vous avez déjà suivi ce compte",
     MSG_YOU_HAVE_ALREADY_RETWEETED_THIS_TWEET: "Vous avez déjà retweeté ce tweet",
     updateEmail: "Please confirm your email to update email",
-    companyRegister: "Successfully registered"
+    companyRegister: "Successfully registered",
+    saveCampaign: "Successfully saved"
   }
 }
 

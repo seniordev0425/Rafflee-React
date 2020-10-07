@@ -99,7 +99,8 @@
     "deactivate": "Deactivate",
     "wall": "Wall",
     "business_create": "Business Creation",
-    "campaigns": "Campaigns"
+    "campaigns": "Campaigns",
+    "being_created": "Being Created"
   },
   "empty_result_to_display": "There is no result to display.",
   "button_group": {
@@ -144,7 +145,8 @@
     "submit": "Submit",
     "back_to_job_opening": "Back to Job openings",
     "apply_for_job": "Apply for this Job",
-    "verify_email": "Verify Email"
+    "verify_email": "Verify Email",
+    "save": "Save"
   },
   "homepage": {
     "hot_new_contest_everyday": "Hot new contest everyday.",
@@ -587,7 +589,7 @@
     "thousands_of_brands": "Thousands of brands ",
     "trust_us": "trust us.",
     "get_in_touch": "Get in touch.",
-    "we_reach_out_to_you": "We will reach out to you within 8 working hours.",
+    "we_reach_out_to_you": "We will contact you as soon as possible.",
     "subject": "Subject",
     "business_operation": "Business Operations",
     "start_your_project": "Start now your project"

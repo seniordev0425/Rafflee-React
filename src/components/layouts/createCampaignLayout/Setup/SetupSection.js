@@ -16,10 +16,11 @@ import { UPLOAD_MAX_SIZE } from '../../../../utils/constants'
 function SetupSection(props) {
   const { t } = useTranslation()
 
-  const { params, setParams, setSection } = props
+  const { params, setParams, setSection, onSaveCampaign } = props
 
   // Following Redux state is defined in reducer with comments
   const categoryArr = useSelector(state => state.homepage.categories)
+  const SAVE_CAMPAIGN_PROCESS = useSelector(state => state.userInfo.SAVE_CAMPAIGN)
   const dispatch = useDispatch()
 
   const { Option } = Select
@@ -251,7 +252,7 @@ function SetupSection(props) {
           <Col><span className="pointer" onClick={addWinning}>{t('create_campaign_page.add_more')} <span style={{ fontSize: "1.3rem", fontWeight: "bold" }}> +</span></span></Col>
         </Row>
         <Row>
-          <Col>
+          <Col className="d-flex justify-content-between">
             <Button
               type="primary"
               className="ant-blue-btn my-5"
@@ -259,6 +260,15 @@ function SetupSection(props) {
               onClick={() => setSection('campaign_type')}
             >
               {t('button_group.next')}
+            </Button>
+            <Button
+              type="primary"
+              className="ant-blue-btn my-5"
+              style={{ width: 150 }}
+              onClick={onSaveCampaign}
+              loading={SAVE_CAMPAIGN_PROCESS}
+            >
+              {!SAVE_CAMPAIGN_PROCESS && t('button_group.save')}
             </Button>
           </Col>
         </Row>

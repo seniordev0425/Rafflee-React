@@ -63,7 +63,7 @@ function CurrentPromotionList() {
   useEffect(() => {
     // Load categories and highlighted promotions. It's because highlighted promotions are displayed at first
     dispatch(getCategories())
-    dispatch(getHighlightedPromotions({ token: token }))
+    // dispatch(getHighlightedPromotions({ token: token }))
   }, [])
 
   useEffect(() => {

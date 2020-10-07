@@ -8,6 +8,7 @@ import AppLayout from '../components/layouts/AppLayout'
 import MyCampaignLayout from '../components/layouts/myCampaignLayout/MyCampaignLayout'
 import MyBillsLayout from '../components/layouts/myBillsLayout/MyBillsLayout'
 import AnalyticsLayout from '../components/layouts/analytics'
+import BeingCreatedLayout from '../components/layouts/beingCreatedLayout/BeingCreatedLayout'
 import CreateCampaignLayout from '../components/layouts/createCampaignLayout/CreateCampaignLayout'
 import InventoryLayout from '../components/layouts/inventoryLayout/InventoryLayout'
 import ParticipationHistoryLayout from '../components/layouts/participationHistoryLayout/ParticipationHistoryLayout'
@@ -41,6 +42,8 @@ function Dashboard(props) {
         return <MyBillsLayout />;
       case 'analytics':
         return <AnalyticsLayout />
+      case 'being-created':
+        return <BeingCreatedLayout />
       case 'create-campaign':
         return <CreateCampaignLayout />;
       case 'inventory':
@@ -84,6 +87,11 @@ function Dashboard(props) {
                 <Menu.Item key="create-campaign" className="float-right">
                   <Link to="/dashboard/create-campaign">
                     <span className="ml-3"> {t('menubar.create_campaign')}</span>
+                  </Link>
+                </Menu.Item>
+                <Menu.Item key="being-created" className="float-right">
+                  <Link to="/dashboard/being-created">
+                    <span className="ml-3"> {t('menubar.being_created')}</span>
                   </Link>
                 </Menu.Item>
               </Menu>
