@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Row, Col } from 'reactstrap'
 import { Menu, Dropdown, Button, Checkbox } from 'antd'
 import FacebookActionButton from './Facebook/FacebookActionButton'
@@ -52,9 +52,11 @@ import { useTranslation } from 'react-i18next'
 function ActionSection(props) {
   const { t } = useTranslation()
 
-  const { params, setParams, setSection, setAction } = props
+  const { params, setParams, setSection, setAction, onSaveCampaign } = props
 
-  const dispatch = useDispatch() 
+  const SAVE_CAMPAIGN_PROCESS = useSelector(state => state.userInfo.SAVE_CAMPAIGN)
+
+  const dispatch = useDispatch()
 
   useEffect(() => {
     dispatch(getFacebookPages())
@@ -184,14 +186,25 @@ function ActionSection(props) {
             {params.url_website.website &&
               <WebsiteField params={params} setAction={setAction} />
             }
-            <Button
-              type="primary"
-              className="ant-blue-btn my-5"
-              style={{ width: 150 }}
-              onClick={() => setSection('preview')}
-            >
-              {t('button_group.next')}
-            </Button>
+            <div className="d-flex justify-content-between">
+              <Button
+                type="primary"
+                className="ant-blue-btn my-5"
+                style={{ width: 150 }}
+                onClick={() => setSection('preview')}
+              >
+                {t('button_group.next')}
+              </Button>
+              <Button
+                type="primary"
+                className="ant-blue-btn my-5"
+                style={{ width: 150 }}
+                onClick={onSaveCampaign}
+                loading={SAVE_CAMPAIGN_PROCESS}
+              >
+                {!SAVE_CAMPAIGN_PROCESS && t('button_group.save')}
+              </Button>
+            </div>
           </div>
         </Col>
       </Row>

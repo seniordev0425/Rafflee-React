@@ -16,10 +16,11 @@ import { useTranslation } from 'react-i18next'
 function PreviewSection(props) {
   const { t } = useTranslation()
 
-  const { params, setSection } = props
+  const { params, setSection, onSaveCampaign } = props
 
   const CREATE_CAMPAIGN_PROCESS = useSelector(state => state.userInfo.CREATE_CAMPAIGN)
   const CREATE_CAMPAIGN_SUCCESS = useSelector(state => state.userInfo.SUCCESS_CREATE_CAMPAIGN)
+  const SAVE_CAMPAIGN_PROCESS = useSelector(state => state.userInfo.SAVE_CAMPAIGN)
   const dispatch = useDispatch()
 
   // Required messages array which should appear when click on create campaign
@@ -537,7 +538,7 @@ function PreviewSection(props) {
           }
         </div>
         <Row>
-          <Col>
+          <Col className="d-flex justify-content-between">
             <Button
               onClick={onSubmit}
               className="ant-blue-btn my-3"
@@ -546,6 +547,15 @@ function PreviewSection(props) {
               loading={CREATE_CAMPAIGN_PROCESS}
             >
               {!CREATE_CAMPAIGN_PROCESS && t('button_group.create_campaign')}
+            </Button>
+            <Button
+              type="primary"
+              className="ant-blue-btn my-5"
+              style={{ width: 150 }}
+              onClick={onSaveCampaign}
+              loading={SAVE_CAMPAIGN_PROCESS}
+            >
+              {!SAVE_CAMPAIGN_PROCESS && t('button_group.save')}
             </Button>
           </Col>
         </Row>

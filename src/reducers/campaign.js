@@ -43,7 +43,8 @@ const initialFeedState = {
     image_url: ''
   },
 
-  beingCreatedCampaigns: []
+  beingCreatedCampaigns: [],
+  beingCreatedCampaign: null
 }
 
 function Campaign(state = initialFeedState, action) {
@@ -113,6 +114,11 @@ function Campaign(state = initialFeedState, action) {
       return {
         ...state,
         beingCreatedCampaigns: action.data
+      }
+    case 'SET_BEING_CREATED_CAMPAIGN':
+      return {
+        ...state,
+        beingCreatedCampaign: action.data
       }
     default:
       return state

@@ -1,4 +1,4 @@
-export const APIROUTE = 'https://rafflee.io/api/'
+export const APIROUTE = 'https://stage.rafflee.io/api/'
 export const IP_ADDRESS_API = 'https://api.ipify.org?format=jsonp?callback=?'
 export const NUMBER_PER_PAGE = 5
 export const UPLOAD_MAX_SIZE = 5242880 //Image max size: 5MB

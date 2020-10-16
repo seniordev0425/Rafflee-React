@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Menu } from 'antd'
 import { Row, Col } from 'reactstrap'
+import moment from 'moment'
 import SetupSection from './Setup/SetupSection'
 import CampaignType from './CampaignType/CampaignType'
 import ActionSection from './Action/ActionSection'
@@ -18,6 +19,7 @@ import { useTranslation } from 'react-i18next'
 function CreateCampaignLayout() {
   const { t } = useTranslation()
 
+  const beingCreatedCampaign = useSelector(state => state.campaign.beingCreatedCampaign)
   const dispatch = useDispatch()
 
   // Enum (setup, campaign_type, action, preview, payment, resume)
@@ -25,6 +27,7 @@ function CreateCampaignLayout() {
 
   // This state includes all params to create campaign
   const [params, setParams] = useState({
+    pk: '',
     promotion_name: '',
     promotion_picture: '',
     promotion_description: '',
@@ -123,6 +126,120 @@ function CreateCampaignLayout() {
       mandatory: false
     }
   })
+
+  // Update params with being created campaign data
+  useEffect(() => {
+    if (beingCreatedCampaign) {
+      setParams({
+        pk: beingCreatedCampaign.pk,
+        promotion_name: beingCreatedCampaign.campaign_name,
+        promotion_picture: beingCreatedCampaign.campaign_image,
+        promotion_description: beingCreatedCampaign.description,
+        promotion_long_description: beingCreatedCampaign.long_description,
+        public_promotion: 'public',
+        categories: beingCreatedCampaign.categories ? beingCreatedCampaign.categories : [],
+        temp_categories: beingCreatedCampaign.categories ? beingCreatedCampaign.categories : [],
+        start_date: beingCreatedCampaign.release_date,
+        end_date: beingCreatedCampaign.end_date,
+        winnings: beingCreatedCampaign.winnings ? beingCreatedCampaign.winnings : [{ name: '', number_of_people: '', description: '', image: '' }],
+        campaign_type: beingCreatedCampaign.type_of_distribution,
+        live_draw: beingCreatedCampaign.live_draw,
+        limit_participants: false,
+        limitation_participation: beingCreatedCampaign.number_of_maximum_participants,
+        facebook: {
+          post: beingCreatedCampaign.action_participate[0].social_action[0].facebook_post,
+          post_entries: beingCreatedCampaign.action_participate[0].social_action[0]?.facebook_post_entries || '',
+          post_mandatory: beingCreatedCampaign.action_participate[0].social_action[0]?.facebook_post_mandatory || false,
+          post_like: false,
+          post_comment: false,
+          post_share: false,
+          post_page_id: '',
+          post_publication_id: '',
+          url: beingCreatedCampaign.action_participate[0].social_action[0].facebook_url,
+          url_entries: beingCreatedCampaign.action_participate[0].social_action[0]?.facebook_url_entries || '',
+          url_mandatory: beingCreatedCampaign.action_participate[0].social_action[0]?.facebook_url_mandatory || false,
+          url_url: beingCreatedCampaign.action_participate[0].social_action[0]?.facebook_url_url || '',
+          url_like: false,
+          url_share: false,
+          page: beingCreatedCampaign.action_participate[0].social_action[0].facebook_page,
+          page_entries: beingCreatedCampaign.action_participate[0].social_action[0]?.facebook_page_entries || '',
+          page_mandatory: beingCreatedCampaign.action_participate[0].social_action[0]?.facebook_page_mandatory || false,
+          page_page_id: '',
+          page_page_name: '',
+          page_follow: false,
+          page_share: false
+        },
+        twitter: {
+          comment: beingCreatedCampaign.action_participate[0].social_action[3].twitter_tweet,
+          comment_model: '',
+          comment_entries: beingCreatedCampaign.action_participate[0].social_action[3]?.twitter_tweet_entries || '',
+          comment_mandatory: beingCreatedCampaign.action_participate[0].social_action[3]?.twitter_tweet_mandatory || false,
+          like: beingCreatedCampaign.action_participate[0].social_action[3].twitter_like,
+          like_id: '',
+          like_entries: beingCreatedCampaign.action_participate[0].social_action[3]?.twitter_like_entries || '',
+          like_mandatory: beingCreatedCampaign.action_participate[0].social_action[3]?.twitter_like_mandatory || false,
+          retweet: beingCreatedCampaign.action_participate[0].social_action[3].twitter_retweet,
+          retweet_id: '',
+          retweet_entries: beingCreatedCampaign.action_participate[0].social_action[3]?.twitter_retweet_entries || '',
+          retweet_mandatory: beingCreatedCampaign.action_participate[0].social_action[3]?.twitter_retweet_mandatory || false,
+          follow: beingCreatedCampaign.action_participate[0].social_action[3].twitter_follow,
+          follow_type: 'screen_name',
+          follow_id: '',
+          follow_entries: beingCreatedCampaign.action_participate[0].social_action[3]?.twitter_follow_entries || '',
+          follow_mandatory: beingCreatedCampaign.action_participate[0].social_action[3]?.twitter_follow_mandatory || false,
+        },
+        instagram: {
+          publication: beingCreatedCampaign.action_participate[0].social_action[2].instagram_publication,
+          profile: beingCreatedCampaign.action_participate[0].social_action[2].instagram_profile,
+          publication_url: beingCreatedCampaign.action_participate[0].social_action[2]?.instagram_publication_url || '',
+          profile_url: beingCreatedCampaign.action_participate[0].social_action[2]?.instagram_profile_url || '',
+          publication_entries: beingCreatedCampaign.action_participate[0].social_action[2]?.instagram_publication_entries || '',
+          publication_mandatory: beingCreatedCampaign.action_participate[0].social_action[2]?.instagram_publication_mandatory || false,
+          profile_entries: beingCreatedCampaign.action_participate[0].social_action[2]?.instagram_profile_entries || '',
+          profile_mandatory: beingCreatedCampaign.action_participate[0].social_action[2]?.instagram_profile_mandatory || false
+        },
+        twitch: {
+          follow: beingCreatedCampaign.action_participate[0].social_action[4]?.twitch_follow || false,
+          follow_name: '',
+          follow_entries: beingCreatedCampaign.action_participate[0].social_action[4]?.twitch_follow_entries || '',
+          follow_mandatory: beingCreatedCampaign.action_participate[0].social_action[4]?.twitch_follow_mandatory || false,
+        },
+        tiktok: {
+          publication: beingCreatedCampaign.action_participate[0].social_action[5]?.tiktok_publication,
+          profile: beingCreatedCampaign.action_participate[0].social_action[5]?.tiktok_profile,
+          publication_url: beingCreatedCampaign.action_participate[0].social_action[5]?.tiktok_publication_url || '',
+          profile_url: '@',
+          publication_entries: beingCreatedCampaign.action_participate[0].social_action[5]?.tiktok_publication_entries || '',
+          publication_mandatory: beingCreatedCampaign.action_participate[0].social_action[5]?.tiktok_publication_mandatory || false,
+          profile_entries: beingCreatedCampaign.action_participate[0].social_action[5]?.tiktok_profile_entries || '',
+          profile_mandatory: beingCreatedCampaign.action_participate[0].social_action[5]?.tiktok_profile_mandatory || false
+        },
+        poll: beingCreatedCampaign.action_participate[0].poll ?
+          {
+            question: beingCreatedCampaign.action_participate[0].poll.question,
+            response: beingCreatedCampaign.action_participate[0].poll.responses,
+            mutiples_choices: beingCreatedCampaign.action_participate[0].poll.multiple_choices,
+            entries: beingCreatedCampaign.action_participate[0].poll.entries,
+            mandatory: beingCreatedCampaign.action_participate[0].poll.mandatory
+          }
+          : 'false',
+        url_video: {
+          video: beingCreatedCampaign.action_participate[0].video ? true : false,
+          url: beingCreatedCampaign.action_participate[0].video?.url_video || '',
+          url_mobile: beingCreatedCampaign.action_participate[0].video?.url_video_mobile || '',
+          video_name: beingCreatedCampaign.action_participate[0].video?.video_name || '',
+          entries: beingCreatedCampaign.action_participate[0].video?.entries || '',
+          mandatory: beingCreatedCampaign.action_participate[0].video?.mandatory || false
+        },
+        url_website: {
+          website: beingCreatedCampaign.action_participate[0].website ? true : false,
+          url: beingCreatedCampaign.action_participate[0].website?.url || '',
+          entries: beingCreatedCampaign.action_participate[0].website?.entries || '',
+          mandatory: beingCreatedCampaign.action_participate[0].website?.mandatory || false
+        }
+      })
+    }
+  }, [beingCreatedCampaign])
 
   // Update params 
   const _setParams = (key, val) => {

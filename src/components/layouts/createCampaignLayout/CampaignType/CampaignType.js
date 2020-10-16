@@ -1,4 +1,5 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import { Row, Col, Input } from 'reactstrap'
 import { Button, Radio, Checkbox, Tooltip } from 'antd'
 import images from '../../../../utils/images'
@@ -8,7 +9,9 @@ import { useTranslation } from 'react-i18next'
 function CampaignType(props) {
   const { t } = useTranslation()
 
-  const { params, setParams, setSection } = props
+  const { params, setParams, setSection, onSaveCampaign } = props
+
+  const SAVE_CAMPAIGN_PROCESS = useSelector(state => state.userInfo.SAVE_CAMPAIGN)
 
   return (
     <Row>
@@ -43,7 +46,7 @@ function CampaignType(props) {
                         <img src={images.question_icon} width={26} height={26} alt="" />
                       </Tooltip>
                     )
-                    : 
+                    :
                     (<img src={images.question_mark_gray_icon} width={26} height={26} alt="" />)
                   }
                 </div>
@@ -155,7 +158,7 @@ function CampaignType(props) {
           </div>
         </div>
         <Row>
-          <Col>
+          <Col className="d-flex justify-content-between">
             <Button
               type="primary"
               className="ant-blue-btn my-5"
@@ -163,6 +166,15 @@ function CampaignType(props) {
               onClick={() => setSection('action')}
             >
               {t('button_group.next')}
+            </Button>
+            <Button
+              type="primary"
+              className="ant-blue-btn my-5"
+              style={{ width: 150 }}
+              onClick={onSaveCampaign}
+              loading={SAVE_CAMPAIGN_PROCESS}
+            >
+              {!SAVE_CAMPAIGN_PROCESS && t('button_group.save')}
             </Button>
           </Col>
         </Row>
