@@ -208,7 +208,7 @@
     "maximum_participants": "PARTICIPANTS MAXIMUM",
     "days": "Jours restants",
     "entries": "Vos points",
-    "participants": "Nombre de participation restantes",
+    "participants": "Nombre de participants",
     "facebook_page": {
       "title": "Facebook Page",
       "text": "Like et follow la page pour valider l'action et augmenter tes chances de remporter le giveaway!"
@@ -763,5 +763,28 @@
         "content": "mots clés"
       }
     }
+  },
+  "tooltips": {
+    "giveaway": "Il s’agit d’une campagne où le nombre maximum de participants n’est pas défini par le nombre de cadeaux à gagner (exemple: 10 giveaways, 100 participants, 10 gagnants)",
+    "reward": "Il s’agit d’une campagne où le nombre de participants maximum est égal au nombre de giveaway à distribuer (exemple: 10 giveaways, 10 participants maximum)",
+    "live_draw": "Cette option permet d’activer la partie “Live” du tirage au sort. Lorsque la campagne est terminée, il est possible pour le concepteur de la promotion d’effectuer le tirage au sort en live.",
+    "limit_participants": "Permet, selon la campagne choisie, de limiter le nombre maximum de participants",
+    "public": "La promotion est ouverte à tout le monde",
+    "private": "La promotion est limitée aux utilisateurs du cercle",
+    "facebook_post": "Cette action permet de sélectionner un post facebook à partir d’une page que l’utilisateur doit liker, commenter ou partager.",
+    "facebook_url": "Cette action permet de partager l’url d’un post que l’utilisateur va devoir liker et/ou partager.",
+    "facebook_page": "Cette action permet de choisir une page Facebook que l’utilisateur va devoir suivre et/ou partager.",
+    "twitter_like": "Cette action permet de sélectionner un tweet via son ID que l’utilisateur devra liker.",
+    "twitter_follow": "Cette action permet de sélectionner un compte tweeter que l’utilisateur devra suivre.",
+    "twitter_tweet": "Cette action permet de sélectionner un modèle de tweet que l’utilisateur devra tweeter.",
+    "twitter_retweet": "Cette action permet de sélectionner un tweet via son ID que l’utilisateur devra retweet.",
+    "instagram_profile": "Cette action permet de sélectionner un compte instagram que l’utilisateur devra follow.",
+    "instagram_publication": "Cette action permet de sélectionner un post instagram que l’utilisateur devra liker.",
+    "twitch_follow": "Cette action permet de sélectionner un compte twitch que l’utilisateur devra suivre.",
+    "tiktok_profile": "Cette action permet de sélectionner un profil tiktok que l’utilisateur devra suivre.",
+    "tiktok_publication": "Cette action permet de sélectionner une publication tiktok que l’utilisateur devra liker.",
+    "poll": "Cette action permet de créer un sondage.",
+    "video": "Cette action permet de sélectionner une video qui devra être regardé par l’utilisateur.",
+    "website": "Cette action permet de choisir un site qui doit être visité par l’utilisateur."
   }
 }

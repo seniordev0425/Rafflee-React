@@ -48,7 +48,7 @@ function FacebookPostField(props) {
           <span className="ml-3">{t('create_campaign_page.post')}</span>
         </div>
         <div>
-          <Tooltip title="Tooltip will show on mouse enter.">
+          <Tooltip title={t('tooltips.facebook_post')}>
             <img src={images.question_mark_white_icon} width={22} alt="" />
           </Tooltip>
           <span
@@ -128,8 +128,9 @@ function FacebookPostField(props) {
               value={params.facebook.post_entries}
               onChange={(e) => setAction('facebook', 'post_entries', e.target.value)}
               className="custom-form-control w-100"
-              type="number"
+              type='number'
               placeholder={t('create_campaign_page.entries')}
+              min={0}
             />
           </Col>
           <Col xs="12" sm="6" className="p-0 d-flex align-items-center justify-content-end mt-3 mt-sm-0">

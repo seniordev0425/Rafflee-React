@@ -23,7 +23,7 @@ function TwitterFollowField(props) {
           <span className="ml-3">{t('create_campaign_page.follow_tweet')}</span>
         </div>
         <div>
-          <Tooltip title="Tooltip will show on mouse enter.">
+          <Tooltip title={t('tooltips.twitter_follow')}>
             <img src={images.question_mark_white_icon} width={22} alt="" />
           </Tooltip>
           <span
@@ -76,6 +76,7 @@ function TwitterFollowField(props) {
                       className="custom-form-control"
                       type="number"
                       placeholder={t('create_campaign_page.entries')}
+                      min={0}
                     />
                   </Col>
                 </Row>

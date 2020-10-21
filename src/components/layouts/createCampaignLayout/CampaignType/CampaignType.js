@@ -27,7 +27,7 @@ function CampaignType(props) {
                   {params.campaign_type === 'giveaway'
                     ?
                     (
-                      <Tooltip title="Tooltip will show on mouse enter.">
+                      <Tooltip title={t('tooltips.giveaway')}>
                         <img src={images.question_icon} width={26} height={26} alt="" />
                       </Tooltip>
                     )
@@ -42,7 +42,7 @@ function CampaignType(props) {
                   {params.campaign_type === 'reward'
                     ?
                     (
-                      <Tooltip title="Tooltip will show on mouse enter.">
+                      <Tooltip title={t('tooltips.reward')}>
                         <img src={images.question_icon} width={26} height={26} alt="" />
                       </Tooltip>
                     )
@@ -58,7 +58,7 @@ function CampaignType(props) {
                   {params.campaign_type === 'rafflee'
                     ?
                     (
-                      <Tooltip title="Tooltip will show on mouse enter.">
+                      <Tooltip title={t('tooltips.giveaway')}>
                         <img src={images.question_icon} width={26} height={26} alt="" />
                       </Tooltip>
                     )
@@ -80,7 +80,7 @@ function CampaignType(props) {
                 {params.live_draw
                   ?
                   (
-                    <Tooltip title="Tooltip will show on mouse enter.">
+                    <Tooltip title={t('tooltips.live_draw')}>
                       <img src={images.question_icon} width={26} height={26} alt="" />
                     </Tooltip>
                   )
@@ -101,7 +101,7 @@ function CampaignType(props) {
                   {params.limit_participants
                     ?
                     (
-                      <Tooltip title="Tooltip will show on mouse enter.">
+                      <Tooltip title={t('tooltips.limit_participants')}>
                         <img src={images.question_icon} width={26} height={26} alt="" />
                       </Tooltip>
                     )
@@ -131,7 +131,7 @@ function CampaignType(props) {
                   {params.public_promotion === 'public'
                     ?
                     (
-                      <Tooltip title="Tooltip will show on mouse enter.">
+                      <Tooltip title={t('tooltips.public')}>
                         <img src={images.question_icon} width={26} height={26} alt="" />
                       </Tooltip>
                     )
@@ -146,7 +146,7 @@ function CampaignType(props) {
                   {params.public_promotion === 'private'
                     ?
                     (
-                      <Tooltip title="Tooltip will show on mouse enter.">
+                      <Tooltip title={t('tooltips.private')}>
                         <img src={images.question_icon} width={26} height={26} alt="" />
                       </Tooltip>
                     )

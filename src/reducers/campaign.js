@@ -120,6 +120,11 @@ function Campaign(state = initialFeedState, action) {
         ...state,
         beingCreatedCampaign: action.data
       }
+    case 'DELETE_BEING_CREATED_CAMPAIGN':
+      return {
+        ...state,
+        beingCreatedCampaigns: state.beingCreatedCampaigns.filter(campaign => campaign.pk !== action.data)
+      }
     default:
       return state
   }

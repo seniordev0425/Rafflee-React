@@ -95,6 +95,7 @@ function WinningItem(props) {
               onChange={(e) => setWinningVal(e, id, 'number_of_people')}
               className="custom-form-control"
               type="number"
+              min={0}
               required
             />
           </FormGroup>

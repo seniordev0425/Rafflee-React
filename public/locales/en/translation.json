@@ -208,7 +208,7 @@
     "maximum_participants": "MAXIMUM PARTICIPANTS",
     "days": "Days Left",
     "entries": "Your Entries",
-    "participants": "Participants",
+    "participants": "Number of participants",
     "facebook_page": {
       "title": "Facebook Page",
       "text": "Like and follow the page to validate the action and increase your chances of winning the giveaway!"
@@ -785,5 +785,28 @@
         "content": "keywords"
       }
     }
+  },
+  "tooltips": {
+    "giveaway": "This is a campaign where the maximum number of participants is not defined by the number of gifts to win (example: 10 giveaways, 100 participants, 10 winners)",
+    "reward": "This is a campaign where the maximum number of participants is equal to the number of giveaways to distribute (example: 10 giveaways, 10 participants maximum)",
+    "live_draw": "This option activates the “Live” part of the draw. When the campaign is over, it is possible for the promotion designer to carry out the raffle live.",
+    "limit_participants": "Allows, depending on the chosen campaign, to limit the maximum number of participants",
+    "public": "The promotion is open to everyone",
+    "private": "Promotion is limited to circle users",
+    "facebook_post": "This action allows you to select a facebook post from a page that the user must like, comment on or share.",
+    "facebook_url": "This action allows you to share the url of a post that the user will have to like and / or share.",
+    "facebook_page": "This action allows you to choose a Facebook page that the user will have to follow and / or share.",
+    "twitter_like": "This action allows you to select a tweet via its ID that the user will like.",
+    "twitter_follow": "This action allows you to select a tweeting account for the user to follow.",
+    "twitter_tweet": "This action allows you to select a tweet template for the user to tweet.",
+    "twitter_retweet": "This action allows you to select a tweet via its ID that the user should retweet.",
+    "instagram_profile": "This action allows you to select an Instagram account that the user should follow.",
+    "instagram_publication": "This action allows you to select an Instagram post that the user will like.",
+    "twitch_follow": "This action selects a twitch account for the user to follow.",
+    "tiktok_profile": "This action allows the selection of a tiktok profile for the user to follow.",
+    "tiktok_publication": "This action allows you to select a tiktok post that the user will like.",
+    "poll": "This action creates a poll.",
+    "video": "This action allows you to select a video to be watched by the user.",
+    "website": "This action allows you to choose a site that should be visited by the user."
   }
 }

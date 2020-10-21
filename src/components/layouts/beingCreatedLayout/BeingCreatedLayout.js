@@ -7,7 +7,10 @@ import Loading from '../../common/Loading'
 
 import { NUMBER_PER_PAGE } from '../../../utils/constants'
 
-import { getBeingCreatedCampaigns } from '../../../actions/campaign'
+import {
+  getBeingCreatedCampaigns,
+  deleteBeingCreatedCampaign
+} from '../../../actions/campaign'
 
 const BeingCreatedLayout = () => {
 
@@ -20,6 +23,7 @@ const BeingCreatedLayout = () => {
   const [maxValue, setMaxValue] = useState(NUMBER_PER_PAGE)
   const [currentPage, setCurrentPage] = useState(1)
 
+  const [beingDeletedPK, setBeingDeltedPK] = useState('')
 
   const handlePagination = (value) => {
     setCurrentPage(value)
@@ -31,6 +35,11 @@ const BeingCreatedLayout = () => {
     dispatch(getBeingCreatedCampaigns())
   }, [])
 
+  const deleteCampaign = (pk) => {
+    setBeingDeltedPK(pk)
+    dispatch(deleteBeingCreatedCampaign({ pk: pk }))
+  }
+
   if (GET_BEING_CREATED_CAMPAIGNS_PROCESS) {
     return <div className="min-height-container"><Loading /></div>
   }
@@ -39,7 +48,11 @@ const BeingCreatedLayout = () => {
     <div className="min-height-container">
       {beingCreatedCampaigns.slice(minValue, maxValue).map((item, index) =>
         <div key={index} className="promotion-list-item-container">
-          <BeingCreatedItem item={item} />
+          <BeingCreatedItem
+            item={item}
+            onDeleteCampaign={deleteCampaign}
+            beingDeletedPK={beingDeletedPK}
+          />
         </div>
       )}
       <Pagination

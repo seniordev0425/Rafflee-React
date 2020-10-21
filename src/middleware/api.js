@@ -19,7 +19,7 @@ const apiMiddleware = ({ dispatch }) => next => action => {
     headers,
     requireErrorMessage
   } = action.payload;
-  const dataOrParams = ["GET", "DELETE"].includes(method) ? "params" : "data";
+  const dataOrParams = ["GET"].includes(method) ? "params" : "data";
 
   // axios default configs
   axios.defaults.baseURL = process.env.REACT_APP_BASE_URL || "";

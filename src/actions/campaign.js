@@ -712,7 +712,28 @@ function onSuccessGetBeingCreatedCampaigns(data) {
     data: data.result_data
   }
 }
-/////////////////////////////////////////////// GET_BEING_CREATED_CAMPAIGN_ACTION
+/////////////////////////////////////////////// DELETE_BEING_CREATED_CAMPAIGN_ACTION
+export function deleteBeingCreatedCampaign(params) {
+  return apiAction({
+    url: APIROUTE + "company/campaign/being-created/delete/",
+    method: 'DELETE',
+    data: qs.stringify(params),
+    accessToken: localStorage.getItem('token'),
+    onSuccess: (data) => onSuccessDeleteCampaign(data, params),
+    onFailure: onFailed,
+    label: 'DELETE_BEING_CREATED_CAMPAIGN',
+    requireErrorMessage: true
+  });
+}
+function onSuccessDeleteCampaign(data, params) {
+  openNotification('success', successMessages[localStorage.getItem('i18nextLng')].deleteBeingCreatedCampaign)
+  return {
+    type: 'DELETE_BEING_CREATED_CAMPAIGN',
+    data: params.pk
+  }
+}
+
+/////////////////////////////////////////////// SAVE_CAMPAIGN_ACTION
 export function saveCampaign(params) {
   return apiAction({
     url: APIROUTE + "campaign/save/",

@@ -22,13 +22,14 @@ const successMessages = {
     updateEmail: "Please confirm your email to update email",
     companyRegister: "Successfully registered",
     saveCampaign: "Successfully saved",
-    contactUs: "We received your message"
+    contactUs: "We received your message",
+    deleteBeingCreatedCampaign: "Campaign deleted"
   },
 
 
   fr: {
     logIn: "Connexion réussie!",
-    signUp: "Inscription réussie! Nous t'avons envoyé un lien de confirmation vers votre e-mail. Vérifie ta boîte de réception.",
+    signUp: "Inscription réussie! Nous t'avons envoyé un lien de confirmation vers ton email. Vérifie ta boîte de réception.",
     companySendMessage: "Soumis avec succès!",
     accountUpdate: "Mise à jour réussie!",
     participate: "Participation réussie!",
@@ -49,7 +50,8 @@ const successMessages = {
     updateEmail: "Please confirm your email to update email",
     companyRegister: "Successfully registered",
     saveCampaign: "Successfully saved",
-    contactUs: "We received your message"
+    contactUs: "We received your message",
+    deleteBeingCreatedCampaign: "Campaign deleted"
   }
 }
 

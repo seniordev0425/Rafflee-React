@@ -49,7 +49,7 @@ function PollField(props) {
           <span className="ml-3">{t('create_campaign_page.create_poll')}</span>
         </div>
         <div>
-          <Tooltip title="Tooltip will show on mouse enter.">
+          <Tooltip title={t('tooltips.poll')}>
             <img src={images.question_mark_white_icon} width={22} alt="" />
           </Tooltip>
           <span
@@ -118,6 +118,7 @@ function PollField(props) {
               className="custom-form-control"
               type="number"
               placeholder={t('create_campaign_page.entries')}
+              min={0}
             />
           </div>
           <div>

@@ -217,6 +217,7 @@ function UserInfo(state = initialFeedState, action) {
       return {
         ...state,
         phone_number_verified: true,
+        userProfile: { ...state.userProfile, phone_number_verification: true },
         VERIFY_PHONE_NUMBER_SUCCESS: action.flag
       }
     case 'SET_USER_INVENTORY':

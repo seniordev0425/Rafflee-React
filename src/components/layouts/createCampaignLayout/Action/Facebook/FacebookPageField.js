@@ -47,7 +47,7 @@ function FacebookPageField(props) {
           <span className="ml-3">{t('create_campaign_page.page')}</span>
         </div>
         <div>
-          <Tooltip title="Tooltip will show on mouse enter.">
+          <Tooltip title={t('tooltips.facebook_page')}>
             <img src={images.question_mark_white_icon} width={22} alt="" />
           </Tooltip>
           <span
@@ -103,6 +103,7 @@ function FacebookPageField(props) {
               className="custom-form-control w-100"
               type="number"
               placeholder={t('create_campaign_page.entries')}
+              min={0}
             />
           </Col>
           <Col xs="12" sm="6" className="p-0 d-flex align-items-center justify-content-end mt-3 mt-sm-0">

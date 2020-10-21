@@ -21,7 +21,7 @@ function TwitchFollowField(props) {
           <span className="ml-3">{t('create_campaign_page.follow_tweet')}</span>
         </div>
         <div>
-          <Tooltip title="Tooltip will show on mouse enter.">
+          <Tooltip title={t('tooltips.twitch_follow')}>
             <img src={images.question_mark_white_icon} width={22} alt="" />
           </Tooltip>
           <span
@@ -55,6 +55,7 @@ function TwitchFollowField(props) {
                   className="custom-form-control ml-0 ml-sm-4 w-100"
                   type="number"
                   placeholder={t('create_campaign_page.entries')}
+                  min={0}
                 />
               </Col>
               <Col xs="12" sm="6" className="p-0 d-flex align-items-center justify-content-end mt-3 mt-sm-0">

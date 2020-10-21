@@ -21,7 +21,7 @@ function VideoField(props) {
           <span className="ml-3">{t('create_campaign_page.create_video_action')}</span>
         </div>
         <div>
-          <Tooltip title="Tooltip will show on mouse enter.">
+          <Tooltip title={t('tooltips.video')}>
             <img src={images.question_mark_white_icon} width={22} alt="" />
           </Tooltip>
           <span
@@ -66,6 +66,7 @@ function VideoField(props) {
                       className="custom-form-control"
                       type="number"
                       placeholder={t('create_campaign_page.entries')}
+                      min={0}
                     />
                   </Col>
                 </Row>

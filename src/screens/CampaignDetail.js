@@ -289,7 +289,7 @@ function CampaignDetail(props) {
               <div className="color-gray mt-2 text-center">{t('campaign_detail_page.entries')}</div>
             </Col>
             <Col className="px-0">
-              <div className="color-gray mt-2 text-center font-weight-bold font-size-20">{campaignData.number_of_eligible_people || 0}</div>
+              <div className="color-gray mt-2 text-center font-weight-bold font-size-20">{campaignData.number_of_participants || 0}</div>
               <div className="color-gray mt-2 text-center">{t('campaign_detail_page.participants')}</div>
             </Col>
           </Row>
