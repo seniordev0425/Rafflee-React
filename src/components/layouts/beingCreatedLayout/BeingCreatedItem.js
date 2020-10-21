@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { Row, Col } from 'reactstrap'
 import { Button as AntdButton } from 'antd'
-import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom"
 
+import { imageToBase64 } from '../../../utils/others'
 import images from '../../../utils/images'
 
 import { useTranslation } from 'react-i18next'
@@ -16,8 +17,31 @@ function BeingCreatedItem(props) {
   const history = useHistory()
   const dispatch = useDispatch()
 
-  const goToCreateCampaignPage = () => {
-    dispatch({ type: 'SET_BEING_CREATED_CAMPAIGN', data: item })
+  const [isLoading, setIsLoading] = useState(false)
+
+  const goToCreateCampaignPage = async () => {
+    setIsLoading(true)
+    let promotionData = item
+    if (promotionData.campaign_image) {
+      let base64data = await imageToBase64(promotionData.campaign_image)
+      promotionData = { ...promotionData, campaign_image: base64data }
+    }
+
+    let winnings = []
+    for (let winning of promotionData.winnings) {
+      if (winning.image) {
+        let base64data = await imageToBase64(winning.image)
+        let block = base64data.split(";")
+        let realData = block[1].split(",")[1]
+        winnings.push({ ...winning, image: realData })
+      } else {
+        winnings.push(winning)
+      }
+    }
+    promotionData = { ...promotionData, winnings: winnings }
+
+    setIsLoading(false)
+    dispatch({ type: 'SET_BEING_CREATED_CAMPAIGN', data: promotionData })
     history.push('/dashboard/create-campaign')
   }
 
@@ -41,8 +65,9 @@ function BeingCreatedItem(props) {
                   className={"ant-blue-btn"}
                   style={{ width: 85, height: 30, padding: 0 }}
                   onClick={goToCreateCampaignPage}
+                  loading={isLoading}
                 >
-                  {t('button_group.update')}
+                  {!isLoading && t('button_group.update')}
                 </AntdButton>
               </div>
             </Col>

@@ -21,3 +21,19 @@ export const b64toBlob = (b64Data, contentType, sliceSize) => {
   var blob = new Blob(byteArrays, { type: contentType });
   return blob;
 }
+
+export const imageToBase64 = (url) => {
+  return new Promise((res) => {
+    const xhr = new XMLHttpRequest();
+    xhr.onload = () => {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        res(reader.result);
+      };
+      reader.readAsDataURL(xhr.response);
+    };
+    xhr.open('GET', 'https://cors-anywhere.herokuapp.com/' + url);
+    xhr.responseType = 'blob';
+    xhr.send();
+  })
+}

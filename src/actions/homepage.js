@@ -151,6 +151,41 @@ function onSuccessBetaReport(data) {
     data: ''
   }
 }
+/////////////////////////////////////////////// GET_RECRUITMENTS_ACTION
+export function getRecruitments(params) {
+  return apiAction({
+    url: APIROUTE + "homepage/recruitment/",
+    data: qs.stringify(params),
+    onSuccess: onSuccessGetRecruitments,
+    onFailure: onFailed,
+    label: 'GET_RECRUITMENTS'
+  });
+}
+function onSuccessGetRecruitments(data) {
+  return {
+    type: '',
+    data: ''
+  }
+}
+/////////////////////////////////////////////// GET_CATEGORIES_ACTION
+export function contactUs(params) {
+  return apiAction({
+    url: APIROUTE + "homepage/contact-form/",
+    method: 'POST',
+    data: qs.stringify(params),
+    onSuccess: onSuccessContactUs,
+    onFailure: onFailed,
+    label: 'CONTACT_US',
+    requireErrorMessage: true
+  });
+}
+function onSuccessContactUs(data) {
+  openNotification('success', successMessages[localStorage.getItem('i18nextLng')].contactUs)
+  return {
+    type: '',
+    data: ''
+  }
+}
 
 function apiAction({
   url = "",

@@ -394,7 +394,7 @@
     "like": "LIKE",
     "follow": "FOLLOW",
     "retweet": "RETWEET",
-    "comment": "TWEET",
+    "comment": "COMMENT",
     "share": "PARTAGE",
     "create_poll": "CRÉER UN SONDAGE",
     "poll_created": "Creation de sondage",

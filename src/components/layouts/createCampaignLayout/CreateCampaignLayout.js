@@ -12,7 +12,9 @@ import ResumeSection from './Resume/ResumeSection'
 
 import { saveCampaign } from '../../../actions/campaign'
 
+import { openNotification } from '../../../utils/notification'
 import { b64toBlob } from '../../../utils/others'
+import errorMessages from '../../../utils/messages/error'
 
 import { useTranslation } from 'react-i18next'
 
@@ -171,20 +173,20 @@ function CreateCampaignLayout() {
         },
         twitter: {
           comment: beingCreatedCampaign.action_participate[0].social_action[3].twitter_tweet,
-          comment_model: '',
+          comment_model: beingCreatedCampaign.action_participate[0].social_action[3]?.twitter_tweet_model || '',
           comment_entries: beingCreatedCampaign.action_participate[0].social_action[3]?.twitter_tweet_entries || '',
           comment_mandatory: beingCreatedCampaign.action_participate[0].social_action[3]?.twitter_tweet_mandatory || false,
           like: beingCreatedCampaign.action_participate[0].social_action[3].twitter_like,
-          like_id: '',
+          like_id: beingCreatedCampaign.action_participate[0].social_action[3]?.twitter_like_id || '',
           like_entries: beingCreatedCampaign.action_participate[0].social_action[3]?.twitter_like_entries || '',
           like_mandatory: beingCreatedCampaign.action_participate[0].social_action[3]?.twitter_like_mandatory || false,
           retweet: beingCreatedCampaign.action_participate[0].social_action[3].twitter_retweet,
-          retweet_id: '',
+          retweet_id: beingCreatedCampaign.action_participate[0].social_action[3]?.twitter_retweet_id || '',
           retweet_entries: beingCreatedCampaign.action_participate[0].social_action[3]?.twitter_retweet_entries || '',
           retweet_mandatory: beingCreatedCampaign.action_participate[0].social_action[3]?.twitter_retweet_mandatory || false,
           follow: beingCreatedCampaign.action_participate[0].social_action[3].twitter_follow,
-          follow_type: 'screen_name',
-          follow_id: '',
+          follow_type: beingCreatedCampaign.action_participate[0].social_action[3]?.twitter_follow_type || 'screen_name',
+          follow_id: beingCreatedCampaign.action_participate[0].social_action[3]?.twitter_follow_id || '',
           follow_entries: beingCreatedCampaign.action_participate[0].social_action[3]?.twitter_follow_entries || '',
           follow_mandatory: beingCreatedCampaign.action_participate[0].social_action[3]?.twitter_follow_mandatory || false,
         },
@@ -200,7 +202,7 @@ function CreateCampaignLayout() {
         },
         twitch: {
           follow: beingCreatedCampaign.action_participate[0].social_action[4]?.twitch_follow || false,
-          follow_name: '',
+          follow_name: beingCreatedCampaign.action_participate[0].social_action[4]?.twitch_follow_name || '',
           follow_entries: beingCreatedCampaign.action_participate[0].social_action[4]?.twitch_follow_entries || '',
           follow_mandatory: beingCreatedCampaign.action_participate[0].social_action[4]?.twitch_follow_mandatory || false,
         },
@@ -208,7 +210,9 @@ function CreateCampaignLayout() {
           publication: beingCreatedCampaign.action_participate[0].social_action[5]?.tiktok_publication,
           profile: beingCreatedCampaign.action_participate[0].social_action[5]?.tiktok_profile,
           publication_url: beingCreatedCampaign.action_participate[0].social_action[5]?.tiktok_publication_url || '',
-          profile_url: '@',
+          profile_url: beingCreatedCampaign.action_participate[0].social_action[5]?.tiktok_profile_url
+            ? beingCreatedCampaign.action_participate[0].social_action[5]?.tiktok_profile_url.split('/')[3]
+            : '@',
           publication_entries: beingCreatedCampaign.action_participate[0].social_action[5]?.tiktok_publication_entries || '',
           publication_mandatory: beingCreatedCampaign.action_participate[0].social_action[5]?.tiktok_publication_mandatory || false,
           profile_entries: beingCreatedCampaign.action_participate[0].social_action[5]?.tiktok_profile_entries || '',
@@ -263,6 +267,10 @@ function CreateCampaignLayout() {
 
   // save current campaign
   const onSaveCampaign = () => {
+    if (!params.promotion_name) {
+      openNotification('warning', errorMessages[localStorage.getItem('i18nextLng')].MSG_CAMPAIGN_NAME_REQUIRED)
+      return
+    }
     let categories = []
     params.temp_categories.forEach((item) => categories.push({ name: item }))
 

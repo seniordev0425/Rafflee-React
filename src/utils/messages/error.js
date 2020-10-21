@@ -102,7 +102,8 @@ const errorMessages = {
     MSG_ERROR_ACTION_ALREADY_VALIDATED: "Action already validated",
     MSG_ERROR_INSTAGRAM_BUSINESS_CONNECT: "Impossible to connect your instagram account. Please contact support",
     MSG_ENTER_A_DIFFERENT_EMAIL: "Enter a different email",
-    MSG_EMAIL_NOT_CONFIRMED: "Please verify email"
+    MSG_EMAIL_NOT_CONFIRMED: "Please verify email",
+    MSG_CAMPAIGN_NAME_REQUIRED: "Campaign name is required"
   },
 
 
@@ -208,7 +209,8 @@ const errorMessages = {
     MSG_ERROR_ACTION_ALREADY_VALIDATED: "L'action est déjà validé",
     MSG_ERROR_INSTAGRAM_BUSINESS_CONNECT: "Impossible de connecter votre compte instagram. Contactez le support",
     MSG_ENTER_A_DIFFERENT_EMAIL: "Enter a different email",
-    MSG_EMAIL_NOT_CONFIRMED: "Please verify email"
+    MSG_EMAIL_NOT_CONFIRMED: "Please verify email",
+    MSG_CAMPAIGN_NAME_REQUIRED: "Campaign name is required"
   }
 }
 

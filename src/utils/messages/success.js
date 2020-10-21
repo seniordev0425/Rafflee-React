@@ -21,7 +21,8 @@ const successMessages = {
     MSG_YOU_HAVE_ALREADY_RETWEETED_THIS_TWEET: "You have already retweeted this tweet",
     updateEmail: "Please confirm your email to update email",
     companyRegister: "Successfully registered",
-    saveCampaign: "Successfully saved"
+    saveCampaign: "Successfully saved",
+    contactUs: "We received your message"
   },
 
 
@@ -47,7 +48,8 @@ const successMessages = {
     MSG_YOU_HAVE_ALREADY_RETWEETED_THIS_TWEET: "Vous avez déjà retweeté ce tweet",
     updateEmail: "Please confirm your email to update email",
     companyRegister: "Successfully registered",
-    saveCampaign: "Successfully saved"
+    saveCampaign: "Successfully saved",
+    contactUs: "We received your message"
   }
 }
 

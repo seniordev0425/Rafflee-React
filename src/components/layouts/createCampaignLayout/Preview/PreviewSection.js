@@ -196,7 +196,7 @@ function PreviewSection(props) {
         url: `https://www.tiktok.com/${params.tiktok.profile_url}`,
         entries: params.tiktok.profile_entries || 1,
         mandatory: params.tiktok.profile_mandatory
-      })
+      })  
     }
     if (params.tiktok.publication) {
       tiktok.push({

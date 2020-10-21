@@ -395,7 +395,7 @@
     "like": "LIKE",
     "follow": "FOLLOW",
     "retweet": "RETWEET",
-    "comment": "TWEET",
+    "comment": "COMMENT",
     "share": "SHARE",
     "post": "POST",
     "page": "PAGE",
