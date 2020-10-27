@@ -15,7 +15,14 @@ const initialFeedState = {
   bestOfferPromotions: [],
 
   ///////////////////////////////////////////// This state is for categories array in homepage(first page)
-  categories: []
+  categories: [],
+
+  ///////////////////////////////////////////// This state is for recruitments data in career page
+  recruitmentData: {
+    max_page: 0,
+    recruitments: [],
+    nbr_of_recruitments: 0
+  }
 }
 
 function Homepage(state = initialFeedState, action) {
@@ -49,6 +56,11 @@ function Homepage(state = initialFeedState, action) {
       return {
         ...state,
         categories: action.data
+      }
+    case 'SET_RECRUITMENT_DATA':
+      return {
+        ...state,
+        recruitmentData: action.data
       }
     case 'UPDATE_FAVORITE_SUCCESS':
       if (action.arrname === 'hot') {

@@ -196,7 +196,7 @@ function PreviewSection(props) {
         url: `https://www.tiktok.com/${params.tiktok.profile_url}`,
         entries: params.tiktok.profile_entries || 1,
         mandatory: params.tiktok.profile_mandatory
-      })  
+      })
     }
     if (params.tiktok.publication) {
       tiktok.push({
@@ -260,7 +260,7 @@ function PreviewSection(props) {
     promotion_picture = b64toBlob(realData, contentType)
 
     var formdata = new FormData()
-    formdata.append('pk', '')
+    formdata.append('pk', params.pk)
     formdata.append('promotion_picture', promotion_picture)
     formdata.append('promotion_name', params.promotion_name)
     formdata.append('promotion_description', params.promotion_description)
@@ -540,6 +540,15 @@ function PreviewSection(props) {
         <Row>
           <Col className="d-flex justify-content-between">
             <Button
+              type="primary"
+              className="ant-blue-btn my-3"
+              style={{ width: 150 }}
+              onClick={onSaveCampaign}
+              loading={SAVE_CAMPAIGN_PROCESS}
+            >
+              {!SAVE_CAMPAIGN_PROCESS && t('button_group.save')}
+            </Button>
+            <Button
               onClick={onSubmit}
               className="ant-blue-btn my-3"
               type="primary"
@@ -547,15 +556,6 @@ function PreviewSection(props) {
               loading={CREATE_CAMPAIGN_PROCESS}
             >
               {!CREATE_CAMPAIGN_PROCESS && t('button_group.create_campaign')}
-            </Button>
-            <Button
-              type="primary"
-              className="ant-blue-btn my-5"
-              style={{ width: 150 }}
-              onClick={onSaveCampaign}
-              loading={SAVE_CAMPAIGN_PROCESS}
-            >
-              {!SAVE_CAMPAIGN_PROCESS && t('button_group.save')}
             </Button>
           </Col>
         </Row>

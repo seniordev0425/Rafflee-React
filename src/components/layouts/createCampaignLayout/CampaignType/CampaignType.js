@@ -163,18 +163,18 @@ function CampaignType(props) {
               type="primary"
               className="ant-blue-btn my-5"
               style={{ width: 150 }}
-              onClick={() => setSection('action')}
+              onClick={onSaveCampaign}
+              loading={SAVE_CAMPAIGN_PROCESS}
             >
-              {t('button_group.next')}
+              {!SAVE_CAMPAIGN_PROCESS && t('button_group.save')}
             </Button>
             <Button
               type="primary"
               className="ant-blue-btn my-5"
               style={{ width: 150 }}
-              onClick={onSaveCampaign}
-              loading={SAVE_CAMPAIGN_PROCESS}
+              onClick={() => setSection('action')}
             >
-              {!SAVE_CAMPAIGN_PROCESS && t('button_group.save')}
+              {t('button_group.next')}
             </Button>
           </Col>
         </Row>

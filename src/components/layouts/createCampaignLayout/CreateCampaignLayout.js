@@ -132,6 +132,7 @@ function CreateCampaignLayout() {
   // Update params with being created campaign data
   useEffect(() => {
     if (beingCreatedCampaign) {
+      
       setParams({
         pk: beingCreatedCampaign.pk,
         promotion_name: beingCreatedCampaign.campaign_name,
@@ -141,8 +142,8 @@ function CreateCampaignLayout() {
         public_promotion: 'public',
         categories: beingCreatedCampaign.categories ? beingCreatedCampaign.categories : [],
         temp_categories: beingCreatedCampaign.categories ? beingCreatedCampaign.categories : [],
-        start_date: beingCreatedCampaign.release_date,
-        end_date: beingCreatedCampaign.end_date,
+        start_date: beingCreatedCampaign.release_date ? moment(beingCreatedCampaign.release_date).format('YYYY-MM-DD') : null,
+        end_date: beingCreatedCampaign.end_date ? moment( beingCreatedCampaign.end_date).format('YYYY-MM-DD') : null,
         winnings: beingCreatedCampaign.winnings ? beingCreatedCampaign.winnings : [{ name: '', number_of_people: '', description: '', image: '' }],
         campaign_type: beingCreatedCampaign.type_of_distribution,
         live_draw: beingCreatedCampaign.live_draw,
@@ -369,7 +370,7 @@ function CreateCampaignLayout() {
     }
 
     let promotion_picture = null
-    if (params.promotion_picture !== '') {
+    if (params.promotion_picture) {
       let block = params.promotion_picture.split(";")
       let contentType = block[0].split(":")[1]
       let realData = block[1].split(",")[1]
@@ -377,7 +378,7 @@ function CreateCampaignLayout() {
     }
 
     var formdata = new FormData()
-    formdata.append('pk', '')
+    formdata.append('pk', params.pk)
     formdata.append('promotion_picture', promotion_picture)
     formdata.append('promotion_name', params.promotion_name)
     formdata.append('promotion_description', params.promotion_description)

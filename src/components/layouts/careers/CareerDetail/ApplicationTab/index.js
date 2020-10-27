@@ -1,35 +1,55 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Button } from 'antd'
 import { Form as FinalForm, Field } from 'react-final-form'
+import { useHistory } from "react-router-dom"
 import { Form, FormGroup, Row, Col } from 'reactstrap'
 import { useDropzone } from 'react-dropzone'
 import FormInput from '../../../../common/FormInput'
+import FormPhoneInput from '../../../../common/FormPhoneInput'
 import { required } from '../../../../../utils/validation'
+
+import { applyRecruitment } from '../../../../../actions/homepage'
 
 import { useTranslation } from 'react-i18next'
 
 const ApplicationTab = () => {
   const { t } = useTranslation()
 
-  const onDrop = useCallback(acceptedFiles => {
-    acceptedFiles.forEach((file) => {
-      const reader = new FileReader()
+  const history = useHistory()
+  const APPLY_RECRUITMENT_PROCESS = useSelector(state => state.userInfo.APPLY_RECRUITMENT)
+  const dispatch = useDispatch()
 
-      reader.onabort = () => console.log('file reading was aborted')
-      reader.onerror = () => console.log('file reading has failed')
+  const [resumeFile, setResumeFile] = useState(null)
+  const [resumeFileName, setResumeFileName] = useState('')
+  const [isResumeRequired, setIsResumeRequired] = useState(false)
+
+  const onDrop = useCallback(acceptedFiles => {
+    if (acceptedFiles && acceptedFiles[0]) {
+      const reader = new FileReader()
       reader.onload = () => {
-        // Do whatever you want with the file contents
-        const binaryStr = reader.result
-        console.log(binaryStr)
+        setResumeFile(reader.result)
+        setResumeFileName(acceptedFiles[0].name)
       }
-      reader.readAsArrayBuffer(file)
-    })
+      reader.readAsArrayBuffer(acceptedFiles[0])
+    }
   }, [])
 
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop })
+  const { getRootProps, getInputProps } = useDropzone({ onDrop, accept: 'application/pdf' })
 
-  const onSubmit = () => {
-
+  const onSubmit = (values) => {
+    if (!resumeFileName) {
+      return
+    }
+    var formData = new FormData()
+    formData.append('firstname', values.first_name)
+    formData.append('lastname', values.last_name)
+    formData.append('prefix_number', values.phonenumber?.phone_country)
+    formData.append('phone_number', values.phonenumber?.phone_number)
+    formData.append('summary', values.phonenumber?.summary)
+    formData.append('cover_letter', values.phonenumber?.coverletter)
+    formData.append('resume', resumeFile)
+    dispatch(applyRecruitment(formData))
   }
 
   return (
@@ -67,10 +87,9 @@ const ApplicationTab = () => {
             <FormGroup>
               <div className="footer-link-bold mb-2">{t('career_page.phone')}</div>
               <Field
-                name="phone"
-                component={FormInput}
+                name="phonenumber"
+                component={FormPhoneInput}
                 className="custom-form-control"
-                type="text"
               />
             </FormGroup>
           </div>
@@ -90,9 +109,15 @@ const ApplicationTab = () => {
             <div {...getRootProps({ className: 'dropzone' })}>
               <input {...getInputProps()} />
               {
-                <span className="footer-link-bold">{t('career_page.upload_file')}</span>
+                <React.Fragment>
+                  <div className="footer-link-bold">{resumeFileName || t('career_page.upload_file')}</div>
+                </React.Fragment>
+
               }
             </div>
+            {isResumeRequired && resumeFileName === '' &&
+              <div className="invalid-feedback d-block">Resume is required</div>
+            }
           </div>
           <div className="mt-4">
             <FormGroup>
@@ -108,7 +133,7 @@ const ApplicationTab = () => {
 
           <div className="d-block d-md-flex justify-content-between mt-5">
             <Button
-              onClick={null}
+              onClick={() => history.goBack()}
               style={{
                 width: 500,
                 maxWidth: '90%',
@@ -123,12 +148,14 @@ const ApplicationTab = () => {
               {t('button_group.back_to_job_opening')}
             </Button>
             <Button
-              onClick={null}
+              onClick={() => setIsResumeRequired(true)}
               type="primary"
+              htmlType='submit'
               className="ant-blue-btn mt-3 mt-md-0"
               style={{ width: 500, maxWidth: '90%', height: 40, fontSize: '1rem', lineHeight: 1 }}
+              loading={APPLY_RECRUITMENT_PROCESS}
             >
-              {t('button_group.submit')}
+              {!APPLY_RECRUITMENT_PROCESS && t('button_group.submit')}
             </Button>
           </div>
         </Form>

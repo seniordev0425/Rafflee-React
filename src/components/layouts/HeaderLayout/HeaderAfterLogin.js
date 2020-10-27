@@ -59,11 +59,13 @@ function HeaderAfterLogin(props) {
     <>
       {!isMobile ? (
         <Row className="align-items-center">
-          <Link to="/about">
-            <span className="mr-3 font-weight-bold header-btn">
-              {t('header.about')}
-            </span>
-          </Link>
+          {window.location.pathname === '/' &&
+            <Link to="/about">
+              <span className="mr-3 font-weight-bold header-btn">
+                {t('header.about')}
+              </span>
+            </Link>
+          }
           <Link to="/deals">
             <span className="mx-3 font-weight-bold header-btn">
               {t('header.campaigns')}

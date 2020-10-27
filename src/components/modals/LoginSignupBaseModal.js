@@ -10,14 +10,17 @@ import GoogleSignBtn from '../common/Buttons/GoogleSignBtn'
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
 import GoogleLogin from 'react-google-login'
 import FaceBookSignBtn from '../common/Buttons/FaceBookSignBtn'
-import { FACEBOOK_APP_ID } from '../../utils/constants'
-import { GOOGLE_CLIENT_ID } from '../../utils/constants'
+import { 
+  FACEBOOK_APP_ID,
+  GOOGLE_CLIENT_ID,
+  LANGUAGE_NAME
+ } from '../../utils/constants'
 import { facebookLogin, googleLogin } from '../../actions/userInfo'
 
 import { useTranslation } from 'react-i18next'
 
 function LoginSignupBaseModal(props) {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
 
   const {
     isLogin,
@@ -36,7 +39,8 @@ function LoginSignupBaseModal(props) {
     var body = {
       device_id: isMobile ? deviceDetect().model : 'Laptop',
       ip: ip,
-      access_token: response.accessToken
+      access_token: response.accessToken,
+      language: LANGUAGE_NAME[i18n.language]
     }
     dispatch(facebookLogin(body))
   }
@@ -46,7 +50,8 @@ function LoginSignupBaseModal(props) {
       device_id: isMobile ? deviceDetect().model : 'Laptop',
       ip: ip,
       code: response.tokenId,
-      device: 'web'
+      device: 'web',
+      language: LANGUAGE_NAME[i18n.language]
     }
     dispatch(googleLogin(body))
   }

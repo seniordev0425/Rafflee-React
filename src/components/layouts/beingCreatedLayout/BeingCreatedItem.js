@@ -66,7 +66,7 @@ function BeingCreatedItem(props) {
                   <AntdButton
                     type="primary"
                     className={"ant-blue-btn"}
-                    style={{ width: 85, height: 40, padding: 0 }}
+                    style={{ width: 150, height: 40, padding: 0 }}
                     loading={isLoading}
                     onClick={goToCreateCampaignPage}
                   >
@@ -75,11 +75,11 @@ function BeingCreatedItem(props) {
                   <AntdButton
                     type="danger"
                     className="ant-red-btn ml-2"
-                    style={{ width: 85, height: 30, padding: 0 }}
+                    style={{ width: 150, height: 30, padding: 0 }}
                     loading={DELETE_BEING_CREATED_CAMPAIGN_PROCESS && beingDeletedPK === item.pk}
                     onClick={() => onDeleteCampaign(item.pk)}
                   >
-                    {(!DELETE_BEING_CREATED_CAMPAIGN_PROCESS || beingDeletedPK !== item.pk) && t('button_group.close')}
+                    {(!DELETE_BEING_CREATED_CAMPAIGN_PROCESS || beingDeletedPK !== item.pk) && t('button_group.delete')}
                   </AntdButton>
                 </div>
               </div>

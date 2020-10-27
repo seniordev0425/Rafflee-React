@@ -20,6 +20,7 @@ import Report from '../screens/Report'
 import FAQ from '../screens/FAQ'
 import Careers from '../screens/Careers'
 import Influencer from '../screens/Influencer'
+import Brands from '../screens/Brands'
 import CompanyPage from '../screens/CompanyPage'
 import ParticipationResult from '../screens/ParticipationResult'
 import TwitterAuthPage from '../screens/SocialAuth/TwitterAuthPage'
@@ -183,6 +184,7 @@ function Routes(props) {
         <Route exact path="/careers/:menu" component={Careers} />
         <Route exact path="/about" component={About} />
         <Route exact path="/influencer" component={Influencer} />
+        <Route exact path="/brands" component={Brands} />
 
         {(token && !is_admin) &&
           <Route exact path="/user-account/:menu" component={UserAccount} />

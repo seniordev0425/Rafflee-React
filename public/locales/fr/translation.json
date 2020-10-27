@@ -1,7 +1,7 @@
 {
   "header": {
     "join_header_text": "Rafflee, la plateforme des meilleurs jeux-concours et giveaways",
-    "join_now": "Rejoins notre communauté pour gagner de nombreux cadeaux gratuitement!",
+    "join_now": "Rejoins notre communauté pour gagner de nombreux cadeaux gratuitement !",
     "Campaign": "Giveaways",
     "sign_in": "Inscris toi",
     "log_in": "Connecte toi",
@@ -20,12 +20,12 @@
   "footer": {
     "all_rights_reserved": "©2020 Rafflee, tous droits réservés.",
     "enterprise": "Rafflee",
-    "who_are_we": "We are hiring",
+    "who_are_we": "Qui sommes nous ?",
     "the_team": "Notre team",
-    "we_are_hiring": "La team recrute des nouveaux talents!",
+    "we_are_hiring": "La team recrute des nouveaux talents !",
     "community": "Communauté",
-    "company_contact_us": "Entreprises, contactez-nous!",
-    "influencer_contact_us": "Influenceurs, contactez-nous!",
+    "company_contact_us": "Entreprises, contactez-nous !",
+    "influencer_contact_us": "Influenceurs, contactez-nous !",
     "faq": "FAQ",
     "report": "Rapport",
     "legal": "Legal",
@@ -38,10 +38,10 @@
     "resoureces": "Resources",
     "brands": "Brands",
     "influencers": "Influencers",
-    "contact_us": "Contact us",
-    "business": "Business",
-    "contact_by_email": "Contact By Email",
-    "discover_us": "Discover us"
+    "contact_us": "Contactez-nous",
+    "business": "Entreprise",
+    "contact_by_email": "Contacter par Email",
+    "discover_us": "Découvrez-nous"
   },
   "banner": {
     "search_placeholder": "Recherche…",
@@ -52,21 +52,21 @@
     "for_you": "gratuits pour vous."
   },
   "lower_banner": {
-    "title": "We are the contest platform that everyone wants.",
-    "description1": "Free, simple and secure participation.",
-    "description2": "Effective prize draws and beautiful giveaways!",
-    "how_it_work": "How it works"
+    "title": "Nous sommes la plateforme de Giveaway que tout le monde veut utiliser !",
+    "description1": "Participation gratuite, simple et sécurisée.",
+    "description2": "Des tirages au sort efficaces et de superbes cadeaux !",
+    "how_it_work": "Comment ça fonctionne?"
   },
   "about_page_banner": {
-    "platform_for": "The platform for",
-    "competition&giveaways": "competitions and giveaways",
-    "description1": "Rafflee is a raffle platform that run contests and distribute gifts. We are the first platform for contests between brands and influencers to reward their communities.",
-    "description2": "Our contests are completely free!"
+    "platform_for": "La plateforme pour",
+    "competition&giveaways": "les concours et cadeaux",
+    "description1": "Rafflee est une plateforme de giveaways qui organise des tirages au sort et distribue des cadeaux. Nous sommes la première plateforme de concours entre marques et influenceurs pour récompenser leurs communautés.",
+    "description2": "Nos concours sont entièrement gratuits !"
   },
   "career_page_banner": {
-    "build_grow_together": "Build together. Grow together.",
-    "description1": "Like us, do you like giveaways and contests that put the extra in the ordinary? Social networks and contact with influencers and / or companies? Like us, do you like to embellish routines, surprise and make people smile by bringing gifts and a good mood?",
-    "description2": "Then Rafflee is for you!"
+    "build_grow_together": "Construire ensemble. Grandir ensemble.",
+    "description1": "Comme nous, vous aimez les cadeaux et les concours qui mettent de l'extraordinaire dans l'ordinaire ? Les réseaux sociaux et le contact avec des influenceurs et / ou des entreprises? Comme nous, vous aimez embellir les routines, surprendre et faire sourire les gens en apportant des cadeaux et de la bonne humeur ?",
+    "description2": "Alors Rafflee est fait pour vous !"
   },
   "menubar": {
     "all": "Tous",
@@ -100,7 +100,12 @@
     "wall": "Wall",
     "business_create": "Business Creation",
     "campaigns": "Campaigns",
-    "being_created": "Being Created"
+    "being_created": "Being Created",
+    "recruitment": "Recruitment",
+    "messages": "Messages",
+    "company": "Company",
+    "contact": "Contact",
+    "report": "Report"
   },
   "empty_result_to_display": "Aucuns résultats",
   "button_group": {
@@ -167,7 +172,7 @@
     "first_name": "Prénom",
     "last_name": "Nom",
     "gender": "Sexe",
-    "phone_number": "Numéro de telephone",
+    "phone_number": "Numéro de téléphone",
     "country": "Pays",
     "birth_date": "Date de naissance",
     "email": "Email",
@@ -179,7 +184,7 @@
     "male": "Homme",
     "female": "Femme",
     "first_name_required": "Prénom est requis",
-    "last_name_required": "Nom ,de famille est requis",
+    "last_name_required": "Nom de famille est requis",
     "company_name_required": "Nom de l'entreprise est requis",
     "enter_valid_email": "Renseigne un email valide",
     "facebook_connect": "CONNEXION AVEC AVEC FACEBOOK",
@@ -196,7 +201,7 @@
     "instagram_connected": "CONNECTÉ AVEC INSTAGRAM",
     "steam_connect": "CONNEXION AVEC STEAM",
     "steam_connected": "CONNECTÉ AVEC STEAM",
-    "verify_your_email": "Verify email address"
+    "verify_your_email": "Vérifier l'adresse email"
   },
   "campaign_detail_page": {
     "giveaways": "CADEAUX",
@@ -251,11 +256,11 @@
     },
     "tiktok_like": {
       "title": "Tiktok Like",
-      "text": "Like the post to validate the action!"
+      "text": "Like le post pour valider l'action!"
     },
     "tiktok_follow": {
       "title": "Tiktok Follow",
-      "text": "Follow the account to validate the action!"
+      "text": "Follow le compte pour valider l'action!"
     },
     "poll": {
       "title": "Sondage",
@@ -275,10 +280,10 @@
     "mandatory_action": "Action obligatoire pour participer",
     "prize_description": "Le gagnant recevra un des prix ci-dessous:",
     "the_prize": "Les prix",
-    "chance_winning_prize": "Chance of winning the prize",
-    "action_left": "ACTION LEFT",
-    "mandatory_action_left": "MANDATORY ACTION LEFT",
-    "participation_validated": "Vous pouvez toujours effectuer des actions celles ci seront comptabilisé"
+    "chance_winning_prize": "Chance de gagner le prix",
+    "action_left": "ACTION RESTANTE",
+    "mandatory_action_left": "ACTION OBLIGATOIRE RESTANTE",
+    "participation_validated": "Vous pouvez toujours effectuer des actions celles-ci seront comptabilisé"
   },
   "my_campaign_page": {
     "live_page": "Live Page",
@@ -532,7 +537,7 @@
   },
   "faq_page": {
     "faq": "FAQ",
-    "description1": "Easily use our platform to incentivize new product giveaways, drive coupon downloads, drive email list signups or even allow customers to answer to a poll.",
+    "description1": "Utilisez facilement notre plate-forme pour inciter à offrir de nouveaux produits, générer des téléchargements de coupons, générer des inscriptions à des listes de diffusion ou même permettre aux clients de répondre à un sondage.",
     "question1": "Qu’est-ce que Raffle ?",
     "answer1": "Rafflee c’est la plateforme web et mobile qui met en avant les giveaways d'entreprises par des influenceurs pour leurs communautés.",
     "question2": "Est-ce que Rafflee fonctionne sur mon téléphone ?",
@@ -572,7 +577,7 @@
     "resume": "Resume",
     "upload_file": "Télécharger un fichier",
     "description": "Description",
-    "about_you": "A propors de vous",
+    "about_you": "A propros de vous",
     "what_you_will_do": "Qu'aimeriez vous faire",
     "overview": "Aperçu",
     "application": "Application",
@@ -740,6 +745,11 @@
       "subject": "Sujet",
       "business_operation": "Operations commerciales",
       "start_your_project": "Commencez maintenant votre projet"
+    },
+    "brands_page": {
+      "brands": "Brands",
+      "banner_description": "Brands can easily use our platform to incentivize new product giveaways,drive coupon downloads, drive email list signups or even allow customers to answer to a poll.",
+      "start_now": "Start Now"
     },
     "entreprise": {
       "title": "Rafflee | Marques, engagez votre communauté !",

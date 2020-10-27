@@ -4,7 +4,7 @@ import OverviewTab from './OverviewTab'
 
 import { useTranslation } from 'react-i18next'
 
-const CareerDetail = () => {
+const CareerDetail = ({ recruitment }) => {
   const { t } = useTranslation()
 
   const [currentTab, setCurrentTab] = useState('overview')
@@ -13,7 +13,7 @@ const CareerDetail = () => {
     <div className="px-3">
       <div className="d-block d-md-flex justify-content-between">
         <div className="color-purple font-size-16 font-weight-bold">
-          Live Chat Specialist - APAC
+          {recruitment.title}
         </div>
         <div className="d-flex">
           <div
@@ -33,7 +33,10 @@ const CareerDetail = () => {
       <div className="mt-5">
         {currentTab === 'overview'
           ?
-          <OverviewTab />
+          <OverviewTab
+            recruitment={recruitment}
+            onSubmit={() => setCurrentTab('application')}
+          />
           :
           <ApplicationTab />
         }

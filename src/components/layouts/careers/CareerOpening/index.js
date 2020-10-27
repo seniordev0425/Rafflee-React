@@ -1,11 +1,28 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { Pagination } from 'antd'
+import { useSelector, useDispatch } from 'react-redux'
 import OpeningJob from './OpeningJob'
 import SubmitForm from './SubmitForm'
 
+import { getRecruitments } from '../../../../actions/homepage'
+
 import { useTranslation } from 'react-i18next'
 
-const CareerOpening = () => {
+const CareerOpening = ({ currentPage, onChangeCurrentPage }) => {
   const { t } = useTranslation()
+
+  const GET_RECRUITMENTS_PROCESS = useSelector(state => state.userInfo.GET_RECRUITMENTS)
+  const recruitmentData = useSelector(state => state.homepage.recruitmentData)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(getRecruitments(currentPage))
+  }, [currentPage])
+
+  const handlePagination = (value) => {
+    onChangeCurrentPage(value)
+  }
+
 
   return (
     <div className="px-3">
@@ -14,16 +31,26 @@ const CareerOpening = () => {
           {t('career_page.available_job_offers')}
         </div>
         <div className="color-gray font-size-12">
-          {`2 ${t('career_page.jobs')}`}
+          {`${recruitmentData.nbr_of_recruitments} ${t('career_page.jobs')}`}
         </div>
       </div>
+      {recruitmentData.recruitments.map((recruitment, index) => (
+        <div key={index} className="mt-4">
+          <OpeningJob
+            recruitment={recruitment}
+            loading={GET_RECRUITMENTS_PROCESS}
+          />
+        </div>
+      ))}
 
-      <div className="mt-5">
-        <OpeningJob title="Live Chat Specialist - APAC" />
-      </div>
-      <div className="mt-4">
-        <OpeningJob title="Live Chat Specialist - APAC" />
-      </div>
+      <Pagination
+        responsive
+        current={currentPage}
+        defaultPageSize={2}
+        onChange={handlePagination}
+        total={recruitmentData.nbr_of_recruitments}
+        className="py-5 d-flex justify-content-center"
+      />
 
       <div className="color-blue font-size-14 font-weight-bold mt-5 text-center">
         {t('career_page.dont_have_job')}

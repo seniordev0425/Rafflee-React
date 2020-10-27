@@ -1,12 +1,12 @@
 import React from 'react'
 import { Row, Col } from 'reactstrap'
 import AppLayout from '../components/layouts/AppLayout'
-import Banner from '../components/layouts/influencer/Banner'
-import Slider from '../components/layouts/influencer/Slider'
-import Brands from '../components/layouts/influencer/Brands'
-import SubmitForm from '../components/layouts/influencer/SubmitForm'
+import Banner from '../components/layouts/brands/Banner'
+import Slider from '../components/layouts/brands/Slider'
+import Brands from '../components/layouts/brands/Brands'
+import SubmitForm from '../components/layouts/brands/SubmitForm'
 
-function Influencer() {
+function Brand() {
 
   return (
     <AppLayout>
@@ -28,4 +28,4 @@ function Influencer() {
   )
 }
 
-export default Influencer
+export default Brand

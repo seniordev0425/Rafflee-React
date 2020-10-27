@@ -1,10 +1,13 @@
 import React from 'react'
+import { useHistory } from "react-router-dom"
 import { Button } from 'antd'
 
 import { useTranslation } from 'react-i18next'
 
-const OverviewTab = () => {
+const OverviewTab = ({ recruitment, onSubmit }) => {
   const { t } = useTranslation()
+
+  const history = useHistory()
 
   return (
     <div>
@@ -12,14 +15,14 @@ const OverviewTab = () => {
         {t('career_page.description')}
       </div>
       <div className="color-gray font-size-11 mt-4">
-        We’re looking for a blockchain Business Development Associate who will help OneLedger bring innovative blockchain product and services offerings to firms across the globe
+        {recruitment.description}
       </div>
 
       <div className="color-blue font-size-14 font-weight-bold mt-5">
         {t('career_page.about_you')}
       </div>
       <div className="color-gray font-size-11 mt-4">
-        You want to have high impact, drive innovation, and have a meaningful contribution to both our work environment and our client’s business too. You thrive in collaborative environments and are able to quickly switch gears between research, client work, and supporting your colleagues under minimal supervision.
+        {recruitment.about_you}
       </div>
 
 
@@ -27,12 +30,12 @@ const OverviewTab = () => {
         {t('career_page.what_you_will_do')}
       </div>
       <div className="color-gray font-size-11 mt-4">
-        You want to have high impact, drive innovation, and have a meaningful contribution to both our work environment and our client’s business too. You thrive in collaborative environments and are able to quickly switch gears between research, client work, and supporting your colleagues under minimal supervision.
+        {recruitment.goals}
       </div>
 
       <div className="d-block d-md-flex justify-content-between mt-5">
         <Button
-          onClick={null}
+          onClick={() => history.goBack()}
           style={{
             width: 500,
             maxWidth: '90%',
@@ -47,7 +50,7 @@ const OverviewTab = () => {
           {t('button_group.back_to_job_opening')}
         </Button>
         <Button
-          onClick={null}
+          onClick={onSubmit}
           type="primary"
           className="ant-blue-btn mt-3 mt-md-0"
           style={{ width: 500, maxWidth: '90%', height: 40, fontSize: '1rem', lineHeight: 1 }}

@@ -9,11 +9,12 @@ import FormCheckbox from '../common/FormCheckbox'
 import ForgotPassword from './ForgotPassword'
 import { logIn } from '../../actions/userInfo'
 import { required } from '../../utils/validation'
+import { LANGUAGE_NAME } from '../../utils/constants'
 
 import { useTranslation } from 'react-i18next'
 
 function LogInModal(props) {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
 
   const { toggle } = props
 
@@ -30,7 +31,8 @@ function LogInModal(props) {
       username: values.username,
       password: values.password,
       device_id: isMobile ? deviceDetect().model : 'Laptop',
-      ip: ip
+      ip: ip,
+      language: LANGUAGE_NAME[i18n.language]
     }
     dispatch(logIn(body, values.rememberMe))
   }

@@ -23,7 +23,8 @@ const successMessages = {
     companyRegister: "Successfully registered",
     saveCampaign: "Successfully saved",
     contactUs: "We received your message",
-    deleteBeingCreatedCampaign: "Campaign deleted"
+    deleteBeingCreatedCampaign: "Campaign deleted",
+    applyRecruitment: "You application has been sent"
   },
 
 
@@ -34,8 +35,8 @@ const successMessages = {
     accountUpdate: "Mise à jour réussie!",
     participate: "Participation réussie!",
     campaignSubscribe: "Participation réussie",
-    followCircle: "Abonnement réussie",
-    unfollowCircle: "Désabonnement réussie",
+    followCircle: "Abonnement validé",
+    unfollowCircle: "Désabonnement validé",
     deleteAccount: "Le compte à été supprimé",
     resetPasswordRequest: "Confirme ton email pour réinitialiser ton mot de passe.",
     resetPassword: "Mot de passe mis à jour",
@@ -47,11 +48,12 @@ const successMessages = {
     MSG_YOU_HAVE_ALREADY_LIKE_THIS_TWEET: "Vous avez déjà aimé ce tweet",
     MSG_YOU_ARE_ALREADY_FOLLOWING_THIS_ACCOUNT: "Vous avez déjà suivi ce compte",
     MSG_YOU_HAVE_ALREADY_RETWEETED_THIS_TWEET: "Vous avez déjà retweeté ce tweet",
-    updateEmail: "Please confirm your email to update email",
-    companyRegister: "Successfully registered",
-    saveCampaign: "Successfully saved",
-    contactUs: "We received your message",
-    deleteBeingCreatedCampaign: "Campaign deleted"
+    updateEmail: "Veuillez confirmer votre email pour mettre à jour l'email",
+    companyRegister: "Enregistré avec succès",
+    saveCampaign: "Enregistré avec succès",
+    contactUs: "Nous avons bien reçu votre message",
+    deleteBeingCreatedCampaign: "Campagne supprimé",
+    applyRecruitment: "You application has been sent"
   }
 }
 

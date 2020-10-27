@@ -11,7 +11,6 @@ import {
   faTwitch
 } from '@fortawesome/free-brands-svg-icons'
 import ContactUsModal from '../../../components/modals/ContactUsModal'
-import { CONTACT_EMAIL } from '../../../utils/constants'
 
 function FooterLink() {
   const { t } = useTranslation()
@@ -52,7 +51,7 @@ function FooterLink() {
                 {t('footer.business')}
               </div>
               <div className="mt-3">
-                <Link to="/in-progress">
+                <Link to="/brands">
                   <span className="color-gray">{t('footer.brands')}</span>
                 </Link>
               </div>

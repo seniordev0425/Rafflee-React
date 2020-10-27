@@ -152,16 +152,34 @@ function onSuccessBetaReport(data) {
   }
 }
 /////////////////////////////////////////////// GET_RECRUITMENTS_ACTION
-export function getRecruitments(params) {
+export function getRecruitments(page) {
   return apiAction({
-    url: APIROUTE + "homepage/recruitment/",
-    data: qs.stringify(params),
+    url: APIROUTE + `homepage/recruitment/${page}/`,
     onSuccess: onSuccessGetRecruitments,
     onFailure: onFailed,
     label: 'GET_RECRUITMENTS'
   });
 }
 function onSuccessGetRecruitments(data) {
+  return {
+    type: 'SET_RECRUITMENT_DATA',
+    data: data
+  }
+}
+/////////////////////////////////////////////// APPLY_RECRUITMENT_ACTION
+export function applyRecruitment(params) {
+  return apiAction({
+    url: APIROUTE + `homepage/recruitment/apply/`,
+    method: 'POST',
+    data: params,
+    onSuccess: onSuccessApplyRecruitment,
+    onFailure: onFailed,
+    label: 'APPLY_RECRUITMENT',
+    requireErrorMessage: true
+  });
+}
+function onSuccessApplyRecruitment(data) {
+  openNotification('success', successMessages[localStorage.getItem('i18nextLng')].applyRecruitment)
   return {
     type: '',
     data: ''

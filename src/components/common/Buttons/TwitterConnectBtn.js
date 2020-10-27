@@ -22,7 +22,7 @@ function TwitterConnectBtn(props) {
   }, [twitter_oauth_token])
 
   const twitterConnect = () => {
-    if (connected) return
+    // if (connected) return
     dispatch(twitterConnectStep1())
   }
 

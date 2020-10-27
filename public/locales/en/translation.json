@@ -55,7 +55,7 @@
     "title": "We are the contest platform that everyone wants.",
     "description1": "Free, simple and secure participation.",
     "description2": "Effective prize draws and beautiful giveaways!",
-    "how_it_work": "How it works"
+    "how_it_work": "How it works ?"
   },
   "about_page_banner": {
     "platform_for": "The platform for",
@@ -100,7 +100,12 @@
     "wall": "Wall",
     "business_create": "Business Creation",
     "campaigns": "Campaigns",
-    "being_created": "Being Created"
+    "being_created": "Being Created",
+    "recruitment": "Recruitment",
+    "messages": "Messages",
+    "company": "Company",
+    "contact": "Contact",
+    "report": "Report"
   },
   "empty_result_to_display": "There is no result to display.",
   "button_group": {
@@ -593,6 +598,11 @@
     "subject": "Subject",
     "business_operation": "Business Operations",
     "start_your_project": "Start now your project"
+  },
+  "brands_page": {
+    "brands": "Brands",
+    "banner_description": "Brands can easily use our platform to incentivize new product giveaways,drive coupon downloads, drive email list signups or even allow customers to answer to a poll.",
+    "start_now": "Start Now"
   },
   "career_page": {
     "available_job_offers": "Available Job Offers",

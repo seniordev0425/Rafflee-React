@@ -6,6 +6,7 @@ import { Menu } from 'antd'
 
 import BusinessCreateLayout from '../../components/adminLayouts/Dashboard/BusinessCreateLayout'
 import CampaignLayout from '../../components/adminLayouts/Dashboard/Campaign'
+import MessagesLayout from '../../components/adminLayouts/Dashboard/MessagesLayout'
 
 import { useTranslation } from 'react-i18next'
 
@@ -22,9 +23,17 @@ function Dashboard(props) {
   const renderBody = () => {
     switch (match.params.menu) {
       case 'business-create':
-        return <BusinessCreateLayout />
+        return (
+          <Row className="mt-5">
+            <Col xs="12" sm={{ size: 10, offset: 1 }} className="padding-x">
+              <BusinessCreateLayout />
+            </Col>
+          </Row>
+        )
       case 'campaigns':
         return <CampaignLayout />
+      case 'messages':
+        return <MessagesLayout />
       default:
         return <BusinessCreateLayout />
     }
@@ -46,16 +55,22 @@ function Dashboard(props) {
                   <span> {t('menubar.campaigns')}</span>
                 </Link>
               </Menu.Item>
+              <Menu.Item key="recruitment">
+                <Link to="/admin/dashboard/recruitment">
+                  <span> {t('menubar.recruitment')}</span>
+                </Link>
+              </Menu.Item>
+              <Menu.Item key="messages">
+                <Link to="/admin/dashboard/messages">
+                  <span> {t('menubar.messages')}</span>
+                </Link>
+              </Menu.Item>
             </Menu>
           </Col>
         </Row>
       </div>
       <div>
-        <Row className="mt-5">
-          <Col xs="12" sm={{ size: 10, offset: 1 }} className="padding-x">
-            {renderBody()}
-          </Col>
-        </Row>
+        {renderBody()}
       </div>
     </React.Fragment>
   )

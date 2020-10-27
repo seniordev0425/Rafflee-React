@@ -9,3 +9,8 @@ export const TWITCH_CLIENT_ID = 'f0raxy5gaxrl1ub0l1e4kf0fdoq70m'
 export const INSTAGRAM_CLIENT_ID = '497447624523310'
 
 export const CONTACT_EMAIL = 'rafflee@mail.com'
+
+export const LANGUAGE_NAME = {
+  en: "english",
+  fr: "french"
+}

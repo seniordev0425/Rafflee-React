@@ -1,34 +1,46 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import { Button } from 'antd'
 import { useTranslation } from 'react-i18next'
+import { useHistory } from "react-router-dom"
+import moment from 'moment'
 
 const OpeningJob = (props) => {
   const { t } = useTranslation()
-  const { createdAt, title, categories } = props
+  const { recruitment, loading } = props
+
+  const history = useHistory()
 
   return (
-    <div className="default-border py-2 py-md-4 px-2 px-md-5">
+    <div
+      className="default-border py-2 py-md-4 px-2 px-md-5"
+      style={{ opacity: loading ? 0.5 : 1 }}
+    >
       <div className="color-gray font-size-11">
-        {`${t('career_page.posted')} 2 days ago`}
+        {`${t('career_page.posted')} ${moment(recruitment.emission_date).format('YYYY-MM-DD')}`}
       </div>
       <div className="color-purple font-size-14 font-weight-bold mt-3">
-        {title}
+        {recruitment.title}
       </div>
       <div className="d-block d-md-flex justify-content-between mt-3">
-        <div className="color-gray font-size-11">
-          Product - Remote | Client Services
-        </div>
-        <Link to="/careers/23487983274">
-          <Button
-            onClick={null}
-            type="primary"
-            className="ant-blue-btn"
-            style={{ width: 160, height: 40, fontSize: '1rem', lineHeight: 1 }}
-          >
-            {t('button_group.see_more')}
-          </Button>
-        </Link>
+        {recruitment.tag.map((tag, index) => (
+          <div key={index} className="color-gray font-size-11">
+            {tag}
+          </div>
+        ))}
+        <Button
+          onClick={() =>
+            history.push({
+              pathname:
+                `/careers/${recruitment.pk}`,
+              state: { recruitment: recruitment }
+            })
+          }
+          type="primary"
+          className="ant-blue-btn"
+          style={{ width: 160, height: 40, fontSize: '1rem', lineHeight: 1 }}
+        >
+          {t('button_group.see_more')}
+        </Button>
       </div>
     </div>
   )

@@ -14,10 +14,12 @@ import {
   isEmail,
 } from '../../utils/validation'
 
+import { LANGUAGE_NAME } from '../../utils/constants'
+
 import { useTranslation } from 'react-i18next'
 
 function SignUpModal(props) {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
 
   const { showCompanyModal, toggle, history } = props
 
@@ -48,7 +50,8 @@ function SignUpModal(props) {
       username: values.username,
       email: values.email,
       password1: values.password1,
-      password2: values.password2
+      password2: values.password2,
+      language: LANGUAGE_NAME[i18n.language]
     }
     dispatch(signUp(body))
   }
