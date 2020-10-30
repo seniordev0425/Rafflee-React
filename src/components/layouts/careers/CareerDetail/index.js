@@ -38,7 +38,9 @@ const CareerDetail = ({ recruitment }) => {
             onSubmit={() => setCurrentTab('application')}
           />
           :
-          <ApplicationTab />
+          <ApplicationTab
+            recruitment={recruitment}
+          />
         }
       </div>
     </div>

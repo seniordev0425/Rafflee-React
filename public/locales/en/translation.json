@@ -151,7 +151,8 @@
     "back_to_job_opening": "Back to Job openings",
     "apply_for_job": "Apply for this Job",
     "verify_email": "Verify Email",
-    "save": "Save"
+    "save": "Save",
+    "create": "Create"
   },
   "homepage": {
     "hot_new_contest_everyday": "Hot new contest everyday.",
@@ -497,7 +498,7 @@
     "influencer": "Influencer"
   },
   "admin_campaigns_page": {
-    "search_placeholder": "Search by company, influencer"
+    "select_company": "Select company"
   },
   "profile_activated_page": {
     "successfully_activated": "Your account has been activated",

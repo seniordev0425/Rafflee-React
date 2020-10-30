@@ -36,8 +36,8 @@
     "follow_us": "Suivez-nous!",
     "language": "Langues",
     "resoureces": "Resources",
-    "brands": "Brands",
-    "influencers": "Influencers",
+    "brands": "Entreprises",
+    "influencers": "Influenceurs",
     "contact_us": "Contactez-nous",
     "business": "Entreprise",
     "contact_by_email": "Contacter par Email",
@@ -94,16 +94,16 @@
     "action": "3. Action",
     "preview": "4. Prévisualisation",
     "payment": "Paiement",
-    "settings": "Settings",
-    "password": "Password",
+    "settings": "Paramètres",
+    "password": "Mot de passe",
     "deactivate": "Désactiver",
     "wall": "Wall",
     "business_create": "Business Creation",
     "campaigns": "Campaigns",
-    "being_created": "Being Created",
-    "recruitment": "Recruitment",
+    "being_created": "En cours de création",
+    "recruitment": "Recrutement",
     "messages": "Messages",
-    "company": "Company",
+    "company": "Entreprise",
     "contact": "Contact",
     "report": "Report"
   },
@@ -112,7 +112,7 @@
     "see_campaign": "Voir la campagne",
     "verify": "Verifier",
     "update": "Mise à jour",
-    "delete": "effacer",
+    "delete": "Supprimer",
     "upload_image": "Upload Image",
     "upload_profile_picture": "Upload Avatar",
     "upload_campaign_image": "Upload image de campagne",
@@ -146,12 +146,13 @@
     "validated": "Validé",
     "confirm_tweet": "Confirmez le Tweet",
     "resend_verification_email": "Resend Email",
-    "see_more": "See more",
-    "submit": "Submit",
-    "back_to_job_opening": "Back to Job openings",
-    "apply_for_job": "Apply for this Job",
+    "see_more": "En savoir plus",
+    "submit": "Soumettre",
+    "back_to_job_opening": "Retour aux offres d'emploi",
+    "apply_for_job": "Postuler pour cet emploi",
     "verify_email": "Vérifier l'email",
-    "save": "Save"
+    "save": "Sauvegarder",
+    "create": "Créer"
   },
   "homepage": {
     "hot_new_contest_everyday": "Des raffles et giveaways tous les jours.",
@@ -333,7 +334,7 @@
     "unknown": "Inconnu",
     "audience_growth": "Croissance de l'Audience",
     "campaigns_engagement": "Taux d'engagement",
-    "brand_engagement": "Brand Engagement",
+    "brand_engagement": "Engagement de marque",
     "engagement_score_by_day": "Engagement Score par jour",
     "campaign_followers": "Campaign Followers",
     "circle_followers": "Circle Followers",
@@ -353,7 +354,7 @@
     "country": "Pays:",
     "city": "Ville:",
     "benefit_by_action": "Intérêt par actions",
-    "benefit_by_click": "Intérêt par clics",
+    "benefit_by_view": "Par vue",
     "benefit_by_participation": "Intérêt par participation",
     "benefit_by_follower": "Intérêt par followers",
     "benefit_by_total": "Intérêt total",
@@ -444,9 +445,9 @@
     "instagram_publication_url": "Instagram Publication ID",
     "tiktok_profile_url": "@username",
     "tiktok_publication_url": "https://www.tiktok.com/@username/video/id",
-    "instagram_profile": "Profile",
+    "instagram_profile": "",
     "instagram_publication": "Publication",
-    "twitch_follow_name": "Follow Name",
+    "twitch_follow_name": "Nom du compte",
     "create_video_action": "VIDEO ACTION",
     "create_website_action": "WEBSITE ACTION",
     "limit_participants": "Limite de participants",
@@ -491,6 +492,9 @@
     "entity_type": "Type d'entité",
     "company": "Entreprise",
     "influencer": "Influenceur"
+  },
+  "admin_campaigns_page": {
+    "select_company": "Select company"
   },
   "profile_activated_page": {
     "successfully_activated": "Ton compte a été activé",
@@ -583,6 +587,39 @@
     "application": "Application",
     "summary": "Resume",
     "coverletter": "Lettre de motivation (facultatif)"
+  },
+  "influencer_page": {
+    "influencers": "Influenceurs",
+    "banner_description": "Les influenceurs peuvent facilement créer des campagnes qui promeuvent leur contenu sur les réseaux sociaux tout en assurant la légitimité de leurs concours.",
+    "start_now": "Commencez maintenant !",
+    "slider1": {
+      "title": "1. La communauté:",
+      "text": "En effectuant vos campagnes avec Rafflee vous remerciez vos followers en leurs offrant la possibilité de remporter des giveaways ou des raffles avec des jeux-concours fair-play. En échange, ceux ci mettront en avant vos différents contenus sur les différents réseaux sociaux. Vous vous assurez ainsi une meilleure exposition (une augmentation de vos followers sur un réseau sociale par exemple) et la satisfaction d'un public remercié !"
+    },
+    "slider2": {
+      "title": "2. La plateforme:",
+      "text": "Rafflee met a disposition la premiere plateforme de growth marketing pour les jeux-concours et giveaway. Grâce à notre algorithme maison nous vous assurons un tirage au sort aléatoire qui récompensera en priorité les participants les plus motivés. Nous nous chargeons de vous fournir un maximum de données (anonymisé pour protéger les utilisateurs) afin de pouvoir analyser l'impact de votre campagne sur les réseaux sociaux et auprès de votre public."
+    },
+    "slider3": {
+      "title": "3. L'engagement:",
+      "text": " Grace au système de connection avec les différents réseaux sociaux, Rafflee vous assure un taux d'engagement exceptionnel. En effet, la prise en compte de nouveaux participants dans vos campagnes est faite seulement si l'utilisateur a rempli toutes les conditions fixe au préalable lors de la conception de la campagne. Engagez votre communauté sur votre nouveau réseau social, sélectionnez les informations à mettre en avant en activant les actions désirées pour que votre communauté participe."
+    },
+    "slider4": {
+      "title": "4. La sécurité d'une campagne réussie:",
+      "text": "Avec Rafflee, vous vous assurez une campagne réussie et sécurisé. L'algorithme, tire au hasard, les gagnants de votre jeux concours ou de vos giveaways. Cela vous assure aussi, une distribution certaine des lots sans triche. De plus nous vérifions via la connection aux différents réseaux l'exactitude du 'call to action' accompli."
+    },
+    "thousands_of_brands": "Des milliers de marques ",
+    "trust_us": "faites nous confiance.",
+    "get_in_touch": "Restons en contact.",
+    "we_reach_out_to_you": "Nous vous contacterons le plus rapidement possible.",
+    "subject": "Sujet",
+    "business_operation": "Operations commerciales",
+    "start_your_project": "Commencez maintenant votre projet"
+  },
+  "brands_page": {
+    "brands": "Entreprise",
+    "banner_description": "Les marques peuvent facilement utiliser notre plate-forme pour inciter à offrir de nouveaux geveaways, générer des téléchargements de coupons, générer des inscriptions à des listes de diffusion ou même permettre aux clients de répondre à un sondage.",
+    "start_now": "Commencez maintenant"
   },
   "signin_modal": {
     "username": "Nom d'utilisateur",
@@ -717,39 +754,6 @@
         "name": "jeux concours, giveaways, giveaway, jeu concours, comment gagner un jeu concours, jeu concours gratuit, jeux concours influenceurs, tirage au sort",
         "content": "mots clés"
       }
-    },
-    "influencer_page": {
-      "influencers": "Influenceurs",
-      "banner_description": "Les influenceurs peuvent facilement créer des campagnes qui promeuvent leur contenu sur les réseaux sociaux tout en assurant la légitimité de leurs concours.",
-      "start_now": "Commencez maintenant !",
-      "slider1": {
-        "title": "1. La communauté:",
-        "text": "En effectuant vos campagnes avec Rafflee vous remerciez vos followers en leurs offrant la possibilité de remporter des giveaways ou des raffles avec des jeux-concours fair-play. En échange, ceux ci mettront en avant vos différents contenus sur les différents réseaux sociaux. Vous vous assurez ainsi une meilleure exposition (une augmentation de vos followers sur un réseau sociale par exemple) et la satisfaction d'un public remercié !"
-      },
-      "slider2": {
-        "title": "2. La plateforme:",
-        "text": "Rafflee met a disposition la premiere plateforme de growth marketing pour les jeux-concours et giveaway. Grâce à notre algorithme maison nous vous assurons un tirage au sort aléatoire qui récompensera en priorité les participants les plus motivés. Nous nous chargeons de vous fournir un maximum de données (anonymisé pour protéger les utilisateurs) afin de pouvoir analyser l'impact de votre campagne sur les réseaux sociaux et auprès de votre public."
-      },
-      "slider3": {
-        "title": "3. L'engagement:",
-        "text": " Grace au système de connection avec les différents réseaux sociaux, Rafflee vous assure un taux d'engagement exceptionnel. En effet, la prise en compte de nouveaux participants dans vos campagnes est faite seulement si l'utilisateur a rempli toutes les conditions fixe au préalable lors de la conception de la campagne. Engagez votre communauté sur votre nouveau réseau social, sélectionnez les informations à mettre en avant en activant les actions désirées pour que votre communauté participe."
-      },
-      "slider4": {
-        "title": "4. La sécurité d'une campagne réussie:",
-        "text": "Avec Rafflee, vous vous assurez une campagne réussie et sécurisé. L'algorithme, tire au hasard, les gagnants de votre jeux concours ou de vos giveaways. Cela vous assure aussi, une distribution certaine des lots sans triche. De plus nous vérifions via la connection aux différents réseaux l'exactitude du 'call to action' accompli."
-      },
-      "thousands_of_brands": "Des milliers de marques ",
-      "trust_us": "faites nous confiance.",
-      "get_in_touch": "Restons en contact.",
-      "we_reach_out_to_you": "Nous vous contacterons le plus rapidement possible.",
-      "subject": "Sujet",
-      "business_operation": "Operations commerciales",
-      "start_your_project": "Commencez maintenant votre projet"
-    },
-    "brands_page": {
-      "brands": "Brands",
-      "banner_description": "Brands can easily use our platform to incentivize new product giveaways,drive coupon downloads, drive email list signups or even allow customers to answer to a poll.",
-      "start_now": "Start Now"
     },
     "entreprise": {
       "title": "Rafflee | Marques, engagez votre communauté !",

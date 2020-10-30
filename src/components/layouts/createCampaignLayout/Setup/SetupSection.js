@@ -220,11 +220,12 @@ function SetupSection(props) {
                   <span className="ml-3 font-size-12" style={{ color: 'red', verticalAlign: 'sub' }}>*</span>
                 </div>
                 <DatePicker
-                  value={params.start_date ? moment(params.start_date, 'YYYY-MM-DD') : null}
+                  showTime
+                  value={params.start_date ? moment(params.start_date, 'YYYY-MM-DD HH:mm:ss') : null}
                   onChange={(date, dateString) => setParams('start_date', dateString)}
-                  placeholder="YYYY-MM-DD"
+                  placeholder="YYYY-MM-DD HH:mm:ss"
                   className="ant-date-picker"
-                  format="YYYY-MM-DD"
+                  format="YYYY-MM-DD HH:mm:ss"
                 />
               </FormGroup>
             </div>
@@ -237,11 +238,12 @@ function SetupSection(props) {
                   <span className="ml-3 font-size-12" style={{ color: 'red', verticalAlign: 'sub' }}>*</span>
                 </div>
                 <DatePicker
-                  value={params.end_date ? moment(params.end_date, 'YYYY-MM-DD') : null}
+                  showTime
+                  value={params.end_date ? moment(params.end_date, 'YYYY-MM-DD HH:mm:ss') : null}
                   onChange={(date, dateString) => setParams('end_date', dateString)}
-                  placeholder="YYYY-MM-DD"
+                  placeholder="YYYY-MM-DD HH:mm:ss"
                   className="ant-date-picker"
-                  format="YYYY-MM-DD"
+                  format="YYYY-MM-DD HH:mm:ss"
                 />
               </FormGroup>
             </div>

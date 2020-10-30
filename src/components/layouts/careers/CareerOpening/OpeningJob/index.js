@@ -22,11 +22,13 @@ const OpeningJob = (props) => {
         {recruitment.title}
       </div>
       <div className="d-block d-md-flex justify-content-between mt-3">
-        {recruitment.tag.map((tag, index) => (
-          <div key={index} className="color-gray font-size-11">
-            {tag}
-          </div>
-        ))}
+        <div className="d-flex">
+          {recruitment.tag.map((tag, index) => (
+            <div key={index} className="color-gray font-size-11">
+              {`${tag} `}
+            </div>
+          ))}
+        </div>
         <Button
           onClick={() =>
             history.push({

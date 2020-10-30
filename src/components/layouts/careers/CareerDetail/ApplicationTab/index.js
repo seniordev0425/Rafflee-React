@@ -13,7 +13,7 @@ import { applyRecruitment } from '../../../../../actions/homepage'
 
 import { useTranslation } from 'react-i18next'
 
-const ApplicationTab = () => {
+const ApplicationTab = ({ recruitment }) => {
   const { t } = useTranslation()
 
   const history = useHistory()
@@ -42,6 +42,7 @@ const ApplicationTab = () => {
       return
     }
     var formData = new FormData()
+    formData.append('job_pk', recruitment.pk)
     formData.append('firstname', values.first_name)
     formData.append('lastname', values.last_name)
     formData.append('prefix_number', values.phonenumber?.phone_country)

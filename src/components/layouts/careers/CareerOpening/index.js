@@ -6,6 +6,8 @@ import SubmitForm from './SubmitForm'
 
 import { getRecruitments } from '../../../../actions/homepage'
 
+import { NUMBER_PER_PAGE } from '../../../../utils/constants'
+
 import { useTranslation } from 'react-i18next'
 
 const CareerOpening = ({ currentPage, onChangeCurrentPage }) => {
@@ -42,11 +44,16 @@ const CareerOpening = ({ currentPage, onChangeCurrentPage }) => {
           />
         </div>
       ))}
+      {!GET_RECRUITMENTS_PROCESS && recruitmentData.recruitments.length < 1 && (
+        <div className="empty-result mt-5">
+          <span className="promotion-list-item-title">{t('empty_result_to_display')}</span>
+        </div>
+      )}
 
       <Pagination
         responsive
         current={currentPage}
-        defaultPageSize={2}
+        defaultPageSize={NUMBER_PER_PAGE}
         onChange={handlePagination}
         total={recruitmentData.nbr_of_recruitments}
         className="py-5 d-flex justify-content-center"

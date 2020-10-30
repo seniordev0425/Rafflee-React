@@ -1,13 +1,17 @@
 const initialFeedState = {
-  tempCampaigns: []
+  campaignData: {
+    max_page: 0,
+    promotions: [],
+    nbr_of_promotions: 0
+  }
 }
 
 function Campaign(state = initialFeedState, action) {
   switch (action.type) {
-    case 'SET_ADMIN_TEMP_CAMPAIGNS_IN_DASHBOARD':
+    case 'SET_ADMIN_CAMPAIGNS':
       return {
         ...state,
-        tempCampaigns: action.data
+        campaignData: action.data
       }
     
     default:

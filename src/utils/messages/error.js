@@ -104,7 +104,8 @@ const errorMessages = {
     MSG_ENTER_A_DIFFERENT_EMAIL: "Enter a different email",
     MSG_EMAIL_NOT_CONFIRMED: "Please verify email",
     MSG_CAMPAIGN_NAME_REQUIRED: "Campaign name is required",
-    MSG_PHONE_NUMBER_ALREADY_LINKED_TO_AN_ACCOUNT: "Phone number already linked to an account"
+    MSG_PHONE_NUMBER_ALREADY_LINKED_TO_AN_ACCOUNT: "Phone number already linked to an account",
+    MSG_RECRUITMENTS_ARE_CLOSED: "Recruitments are closed"
   },
 
 
@@ -212,7 +213,8 @@ const errorMessages = {
     MSG_ENTER_A_DIFFERENT_EMAIL: "Entrez un autre e-mail",
     MSG_EMAIL_NOT_CONFIRMED: "Veuillez vérifier votre email",
     MSG_CAMPAIGN_NAME_REQUIRED: "Le nom de la campagne est requis",
-    MSG_PHONE_NUMBER_ALREADY_LINKED_TO_AN_ACCOUNT: "Le numéro de téléphone est déjà lie à un compte"
+    MSG_PHONE_NUMBER_ALREADY_LINKED_TO_AN_ACCOUNT: "Le numéro de téléphone est déjà lie à un compte",
+    MSG_RECRUITMENTS_ARE_CLOSED: "Recruitments are closed"
   }
 }
 

@@ -138,7 +138,7 @@ const BusinessCreateLayout = () => {
                       className="ant-blue-btn mt-2"
                       style={{ width: 200 }}
                     >
-                      {!COMPANY_REGISTER_PROCESS && t('button_group.update')}
+                      {!COMPANY_REGISTER_PROCESS && t('button_group.create')}
                     </Button>
                   </div>
                 </Col>

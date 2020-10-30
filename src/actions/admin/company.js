@@ -14,20 +14,19 @@ function onFailed(error) {
   }
 }
 /////////////////////////////////////////////// ADMIN_GET_CAMPAIGN_ACTION
-export function getCampaigns(keyword, page) {
+export function getCompanyList() {
   return apiAction({
-    url: APIROUTE + `admin/dashboard/promotion/${keyword}/${page}/`,
-    method: 'GET',
+    url: APIROUTE + `admin/dashboard/company/list/`,
     accessToken: localStorage.getItem('token'),
-    onSuccess: onSuccessGetCampaigns,
+    onSuccess: onSuccessGetCompanyList,
     onFailure: onFailed,
-    label: 'ADMIN_GET_CAMPAIGNS',
+    label: 'ADMIN_GET_COMPANY_LIST',
   });
 }
-function onSuccessGetCampaigns(data) {
+function onSuccessGetCompanyList(data) {
   return {
-    type: 'SET_ADMIN_CAMPAIGNS',
-    data: data
+    type: 'SET_ADMIN_COMPANY_LIST',
+    data: data.companies
   }
 }
 

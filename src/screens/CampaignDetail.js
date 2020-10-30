@@ -167,7 +167,7 @@ function CampaignDetail(props) {
     return (
       (campaignData.winnings || []).map((item, index) =>
         <div key={index} className="mt-3 color-blue font-size-11">
-          <span className="pointer" onClick={() => goToWinningDetail(item, campaignData.pk)}>{`${item.number} - ${item.name}`}</span>
+          <span className="pointer" onClick={() => goToWinningDetail(item, campaignData.pk)}>{`${item.number_of_people} - ${item.name}`}</span>
         </div>
       )
     )

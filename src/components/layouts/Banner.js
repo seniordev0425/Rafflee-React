@@ -41,7 +41,8 @@ function Banner(props) {
         <Input
           placeholder={t('banner.search_placeholder')}
           className="banner-search-input"
-          onChange={(e) => setSearchKey(e.target.value)} onKeyPress={handleKeyPress}>
+          onChange={(e) => setSearchKey(e.target.value)}
+          onKeyPress={handleKeyPress}>
         </Input>
         <div
           className="banner-search-btn"

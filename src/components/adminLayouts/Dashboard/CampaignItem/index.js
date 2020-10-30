@@ -9,10 +9,10 @@ import { useTranslation } from 'react-i18next'
 function CampaignItem(props) {
   const { t } = useTranslation()
 
-  const { item } = props
+  const { item, loading } = props
 
   return (
-    <div>
+    <div style={{ opacity: loading ? 0.5 : 1 }}>
       <Row>
         <Col xs="12" sm={{ size: 10, offset: 1 }} className="padding-x">
           <Row>
