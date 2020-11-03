@@ -66,12 +66,12 @@ const Campaign = () => {
       </div>
       <div className="min-height-container">
         {renderCampaignList()}
+        {!ADMIN_GET_CAMPAIGNS_PROCESS && campaignData.promotions.length < 1 && (
+          <div className="empty-result mt-5">
+            <span className="promotion-list-item-title">{t('empty_result_to_display')}</span>
+          </div>
+        )}
       </div>
-      {!ADMIN_GET_CAMPAIGNS_PROCESS && campaignData.promotions.length < 1 && (
-        <div className="empty-result mt-5">
-          <span className="promotion-list-item-title">{t('empty_result_to_display')}</span>
-        </div>
-      )}
       <Pagination
         responsive
         current={currentPage}

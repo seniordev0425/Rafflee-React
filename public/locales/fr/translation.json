@@ -105,7 +105,10 @@
     "messages": "Messages",
     "company": "Entreprise",
     "contact": "Contact",
-    "report": "Report"
+    "report": "Report",
+    "offers": "Offers",
+    "requests": "Requests",
+    "create_offer": "Create Offer"
   },
   "empty_result_to_display": "Aucuns résultats",
   "button_group": {
@@ -152,7 +155,8 @@
     "apply_for_job": "Postuler pour cet emploi",
     "verify_email": "Vérifier l'email",
     "save": "Sauvegarder",
-    "create": "Créer"
+    "create": "Créer",
+    "back": "Back"
   },
   "homepage": {
     "hot_new_contest_everyday": "Des raffles et giveaways tous les jours.",
@@ -496,6 +500,10 @@
   "admin_campaigns_page": {
     "select_company": "Select company"
   },
+  "admin_recruitment_page": {
+    "end_date": "End Date",
+    "required_field": "Required field"
+  },
   "profile_activated_page": {
     "successfully_activated": "Ton compte a été activé",
     "goto_login": "Va à la page d'accueil pour t'identifier!"
@@ -586,7 +594,11 @@
     "overview": "Aperçu",
     "application": "Application",
     "summary": "Resume",
-    "coverletter": "Lettre de motivation (facultatif)"
+    "coverletter": "Lettre de motivation (facultatif)",
+    "title": "Title",
+    "tags": "Tags",
+    "end_date": "End Date",
+    "active": "Active"
   },
   "influencer_page": {
     "influencers": "Influenceurs",

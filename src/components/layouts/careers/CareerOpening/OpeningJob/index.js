@@ -24,7 +24,7 @@ const OpeningJob = (props) => {
       <div className="d-block d-md-flex justify-content-between mt-3">
         <div className="d-flex">
           {recruitment.tag.map((tag, index) => (
-            <div key={index} className="color-gray font-size-11">
+            <div key={index} className="color-gray font-size-11 mr-3">
               {`${tag} `}
             </div>
           ))}

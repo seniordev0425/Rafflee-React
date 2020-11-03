@@ -6,6 +6,7 @@ import { Menu } from 'antd'
 
 import BusinessCreateLayout from '../../components/adminLayouts/Dashboard/BusinessCreateLayout'
 import CampaignLayout from '../../components/adminLayouts/Dashboard/Campaign'
+import RecruitmentLayout from '../../components/adminLayouts/Dashboard/RecruitmentLayout'
 import MessagesLayout from '../../components/adminLayouts/Dashboard/MessagesLayout'
 
 import { useTranslation } from 'react-i18next'
@@ -32,6 +33,8 @@ function Dashboard(props) {
         )
       case 'campaigns':
         return <CampaignLayout />
+      case 'recruitment':
+        return <RecruitmentLayout />
       case 'messages':
         return <MessagesLayout />
       default:

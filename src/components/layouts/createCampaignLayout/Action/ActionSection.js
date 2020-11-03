@@ -52,7 +52,13 @@ import { useTranslation } from 'react-i18next'
 function ActionSection(props) {
   const { t } = useTranslation()
 
-  const { params, setParams, setSection, setAction, onSaveCampaign } = props
+  const {
+    params,
+    setParams,
+    setSection,
+    setAction,
+    onSaveCampaign
+  } = props
 
   const SAVE_CAMPAIGN_PROCESS = useSelector(state => state.userInfo.SAVE_CAMPAIGN)
 

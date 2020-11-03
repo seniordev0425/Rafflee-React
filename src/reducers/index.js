@@ -7,6 +7,7 @@ import social from './social'
 import adminCampaign from './admin/campaign'
 import adminCompany from './admin/company'
 import adminMessage from './admin/message'
+import adminRecruitment from './admin/recruitment'
 
 const AppReducer = combineReducers({
   userInfo,
@@ -16,7 +17,8 @@ const AppReducer = combineReducers({
   social,
   adminCampaign,
   adminCompany,
-  adminMessage
+  adminMessage,
+  adminRecruitment
 })
 
 export default AppReducer

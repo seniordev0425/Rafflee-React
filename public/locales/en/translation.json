@@ -105,7 +105,10 @@
     "messages": "Messages",
     "company": "Company",
     "contact": "Contact",
-    "report": "Report"
+    "report": "Report",
+    "offers": "Offers",
+    "requests": "Requests",
+    "create_offer": "Create Offer"
   },
   "empty_result_to_display": "There is no result to display.",
   "button_group": {
@@ -140,6 +143,7 @@
     "edit": "Edit",
     "follow_circle": "FOLLOW",
     "unfollow_circle": "UNFOLLOW",
+    "add": "Add",
     "remove": "Remove",
     "close": "Close",
     "validate": "Validate",
@@ -152,7 +156,8 @@
     "apply_for_job": "Apply for this Job",
     "verify_email": "Verify Email",
     "save": "Save",
-    "create": "Create"
+    "create": "Create",
+    "back": "Back"
   },
   "homepage": {
     "hot_new_contest_everyday": "Hot new contest everyday.",
@@ -500,6 +505,12 @@
   "admin_campaigns_page": {
     "select_company": "Select company"
   },
+  "admin_recruitment_page": {
+    "end_date": "End Date",
+    "required_field": "Required field",
+    "add_tag": "Add tag",
+    "remove_tag": "Remove tag"
+  },
   "profile_activated_page": {
     "successfully_activated": "Your account has been activated",
     "goto_login": "Go to Homepage and Login!"
@@ -627,7 +638,11 @@
     "coverletter": "Cover Letter (Optional)",
     "first_name_required": "First name is required",
     "last_name_required": "Last name is required",
-    "message_required": "Message is required"
+    "message_required": "Message is required",
+    "title": "Title",
+    "tags": "Tags",
+    "end_date": "End Date",
+    "active": "Active"
   },
   "signin_modal": {
     "username": "Username",
