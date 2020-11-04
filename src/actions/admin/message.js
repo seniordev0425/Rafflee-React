@@ -61,7 +61,60 @@ function onSuccessGetReportMessages(data) {
     data: data
   }
 }
-
+/////////////////////////////////////////////// ADMIN_READ_COMPANY_MESSAGES_ACTION
+export function readCompanyMessage(params) {
+  return apiAction({
+    url: APIROUTE + `admin/dashboard/company/form/read/`,
+    method: 'POST',
+    data: qs.stringify(params),
+    accessToken: localStorage.getItem('token'),
+    onSuccess: (data) => onSuccessReadCompanyMessage(params),  
+    onFailure: onFailed,
+    label: 'ADMIN_READ_COMPANY_MESSAGES',
+  });
+}
+function onSuccessReadCompanyMessage(params) {
+  return {
+    type: 'READ_ADMIN_COMPANY_MESSAGES',
+    pk: params.pk
+  }
+}
+/////////////////////////////////////////////// ADMIN_READ_HOMEPAGE_MESSAGES_ACTION
+export function readHomepageMessage(params) {
+  return apiAction({
+    url: APIROUTE + `admin/dashboard/homepage/form/read/`,
+    method: 'POST',
+    data: qs.stringify(params),
+    accessToken: localStorage.getItem('token'),
+    onSuccess: (data) => onSuccessReadHomepageMessage(params),  
+    onFailure: onFailed,
+    label: 'ADMIN_READ_HOMEPAGE_MESSAGES',
+  });
+}
+function onSuccessReadHomepageMessage(params) {
+  return {
+    type: 'READ_ADMIN_HOMEPAGE_MESSAGES',
+    pk: params.pk
+  }
+}
+/////////////////////////////////////////////// ADMIN_READ_REPORT_MESSAGES_ACTION
+export function readReportMessage(params) {
+  return apiAction({
+    url: APIROUTE + `admin/dashboard/report/form/read/`,
+    method: 'POST',
+    data: qs.stringify(params),
+    accessToken: localStorage.getItem('token'),
+    onSuccess: (data) => onSuccessReadReportMessage(params),  
+    onFailure: onFailed,
+    label: 'ADMIN_READ_REPORT_MESSAGES',
+  });
+}
+function onSuccessReadReportMessage(params) {
+  return {
+    type: 'READ_ADMIN_REPORT_MESSAGES',
+    pk: params.pk
+  }
+}
 
 function apiAction({
   url = "",

@@ -105,6 +105,40 @@ function onSuccessRemoveRecruitmentTag(data, tag) {
     tag: tag
   }
 }
+/////////////////////////////////////////////// ADMIN_GET_RECRUITMENT_APPLIES_ACTION
+export function getRecruitmentApplies(page) {
+  return apiAction({
+    url: APIROUTE + `admin/dashboard/recruitment/apply/${page}/`,
+    accessToken: localStorage.getItem('token'),
+    onSuccess: onSuccessGetRecruitmentApplies,  
+    onFailure: onFailed,
+    label: 'ADMIN_GET_RECRUITMENT_APPLIES',
+  });
+}
+function onSuccessGetRecruitmentApplies(data) {
+  return {
+    type: 'SET_ADMIN_RECRUITMENT_APPLIES',
+    data: data
+  }
+}
+/////////////////////////////////////////////// ADMIN_GET_RECRUITMENT_APPLIES_ACTION
+export function readRecruitmentApply(params) {
+  return apiAction({
+    url: APIROUTE + `admin/dashboard/recruitment/apply/read/`,
+    method: 'POST',
+    data: qs.stringify(params),
+    accessToken: localStorage.getItem('token'),
+    onSuccess: (data) => onSuccessReadRecruitmentApply(params),  
+    onFailure: onFailed,
+    label: 'ADMIN_READ_RECRUITMENT_APPLY',
+  });
+}
+function onSuccessReadRecruitmentApply(params) {
+  return {
+    type: 'READ_ADMIN_RECRUITMENT_APPLIES',
+    pk: params.pk
+  }
+}
 
 function apiAction({
   url = "",

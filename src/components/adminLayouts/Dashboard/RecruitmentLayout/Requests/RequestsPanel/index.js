@@ -4,21 +4,21 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 
 import Loading from '../../../../../../components/common/Loading'
-import Offer from './Offer'
+import Request from './Request'
 
-import { getRecruitments } from '../../../../../../actions/homepage'
+import { getRecruitmentApplies } from '../../../../../../actions/admin/recruitment'
 
 import { NUMBER_PER_PAGE } from '../../../../../../utils/constants'
 
 const OffersPanel = ({ onChangeSection, currentPage, onChangeCurrentPage }) => {
   const { t } = useTranslation()
 
-  const GET_RECRUITMENTS_PROCESS = useSelector(state => state.userInfo.GET_RECRUITMENTS)
-  const recruitmentData = useSelector(state => state.homepage.recruitmentData)
+  const ADMIN_GET_RECRUITMENT_APPLIES_PROCESS = useSelector(state => state.userInfo.ADMIN_GET_RECRUITMENT_APPLIES)
+  const appliesData = useSelector(state => state.adminRecruitment.appliesData)
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(getRecruitments(currentPage))
+    dispatch(getRecruitmentApplies(currentPage))
   }, [currentPage])
 
   const handlePagination = (value) => {
@@ -28,21 +28,21 @@ const OffersPanel = ({ onChangeSection, currentPage, onChangeCurrentPage }) => {
   return (
     <div>
       <div className="min-height-container">
-        {recruitmentData.recruitments.map((recruitment, index) => (
+        {appliesData.request_job.map((request, index) => (
           <div key={index} className="promotion-list-item-container">
-            <Offer
-              recruitment={recruitment}
-              loading={GET_RECRUITMENTS_PROCESS}
+            <Request
+              request={request}
+              loading={ADMIN_GET_RECRUITMENT_APPLIES_PROCESS}
               onChangeSection={onChangeSection}
             />
           </div>
         ))}
-        {!GET_RECRUITMENTS_PROCESS && recruitmentData.recruitments.length < 1 && (
+        {!ADMIN_GET_RECRUITMENT_APPLIES_PROCESS && appliesData.request_job.length < 1 && (
           <div className="empty-result mt-5">
             <span className="promotion-list-item-title">{t('empty_result_to_display')}</span>
           </div>
         )}
-        {GET_RECRUITMENTS_PROCESS && recruitmentData.recruitments.length < 1 && (
+        {ADMIN_GET_RECRUITMENT_APPLIES_PROCESS && appliesData.request_job.length < 1 && (
           <Loading />
         )}
       </div>
@@ -51,7 +51,7 @@ const OffersPanel = ({ onChangeSection, currentPage, onChangeCurrentPage }) => {
         current={currentPage}
         defaultPageSize={NUMBER_PER_PAGE}
         onChange={handlePagination}
-        total={recruitmentData.nbr_of_recruitments}
+        total={appliesData.nbr_of_apply_job}
         className="py-5 d-flex justify-content-center"
       />
     </div>

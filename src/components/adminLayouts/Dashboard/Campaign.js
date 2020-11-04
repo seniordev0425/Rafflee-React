@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Pagination, Select } from 'antd'
 import * as _ from 'lodash'
 
+import Loading from '../../../components/common/Loading'
 import CampaignItem from './CampaignItem'
 
 import { getCampaigns } from '../../../actions/admin/campaign'
@@ -70,6 +71,9 @@ const Campaign = () => {
           <div className="empty-result mt-5">
             <span className="promotion-list-item-title">{t('empty_result_to_display')}</span>
           </div>
+        )}
+        {ADMIN_GET_CAMPAIGNS_PROCESS &&  campaignData.promotions.length < 1 && (
+          <Loading />
         )}
       </div>
       <Pagination

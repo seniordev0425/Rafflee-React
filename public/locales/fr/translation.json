@@ -502,7 +502,21 @@
   },
   "admin_recruitment_page": {
     "end_date": "End Date",
-    "required_field": "Required field"
+    "required_field": "Required field",
+    "add_tag": "Add tag",
+    "remove_tag": "Remove tag",
+    "created": "Created at"
+  },
+  "admin_message_page": {
+    "created": "Created at",
+    "email": "Email",
+    "phone_number": "Phone Number",
+    "message": "Message",
+    "context": "Context",
+    "type": "Type",
+    "description": "Description",
+    "issue": "Issue",
+    "company_name": "Company Name"
   },
   "profile_activated_page": {
     "successfully_activated": "Ton compte a été activé",

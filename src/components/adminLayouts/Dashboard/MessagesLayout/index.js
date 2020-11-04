@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { Menu } from 'antd'
 import { Row, Col } from 'reactstrap'
-import CompanyMessages from './CompanyMessages'
-import ContactMessages from './ContactMessages'
-import ReportMessages from './ReportMessages'
+import CompanyMessages from './CompanyMessages/index'
+import ContactMessages from './ContactMessages/index'
+import ReportMessages from './ReportMessages/index'
 
 import { useTranslation } from 'react-i18next'
 

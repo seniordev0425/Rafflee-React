@@ -33,6 +33,30 @@ function Message(state = initialFeedState, action) {
         ...state,
         reportFormData: action.data
       }
+    case 'READ_ADMIN_COMPANY_MESSAGES':
+      return {
+        ...state,
+        companyFormData: {
+          ...state.companyFormData,
+          messages: state.companyFormData.messages.map(message => message.pk === action.pk ? { ...message, read: true } : message)
+        }
+      }
+    case 'READ_ADMIN_HOMEPAGE_MESSAGES':
+      return {
+        ...state,
+        homepageFormData: {
+          ...state.homepageFormData,
+          messages: state.homepageFormData.messages.map(message => message.pk === action.pk ? { ...message, read: true } : message)
+        }
+      }
+    case 'READ_ADMIN_REPORT_MESSAGES':
+      return {
+        ...state,
+        reportFormData: {
+          ...state.reportFormData,
+          messages: state.reportFormData.messages.map(message => message.pk === action.pk ? { ...message, read: true } : message)
+        }
+      }
     default:
       return state
   }
