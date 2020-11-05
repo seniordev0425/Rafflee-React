@@ -8,10 +8,12 @@ import { useDropzone } from 'react-dropzone'
 import FormInput from '../../../../common/FormInput'
 import FormPhoneInput from '../../../../common/FormPhoneInput'
 import { required } from '../../../../../utils/validation'
+import { UPLOAD_MAX_SIZE } from '../../../../../utils/constants'
 
 import { applyRecruitment } from '../../../../../actions/homepage'
 
 import { useTranslation } from 'react-i18next'
+import { openNotification } from '../../../../../utils/notification'
 
 const ApplicationTab = ({ recruitment }) => {
   const { t } = useTranslation()
@@ -26,16 +28,22 @@ const ApplicationTab = ({ recruitment }) => {
 
   const onDrop = useCallback(acceptedFiles => {
     if (acceptedFiles && acceptedFiles[0]) {
-      const reader = new FileReader()
-      reader.onload = () => {
-        setResumeFile(reader.result)
-        setResumeFileName(acceptedFiles[0].name)
-      }
-      reader.readAsArrayBuffer(acceptedFiles[0])
+      setResumeFile(acceptedFiles[0])
+      setResumeFileName(acceptedFiles[0].name)
     }
   }, [])
 
-  const { getRootProps, getInputProps } = useDropzone({ onDrop, accept: 'application/pdf' })
+
+  const onDropRejected = useCallback((error) => {
+    openNotification('warning', 'File size is too big. Max 5MB')
+  }, [])
+
+  const { getRootProps, getInputProps } = useDropzone({
+    onDrop,
+    accept: 'application/pdf',
+    maxSize: UPLOAD_MAX_SIZE,
+    onDropRejected
+  })
 
   const onSubmit = (values) => {
     if (!resumeFileName) {
@@ -45,10 +53,10 @@ const ApplicationTab = ({ recruitment }) => {
     formData.append('job_pk', recruitment.pk)
     formData.append('firstname', values.first_name)
     formData.append('lastname', values.last_name)
-    formData.append('prefix_number', values.phonenumber?.phone_country)
-    formData.append('phone_number', values.phonenumber?.phone_number)
-    formData.append('summary', values.phonenumber?.summary)
-    formData.append('cover_letter', values.phonenumber?.coverletter)
+    formData.append('prefix_number', values.phonenumber?.phone_country || '')
+    formData.append('phone_number', values.phonenumber?.phone_number || '')
+    formData.append('summary', values?.summary || '')
+    formData.append('cover_letter', values?.coverletter || '')
     formData.append('resume', resumeFile)
     dispatch(applyRecruitment(formData))
   }

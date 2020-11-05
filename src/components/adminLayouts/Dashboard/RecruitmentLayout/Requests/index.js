@@ -18,7 +18,7 @@ const Requests = () => {
               setSelectedRequest(request)
             }}
             currentPage={currentPage}
-            onChangePage={(value) => setCurrentPage(value)}
+            onChangeCurrentPage={(value) => setCurrentPage(value)}
           />
         )
       case 'requestDetail':

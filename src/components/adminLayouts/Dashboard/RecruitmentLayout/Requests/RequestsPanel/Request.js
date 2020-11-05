@@ -29,7 +29,7 @@ const Request = (props) => {
 
           <div className="d-block d-md-flex justify-content-between mt-3">
             <Button
-              onClick={() => onChangeSection('offerDetail', request)}
+              onClick={() => onChangeSection('requestDetail', request)}
               type="primary"
               className="ant-blue-btn"
               style={{ width: 160, height: 40, fontSize: '1rem', lineHeight: 1 }}

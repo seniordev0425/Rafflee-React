@@ -510,7 +510,13 @@
     "required_field": "Required field",
     "add_tag": "Add tag",
     "remove_tag": "Remove tag",
-    "created": "Created at"
+    "created": "Created at",
+    "name": "Name",
+    "phone_number": "Phone Number",
+    "summary": "Summary",
+    "cover_letter": "Cover letter",
+    "resume": "Resume",
+    "view_resume": "View Resume"
   },
   "admin_message_page": {
     "created": "Created at",
