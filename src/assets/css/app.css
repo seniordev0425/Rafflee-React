@@ -524,8 +524,8 @@ h2 span {
 .header-container {
     display: flex;
     align-items: center;
-    padding-left: 11%;
-    padding-right: 11%;
+    padding-left: 14.5%;
+    padding-right: 13.5%;
     height: 80px;
     background-color: #fffffff0;
 }

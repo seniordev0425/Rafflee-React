@@ -27,7 +27,7 @@ const history = createBrowserHistory()
 const store = createStore(AppReducer, composeWithDevTools(applyMiddleware(apiMiddleware)))
 
 ReactDOM.render(
-  <Suspense fallback="loading">
+  <Suspense fallback="">
     <Provider store={store}>
       <Router history={history}>
         <Routes />

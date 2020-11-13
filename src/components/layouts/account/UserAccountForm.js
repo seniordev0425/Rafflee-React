@@ -525,8 +525,13 @@ function UserAccountForm() {
               <Col xs="12" sm="6">
                 <div className="mt-4 d-flex justify-content-end">
                   <div className="half-width">
-                    <div className="footer-link-bold mb-3">Youtube</div>
-                    <YoutubeConnectBtn />
+                    <div className="footer-link-bold mb-3 d-flex align-items-center">
+                      <span>Youtube</span>
+                      {userProfile.youtube &&
+                        <FontAwesomeIcon icon={faCheckCircle} className="color-blue font-size-12 ml-3" />
+                      }
+                    </div>
+                    <YoutubeConnectBtn connected={userProfile.youtube} />
                   </div>
                 </div>
 

@@ -34,6 +34,7 @@ const initialFeedState = {
     instagram: false,
     instagram_business: false,
     facebook: false,
+    youtube: false,
     username: '',
     email_verified: false
   },
@@ -58,6 +59,7 @@ const initialFeedState = {
     instagram: false,
     instagram_business: false,
     facebook: false,
+    youtube: false,
     username: '',
     email_verified: false
   },
@@ -120,6 +122,7 @@ const initialFeedState = {
 
 
   twitter_oauth_token: '',
+  youtube_oauth_url: '',
 
   ///////////////////////////////////////////// This state is used when click on button 'ALREAY WON' in rafflee history page of common user account
   participationResult: {
@@ -299,6 +302,7 @@ function UserInfo(state = initialFeedState, action) {
           myFollowing: state.myFollowing.filter((promotion) => promotion.promotion_id !== action.id)
         }
       }
+      break
     case 'SET_COMPANY_INFORMATION':
       return {
         ...state,
@@ -308,6 +312,11 @@ function UserInfo(state = initialFeedState, action) {
       return {
         ...state,
         twitter_oauth_token: action.data
+      }
+    case 'SET_YOUTUBE_OAUTH_URL': 
+      return {
+        ...state,
+        youtube_oauth_url: action.data
       }
     case 'SET_PARTICIPATION_RESULT':
       return {

@@ -3,20 +3,26 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Pagination, Select } from 'antd'
 import * as _ from 'lodash'
 
-import Loading from '../../../components/common/Loading'
+import Loading from '../../../../../components/common/Loading'
 import CampaignItem from './CampaignItem'
 
-import { getCampaigns } from '../../../actions/admin/campaign'
-import { getCompanyList } from '../../../actions/admin/company'
+import { getCampaigns } from '../../../../../actions/admin/campaign'
+import { getCompanyList } from '../../../../../actions/admin/company'
 
-import { NUMBER_PER_PAGE } from '../../../utils/constants'
+import { NUMBER_PER_PAGE } from '../../../../../utils/constants'
 
 import { useTranslation } from 'react-i18next'
 
 const { Option } = Select
 
-const Campaign = () => {
+const Campaign = (props) => {
   const { t } = useTranslation()
+
+  const {
+    onChangeSection,
+    currentPage,
+    onChangeCurrentPage
+  } = props
 
   const campaignData = useSelector(state => state.adminCampaign.campaignData)
   const companies = useSelector(state => state.adminCompany.companies)
@@ -25,7 +31,6 @@ const Campaign = () => {
   const dispatch = useDispatch()
 
   const [selectedCompany, setSelectedCompany] = useState('')
-  const [currentPage, setCurrentPage] = useState(1)
 
   useEffect(() => {
     dispatch(getCampaigns(selectedCompany, currentPage))
@@ -33,7 +38,7 @@ const Campaign = () => {
   }, [selectedCompany, currentPage])
 
   const handlePagination = (value) => {
-    setCurrentPage(value)
+    onChangeCurrentPage(value)
   }
 
   const renderCampaignList = () => {
@@ -42,6 +47,7 @@ const Campaign = () => {
         <div key={id} className="promotion-list-item-container">
           <CampaignItem
             item={campaign}
+            onChangeSection={onChangeSection}
             loading={ADMIN_GET_CAMPAIGNS_PROCESS}
           />
         </div>

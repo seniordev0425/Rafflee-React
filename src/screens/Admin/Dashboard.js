@@ -5,7 +5,7 @@ import { Row, Col } from 'reactstrap'
 import { Menu } from 'antd'
 
 import BusinessCreateLayout from '../../components/adminLayouts/Dashboard/BusinessCreateLayout'
-import CampaignLayout from '../../components/adminLayouts/Dashboard/Campaign'
+import CampaignLayout from '../../components/adminLayouts/Dashboard/CampaignsLayout'
 import RecruitmentLayout from '../../components/adminLayouts/Dashboard/RecruitmentLayout'
 import MessagesLayout from '../../components/adminLayouts/Dashboard/MessagesLayout'
 

@@ -84,6 +84,7 @@
     "my_campaign": "Ma campagne",
     "my_bills": "Mes factures",
     "analytics": "Analytics",
+    "messaging": "Messaging",
     "create_campaign": "Créer une campagne",
     "overview": "Aperçu",
     "audience": "Audience",
@@ -156,7 +157,8 @@
     "verify_email": "Vérifier l'email",
     "save": "Sauvegarder",
     "create": "Créer",
-    "back": "Back"
+    "back": "Back",
+    "go_to_campaigns": "Go to campaigns"
   },
   "homepage": {
     "hot_new_contest_everyday": "Des raffles et giveaways tous les jours.",
@@ -722,7 +724,8 @@
   "social_oauth": {
     "twitter": "Twitter Connecté",
     "twitch": "Twitch Connecté",
-    "instagram": "Instagram connecté"
+    "instagram": "Instagram Connecté",
+    "youtube": "Youtube Connecté"
   },
   "twitter_like_modal": {
     "header": "LIKE ID",

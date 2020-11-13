@@ -27,7 +27,7 @@ function TwitterAuthPage(props) {
 
   useEffect(() => {
     if (SUCCESS_TWITTER_CONNECT_STEP2) {
-      // If twitch connect is success then redirect user to account page
+      // If twitter connect is success then redirect user to account page
       dispatch({ type: 'INIT_STATE', state: 'SUCCESS_TWITTER_CONNECT_STEP2', data: false })
       openNotification('success', t('social_oauth.twitter'))
       history.push('/user-account/profile')

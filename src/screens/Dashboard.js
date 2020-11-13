@@ -8,6 +8,7 @@ import AppLayout from '../components/layouts/AppLayout'
 import MyCampaignLayout from '../components/layouts/myCampaignLayout/MyCampaignLayout'
 import MyBillsLayout from '../components/layouts/myBillsLayout/MyBillsLayout'
 import AnalyticsLayout from '../components/layouts/analytics'
+import MessagingLayout from '../components/layouts/messaging/MessagingLayout'
 import BeingCreatedLayout from '../components/layouts/beingCreatedLayout/BeingCreatedLayout'
 import CreateCampaignLayout from '../components/layouts/createCampaignLayout/CreateCampaignLayout'
 import InventoryLayout from '../components/layouts/inventoryLayout/InventoryLayout'
@@ -42,6 +43,8 @@ function Dashboard(props) {
         return <MyBillsLayout />;
       case 'analytics':
         return <AnalyticsLayout />
+      case 'messaging':
+        return <MessagingLayout />
       case 'being-created':
         return <BeingCreatedLayout />
       case 'create-campaign':
@@ -82,6 +85,12 @@ function Dashboard(props) {
                   <Link to="/dashboard/analytics">
                     <img src={match.params.menu === 'analytics' ? images.my_analytics_blue : images.my_analytics} alt="" />
                     <span className="ml-3"> {t('menubar.analytics')}</span>
+                  </Link>
+                </Menu.Item>
+                <Menu.Item key="messaging">
+                  <Link to="/dashboard/messaging">
+                    <img src={match.params.menu === 'messaging' ? images.messaging_blue : images.messaging} width={27} alt="" />
+                    <span className="ml-3"> {t('menubar.messaging')}</span>
                   </Link>
                 </Menu.Item>
                 <Menu.Item key="create-campaign" className="float-right">

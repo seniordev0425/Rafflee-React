@@ -33,7 +33,9 @@ const Slider = () => {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    dotsClass: "slick-dots custom-dots"
+    dotsClass: "slick-dots custom-dots",
+    autoplay: true,
+    autoplaySpeed: 5000,
   }
 
   return (

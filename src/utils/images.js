@@ -26,6 +26,8 @@ const images = {
   my_bills_blue: require('../assets/image/my_bills_blue.svg'),
   my_analytics: require('../assets/image/my_analytics.svg'),
   my_analytics_blue: require('../assets/image/my_analytics_blue.svg'),
+  messaging: require('../assets/image/messaging.svg'),
+  messaging_blue: require('../assets/image/messaging_blue.svg'),
   inventory_icon: require('../assets/image/inventory.svg'),
   inventory_icon_blue: require('../assets/image/inventory_blue.svg'),
   ph_icon: require('../assets/image/ph.svg'),

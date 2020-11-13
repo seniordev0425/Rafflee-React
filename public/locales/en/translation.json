@@ -84,6 +84,7 @@
     "my_campaign": "My Campaign",
     "my_bills": "My Bills",
     "analytics": "Analytics",
+    "messaging": "Messaging",
     "create_campaign": "Create Campaign",
     "overview": "Overview",
     "audience": "Audience",
@@ -157,7 +158,8 @@
     "verify_email": "Verify Email",
     "save": "Save",
     "create": "Create",
-    "back": "Back"
+    "back": "Back",
+    "go_to_campaigns": "Go to campaigns"
   },
   "homepage": {
     "hot_new_contest_everyday": "Hot new contest everyday.",
@@ -731,7 +733,8 @@
   "social_oauth": {
     "twitter": "Twitter Connected",
     "twitch": "Twitch Connected",
-    "instagram": "Instagram Connected"
+    "instagram": "Instagram Connected",
+    "youtube": "Youtube Connected"
   },
   "twitter_like_modal": {
     "header": "LIKE ID",

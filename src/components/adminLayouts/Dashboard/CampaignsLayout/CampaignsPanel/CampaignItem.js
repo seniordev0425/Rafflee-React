@@ -1,7 +1,7 @@
 import React from 'react'
 import { Row, Col } from 'reactstrap'
 import { Link } from 'react-router-dom'
-import images from '../../../../utils/images'
+import images from '../../../../../utils/images'
 import { Button } from 'antd'
 
 import { useTranslation } from 'react-i18next'
@@ -9,7 +9,11 @@ import { useTranslation } from 'react-i18next'
 function CampaignItem(props) {
   const { t } = useTranslation()
 
-  const { item, loading } = props
+  const {
+    item,
+    loading,
+    onChangeSection
+  } = props
 
   return (
     <div style={{ opacity: loading ? 0.5 : 1 }}>
@@ -35,14 +39,13 @@ function CampaignItem(props) {
               </div>
               <div className="promotion-list-item-text">{item.description}</div>
               <div style={{ marginTop: "20px", height: "40px" }} className="d-flex justify-content-between align-items-center">
-                <Link to={"/campaign-detail/" + item.pk}>
-                  <Button
-                    type="primary"
-                    className="ant-blue-btn promotion-list-item-btn"
-                  >
-                    {t('button_group.see_campaign')}
-                  </Button>
-                </Link>
+                <Button
+                  type="primary"
+                  className="ant-blue-btn promotion-list-item-btn"
+                  onClick={() => onChangeSection('campaignDetailPanel', item)}
+                >
+                  {t('button_group.see_campaign')}
+                </Button>
               </div>
             </Col>
           </Row>

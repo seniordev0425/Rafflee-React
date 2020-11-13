@@ -591,6 +591,41 @@ function onSuccessTwitterConnectStep2(data) {
     data: ''
   }
 }
+/////////////////////////////////////////////// YOUTUBE_CONNECT_STEP1
+export function youtubeConnectStep1(company) {
+  return apiAction({
+    url: APIROUTE + (company ? 'youtube/business/connect/1/' : 'youtube/connect/1/'),
+    method: 'POST',
+    accessToken: localStorage.getItem('token'),
+    onSuccess: onSuccessYoutubeConnectStep1,
+    onFailure: onFailed,
+    label: 'YOUTUBE_CONNECT_STEP1',
+  });
+}
+function onSuccessYoutubeConnectStep1(data) {
+  return {
+    type: 'SET_YOUTUBE_OAUTH_URL',
+    data: data.authorization_url
+  }
+}
+/////////////////////////////////////////////// YOUTUBE_CONNECT_STEP2
+export function youtubeConnectStep2(params, company) {
+  return apiAction({
+    url: APIROUTE + (company ? 'youtube/business/connect/2/' : 'youtube/connect/2/'),
+    method: 'POST',
+    data: qs.stringify(params),
+    accessToken: localStorage.getItem('token'),
+    onSuccess: onSuccessYoutubeConnectStep2,
+    onFailure: onFailed,
+    label: 'YOUTUBE_CONNECT_STEP2',
+  });
+}
+function onSuccessYoutubeConnectStep2(data) {
+  return {
+    type: '',
+    data: ''
+  }
+}
 /////////////////////////////////////////////// TWITCH_CONNECT
 export function twitchConnect(params) {
   return apiAction({
