@@ -59,7 +59,7 @@ const initialFeedState = {
     instagram: false,
     instagram_business: false,
     facebook: false,
-    youtube: false,
+    youtube_business: false,
     username: '',
     email_verified: false
   },

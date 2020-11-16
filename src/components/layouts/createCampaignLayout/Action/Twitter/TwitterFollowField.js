@@ -88,6 +88,14 @@ function TwitterFollowField(props) {
             </Row>
           </Col>
         </Row>
+        {params.twitter.follow_id &&
+          <div className="color-gray mt-4 font-size-12">
+            <span className="font-weight-bold">{t('create_campaign_page.twitter_follow_id')}</span>
+            <span className="ml-3">
+              {params.twitter.follow_id}
+            </span>
+          </div>
+        }
       </div>
     </div>
   )

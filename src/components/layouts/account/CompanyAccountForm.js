@@ -417,11 +417,11 @@ function CompanyAccountForm() {
                   <div className="mt-4 half-width">
                     <div className="footer-link-bold mb-3 d-flex align-items-center">
                       <span>Youtube</span>
-                      {companyProfile.youtube &&
+                      {companyProfile.youtube_business &&
                         <FontAwesomeIcon icon={faCheckCircle} className="color-blue font-size-12 ml-3" />
                       }
                     </div>
-                    <YoutubeConnectBtn connected={companyProfile.youtube} />
+                    <YoutubeConnectBtn connected={companyProfile.youtube_business} />
                   </div>
                 </Row>
                 <Row style={{ justifyContent: "flex-end" }}>

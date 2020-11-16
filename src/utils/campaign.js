@@ -55,3 +55,71 @@ export const getTotalEntries = (campaignData) => {
 
   return totalTemp
 }
+
+export const getTotalEntriesOfPreviewSection = (params) => {
+  let totalTemp = 0
+    if (params.facebook.page) {
+      totalTemp += parseInt(params.facebook.page_entries) || 1
+    }
+    if (params.facebook.post) {
+      totalTemp += parseInt(params.facebook.post_entries) || 1
+    }
+    if (params.facebook.url) {
+      totalTemp += parseInt(params.facebook.url_entries) || 1
+    }
+
+    if (params.instagram.profile) {
+      totalTemp += parseInt(params.instagram.profile_entries) || 1
+    }
+    if (params.instagram.publication) {
+      totalTemp += parseInt(params.instagram.publication_entries) || 1
+    }
+
+    if (params.twitter.like) {
+      totalTemp += parseInt(params.twitter.like_entries) || 1
+    }
+    if (params.twitter.follow) {
+      totalTemp += parseInt(params.twitter.follow_entries) || 1
+    }
+    if (params.twitter.tweet) {
+      totalTemp += parseInt(params.twitter.tweet_entries) || 1
+    }
+    if (params.twitter.retweet) {
+      totalTemp += parseInt(params.twitter.retweet_entries) || 1
+    }
+
+    if (params.youtube.like) {
+      totalTemp += parseInt(params.youtube.like_entries) || 1
+    }
+    if (params.youtube.follow) {
+      totalTemp += parseInt(params.youtube.follow_entries) || 1
+    }
+    if (params.youtube.comment) {
+      totalTemp += parseInt(params.youtube.comment_entries) || 1
+    }
+
+    if (params.twitch.follow) {
+      totalTemp += parseInt(params.twitch.follow_entries) || 1
+    }
+
+    if (params.tiktok.profile) {
+      totalTemp += parseInt(params.tiktok.profile_entries) || 1
+    }
+    if (params.tiktok.publication) {
+      totalTemp += parseInt(params.tiktok.publication_entries) || 1
+    }
+
+    if (params.url_video.video) {
+      totalTemp += parseInt(params.url_video.entries) || 1
+    }
+
+    if (params.url_website.website) {
+      totalTemp += parseInt(params.url_website.entries) || 1
+    }
+
+    if (params.poll !== 'false') {
+      totalTemp += parseInt(params.poll.entries) || 1
+    }
+
+    return totalTemp
+}

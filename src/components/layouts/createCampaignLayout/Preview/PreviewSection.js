@@ -8,6 +8,7 @@ import PreviewCustomCollapsePanelForPoll from '../../../common/PreviewCustomColl
 import { createCampaign } from '../../../../actions/campaign'
 
 import { b64toBlob } from '../../../../utils/others'
+import { getTotalEntriesOfPreviewSection } from '../../../../utils/campaign'
 import images from '../../../../utils/images'
 import moment from 'moment'
 
@@ -39,61 +40,7 @@ function PreviewSection(props) {
   }, [CREATE_CAMPAIGN_SUCCESS])
 
   useEffect(() => {
-    //Calculate total entries number
-    let totalTemp = 0
-    if (params.facebook.page) {
-      totalTemp += parseInt(params.facebook.page_entries) || 1
-    }
-    if (params.facebook.post) {
-      totalTemp += parseInt(params.facebook.post_entries) || 1
-    }
-    if (params.facebook.url) {
-      totalTemp += parseInt(params.facebook.url_entries) || 1
-    }
-
-    if (params.instagram.profile) {
-      totalTemp += parseInt(params.instagram.profile_entries) || 1
-    }
-    if (params.instagram.publication) {
-      totalTemp += parseInt(params.instagram.publication_entries) || 1
-    }
-
-    if (params.twitter.like) {
-      totalTemp += parseInt(params.twitter.like_entries) || 1
-    }
-    if (params.twitter.follow) {
-      totalTemp += parseInt(params.twitter.follow_entries) || 1
-    }
-    if (params.twitter.tweet) {
-      totalTemp += parseInt(params.twitter.tweet_entries) || 1
-    }
-    if (params.twitter.retweet) {
-      totalTemp += parseInt(params.twitter.retweet_entries) || 1
-    }
-
-    if (params.twitch.follow) {
-      totalTemp += parseInt(params.twitch.follow_entries) || 1
-    }
-
-    if (params.tiktok.profile) {
-      totalTemp += parseInt(params.tiktok.profile_entries) || 1
-    }
-    if (params.tiktok.publication) {
-      totalTemp += parseInt(params.tiktok.publication_entries) || 1
-    }
-
-    if (params.url_video.video) {
-      totalTemp += parseInt(params.url_video.entries) || 1
-    }
-
-    if (params.url_website.website) {
-      totalTemp += parseInt(params.url_website.entries) || 1
-    }
-
-    if (params.poll !== 'false') {
-      totalTemp += parseInt(params.poll.entries) || 1
-    }
-    setTotalEntriesNum(totalTemp)
+    setTotalEntriesNum(getTotalEntriesOfPreviewSection(params))
   }, [])
 
   const renderWinnings = () => {
@@ -179,6 +126,43 @@ function PreviewSection(props) {
       twitter.push({ action: 'follow', type: params.twitter.follow_type, id: params.twitter.follow_id, entries: params.twitter.follow_entries || 1, mandatory: params.twitter.follow_mandatory })
     }
 
+    // Make youtube action para
+    let youtube = []
+    if (params.youtube.like) {
+      youtube.push({
+        action: 'like',
+        id: params.youtube.like_id,
+        entries: params.youtube.like_entries || 1,
+        mandatory: params.youtube.like_mandatory,
+        url_img: params.youtube.like_url_img,
+        video_title: params.youtube.like_video_title,
+        published_at: params.youtube.like_published_at,
+        channel_title: params.youtube.like_channel_title
+      })
+    }
+    if (params.youtube.follow) {
+      youtube.push({
+        action: 'follow',
+        id: params.youtube.follow_id,
+        entries: params.youtube.follow_entries || 1,
+        mandatory: params.youtube.follow_mandatory,
+        url_img: params.youtube.follow_url_img,
+        channel_title: params.youtube.follow_channel_title
+      })
+    }
+    if (params.youtube.comment) {
+      youtube.push({
+        action: 'comment',
+        id: params.youtube.comment_id,
+        entries: params.youtube.comment_entries || 1,
+        mandatory: params.youtube.comment_mandatory,
+        url_img: params.youtube.comment_url_img,
+        video_title: params.youtube.comment_video_title,
+        published_at: params.youtube.comment_published_at,
+        channel_title: params.youtube.comment_channel_title,
+        model: params.youtube.comment_model
+      })
+    }
     // Make instagram action para
     let instagram = []
     if (params.instagram.profile) {
@@ -227,13 +211,13 @@ function PreviewSection(props) {
 
     // Check required fields and prepare required messages
     if (params.promotion_name === '') required_messages.push(t('create_campaign_page.required_fields.campaign_name'))
-    if (params.promotion_picture === '') required_messages.push(t('create_campaign_page.required_fields.campaign_image'))
+    if (!params.promotion_picture) required_messages.push(t('create_campaign_page.required_fields.campaign_image'))
     if (params.promotion_description === '') required_messages.push(t('create_campaign_page.required_fields.short_description'))
     if (params.promotion_long_description === '') required_messages.push(t('create_campaign_page.required_fields.complete_description'))
     if (params.start_date === '') required_messages.push(t('create_campaign_page.required_fields.start_date'))
     if (params.end_date === '') required_messages.push(t('create_campaign_page.required_fields.end_date'))
     if (!facebook.length && !twitter.length &&
-      !twitch.length && !instagram.length &&
+      !twitch.length && !instagram.length && !youtube.length &&
       !params.url_video.video && !tiktok.length &&
       !params.url_website.website &&
       params.poll === 'false') {
@@ -282,7 +266,7 @@ function PreviewSection(props) {
       formdata.append('poll', JSON.stringify(params.poll))
     }
     formdata.append('facebook', JSON.stringify(facebook))
-    formdata.append('youtube', JSON.stringify([]))
+    formdata.append('youtube', JSON.stringify(youtube))
     formdata.append('twitter', JSON.stringify(twitter))
     formdata.append('instagram', JSON.stringify(instagram))
     formdata.append('tiktok', JSON.stringify(tiktok))
@@ -453,6 +437,45 @@ function PreviewSection(props) {
                   socialName="twitter"
                   mandatory={params.twitter.retweet_mandatory}
                   entries={params.twitter.retweet_entries}
+                />
+              </Col>
+            </Row>
+          }
+          {params.youtube.like &&
+            <Row className="mb-4 mt-4">
+              <Col style={{ paddingLeft: 40 }}>
+                <PreviewCustomCollapsePanel
+                  title={t('campaign_detail_page.youtube_like.title')}
+                  text={t('campaign_detail_page.youtube_like.text')}
+                  socialName="youtube"
+                  mandatory={params.youtube.like_mandatory}
+                  entries={params.youtube.like_entries}
+                />
+              </Col>
+            </Row>
+          }
+          {params.youtube.follow &&
+            <Row className="mb-4 mt-4">
+              <Col style={{ paddingLeft: 40 }}>
+                <PreviewCustomCollapsePanel
+                  title={t('campaign_detail_page.youtube_follow.title')}
+                  text={t('campaign_detail_page.youtube_follow.text')}
+                  socialName="youtube"
+                  mandatory={params.youtube.follow_mandatory}
+                  entries={params.youtube.follow_entries}
+                />
+              </Col>
+            </Row>
+          }
+          {params.youtube.comment &&
+            <Row className="mb-4 mt-4">
+              <Col style={{ paddingLeft: 40 }}>
+                <PreviewCustomCollapsePanel
+                  title={t('campaign_detail_page.youtube_comment.title')}
+                  text={t('campaign_detail_page.youtube_comment.text')}
+                  socialName="youtube"
+                  mandatory={params.youtube.comment_mandatory}
+                  entries={params.youtube.comment_entries}
                 />
               </Col>
             </Row>

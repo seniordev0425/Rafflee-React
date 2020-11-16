@@ -20,10 +20,16 @@ const Message = (props) => {
     >
       <Row>
         <Col xs="12" sm={{ size: 10, offset: 1 }} className="padding-x">
-          <div className="color-blue font-size-14 font-weight-bold">
+          <div
+            style={{ opacity: message.read ? 0.3 : 1 }}
+            className="color-blue font-size-14 font-weight-bold"
+          >
             {message.company_name}
           </div>
-          <div className="color-gray font-size-12">
+          <div
+            style={{ opacity: message.read ? 0.3 : 1 }}
+            className="color-gray font-size-12"
+          >
             {message.message}
           </div>
           <div className="d-block d-md-flex justify-content-between mt-3">
@@ -33,7 +39,7 @@ const Message = (props) => {
               className="ant-blue-btn"
               style={{ width: 160, height: 40, fontSize: '1rem', lineHeight: 1 }}
             >
-              {t('button_group.see_more')}
+              {t('button_group.open')}
             </Button>
             <div className="color-gray font-size-11">
               {`${t('admin_message_page.created')} ${moment(message.created).format('YYYY-MM-DD')}`}

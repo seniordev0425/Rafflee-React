@@ -115,11 +115,12 @@ function Routes(props) {
               data: {
                 token: rememberToken,
                 company: rememberCompany === 'true',
-                // is_admin: rememberAdmin === 'true'
+                is_admin: rememberAdmin === 'true'
               }
             })
           }
           else {
+            localStorage.removeItem('is_admin')
             localStorage.removeItem('token')
             localStorage.removeItem('company')
             history.push('/')

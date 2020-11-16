@@ -215,8 +215,8 @@ const errorMessages = {
     MSG_EMAIL_NOT_CONFIRMED: "Veuillez vérifier votre email",
     MSG_CAMPAIGN_NAME_REQUIRED: "Le nom de la campagne est requis",
     MSG_PHONE_NUMBER_ALREADY_LINKED_TO_AN_ACCOUNT: "Le numéro de téléphone est déjà lie à un compte",
-    MSG_RECRUITMENTS_ARE_CLOSED: "Recruitments are closed",
-    MSG_REQUEST_WITH_THIS_NAME_ALREADY_EXIST: "Request with this name already exists"
+    MSG_RECRUITMENTS_ARE_CLOSED: "Les recrutements sont fermés",
+    MSG_REQUEST_WITH_THIS_NAME_ALREADY_EXIST: "Une demande portant ce nom existe déjà"
   }
 }
 

@@ -6,7 +6,7 @@
     "sign_in": "Inscris toi",
     "log_in": "Connecte toi",
     "account": "Compte",
-    "dashboard": "Mon profil",
+    "dashboard": "Dashboard",
     "inventory": "Inventaire",
     "log_out": "Déconnexion",
     "about": "À propos"
@@ -107,9 +107,9 @@
     "company": "Entreprise",
     "contact": "Contact",
     "report": "Report",
-    "offers": "Offers",
-    "requests": "Requests",
-    "create_offer": "Create Offer"
+    "offers": "Offres",
+    "requests": "Candidatures",
+    "create_offer": "Creer un recrutement"
   },
   "empty_result_to_display": "Aucuns résultats",
   "button_group": {
@@ -149,7 +149,7 @@
     "validate": "Valider",
     "validated": "Validé",
     "confirm_tweet": "Confirmez le Tweet",
-    "resend_verification_email": "Resend Email",
+    "resend_verification_email": "Ré-envoyer l'email",
     "see_more": "En savoir plus",
     "submit": "Soumettre",
     "back_to_job_opening": "Retour aux offres d'emploi",
@@ -157,8 +157,8 @@
     "verify_email": "Vérifier l'email",
     "save": "Sauvegarder",
     "create": "Créer",
-    "back": "Back",
-    "go_to_campaigns": "Go to campaigns"
+    "back": "Retour",
+    "go_to_campaigns": "Retour"
   },
   "homepage": {
     "hot_new_contest_everyday": "Des raffles et giveaways tous les jours.",
@@ -202,7 +202,7 @@
     "twitch_connected": "CONNECTÉ AVEC TWITCH",
     "snapchat_connect": "CONNEXION AVEC AVEC SNAPCHAT",
     "snapchat_connected": "CONNECTÉ AVEC SNAPCHAT",
-    "youtube_connect": "CONNEXION AVEC AVEC YOUTUBE",
+    "youtube_connect": "CONNEXION AVEC YOUTUBE",
     "youtube_connected": "CONNECTÉ AVEC YOUTUBE",
     "instagram_connect": "CONNEXION AVEC INSTAGRAM",
     "instagram_connected": "CONNECTÉ AVEC INSTAGRAM",
@@ -248,6 +248,18 @@
     "twitter_retweet": {
       "title": "Twitter Retweet",
       "text": "Retweet le tweet pour valider l'action et augmenter tes chances de remporter le giveaway!"
+    },
+    "youtube_like": {
+      "title": "Youtube Like",
+      "text": "Like la vidéo pour valider l'action et augmenter tes chances de remporter le giveaway!"
+    },
+    "youtube_follow": {
+      "title": "Youtube Follow",
+      "text": "Abonne toi a la chaine youtube pour valider l'action et augmenter tes chances de remporter le giveaway!"
+    },
+    "youtube_comment": {
+      "title": "Youtube Comment",
+      "text": "Commente la vidéo pour valider l'action et augmenter tes chances de remporter le giveaway!"
     },
     "twitch_follow": {
       "title": "Twitch Follow",
@@ -451,7 +463,7 @@
     "instagram_publication_url": "Instagram Publication ID",
     "tiktok_profile_url": "@username",
     "tiktok_publication_url": "https://www.tiktok.com/@username/video/id",
-    "instagram_profile": "",
+    "instagram_profile": "Instagram profil ID",
     "instagram_publication": "Publication",
     "twitch_follow_name": "Nom du compte",
     "create_video_action": "VIDEO ACTION",
@@ -481,9 +493,15 @@
     "pay": "PAYER",
     "connection_error": "Erreur de connexion",
     "select_user": "Sélectionnez un utilisateur",
+    "select_video": "Select Video",
     "select_page": "Sélectionnez une page",
     "select_publication": "Sélectionnez une publication",
-    "model": "Entrez un model"
+    "model": "Entrez un model",
+    "video_title": "Titre de la video",
+    "published_at": "Publié le",
+    "channel_title": "Titre de la chaine",
+    "comment_model":"Entrez le model du commentaire",
+    "twitter_follow_id": "Follow ID:"
   },
   "business_create_page": {
     "entity_name": "Nom de l'entité",
@@ -500,31 +518,31 @@
     "influencer": "Influenceur"
   },
   "admin_campaigns_page": {
-    "select_company": "Select company"
+    "select_company": "Selectionnez l'entreprise"
   },
   "admin_recruitment_page": {
-    "end_date": "End Date",
-    "required_field": "Required field",
-    "add_tag": "Add tag",
-    "remove_tag": "Remove tag",
-    "created": "Created at",
-    "name": "Name",
-    "phone_number": "Phone Number",
-    "summary": "Summary",
-    "cover_letter": "Cover letter",
-    "resume": "Resume",
-    "view_resume": "View Resume"
+    "end_date": "Date de fin",
+    "required_field": "Champs requis",
+    "add_tag": "Ajouter un champs",
+    "remove_tag": "Supprimer un champs",
+    "created": "Créé le",
+    "name": "Nom",
+    "phone_number": "Numero de telephone",
+    "summary": "En bref",
+    "cover_letter": "Lettre de motivation",
+    "resume": "Curriculum Vitae",
+    "view_resume": "Voir Curriculum Vitae"
   },
   "admin_message_page": {
-    "created": "Created at",
+    "created": "Créé le",
     "email": "Email",
-    "phone_number": "Phone Number",
+    "phone_number": "Numéro de téléphone",
     "message": "Message",
     "context": "Context",
     "type": "Type",
     "description": "Description",
     "issue": "Issue",
-    "company_name": "Company Name"
+    "company_name": "Nom de l'entreprise"
   },
   "profile_activated_page": {
     "successfully_activated": "Ton compte a été activé",
@@ -608,19 +626,19 @@
     "phone": "Numéro de téléphone (facultatif)",
     "email": "Email",
     "message": "Message",
-    "resume": "Resume",
+    "resume": "Curriculum Vitae",
     "upload_file": "Télécharger un fichier",
     "description": "Description",
     "about_you": "A propros de vous",
     "what_you_will_do": "Qu'aimeriez vous faire",
     "overview": "Aperçu",
     "application": "Application",
-    "summary": "Resume",
+    "summary": "Curriculum Vitae",
     "coverletter": "Lettre de motivation (facultatif)",
-    "title": "Title",
+    "title": "Titre",
     "tags": "Tags",
-    "end_date": "End Date",
-    "active": "Active"
+    "end_date": "Date de fin",
+    "active": "Actif"
   },
   "influencer_page": {
     "influencers": "Influenceurs",
@@ -655,6 +673,11 @@
     "banner_description": "Les marques peuvent facilement utiliser notre plate-forme pour inciter à offrir de nouveaux geveaways, générer des téléchargements de coupons, générer des inscriptions à des listes de diffusion ou même permettre aux clients de répondre à un sondage.",
     "start_now": "Commencez maintenant"
   },
+  "auth_page": {
+    "something_went_wrong": "Un problème est survenu",
+    "try_again_later": "Erreur de connexion. Réessayez plus tard.",
+    "go_back": "Retour"
+  },
   "signin_modal": {
     "username": "Nom d'utilisateur",
     "password": "Mot de passe",
@@ -673,7 +696,7 @@
     "enter_valid_email": "Entrer une adresse de mail valide",
     "username_required": "Nom d'utilisateur obligatoire",
     "password_required": "Mot de passe obligatoire",
-    "confirm_password_required": "Confirmer le mot de passe est nécessaire"
+    "confirm_password_required": "Confirmer le mot de passe est requis"
   },
   "login_modal": {
     "remember_me": "Se rappeler de moi",
@@ -834,6 +857,9 @@
     "tiktok_publication": "Cette action permet de sélectionner une publication tiktok que l’utilisateur devra liker.",
     "poll": "Cette action permet de créer un sondage.",
     "video": "Cette action permet de sélectionner une video qui devra être regardé par l’utilisateur.",
-    "website": "Cette action permet de choisir un site qui doit être visité par l’utilisateur."
+    "website": "Cette action permet de choisir un site qui doit être visité par l’utilisateur.",
+    "youtube_like": "Cette action permet de selectionner une vidéo youtube que l'utilisateur doit liker.",
+    "youtube_follow": "Cette action permet de selectionner un compte youtube que l'utilisateur doit follow.",
+    "youtube_comment": "Cette action permet de sélectionner un modèle de commenteaire que l’utilisateur devra commenter sur une vidéo."
   }
 }

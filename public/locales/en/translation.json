@@ -254,6 +254,18 @@
       "title": "Twitch Follow",
       "text": "Follow the account to complete the action and increase your chances of winning the giveaway!"
     },
+    "youtube_like": {
+      "title": "Youtube Like",
+      "text": "Youtube Like text"
+    },
+    "youtube_follow": {
+      "title": "Youtube Follow",
+      "text": "Youtube Follow text"
+    },
+    "youtube_comment": {
+      "title": "Youtube Comment",
+      "text": "Youtube Comment text"
+    },
     "instagram_like": {
       "title": "Instagram Like",
       "text": "Like the post to validate the action and increase your chances of winning the giveaway!"
@@ -486,9 +498,15 @@
     "pay": "PAY",
     "connection_error": "Connection Error",
     "select_user": "Select User",
+    "select_video": "Select Video",
     "select_page": "Select Page",
     "select_publication": "Select Publication",
-    "model": "Enter Model"
+    "model": "Enter Model",
+    "video_title": "Video Title",
+    "published_at": "Published at",
+    "channel_title": "Channel Title",
+    "comment_model":"Enter Comment Model",
+    "twitter_follow_id": "Follow ID:"
   },
   "business_create_page": {
     "entity_name": "Entity name",
@@ -663,6 +681,11 @@
     "tags": "Tags",
     "end_date": "End Date",
     "active": "Active"
+  },
+  "auth_page": {
+    "something_went_wrong": "Something went wrong",
+    "try_again_later": "Error with connection. Try again later.",
+    "go_back": "Go back"
   },
   "signin_modal": {
     "username": "Username",
@@ -854,6 +877,9 @@
     "tiktok_publication": "This action allows you to select a tiktok post that the user will like.",
     "poll": "This action creates a poll.",
     "video": "This action allows you to select a video to be watched by the user.",
-    "website": "This action allows you to choose a site that should be visited by the user."
+    "website": "This action allows you to choose a site that should be visited by the user.",
+    "youtube_like": "Tooltip for youtube like",
+    "youtube_follow": "Tooltip for youtube follow",
+    "youtube_comment": "Tooltip for youtube comment"
   }
 }

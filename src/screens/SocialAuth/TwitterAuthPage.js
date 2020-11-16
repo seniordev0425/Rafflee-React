@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { withRouter } from 'react-router'
+import { Button, Col, Container, Row } from 'reactstrap'
+import { Link } from 'react-router-dom'
 import { twitterConnectStep2 } from '../../actions/userInfo'
 import { openNotification } from '../../utils/notification'
 import LoadingPage from '../../components/common/LoadingPage'
@@ -10,6 +12,8 @@ function TwitterAuthPage(props) {
   const { t } = useTranslation()
 
   const { history } = props
+
+  const TWITTER_CONNECT_STEP2_PROCESS = useSelector(state => state.userInfo.TWITTER_CONNECT_STEP2)
   const SUCCESS_TWITTER_CONNECT_STEP2 = useSelector(state => state.userInfo.SUCCESS_TWITTER_CONNECT_STEP2)
   const dispatch = useDispatch()
 
@@ -34,10 +38,22 @@ function TwitterAuthPage(props) {
     }
   }, [SUCCESS_TWITTER_CONNECT_STEP2])
 
+  if (TWITTER_CONNECT_STEP2_PROCESS) return <LoadingPage />
+
   return (
-    <>
-      <LoadingPage />
-    </>
+    <Container fluid className="p-0 NotFound">
+      <section className="py-5 px-sm-5 px-4">
+        <Row>
+          <Col className="text-center mx-auto" style={{ maxWidth: '35rem' }}>
+            <h1 className="h4 mb-4">{t('auth_page.something_went_wrong')}</h1>
+            <p className="mb-5">{t('auth_page.try_again_later')}</p>
+            <Button tag={Link} to='/user-account/profile' color="primary">
+              {t('auth_page.go_back')}
+            </Button>
+          </Col>
+        </Row>
+      </section>
+    </Container>
   )
 }
 

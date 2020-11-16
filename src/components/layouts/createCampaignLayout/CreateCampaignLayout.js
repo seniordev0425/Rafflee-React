@@ -86,6 +86,31 @@ function CreateCampaignLayout() {
       follow_entries: '',
       follow_mandatory: false
     },
+    youtube: {
+      like: false,
+      like_id: '',
+      like_entries: '',
+      like_mandatory: false,
+      like_url_img: '',
+      like_video_title: '',
+      like_published_at: '',
+      like_channel_title: '',
+      follow: false,
+      follow_id: '',
+      follow_entries: '',
+      follow_mandatory: false,
+      follow_url_img: '',
+      follow_channel_title: '',
+      comment: false,
+      comment_id: '',
+      comment_model: '',
+      comment_entries: '',
+      comment_mandatory: false,
+      comment_url_img: '',
+      comment_video_title: '',
+      comment_published_at: '',
+      comment_channel_title: ''
+    },
     instagram: {
       publication: false,
       profile: false,
@@ -132,7 +157,7 @@ function CreateCampaignLayout() {
   // Update params with being created campaign data
   useEffect(() => {
     if (beingCreatedCampaign) {
-      
+
       setParams({
         pk: beingCreatedCampaign.pk,
         promotion_name: beingCreatedCampaign.campaign_name,
@@ -143,7 +168,7 @@ function CreateCampaignLayout() {
         categories: beingCreatedCampaign.categories ? beingCreatedCampaign.categories : [],
         temp_categories: beingCreatedCampaign.categories ? beingCreatedCampaign.categories : [],
         start_date: beingCreatedCampaign.release_date ? moment(beingCreatedCampaign.release_date).utc().format('YYYY-MM-DD HH:mm:ss') : null,
-        end_date: beingCreatedCampaign.end_date ? moment( beingCreatedCampaign.end_date).utc().format('YYYY-MM-DD HH:mm:ss') : null,
+        end_date: beingCreatedCampaign.end_date ? moment(beingCreatedCampaign.end_date).utc().format('YYYY-MM-DD HH:mm:ss') : null,
         winnings: beingCreatedCampaign.winnings ? beingCreatedCampaign.winnings : [{ name: '', number_of_people: '', description: '', image: '' }],
         campaign_type: beingCreatedCampaign.type_of_distribution,
         live_draw: beingCreatedCampaign.live_draw,
@@ -156,8 +181,8 @@ function CreateCampaignLayout() {
           post_like: false,
           post_comment: false,
           post_share: false,
-          post_page_id: '',
-          post_publication_id: '',
+          post_page_id: beingCreatedCampaign.action_participate[0].social_action[0]?.facebook_post_page_id || '',
+          post_publication_id: beingCreatedCampaign.action_participate[0].social_action[0]?.facebook_post_publication_id || '',
           url: beingCreatedCampaign.action_participate[0].social_action[0].facebook_url,
           url_entries: beingCreatedCampaign.action_participate[0].social_action[0]?.facebook_url_entries || '',
           url_mandatory: beingCreatedCampaign.action_participate[0].social_action[0]?.facebook_url_mandatory || false,
@@ -167,10 +192,35 @@ function CreateCampaignLayout() {
           page: beingCreatedCampaign.action_participate[0].social_action[0].facebook_page,
           page_entries: beingCreatedCampaign.action_participate[0].social_action[0]?.facebook_page_entries || '',
           page_mandatory: beingCreatedCampaign.action_participate[0].social_action[0]?.facebook_page_mandatory || false,
-          page_page_id: '',
-          page_page_name: '',
+          page_page_id: beingCreatedCampaign.action_participate[0].social_action[0]?.facebook_page_page_id || '',
+          page_page_name: beingCreatedCampaign.action_participate[0].social_action[0]?.facebook_page_page_name || '',
           page_follow: false,
           page_share: false
+        },
+        youtube: {
+          like: beingCreatedCampaign.action_participate[0].social_action[1].youtube_like,
+          like_id: beingCreatedCampaign.action_participate[0].social_action[1]?.youtube_like_id || '',
+          like_entries: beingCreatedCampaign.action_participate[0].social_action[1]?.youtube_like_entries || '',
+          like_mandatory: beingCreatedCampaign.action_participate[0].social_action[1]?.youtube_like_mandatory || false,
+          like_url_img: beingCreatedCampaign.action_participate[0].social_action[1]?.youtube_like_url_img || '',
+          like_video_title: beingCreatedCampaign.action_participate[0].social_action[1]?.youtube_like_video_title || '',
+          like_published_at: beingCreatedCampaign.action_participate[0].social_action[1]?.youtube_like_published_at || '',
+          like_channel_title: beingCreatedCampaign.action_participate[0].social_action[1]?.youtube_like_channel_title || '',
+          follow: beingCreatedCampaign.action_participate[0].social_action[1].youtube_follow,
+          follow_id: beingCreatedCampaign.action_participate[0].social_action[1]?.youtube_follow_id || '',
+          follow_entries: beingCreatedCampaign.action_participate[0].social_action[1]?.youtube_follow_entries || '',
+          follow_mandatory: beingCreatedCampaign.action_participate[0].social_action[1]?.youtube_follow_mandatory || false,
+          follow_url_img: beingCreatedCampaign.action_participate[0].social_action[1]?.youtube_follow_url_img || '',
+          follow_channel_title: beingCreatedCampaign.action_participate[0].social_action[1]?.youtube_follow_channel_title || '',
+          comment: beingCreatedCampaign.action_participate[0].social_action[1].youtube_comment,
+          comment_id: beingCreatedCampaign.action_participate[0].social_action[1]?.youtube_comment_id || '',
+          comment_model: beingCreatedCampaign.action_participate[0].social_action[1]?.youtube_comment_model || '',
+          comment_entries: beingCreatedCampaign.action_participate[0].social_action[1]?.youtube_comment_entries || '',
+          comment_mandatory: beingCreatedCampaign.action_participate[0].social_action[1]?.youtube_comment_mandatory || false,
+          comment_url_img: beingCreatedCampaign.action_participate[0].social_action[1]?.youtube_comment_url_img || '',
+          comment_video_title: beingCreatedCampaign.action_participate[0].social_action[1]?.youtube_comment_video_title || '',
+          comment_published_at: beingCreatedCampaign.action_participate[0].social_action[1]?.youtube_comment_published_at || '',
+          comment_channel_title: beingCreatedCampaign.action_participate[0].social_action[1]?.youtube_comment_channel_title || '',
         },
         twitter: {
           comment: beingCreatedCampaign.action_participate[0].social_action[3].twitter_tweet,
@@ -243,6 +293,7 @@ function CreateCampaignLayout() {
           mandatory: beingCreatedCampaign.action_participate[0].website?.mandatory || false
         }
       })
+      dispatch({ type: 'SET_BEING_CREATED_CAMPAIGN', data: null })
     }
   }, [beingCreatedCampaign])
 
@@ -258,7 +309,6 @@ function CreateCampaignLayout() {
     let temp_params = { ...params }
     temp_params[socialName][actionType] = val
     setParams(temp_params)
-    console.log(params)
   }
 
   // Switch section
@@ -321,6 +371,44 @@ function CreateCampaignLayout() {
     }
     if (params.twitter.follow) {
       twitter.push({ action: 'follow', type: params.twitter.follow_type, id: params.twitter.follow_id, entries: params.twitter.follow_entries || 1, mandatory: params.twitter.follow_mandatory })
+    }
+
+    // Make youtube action para
+    let youtube = []
+    if (params.youtube.like) {
+      youtube.push({
+        action: 'like',
+        id: params.youtube.like_id,
+        entries: params.youtube.like_entries || 1,
+        mandatory: params.youtube.like_mandatory,
+        url_img: params.youtube.like_url_img,
+        video_title: params.youtube.like_video_title,
+        published_at: params.youtube.like_published_at,
+        channel_title: params.youtube.like_channel_title
+      })
+    }
+    if (params.youtube.follow) {
+      youtube.push({
+        action: 'follow',
+        id: params.youtube.follow_id,
+        entries: params.youtube.follow_entries || 1,
+        mandatory: params.youtube.follow_mandatory,
+        url_img: params.youtube.follow_url_img,
+        channel_title: params.youtube.follow_channel_title
+      })
+    }
+    if (params.youtube.comment) {
+      youtube.push({
+        action: 'comment',
+        id: params.youtube.comment_id,
+        entries: params.youtube.comment_entries || 1,
+        mandatory: params.youtube.comment_mandatory,
+        url_img: params.youtube.comment_url_img,
+        video_title: params.youtube.comment_video_title,
+        published_at: params.youtube.comment_published_at,
+        channel_title: params.youtube.comment_channel_title,
+        model: params.youtube.comment_model
+      })
     }
 
     // Make instagram action para
@@ -400,7 +488,7 @@ function CreateCampaignLayout() {
       formdata.append('poll', JSON.stringify(params.poll))
     }
     formdata.append('facebook', JSON.stringify(facebook))
-    formdata.append('youtube', JSON.stringify([]))
+    formdata.append('youtube', JSON.stringify(youtube))
     formdata.append('twitter', JSON.stringify(twitter))
     formdata.append('instagram', JSON.stringify(instagram))
     formdata.append('tiktok', JSON.stringify(tiktok))

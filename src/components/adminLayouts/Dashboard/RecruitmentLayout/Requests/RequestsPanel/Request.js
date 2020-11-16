@@ -20,10 +20,16 @@ const Request = (props) => {
     >
       <Row>
         <Col xs="12" sm={{ size: 10, offset: 1 }} className="padding-x">
-          <div className="color-gray font-size-12 font-weight-bold">
+          <div
+            style={{ opacity: request.read ? 0.3 : 1 }}
+            className="color-gray font-size-12 font-weight-bold"
+          >
             {request.firstname}
           </div>
-          <div className="color-gray font-size-12 font-weight-bold">
+          <div
+            style={{ opacity: request.read ? 0.3 : 1 }}
+            className="color-gray font-size-12 font-weight-bold"
+          >
             {request.lastname}
           </div>
 

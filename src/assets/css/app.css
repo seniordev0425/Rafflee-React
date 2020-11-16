@@ -524,8 +524,6 @@ h2 span {
 .header-container {
     display: flex;
     align-items: center;
-    padding-left: 14.5%;
-    padding-right: 13.5%;
     height: 80px;
     background-color: #fffffff0;
 }
@@ -1453,7 +1451,7 @@ h2 span {
     padding: 10px 20px;
     background-color: #FF0200;
     border-radius: 6px;
-    cursor: not-allowed;
+    cursor: pointer;
 }
 .instagram-action-btn {
     width: 143px;

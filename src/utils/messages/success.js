@@ -57,11 +57,11 @@ const successMessages = {
     saveCampaign: "Enregistré avec succès",
     contactUs: "Nous avons bien reçu votre message",
     deleteBeingCreatedCampaign: "Campagne supprimé",
-    applyRecruitment: "You application has been sent",
-    tagAdded: "Tag added",
-    tagRemoved: "Tag removed",
-    createRecruitment: "Recruitment created",
-    updateRecruitment: "Recruitment updated"
+    applyRecruitment: "Votre candidature a été envoyée",
+    tagAdded: "Tag ajouté",
+    tagRemoved: "Tag supprimé",
+    createRecruitment: "Recrutement créé",
+    updateRecruitment: "Recrutement mis à jour"
   }
 }
 

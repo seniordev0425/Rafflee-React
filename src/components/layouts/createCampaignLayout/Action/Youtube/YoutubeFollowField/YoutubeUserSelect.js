@@ -1,52 +1,42 @@
 import React, { useState } from 'react'
 import { Select, Spin } from 'antd'
 import debounce from 'lodash/debounce'
-import { openNotification } from '../../../../../utils/notification'
-import images from '../../../../../utils/images'
-import { APIROUTE } from '../../../../../utils/constants'
+import * as _ from 'lodash'
 
+import { openNotification } from '../../../../../../utils/notification'
+
+import { APIROUTE } from '../../../../../../utils/constants'
 import { useTranslation } from 'react-i18next'
 
 const { Option } = Select
 
-function TwitterFollowScreenName(props) {
+function YoutubeUserSelect(props) {
   const { t } = useTranslation()
 
   const { setAction } = props
 
-  const [data, setData] = useState([])
+  const [users, setUsers] = useState([])
   const [value, setValue] = useState([])
   const [fetching, setFetching] = useState(false)
 
   const fetchUser = value => {
     if (value === '') return
-    setData([])
+    setUsers([])
     setFetching(true)
 
     var myHeaders = new Headers()
     myHeaders.append("Authorization", "JWT " + localStorage.getItem('token'))
-
-    var formdata = new FormData()
-    formdata.append("search", value)
-
     var requestOptions = {
       method: 'GET',
       headers: myHeaders,
       redirect: 'follow'
     }
 
-    fetch(`${APIROUTE}twitter/users/search/?search=${value}`, requestOptions)
+    fetch(`${APIROUTE}youtube/users/search/?search=${value}`, requestOptions)
       .then(response => response.json())
       .then(result => {
         if (result.status === 200) {
-          const data = result.search.map((user, index) => ({
-            id: index,
-            profile_image_url: user.profile_image_url,
-            screen_name: user.screen_name,
-            followers_count: user.followers_count,
-            verified: user.verified
-          }))
-          setData(data)
+          setUsers(result.users)
         } else {
           openNotification('warning', t('create_campaign_page.connection_error'))
         }
@@ -58,10 +48,28 @@ function TwitterFollowScreenName(props) {
   }
 
   const handleChange = value => {
-    setData([])
+    setUsers([])
     setValue(value)
     setFetching(false)
-    setAction('twitter', 'follow_id', value.length > 0 ? value[0].value : '')
+    
+    var followData = {}
+    if (_.isEmpty(value)) {
+      followData = {
+        follow_id: '',
+        follow_url_img: '',
+        follow_channel_title: ''
+      }
+    } else {
+      followData = _.find(users, { channelId: value[0].value })
+      followData = {
+        follow_id: followData.channelId,
+        follow_url_img: followData.profile_image_url.url,
+        follow_channel_title: followData.channel_title
+      }
+    }
+    setAction('youtube', 'follow_id', followData.follow_id)
+    setAction('youtube', 'follow_url_img', followData.follow_url_img)
+    setAction('youtube', 'follow_channel_title', followData.follow_channel_title)
   }
 
   return (
@@ -78,18 +86,14 @@ function TwitterFollowScreenName(props) {
       open={value.length >= 1 ? false : true}
       size='large'
     >
-      {data.map(d => (
-        <Option key={d.id} value={d.screen_name}>
-          <img src={d.profile_image_url} width={25} height={25} className="rounded-circle" alt="" />
-          <span className="ml-2 font-weight-bold">{d.screen_name}</span>
-          {d.verified &&
-            <img src={images.verified_icon} width={15} height={15} className="ml-2" alt="" />
-          }
-          <span className="ml-2">{`${d.followers_count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")} ${t('my_circle_page.followers')}`}</span>
+      {users.map(user => (
+        <Option key={user.channelId} value={user.channelId}>
+          <img src={user.profile_image_url.url} width={25} height={25} className="rounded-circle" alt="" />
+          <span className="ml-2 font-weight-bold">{user.channel_title}</span>
         </Option>
       ))}
     </Select>
   )
 }
 
-export default TwitterFollowScreenName
+export default YoutubeUserSelect
