@@ -18,6 +18,9 @@ import TwitterRetweetValidationModal from '../components/modals/ActionValidation
 import TwitterCommentValidationModal from '../components/modals/ActionValidationModals/TwitterCommentValidationModal'
 import TwitterFollowValidationModal from '../components/modals/ActionValidationModals/TwitterFollowValidationModal'
 import TwitchFollowValidationModal from '../components/modals/ActionValidationModals/TwitchFollowValidationModal'
+import YoutubeLikeValidationModal from '../components/modals/ActionValidationModals/YoutubeLikeValidationModal'
+import YoutubeCommentValidationModal from '../components/modals/ActionValidationModals/YoutubeCommentValidationModal'
+import YoutubeFollowValidationModal from '../components/modals/ActionValidationModals/YoutubeFollowValidationModal'
 
 import LoadingPage from '../components/common/LoadingPage'
 
@@ -26,6 +29,9 @@ import {
   getCampaignData,
   getWinningData,
   updateFavorite,
+  campaignParticipateYoutubeLike,
+  campaignParticipateYoutubeComment,
+  campaignParticipateYoutubeFollow,
   campaignParticipateTwitterLike,
   campaignParticipateTwitterRetweet,
   campaignParticipateTwitterComment,
@@ -71,6 +77,9 @@ function CampaignDetail(props) {
   const OPEN_TWITTER_COMMENT_VALIDATION_MODAL = useSelector(state => state.userInfo.OPEN_TWITTER_COMMENT_VALIDATION_MODAL)
   const OPEN_TWITTER_FOLLOW_VALIDATION_MODAL = useSelector(state => state.userInfo.OPEN_TWITTER_FOLLOW_VALIDATION_MODAL)
   const OPEN_TWITCH_FOLLOW_VALIDATION_MODAL = useSelector(state => state.userInfo.OPEN_TWITCH_FOLLOW_VALIDATION_MODAL)
+  const OPEN_YOUTUBE_LIKE_VALIDATION_MODAL = useSelector(state => state.userInfo.OPEN_YOUTUBE_LIKE_VALIDATION_MODAL)
+  const OPEN_YOUTUBE_COMMENT_VALIDATION_MODAL = useSelector(state => state.userInfo.OPEN_YOUTUBE_COMMENT_VALIDATION_MODAL)
+  const OPEN_YOUTUBE_FOLLOW_VALIDATION_MODAL = useSelector(state => state.userInfo.OPEN_YOUTUBE_FOLLOW_VALIDATION_MODAL)
 
   const twitter_oauth_token = useSelector(state => state.userInfo.twitter_oauth_token)
   const twitterDirectConnect = useSelector(state => state.userInfo.twitterDirectConnect)
@@ -86,6 +95,9 @@ function CampaignDetail(props) {
   const [openTwitterCommentModal, setOpenTwitterCommentModal] = useState(false)
   const [openTwitterFollowModal, setOpenTwitterFollowModal] = useState(false)
   const [openTwitchFollowModal, setOpenTwitchFollowModal] = useState(false)
+  const [openYoutubeLikeModal, setOpenYoutubeLikeModal] = useState(false)
+  const [openYoutubeCommentModal, setOpenYoutubeCommentModal] = useState(false)
+  const [openYoutubeFollowModal, setOpenYoutubeFollowModal] = useState(false)
 
   useEffect(() => {
     // Load campaign data after render
@@ -149,12 +161,27 @@ function CampaignDetail(props) {
       dispatch({ type: 'INIT_STATE', state: 'OPEN_TWITCH_FOLLOW_VALIDATION_MODAL', data: false })
       setOpenTwitchFollowModal(true)
     }
+    if (OPEN_YOUTUBE_LIKE_VALIDATION_MODAL) {
+      dispatch({ type: 'INIT_STATE', state: 'OPEN_YOUTUBE_LIKE_VALIDATION_MODAL', data: false })
+      setOpenYoutubeLikeModal(true)
+    }
+    if (OPEN_YOUTUBE_COMMENT_VALIDATION_MODAL) {
+      dispatch({ type: 'INIT_STATE', state: 'OPEN_YOUTUBE_COMMENT_VALIDATION_MODAL', data: false })
+      setOpenYoutubeCommentModal(true)
+    }
+    if (OPEN_YOUTUBE_FOLLOW_VALIDATION_MODAL) {
+      dispatch({ type: 'INIT_STATE', state: 'OPEN_YOUTUBE_FOLLOW_VALIDATION_MODAL', data: false })
+      setOpenYoutubeFollowModal(true)
+    }
   }, [
     OPEN_TWITTER_LIKE_VALIDATION_MODAL,
     OPEN_TWITTER_RETWEET_VALIDATION_MODAL,
     OPEN_TWITTER_COMMENT_VALIDATION_MODAL,
     OPEN_TWITTER_FOLLOW_VALIDATION_MODAL,
     OPEN_TWITCH_FOLLOW_VALIDATION_MODAL,
+    OPEN_YOUTUBE_LIKE_VALIDATION_MODAL,
+    OPEN_YOUTUBE_COMMENT_VALIDATION_MODAL,
+    OPEN_YOUTUBE_FOLLOW_VALIDATION_MODAL
   ])
 
   const goToWinningDetail = (item, id) => {
@@ -246,6 +273,15 @@ function CampaignDetail(props) {
     else if (socialName === 'facebook' && actionType === 'url') {
       window.open(action.social_action[0].facebook_url_url, '_blank')
       dispatch(campaignParticipateFacebookUrl({ promotion_id: campaignData.pk, action: '' }))
+    }
+    else if (socialName === 'youtube' && actionType === 'like') {
+      dispatch(campaignParticipateYoutubeLike({ promotion_id: campaignData.pk }))
+    }
+    else if (socialName === 'youtube' && actionType === 'comment') {
+      dispatch(campaignParticipateYoutubeComment({ promotion_id: campaignData.pk }))
+    }
+    else if (socialName === 'youtube' && actionType === 'follow') {
+      dispatch(campaignParticipateYoutubeFollow({ promotion_id: campaignData.pk }))
     }
   }
 
@@ -411,6 +447,54 @@ function CampaignDetail(props) {
                   didAction={(campaignData.user_actions || {}).facebook_url}
                   tryToOpenValidationModal={tryToOpenValidationModal}
                   facebookActionUrl={action.social_action[0].facebook_url_url}
+                />
+              </Col>
+            </Row>
+          }
+          {(action.social_action?.[1].youtube_like) &&
+            <Row className="mb-4 mt-4">
+              <Col style={{ paddingLeft: 40 }}>
+                <CustomCollapsePanel
+                  title={t('campaign_detail_page.youtube_like.title')}
+                  text={t('campaign_detail_page.youtube_like.text')}
+                  socialName="youtube"
+                  actionType="like"
+                  mandatory={action.social_action[1].youtube_like_mandatory}
+                  entries={action.social_action[1].youtube_like_entries}
+                  didAction={(campaignData.user_actions || {}).youtube_like}
+                  tryToOpenValidationModal={tryToOpenValidationModal}
+                />
+              </Col>
+            </Row>
+          }
+          {(action.social_action?.[1].youtube_follow) &&
+            <Row className="mb-4 mt-4">
+              <Col style={{ paddingLeft: 40 }}>
+                <CustomCollapsePanel
+                  title={t('campaign_detail_page.youtube_follow.title')}
+                  text={t('campaign_detail_page.youtube_follow.text')}
+                  socialName="youtube"
+                  actionType="follow"
+                  mandatory={action.social_action[1].youtube_follow_mandatory}
+                  entries={action.social_action[1].youtube_follow_entries}
+                  didAction={(campaignData.user_actions || {}).youtube_follow}
+                  tryToOpenValidationModal={tryToOpenValidationModal}
+                />
+              </Col>
+            </Row>
+          }
+          {(action.social_action?.[1].youtube_comment) &&
+            <Row className="mb-4 mt-4">
+              <Col style={{ paddingLeft: 40 }}>
+                <CustomCollapsePanel
+                  title={t('campaign_detail_page.youtube_comment.title')}
+                  text={t('campaign_detail_page.youtube_comment.text')}
+                  socialName="youtube"
+                  actionType="comment"
+                  mandatory={action.social_action[1].youtube_comment_mandatory}
+                  entries={action.social_action[1].youtube_comment_entries}
+                  didAction={(campaignData.user_actions || {}).youtube_comment}
+                  tryToOpenValidationModal={tryToOpenValidationModal}
                 />
               </Col>
             </Row>
@@ -678,6 +762,24 @@ function CampaignDetail(props) {
         open={openTwitchFollowModal}
         onToggle={() => setOpenTwitchFollowModal(!openTwitchFollowModal)}
         closeModal={() => setOpenTwitchFollowModal(false)}
+        promotion_id={campaignData.pk}
+      />
+      <YoutubeLikeValidationModal
+        open={openYoutubeLikeModal}
+        onToggle={() => setOpenYoutubeLikeModal(!openYoutubeLikeModal)}
+        closeModal={() => setOpenYoutubeLikeModal(false)}
+        promotion_id={campaignData.pk}
+      />
+      <YoutubeCommentValidationModal
+        open={openYoutubeCommentModal}
+        onToggle={() => setOpenYoutubeCommentModal(!openYoutubeCommentModal)}
+        closeModal={() => setOpenYoutubeCommentModal(false)}
+        promotion_id={campaignData.pk}
+      />
+      <YoutubeFollowValidationModal
+        open={openYoutubeFollowModal}
+        onToggle={() => setOpenYoutubeFollowModal(!openYoutubeFollowModal)}
+        closeModal={() => setOpenYoutubeFollowModal(false)}
         promotion_id={campaignData.pk}
       />
     </AppLayout>

@@ -194,6 +194,156 @@ function onSuccessCreateCampaign(data) {
     data: data.promotion_id
   }
 }
+/////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_YOUTUBE_LIKE_ACTION
+export function campaignParticipateYoutubeLike(params) {
+  return apiAction({
+    url: APIROUTE + "campaign/participate/youtube/like/",
+    method: 'POST',
+    data: qs.stringify(params),
+    accessToken: localStorage.getItem('token'),
+    onSuccess: onSuccessCampaignParticipateYoutubeLike,
+    onFailure: onFailed,
+    label: 'CAMPAIGN_PARTICIPATE_YOUTUBE_LIKE',
+    requireErrorMessage: true
+  });
+}
+function onSuccessCampaignParticipateYoutubeLike(data) {
+  if (data.msg === 'MSG_ACTION_EXIST') {
+    return {
+      type: 'SET_TEMP_ACTION_DATA',
+      data: data,
+      openModalName: 'OPEN_YOUTUBE_LIKE_VALIDATION_MODAL'
+    }
+  } else {
+    openNotification('success', successMessages[localStorage.getItem('i18nextLng')][data.msg])
+    return {
+      type: 'SET_ACTION_VALIDATION_STATUS',
+      data: 'youtube_like_validation',
+    }
+  }
+}
+/////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_YOUTUBE_LIKE_VALIDATION_ACTION
+export function campaignParticipateYoutubeLikeValidation(params) {
+  return apiAction({
+    url: APIROUTE + "campaign/participate/youtube/like/validation/",
+    method: 'POST',
+    data: qs.stringify(params),
+    accessToken: localStorage.getItem('token'),
+    onSuccess: onSuccessCampaignParticipateYoutubeLikeValidation,
+    onFailure: onFailed,
+    label: 'CAMPAIGN_PARTICIPATE_YOUTUBE_LIKE_VALIDATION',
+    requireErrorMessage: true
+  });
+}
+function onSuccessCampaignParticipateYoutubeLikeValidation(data) {
+  openNotification('success', successMessages[localStorage.getItem('i18nextLng')].success)
+  return {
+    type: 'SET_ACTION_VALIDATION_STATUS',
+    data: 'youtube_like_validation',
+    entries: data.entries,
+    remaining_actions: data.remaining_actions
+  }
+}
+/////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_YOUTUBE_COMMENT_ACTION
+export function campaignParticipateYoutubeComment(params) {
+  return apiAction({
+    url: APIROUTE + "campaign/participate/youtube/comment/",
+    method: 'POST',
+    data: qs.stringify(params),
+    accessToken: localStorage.getItem('token'),
+    onSuccess: onSuccessCampaignParticipateYoutubeComment,
+    onFailure: onFailed,
+    label: 'CAMPAIGN_PARTICIPATE_YOUTUBE_COMMENT',
+    requireErrorMessage: true
+  });
+}
+function onSuccessCampaignParticipateYoutubeComment(data) {
+  if (data.msg === 'MSG_ACTION_EXIST') {
+    return {
+      type: 'SET_TEMP_ACTION_DATA',
+      data: data,
+      openModalName: 'OPEN_YOUTUBE_COMMENT_VALIDATION_MODAL'
+    }
+  } else {
+    openNotification('success', successMessages[localStorage.getItem('i18nextLng')][data.msg])
+    return {
+      type: 'SET_ACTION_VALIDATION_STATUS',
+      data: 'youtube_comment_validation',
+    }
+  }
+}
+/////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_YOUTUBE_COMMENT_VALIDATION_ACTION
+export function campaignParticipateYoutubeCommentValidation(params) {
+  return apiAction({
+    url: APIROUTE + "campaign/participate/youtube/comment/validation/",
+    method: 'POST',
+    data: qs.stringify(params),
+    accessToken: localStorage.getItem('token'),
+    onSuccess: onSuccessCampaignParticipateYoutubeCommentValidation,
+    onFailure: onFailed,
+    label: 'CAMPAIGN_PARTICIPATE_YOUTUBE_COMMENT_VALIDATION',
+    requireErrorMessage: true
+  });
+}
+function onSuccessCampaignParticipateYoutubeCommentValidation(data) {
+  openNotification('success', successMessages[localStorage.getItem('i18nextLng')].success)
+  return {
+    type: 'SET_ACTION_VALIDATION_STATUS',
+    data: 'youtube_comment_validation',
+    entries: data.entries,
+    remaining_actions: data.remaining_actions
+  }
+}
+/////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_YOUTUBE_FOLLOW_ACTION
+export function campaignParticipateYoutubeFollow(params) {
+  return apiAction({
+    url: APIROUTE + "campaign/participate/youtube/follow/",
+    method: 'POST',
+    data: qs.stringify(params),
+    accessToken: localStorage.getItem('token'),
+    onSuccess: onSuccessCampaignParticipateYoutubeFollow,
+    onFailure: onFailed,
+    label: 'CAMPAIGN_PARTICIPATE_YOUTUBE_COMMENT',
+    requireErrorMessage: true
+  });
+}
+function onSuccessCampaignParticipateYoutubeFollow(data) {
+  if (data.msg === 'MSG_ACTION_EXIST') {
+    return {
+      type: 'SET_TEMP_ACTION_DATA',
+      data: data,
+      openModalName: 'OPEN_YOUTUBE_FOLLOW_VALIDATION_MODAL'
+    }
+  } else {
+    openNotification('success', successMessages[localStorage.getItem('i18nextLng')][data.msg])
+    return {
+      type: 'SET_ACTION_VALIDATION_STATUS',
+      data: 'youtube_follow_validation',
+    }
+  }
+}
+/////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_YOUTUBE_FOLLOW_VALIDATION_ACTION
+export function campaignParticipateYoutubeFollowValidation(params) {
+  return apiAction({
+    url: APIROUTE + "campaign/participate/youtube/follow/validation/",
+    method: 'POST',
+    data: qs.stringify(params),
+    accessToken: localStorage.getItem('token'),
+    onSuccess: onSuccessCampaignParticipateYoutubeFollowValidation,
+    onFailure: onFailed,
+    label: 'CAMPAIGN_PARTICIPATE_YOUTUBE_FOLLOW_VALIDATION',
+    requireErrorMessage: true
+  });
+}
+function onSuccessCampaignParticipateYoutubeFollowValidation(data) {
+  openNotification('success', successMessages[localStorage.getItem('i18nextLng')].success)
+  return {
+    type: 'SET_ACTION_VALIDATION_STATUS',
+    data: 'youtube_follow_validation',
+    entries: data.entries,
+    remaining_actions: data.remaining_actions
+  }
+}
 /////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_TWITTER_LIKE_ACTION
 export function campaignParticipateTwitterLike(params) {
   return apiAction({

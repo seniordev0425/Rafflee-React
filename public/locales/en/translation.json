@@ -303,7 +303,8 @@
     "chance_winning_prize": "Chance of winning the prize",
     "action_left": "ACTION LEFT",
     "mandatory_action_left": "MANDATORY ACTION LEFT",
-    "participation_validated": "You can always carry out actions these will be counted"
+    "participation_validated": "You can always carry out actions these will be counted",
+    "account": "Account:"
   },
   "my_campaign_page": {
     "live_page": "Live Page",

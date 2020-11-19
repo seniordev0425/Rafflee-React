@@ -302,7 +302,8 @@
     "chance_winning_prize": "Chance de gagner le prix",
     "action_left": "ACTION RESTANTE",
     "mandatory_action_left": "ACTION OBLIGATOIRE RESTANTE",
-    "participation_validated": "Vous pouvez toujours effectuer des actions celles-ci seront comptabilisé"
+    "participation_validated": "Vous pouvez toujours effectuer des actions celles-ci seront comptabilisé",
+    "account": "Compte:"
   },
   "my_campaign_page": {
     "live_page": "Live Page",

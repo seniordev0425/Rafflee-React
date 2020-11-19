@@ -51,7 +51,7 @@ const errorMessages = {
     MSG_GIVEWAY_NOT_EXIST: "Giveways not exist",
     MSG_PARTICIPATION_ACCEPTED: "Participation accepted",
     MSG_ALREADY_PARTICIPATED: "The user has already participated",
-    MSG_NO_SOCIAL_ACTION_FINDED: "No social action finded",
+    MSG_NO_SOCIAL_ACTION_FOUND: "No social action finded",
     MSG_ERROR_SERVER_PROMOTION_CREATION: "Error with the promotion creation",
     MSG_ERROR_SERVER_CATEGORIES_CREATION: "Error with the categories creation",
     MSG_ERROR_SERVER_CREATION_POLL: "Error with the poll creation",
@@ -106,7 +106,10 @@ const errorMessages = {
     MSG_CAMPAIGN_NAME_REQUIRED: "Campaign name is required",
     MSG_PHONE_NUMBER_ALREADY_LINKED_TO_AN_ACCOUNT: "Phone number already linked to an account",
     MSG_RECRUITMENTS_ARE_CLOSED: "Recruitments are closed",
-    MSG_REQUEST_WITH_THIS_NAME_ALREADY_EXIST: "Request with this name already exists"
+    MSG_REQUEST_WITH_THIS_NAME_ALREADY_EXIST: "Request with this name already exists",
+    MSG_ERROR_WITH_YOUTUBE_COMMENT: "Error with youtube comment action",
+    MSG_ERROR_WITH_YOUTUBE_LIKE: "Error with youtube like action",
+    MSG_ERROR_WITH_YOUTUBE_FOLLOW: "Error with youtube follow action"
   },
 
 
@@ -161,7 +164,7 @@ const errorMessages = {
     MSG_GIVEWAY_NOT_EXIST: "Prix non trouvé",
     MSG_PARTICIPATION_ACCEPTED: "Participation accepté",
     MSG_ALREADY_PARTICIPATED: "Le compte participe déjà",
-    MSG_NO_SOCIAL_ACTION_FINDED: "Actions non trouvées",
+    MSG_NO_SOCIAL_ACTION_FOUND: "Actions non trouvées",
     MSG_ERROR_SERVER_PROMOTION_CREATION: "Erreur avec la création de la promotion",
     MSG_ERROR_SERVER_CATEGORIES_CREATION: "Erreur avec la création de la catégorie",
     MSG_ERROR_SERVER_CREATION_POLL: "Erreur avec la création du sondage",
@@ -216,7 +219,10 @@ const errorMessages = {
     MSG_CAMPAIGN_NAME_REQUIRED: "Le nom de la campagne est requis",
     MSG_PHONE_NUMBER_ALREADY_LINKED_TO_AN_ACCOUNT: "Le numéro de téléphone est déjà lie à un compte",
     MSG_RECRUITMENTS_ARE_CLOSED: "Les recrutements sont fermés",
-    MSG_REQUEST_WITH_THIS_NAME_ALREADY_EXIST: "Une demande portant ce nom existe déjà"
+    MSG_REQUEST_WITH_THIS_NAME_ALREADY_EXIST: "Une demande portant ce nom existe déjà",
+    MSG_ERROR_WITH_YOUTUBE_COMMENT: "Error with youtube comment action",
+    MSG_ERROR_WITH_YOUTUBE_LIKE: "Error with youtube like action",
+    MSG_ERROR_WITH_YOUTUBE_FOLLOW: "Error with youtube follow action"
   }
 }
 

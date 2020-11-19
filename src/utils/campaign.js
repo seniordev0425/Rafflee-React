@@ -10,6 +10,16 @@ export const getTotalEntries = (campaignData) => {
     totalTemp += campaignData.action_participate[0].social_action[0].facebook_url_entries
   }
 
+  if (campaignData.action_participate[0]?.social_action[1].youtube_like) {
+    totalTemp += campaignData.action_participate[0].social_action[1].youtube_like_entries
+  }
+  if (campaignData.action_participate[0]?.social_action[1].youtube_follow) {
+    totalTemp += campaignData.action_participate[0].social_action[1].youtube_follow_entries
+  }
+  if (campaignData.action_participate[0]?.social_action[1].youtube_comment) {
+    totalTemp += campaignData.action_participate[0].social_action[1].youtube_comment_entries
+  }
+
   if (campaignData.action_participate[0]?.social_action[2].instagram_profile) {
     totalTemp += campaignData.action_participate[0].social_action[2].instagram_profile_entries
   }
