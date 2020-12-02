@@ -17,10 +17,10 @@ function YoutubeLikeField(props) {
     <div className="mt-3 mt-sm-5">
       <div
         className="d-flex justify-content-between align-items-center px-2 px-sm-4"
-        style={{ height: 50, backgroundColor: '#F01212', borderTopLeftRadius: 6, borderTopRightRadius: 6 }}
+        style={{ height: 50, backgroundColor: '#ff0200', borderTopLeftRadius: 6, borderTopRightRadius: 6 }}
       >
         <div>
-          <img src={images.youtube_action_icon} width={18} height={16} alt="" />
+          <img src={images.youtube_action_icon} width={30} alt="" />
           <span className="ml-3">{t('create_campaign_page.like')}</span>
         </div>
         <div>

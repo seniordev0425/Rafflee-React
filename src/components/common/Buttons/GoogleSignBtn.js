@@ -9,11 +9,25 @@ function GoogleSignBtn() {
 
   const isLoading = useSelector(state => state.userInfo.GOOGLE_LOG_IN)
   return (
-    <div className="pointer" style={{ marginLeft: -5, marginRight: -5 }}>
-      <img src={images.google_signin_button} width={'100%'} alt="" />
-      {isLoading && <Spinner style={{ position: 'relative', left: '50%', top: -55 }} />}
+    // <Row className="pointer">
+    //   <Col xs="2" className="pl-0 pr-0 google-icon-container1">
+    //     <img src={images.google_icon} alt="" />
+    //   </Col>
+    //   <Col xs="10" className="pl-0 pr-0 google-icon-container2" style={{ fontFamily: 'roboto' }}>
+    //     {isLoading ? <Spinner /> : t('login_modal.signup_with_google')}
+    //   </Col>
+    // </Row>
+    <div className="pointer d-flex">
+      <div className="google-icon-container1">
+        <img src={images.google_signin_icon} width={30} height={30} alt="" />
+      </div>
+      <div
+        style={{ fontFamily: 'roboto', fontSize: '1rem' }}
+        className="google-icon-container2"
+      >
+        {isLoading ? <Spinner /> : t('login_modal.signup_with_google')}
+      </div>
     </div>
-
   )
 }
 export default GoogleSignBtn;

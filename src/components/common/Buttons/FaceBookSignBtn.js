@@ -9,10 +9,10 @@ function FaceBookSignBtn() {
   const isLoading = useSelector(state => state.userInfo.FACEBOOK_LOG_IN)
   return (
     <div className="pointer d-flex">
-      <div className="fb-icon-container1" style={{ width: 85, height: 67 }}>
+      <div className="fb-icon-container1" style={{ width: 60, height: 50 }}>
         f
       </div>
-      <div className="fb-icon-container2" style={{ height: 67 }}>
+      <div className="fb-icon-container2" style={{ height: 50 }}>
         {isLoading ? <Spinner /> : t('login_modal.signup_with_facebook')}
       </div>
     </div>

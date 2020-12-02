@@ -55,7 +55,7 @@ function CustomCollapsePanel(props) {
         </div>)
       case 'youtube':
         return (<div className="collapse-youtube-icon">
-          <img src={images.youtube_icon} alt="" />
+          <img src={images.youtube_icon} width={30} alt="" />
         </div>)
       case 'twitch':
         return (<div className="collapse-twitch-icon">
