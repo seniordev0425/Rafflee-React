@@ -109,7 +109,11 @@ const errorMessages = {
     MSG_REQUEST_WITH_THIS_NAME_ALREADY_EXIST: "Request with this name already exists",
     MSG_ERROR_WITH_YOUTUBE_COMMENT: "Error with youtube comment action",
     MSG_ERROR_WITH_YOUTUBE_LIKE: "Error with youtube like action",
-    MSG_ERROR_WITH_YOUTUBE_FOLLOW: "Error with youtube follow action"
+    MSG_ERROR_WITH_YOUTUBE_FOLLOW: "Error with youtube follow action",
+    MSG_PROMOTION_ENDED: "Promotion Ended",
+    MSG_USER_YOUTUBE_NOT_CONNECTED: "User is not connected to youtube",
+    MSG_PROMOTION_NOT_STARTED: "Promotion is not started yet.",
+    "MSG_ERROR_YOUTUBE_ACCOUNT_NOT_CONNECTED_TO_GOOGLE_+": "Youtube account is not connected to Google+. Check this url. https://m.youtube.com/create_channel?chromeless=1&next=/channel_creation_done"
   },
 
 
@@ -222,7 +226,11 @@ const errorMessages = {
     MSG_REQUEST_WITH_THIS_NAME_ALREADY_EXIST: "Une demande portant ce nom existe déjà",
     MSG_ERROR_WITH_YOUTUBE_COMMENT: "Error with youtube comment action",
     MSG_ERROR_WITH_YOUTUBE_LIKE: "Error with youtube like action",
-    MSG_ERROR_WITH_YOUTUBE_FOLLOW: "Error with youtube follow action"
+    MSG_ERROR_WITH_YOUTUBE_FOLLOW: "Error with youtube follow action",
+    MSG_PROMOTION_ENDED: "Promotion Ended",
+    MSG_USER_YOUTUBE_NOT_CONNECTED: "User is not connected to youtube",
+    MSG_PROMOTION_NOT_STARTED: "Promotion is not started yet.",
+    "MSG_ERROR_YOUTUBE_ACCOUNT_NOT_CONNECTED_TO_GOOGLE_+": "Youtube account is not connected to Google+. Check this url. https://m.youtube.com/create_channel?chromeless=1&next=/channel_creation_done"
   }
 }
 

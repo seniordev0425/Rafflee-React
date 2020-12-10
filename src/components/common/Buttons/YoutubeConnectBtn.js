@@ -26,7 +26,7 @@ function YoutubeConnectBtn(props) {
 
 
   const youtubeConnect = () => {
-    if (connected) return
+    // if (connected) return
     dispatch(youtubeConnectStep1(company))
   }
 
