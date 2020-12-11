@@ -109,7 +109,12 @@ function CreateCampaignLayout() {
       comment_url_img: '',
       comment_video_title: '',
       comment_published_at: '',
-      comment_channel_title: ''
+      comment_channel_title: '',
+      video: false,
+      video_id: '',
+      video_url_img: '',
+      video_entries: '',
+      video_mandatory: false
     },
     instagram: {
       publication: false,

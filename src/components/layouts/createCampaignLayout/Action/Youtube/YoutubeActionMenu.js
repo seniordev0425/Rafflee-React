@@ -21,6 +21,10 @@ function YoutubeActionMenu(props) {
         <label>{t('create_campaign_page.comment')}</label>
         <Checkbox checked={params.youtube.comment} onChange={(e) => setAction('youtube', 'comment', e.target.checked)} />
       </div>
+      <div className="action-list-item">
+        <label>{t('create_campaign_page.video')}</label>
+        <Checkbox checked={params.youtube.video} onChange={(e) => setAction('youtube', 'video', e.target.checked)} />
+      </div>
     </div>
   )
 }

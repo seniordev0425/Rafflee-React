@@ -163,6 +163,15 @@ function PreviewSection(props) {
         model: params.youtube.comment_model
       })
     }
+    if (params.youtube.video) {
+      youtube.push({
+        action: 'video',
+        id: params.youtube.video_id,
+        entries: params.youtube.video_entries || 1,
+        mandatory: params.youtube.video_mandatory,
+        url_img: params.youtube.video_url_img
+      })
+    }
     // Make instagram action para
     let instagram = []
     if (params.instagram.profile) {
@@ -476,6 +485,19 @@ function PreviewSection(props) {
                   socialName="youtube"
                   mandatory={params.youtube.comment_mandatory}
                   entries={params.youtube.comment_entries}
+                />
+              </Col>
+            </Row>
+          }
+           {params.youtube.video &&
+            <Row className="mb-4 mt-4">
+              <Col style={{ paddingLeft: 40 }}>
+                <PreviewCustomCollapsePanel
+                  title={t('campaign_detail_page.youtube_video.title')}
+                  text={t('campaign_detail_page.youtube_video.text')}
+                  socialName="youtube"
+                  mandatory={params.youtube.video_mandatory}
+                  entries={params.youtube.video_entries}
                 />
               </Col>
             </Row>

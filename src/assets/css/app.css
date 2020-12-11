@@ -1815,6 +1815,11 @@ h2 span {
 .custom-dots {
   height: 20px;
 }
+.youtube-video-wrapper {
+  width: 640px;
+  max-width: 100%;
+  pointer-events: none;
+}
 /* .slick-dots li.slick-active button:before {
   color: #0091ff !important;
 }

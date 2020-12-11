@@ -261,6 +261,10 @@
       "title": "Youtube Comment",
       "text": "Commente la vidéo pour valider l'action et augmenter tes chances de remporter le giveaway!"
     },
+    "youtube_video": {
+      "title": "Youtube Video",
+      "text": "Youtube Video text"
+    },
     "twitch_follow": {
       "title": "Twitch Follow",
       "text": "Follow le compte pour valider l'action et augmenter tes chances de remporter le giveaway!"
@@ -445,7 +449,7 @@
     "total": "Total",
     "must_have_one_at_least": "Minimum une réponse",
     "must_have_one_winning_at_least": "Un gagnant minimum obligatoire",
-    "video": "Lire la video",
+    "video": "Video",
     "campaign_informations": "Informations de la campagne",
     "prizes": "Cadeaux",
     "social_actions": "Actions sur les réseaux",
@@ -861,6 +865,7 @@
     "website": "Cette action permet de choisir un site qui doit être visité par l’utilisateur.",
     "youtube_like": "Cette action permet de selectionner une vidéo youtube que l'utilisateur doit liker.",
     "youtube_follow": "Cette action permet de selectionner un compte youtube que l'utilisateur doit follow.",
-    "youtube_comment": "Cette action permet de sélectionner un modèle de commenteaire que l’utilisateur devra commenter sur une vidéo."
+    "youtube_comment": "Cette action permet de sélectionner un modèle de commenteaire que l’utilisateur devra commenter sur une vidéo.",
+    "youtube_video": "Tooltip for youtube video"
   }
 }

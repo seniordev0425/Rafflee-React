@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { Button, Tooltip } from 'antd'
 import { useSelector, useDispatch } from 'react-redux'
 import ExpansionPanel from '@material-ui/core/ExpansionPanel'
@@ -10,6 +10,7 @@ import {
   EmbeddedPost,
   Like
 } from 'react-facebook'
+import YouTube from 'react-youtube'
 import { isMobile } from 'react-device-detect'
 import { FACEBOOK_APP_ID } from '../../utils/constants'
 import images from '../../utils/images'
@@ -28,7 +29,10 @@ function CustomCollapsePanel(props) {
     entries,                      // campaign action entries number (integer)
     didAction,                    // already validated this action or not (boolean)
     tryToOpenValidationModal,     // action performance function
-    facebookActionUrl
+    facebookActionUrl,
+    youtubeVideoId,
+    isYoutubeVideoClicked,
+    onYoutubeVideoEnded
   } = props
 
   const userProfile = useSelector(state => state.userInfo.userProfile)
@@ -39,9 +43,30 @@ function CustomCollapsePanel(props) {
   const validation = useSelector(state => state.campaign[`${socialName}_${actionType}_validation`])
   const dispatch = useDispatch()
 
+  const youtubePlayer = useRef(null)
+
   useEffect(() => {
     dispatch({ type: 'CAMPAIGN_INIT_STATE', state: `${socialName}_${actionType}_validation`, data: false })
+
+    window.addEventListener('blur', () => handleYoutubePlaying(false))
+    window.addEventListener('focus', () => handleYoutubePlaying(true))
+
+    return () => {
+      window.removeEventListener('blur', handleYoutubePlaying)
+      window.removeEventListener('focus', handleYoutubePlaying)
+      youtubePlayer.current = null
+    }
   }, [])
+
+  const handleYoutubePlaying = (playing) => {
+    if (youtubePlayer.current) {
+      if (playing) {
+        youtubePlayer.current.playVideo()
+      } else {
+        youtubePlayer.current.pauseVideo()
+      }
+    }
+  }
 
   const renderIcons = () => {
     switch (socialName) {
@@ -145,6 +170,18 @@ function CustomCollapsePanel(props) {
                   {(didAction || validation) ? t('button_group.validated') : t('button_group.validate')}
                 </Button>
               </div>
+              {youtubeVideoId && isYoutubeVideoClicked &&
+                <div className="d-flex justify-content-center mt-4">
+                  <div className="youtube-video-wrapper">
+                    <YouTube
+                      videoId={youtubeVideoId}
+                      opts={{ width: '100%', playerVars: { autoplay: 1 } }}
+                      onReady={event => { youtubePlayer.current = event.target }}
+                      onEnd={onYoutubeVideoEnded}
+                    />
+                  </div>
+                </div>
+              }
             </div>
             :
             <span style={{ color: '#f5ad2b' }}>{t('campaign_detail_page.social_detail_alert')}</span>

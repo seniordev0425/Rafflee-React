@@ -266,6 +266,10 @@
       "title": "Youtube Comment",
       "text": "Youtube Comment text"
     },
+    "youtube_video": {
+      "title": "Youtube Video",
+      "text": "Youtube Video text"
+    },
     "instagram_like": {
       "title": "Instagram Like",
       "text": "Like the post to validate the action and increase your chances of winning the giveaway!"
@@ -450,7 +454,7 @@
     "total": "Total",
     "must_have_one_at_least": "Must have one answer at least",
     "must_have_one_winning_at_least": "Must have one winning at least",
-    "video": "Run video",
+    "video": "VIDEO",
     "campaign_informations": "Campaign Informations",
     "prizes": "Prizes",
     "social_actions": "Social Actions",
@@ -881,6 +885,7 @@
     "website": "This action allows you to choose a site that should be visited by the user.",
     "youtube_like": "Tooltip for youtube like",
     "youtube_follow": "Tooltip for youtube follow",
-    "youtube_comment": "Tooltip for youtube comment"
+    "youtube_comment": "Tooltip for youtube comment",
+    "youtube_video": "Tooltip for youtube video"
   }
 }

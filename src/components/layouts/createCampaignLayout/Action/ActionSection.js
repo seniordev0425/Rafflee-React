@@ -40,6 +40,7 @@ import TwitterRetweetField from './Twitter/TwitterRetweetField'
 import YoutubeLikeField from './Youtube/YoutubeLikeField/YoutubeLikeField'
 import YoutubeFollowField from './Youtube/YoutubeFollowField/YoutubeFollowField'
 import YoutubeCommentField from './Youtube/YoutubeCommentField/YoutubeCommentField'
+import YoutubeVideoField from './Youtube/YoutubeVideoField/YoutubeVideoField'
 import InstagramProfileField from './Instagram/InstagramProfileField'
 import InstagramPublicationField from './Instagram/InstagramPublicationField'
 import TwitchFollowField from './Twitch/TwitchFollowField'
@@ -180,6 +181,9 @@ function ActionSection(props) {
             }
             {params.youtube.comment &&
               <YoutubeCommentField params={params} setAction={setAction} />
+            }
+            {params.youtube.video &&
+              <YoutubeVideoField params={params} setAction={setAction} />
             }
             {params.instagram.profile &&
               <InstagramProfileField params={params} setAction={setAction} />

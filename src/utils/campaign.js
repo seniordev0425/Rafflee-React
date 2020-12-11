@@ -19,6 +19,9 @@ export const getTotalEntries = (campaignData) => {
   if (campaignData.action_participate[0]?.social_action[1].youtube_comment) {
     totalTemp += campaignData.action_participate[0].social_action[1].youtube_comment_entries
   }
+  if (campaignData.action_participate[0]?.social_action[1].youtube_video) {
+    totalTemp += campaignData.action_participate[0].social_action[1].youtube_video_entries
+  }
 
   if (campaignData.action_participate[0]?.social_action[2].instagram_profile) {
     totalTemp += campaignData.action_participate[0].social_action[2].instagram_profile_entries
@@ -106,6 +109,9 @@ export const getTotalEntriesOfPreviewSection = (params) => {
     }
     if (params.youtube.comment) {
       totalTemp += parseInt(params.youtube.comment_entries) || 1
+    }
+    if (params.youtube.video) {
+      totalTemp += parseInt(params.youtube.video_entries) || 1
     }
 
     if (params.twitch.follow) {

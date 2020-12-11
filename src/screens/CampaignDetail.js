@@ -32,6 +32,7 @@ import {
   campaignParticipateYoutubeLike,
   campaignParticipateYoutubeComment,
   campaignParticipateYoutubeFollow,
+  campaignParticipateYoutubeVideoValidation,
   campaignParticipateTwitterLike,
   campaignParticipateTwitterRetweet,
   campaignParticipateTwitterComment,
@@ -98,6 +99,8 @@ function CampaignDetail(props) {
   const [openYoutubeLikeModal, setOpenYoutubeLikeModal] = useState(false)
   const [openYoutubeCommentModal, setOpenYoutubeCommentModal] = useState(false)
   const [openYoutubeFollowModal, setOpenYoutubeFollowModal] = useState(false)
+
+  const [isYoutubeVideoClicked, setIsYoutubeVideoClicked] = useState(false)
 
   useEffect(() => {
     // Load campaign data after render
@@ -221,6 +224,10 @@ function CampaignDetail(props) {
     dispatch(campaignParticipateVideo({ promotion_id: campaignData.pk }))
   }
 
+  const onYoutubeVideoEnded = () => {
+    dispatch(campaignParticipateYoutubeVideoValidation({ promotion_id: campaignData.pk }))
+  }
+
   const handleOpenConfirm = () => setOpenConfirm(!openConfirm)
 
   const tryToOpenValidationModal = (socialName, actionType) => {
@@ -282,6 +289,9 @@ function CampaignDetail(props) {
     }
     else if (socialName === 'youtube' && actionType === 'follow') {
       dispatch(campaignParticipateYoutubeFollow({ promotion_id: campaignData.pk }))
+    }
+    else if (socialName === 'youtube' && actionType === 'video') {
+      setIsYoutubeVideoClicked(true)
     }
   }
 
@@ -495,6 +505,25 @@ function CampaignDetail(props) {
                   entries={action.social_action[1].youtube_comment_entries}
                   didAction={(campaignData.user_actions || {}).youtube_comment}
                   tryToOpenValidationModal={tryToOpenValidationModal}
+                />
+              </Col>
+            </Row>
+          }
+          {(action.social_action?.[1].youtube_video) &&
+            <Row className="mb-4 mt-4">
+              <Col style={{ paddingLeft: 40 }}>
+                <CustomCollapsePanel
+                  title={t('campaign_detail_page.youtube_video.title')}
+                  text={t('campaign_detail_page.youtube_video.text')}
+                  socialName="youtube"
+                  actionType="video"
+                  mandatory={action.social_action[1].youtube_video_mandatory}
+                  entries={action.social_action[1].youtube_video_entries}
+                  didAction={(campaignData.user_actions || {}).youtube_video}
+                  tryToOpenValidationModal={tryToOpenValidationModal}
+                  youtubeVideoId={action.social_action[1].youtube_video_id}
+                  isYoutubeVideoClicked={isYoutubeVideoClicked}
+                  onYoutubeVideoEnded={onYoutubeVideoEnded}
                 />
               </Col>
             </Row>

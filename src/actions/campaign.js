@@ -344,6 +344,28 @@ function onSuccessCampaignParticipateYoutubeFollowValidation(data) {
     remaining_actions: data.remaining_actions
   }
 }
+/////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_YOUTUBE_VIDEO_VALIDATION_ACTION
+export function campaignParticipateYoutubeVideoValidation(params) {
+  return apiAction({
+    url: APIROUTE + "campaign/participate/youtube/video/validation/",
+    method: 'POST',
+    data: qs.stringify(params),
+    accessToken: localStorage.getItem('token'),
+    onSuccess: onSuccessCampaignParticipateYoutubeVideoValidation,
+    onFailure: onFailed,
+    label: 'CAMPAIGN_PARTICIPATE_YOUTUBE_VIDEO_VALIDATION',
+    requireErrorMessage: true
+  });
+}
+function onSuccessCampaignParticipateYoutubeVideoValidation(data) {
+  openNotification('success', successMessages[localStorage.getItem('i18nextLng')].success)
+  return {
+    type: 'SET_ACTION_VALIDATION_STATUS',
+    data: 'youtube_video_validation',
+    entries: data.entries,
+    remaining_actions: data.remaining_actions
+  }
+}
 /////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_TWITTER_LIKE_ACTION
 export function campaignParticipateTwitterLike(params) {
   return apiAction({
