@@ -13,9 +13,11 @@ import Loading from '../components/common/Loading'
 import { useTranslation } from 'react-i18next'
 
 
-function Home() {
+function Home(props) {
   const { t } = useTranslation()
 
+  const openLoginModal = props.location?.state?.openLoginModal || false
+  
   const hotPromotions = useSelector(state => state.homepage.hotPromotions)
   const GET_HOT_PROMOTIONS_PROCESS = useSelector(state => state.userInfo.GET_HOT_PROMOTIONS)
 
@@ -27,7 +29,7 @@ function Home() {
   }, [])
 
   return (
-    <AppLayout>
+    <AppLayout openLoginModal={openLoginModal}>
       <HomeHelmet />
       <div>
         <Banner />

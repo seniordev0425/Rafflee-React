@@ -305,11 +305,13 @@ function PreviewSection(props) {
             </Col>
           </Row>
           <Row className="mt-5">
-            <Col>
-              <div className="d-flex justify-content-center">
-                <img src={params.promotion_picture ? params.promotion_picture : images.campaign} width="100%" style={{ maxHeight: 500, objectFit: 'contain' }} alt="" />
-              </div>
-            </Col>
+            {params.promotion_picture !== '' &&
+              <Col>
+                <div className="d-flex justify-content-center">
+                  <img src={params.promotion_picture} width="100%" style={{ maxHeight: 500, objectFit: 'contain' }} alt="" />
+                </div>
+              </Col>
+            }
           </Row>
           <Row className="my-5">
             <Col lg="1" md="2" sm="2" xs="3" className="promotion-list-item-img p-0">
@@ -489,7 +491,7 @@ function PreviewSection(props) {
               </Col>
             </Row>
           }
-           {params.youtube.video &&
+          {params.youtube.video &&
             <Row className="mb-4 mt-4">
               <Col style={{ paddingLeft: 40 }}>
                 <PreviewCustomCollapsePanel

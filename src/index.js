@@ -21,6 +21,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css"
 import './i18next'
 
+import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3'
 
 
 const history = createBrowserHistory()
@@ -29,9 +30,11 @@ const store = createStore(AppReducer, composeWithDevTools(applyMiddleware(apiMid
 ReactDOM.render(
   <Suspense fallback="">
     <Provider store={store}>
-      <Router history={history}>
-        <Routes />
-      </Router>
+      <GoogleReCaptchaProvider reCaptchaKey="6LeLyPMZAAAAAMt9F_Gu06vHP_UhBxoecHhzHJCC">
+        <Router history={history}>
+          <Routes />
+        </Router>
+      </GoogleReCaptchaProvider>
     </Provider>
   </Suspense>
   ,

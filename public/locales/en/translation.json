@@ -454,7 +454,7 @@
     "total": "Total",
     "must_have_one_at_least": "Must have one answer at least",
     "must_have_one_winning_at_least": "Must have one winning at least",
-    "video": "VIDEO",
+    "video": "Video",
     "campaign_informations": "Campaign Informations",
     "prizes": "Prizes",
     "social_actions": "Social Actions",
@@ -715,7 +715,7 @@
   "login_modal": {
     "remember_me": "Remember Me",
     "forgot_password": "Forgot Password",
-    "signup_with_google": "Sign in with Google",
+    "signup_with_google": "SIGN UP WITH GOOGLE",
     "signup_with_facebook": "SIGN UP WITH FACEBOOK"
   },
   "company_modal": {

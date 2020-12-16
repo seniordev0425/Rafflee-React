@@ -263,7 +263,7 @@
     },
     "youtube_video": {
       "title": "Youtube Video",
-      "text": "Youtube Video text"
+      "text": "Regardez la vidéo jusqu'au bout pour valider l'action et augmenter tes chances de remporter le giveaway!"
     },
     "twitch_follow": {
       "title": "Twitch Follow",
@@ -279,11 +279,11 @@
     },
     "tiktok_like": {
       "title": "Tiktok Like",
-      "text": "Like le post pour valider l'action!"
+      "text": "Like le post pour valider l'action et augmenter tes chances de remporter le giveaway!!"
     },
     "tiktok_follow": {
       "title": "Tiktok Follow",
-      "text": "Follow le compte pour valider l'action!"
+      "text": "Follow le compte pour valider l'action et augmenter tes chances de remporter le giveaway!!"
     },
     "poll": {
       "title": "Sondage",
@@ -666,7 +666,7 @@
       "text": "Avec Rafflee, vous vous assurez une campagne réussie et sécurisé. L'algorithme, tire au hasard, les gagnants de votre jeux concours ou de vos giveaways. Cela vous assure aussi, une distribution certaine des lots sans triche. De plus nous vérifions via la connection aux différents réseaux l'exactitude du 'call to action' accompli."
     },
     "thousands_of_brands": "Des milliers de marques ",
-    "trust_us": "faites nous confiance.",
+    "trust_us": "nous font confiance.",
     "get_in_touch": "Restons en contact.",
     "we_reach_out_to_you": "Nous vous contacterons le plus rapidement possible.",
     "subject": "Sujet",
@@ -723,7 +723,7 @@
     "here": "ici."
   },
   "contact_modal": {
-    "contact_form": "Contact Form"
+    "contact_form": "Formulaire de contact"
   },
   "forgot_password_modal": {
     "forgot_password": "Mot de passe oublié?"
@@ -863,9 +863,9 @@
     "poll": "Cette action permet de créer un sondage.",
     "video": "Cette action permet de sélectionner une video qui devra être regardé par l’utilisateur.",
     "website": "Cette action permet de choisir un site qui doit être visité par l’utilisateur.",
-    "youtube_like": "Cette action permet de selectionner une vidéo youtube que l'utilisateur doit liker.",
-    "youtube_follow": "Cette action permet de selectionner un compte youtube que l'utilisateur doit follow.",
-    "youtube_comment": "Cette action permet de sélectionner un modèle de commenteaire que l’utilisateur devra commenter sur une vidéo.",
-    "youtube_video": "Tooltip for youtube video"
+    "youtube_like": "This action allows you to select a youtube video that the user must like.",
+    "youtube_follow": "This action allows to select a youtube account that the user must follow.",
+    "youtube_comment": "This action allows you to select a comment template that the user will comment on a video.",
+    "youtube_video": "This action allows you to select a video for the user to watch."
   }
 }

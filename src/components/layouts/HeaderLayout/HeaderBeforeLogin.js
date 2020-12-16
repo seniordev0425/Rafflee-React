@@ -6,10 +6,10 @@ import LoginSignupBaseModal from '../../modals/LoginSignupBaseModal'
 import images from '../../../utils/images'
 import { useTranslation } from 'react-i18next'
 
-function HeaderBeforeLogin() {
+function HeaderBeforeLogin({ openLoginModal }) {
   const { t } = useTranslation()
 
-  const [modal, setModal] = useState(false)
+  const [modal, setModal] = useState(openLoginModal)
   const [companyStatus, setCompanyStatus] = useState(false)
   const [isLogin, setIsLogin] = useState(false)
   const [visible, setVisible] = useState(false)

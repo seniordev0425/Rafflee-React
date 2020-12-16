@@ -10,6 +10,7 @@ import PreviewSection from './Preview/PreviewSection'
 import PaymentSection from './Payment/PaymentSection'
 import ResumeSection from './Resume/ResumeSection'
 
+import Loading from '../../common/Loading'
 import { saveCampaign } from '../../../actions/campaign'
 
 import { openNotification } from '../../../utils/notification'
@@ -21,6 +22,8 @@ import { useTranslation } from 'react-i18next'
 function CreateCampaignLayout() {
   const { t } = useTranslation()
 
+  const CREATE_CAMPAIGN_PROCESS = useSelector(state => state.userInfo.CREATE_CAMPAIGN)
+  const SAVE_CAMPAIGN_PROCESS = useSelector(state => state.userInfo.SAVE_CAMPAIGN)
   const beingCreatedCampaign = useSelector(state => state.campaign.beingCreatedCampaign)
   const dispatch = useDispatch()
 
@@ -543,7 +546,14 @@ function CreateCampaignLayout() {
           </Menu>
         </Col>
       </Row>
-      {renderSection()}
+      <div style={{ position: 'relative' }}>
+        {renderSection()}
+        {(CREATE_CAMPAIGN_PROCESS || SAVE_CAMPAIGN_PROCESS) &&
+          <div className="opacity-loading-container">
+            <Loading />
+          </div>
+        }
+      </div>
     </>
   )
 }

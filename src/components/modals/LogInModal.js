@@ -13,8 +13,12 @@ import { LANGUAGE_NAME } from '../../utils/constants'
 
 import { useTranslation } from 'react-i18next'
 
+import { useGoogleReCaptcha, GoogleReCaptcha } from 'react-google-recaptcha-v3'
+
 function LogInModal(props) {
   const { t, i18n } = useTranslation()
+
+  const { executeRecaptcha } = useGoogleReCaptcha()
 
   const { toggle } = props
 
@@ -22,11 +26,14 @@ function LogInModal(props) {
   const ip = useSelector(state => state.userInfo.ip)
   const dispatch = useDispatch()
 
+
   const [openForgotModal, setOpenForgotModal] = useState(false)
 
   const handleForgotModal = () => setOpenForgotModal(!openForgotModal)
 
-  const onSubmit = (values) => {
+  const onSubmit = async (values) => {
+    const result = await executeRecaptcha('login_page')
+    console.log(result)
     var body = {
       username: values.username,
       password: values.password,
@@ -95,6 +102,10 @@ function LogInModal(props) {
         open={openForgotModal}
         onToggle={handleForgotModal}
         toggle={toggle}
+      />
+
+      <GoogleReCaptcha
+        action={'login_page'}
       />
     </div>
   )

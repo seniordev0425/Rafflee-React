@@ -6,7 +6,7 @@ import images from '../../../utils/images'
 import HeaderBeforeLogin from './HeaderBeforeLogin'
 import HeaderAfterLogin from './HeaderAfterLogin'
 
-function Header() {
+function Header({ openLoginModal }) {
 
   const token = useSelector(state => state.userInfo.token)
 
@@ -19,7 +19,7 @@ function Header() {
           </Link>
           <div>
             {
-              token ? <HeaderAfterLogin /> : <HeaderBeforeLogin />
+              token ? <HeaderAfterLogin /> : <HeaderBeforeLogin openLoginModal={openLoginModal} />
             }
           </div>
         </Col>

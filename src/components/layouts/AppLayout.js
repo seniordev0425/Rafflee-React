@@ -7,7 +7,7 @@ import FooterLink from './footer/FooterLink'
 import Footer from './footer/Footer'
 
 function AppLayout(props) { // Top parent container
-  const { children } = props
+  const { children, openLoginModal } = props
 
   const is_admin = useSelector(state => state.userInfo.is_admin)
 
@@ -20,7 +20,7 @@ function AppLayout(props) { // Top parent container
           :
           <React.Fragment>
             <JoinHeader />
-            <Header />
+            <Header openLoginModal={openLoginModal} />
           </React.Fragment>
         }
       </div>

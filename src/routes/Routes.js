@@ -144,7 +144,12 @@ function Routes(props) {
   useEffect(() => {
     // if 401 error occurs then redirect to home page and remove tokens
     if (AUTH_ERROR) {
-      history.push('/')
+      history.push({
+        pathname: '/',
+        state: {
+          openLoginModal: true
+        }
+      })
       dispatch({ type: 'INIT_STATE', state: 'AUTH_ERROR', data: false })
       dispatch({ type: "LOG_IN_SUCCESS", data: { token: '', company: false } })
       localStorage.removeItem('token')
