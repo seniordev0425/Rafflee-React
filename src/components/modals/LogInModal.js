@@ -7,7 +7,7 @@ import { deviceDetect, isMobile } from 'react-device-detect'
 import FormInput from '../common/FormInput'
 import FormCheckbox from '../common/FormCheckbox'
 import ForgotPassword from './ForgotPassword'
-import { logIn } from '../../actions/userInfo'
+import { logIn, verifyCaptcha } from '../../actions/userInfo'
 import { required } from '../../utils/validation'
 import { LANGUAGE_NAME } from '../../utils/constants'
 
@@ -23,6 +23,7 @@ function LogInModal(props) {
   const { toggle } = props
 
   const LON_IN_PROCESS = useSelector(state => state.userInfo.LOG_IN)
+  const VERIFY_CAPTCHA_PROCESS = useSelector(state => state.userInfo.VERIFY_CAPTCHA)
   const ip = useSelector(state => state.userInfo.ip)
   const dispatch = useDispatch()
 
@@ -32,8 +33,9 @@ function LogInModal(props) {
   const handleForgotModal = () => setOpenForgotModal(!openForgotModal)
 
   const onSubmit = async (values) => {
-    const result = await executeRecaptcha('login_page')
-    console.log(result)
+    const captcha_token = await executeRecaptcha('login_form')
+    if (captcha_token.length < 20) return
+
     var body = {
       username: values.username,
       password: values.password,
@@ -41,7 +43,7 @@ function LogInModal(props) {
       ip: ip,
       language: LANGUAGE_NAME[i18n.language]
     }
-    dispatch(logIn(body, values.rememberMe))
+    dispatch(verifyCaptcha({ captcha_token }, logIn(body, values.rememberMe)))
   }
 
   return (
@@ -91,9 +93,9 @@ function LogInModal(props) {
               htmlType="submit"
               type="primary"
               className="ant-blue-btn mt-4"
-              loading={LON_IN_PROCESS}
+              loading={LON_IN_PROCESS || VERIFY_CAPTCHA_PROCESS}
             >
-              {!LON_IN_PROCESS && t('button_group.log_in')}
+              {!LON_IN_PROCESS && !VERIFY_CAPTCHA_PROCESS && t('button_group.log_in')}
             </Button>
           </Form>
         )}
@@ -105,7 +107,7 @@ function LogInModal(props) {
       />
 
       <GoogleReCaptcha
-        action={'login_page'}
+        action={'login_form'}
       />
     </div>
   )

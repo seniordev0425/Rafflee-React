@@ -14,6 +14,19 @@ function onFailed(error) {
   }
 }
 
+export function verifyCaptcha(params, callback) {
+  return apiAction({
+    url: APIROUTE + "verify/captcha/",
+    method: 'POST',
+    data: qs.stringify(params),
+    onSuccess: (data) => data.captcha_response.score > 0.5 ? callback : onFailed('BOT_NOT_ALLOWED'),
+    onFailure: onFailed,
+    label: 'VERIFY_CAPTCHA',
+    requireErrorMessage: true
+
+  });
+}
+
 /////////////////////////////////////////////// LOGIN-ACTION
 export function logIn(params, rememberMe) {
   return apiAction({

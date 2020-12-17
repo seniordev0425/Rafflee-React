@@ -66,11 +66,7 @@ function Routes(props) {
 
   useEffect(() => {
     if (token) {
-      if (company) {
-        dispatch(getCompanyProfile())
-      } else {
-        dispatch(getUserProfile())
-      }
+      history.push('/user-account/profile')
     }
   }, [token])
 

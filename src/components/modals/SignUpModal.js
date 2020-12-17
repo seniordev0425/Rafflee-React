@@ -6,7 +6,7 @@ import { OnChange } from 'react-final-form-listeners'
 import { Form, FormGroup } from 'reactstrap'
 import FormInput from '../common/FormInput'
 import { Switch, Button } from 'antd'
-import { signUp } from '../../actions/userInfo'
+import { signUp, verifyCaptcha } from '../../actions/userInfo'
 
 import {
   composeValidators,
@@ -18,12 +18,17 @@ import { LANGUAGE_NAME } from '../../utils/constants'
 
 import { useTranslation } from 'react-i18next'
 
+import { useGoogleReCaptcha, GoogleReCaptcha } from 'react-google-recaptcha-v3'
+
 function SignUpModal(props) {
   const { t, i18n } = useTranslation()
+
+  const { executeRecaptcha } = useGoogleReCaptcha()
 
   const { showCompanyModal, toggle, history } = props
 
   const isLoading = useSelector(state => state.userInfo.SIGN_UP)
+  const VERIFY_CAPTCHA_PROCESS = useSelector(state => state.userInfo.VERIFY_CAPTCHA)
   const SIGN_UP_SUCCESS = useSelector(state => state.userInfo.SUCCESS_SIGN_UP)
 
   const dispatch = useDispatch()
@@ -44,8 +49,11 @@ function SignUpModal(props) {
     }
   }, [SIGN_UP_SUCCESS])
 
-  const onSubmit = (values) => {
+  const onSubmit = async (values) => {
     if (!containCapital || !containSpecial || !containLowercase || !containCapital || !containNumber) return
+    const captcha_token = await executeRecaptcha('signup_form')
+    if (captcha_token.length < 20) return
+
     var body = {
       username: values.username,
       email: values.email,
@@ -53,7 +61,7 @@ function SignUpModal(props) {
       password2: values.password2,
       language: LANGUAGE_NAME[i18n.language]
     }
-    dispatch(signUp(body))
+    dispatch(verifyCaptcha({ captcha_token }, signUp(body)))
   }
 
   const validatePassword = (val) => {
@@ -155,9 +163,9 @@ function SignUpModal(props) {
               type="primary"
               className="ant-blue-btn mt-4"
               disabled={!agree}
-              loading={isLoading}
+              loading={isLoading || VERIFY_CAPTCHA_PROCESS}
             >
-              {!isLoading && t('button_group.create_account')}
+              {!isLoading && !VERIFY_CAPTCHA_PROCESS && t('button_group.create_account')}
             </Button>
             <div className="company-question-button-container" onClick={showCompanyModal}>
               <span className="company-question-button">{t('signin_modal.are_you_company')}</span>
@@ -165,6 +173,10 @@ function SignUpModal(props) {
 
           </Form>
         )}
+      />
+
+      <GoogleReCaptcha
+        action={'signup_form'}
       />
     </div>
   )

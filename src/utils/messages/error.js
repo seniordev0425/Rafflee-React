@@ -113,7 +113,8 @@ const errorMessages = {
     MSG_PROMOTION_ENDED: "Promotion Ended",
     MSG_USER_YOUTUBE_NOT_CONNECTED: "User is not connected to youtube",
     MSG_PROMOTION_NOT_STARTED: "Promotion is not started yet.",
-    "MSG_ERROR_YOUTUBE_ACCOUNT_NOT_CONNECTED_TO_GOOGLE_+": "Youtube account is not connected to Google+. Check this url. https://m.youtube.com/create_channel?chromeless=1&next=/channel_creation_done"
+    "MSG_ERROR_YOUTUBE_ACCOUNT_NOT_CONNECTED_TO_GOOGLE_+": "Youtube account is not connected to Google+. Check this url. https://m.youtube.com/create_channel?chromeless=1&next=/channel_creation_done",
+    BOT_NOT_ALLOWED: "This is recognized as a bot action"
   },
 
 
@@ -230,7 +231,8 @@ const errorMessages = {
     MSG_PROMOTION_ENDED: "Promotion terminée",
     MSG_USER_YOUTUBE_NOT_CONNECTED: "Connecte toi à Youtube",
     MSG_PROMOTION_NOT_STARTED: "La promotion n'a pas encore commencé.",
-    "MSG_ERROR_YOUTUBE_ACCOUNT_NOT_CONNECTED_TO_GOOGLE_+": "Votre compte Youtube n'est pas connecte a Google+. Check this url. https://m.youtube.com/create_channel?chromeless=1&next=/channel_creation_done"
+    "MSG_ERROR_YOUTUBE_ACCOUNT_NOT_CONNECTED_TO_GOOGLE_+": "Votre compte Youtube n'est pas connecte a Google+. Check this url. https://m.youtube.com/create_channel?chromeless=1&next=/channel_creation_done",
+    BOT_NOT_ALLOWED: "This is recognized as a bot action"
   }
 }
 

@@ -16,7 +16,7 @@ function onFailed(error) {
 /////////////////////////////////////////////// ADMIN_GET_CAMPAIGN_ACTION
 export function getCompanyList() {
   return apiAction({
-    url: APIROUTE + `admin/dashboard/company/list/`,
+    url: APIROUTE + `dashboard/company/list/`,
     accessToken: localStorage.getItem('token'),
     onSuccess: onSuccessGetCompanyList,
     onFailure: onFailed,

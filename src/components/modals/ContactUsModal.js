@@ -8,6 +8,7 @@ import { Button } from 'antd'
 import { useTranslation } from 'react-i18next'
 
 import { contactUs } from '../../actions/homepage'
+import { verifyCaptcha } from '../../actions/userInfo'
 
 import FormPhoneInput from '../common/FormPhoneInput'
 import FormInput from '../common/FormInput'
@@ -17,20 +18,28 @@ import {
   requiredPhoneObj
 } from '../../utils/validation'
 
+import { useGoogleReCaptcha, GoogleReCaptcha } from 'react-google-recaptcha-v3'
+
 function ContactUsModal(props) {
   const { t } = useTranslation()
   const { open, onToggle } = props
 
+  const { executeRecaptcha } = useGoogleReCaptcha()
+
+  const VERIFY_CAPTCHA_PROCESS = useSelector(state => state.userInfo.VERIFY_CAPTCHA)
   const CONTACT_US_PROCESS = useSelector(state => state.userInfo.CONTACT_US)
   const dispatch = useDispatch()
 
-  const onSubmit = (values) => {
+  const onSubmit = async (values) => {
+    const captcha_token = await executeRecaptcha('contact_form')
+    if (captcha_token.length < 20) return
+    
     var body = {
       email: values.email,
       phone_number: values.phonenumber.phone_number,
       message: values.message
     }
-    dispatch(contactUs(body))
+    dispatch(verifyCaptcha({ captcha_token }, contactUs(body)))
   }
 
   return (
@@ -78,9 +87,9 @@ function ContactUsModal(props) {
                 htmlType='submit'
                 type="primary"
                 className="ant-blue-btn mt-4"
-                loading={CONTACT_US_PROCESS}
+                loading={CONTACT_US_PROCESS || VERIFY_CAPTCHA_PROCESS}
               >
-                {!CONTACT_US_PROCESS && t('button_group.send_message')}
+                {!CONTACT_US_PROCESS && !VERIFY_CAPTCHA_PROCESS && t('button_group.send_message')}
               </Button>
               <div className="company-question-button-container">
                 {t('company_modal.need_help')} {t('company_modal.contact_us')} <span className="company-question-button">{t('company_modal.here')}</span>
@@ -89,6 +98,10 @@ function ContactUsModal(props) {
           )}
         />
       </ModalBody>
+
+      <GoogleReCaptcha
+        action={'contact_form'}
+      />
     </Modal>
   )
 }

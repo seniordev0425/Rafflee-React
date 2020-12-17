@@ -16,7 +16,7 @@ function onFailed(error) {
 /////////////////////////////////////////////// ADMIN_GET_RECRUITMENT_TAGS_ACTION
 export function getRecruitmentTags() {
   return apiAction({
-    url: APIROUTE + 'admin/dashboard/recruitment/tags/',
+    url: APIROUTE + 'dashboard/recruitment/tags/',
     accessToken: localStorage.getItem('token'),
     onSuccess: onSuccessGetRecruitmentTags,
     onFailure: onFailed,
@@ -32,7 +32,7 @@ function onSuccessGetRecruitmentTags(data) {
 /////////////////////////////////////////////// ADMIN_RECRUITMENT_UPDATE_ACTION
 export function updateRecruitment(params) {
   return apiAction({
-    url: APIROUTE + 'admin/dashboard/recruitment/update/',
+    url: APIROUTE + 'dashboard/recruitment/update/',
     method: 'POST',
     data: qs.stringify(params),
     accessToken: localStorage.getItem('token'),
@@ -51,7 +51,7 @@ function onSuccessUpdateRecruitment(data) {
 /////////////////////////////////////////////// ADMIN_RECRUITMENT_CREATE_ACTION
 export function createRecruitment(params) {
   return apiAction({
-    url: APIROUTE + 'admin/dashboard/recruitment/create/',
+    url: APIROUTE + 'dashboard/recruitment/create/',
     method: 'POST',
     data: qs.stringify(params),
     accessToken: localStorage.getItem('token'),
@@ -70,7 +70,7 @@ function onSuccessCreateRecruitment(data) {
 /////////////////////////////////////////////// ADMIN_RECRUITMENT_TAG_CREATE_ACTION
 export function createRecruitmentTag(params, tag) {
   return apiAction({
-    url: APIROUTE + 'admin/dashboard/recruitment/tags/create/',
+    url: APIROUTE + 'dashboard/recruitment/tags/create/',
     method: 'POST',
     data: qs.stringify(params),
     accessToken: localStorage.getItem('token'),
@@ -89,7 +89,7 @@ function onSuccessCreateRecruitmentTag(data, tag) {
 /////////////////////////////////////////////// ADMIN_CREATE_RECRUITMENT_TAG_ACTION
 export function removeRecruitmentTag(params, tag) {
   return apiAction({
-    url: APIROUTE + 'admin/dashboard/recruitment/tags/delete/',
+    url: APIROUTE + 'dashboard/recruitment/tags/delete/',
     method: 'DELETE',
     data: qs.stringify(params),
     accessToken: localStorage.getItem('token'),
@@ -108,7 +108,7 @@ function onSuccessRemoveRecruitmentTag(data, tag) {
 /////////////////////////////////////////////// ADMIN_GET_RECRUITMENT_APPLIES_ACTION
 export function getRecruitmentApplies(page) {
   return apiAction({
-    url: APIROUTE + `admin/dashboard/recruitment/apply/${page}/`,
+    url: APIROUTE + `dashboard/recruitment/apply/${page}/`,
     accessToken: localStorage.getItem('token'),
     onSuccess: onSuccessGetRecruitmentApplies,  
     onFailure: onFailed,
@@ -124,7 +124,7 @@ function onSuccessGetRecruitmentApplies(data) {
 /////////////////////////////////////////////// ADMIN_GET_RECRUITMENT_APPLIES_ACTION
 export function readRecruitmentApply(params) {
   return apiAction({
-    url: APIROUTE + `admin/dashboard/recruitment/apply/read/`,
+    url: APIROUTE + `dashboard/recruitment/apply/read/`,
     method: 'POST',
     data: qs.stringify(params),
     accessToken: localStorage.getItem('token'),

@@ -16,7 +16,7 @@ function onFailed(error) {
 /////////////////////////////////////////////// ADMIN_GET_COMPANY_MESSAGES_ACTION
 export function getCompanyMessages(page) {
   return apiAction({
-    url: APIROUTE + `admin/dashboard/company/form/${page}/`,
+    url: APIROUTE + `dashboard/company/form/${page}/`,
     accessToken: localStorage.getItem('token'),
     onSuccess: onSuccessGetCompanyMessages,
     onFailure: onFailed,
@@ -32,7 +32,7 @@ function onSuccessGetCompanyMessages(data) {
 /////////////////////////////////////////////// ADMIN_GET_HOMEPAGE_MESSAGES_ACTION
 export function getHomepageMessages(page) {
   return apiAction({
-    url: APIROUTE + `admin/dashboard/homepage/form/${page}/`,
+    url: APIROUTE + `dashboard/homepage/form/${page}/`,
     accessToken: localStorage.getItem('token'),
     onSuccess: onSuccessGetHomepageMessages,  
     onFailure: onFailed,
@@ -48,7 +48,7 @@ function onSuccessGetHomepageMessages(data) {
 /////////////////////////////////////////////// ADMIN_GET_REPORT_MESSAGES_ACTION
 export function getReportMessages(page) {
   return apiAction({
-    url: APIROUTE + `admin/dashboard/report/form/${page}/`,
+    url: APIROUTE + `dashboard/report/form/${page}/`,
     accessToken: localStorage.getItem('token'),
     onSuccess: onSuccessGetReportMessages,  
     onFailure: onFailed,
@@ -64,7 +64,7 @@ function onSuccessGetReportMessages(data) {
 /////////////////////////////////////////////// ADMIN_READ_COMPANY_MESSAGES_ACTION
 export function readCompanyMessage(params) {
   return apiAction({
-    url: APIROUTE + `admin/dashboard/company/form/read/`,
+    url: APIROUTE + `dashboard/company/form/read/`,
     method: 'POST',
     data: qs.stringify(params),
     accessToken: localStorage.getItem('token'),
@@ -82,7 +82,7 @@ function onSuccessReadCompanyMessage(params) {
 /////////////////////////////////////////////// ADMIN_READ_HOMEPAGE_MESSAGES_ACTION
 export function readHomepageMessage(params) {
   return apiAction({
-    url: APIROUTE + `admin/dashboard/homepage/form/read/`,
+    url: APIROUTE + `dashboard/homepage/form/read/`,
     method: 'POST',
     data: qs.stringify(params),
     accessToken: localStorage.getItem('token'),
@@ -100,7 +100,7 @@ function onSuccessReadHomepageMessage(params) {
 /////////////////////////////////////////////// ADMIN_READ_REPORT_MESSAGES_ACTION
 export function readReportMessage(params) {
   return apiAction({
-    url: APIROUTE + `admin/dashboard/report/form/read/`,
+    url: APIROUTE + `dashboard/report/form/read/`,
     method: 'POST',
     data: qs.stringify(params),
     accessToken: localStorage.getItem('token'),

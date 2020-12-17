@@ -7,11 +7,16 @@ import FormInput from '../components/common/FormInput'
 import AppLayout from '../components/layouts/AppLayout'
 import { required } from '../utils/validation'
 import { betaReport } from '../actions/homepage'
+import { verifyCaptcha } from '../actions/userInfo'
 import { useTranslation } from 'react-i18next'
+import { useGoogleReCaptcha, GoogleReCaptcha } from 'react-google-recaptcha-v3'
 
 function Report() {
   const { t } = useTranslation()
 
+  const { executeRecaptcha } = useGoogleReCaptcha()
+
+  const VERIFY_CAPTCHA_PROCESS = useSelector(state => state.userInfo.VERIFY_CAPTCHA)
   const BETA_REPORT_PROCESS = useSelector(state => state.userInfo.BETA_REPORT)
   const dispatch = useDispatch()
 
@@ -21,13 +26,16 @@ function Report() {
     setMode(e.target.value)
   }
 
-  const onSubmit = (values) => {
+  const onSubmit = async (values) => {
+    const captcha_token = await executeRecaptcha('report_form')
+    if (captcha_token.length < 20) return
+
     var body = {
       context: values.context,
       type: mode,
       description: values.description
     }
-    dispatch(betaReport(body))
+    dispatch(verifyCaptcha({ captcha_token }, betaReport(body)))
   }
 
   return (
@@ -71,9 +79,9 @@ function Report() {
                     htmlType="submit"
                     type="primary"
                     className="ant-blue-btn mt-4"
-                    loading={BETA_REPORT_PROCESS}
+                    loading={BETA_REPORT_PROCESS || VERIFY_CAPTCHA_PROCESS}
                   >
-                    {!BETA_REPORT_PROCESS && t('button_group.confirm')}
+                    {!BETA_REPORT_PROCESS && !VERIFY_CAPTCHA_PROCESS && t('button_group.confirm')}
                   </Button>
                 </Form>
               )}
@@ -81,6 +89,9 @@ function Report() {
           </div>
         </div>
       </div>
+      <GoogleReCaptcha
+        action={'report_form'}
+      />
     </AppLayout>
   )
 }

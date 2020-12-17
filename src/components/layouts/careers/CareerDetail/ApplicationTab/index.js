@@ -11,14 +11,19 @@ import { required } from '../../../../../utils/validation'
 import { UPLOAD_MAX_SIZE } from '../../../../../utils/constants'
 
 import { applyRecruitment } from '../../../../../actions/homepage'
+import { verifyCaptcha } from '../../../../../actions/userInfo'
 
 import { useTranslation } from 'react-i18next'
 import { openNotification } from '../../../../../utils/notification'
+import { useGoogleReCaptcha, GoogleReCaptcha } from 'react-google-recaptcha-v3'
 
 const ApplicationTab = ({ recruitment }) => {
   const { t } = useTranslation()
 
+  const { executeRecaptcha } = useGoogleReCaptcha()
+
   const history = useHistory()
+  const VERIFY_CAPTCHA_PROCESS = useSelector(state => state.userInfo.VERIFY_CAPTCHA)
   const APPLY_RECRUITMENT_PROCESS = useSelector(state => state.userInfo.APPLY_RECRUITMENT)
   const dispatch = useDispatch()
 
@@ -45,10 +50,14 @@ const ApplicationTab = ({ recruitment }) => {
     onDropRejected
   })
 
-  const onSubmit = (values) => {
+  const onSubmit = async (values) => {
     if (!resumeFileName) {
       return
     }
+
+    const captcha_token = await executeRecaptcha('hiring_form')
+    if (captcha_token.length < 20) return
+
     var formData = new FormData()
     formData.append('job_pk', recruitment.pk)
     formData.append('firstname', values.first_name)
@@ -58,7 +67,8 @@ const ApplicationTab = ({ recruitment }) => {
     formData.append('summary', values?.summary || '')
     formData.append('cover_letter', values?.coverletter || '')
     formData.append('resume', resumeFile)
-    dispatch(applyRecruitment(formData))
+    
+    dispatch(verifyCaptcha({ captcha_token }, applyRecruitment(formData)))
   }
 
   return (
@@ -162,13 +172,18 @@ const ApplicationTab = ({ recruitment }) => {
               htmlType='submit'
               className="ant-blue-btn mt-3 mt-md-0"
               style={{ width: 500, maxWidth: '90%', height: 40, fontSize: '1rem', lineHeight: 1 }}
-              loading={APPLY_RECRUITMENT_PROCESS}
+              loading={APPLY_RECRUITMENT_PROCESS || VERIFY_CAPTCHA_PROCESS}
             >
-              {!APPLY_RECRUITMENT_PROCESS && t('button_group.submit')}
+              {!APPLY_RECRUITMENT_PROCESS && !VERIFY_CAPTCHA_PROCESS && t('button_group.submit')}
             </Button>
           </div>
+
+          <GoogleReCaptcha
+            action={'hiring_form'}
+          />
         </Form>
       )}
+
     />
   )
 }
