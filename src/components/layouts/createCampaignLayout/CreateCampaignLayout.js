@@ -139,7 +139,7 @@ function CreateCampaignLayout() {
       publication: false,
       profile: false,
       publication_url: '',
-      profile_url: '@',
+      profile_url: '',
       publication_entries: '',
       publication_mandatory: false,
       profile_entries: '',

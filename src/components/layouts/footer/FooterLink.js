@@ -8,9 +8,18 @@ import {
   faTwitter,
   faLinkedinIn,
   faInstagram,
-  faTwitch
+  faTwitch,
+  faTiktok
 } from '@fortawesome/free-brands-svg-icons'
 import ContactUsModal from '../../../components/modals/ContactUsModal'
+
+import {
+  RAFFLEE_FACEBOOK_LINK,
+  RAFFLEE_INSTAGRAM_LINK,
+  RAFFLEE_LINKEDIN_LINK,
+  RAFFLEE_TIKTOK_LINK,
+  RAFFLEE_TWITTER_LINK
+} from '../../../utils/constants'
 
 function FooterLink() {
   const { t } = useTranslation()
@@ -74,11 +83,21 @@ function FooterLink() {
                 {t('footer.follow_us')}
               </div>
               <div>
-                <FontAwesomeIcon icon={faFacebookF} color='#000000bd' className="font-size-13 mr-3 mt-3" />
-                <FontAwesomeIcon icon={faTwitter} color='#000000bd' className="font-size-13 mr-3 mt-3" />
-                <FontAwesomeIcon icon={faLinkedinIn} color='#000000bd' className="font-size-13 mr-3 mt-3" />
-                <FontAwesomeIcon icon={faInstagram} color='#000000bd' className="font-size-13 mr-3 mt-3" />
-                <FontAwesomeIcon icon={faTwitch} color='#000000bd' className="font-size-13 mr-3 mt-3" />
+                <a href={RAFFLEE_FACEBOOK_LINK} target="blank">
+                  <FontAwesomeIcon icon={faFacebookF} color='#000000bd' className="font-size-13 mr-3 mt-3" />
+                </a>
+                <a href={RAFFLEE_TWITTER_LINK} target="blank">
+                  <FontAwesomeIcon icon={faTwitter} color='#000000bd' className="font-size-13 mr-3 mt-3" />
+                </a>
+                <a href={RAFFLEE_LINKEDIN_LINK} target="blank">
+                  <FontAwesomeIcon icon={faLinkedinIn} color='#000000bd' className="font-size-13 mr-3 mt-3" />
+                </a>
+                <a href={RAFFLEE_INSTAGRAM_LINK} target="blank">
+                  <FontAwesomeIcon icon={faInstagram} color='#000000bd' className="font-size-13 mr-3 mt-3" />
+                </a>
+                <a href={RAFFLEE_TIKTOK_LINK} target="blank">
+                  <FontAwesomeIcon icon={faTiktok} color='#000000bd' className="font-size-13 mr-3 mt-3" />
+                </a>
               </div>
             </Col>
           </Row>

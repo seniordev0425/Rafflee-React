@@ -24,46 +24,27 @@ function CampaignType(props) {
                 <Radio value="giveaway" />
                 <div className={params.campaign_type === 'giveaway' ? "inline-sort-div-active" : "inline-sort-div-inactive"}>
                   {t('create_campaign_page.giveaway')}
-                  {params.campaign_type === 'giveaway'
-                    ?
-                    (
-                      <Tooltip title={t('tooltips.giveaway')}>
-                        <img src={images.question_icon} width={26} height={26} alt="" />
-                      </Tooltip>
-                    )
-                    : (<img src={images.question_mark_gray_icon} width={26} height={26} alt="" />)
-                  }
+                  <Tooltip title={t('tooltips.giveaway')}>
+                    <img src={params.campaign_type === 'giveaway' ? images.question_icon : images.question_mark_gray_icon} width={26} height={26} alt="" />
+                  </Tooltip>
                 </div>
               </div>
               <div className="d-flex align-items-center justify-content-between mt-4">
                 <Radio value="reward" />
                 <div className={params.campaign_type === 'reward' ? "inline-sort-div-active" : "inline-sort-div-inactive"}>
                   {t('create_campaign_page.reward')}
-                  {params.campaign_type === 'reward'
-                    ?
-                    (
-                      <Tooltip title={t('tooltips.reward')}>
-                        <img src={images.question_icon} width={26} height={26} alt="" />
-                      </Tooltip>
-                    )
-                    :
-                    (<img src={images.question_mark_gray_icon} width={26} height={26} alt="" />)
-                  }
+                  <Tooltip title={t('tooltips.reward')}>
+                    <img src={params.campaign_type === 'reward' ? images.question_icon : images.question_mark_gray_icon} width={26} height={26} alt="" />
+                  </Tooltip>
                 </div>
               </div>
               <div className="d-flex align-items-center justify-content-between mt-4">
                 <Radio value="rafflee" disabled />
                 <div className={params.campaign_type === 'rafflee' ? "inline-sort-div-active" : "inline-sort-div-inactive"}>
                   {t('create_campaign_page.rafflee')}
-                  {params.campaign_type === 'rafflee'
-                    ?
-                    (
-                      <Tooltip title={t('tooltips.giveaway')}>
-                        <img src={images.question_icon} width={26} height={26} alt="" />
-                      </Tooltip>
-                    )
-                    : (<img src={images.question_mark_gray_icon} width={26} height={26} alt="" />)
-                  }
+                  <Tooltip title={t('tooltips.giveaway')}>
+                    <img src={params.campaign_type === 'rafflee' ? images.question_icon : images.question_mark_gray_icon} width={26} height={26} alt="" />
+                  </Tooltip>
                 </div>
               </div>
             </Radio.Group>
@@ -77,15 +58,9 @@ function CampaignType(props) {
               />
               <div className={params.live_draw ? "inline-sort-div-active" : "inline-sort-div-inactive"}>
                 {t('create_campaign_page.live_draw')}
-                {params.live_draw
-                  ?
-                  (
-                    <Tooltip title={t('tooltips.live_draw')}>
-                      <img src={images.question_icon} width={26} height={26} alt="" />
-                    </Tooltip>
-                  )
-                  : (<img src={images.question_mark_gray_icon} width={26} height={26} alt="" />)
-                }
+                <Tooltip title={t('tooltips.live_draw')}>
+                  <img src={params.live_draw ? images.question_icon : images.question_mark_gray_icon} width={26} height={26} alt="" />
+                </Tooltip>
               </div>
             </div>
           </div>
@@ -98,15 +73,9 @@ function CampaignType(props) {
                 />
                 <div className={params.limit_participants ? "inline-sort-div-active" : "inline-sort-div-inactive"}>
                   {t('create_campaign_page.limit_participants')}
-                  {params.limit_participants
-                    ?
-                    (
-                      <Tooltip title={t('tooltips.limit_participants')}>
-                        <img src={images.question_icon} width={26} height={26} alt="" />
-                      </Tooltip>
-                    )
-                    : (<img src={images.question_mark_gray_icon} width={26} height={26} alt="" />)
-                  }
+                  <Tooltip title={t('tooltips.limit_participants')}>
+                    <img src={params.limit_participants ? images.question_icon : images.question_mark_gray_icon} width={26} height={26} alt="" />
+                  </Tooltip>
                 </div>
               </div>
             </div>
@@ -128,30 +97,18 @@ function CampaignType(props) {
                 <Radio value="public" />
                 <div className={params.public_promotion === 'public' ? "inline-sort-div-active" : "inline-sort-div-inactive"}>
                   {t('create_campaign_page.public')}
-                  {params.public_promotion === 'public'
-                    ?
-                    (
-                      <Tooltip title={t('tooltips.public')}>
-                        <img src={images.question_icon} width={26} height={26} alt="" />
-                      </Tooltip>
-                    )
-                    : (<img src={images.question_mark_gray_icon} width={26} height={26} alt="" />)
-                  }
+                  <Tooltip title={t('tooltips.public')}>
+                    <img src={params.public_promotion === 'public' ? images.question_icon : images.question_mark_gray_icon} width={26} height={26} alt="" />
+                  </Tooltip>
                 </div>
               </div>
               <div className="d-flex align-items-center justify-content-between mt-4">
                 <Radio value="private" />
                 <div className={params.public_promotion === 'private' ? "inline-sort-div-active" : "inline-sort-div-inactive"}>
                   {t('create_campaign_page.private')}
-                  {params.public_promotion === 'private'
-                    ?
-                    (
-                      <Tooltip title={t('tooltips.private')}>
-                        <img src={images.question_icon} width={26} height={26} alt="" />
-                      </Tooltip>
-                    )
-                    : (<img src={images.question_mark_gray_icon} width={26} height={26} alt="" />)
-                  }
+                  <Tooltip title={t('tooltips.private')}>
+                    <img src={params.public_promotion === 'private' ? images.question_icon : images.question_mark_gray_icon} width={26} height={26} alt="" />
+                  </Tooltip>
                 </div>
               </div>
             </Radio.Group>

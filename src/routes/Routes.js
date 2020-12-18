@@ -63,10 +63,14 @@ function Routes(props) {
 
   const handleOnline = () => setOnline(navigator.onLine)
   const handleOffline = () => setOnline(navigator.onLine)
-
+  
   useEffect(() => {
     if (token) {
-      history.push('/user-account/profile')
+      if (company) {
+        dispatch(getCompanyProfile())
+      } else {
+        dispatch(getUserProfile())
+      }
     }
   }, [token])
 

@@ -76,6 +76,26 @@ function onSuccessLogIn(data, rememberMe) {
     data: data
   }
 }
+/////////////////////////////////////////////// PROFILE-PICTURE-UPDATE-ACTION
+export function profilePictureUpdate(params) {
+  return apiAction({
+    url: APIROUTE + "account/profile/picture/update/",
+    method: 'POST',
+    data: params,
+    accessToken: localStorage.getItem('token'),
+    onSuccess: onSuccessProfilePictureUpdate,
+    onFailure: onFailed,
+    label: 'PROFILE_PICTURE_UPDATE',
+    requireErrorMessage: true
+  });
+}
+function onSuccessProfilePictureUpdate(data) {
+  openNotification('success', successMessages[localStorage.getItem('i18nextLng')].accountUpdate)
+  return {
+    type: '',
+    data: ''
+  }
+}
 /////////////////////////////////////////////// LOGOUT-ACTION
 export function logOut(params) {
   return apiAction({

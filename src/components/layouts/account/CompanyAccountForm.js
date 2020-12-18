@@ -23,7 +23,6 @@ import SnapchatConnectBtn from '../../common/Buttons/SnapchatConnectBtn'
 import SteamConnectBtn from '../../common/Buttons/SteamConnectBtn'
 import { updateCompanyProfile, updateEmail } from '../../../actions/userInfo'
 import { getCompanyProfile, checkUserName } from '../../../actions/userInfo'
-import { b64toBlob } from '../../../utils/others'
 import { UPLOAD_MAX_SIZE } from '../../../utils/constants'
 import {
   composeValidators,
@@ -53,6 +52,7 @@ function CompanyAccountForm() {
   const [initialPhoneNum, setInitialPhoneNum] = useState({ phone_number: null, phone_country: null })
   const [countryCode, setCountryCode] = useState('')
   const [imgBase64Data, setImgBase64Data] = useState('')
+  const [imgDataForCropModal, setImgDataForCropModal] = useState('')
   const [username, setUsername] = useState('') // this value is for update of username in header
   const [openDeleteModal, setOpenDeleteModal] = useState(false)
   const [openImageCropModal, setOpenImageCropModal] = useState(false)
@@ -103,16 +103,6 @@ function CompanyAccountForm() {
   const onSubmit = (values) => {
     var formdata = new FormData()
 
-    var blob = null
-    if (imgBase64Data) {
-      ///////////////////////////////////////////// Convert base64 img data to blob data
-      var block = imgBase64Data.split(";");
-      var contentType = block[0].split(":")[1];
-      var realData = block[1].split(",")[1];
-      blob = b64toBlob(realData, contentType);
-    }
-
-    formdata.append("logo", blob)
     formdata.append("username", values.username)
     formdata.append("phone_number", values.phonenumber.phone_number)
     formdata.append("prefix_number", values.phonenumber.phone_country)
@@ -135,7 +125,8 @@ function CompanyAccountForm() {
     if (picture && picture[0]) {
       var file_read = new FileReader()
       file_read.addEventListener('load', (e) => {
-        setImgBase64Data(e.target.result)
+        setImgDataForCropModal(e.target.result)
+        handleImageCropModal()
       })
       file_read.readAsDataURL(picture[0])
     }
@@ -175,18 +166,6 @@ function CompanyAccountForm() {
                     {(imgBase64Data || logo) &&
                       <>
                         <img className="profile-img" src={imgBase64Data ? imgBase64Data : logo} alt="" />
-                        {imgBase64Data &&
-                          <div>
-                            <Button
-                              onClick={handleImageCropModal}
-                              type="primary"
-                              className="ant-blue-btn mt-2"
-                              style={{ width: 180, height: 30, fontSize: '1rem', lineHeight: 1 }}
-                            >
-                              {t('button_group.edit')}
-                            </Button>
-                          </div>
-                        }
                       </>
                     }
                     <ImageUploader
@@ -464,8 +443,9 @@ function CompanyAccountForm() {
       <ImageCropModal
         open={openImageCropModal}
         onToggle={handleImageCropModal}
+        onClose={() => setOpenImageCropModal(false)}
         setBase64Data={(value) => setImgBase64Data(value)}
-        src={imgBase64Data}
+        src={imgDataForCropModal}
       />
       <UpdateEmailModal
         open={openUpdateEmailModal}

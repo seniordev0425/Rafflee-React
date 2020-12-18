@@ -44,13 +44,17 @@ function TwitterFollowField(props) {
               ?
               <TwitterFollowScreenName setAction={setAction} />
               :
-              <Input
-                type="text"
-                className="custom-form-control"
-                placeholder={t('create_campaign_page.follow_id')}
-                value={params.twitter.follow_id}
-                onChange={(e) => setAction('twitter', 'follow_id', e.target.value)}
-              />
+              <div className="d-flex align-items-center">
+                <span className="prefix-at">@</span>
+                <Input
+                  style={{ paddingLeft: '1.5rem' }}
+                  type="text"
+                  className="custom-form-control"
+                  placeholder={t('create_campaign_page.follow_id')}
+                  value={params.twitter.follow_id}
+                  onChange={(e) => setAction('twitter', 'follow_id', e.target.value)}
+                />
+              </div>
             }
 
           </Col>

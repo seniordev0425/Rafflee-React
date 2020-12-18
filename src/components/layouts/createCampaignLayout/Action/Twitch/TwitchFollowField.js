@@ -37,8 +37,10 @@ function TwitchFollowField(props) {
         style={{ borderColor: '#E6ECEE', borderWidth: 1, borderStyle: 'solid', borderBottomLeftRadius: 6, borderBottomRightRadius: 6 }}
       >
         <Row>
-          <Col xs="12" sm="6" className="p-0">
+          <Col xs="12" sm="6" className="p-0 d-flex align-items-center">
+            <span className="prefix-at">@</span>
             <Input
+              style={{ paddingLeft: '1.5rem' }}
               type="text"
               className="custom-form-control"
               placeholder={t('create_campaign_page.twitch_follow_name')}

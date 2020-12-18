@@ -1839,3 +1839,8 @@ h2 span {
   align-items: center;
   justify-content: center;
 }
+.prefix-at {
+  position: absolute;
+  left: 10px;
+  color: #495057;
+}

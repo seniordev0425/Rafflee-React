@@ -10,6 +10,8 @@ import apiMiddleware from './middleware/api'
 import Routes from './routes/Routes'
 import * as serviceWorker from './serviceWorker'
 
+import { GOOGLE_CAPTCHA_KEY } from './utils/constants'
+
 import 'bootstrap/dist/css/bootstrap.css'
 import 'antd/dist/antd.css'
 import 'react-flags-select/css/react-flags-select.css'
@@ -30,7 +32,7 @@ const store = createStore(AppReducer, composeWithDevTools(applyMiddleware(apiMid
 ReactDOM.render(
   <Suspense fallback="">
     <Provider store={store}>
-      <GoogleReCaptchaProvider reCaptchaKey="6LeLyPMZAAAAAMt9F_Gu06vHP_UhBxoecHhzHJCC">
+      <GoogleReCaptchaProvider reCaptchaKey={GOOGLE_CAPTCHA_KEY}>
         <Router history={history}>
           <Routes />
         </Router>

@@ -11,7 +11,7 @@ const HomeHelmet = () => {
         Rafflee | Les meilleurs jeux-concours & giveaways
       </title>
       <title lang="en">
-        Rafflee | The best contests & giveaway
+        Rafflee | Les meilleurs jeux-concours & giveaways
       </title>
       <meta name={t('helmets.home.meta1.name')} content={t('helmets.home.meta1.content')} />
       <meta name={t('helmets.home.meta2.name')} content={t('helmets.home.meta2.content')} />

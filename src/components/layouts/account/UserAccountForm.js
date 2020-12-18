@@ -30,7 +30,6 @@ import {
   updateEmail
 } from '../../../actions/userInfo'
 import moment from 'moment'
-import { b64toBlob } from '../../../utils/others'
 import { UPLOAD_MAX_SIZE } from '../../../utils/constants'
 import {
   composeValidators,
@@ -68,6 +67,7 @@ function UserAccountForm() {
   const [initialDate, setInitialDate] = useState('1970-01-01')
   const [genderState, setGenderState] = useState('')
   const [imgBase64Data, setImgBase64Data] = useState('')
+  const [imgDataForCropModal, setImgDataForCropModal] = useState('')
   const [username, setUsername] = useState('') // this value is for update of username in header
 
   const [openDeleteModal, setOpenDeleteModal] = useState(false)
@@ -134,16 +134,6 @@ function UserAccountForm() {
   const onSubmit = (values) => {
     var formdata = new FormData()
 
-    var blob = null
-    if (imgBase64Data) {
-      ///////////////////////////////////////////// Convert base64 img data to blob data
-      var block = imgBase64Data.split(";");
-      var contentType = block[0].split(":")[1];
-      var realData = block[1].split(",")[1];
-      blob = b64toBlob(realData, contentType);
-    }
-
-    formdata.append("profile_picture", blob)
     formdata.append("phone_number", values.phonenumber.phone_number)
     formdata.append("prefix_number", values.phonenumber.phone_country)
     formdata.append("country", countryCode)
@@ -174,7 +164,8 @@ function UserAccountForm() {
     if (picture && picture[0]) {
       var file_read = new FileReader()
       file_read.addEventListener('load', (e) => {
-        setImgBase64Data(e.target.result)
+        setImgDataForCropModal(e.target.result)
+        handleImageCropModal()
       })
       file_read.readAsDataURL(picture[0])
     }
@@ -220,18 +211,6 @@ function UserAccountForm() {
                     {(imgBase64Data || profile_picture) &&
                       <>
                         <img className="profile-img" src={imgBase64Data ? imgBase64Data : profile_picture} alt="" />
-                        {imgBase64Data &&
-                          <div>
-                            <Button
-                              onClick={handleImageCropModal}
-                              type="primary"
-                              className="ant-blue-btn mt-2"
-                              style={{ width: 180, height: 30, fontSize: '1rem', lineHeight: 1 }}
-                            >
-                              {t('button_group.edit')}
-                            </Button>
-                          </div>
-                        }
                       </>
                     }
                     <ImageUploader
@@ -577,8 +556,9 @@ function UserAccountForm() {
       <ImageCropModal
         open={openImageCropModal}
         onToggle={handleImageCropModal}
+        onClose={() => setOpenImageCropModal(false)}
         setBase64Data={(value) => setImgBase64Data(value)}
-        src={imgBase64Data}
+        src={imgDataForCropModal}
       />
       <PhoneVerificationModal
         open={openVerificationModal}

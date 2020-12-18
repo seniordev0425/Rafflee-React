@@ -4,6 +4,7 @@ import { Row, Col } from 'reactstrap'
 import { Button } from 'antd'
 import PreviewCustomCollapsePanel from '../../../common/PreviewCustomCollapsePanel'
 import PreviewCustomCollapsePanelForPoll from '../../../common/PreviewCustomCollapsePanelForPoll'
+import PreviewWinningDetailModal from '../../../modals/PreviewWinningDetailModal'
 
 import { createCampaign } from '../../../../actions/campaign'
 
@@ -19,6 +20,7 @@ function PreviewSection(props) {
 
   const { params, setSection, onSaveCampaign } = props
 
+  const companyProfile = useSelector(state => state.userInfo.companyProfile)
   const CREATE_CAMPAIGN_PROCESS = useSelector(state => state.userInfo.CREATE_CAMPAIGN)
   const CREATE_CAMPAIGN_SUCCESS = useSelector(state => state.userInfo.SUCCESS_CREATE_CAMPAIGN)
   const SAVE_CAMPAIGN_PROCESS = useSelector(state => state.userInfo.SAVE_CAMPAIGN)
@@ -26,9 +28,8 @@ function PreviewSection(props) {
 
   // Required messages array which should appear when click on create campaign
   const [messages, setMessages] = useState([])
-
-  const companyProfile = useSelector(state => state.userInfo.companyProfile)
-
+  const [openWinningModal, setOpenWinningModal] = useState(false)
+  const [selectedWinning, setSelectedWinning] = useState(null)
   const [totalEntriesNum, setTotalEntriesNum] = useState(0)
 
   useEffect(() => {
@@ -46,7 +47,16 @@ function PreviewSection(props) {
   const renderWinnings = () => {
     return (
       (params.winnings).map((item, index) =>
-        <div key={index} className="mt-3 color-blue font-size-11">{`- ${item.name}`}</div>
+        <div
+          key={index}
+          className="mt-3 color-blue font-size-11 pointer"
+          onClick={() => {
+            setSelectedWinning(item)
+            setOpenWinningModal(true)
+          }}
+        >
+          {`- ${item.name}`}
+        </div>
       )
     )
   }
@@ -325,9 +335,10 @@ function PreviewSection(props) {
               <div style={{ width: "70%" }} className="promotion-list-item-text">{params.promotion_long_description}</div>
             </Col>
           </Row>
-          <Row className="mt-5">
+          <Row>
             <Col>
               <div className="pb-5" style={{ borderBottom: '2px solid #F3F4F7' }}>
+                <div className="color-gray font-size-11 mb-2">{`${t('campaign_detail_page.winners')}:  ${calcMaximumParticipants()}`}</div>
                 <div className="color-blue font-size-14 font-weight-bold">{t('campaign_detail_page.the_prize')}</div>
                 <div className="mt-3 color-gray font-size-11">{t('campaign_detail_page.prize_description')}</div>
                 {renderWinnings()}
@@ -614,6 +625,12 @@ function PreviewSection(props) {
           )}
         </div>
       </Col>
+
+      <PreviewWinningDetailModal
+        open={openWinningModal}
+        onToggle={() => setOpenWinningModal(!openWinningModal)}
+        winning={selectedWinning}
+      />
     </Row>
   )
 }

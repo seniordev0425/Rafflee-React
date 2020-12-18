@@ -22,7 +22,7 @@ i18n
   // for all options read: https://www.i18next.com/overview/configuration-options
   .init({
     lng: localStorage.getItem('i18nextLng') || 'fr',
-    fallbackLng: 'en',
+    fallbackLng: 'fr',
     debug: true,
     whitelist: Languages,
     interpolation: {
