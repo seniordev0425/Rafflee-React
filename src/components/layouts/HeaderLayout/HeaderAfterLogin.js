@@ -91,7 +91,7 @@ function HeaderAfterLogin(props) {
           </Link>
 
           <Link to="/user-account/profile">
-            <span className="mx-3 font-weight-bold header-btn">
+            <span className="mx-3 font-weight-bold header-btn header-span-fixed-length">
               {company ? companyProfile.username : userProfile.username}
             </span>
           </Link>

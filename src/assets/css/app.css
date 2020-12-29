@@ -36,7 +36,7 @@ body {
   color: black;
 }
 .color-red {
-    color: rgb(255, 0, 24);
+    color: #e72f30;
 }
 .font-size-8 {
     font-size: 0.7rem;
@@ -1645,11 +1645,11 @@ h2 span {
 .campaign-detail-entries-container {
     width: 70px;
     height: 70px;
-    background: #EFFCF6 0% 0% no-repeat padding-box;
-    border: 1px solid #4FDD9E;
+    background: #d3d3d31f 0% 0% no-repeat padding-box;
+    border: 1px solid lightgray;
     border-radius: 6px;
     font-size: 18px;
-    color: #4FDD9E;
+    color: lightgray;
 }
 @media (max-width: 575px) {
     .campaign-detail-entries-container {
@@ -1843,4 +1843,18 @@ h2 span {
   position: absolute;
   left: 10px;
   color: #495057;
+}
+.header-span-fixed-length {
+  display: block;
+  width: 100px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.carousel-span-fixed-length {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }

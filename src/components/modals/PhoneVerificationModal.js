@@ -38,7 +38,8 @@ function PhoneVerificationModal(props) {
 
   const resendCode = () => {
     var body = {
-      number: phone_number
+      prefix: `+${phone_number.phone_country}`,
+      number: phone_number.phone_number
     }
     dispatch(resendSms(body))
   }

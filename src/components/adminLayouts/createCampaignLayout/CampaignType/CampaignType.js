@@ -163,7 +163,7 @@ function CampaignType(props) {
               style={{ width: 180 }}
               onClick={onBack}
             >
-              {t('button_group.go_to_campaigns')}
+              {t('button_group.back')}
             </Button>
             <Button
               type="primary"

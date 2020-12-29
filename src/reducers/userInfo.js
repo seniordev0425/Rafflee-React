@@ -138,6 +138,9 @@ const initialFeedState = {
 
   tempActionData: null,
   twitterDirectConnect: false,
+  twitchDirectConnect: false,
+  youtubeDirectConnect: false,
+  instagramDirectConnect: false,
 
   ///////////////////////////////////////////// This state is used in section wall of account settings page
   wallSetting: {
@@ -313,7 +316,7 @@ function UserInfo(state = initialFeedState, action) {
         ...state,
         twitter_oauth_token: action.data
       }
-    case 'SET_YOUTUBE_OAUTH_URL': 
+    case 'SET_YOUTUBE_OAUTH_URL':
       return {
         ...state,
         youtube_oauth_url: action.data
@@ -364,6 +367,21 @@ function UserInfo(state = initialFeedState, action) {
       return {
         ...state,
         twitterDirectConnect: action.data
+      }
+    case 'TWITCH_DIRECT_CONNECT':
+      return {
+        ...state,
+        twitchDirectConnect: action.data
+      }
+    case 'YOUTUBE_DIRECT_CONNECT':
+      return {
+        ...state,
+        youtubeDirectConnect: action.data
+      }
+    case 'INSTAGRAM_DIRECT_CONNECT':
+      return {
+        ...state,
+        instagramDirectConnect: action.data
       }
     case 'UPDATE_MYCAMPAIGN_ENDDATE':
       return {

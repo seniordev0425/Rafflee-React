@@ -104,7 +104,7 @@ function UserAccountForm() {
   useEffect(() => {
     ///////////////////////////////////////////// Initialize phone number, country name and gender
     var tmpNum = {}
-    tmpNum.phone_country = prefix_number
+    tmpNum.phone_country = prefix_number || '+33' // set a prefix in french as a default
     tmpNum.phone_number = national_number
     setInitialPhoneNum(tmpNum)
     setVerifyPhoneNumber(tmpNum)
@@ -174,7 +174,8 @@ function UserAccountForm() {
   ///////////////////////////////////////////// Send sms
   const sendSMS = () => {
     var body = {
-      number: `+${verifyPhoneNumber.phone_country}${verifyPhoneNumber.phone_number}`
+      prefix: `+${verifyPhoneNumber.phone_country}`,
+      number: verifyPhoneNumber.phone_number
     }
     dispatch(sendSms(body))
   }

@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import { Menu } from 'antd'
 import { Row, Col } from 'reactstrap'
 
@@ -11,7 +12,17 @@ import { useTranslation } from 'react-i18next'
 function RecruitmentLayout() {
   const { t } = useTranslation()
 
+  const ADMIN_CREATE_RECRUITMENT_SUCCESS = useSelector(state => state.userInfo.SUCCESS_ADMIN_CREATE_RECRUITMENT)
+  const dispatch = useDispatch()
+
   const [currentSection, setCurrentSection] = useState('offer')
+
+  useEffect(() => {
+    if (ADMIN_CREATE_RECRUITMENT_SUCCESS) {
+      dispatch({ type: 'INIT_STATE', state: 'SUCCESS_ADMIN_CREATE_RECRUITMENT', data: false })
+      setCurrentSection('offer')
+    }
+  }, [ADMIN_CREATE_RECRUITMENT_SUCCESS])
 
   const renderSection = () => {
     switch (currentSection) {

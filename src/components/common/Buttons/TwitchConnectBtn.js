@@ -2,7 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { Row, Col } from 'reactstrap'
 import images from '../../../utils/images'
-import { TWITCH_CLIENT_ID } from '../../../utils/constants'
+import { TWITCH_OAUTH_TOKEN_URL_FOR_COMPANY, TWITCH_OAUTH_TOKEN_URL_FOR_USER } from '../../../utils/constants'
 
 import { useTranslation } from 'react-i18next'
 
@@ -15,9 +15,9 @@ function TwitchConnectBtn(props) {
   const getTwitchToken = () => {
     if (connected) return
     if (company) {
-      window.open(`https://id.twitch.tv/oauth2/authorize?response_type=code&client_id=${TWITCH_CLIENT_ID}&redirect_uri=https://rafflee.io/twitch/connect/&scope=openid+viewing_activity_read+channel_read+user_follows_edit`, '_blank')
+      window.open(TWITCH_OAUTH_TOKEN_URL_FOR_COMPANY, '_blank')
     } else {
-      window.open(`https://id.twitch.tv/oauth2/authorize?response_type=code&client_id=${TWITCH_CLIENT_ID}&redirect_uri=https://rafflee.io/twitch/connect/&scope=openid+viewing_activity_read+user_follows_edit`, '_blank')
+      window.open(TWITCH_OAUTH_TOKEN_URL_FOR_USER, '_blank')
     }
   }
 

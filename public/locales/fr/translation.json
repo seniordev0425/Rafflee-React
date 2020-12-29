@@ -6,6 +6,7 @@
     "sign_in": "Inscris toi",
     "log_in": "Connecte toi",
     "account": "Compte",
+    "campaigns": "Giveaways",
     "dashboard": "Dashboard",
     "inventory": "Inventaire",
     "log_out": "Déconnexion",
@@ -158,7 +159,8 @@
     "save": "Sauvegarder",
     "create": "Créer",
     "back": "Retour",
-    "go_to_campaigns": "Retour"
+    "go_to_campaigns": "Retour",
+    "open": "Ouverte"
   },
   "homepage": {
     "hot_new_contest_everyday": "Des raffles et giveaways tous les jours.",
@@ -302,6 +304,7 @@
     "select_answer": "Sélectionne tes réponses et augmente tes chances de remporter le giveaway",
     "social_detail_alert": "Vérifie ton numéro de téléphone dans ton dashboard pour participer.",
     "mandatory_action": "Action obligatoire pour participer",
+    "optional_action": "Optional action that maximizes your chances",
     "prize_description": "Le gagnant recevra un des prix ci-dessous:",
     "the_prize": "Les prix",
     "chance_winning_prize": "Chance de gagner le prix",
@@ -707,8 +710,8 @@
   "login_modal": {
     "remember_me": "Se rappeler de moi",
     "forgot_password": "Password oublié",
-    "signup_with_google": "INSCRIVEZ-VOUS AVEC GOOGLE",
-    "signup_with_facebook": "INSCRIVEZ-VOUS AVEC FACEBOOK"
+    "signup_with_google": "CONNECTEZ-VOUS AVEC GOOGLE",
+    "signup_with_facebook": "CONNECTEZ-VOUS AVEC FACEBOOK"
   },
   "company_modal": {
     "company_form": "Formulaire d'entreprise",

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Row, Col } from 'reactstrap'
 import images from '../../../utils/images'
-import { INSTAGRAM_CLIENT_ID } from '../../../utils/constants'
+import { INSTAGRAM_OAUTH_TOKEN_URL } from '../../../utils/constants'
 import { useTranslation } from 'react-i18next'
 
 function InstagramNormalConnectBtn(props) {
@@ -11,7 +11,7 @@ function InstagramNormalConnectBtn(props) {
 
   const instagramConnect = () => {
     if (connected) return
-    window.open(`https://www.instagram.com/oauth/authorize?client_id=${INSTAGRAM_CLIENT_ID}&redirect_uri=https://rafflee.io/instagram/connect/&scope=user_profile,user_media&response_type=code`, '_blank')
+    window.open(INSTAGRAM_OAUTH_TOKEN_URL, '_blank')
   }
 
   return (

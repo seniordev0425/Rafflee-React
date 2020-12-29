@@ -44,7 +44,9 @@ const initialFeedState = {
   },
 
   beingCreatedCampaigns: [],
-  beingCreatedCampaign: null
+  beingCreatedCampaign: null,
+
+  confirmed_participation: false
 }
 
 function Campaign(state = initialFeedState, action) {
@@ -99,6 +101,7 @@ function Campaign(state = initialFeedState, action) {
       return {
         ...state,
         [action.data]: true,
+        confirmed_participation: action.confirmed_participation,
         campaignData: action.entries
           ?
           { ...state.campaignData, user_actions: { ...state.campaignData.user_actions, entries_user: action.entries }, remaining_actions: action.remaining_actions }

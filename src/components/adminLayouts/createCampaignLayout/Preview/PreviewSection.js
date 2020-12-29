@@ -544,16 +544,16 @@ function PreviewSection(props) {
               style={{ width: 180 }}
               onClick={onBack}
             >
-              {t('button_group.go_to_campaigns')}
+              {t('button_group.back')}
             </Button>
             <Button
               onClick={onSubmit}
-              className="ant-blue-btn my-3"
+              className="ant-blue-btn my-5"
               type="primary"
               style={{ width: 200 }}
               loading={CREATE_CAMPAIGN_PROCESS}
             >
-              {!CREATE_CAMPAIGN_PROCESS && t('button_group.create_campaign')}
+              {!CREATE_CAMPAIGN_PROCESS && t('button_group.update')}
             </Button>
           </Col>
         </Row>

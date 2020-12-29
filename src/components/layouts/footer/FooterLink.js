@@ -107,6 +107,7 @@ function FooterLink() {
       <ContactUsModal
         open={openContactUsModal}
         onToggle={() => setOpenContactUsModal(!openContactUsModal)}
+        onClose={() => setOpenContactUsModal(false)}
       />
     </div>
   )

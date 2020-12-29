@@ -19,7 +19,7 @@ export function verifyCaptcha(params, callback) {
     url: APIROUTE + "verify/captcha/",
     method: 'POST',
     data: qs.stringify(params),
-    onSuccess: (data) => data.captcha_response.score > 0.5 ? callback : onFailed('BOT_NOT_ALLOWED'),
+    onSuccess: (data) => data.captcha_response.score >= 0.5 ? callback : onFailed('BOT_NOT_ALLOWED'),
     onFailure: onFailed,
     label: 'VERIFY_CAPTCHA',
     requireErrorMessage: true

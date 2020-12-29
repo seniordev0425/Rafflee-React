@@ -271,7 +271,7 @@ function CreateCampaignLayout() {
           publication_url: beingCreatedCampaign.action_participate[0].social_action[5]?.tiktok_publication_url || '',
           profile_url: beingCreatedCampaign.action_participate[0].social_action[5]?.tiktok_profile_url
             ? beingCreatedCampaign.action_participate[0].social_action[5]?.tiktok_profile_url.split('/')[3]
-            : '@',
+            : '',
           publication_entries: beingCreatedCampaign.action_participate[0].social_action[5]?.tiktok_publication_entries || '',
           publication_mandatory: beingCreatedCampaign.action_participate[0].social_action[5]?.tiktok_publication_mandatory || false,
           profile_entries: beingCreatedCampaign.action_participate[0].social_action[5]?.tiktok_profile_entries || '',

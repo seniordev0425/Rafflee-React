@@ -10,11 +10,18 @@ const qs = require('querystring')
 function onFailed(error) {
   openNotification('warning', errorMessages[localStorage.getItem('i18nextLng')][error])
   if (error === 'MSG_ERROR_USER_NOT_CONNECTED_TO_TWITCH') {
-    window.open(`https://id.twitch.tv/oauth2/authorize?response_type=code&client_id=${TWITCH_CLIENT_ID}&redirect_uri=https://rafflee.io/twitch/connect/&scope=openid+viewing_activity_read+user_follows_edit`, '_blank')
+    return { type: 'TWITCH_DIRECT_CONNECT', data: true }
   }
   else if (error === 'MSG_ERROR_USER_NOT_CONNECTED_TO_TWITTER') {
     return { type: 'TWITTER_DIRECT_CONNECT', data: true }
   }
+  else if (error === 'MSG_ERROR_USER_NOT_CONNECTED_TO_YOUTUBE') {
+    return { type: 'YOUTUBE_DIRECT_CONNECT', data: true }
+  }
+  else if (error === 'MSG_ERROR_USER_NOT_CONNECTED_TO_INSTAGRAM') {
+    return { type: 'INSTAGRAM_DIRECT_CONNECT', data: true }
+  }
+  
   return {
     type: 'API_FAILED',
     error: error
@@ -219,6 +226,7 @@ function onSuccessCampaignParticipateYoutubeLike(data) {
     return {
       type: 'SET_ACTION_VALIDATION_STATUS',
       data: 'youtube_like_validation',
+      confirmed_participation: data.confirmed_participation
     }
   }
 }
@@ -241,7 +249,8 @@ function onSuccessCampaignParticipateYoutubeLikeValidation(data) {
     type: 'SET_ACTION_VALIDATION_STATUS',
     data: 'youtube_like_validation',
     entries: data.entries,
-    remaining_actions: data.remaining_actions
+    remaining_actions: data.remaining_actions,
+    confirmed_participation: data.confirmed_participation
   }
 }
 /////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_YOUTUBE_COMMENT_ACTION
@@ -269,6 +278,7 @@ function onSuccessCampaignParticipateYoutubeComment(data) {
     return {
       type: 'SET_ACTION_VALIDATION_STATUS',
       data: 'youtube_comment_validation',
+      confirmed_participation: data.confirmed_participation
     }
   }
 }
@@ -291,7 +301,8 @@ function onSuccessCampaignParticipateYoutubeCommentValidation(data) {
     type: 'SET_ACTION_VALIDATION_STATUS',
     data: 'youtube_comment_validation',
     entries: data.entries,
-    remaining_actions: data.remaining_actions
+    remaining_actions: data.remaining_actions,
+    confirmed_participation: data.confirmed_participation
   }
 }
 /////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_YOUTUBE_FOLLOW_ACTION
@@ -319,6 +330,7 @@ function onSuccessCampaignParticipateYoutubeFollow(data) {
     return {
       type: 'SET_ACTION_VALIDATION_STATUS',
       data: 'youtube_follow_validation',
+      confirmed_participation: data.confirmed_participation
     }
   }
 }
@@ -341,7 +353,8 @@ function onSuccessCampaignParticipateYoutubeFollowValidation(data) {
     type: 'SET_ACTION_VALIDATION_STATUS',
     data: 'youtube_follow_validation',
     entries: data.entries,
-    remaining_actions: data.remaining_actions
+    remaining_actions: data.remaining_actions,
+    confirmed_participation: data.confirmed_participation
   }
 }
 /////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_YOUTUBE_VIDEO_VALIDATION_ACTION
@@ -363,7 +376,8 @@ function onSuccessCampaignParticipateYoutubeVideoValidation(data) {
     type: 'SET_ACTION_VALIDATION_STATUS',
     data: 'youtube_video_validation',
     entries: data.entries,
-    remaining_actions: data.remaining_actions
+    remaining_actions: data.remaining_actions,
+    confirmed_participation: data.confirmed_participation
   }
 }
 /////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_TWITTER_LIKE_ACTION
@@ -391,6 +405,7 @@ function onSuccessCampaignParticipateTwitterLike(data) {
     return {
       type: 'SET_ACTION_VALIDATION_STATUS',
       data: 'twitter_like_validation',
+      confirmed_participation: data.confirmed_participation
     }
   }
 }
@@ -413,7 +428,8 @@ function onSuccessCampaignParticipateTwitterLikeValidation(data) {
     type: 'SET_ACTION_VALIDATION_STATUS',
     data: 'twitter_like_validation',
     entries: data.entries,
-    remaining_actions: data.remaining_actions
+    remaining_actions: data.remaining_actions,
+    confirmed_participation: data.confirmed_participation
   }
 }
 /////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_TWITTER_RETWEET_ACTION
@@ -441,6 +457,7 @@ function onSuccessCampaignParticipateTwitterRetweet(data) {
     return {
       type: 'SET_ACTION_VALIDATION_STATUS',
       data: 'twitter_retweet_validation',
+      confirmed_participation: data.confirmed_participation
     }
   }
 }
@@ -463,7 +480,8 @@ function onSuccessCampaignParticipateTwitterRetweetValidation(data) {
     type: 'SET_ACTION_VALIDATION_STATUS',
     data: 'twitter_retweet_validation',
     entries: data.entries,
-    remaining_actions: data.remaining_actions
+    remaining_actions: data.remaining_actions,
+    confirmed_participation: data.confirmed_participation
   }
 }
 /////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_TWITTER_COMMENT_ACTION
@@ -491,6 +509,7 @@ function onSuccessCampaignParticipateTwitterComment(data) {
     return {
       type: 'SET_ACTION_VALIDATION_STATUS',
       data: 'twitter_comment_validation',
+      confirmed_participation: data.confirmed_participation
     }
   }
 }
@@ -513,7 +532,8 @@ function onSuccessCampaignParticipateTwitterCommentValidation(data) {
     type: 'SET_ACTION_VALIDATION_STATUS',
     data: 'twitter_comment_validation',
     entries: data.entries,
-    remaining_actions: data.remaining_actions
+    remaining_actions: data.remaining_actions,
+    confirmed_participation: data.confirmed_participation
   }
 }
 /////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_TWITTER_FOLLOW_ACTION
@@ -541,6 +561,7 @@ function onSuccessCampaignParticipateTwitterFollow(data) {
     return {
       type: 'SET_ACTION_VALIDATION_STATUS',
       data: 'twitter_follow_validation',
+      confirmed_participation: data.confirmed_participation
     }
   }
 }
@@ -563,7 +584,8 @@ function onSuccessCampaignParticipateTwitterFollowValidation(data) {
     type: 'SET_ACTION_VALIDATION_STATUS',
     data: 'twitter_follow_validation',
     entries: data.entries,
-    remaining_actions: data.remaining_actions
+    remaining_actions: data.remaining_actions,
+    confirmed_participation: data.confirmed_participation
   }
 }
 /////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_TWITCH_FOLLOW_ACTION
@@ -591,6 +613,7 @@ function onSuccessCampaignParticipateTwitchFollow(data) {
     return {
       type: 'SET_ACTION_VALIDATION_STATUS',
       data: 'twitch_follow_validation',
+      confirmed_participation: data.confirmed_participation
     }
   }
 }
@@ -613,7 +636,8 @@ function onSuccessCampaignParticipateTwitchFollowValidation(data) {
     type: 'SET_ACTION_VALIDATION_STATUS',
     data: 'twitch_follow_validation',
     entries: data.entries,
-    remaining_actions: data.remaining_actions
+    remaining_actions: data.remaining_actions,
+    confirmed_participation: data.confirmed_participation
   }
 }
 /////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_VIDEO_ACTION
@@ -635,7 +659,8 @@ function onSuccessCampaignParticipateVideo(data) {
     type: 'SET_ACTION_VALIDATION_STATUS',
     data: 'video_watch_validation',
     entries: data.entries,
-    remaining_actions: data.remaining_actions
+    remaining_actions: data.remaining_actions,
+    confirmed_participation: data.confirmed_participation
   }
 }
 /////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_POLL_ACTION
@@ -657,7 +682,8 @@ function onSuccessCampaignParticipatePoll(data) {
     type: 'SET_ACTION_VALIDATION_STATUS',
     data: 'poll_action_validation',
     entries: data.entries,
-    remaining_actions: data.remaining_actions
+    remaining_actions: data.remaining_actions,
+    confirmed_participation: data.confirmed_participation
   }
 }
 /////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_WEBSITE_ACTION
@@ -678,7 +704,8 @@ function onSuccessCampaignParticipateWebsite(data) {
     type: 'SET_ACTION_VALIDATION_STATUS',
     data: 'website_visit_validation',
     entries: data.entries,
-    remaining_actions: data.remaining_actions
+    remaining_actions: data.remaining_actions,
+    confirmed_participation: data.confirmed_participation
   }
 }
 /////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_INSTAGRAM_PROFILE_ACTION
@@ -699,7 +726,8 @@ function onSuccessCampaignParticipateInstagramProfile(data) {
     type: 'SET_ACTION_VALIDATION_STATUS',
     data: 'instagram_follow_validation',
     entries: data.entries,
-    remaining_actions: data.remaining_actions
+    remaining_actions: data.remaining_actions,
+    confirmed_participation: data.confirmed_participation
   }
 }
 /////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_INSTAGRAM_PUBLICATION_ACTION
@@ -720,7 +748,8 @@ function onSuccessCampaignParticipateInstagramPublication(data) {
     type: 'SET_ACTION_VALIDATION_STATUS',
     data: 'instagram_like_validation',
     entries: data.entries,
-    remaining_actions: data.remaining_actions
+    remaining_actions: data.remaining_actions,
+    confirmed_participation: data.confirmed_participation
   }
 }
 
@@ -744,7 +773,8 @@ function onSuccessCampaignParticipateTiktokProfile(data) {
     type: 'SET_ACTION_VALIDATION_STATUS',
     data: 'tiktok_follow_validation',
     entries: data.entries,
-    remaining_actions: data.remaining_actions
+    remaining_actions: data.remaining_actions,
+    confirmed_participation: data.confirmed_participation
   }
 }
 /////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_INSTAGRAM_PUBLICATION_ACTION
@@ -765,7 +795,8 @@ function onSuccessCampaignParticipateTiktokPublication(data) {
     type: 'SET_ACTION_VALIDATION_STATUS',
     data: 'tiktok_like_validation',
     entries: data.entries,
-    remaining_actions: data.remaining_actions
+    remaining_actions: data.remaining_actions,
+    confirmed_participation: data.confirmed_participation
   }
 }
 /////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_FACEBOOK_PAGE_ACTION
@@ -786,7 +817,8 @@ function onSuccessCampaignParticipateFacebookPage(data) {
     type: 'SET_ACTION_VALIDATION_STATUS',
     data: 'facebook_page_validation',
     entries: data.entries,
-    remaining_actions: data.remaining_actions
+    remaining_actions: data.remaining_actions,
+    confirmed_participation: data.confirmed_participation
   }
 }
 /////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_FACEBOOK_URL_ACTION
@@ -807,7 +839,8 @@ function onSuccessCampaignParticipateFacebookUrl(data) {
     type: 'SET_ACTION_VALIDATION_STATUS',
     data: 'facebook_url_validation',
     entries: data.entries,
-    remaining_actions: data.remaining_actions
+    remaining_actions: data.remaining_actions,
+    confirmed_participation: data.confirmed_participation
   }
 }
 /////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_FACEBOOK_POST_ACTION
@@ -828,7 +861,8 @@ function onSuccessCampaignParticipateFacebookPost(data) {
     type: 'SET_ACTION_VALIDATION_STATUS',
     data: 'facebook_post_validation',
     entries: data.entries,
-    remaining_actions: data.remaining_actions
+    remaining_actions: data.remaining_actions,
+    confirmed_participation: data.confirmed_participation
   }
 }
 /////////////////////////////////////////////// CLOSE_CAMPAIGN_ACTION

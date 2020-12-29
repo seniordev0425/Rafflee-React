@@ -91,7 +91,7 @@ function HeaderBeforeLogin({ openLoginModal }) {
               <div className="mb-2 font-size-10 font-weight-bold"><Link to="/about" style={{ color: '#767B83' }}>{t('header.about')}</Link></div>
               <div className="mb-2 font-size-10 font-weight-bold"><Link to="/deals" style={{ color: '#767B83' }}>{t('header.campaigns')}</Link></div>
               <div className="mb-2 font-size-10 color-blue font-weight-bold" style={{ color: '#767B83' }} onClick={() => toggle(false)}>{t('header.sign_in')}</div>
-              <div className="mb-2 font-size-10 color-blue font-weight-bold" style={{ color: '#767B83' }} onClick={() => toggle(false)}>{t('header.log_in')}</div>
+              <div className="mb-2 font-size-10 color-blue font-weight-bold" style={{ color: '#767B83' }} onClick={() => toggle(true)}>{t('header.log_in')}</div>
             </Drawer>
           </>
         )

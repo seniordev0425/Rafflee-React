@@ -50,9 +50,14 @@ import {
   campaignParticipateFacebookUrl
 } from '../actions/campaign'
 
-import { twitterConnectStep1 } from '../actions/userInfo'
+import { twitterConnectStep1, youtubeConnectStep1 } from '../actions/userInfo'
 
 import { getTotalEntries } from '../utils/campaign'
+import {
+  TWITCH_OAUTH_TOKEN_URL_FOR_COMPANY,
+  TWITCH_OAUTH_TOKEN_URL_FOR_USER,
+  INSTAGRAM_OAUTH_TOKEN_URL
+} from '../utils/constants'
 
 import { useTranslation } from 'react-i18next'
 
@@ -67,6 +72,7 @@ function CampaignDetail(props) {
   const token = useSelector(state => state.userInfo.token)
   const company = useSelector(state => state.userInfo.company)
   const userProfile = useSelector(state => state.userInfo.userProfile)
+  const confirmed_participation = useSelector(state => state.campaign.confirmed_participation)
   const dispatch = useDispatch()
 
   const GET_CAMPAIGN_DATA_PROCESS = useSelector(state => state.userInfo.GET_CAMPAIGN_DATA)
@@ -84,6 +90,13 @@ function CampaignDetail(props) {
 
   const twitter_oauth_token = useSelector(state => state.userInfo.twitter_oauth_token)
   const twitterDirectConnect = useSelector(state => state.userInfo.twitterDirectConnect)
+  const twitchDirectConnect = useSelector(state => state.userInfo.twitchDirectConnect)
+  const youtube_oauth_url = useSelector(state => state.userInfo.youtube_oauth_url)
+  const youtubeDirectConnect = useSelector(state => state.userInfo.youtubeDirectConnect)
+  const instagramDirectConnect = useSelector(state => state.userInfo.instagramDirectConnect)
+
+  const instagram_follow_validation = useSelector(state => state.campaign.instagram_follow_validation)
+  const instagram_like_validation = useSelector(state => state.campaign.instagram_like_validation)
 
   const [totalEntriesNum, setTotalEntriesNum] = useState(0)
   const [action, setAction] = useState({})
@@ -117,14 +130,49 @@ function CampaignDetail(props) {
       dispatch({ type: 'INIT_STATE', state: 'twitter_oauth_token', data: '' })
       window.open(`https://api.twitter.com/oauth/authorize?oauth_token=${twitter_oauth_token}`, '_blank')
     }
-  }, [twitter_oauth_token])
+    if (youtube_oauth_url) { // Redirect to youtube login after getting youtube oauth token url
+      dispatch({ type: 'INIT_STATE', state: 'youtube_oauth_url', data: '' })
+      window.open(youtube_oauth_url, '_blank')
+    }
+  }, [twitter_oauth_token, youtube_oauth_url])
 
   useEffect(() => {
     if (twitterDirectConnect) { // If user is not connected to twitter then dispatch action to get twitter oauth token
       dispatch({ type: 'INIT_STATE', state: 'twitterDirectConnect', data: false })
       dispatch(twitterConnectStep1())
     }
-  }, [twitterDirectConnect])
+
+    if (twitchDirectConnect) { // If user is not connected to twitch then open oauth connection directly
+      dispatch({ type: 'INIT_STATE', state: 'twitchDirectConnect', data: false })
+      if (company) {
+        window.open(TWITCH_OAUTH_TOKEN_URL_FOR_COMPANY, '_blank')
+      } else {
+        window.open(TWITCH_OAUTH_TOKEN_URL_FOR_USER, '_blank')
+      }
+    }
+
+    if (youtubeDirectConnect) { // If user is not connected to youtube then dispatch action to get youtube oauth token url
+      dispatch({ type: 'INIT_STATE', state: 'youtubeDirectConnect', data: false })
+      dispatch(youtubeConnectStep1(company))
+    }
+
+    if (instagramDirectConnect) { // If user is not connected to instagram then open oauth connection directly
+      dispatch({ type: 'INIT_STATE', state: 'instagramDirectConnect', data: false })
+      window.open(INSTAGRAM_OAUTH_TOKEN_URL, '_blank')
+    }
+  }, [twitterDirectConnect, twitchDirectConnect, youtubeDirectConnect, instagramDirectConnect])
+
+  useEffect(() => {
+    if (instagram_follow_validation) {
+      window.open(`https://instagram.com/${action.social_action[2].instagram_profile_url}`, '_blank')
+    }
+    if (instagram_like_validation) {
+      window.open(`https://instagram.com/p/${action.social_action[2].instagram_publication_url}`, '_blank')
+    }
+  }, [
+    instagram_follow_validation,
+    instagram_like_validation
+  ])
 
   useEffect(() => {
     // Extract social action data from campaign data
@@ -141,6 +189,13 @@ function CampaignDetail(props) {
       setOpenConfirm(true)
     }
   }, [CAMPAIGN_PARTICIPATE_SUCCESS])
+
+  useEffect(() => {
+    if (confirmed_participation) {
+      dispatch({ type: 'CAMPAIGN_INIT_STATE', state: 'confirmed_participation', data: false })
+      setOpenConfirm(true)
+    }
+  }, [confirmed_participation])
 
   useEffect(() => {
     // Open social actions validation modal after click on social actions button
@@ -247,11 +302,9 @@ function CampaignDetail(props) {
       dispatch(campaignParticipateTwitchFollow({ promotion_id: campaignData.pk }))
     }
     else if (socialName === 'instagram' && actionType === 'follow') {
-      window.open(`https://instagram.com/${action.social_action[2].instagram_profile_url}`, '_blank')
       dispatch(campaignParticipateInstagramProfile({ promotion_id: campaignData.pk }))
     }
     else if (socialName === 'instagram' && actionType === 'like') {
-      window.open(`https://instagram.com/p/${action.social_action[2].instagram_publication_url}`, '_blank')
       dispatch(campaignParticipateInstagramPublication({ promotion_id: campaignData.pk }))
     }
     else if (socialName === 'tiktok' && actionType === 'follow') {

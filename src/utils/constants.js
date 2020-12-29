@@ -20,3 +20,7 @@ export const LANGUAGE_NAME = {
   en: "english",
   fr: "french"
 }
+
+export const TWITCH_OAUTH_TOKEN_URL_FOR_COMPANY = `https://id.twitch.tv/oauth2/authorize?response_type=code&client_id=${TWITCH_CLIENT_ID}&redirect_uri=https://rafflee.io/twitch/connect/&scope=openid+viewing_activity_read+channel_read+user_follows_edit`
+export const TWITCH_OAUTH_TOKEN_URL_FOR_USER = `https://id.twitch.tv/oauth2/authorize?response_type=code&client_id=${TWITCH_CLIENT_ID}&redirect_uri=https://rafflee.io/twitch/connect/&scope=openid+viewing_activity_read+user_follows_edit`
+export const INSTAGRAM_OAUTH_TOKEN_URL = `https://www.instagram.com/oauth/authorize?client_id=${INSTAGRAM_CLIENT_ID}&redirect_uri=https://rafflee.io/instagram/connect/&scope=user_profile,user_media&response_type=code`

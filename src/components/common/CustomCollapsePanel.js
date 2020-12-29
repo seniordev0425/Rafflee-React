@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react'
-import { Button, Tooltip } from 'antd'
+import { Button } from 'antd'
 import { useSelector, useDispatch } from 'react-redux'
 import ExpansionPanel from '@material-ui/core/ExpansionPanel'
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary'
@@ -8,7 +8,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import {
   FacebookProvider,
   EmbeddedPost,
-  Like
+  Like 
 } from 'react-facebook'
 import YouTube from 'react-youtube'
 import { isMobile } from 'react-device-detect'
@@ -142,12 +142,12 @@ function CustomCollapsePanel(props) {
           aria-label="Expand"
           id="panel1a-header"
         >
-          {mandatory &&
-            <Tooltip title={t('campaign_detail_page.mandatory_action')} color='#e72f30'>
-              <img src={images.required_icon} alt="" width="20" height="20" className="mt-1 mt-sm-2 mr-2" />
-            </Tooltip>
-          }
-          <span className="promotion-list-item-title">{title}</span>
+          <div>
+            <div className="promotion-list-item-title">{title}</div>
+            <div className={mandatory ? "color-red" : "color-gray"}>
+              {mandatory ? t('campaign_detail_page.mandatory_action') : t('campaign_detail_page.optional_action')}
+            </div>
+          </div>
         </ExpansionPanelSummary>
 
         <ExpansionPanelDetails>

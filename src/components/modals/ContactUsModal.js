@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Modal, ModalHeader, ModalBody } from 'reactstrap'
 import { Form as FinalForm, Field } from 'react-final-form'
@@ -22,18 +22,23 @@ import { useGoogleReCaptcha, GoogleReCaptcha } from 'react-google-recaptcha-v3'
 
 function ContactUsModal(props) {
   const { t } = useTranslation()
-  const { open, onToggle } = props
+  const {
+    open,
+    onToggle,
+    onClose
+  } = props
 
   const { executeRecaptcha } = useGoogleReCaptcha()
 
   const VERIFY_CAPTCHA_PROCESS = useSelector(state => state.userInfo.VERIFY_CAPTCHA)
   const CONTACT_US_PROCESS = useSelector(state => state.userInfo.CONTACT_US)
+  const CONTACT_US_SUCCESS = useSelector(state => state.userInfo.SUCCESS_CONTACT_US)
   const dispatch = useDispatch()
 
   const onSubmit = async (values) => {
     const captcha_token = await executeRecaptcha('contact_form')
     if (captcha_token.length < 20) return
-    
+
     var body = {
       email: values.email,
       phone_number: values.phonenumber.phone_number,
@@ -41,6 +46,13 @@ function ContactUsModal(props) {
     }
     dispatch(verifyCaptcha({ captcha_token }, contactUs(body)))
   }
+
+  useEffect(() => {
+    if (CONTACT_US_SUCCESS) {
+      dispatch({ type: 'INIT_STATE', state: 'SUCCESS_CONTACT_US', data: false })
+      onClose()
+    }
+  }, [CONTACT_US_SUCCESS])
 
   return (
     <Modal isOpen={open} toggle={onToggle} style={{ maxWidth: 400 }}>
@@ -91,9 +103,6 @@ function ContactUsModal(props) {
               >
                 {!CONTACT_US_PROCESS && !VERIFY_CAPTCHA_PROCESS && t('button_group.send_message')}
               </Button>
-              <div className="company-question-button-container">
-                {t('company_modal.need_help')} {t('company_modal.contact_us')} <span className="company-question-button">{t('company_modal.here')}</span>
-              </div>
             </Form>
           )}
         />

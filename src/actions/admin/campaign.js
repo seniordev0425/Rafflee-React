@@ -16,7 +16,7 @@ function onFailed(error) {
 /////////////////////////////////////////////// ADMIN_GET_CAMPAIGN_ACTION
 export function getCampaigns(keyword, page) {
   return apiAction({
-    url: APIROUTE + `dashboard/promotion/${keyword}/${page}/`,
+    url: keyword ? APIROUTE + `dashboard/promotion/${keyword}/${page}/` : APIROUTE + `dashboard/promotion/${page}/`,
     method: 'GET',
     accessToken: localStorage.getItem('token'),
     onSuccess: onSuccessGetCampaigns,

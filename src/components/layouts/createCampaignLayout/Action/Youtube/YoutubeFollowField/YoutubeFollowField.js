@@ -44,7 +44,8 @@ function YoutubeFollowField(props) {
         }}
       >
         <Row>
-          <Col xs="12" sm="6" className="p-0">
+          <Col xs="12" sm="6" className="p-0 d-flex align-items-center">
+            <span className="prefix-at mr-2" style={{ position: 'initial' }}>@</span>
             <YoutubeUserSelect setAction={setAction} />
           </Col>
           <Col size="12" className="p-0 justify-content-between align-items-center mt-3 mt-sm-0">

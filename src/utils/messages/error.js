@@ -79,6 +79,7 @@ const errorMessages = {
     MSG_ERROR_WITH_TWITCH_OAUTH_TOKEN: "Error with twitch connect",
     MSG_ERROR_USER_NOT_CONNECTED_TO_TWITCH: "Please connect to twitch",
     MSG_ERROR_USER_NOT_CONNECTED_TO_TWITTER: "Please connect to twitter",
+    MSG_ERROR_USER_NOT_CONNECTED_TO_INSTAGRAM: "Please connect to instagram",
     MSG_PARTICIPATION_NOT_VALIDATED: "You have to validate actions",
     MSG_MANDATORY_ACTION_IS_NOT_VALIDATED: "Mandatory Actions are not validated",
     MSG_ERROR_WITH_SNAPCHAT_URL: "Error with the snapchat connection",
@@ -111,10 +112,11 @@ const errorMessages = {
     MSG_ERROR_WITH_YOUTUBE_LIKE: "Error with youtube like action",
     MSG_ERROR_WITH_YOUTUBE_FOLLOW: "Error with youtube follow action",
     MSG_PROMOTION_ENDED: "Promotion Ended",
-    MSG_USER_YOUTUBE_NOT_CONNECTED: "User is not connected to youtube",
+    MSG_ERROR_USER_NOT_CONNECTED_TO_YOUTUBE: "User is not connected to youtube",
     MSG_PROMOTION_NOT_STARTED: "Promotion is not started yet.",
     "MSG_ERROR_YOUTUBE_ACCOUNT_NOT_CONNECTED_TO_GOOGLE_+": "Youtube account is not connected to Google+. Check this url. https://m.youtube.com/create_channel?chromeless=1&next=/channel_creation_done",
-    BOT_NOT_ALLOWED: "This is recognized as a bot action"
+    BOT_NOT_ALLOWED: "This is recognized as a bot action",
+    MSG_ENTER_VALID_PHONE_NUMBER: "Enter a valid phone number"
   },
 
 
@@ -197,6 +199,7 @@ const errorMessages = {
     MSG_ERROR_WITH_TWITCH_OAUTH_TOKEN: "Erreur avec la connection à twitch",
     MSG_ERROR_USER_NOT_CONNECTED_TO_TWITCH: "Connecte toi à Twitch",
     MSG_ERROR_USER_NOT_CONNECTED_TO_TWITTER: "Connecte toi à Twitter",
+    MSG_ERROR_USER_NOT_CONNECTED_TO_INSTAGRAM: "Please connect to instagram",
     MSG_PARTICIPATION_NOT_VALIDATED: "Valide les actions",
     MSG_MANDATORY_ACTION_IS_NOT_VALIDATED: "Les actions obligatoires ne sont pas effectuées",
     MSG_ERROR_WITH_SNAPCHAT_URL: "Erreur avec la connection à Snapchat",
@@ -229,10 +232,11 @@ const errorMessages = {
     MSG_ERROR_WITH_YOUTUBE_LIKE: "Erreur avec l'action like de youtube",
     MSG_ERROR_WITH_YOUTUBE_FOLLOW: "Erreur avec l'action follow de youtube",
     MSG_PROMOTION_ENDED: "Promotion terminée",
-    MSG_USER_YOUTUBE_NOT_CONNECTED: "Connecte toi à Youtube",
+    MSG_ERROR_USER_NOT_CONNECTED_TO_YOUTUBE: "Connecte toi à Youtube",
     MSG_PROMOTION_NOT_STARTED: "La promotion n'a pas encore commencé.",
     "MSG_ERROR_YOUTUBE_ACCOUNT_NOT_CONNECTED_TO_GOOGLE_+": "Votre compte Youtube n'est pas connecte a Google+. Check this url. https://m.youtube.com/create_channel?chromeless=1&next=/channel_creation_done",
-    BOT_NOT_ALLOWED: "This is recognized as a bot action"
+    BOT_NOT_ALLOWED: "This is recognized as a bot action",
+    MSG_ENTER_VALID_PHONE_NUMBER: "Entrez un numéro de téléphone valide"
   }
 }
 

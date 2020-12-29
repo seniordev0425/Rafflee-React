@@ -159,7 +159,8 @@
     "save": "Save",
     "create": "Create",
     "back": "Back",
-    "go_to_campaigns": "Go to campaigns"
+    "go_to_campaigns": "Go to campaigns",
+    "open": "Open"
   },
   "homepage": {
     "hot_new_contest_everyday": "Hot new contest everyday.",
@@ -302,7 +303,8 @@
     "watch_video": "Run video",
     "select_answer": "Select your answers",
     "social_detail_alert": "Check your phone number in your dashboard to participate.",
-    "mandatory_action": "Mandatory action to participate",
+    "mandatory_action": "This is a mandatory action",
+    "optional_action": "Optional action that maximizes your chances",
     "prize_description": "The winner will receive prizes below:",
     "the_prize": "Prizes",
     "chance_winning_prize": "Chance of winning the prize",
@@ -716,8 +718,8 @@
   "login_modal": {
     "remember_me": "Remember Me",
     "forgot_password": "Forgot Password",
-    "signup_with_google": "SIGN UP WITH GOOGLE",
-    "signup_with_facebook": "SIGN UP WITH FACEBOOK"
+    "signup_with_google": "SIGN IN WITH GOOGLE",
+    "signup_with_facebook": "SIGN IN WITH FACEBOOK"
   },
   "company_modal": {
     "company_form": "Company Form",

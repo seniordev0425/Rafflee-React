@@ -8,13 +8,13 @@ import { useTranslation } from 'react-i18next'
 function CampaignCard(props) {
   const { t } = useTranslation()
 
-  const { 
-    description, 
-    campaign_name, 
-    pk, 
-    campaign_image, 
-    company_logo, 
-    company_id 
+  const {
+    description,
+    campaign_name,
+    pk,
+    campaign_image,
+    company_logo,
+    company_id
   } = props
 
   return (
@@ -29,7 +29,9 @@ function CampaignCard(props) {
           </div>
         </div>
         <div className="mt-4 campaign-card-title">{campaign_name}</div>
-        <div className="mt-4 campaign-card-text">{description}</div>
+        <div className="mt-4 campaign-card-text">
+          <span className="carousel-span-fixed-length">{description}</span>
+        </div>
       </div>
       <div>
         <Link to={"/campaign-detail/" + pk}>
