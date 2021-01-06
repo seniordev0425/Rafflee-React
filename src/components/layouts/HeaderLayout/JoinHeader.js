@@ -15,12 +15,20 @@ function JoinHeader() {
   const [isLogin, setIsLogin] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
 
-  const showCompanyModal = () => setCompanyStatus(true)
+  const showCompanyModal = (value) => {
+    setCompanyStatus(value)
+  }
 
   const toggle = () => {
     setModal(!modal)
     setCompanyStatus(false)
   }
+
+  const onClose = () => {
+    setModal(false)
+    setCompanyStatus(false)
+  }
+
   const switch_login_signin = (val) => {
     setIsLogin(val)
   }
@@ -49,6 +57,7 @@ function JoinHeader() {
             isLogin={isLogin}
             switch_login_signin={switch_login_signin}
             toggle={toggle}
+            onClose={onClose}
             companyStatus={companyStatus}
             showCompanyModal={showCompanyModal}
           />

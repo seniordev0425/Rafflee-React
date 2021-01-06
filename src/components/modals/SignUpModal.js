@@ -167,7 +167,7 @@ function SignUpModal(props) {
             >
               {!isLoading && !VERIFY_CAPTCHA_PROCESS && t('button_group.create_account')}
             </Button>
-            <div className="company-question-button-container" onClick={showCompanyModal}>
+            <div className="company-question-button-container" onClick={() => showCompanyModal(true)}>
               <span className="company-question-button">{t('signin_modal.are_you_company')}</span>
             </div>
 

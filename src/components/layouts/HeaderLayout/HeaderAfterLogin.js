@@ -59,28 +59,15 @@ function HeaderAfterLogin(props) {
     <>
       {!isMobile ? (
         <Row className="align-items-center">
-          {window.location.pathname === '/' &&
-            <Link to="/about">
-              <span className="mr-3 font-weight-bold header-btn">
-                {t('header.about')}
-              </span>
-            </Link>
-          }
           <Link to="/deals">
             <span className="mx-3 font-weight-bold header-btn">
               {t('header.campaigns')}
             </span>
           </Link>
 
-          <Link to="/my-circle">
-            <span className="mx-3 font-weight-bold header-btn">
-              {t('menubar.my_circle')}
-            </span>
-          </Link>
-          <div style={{ border: '1px solid #767b8340', height: 30 }} className="mx-3">
+          <div style={{ border: '1px solid #767b8340', height: 30 }} className="mx-3" />
 
-          </div>
-          <Link to="/user-account/profile" className="d-flex align-items-center mx-3">
+          <Link to="/user-account/profile" className="d-flex align-items-center ml-3">
             <img
               src={company ? (companyProfile.logo || images.account_icon) : (userProfile.profile_picture || images.account_icon)}
               width={27}
@@ -91,7 +78,7 @@ function HeaderAfterLogin(props) {
           </Link>
 
           <Link to="/user-account/profile">
-            <span className="mx-3 font-weight-bold header-btn header-span-fixed-length">
+            <span className="mr-3 ml-2 font-weight-bold header-btn header-span-fixed-length">
               {company ? companyProfile.username : userProfile.username}
             </span>
           </Link>
@@ -103,11 +90,16 @@ function HeaderAfterLogin(props) {
             </span>
           </Link>
 
+          <Link to="/my-circle">
+            <span className="mx-3 font-weight-bold header-btn">
+              {t('menubar.my_circle')}
+            </span>
+          </Link>
+
           <div onClick={log_Out} className="pointer mx-3">
             <span className="mr-3 font-weight-bold header-btn">
               {t('header.log_out')}
             </span>
-            <img src={images.logout_icon} className="logout-icon" alt="" />
           </div>
         </Row>
       ) : (
@@ -119,9 +111,9 @@ function HeaderAfterLogin(props) {
               onClose={onClose}
               visible={visible}
             >
-              <div className="mb-2 font-size-10 font-weight-bold">
+              {/* <div className="mb-2 font-size-10 font-weight-bold">
                 <Link to="/about" style={{ color: '#767B83' }}>{t('header.about')}</Link>
-              </div>
+              </div> */}
 
               <div className="mb-2 font-size-10 font-weight-bold">
                 <Link to="/deals" style={{ color: '#767B83' }}>{t('header.campaigns')}</Link>

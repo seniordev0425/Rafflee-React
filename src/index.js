@@ -21,6 +21,7 @@ import "video-react/dist/video-react.css"
 import 'react-image-crop/dist/ReactCrop.css'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css"
+import "react-image-gallery/styles/css/image-gallery.css"
 import './i18next'
 
 import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3'

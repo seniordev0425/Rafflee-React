@@ -4,19 +4,12 @@ import { Spinner, Row, Col } from 'reactstrap'
 import images from '../../../utils/images'
 import { useTranslation } from 'react-i18next'
 
-function GoogleSignBtn() {
+function GoogleSignBtn({ isLogin }) {
   const { t } = useTranslation()
 
   const isLoading = useSelector(state => state.userInfo.GOOGLE_LOG_IN)
+  
   return (
-    // <Row className="pointer">
-    //   <Col xs="2" className="pl-0 pr-0 google-icon-container1">
-    //     <img src={images.google_icon} alt="" />
-    //   </Col>
-    //   <Col xs="10" className="pl-0 pr-0 google-icon-container2" style={{ fontFamily: 'roboto' }}>
-    //     {isLoading ? <Spinner /> : t('login_modal.signup_with_google')}
-    //   </Col>
-    // </Row>
     <div className="pointer d-flex">
       <div className="google-icon-container1">
         <img src={images.google_signin_icon} width={30} height={30} alt="" />
@@ -25,7 +18,16 @@ function GoogleSignBtn() {
         style={{ fontFamily: 'roboto', fontSize: '1rem' }}
         className="google-icon-container2"
       >
-        {isLoading ? <Spinner /> : t('login_modal.signup_with_google')}
+        {isLoading
+          ?
+          <Spinner />
+          :
+          isLogin
+            ?
+            t('login_modal.signin_with_google')
+            :
+            t('login_modal.signup_with_google')
+        }
       </div>
     </div>
   )

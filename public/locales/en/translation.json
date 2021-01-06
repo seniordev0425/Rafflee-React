@@ -709,6 +709,7 @@
     "and": "and",
     "privacy_policy": "Privacy Policy",
     "are_you_company": "Are you a company?",
+    "are_you_user": "Are you a user?",
     "or": "OR",
     "enter_valid_email": "Enter a valid email address",
     "username_required": "Username is required",
@@ -718,8 +719,10 @@
   "login_modal": {
     "remember_me": "Remember Me",
     "forgot_password": "Forgot Password",
-    "signup_with_google": "SIGN IN WITH GOOGLE",
-    "signup_with_facebook": "SIGN IN WITH FACEBOOK"
+    "signin_with_google": "SIGN IN WITH GOOGLE",
+    "signin_with_facebook": "SIGN IN WITH FACEBOOK",
+    "signup_with_google": "SIGN UP WITH GOOGLE",
+    "signup_with_facebook": "SIGN UP WITH FACEBOOK"
   },
   "company_modal": {
     "company_form": "Company Form",

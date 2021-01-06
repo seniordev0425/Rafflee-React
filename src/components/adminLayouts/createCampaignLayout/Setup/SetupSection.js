@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Row, Col, FormGroup, Input } from 'reactstrap'
 import { Button, DatePicker, Select } from 'antd'
 import ImageUploader from 'react-images-upload'
-import ImageCropModal from '../../../modals/ImageCropModal'
+import ImageCropModal from '../../../modals/ImageCropModal/CommonImageCropModal'
 import WinningItem from './WinningItem'
 import moment from 'moment'
 

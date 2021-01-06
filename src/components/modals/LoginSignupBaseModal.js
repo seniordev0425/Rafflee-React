@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useSelector, useDispatch } from "react-redux";
 import { deviceDetect, isMobile } from 'react-device-detect'
 import PropTypes from 'prop-types'
@@ -10,11 +10,12 @@ import GoogleSignBtn from '../common/Buttons/GoogleSignBtn'
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
 import GoogleLogin from 'react-google-login'
 import FaceBookSignBtn from '../common/Buttons/FaceBookSignBtn'
-import { 
+import ContactUsModal from './ContactUsModal'
+import {
   FACEBOOK_APP_ID,
   GOOGLE_CLIENT_ID,
   LANGUAGE_NAME
- } from '../../utils/constants'
+} from '../../utils/constants'
 import { facebookLogin, googleLogin } from '../../actions/userInfo'
 
 import { useTranslation } from 'react-i18next'
@@ -27,6 +28,7 @@ function LoginSignupBaseModal(props) {
     switch_login_signin,
     modal,
     toggle,
+    onClose,
     companyStatus,
     showCompanyModal
   } = props
@@ -34,6 +36,13 @@ function LoginSignupBaseModal(props) {
   const ip = useSelector(state => state.userInfo.ip)
   const token = useSelector(state => state.userInfo.token)
   const dispatch = useDispatch()
+
+  const [openContactUsModal, setOpenContactUsModal] = useState(false)
+
+  const onClickContactUs = () => {
+    onClose()
+    setOpenContactUsModal(true)
+  }
 
   const responseFacebook = (response) => {
     var body = {
@@ -62,7 +71,7 @@ function LoginSignupBaseModal(props) {
       <Modal isOpen={modal && !token} toggle={toggle} style={{ top: 165, maxWidth: 400 }}>
         <ModalHeader toggle={toggle} style={{ borderBottom: 'none' }}></ModalHeader>
         <ModalBody className="modal-body-padding">
-          {companyStatus === true ? (<CompanyModal />) : (
+          {companyStatus === true ? (<CompanyModal showCompanyModal={showCompanyModal} onClickContactUs={onClickContactUs} />) : (
             <div style={{ fontFamily: "sofiapro" }}>
               <Row style={{ margin: 0 }}>
                 <div
@@ -81,7 +90,12 @@ function LoginSignupBaseModal(props) {
                 </div>
               </Row>
               <div style={{ marginTop: "2rem" }}>
-                {isLogin ? (<LogInModal toggle={toggle} />) : (<SignUpModal toggle={toggle} showCompanyModal={showCompanyModal} />)}
+                {isLogin
+                  ?
+                  <LogInModal toggle={toggle} />
+                  :
+                  <SignUpModal toggle={toggle} showCompanyModal={showCompanyModal} />
+                }
               </div>
               <div className="or-divider-container">
                 <h2>
@@ -96,7 +110,9 @@ function LoginSignupBaseModal(props) {
                   fields="name,email,picture"
                   callback={responseFacebook}
                   render={renderProps => (
-                    <div onClick={renderProps.onClick}><FaceBookSignBtn /></div>
+                    <div onClick={renderProps.onClick}>
+                      <FaceBookSignBtn isLogin={isLogin} />
+                    </div>
                   )}
                   onFailure={() => null}
                 />
@@ -105,7 +121,9 @@ function LoginSignupBaseModal(props) {
                 <GoogleLogin
                   clientId={GOOGLE_CLIENT_ID}
                   render={renderProps => (
-                    <div onClick={renderProps.onClick} disabled={renderProps.disabled}><GoogleSignBtn /></div>
+                    <div onClick={renderProps.onClick} disabled={renderProps.disabled}>
+                      <GoogleSignBtn isLogin={isLogin} />
+                    </div>
                   )}
                   onSuccess={responseGoogle}
                   onFailure={() => void 0}
@@ -116,6 +134,11 @@ function LoginSignupBaseModal(props) {
           )}
         </ModalBody>
       </Modal>
+      <ContactUsModal
+        open={openContactUsModal}
+        onToggle={() => setOpenContactUsModal(!openContactUsModal)}
+        onClose={() => setOpenContactUsModal(false)}
+      />
     </>
   )
 }

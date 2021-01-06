@@ -269,7 +269,18 @@ function PreviewSection(props) {
     formdata.append('promotion_description', params.promotion_description)
     formdata.append('promotion_long_description', params.promotion_long_description)
     formdata.append('public_promotion', params.public_promotion)
-    formdata.append('winnings', JSON.stringify(params.winnings))
+
+    let winnings = params.winnings
+    winnings = winnings.map(winning => ({
+      ...winning,
+      image: winning.image.map(image => {
+        let block = image.split(";")
+        let realData = block[1].split(",")[1]
+        return realData
+      })
+    }))
+    formdata.append('winnings', JSON.stringify(winnings))
+
     if (categories.length > 0) {
       formdata.append('categories', JSON.stringify(categories))
     } else {

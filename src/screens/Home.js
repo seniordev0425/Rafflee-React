@@ -43,7 +43,7 @@ function Home(props) {
           ?
           <Loading />
           :
-          (<Carousel hotPromotions={hotPromotions} />)
+          <Carousel hotPromotions={hotPromotions} />
         }
         <div className="d-flex justify-content-center mb-5">
           <LowerBanner />

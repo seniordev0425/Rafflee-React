@@ -701,6 +701,7 @@
     "and": "et la",
     "privacy_policy": "Politique de confidentialité",
     "are_you_company": "Êtes vous une entreprise ?",
+    "are_you_user": "Êtes vous un utilisateur ?",
     "or": "OU",
     "enter_valid_email": "Entrer une adresse de mail valide",
     "username_required": "Nom d'utilisateur obligatoire",
@@ -710,8 +711,10 @@
   "login_modal": {
     "remember_me": "Se rappeler de moi",
     "forgot_password": "Password oublié",
-    "signup_with_google": "CONNECTEZ-VOUS AVEC GOOGLE",
-    "signup_with_facebook": "CONNECTEZ-VOUS AVEC FACEBOOK"
+    "signin_with_google": "CONNECTEZ-VOUS AVEC GOOGLE",
+    "signin_with_facebook": "CONNECTEZ-VOUS AVEC FACEBOOK",
+    "signup_with_google": "INSCRIVEZ-VOUS AVEC GOOGLE",
+    "signup_with_facebook": "INSCRIVEZ-VOUS AVEC FACEBOOK"
   },
   "company_modal": {
     "company_form": "Formulaire d'entreprise",

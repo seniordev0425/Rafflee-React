@@ -42,7 +42,7 @@ function CreateCampaignLayout() {
     temp_categories: [],
     start_date: '',
     end_date: '',
-    winnings: [{ name: '', number_of_people: '', description: '', image: '' }],
+    winnings: [{ name: '', number_of_people: '', description: '', image: [] }],
     campaign_type: 'giveaway',
     live_draw: false,
     limit_participants: false,
@@ -165,7 +165,7 @@ function CreateCampaignLayout() {
   // Update params with being created campaign data
   useEffect(() => {
     if (beingCreatedCampaign) {
-
+      console.log(beingCreatedCampaign)
       setParams({
         pk: beingCreatedCampaign.pk,
         promotion_name: beingCreatedCampaign.campaign_name,
@@ -177,7 +177,7 @@ function CreateCampaignLayout() {
         temp_categories: beingCreatedCampaign.categories ? beingCreatedCampaign.categories : [],
         start_date: beingCreatedCampaign.release_date ? moment(beingCreatedCampaign.release_date).utc().format('YYYY-MM-DD HH:mm:ss') : null,
         end_date: beingCreatedCampaign.end_date ? moment(beingCreatedCampaign.end_date).utc().format('YYYY-MM-DD HH:mm:ss') : null,
-        winnings: beingCreatedCampaign.winnings ? beingCreatedCampaign.winnings : [{ name: '', number_of_people: '', description: '', image: '' }],
+        winnings: beingCreatedCampaign.winnings ? beingCreatedCampaign.winnings : [{ name: '', number_of_people: '', description: '', image: [] }],
         campaign_type: beingCreatedCampaign.type_of_distribution,
         live_draw: beingCreatedCampaign.live_draw,
         limit_participants: false,
@@ -418,6 +418,15 @@ function CreateCampaignLayout() {
         model: params.youtube.comment_model
       })
     }
+    if (params.youtube.video) {
+      youtube.push({
+        action: 'video',
+        id: params.youtube.video_id,
+        entries: params.youtube.video_entries || 1,
+        mandatory: params.youtube.video_mandatory,
+        url_img: params.youtube.video_url_img
+      })
+    }
 
     // Make instagram action para
     let instagram = []
@@ -480,7 +489,18 @@ function CreateCampaignLayout() {
     formdata.append('promotion_description', params.promotion_description)
     formdata.append('promotion_long_description', params.promotion_long_description)
     formdata.append('public_promotion', params.public_promotion)
-    formdata.append('winnings', JSON.stringify(params.winnings))
+
+    let winnings = params.winnings
+    winnings = winnings.map(winning => ({
+      ...winning,
+      image: winning.image.map(image => {
+        let block = image.split(";")
+        let realData = block[1].split(",")[1]
+        return realData
+      })
+    }))
+    formdata.append('winnings', JSON.stringify(winnings))
+
     if (categories.length > 0) {
       formdata.append('categories', JSON.stringify(categories))
     } else {

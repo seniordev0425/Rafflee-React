@@ -3,7 +3,7 @@ import { FormGroup, Input, Row, Col } from 'reactstrap'
 import { Button } from 'antd'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
-import ImageCropModal from '../../../modals/ImageCropModal'
+import ImageCropModal from '../../../modals/ImageCropModal/CommonImageCropModal'
 import { useTranslation } from 'react-i18next'
 import { UPLOAD_MAX_SIZE } from '../../../../utils/constants'
 

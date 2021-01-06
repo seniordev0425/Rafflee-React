@@ -13,7 +13,7 @@ import {
 
 import { useTranslation } from 'react-i18next'
 
-function CompanyModal() {
+function CompanyModal({ showCompanyModal, onClickContactUs }) {
   const { t } = useTranslation()
 
   const isLoading = useSelector(state => state.userInfo.COMPANY_CONTACT)
@@ -85,7 +85,10 @@ function CompanyModal() {
             >
               {!isLoading && t('button_group.send_message')}
             </Button>
-            <div className="company-question-button-container">
+            <div className="company-question-button-container" onClick={() => showCompanyModal(false)}>
+              <span className="company-question-button">{t('signin_modal.are_you_user')}</span>
+            </div>
+            <div className="company-question-button-container" onClick={onClickContactUs}>
               {t('company_modal.need_help')} {t('company_modal.contact_us')} <span className="company-question-button">{t('company_modal.here')}</span>
             </div>
           </Form>

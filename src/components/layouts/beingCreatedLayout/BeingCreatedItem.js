@@ -29,18 +29,18 @@ function BeingCreatedItem(props) {
       promotionData = { ...promotionData, campaign_image: base64data }
     }
 
-    let winnings = []
-    for (let winning of promotionData.winnings) {
-      if (winning.image) {
-        let base64data = await imageToBase64(winning.image)
-        let block = base64data.split(";")
-        let realData = block[1].split(",")[1]
-        winnings.push({ ...winning, image: realData })
-      } else {
-        winnings.push(winning)
-      }
-    }
-    promotionData = { ...promotionData, winnings: winnings }
+    // let winnings = []
+    // for (let winning of promotionData.winnings) {
+    //   if (winning.image) {
+    //     let base64data = await imageToBase64(winning.image)
+    //     let block = base64data.split(";")
+    //     let realData = block[1].split(",")[1]
+    //     winnings.push({ ...winning, image: realData })
+    //   } else {
+    //     winnings.push(winning)
+    //   }
+    // }
+    // promotionData = { ...promotionData, winnings: winnings }
 
     setIsLoading(false)
     dispatch({ type: 'SET_BEING_CREATED_CAMPAIGN', data: promotionData })

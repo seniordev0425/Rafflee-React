@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Row, Col, FormGroup, Input } from 'reactstrap'
 import { Button, DatePicker, Select } from 'antd'
 import ImageUploader from 'react-images-upload'
-import ImageCropModal from '../../../modals/ImageCropModal'
+import ImageCropModal from '../../../modals/ImageCropModal/CommonImageCropModal'
 import WinningItem from './WinningItem'
 import moment from 'moment'
 
@@ -73,7 +73,7 @@ function SetupSection(props) {
 
   // Add prize
   const addWinning = () => {
-    let newWinning = { name: '', number_of_people: '', description: '', image: '' }
+    let newWinning = { name: '', number_of_people: '', description: '', image: [] }
     setParams('winnings', [...params.winnings, newWinning])
   }
 
@@ -81,7 +81,13 @@ function SetupSection(props) {
   const renderWinningItems = () => {
     return (
       params.winnings.map((item, id) =>
-        <WinningItem key={id} id={id} item={item} removeWinning={removeWinning} setWinningVal={setWinningVal} />
+        <WinningItem
+          key={id}
+          id={id}
+          item={item}
+          removeWinning={removeWinning}
+          setWinningVal={setWinningVal}
+        />
       )
     )
   }

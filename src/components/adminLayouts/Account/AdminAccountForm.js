@@ -9,7 +9,7 @@ import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 import ImageUploader from 'react-images-upload'
 import debounce from 'lodash/debounce'
 
-import ImageCropModal from '../../modals/ImageCropModal'
+import ImageCropModal from '../../modals/ImageCropModal/AvatarImageCropModal'
 import UpdateEmailModal from '../../modals/UpdateEmailModal'
 
 import FormInput from '../../common/FormInput'

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Row, Col } from 'reactstrap'
 import { Button as AntdButton } from 'antd'
 import { useHistory } from "react-router-dom"
+import * as _ from 'lodash'
 
 import { imageToBase64 } from '../../../utils/others'
 import images from '../../../utils/images'
@@ -31,11 +32,13 @@ function BeingCreatedItem(props) {
 
     let winnings = []
     for (let winning of promotionData.winnings) {
-      if (winning.image) {
-        let base64data = await imageToBase64(winning.image)
-        let block = base64data.split(";")
-        let realData = block[1].split(",")[1]
-        winnings.push({ ...winning, image: realData })
+      if (!_.isEmpty(winning.image)) {
+        let images = []
+        for (let image of winning.image) {
+          let base64data = await imageToBase64(image)
+          images.push(base64data)
+        }
+        winnings.push({ ...winning, image: images })
       } else {
         winnings.push(winning)
       }

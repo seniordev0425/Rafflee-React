@@ -1,7 +1,10 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { Img } from 'react-image'
+import ImageGallery from 'react-image-gallery'
 import { Modal, ModalHeader, ModalBody } from 'reactstrap'
+
+import * as _ from 'lodash'
+
 import Loading from '../common/Loading'
 import { useTranslation } from 'react-i18next'
 
@@ -22,11 +25,14 @@ function WinningDetailModal(props) {
           <Loading />
           :
           <div>
-            {winningData.image_url &&
-              <Img
-                src={winningData.image_url}
-                width="100%"
-                style={{ objectFit: 'contain' }}
+            {!_.isEmpty(winningData.image_url) &&
+              <ImageGallery
+                items={winningData.image_url.map(url => ({
+                  original: url,
+                  thumbnail: url
+                }))}
+                showPlayButton={false}
+                showFullscreenButton={false}
               />
             }
             <div className="mt-4">

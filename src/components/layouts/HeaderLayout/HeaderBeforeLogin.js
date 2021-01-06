@@ -26,11 +26,16 @@ function HeaderBeforeLogin({ openLoginModal }) {
   }, [])
 
 
-  const showCompanyModal = () => setCompanyStatus(true)
+  const showCompanyModal = (value) => setCompanyStatus(value)
 
   const toggle = (val) => {
     setIsLogin(val)
     setModal(!modal)
+    setCompanyStatus(false)
+  }
+
+  const onClose = () => {
+    setModal(false)
     setCompanyStatus(false)
   }
 
@@ -48,7 +53,7 @@ function HeaderBeforeLogin({ openLoginModal }) {
     setVisible(true)
   }
 
-  const onClose = () => {
+  const onCloseDrawer = () => {
     setVisible(false)
   }
 
@@ -56,13 +61,6 @@ function HeaderBeforeLogin({ openLoginModal }) {
     <>
       {!isMobile ? (
         <Row className="align-items-center">
-          {window.location.pathname === '/' &&
-            <Link to="/about">
-              <span className="mr-3 font-weight-bold header-btn">
-                {t('header.about')}
-              </span>
-            </Link>
-          }
           <Link to="/deals">
             <span className="mx-3 font-weight-bold header-btn">
               {t('header.campaigns')}
@@ -85,10 +83,10 @@ function HeaderBeforeLogin({ openLoginModal }) {
             <Drawer
               placement="left"
               closable={false}
-              onClose={onClose}
+              onClose={onCloseDrawer}
               visible={visible}
             >
-              <div className="mb-2 font-size-10 font-weight-bold"><Link to="/about" style={{ color: '#767B83' }}>{t('header.about')}</Link></div>
+              {/* <div className="mb-2 font-size-10 font-weight-bold"><Link to="/about" style={{ color: '#767B83' }}>{t('header.about')}</Link></div> */}
               <div className="mb-2 font-size-10 font-weight-bold"><Link to="/deals" style={{ color: '#767B83' }}>{t('header.campaigns')}</Link></div>
               <div className="mb-2 font-size-10 color-blue font-weight-bold" style={{ color: '#767B83' }} onClick={() => toggle(false)}>{t('header.sign_in')}</div>
               <div className="mb-2 font-size-10 color-blue font-weight-bold" style={{ color: '#767B83' }} onClick={() => toggle(true)}>{t('header.log_in')}</div>
@@ -101,6 +99,7 @@ function HeaderBeforeLogin({ openLoginModal }) {
         isLogin={isLogin ? true : false}
         switch_login_signin={switch_login_signin}
         toggle={toggle}
+        onClose={onClose}
         companyStatus={companyStatus}
         showCompanyModal={showCompanyModal}
       />

@@ -1,8 +1,7 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
-import { Img } from 'react-image'
+import * as _ from 'lodash'
+import ImageGallery from 'react-image-gallery'
 import { Modal, ModalHeader, ModalBody } from 'reactstrap'
-import Loading from '../common/Loading'
 import { useTranslation } from 'react-i18next'
 
 function PreviewWinningDetailModal(props) {
@@ -16,11 +15,14 @@ function PreviewWinningDetailModal(props) {
       <ModalBody>
 
         <div>
-          {winning?.image &&
-            <Img
-              src={`data:image/png;base64,${winning.image}`}
-              width="100%"
-              style={{ objectFit: 'contain' }}
+          {!_.isEmpty(winning?.image) &&
+            <ImageGallery
+              items={winning.image.map(image => ({
+                original: image,
+                thumbnail: image
+              }))}
+              showPlayButton={false}
+              showFullscreenButton={false}
             />
           }
           <div className="mt-4">

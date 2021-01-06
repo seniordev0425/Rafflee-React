@@ -9,7 +9,7 @@ const images = {
   video_icon: require('../assets/image/video_icon.png'),
   visit_icon: require('../assets/image/visit_icon.png'),
   snapchat_icon: require('../assets/image/snapchat_icon.png'),
-  logo: require('../assets/image/logo.png'),
+  logo: require('../assets/image/logo.svg'),
   logout_icon: require('../assets/image/logout_icon.png'),
   account_icon: require('../assets/image/account_icon.png'),
   profile_img: require('../assets/image/profile_img.png'),
@@ -80,7 +80,9 @@ const images = {
   about_page_user_approach: require('../assets/image/about_page/user_approach.png'),
   about_page_client_approach: require('../assets/image/about_page/client_approach.png'),
   google_signin_button: require('../assets/image/google_signin_button.png'),
-  google_signin_icon: require('../assets/image/google_signin_icon.png')
+  google_signin_icon: require('../assets/image/google_signin_icon.png'),
+  ic_plus_gray: require('../assets/image/ic_plus_gray.png'),
+  ic_minus_gray: require('../assets/image/ic_minus_gray.png'),
 }
 
 export default images;
