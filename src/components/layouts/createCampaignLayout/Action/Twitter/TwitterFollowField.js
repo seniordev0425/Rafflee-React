@@ -39,12 +39,16 @@ function TwitterFollowField(props) {
         style={{ borderColor: '#E6ECEE', borderWidth: 1, borderStyle: 'solid', borderBottomLeftRadius: 6, borderBottomRightRadius: 6 }}
       >
         <Row>
-          <Col xs="12" sm="6" className="p-0">
+          <Col xs="12" sm="6" className="p-0 d-flex align-items-center">
             {params.twitter.follow_type === 'screen_name'
               ?
-              <TwitterFollowScreenName setAction={setAction} />
+              <React.Fragment>
+                <span className="prefix-at mr-2">@</span>
+                <TwitterFollowScreenName setAction={setAction} />
+              </React.Fragment>
+
               :
-              <div className="d-flex align-items-center">
+              <div className="d-flex align-items-center w-100">
                 <span className="prefix-at">@</span>
                 <Input
                   style={{ paddingLeft: '1.5rem' }}
@@ -56,7 +60,6 @@ function TwitterFollowField(props) {
                 />
               </div>
             }
-
           </Col>
           <Col size="12" className="p-0 justify-content-between align-items-center mt-3 mt-sm-0">
             <Row>

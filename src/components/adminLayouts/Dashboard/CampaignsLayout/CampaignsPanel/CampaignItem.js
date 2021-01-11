@@ -1,8 +1,11 @@
-import React from 'react'
+import React, {useState} from 'react'
+import * as _ from 'lodash'
 import { Row, Col } from 'reactstrap'
 import { Link } from 'react-router-dom'
 import images from '../../../../../utils/images'
 import { Button } from 'antd'
+
+import { imageToBase64 } from '../../../../../utils/others'
 
 import { useTranslation } from 'react-i18next'
 
@@ -14,6 +17,36 @@ function CampaignItem(props) {
     loading,
     onChangeSection
   } = props
+
+  const [isLoading, setIsLoading] = useState(false)
+
+  const goToCampaignPage = async () => {
+    setIsLoading(true)
+    let promotionData = item
+    if (promotionData.campaign_image) {
+      let base64data = await imageToBase64(promotionData.campaign_image)
+      promotionData = { ...promotionData, campaign_image: base64data }
+    }
+
+    let winnings = []
+    for (let winning of promotionData.winnings) {
+      if (!_.isEmpty(winning.image)) {
+        let images = []
+        for (let image of winning.image) {
+          let base64data = await imageToBase64(image)
+          images.push(base64data)
+        }
+        winnings.push({ ...winning, image: images })
+      } else {
+        winnings.push(winning)
+      }
+    }
+    promotionData = { ...promotionData, winnings: winnings }
+
+    setIsLoading(false)
+
+    onChangeSection('campaignDetailPanel', promotionData)
+  }
 
   return (
     <div style={{ opacity: loading ? 0.5 : 1 }}>
@@ -42,9 +75,10 @@ function CampaignItem(props) {
                 <Button
                   type="primary"
                   className="ant-blue-btn promotion-list-item-btn"
-                  onClick={() => onChangeSection('campaignDetailPanel', item)}
+                  loading={isLoading}
+                  onClick={goToCampaignPage}
                 >
-                  {t('button_group.see_campaign')}
+                  {!isLoading && t('button_group.see_campaign')}
                 </Button>
               </div>
             </Col>

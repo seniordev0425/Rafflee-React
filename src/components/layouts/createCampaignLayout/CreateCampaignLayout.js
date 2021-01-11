@@ -229,6 +229,11 @@ function CreateCampaignLayout() {
           comment_video_title: beingCreatedCampaign.action_participate[0].social_action[1]?.youtube_comment_video_title || '',
           comment_published_at: beingCreatedCampaign.action_participate[0].social_action[1]?.youtube_comment_published_at || '',
           comment_channel_title: beingCreatedCampaign.action_participate[0].social_action[1]?.youtube_comment_channel_title || '',
+          video: beingCreatedCampaign.action_participate[0].social_action[1].youtube_video,
+          video_id: beingCreatedCampaign.action_participate[0].social_action[1]?.youtube_video_id || '',
+          video_url_img: beingCreatedCampaign.action_participate[0].social_action[1]?.youtube_video_url_img || '',
+          video_entries: beingCreatedCampaign.action_participate[0].social_action[1]?.youtube_video_entries || '',
+          video_mandatory: beingCreatedCampaign.action_participate[0].social_action[1]?.youtube_video_mandatory || false,
         },
         twitter: {
           comment: beingCreatedCampaign.action_participate[0].social_action[3].twitter_tweet,

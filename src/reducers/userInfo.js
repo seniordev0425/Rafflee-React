@@ -36,7 +36,8 @@ const initialFeedState = {
     facebook: false,
     youtube: false,
     username: '',
-    email_verified: false
+    email_verified: false,
+    points: 0
   },
 
   phone_number_verified: false,

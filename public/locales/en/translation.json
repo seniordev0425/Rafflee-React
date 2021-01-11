@@ -109,7 +109,8 @@
     "report": "Report",
     "offers": "Offers",
     "requests": "Requests",
-    "create_offer": "Create Offer"
+    "create_offer": "Create Offer",
+    "points": "Points"
   },
   "empty_result_to_display": "There is no result to display.",
   "button_group": {
@@ -892,6 +893,7 @@
     "youtube_like": "Tooltip for youtube like",
     "youtube_follow": "Tooltip for youtube follow",
     "youtube_comment": "Tooltip for youtube comment",
-    "youtube_video": "Tooltip for youtube video"
+    "youtube_video": "Tooltip for youtube video",
+    "user_points": "Points are the accumulation of actions carried out on different campaigns, they will be used to participate in special campaigns or to obtain particular products."
   }
 }

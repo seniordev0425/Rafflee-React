@@ -1841,8 +1841,13 @@ h2 span {
 }
 .prefix-at {
   position: absolute;
-  left: 10px;
+  left: -15px;
   color: #495057;
+}
+@media(max-width: 550px) {
+  .prefix-at {
+    left: 10px;
+  }
 }
 .header-span-fixed-length {
   display: block;

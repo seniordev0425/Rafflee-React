@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Row, Col } from 'reactstrap'
-import { Menu } from 'antd'
+import { Menu, Tooltip } from 'antd'
 import AppLayout from '../components/layouts/AppLayout'
 import UserAccountForm from '../components/layouts/account/UserAccountForm'
 import CompanyAccountForm from '../components/layouts/account/CompanyAccountForm'
@@ -16,6 +16,7 @@ const UserAccount = (props) => {
   const { match } = props
 
   const company = useSelector(state => state.userInfo.company)
+  const userProfile = useSelector(state => state.userInfo.userProfile)
 
   useEffect(() => {
     document.title = "Account"
@@ -45,6 +46,15 @@ const UserAccount = (props) => {
                   <span className="ml-3"> {t('menubar.settings')}</span>
                 </Link>
               </Menu.Item>
+              {company === false &&
+                <React.Fragment>
+                  <Tooltip title={t('tooltips.user_points')}>
+                    <span className="float-right mr-3 pointer">
+                      {`${t('menubar.points')}: ${userProfile.points}`}
+                    </span>
+                  </Tooltip>
+                </React.Fragment>
+              }
             </Menu>
           </Col>
         </Row>

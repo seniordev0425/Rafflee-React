@@ -94,8 +94,8 @@ export const getTotalEntriesOfPreviewSection = (params) => {
     if (params.twitter.follow) {
       totalTemp += parseInt(params.twitter.follow_entries) || 1
     }
-    if (params.twitter.tweet) {
-      totalTemp += parseInt(params.twitter.tweet_entries) || 1
+    if (params.twitter.comment) {
+      totalTemp += parseInt(params.twitter.comment_entries) || 1
     }
     if (params.twitter.retweet) {
       totalTemp += parseInt(params.twitter.retweet_entries) || 1

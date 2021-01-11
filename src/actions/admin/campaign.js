@@ -31,6 +31,26 @@ function onSuccessGetCampaigns(data) {
   }
 }
 
+/////////////////////////////////////////////// UPDATE_CAMPAIGN_ACTION
+export function updateCampaign(params) {
+  return apiAction({
+    url: APIROUTE + "dashboard/campaign/update/",
+    method: 'POST',
+    data: params,
+    accessToken: localStorage.getItem('token'),
+    onSuccess: onSuccessUpdateCampaign,
+    onFailure: onFailed,
+    label: 'ADMIN_UPDATE_CAMPAIGN',
+    requireErrorMessage: true
+  });
+}
+function onSuccessUpdateCampaign(data) {
+  openNotification('success', successMessages[localStorage.getItem('i18nextLng')].updateCampaign)
+  return {
+    type: '',
+    data: ''
+  }
+}
 
 function apiAction({
   url = "",

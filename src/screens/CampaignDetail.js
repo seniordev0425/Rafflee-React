@@ -4,6 +4,7 @@ import { withRouter, Link } from 'react-router-dom'
 import { Row, Col, Progress } from 'reactstrap'
 import { Button, Tooltip } from 'antd'
 import moment from 'moment'
+import * as _ from 'lodash'
 import AppLayout from '../components/layouts/AppLayout'
 import CampaignHelmet from '../components/common/Helmets/CampaignHelmet'
 import images from '../utils/images'
@@ -163,10 +164,10 @@ function CampaignDetail(props) {
   }, [twitterDirectConnect, twitchDirectConnect, youtubeDirectConnect, instagramDirectConnect])
 
   useEffect(() => {
-    if (instagram_follow_validation) {
+    if (instagram_follow_validation && action && !_.isEmpty(action.social_action)) {
       window.open(`https://instagram.com/${action.social_action[2].instagram_profile_url}`, '_blank')
     }
-    if (instagram_like_validation) {
+    if (instagram_like_validation && action && !_.isEmpty(action.social_action)) {
       window.open(`https://instagram.com/p/${action.social_action[2].instagram_publication_url}`, '_blank')
     }
   }, [

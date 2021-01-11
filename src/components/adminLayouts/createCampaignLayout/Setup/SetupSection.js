@@ -72,7 +72,7 @@ function SetupSection(props) {
 
   // Add prize
   const addWinning = () => {
-    let newWinning = { name: '', number_of_people: '', description: '', image: '' }
+    let newWinning = { name: '', number_of_people: '', description: '', image: [] }
     setParams('winnings', [...params.winnings, newWinning])
   }
 

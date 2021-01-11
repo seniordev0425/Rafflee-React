@@ -22,6 +22,7 @@ import SoundcloudActionButton from './Soundcloud/SoundcloudActionButton'
 
 import FacebookActionMenu from './Facebook/FacebookActionMenu'
 import TwitterActionMenu from './Twitter/TwitterActionMenu'
+import YoutubeActionMenu from './Youtube/YoutubeActionMenu'
 import InstagramActionMenu from './Instagram/InstagramActionMenu'
 import TwitchActionMenu from './Twitch/TwitchActionMenu'
 import PollActionMenu from './Poll/PollActionMenu'
@@ -36,6 +37,10 @@ import TwitterLikeField from './Twitter/TwitterLikeField'
 import TwitterFollowField from './Twitter/TwitterFollowField'
 import TwitterMessageField from './Twitter/TwitterMessageField'
 import TwitterRetweetField from './Twitter/TwitterRetweetField'
+import YoutubeLikeField from './Youtube/YoutubeLikeField/YoutubeLikeField'
+import YoutubeFollowField from './Youtube/YoutubeFollowField/YoutubeFollowField'
+import YoutubeCommentField from './Youtube/YoutubeCommentField/YoutubeCommentField'
+import YoutubeVideoField from './Youtube/YoutubeVideoField/YoutubeVideoField'
 import InstagramProfileField from './Instagram/InstagramProfileField'
 import InstagramPublicationField from './Instagram/InstagramPublicationField'
 import TwitchFollowField from './Twitch/TwitchFollowField'
@@ -93,7 +98,7 @@ function ActionSection(props) {
               <Dropdown overlay={<TwitterActionMenu params={params} setAction={setAction} />} placement="bottomLeft">
                 <TwitterActionButton />
               </Dropdown>
-              <Dropdown overlay={menu} placement="bottomLeft" disabled>
+              <Dropdown overlay={<YoutubeActionMenu params={params} setAction={setAction} />} placement="bottomLeft">
                 <YoutubeActionButton />
               </Dropdown>
               <Dropdown overlay={<InstagramActionMenu params={params} setAction={setAction} />} placement="bottomLeft">
@@ -153,6 +158,18 @@ function ActionSection(props) {
             }
             {params.facebook.page &&
               <FacebookPageField params={params} setAction={setAction} />
+            }
+            {params.youtube.like &&
+              <YoutubeLikeField params={params} setAction={setAction} />
+            }
+            {params.youtube.follow &&
+              <YoutubeFollowField params={params} setAction={setAction} />
+            }
+            {params.youtube.comment &&
+              <YoutubeCommentField params={params} setAction={setAction} />
+            }
+            {params.youtube.video &&
+              <YoutubeVideoField params={params} setAction={setAction} />
             }
             {params.twitter.like &&
               <TwitterLikeField params={params} setAction={setAction} />
