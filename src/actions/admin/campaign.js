@@ -34,7 +34,7 @@ function onSuccessGetCampaigns(data) {
 /////////////////////////////////////////////// UPDATE_CAMPAIGN_ACTION
 export function updateCampaign(params) {
   return apiAction({
-    url: APIROUTE + "dashboard/campaign/update/",
+    url: APIROUTE + "dashboard/promotion/update/",
     method: 'POST',
     data: params,
     accessToken: localStorage.getItem('token'),

@@ -10663,6 +10663,11 @@ react-scroll@1.7.16:
     lodash.throttle "^4.1.1"
     prop-types "^15.5.8"
 
+react-select-country-list@^2.2.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/react-select-country-list/-/react-select-country-list-2.2.1.tgz#d87fd3d2f079c7d0165ec4ef7d38a2556d202d46"
+  integrity sha512-sH5/nV7J5QreB75iGSFFPjuSeHr0B1oDtSximzlZj/LXoVw47SsOv2WvzPhwYcHMwgXiLI+gvdXY9Cp0MGasjA==
+
 react-select-search@^2.0.4:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/react-select-search/-/react-select-search-2.0.4.tgz#790887830f103d223d32a2a05780e7c7405c560a"

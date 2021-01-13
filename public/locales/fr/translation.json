@@ -98,7 +98,7 @@
     "payment": "Paiement",
     "settings": "Paramètres",
     "password": "Mot de passe",
-    "deactivate": "Désactiver",
+    "deactivate": "Supprimer le compte",
     "wall": "Wall",
     "business_create": "Business Creation",
     "campaigns": "Campaigns",
@@ -161,7 +161,8 @@
     "create": "Créer",
     "back": "Retour",
     "go_to_campaigns": "Retour",
-    "open": "Ouverte"
+    "open": "Ouverte",
+    "yes": "Yes"
   },
   "homepage": {
     "hot_new_contest_everyday": "Des raffles et giveaways tous les jours.",
@@ -414,6 +415,8 @@
     "categories_placeholder": "Sélectionne des catégories",
     "campaign_starts": "Début de campagne",
     "campaign_ends": "Fin de campagne",
+    "countries": "Countries",
+    "countries_placeholder": "Please select countries",
     "winning_starts": "Date de validité des coupons",
     "winning_ends": "Date d'expiration des coupons",
     "name_of_prizes": "Nom des cadeaux",
@@ -586,7 +589,8 @@
     "confirm_new_password": "Confirme le nouveau mot de passe",
     "show_twitter": "Twitter Wall",
     "show_instagram": "Instagram Wall",
-    "show_facebook": "Facebook Wall"
+    "show_facebook": "Facebook Wall",
+    "enter_token": "Enter the token sended by email"
   },
   "about_page": {
     "join_us": "Rejoignez nous",
@@ -743,7 +747,8 @@
   "delete_account_modal": {
     "delete_account": "Désactiver le compte",
     "password": "Mot de passe",
-    "password_required": "Mot de passe obligatoire"
+    "password_required": "Mot de passe obligatoire",
+    "confirm_text": "Are you sur you want to delete your account ? All information relating to your account will be deleted and it will no longer be possible for us to recover them."
   },
   "congratulation_modal": {
     "congratulations": "Félicitations!",

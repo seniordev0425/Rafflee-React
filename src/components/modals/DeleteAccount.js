@@ -3,12 +3,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { Form as FinalForm, Field } from 'react-final-form'
-import { 
-  Form, 
-  FormGroup, 
-  Modal, 
-  ModalHeader, 
-  ModalBody 
+import {
+  Form,
+  FormGroup,
+  Modal,
+  ModalHeader,
+  ModalBody
 } from 'reactstrap'
 import { Button } from 'antd'
 import FormInput from '../common/FormInput'
@@ -21,53 +21,51 @@ import { useTranslation } from 'react-i18next'
 function DeleteAccount(props) {
   const { t } = useTranslation()
 
-  const { open, onToggle, history } = props
+  const {
+    open,
+    onToggle,
+    receivedToken,
+    history
+  } = props
 
+  const company = useSelector(state => state.userInfo.company)
+  const userProfile = useSelector(state => state.userInfo.userProfile)
+  const companyProfile = useSelector(state => state.userInfo.companyProfile)
   const isLoading = useSelector(state => state.userInfo.DELETE_ACCOUNT)
-  const DELETE_ACCOUNT_SUCCESS = useSelector(state => state.userInfo.DELETE_ACCOUNT_SUCCESS)
+  const DELETE_ACCOUNT_SUCCESS = useSelector(state => state.userInfo.SUCCESS_DELETE_ACCOUNT)
   const dispatch = useDispatch()
 
   useEffect(() => {
     if (DELETE_ACCOUNT_SUCCESS) {
       dispatch({ type: "LOG_IN_SUCCESS", data: { token: '', company: false } })
-      dispatch({ type: 'DELETE_ACCOUNT_SUCCESS', flag: false })
+      dispatch({ type: 'SUCCESS_DELETE_ACCOUNT', flag: false })
       localStorage.removeItem('token')
       localStorage.removeItem('company')
       history.push('/')
     }
   }, [DELETE_ACCOUNT_SUCCESS])
 
-  const onSubmit = (values) => {
-    dispatch(deleteAccount({ password: values.password }))
+  const onSubmit = () => {
+    dispatch(deleteAccount({ token: receivedToken, email: company ? companyProfile.email : userProfile.email }))
   }
 
   return (<Modal isOpen={open} toggle={onToggle}>
-    <ModalHeader className="modal-login-btn" style={{ borderBottom: 'none' }}>
-      <div className="modal-login-btn">{t('delete_account_modal.delete_account')}</div>
-    </ModalHeader>
+    <ModalHeader toggle={onToggle} style={{ borderBottom: 'none' }}></ModalHeader>
     <ModalBody>
       <FinalForm
         onSubmit={onSubmit}
-        render={({ handleSubmit, pristine, values }) => (
+        render={({ handleSubmit }) => (
           <Form onSubmit={handleSubmit}>
-            <FormGroup>
-              <Field
-                name="password"
-                component={FormInput}
-                className="custom-form-control"
-                type="password"
-                placeholder={t('delete_account_modal.password')}
-                validate={required(t('delete_account_modal.password_required'))}
-              />
-            </FormGroup>
-
+            <div className="color-gray font-size-12 font-weight-bold mb-4">
+              {t('delete_account_modal.confirm_text')}
+            </div>
             <Button
               htmlType="submit"
               type="danger"
               className="ant-red-btn mt-4"
               loading={isLoading}
             >
-              {!isLoading && t('button_group.delete_account')}
+              {!isLoading && t('button_group.yes')}
             </Button>
           </Form>
         )}

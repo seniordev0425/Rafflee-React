@@ -118,7 +118,7 @@ function onSuccessLogOut(data) {
 /////////////////////////////////////////////// DELETE-ACCOUNT-ACTION
 export function deleteAccount(params) {
   return apiAction({
-    url: APIROUTE + "account/profile/deactivate/",
+    url: APIROUTE + "account/delete/",
     method: 'POST',
     data: qs.stringify(params),
     accessToken: localStorage.getItem('token'),
@@ -133,6 +133,25 @@ function onSuccessDeleteAccount(data) {
   return {
     type: 'DELETE_ACCOUNT_SUCCESS',
     flag: true
+  }
+}
+/////////////////////////////////////////////// DELETE-ACCOUNT-ACTION
+export function accountDeleteEmail() {
+  return apiAction({
+    url: APIROUTE + "account/delete/email/",
+    method: 'POST',
+    accessToken: localStorage.getItem('token'),
+    onSuccess: onSuccessAccountDeleteEmail,
+    onFailure: onFailed,
+    label: 'ACCOUNT_DELETE_EMAIL',
+    requireErrorMessage: true
+  });
+}
+function onSuccessAccountDeleteEmail(data) {
+  openNotification('success', successMessages[localStorage.getItem('i18nextLng')].accountDeleteEmail)
+  return {
+    type: '',
+    flag: ''
   }
 }
 /////////////////////////////////////////////// SIGNUP-ACTION

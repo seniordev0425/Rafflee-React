@@ -41,6 +41,7 @@ function CreateCampaignLayout(props) {
     public_promotion: 'public',
     categories: [],
     temp_categories: [],
+    countries: [],
     start_date: '',
     end_date: '',
     winnings: [{ name: '', number_of_people: '', description: '', image: [] }],
@@ -176,6 +177,7 @@ function CreateCampaignLayout(props) {
         public_promotion: 'public',
         categories: selectedCampaign.categories ? selectedCampaign.categories : [],
         temp_categories: selectedCampaign.categories ? selectedCampaign.categories : [],
+        countries: selectedCampaign.countries ? selectedCampaign.countries : [],
         start_date: selectedCampaign.release_date ? moment(selectedCampaign.release_date).utc().format('YYYY-MM-DD HH:mm:ss') : null,
         end_date: selectedCampaign.end_date ? moment(selectedCampaign.end_date).utc().format('YYYY-MM-DD HH:mm:ss') : null,
         winnings: selectedCampaign.winnings ? selectedCampaign.winnings : [{ name: '', number_of_people: '', description: '', image: [] }],
@@ -287,7 +289,7 @@ function CreateCampaignLayout(props) {
           {
             question: selectedCampaign.action_participate[0].poll.question,
             response: selectedCampaign.action_participate[0].poll.responses,
-            mutiples_choices: selectedCampaign.action_participate[0].poll.multiple_choices,
+            multiples_choices: selectedCampaign.action_participate[0].poll.multiple_choices,
             entries: selectedCampaign.action_participate[0].poll.entries,
             mandatory: selectedCampaign.action_participate[0].poll.mandatory
           }
@@ -329,151 +331,6 @@ function CreateCampaignLayout(props) {
   const _setSection = (section) => {
     setCurrentSection(section)
   }
-
-  // save current campaign
-  // const onSaveCampaign = () => {
-  //   if (!params.promotion_name) {
-  //     openNotification('warning', errorMessages[localStorage.getItem('i18nextLng')].MSG_CAMPAIGN_NAME_REQUIRED)
-  //     return
-  //   }
-  //   let categories = []
-  //   params.temp_categories.forEach((item) => categories.push({ name: item }))
-
-  //   let facebook = []
-  //   if (params.facebook.post) {
-  //     facebook.push({
-  //       action: 'post',
-  //       entries: params.facebook.post_entries || 1,
-  //       mandatory: params.facebook.post_mandatory,
-  //       url: `https://www.facebook.com/${params.facebook.post_page_id}/posts/${params.facebook.post_publication_id}/`,
-  //       like: params.facebook.post_like,
-  //       comment: params.facebook.post_comment,
-  //       share: params.facebook.post_share
-  //     })
-  //   }
-  //   if (params.facebook.url) {
-  //     facebook.push({
-  //       action: 'url',
-  //       entries: params.facebook.url_entries || 1,
-  //       mandatory: params.facebook.url_mandatory,
-  //       url: params.facebook.url_url,
-  //       like: params.facebook.url_like,
-  //       share: params.facebook.url_share
-  //     })
-  //   }
-  //   if (params.facebook.page) {
-  //     facebook.push({
-  //       action: 'page',
-  //       entries: params.facebook.page_entries || 1,
-  //       mandatory: params.facebook.page_mandatory,
-  //       url: `https://www.facebook.com/${params.facebook.page_page_name}-${params.facebook.page_page_id}/`,
-  //       follow: params.facebook.page_follow,
-  //       share: params.facebook.page_share
-  //     })
-  //   }
-
-  //   // Make twitter action para
-  //   let twitter = []
-  //   if (params.twitter.comment) {
-  //     twitter.push({ action: 'tweet', model: params.twitter.comment_model, entries: params.twitter.comment_entries || 1, mandatory: params.twitter.comment_mandatory })
-  //   }
-  //   if (params.twitter.like) {
-  //     twitter.push({ action: 'like', id: params.twitter.like_id, entries: params.twitter.like_entries || 1, mandatory: params.twitter.like_mandatory })
-  //   }
-  //   if (params.twitter.retweet) {
-  //     twitter.push({ action: 'retweet', id: params.twitter.retweet_id, entries: params.twitter.retweet_entries || 1, mandatory: params.twitter.retweet_mandatory })
-  //   }
-  //   if (params.twitter.follow) {
-  //     twitter.push({ action: 'follow', type: params.twitter.follow_type, id: params.twitter.follow_id, entries: params.twitter.follow_entries || 1, mandatory: params.twitter.follow_mandatory })
-  //   }
-
-  //   // Make instagram action para
-  //   let instagram = []
-  //   if (params.instagram.profile) {
-  //     instagram.push({ action: 'instagram_profile', url: params.instagram.profile_url, entries: params.instagram.profile_entries || 1, mandatory: params.instagram.profile_mandatory })
-  //   }
-  //   if (params.instagram.publication) {
-  //     instagram.push({ action: 'instagram_publication', url: params.instagram.publication_url, entries: params.instagram.publication_entries || 1, mandatory: params.instagram.publication_mandatory })
-  //   }
-
-  //   // Make tiktok action para
-  //   let tiktok = []
-  //   if (params.tiktok.profile) {
-  //     tiktok.push({
-  //       action: 'tiktok_profile',
-  //       url: `https://www.tiktok.com/${params.tiktok.profile_url}`,
-  //       entries: params.tiktok.profile_entries || 1,
-  //       mandatory: params.tiktok.profile_mandatory
-  //     })
-  //   }
-  //   if (params.tiktok.publication) {
-  //     tiktok.push({
-  //       action: 'tiktok_publication',
-  //       url: params.tiktok.publication_url,
-  //       entries: params.tiktok.publication_entries || 1,
-  //       mandatory: params.tiktok.publication_mandatory
-  //     })
-  //   }
-
-  //   // Make twitch action para
-  //   let twitch = []
-  //   if (params.twitch.follow) {
-  //     twitch.push({ action: 'follow', follow_name: params.twitch.follow_name, entries: params.twitch.follow_entries || 1, mandatory: params.twitch.follow_mandatory })
-  //   }
-
-  //   // Make video action para
-  //   let url_video = {}
-  //   if (params.url_video.video) {
-  //     url_video = { url: params.url_video.url, url_mobile: params.url_video.url_mobile, video_name: params.url_video.video_name, entries: params.url_video.entries || 1, mandatory: params.url_video.mandatory }
-  //   }
-
-  //   // Make website action para
-  //   let url_website = {}
-  //   if (params.url_website.website) {
-  //     url_website = { url: params.url_website.url, entries: params.url_website.entries || 1, mandatory: params.url_website.mandatory }
-  //   }
-
-  //   let promotion_picture = null
-  //   if (params.promotion_picture) {
-  //     let block = params.promotion_picture.split(";")
-  //     let contentType = block[0].split(":")[1]
-  //     let realData = block[1].split(",")[1]
-  //     promotion_picture = b64toBlob(realData, contentType)
-  //   }
-
-  //   var formdata = new FormData()
-  //   formdata.append('pk', params.pk)
-  //   formdata.append('promotion_picture', promotion_picture)
-  //   formdata.append('promotion_name', params.promotion_name)
-  //   formdata.append('promotion_description', params.promotion_description)
-  //   formdata.append('promotion_long_description', params.promotion_long_description)
-  //   formdata.append('public_promotion', params.public_promotion)
-  //   formdata.append('winnings', JSON.stringify(params.winnings))
-  //   if (categories.length > 0) {
-  //     formdata.append('categories', JSON.stringify(categories))
-  //   } else {
-  //     formdata.append('categories', null)
-  //   }
-  //   formdata.append('promotion_option', JSON.stringify({ live_draw: params.live_draw, limitation_participation: params.limitation_participation }))
-  //   formdata.append('promotion_type', params.campaign_type)
-  //   formdata.append('start_date', params.start_date)
-  //   formdata.append('end_date', params.end_date)
-  //   if (params.poll === 'false') {
-  //     formdata.append('poll', null)
-  //   } else {
-  //     formdata.append('poll', JSON.stringify(params.poll))
-  //   }
-  //   formdata.append('facebook', JSON.stringify(facebook))
-  //   formdata.append('youtube', JSON.stringify([]))
-  //   formdata.append('twitter', JSON.stringify(twitter))
-  //   formdata.append('instagram', JSON.stringify(instagram))
-  //   formdata.append('tiktok', JSON.stringify(tiktok))
-  //   formdata.append('twitch', JSON.stringify(twitch))
-  //   formdata.append('url_website', JSON.stringify(url_website))
-  //   formdata.append('url_video', JSON.stringify(url_video))
-
-  //   dispatch(saveCampaign(formdata))
-  // }
 
   const renderSection = () => {
     switch (currentSection) {

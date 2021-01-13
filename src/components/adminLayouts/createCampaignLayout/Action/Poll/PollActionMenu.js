@@ -16,7 +16,7 @@ function PollActionMenu(props) {
           checked={params.poll !== 'false'}
           onChange={(e) => {
             if (e.target.checked) {
-              setParams('poll', { question: '', response: [""], mutiples_choices: false, entries: '', mandatory: false })
+              setParams('poll', { question: '', response: [""], multiples_choices: false, entries: '', mandatory: false })
             } else {
               setParams('poll', 'false')
             }

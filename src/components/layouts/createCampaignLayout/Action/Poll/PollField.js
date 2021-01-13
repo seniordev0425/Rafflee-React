@@ -101,8 +101,8 @@ function PollField(props) {
 
         <Row className="mt-3">
           <Checkbox
-            onChange={e => setAction('poll', 'mutiples_choices', e.target.checked)}
-            checked={params.poll.mutiples_choices}
+            onChange={e => setAction('poll', 'multiples_choices', e.target.checked)}
+            checked={params.poll.multiples_choices}
           >
             {t('create_campaign_page.allow_multiple_choices')}
           </Checkbox>

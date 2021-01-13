@@ -255,7 +255,7 @@ function PreviewSection(props) {
     promotion_picture = b64toBlob(realData, contentType)
 
     var formdata = new FormData()
-    formdata.append('pk', params.pk)
+    formdata.append('id', params.pk)
     formdata.append('promotion_picture', promotion_picture)
     formdata.append('promotion_name', params.promotion_name)
     formdata.append('promotion_description', params.promotion_description)
@@ -278,6 +278,7 @@ function PreviewSection(props) {
     } else {
       formdata.append('categories', null)
     }
+    formdata.append('countries', JSON.stringify({ countries: params.countries }))
     formdata.append('promotion_option', JSON.stringify({ live_draw: params.live_draw, limitation_participation: params.limitation_participation }))
     formdata.append('promotion_type', params.campaign_type)
     formdata.append('start_date', params.start_date)
@@ -586,7 +587,7 @@ function PreviewSection(props) {
                 <PreviewCustomCollapsePanelForPoll
                   title={params.poll.question}
                   text={t('campaign_detail_page.poll.text')}
-                  multiple_choice={params.poll.mutiples_choices}
+                  multiple_choice={params.poll.multiples_choices}
                   responses={params.poll.response}
                   mandatory={params.poll.mandatory}
                   entries={params.poll.entries}

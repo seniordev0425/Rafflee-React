@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Row, Col, FormGroup, Input } from 'reactstrap'
 import { Button, DatePicker, Select } from 'antd'
 import ImageUploader from 'react-images-upload'
+import countryList from 'react-select-country-list'
 import ImageCropModal from '../../../modals/ImageCropModal/CommonImageCropModal'
 import WinningItem from './WinningItem'
 import moment from 'moment'
@@ -47,6 +48,11 @@ function SetupSection(props) {
   // Update categories
   const handleCategories = (val) => {
     setParams('temp_categories', val)
+  }
+
+  // Update countries
+  const handleCountries = (val) => {
+    setParams('countries', val)
   }
 
   // Update prize
@@ -251,6 +257,20 @@ function SetupSection(props) {
         {renderWinningItems()}
         <Row>
           <Col><span className="pointer" onClick={addWinning}>{t('create_campaign_page.add_more')} <span style={{ fontSize: "1.3rem", fontWeight: "bold" }}> +</span></span></Col>
+        </Row>
+        <Row className="multi-categories-selector">
+          <Col>
+            <div className="footer-link-bold mb-3 mt-4">{t('create_campaign_page.countries')}</div>
+            <Select
+              options={countryList().getData()}
+              value={params.countries}
+              mode="multiple"
+              className="w-100"
+              placeholder={t('create_campaign_page.countries_placeholder')}
+              onChange={handleCountries}
+              size="large"
+            />
+          </Col>
         </Row>
         <Row>
           <Col className="d-flex justify-content-between">

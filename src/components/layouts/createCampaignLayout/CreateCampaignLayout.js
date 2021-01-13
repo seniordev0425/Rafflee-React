@@ -39,6 +39,7 @@ function CreateCampaignLayout() {
     promotion_long_description: '',
     public_promotion: 'public',
     categories: [],
+    countries: [],
     temp_categories: [],
     start_date: '',
     end_date: '',
@@ -175,6 +176,7 @@ function CreateCampaignLayout() {
         public_promotion: 'public',
         categories: beingCreatedCampaign.categories ? beingCreatedCampaign.categories : [],
         temp_categories: beingCreatedCampaign.categories ? beingCreatedCampaign.categories : [],
+        countries: beingCreatedCampaign.countries ? beingCreatedCampaign.countries : [],
         start_date: beingCreatedCampaign.release_date ? moment(beingCreatedCampaign.release_date).utc().format('YYYY-MM-DD HH:mm:ss') : null,
         end_date: beingCreatedCampaign.end_date ? moment(beingCreatedCampaign.end_date).utc().format('YYYY-MM-DD HH:mm:ss') : null,
         winnings: beingCreatedCampaign.winnings ? beingCreatedCampaign.winnings : [{ name: '', number_of_people: '', description: '', image: [] }],
@@ -286,7 +288,7 @@ function CreateCampaignLayout() {
           {
             question: beingCreatedCampaign.action_participate[0].poll.question,
             response: beingCreatedCampaign.action_participate[0].poll.responses,
-            mutiples_choices: beingCreatedCampaign.action_participate[0].poll.multiple_choices,
+            multiples_choices: beingCreatedCampaign.action_participate[0].poll.multiple_choices,
             entries: beingCreatedCampaign.action_participate[0].poll.entries,
             mandatory: beingCreatedCampaign.action_participate[0].poll.mandatory
           }
@@ -511,6 +513,7 @@ function CreateCampaignLayout() {
     } else {
       formdata.append('categories', null)
     }
+    formdata.append('countries', JSON.stringify({ countries: params.countries }))
     formdata.append('promotion_option', JSON.stringify({ live_draw: params.live_draw, limitation_participation: params.limitation_participation }))
     formdata.append('promotion_type', params.campaign_type)
     formdata.append('start_date', params.start_date)
