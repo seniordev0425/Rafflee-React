@@ -1,8 +1,10 @@
 import React from 'react'
 import { Row, Col, Input } from 'reactstrap'
 import { Tooltip, Checkbox } from 'antd'
-import images from '../../../../../utils/images'
+import TwitterRetweetSelector from './TwitterRetweetSelector'
 
+import moment from 'moment'
+import images from '../../../../../utils/images'
 import { useTranslation } from 'react-i18next'
 
 function TwitterRetweetField(props) {
@@ -38,13 +40,7 @@ function TwitterRetweetField(props) {
       >
         <Row>
           <Col xs="12" sm="6" className="p-0">
-            <Input
-              type="text"
-              className="custom-form-control"
-              placeholder={t('create_campaign_page.tweet_id')}
-              value={params.twitter.retweet_id}
-              onChange={(e) => setAction('twitter', 'retweet_id', e.target.value)}
-            />
+            <TwitterRetweetSelector setAction={setAction} />
           </Col>
           <Col size="12" className="p-0 justify-content-end align-items-center mt-3 mt-sm-0">
             <Row>
@@ -65,6 +61,50 @@ function TwitterRetweetField(props) {
             </Row>
           </Col>
         </Row>
+        {params.twitter.retweet_id &&
+          <div className="mt-4 d-flex">
+            <img
+              src={params.twitter.retweet_profile_img}
+              width={50}
+              height={50}
+              className="rounded-circle"
+              alt="avatar"
+            />
+            <div className="ml-4 color-gray font-size-12">
+              <div>
+                <span className="font-weight-bold">{t('create_campaign_page.name')}</span>
+                <span className="ml-3">
+                  {params.twitter.retweet_name}
+                </span>
+                {params.twitter.retweet_verified &&
+                  <img src={images.verified_icon} width={15} height={15} className="ml-2" alt="" />
+                }
+              </div>
+              <div className="mt-4">
+                <span className="font-weight-bold">{t('create_campaign_page.like')}: </span>
+                <span className="ml-2">
+                  {params.twitter.retweet_like}
+                </span>
+                <span className="font-weight-bold ml-3">{t('create_campaign_page.retweet')}: </span>
+                <span className="ml-2">
+                  {params.twitter.retweet_retweet}
+                </span>
+              </div>
+              <div className="mt-4">
+                <span className="font-weight-bold">{t('create_campaign_page.tweet')}</span>
+                <span className="ml-3">
+                  {params.twitter.retweet_text}
+                </span>
+              </div>
+              <div className="mt-4">
+                <span className="font-weight-bold">{t('create_campaign_page.created_at')}</span>
+                <span className="ml-3">
+                  {moment(params.twitter.retweet_created_at).format('YYYY-MM-DD')}
+                </span>
+              </div>
+            </div>
+          </div>
+        }
       </div>
     </div>
   )

@@ -3,14 +3,14 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Modal, ModalBody, Input } from 'reactstrap'
 import { Button } from 'antd'
 import { useTranslation } from 'react-i18next'
-import { campaignParticipateTwitterCommentValidation } from '../../../actions/campaign'
+import { campaignParticipateTwitterTweetValidation } from '../../../actions/campaign'
 
-function TwitterCommentValidationModal(props) {
+function TwitterTweetValidationModal(props) {
   const { t } = useTranslation()
   const { open, onToggle, promotion_id, closeModal } = props
 
-  const CAMPAIGN_PARTICIPATE_TWITTER_COMMENT_VALIDATION_PROCESS = useSelector(state => state.userInfo.CAMPAIGN_PARTICIPATE_TWITTER_COMMENT_VALIDATION)
-  const twitter_comment_tweet_validation = useSelector(state => state.campaign.twitter_comment_tweet_validation)
+  const CAMPAIGN_PARTICIPATE_TWITTER_TWEET_VALIDATION_PROCESS = useSelector(state => state.userInfo.CAMPAIGN_PARTICIPATE_TWITTER_TWEET_VALIDATION)
+  const twitter_tweet_validation = useSelector(state => state.campaign.twitter_tweet_validation)
 
   const tempActionData = useSelector(state => state.userInfo.tempActionData)
   const dispatch = useDispatch()
@@ -26,13 +26,13 @@ function TwitterCommentValidationModal(props) {
   }, [tempActionData])
 
   useEffect(() => {
-    if (twitter_comment_tweet_validation) {
+    if (twitter_tweet_validation) {
       closeModal()
     }
-  }, [twitter_comment_tweet_validation])
+  }, [twitter_tweet_validation])
 
   const onSubmit = () => {
-    dispatch(campaignParticipateTwitterCommentValidation({ promotion_id: promotion_id }))
+    dispatch(campaignParticipateTwitterTweetValidation({ promotion_id: promotion_id }))
   }
 
   return (
@@ -54,9 +54,9 @@ function TwitterCommentValidationModal(props) {
             type="primary"
             className="ant-blue-btn promotion-list-item-btn"
             onClick={onSubmit}
-            loading={CAMPAIGN_PARTICIPATE_TWITTER_COMMENT_VALIDATION_PROCESS}
+            loading={CAMPAIGN_PARTICIPATE_TWITTER_TWEET_VALIDATION_PROCESS}
           >
-            {!CAMPAIGN_PARTICIPATE_TWITTER_COMMENT_VALIDATION_PROCESS && t('button_group.confirm_tweet')}
+            {!CAMPAIGN_PARTICIPATE_TWITTER_TWEET_VALIDATION_PROCESS && t('button_group.confirm_tweet')}
           </Button>
         </div>
       </ModalBody>
@@ -64,4 +64,4 @@ function TwitterCommentValidationModal(props) {
   )
 }
 
-export default TwitterCommentValidationModal
+export default TwitterTweetValidationModal

@@ -1,7 +1,10 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
+import React, { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import { Row, Col, Input } from 'reactstrap'
 
+import { getCampaignRules } from '../../../../actions/campaign'
+
+import { printPreview } from '../../../../utils/pdf'
 import { useTranslation } from 'react-i18next'
 
 function ResumeSection(props) {
@@ -11,6 +14,18 @@ function ResumeSection(props) {
 
   // Following Redux state is defined in reducer with comments
   const created_promotion_id = useSelector(state => state.campaign.created_promotion_id)
+  const GET_CAMPAIGN_RULES_SUCCESS = useSelector(state => state.userInfo.SUCCESS_GET_CAMPAIGN_RULES)
+  const GET_CAMPAIGN_RULES_PROCESS = useSelector(state => state.userInfo.GET_CAMPAIGN_RULES)
+  const campaignRules = useSelector(state => state.campaign.campaignRules)
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    if (GET_CAMPAIGN_RULES_SUCCESS) {
+      dispatch({ type: 'INIT_STATE', state: 'SUCCESS_GET_CAMPAIGN_RULES', data: false })
+      printPreview(campaignRules)
+    }
+  }, [GET_CAMPAIGN_RULES_SUCCESS])
 
   return (
     <Row>
@@ -36,6 +51,12 @@ function ResumeSection(props) {
             className="custom-form-control footer-link"
             defaultValue=''
           />
+          <div
+            className="footer-link-bold mt-5 mb-3 pointer"
+            onClick={() => dispatch(getCampaignRules(created_promotion_id))}
+          >
+            {GET_CAMPAIGN_RULES_PROCESS ? t('create_campaign_page.loading') : t('create_campaign_page.rules')}
+          </div>
           <div className="footer-link-bold mt-5 mb-3">{t('create_campaign_page.add_tab_site')}</div>
           <div
             className="px-3 py-2 mb-5 d-flex align-items-center justify-content-between font-size-9 color-blue"

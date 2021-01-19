@@ -1,8 +1,10 @@
 import React from 'react'
 import { Row, Col, Input } from 'reactstrap'
 import { Tooltip, Checkbox } from 'antd'
+import TwitterLikeSelector from './TwitterLikeSelector'
 import images from '../../../../../utils/images'
 
+import moment from 'moment'
 import { useTranslation } from 'react-i18next'
 
 function TwitterLikeField(props) {
@@ -38,13 +40,7 @@ function TwitterLikeField(props) {
       >
         <Row>
           <Col xs="12" sm="6" className="p-0">
-            <Input
-              type="text"
-              className="custom-form-control"
-              placeholder={t('create_campaign_page.tweet_id')}
-              value={params.twitter.like_id}
-              onChange={(e) => setAction('twitter', 'like_id', e.target.value)}
-            />
+            <TwitterLikeSelector setAction={setAction} />
           </Col>
           <Col size="12" className="p-0 justify-content-end align-items-center mt-3 mt-sm-0">
             <Row>
@@ -65,6 +61,50 @@ function TwitterLikeField(props) {
             </Row>
           </Col>
         </Row>
+        {params.twitter.like_id &&
+          <div className="mt-4 d-flex">
+            <img
+              src={params.twitter.like_profile_img}
+              width={50}
+              height={50}
+              className="rounded-circle"
+              alt="avatar"
+            />
+            <div className="ml-4 color-gray font-size-12">
+              <div>
+                <span className="font-weight-bold">{t('create_campaign_page.name')}</span>
+                <span className="ml-3">
+                  {params.twitter.like_name}
+                </span>
+                {params.twitter.like_verified &&
+                  <img src={images.verified_icon} width={15} height={15} className="ml-2" alt="" />
+                }
+              </div>
+              <div className="mt-4">
+                <span className="font-weight-bold">{t('create_campaign_page.like')}: </span>
+                <span className="ml-2">
+                  {params.twitter.like_like}
+                </span>
+                <span className="font-weight-bold ml-3">{t('create_campaign_page.retweet')}: </span>
+                <span className="ml-2">
+                  {params.twitter.like_retweet}
+                </span>
+              </div>
+              <div className="mt-4">
+                <span className="font-weight-bold">{t('create_campaign_page.tweet')}</span>
+                <span className="ml-3">
+                  {params.twitter.like_text}
+                </span>
+              </div>
+              <div className="mt-4">
+                <span className="font-weight-bold">{t('create_campaign_page.created_at')}</span>
+                <span className="ml-3">
+                  {moment(params.twitter.like_created_at).format('YYYY-MM-DD')}
+                </span>
+              </div>
+            </div>
+          </div>
+        }
       </div>
     </div>
   )

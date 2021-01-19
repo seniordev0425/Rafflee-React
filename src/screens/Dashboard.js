@@ -72,12 +72,12 @@ function Dashboard(props) {
                     <span className="ml-3"> {t('menubar.my_campaign')}</span>
                   </Link>
                 </Menu.Item>
-                <Menu.Item key="my-bills">
+                {/* <Menu.Item key="my-bills">
                   <Link to="/dashboard/my-bills">
                     <img src={match.params.menu === 'my-bills' ? images.my_bills_blue : images.my_bills} alt="" />
                     <span className="ml-3"> {t('menubar.my_bills')}</span>
                   </Link>
-                </Menu.Item>
+                </Menu.Item> */}
                 <Menu.Item key="analytics">
                   <Link to="/dashboard/analytics">
                     <img src={match.params.menu === 'analytics' ? images.my_analytics_blue : images.my_analytics} alt="" />

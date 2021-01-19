@@ -22,6 +22,10 @@ function TwitterActionMenu(props) {
         <Checkbox checked={params.twitter.comment} onChange={(e) => setAction('twitter', 'comment', e.target.checked)} />
       </div>
       <div className="action-list-item">
+        <label>{t('create_campaign_page.tweet')}</label>
+        <Checkbox checked={params.twitter.tweet} onChange={(e) => setAction('twitter', 'tweet', e.target.checked)} />
+      </div>
+      <div className="action-list-item">
         <label>{t('create_campaign_page.retweet')}</label>
         <Checkbox checked={params.twitter.retweet} onChange={(e) => setAction('twitter', 'retweet', e.target.checked)} />
       </div>

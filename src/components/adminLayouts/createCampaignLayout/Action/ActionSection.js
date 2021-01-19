@@ -35,7 +35,8 @@ import FacebookLikeShareUrlField from './Facebook/FacebookLikeShareUrlField'
 import FacebookPageField from './Facebook/FacebookPageField'
 import TwitterLikeField from './Twitter/TwitterLikeField'
 import TwitterFollowField from './Twitter/TwitterFollowField'
-import TwitterMessageField from './Twitter/TwitterMessageField'
+import TwitterTweetField from './Twitter/TwitterTweetField'
+import TwitterCommentField from './Twitter/TwitterCommentField'
 import TwitterRetweetField from './Twitter/TwitterRetweetField'
 import YoutubeLikeField from './Youtube/YoutubeLikeField/YoutubeLikeField'
 import YoutubeFollowField from './Youtube/YoutubeFollowField/YoutubeFollowField'
@@ -177,8 +178,11 @@ function ActionSection(props) {
             {params.twitter.follow &&
               <TwitterFollowField params={params} setAction={setAction} />
             }
+            {params.twitter.tweet &&
+              <TwitterTweetField params={params} setAction={setAction} />
+            }
             {params.twitter.comment &&
-              <TwitterMessageField params={params} setAction={setAction} />
+              <TwitterCommentField params={params} setAction={setAction} />
             }
             {params.twitter.retweet &&
               <TwitterRetweetField params={params} setAction={setAction} />

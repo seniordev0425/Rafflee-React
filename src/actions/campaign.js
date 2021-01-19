@@ -484,10 +484,62 @@ function onSuccessCampaignParticipateTwitterRetweetValidation(data) {
     confirmed_participation: data.confirmed_participation
   }
 }
+/////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_TWITTER_TWEET_ACTION
+export function campaignParticipateTwitterTweet(params) {
+  return apiAction({
+    url: APIROUTE + "campaign/participate/twitter/tweet/",
+    method: 'POST',
+    data: qs.stringify(params),
+    accessToken: localStorage.getItem('token'),
+    onSuccess: onSuccessCampaignParticipateTwitterTweet,
+    onFailure: onFailed,
+    label: 'CAMPAIGN_PARTICIPATE_TWITTER_TWEET',
+    requireErrorMessage: true
+  });
+}
+function onSuccessCampaignParticipateTwitterTweet(data) {
+  if (data.msg === 'MSG_ACTION_EXIST') {
+    return {
+      type: 'SET_TEMP_ACTION_DATA',
+      data: data,
+      openModalName: 'OPEN_TWITTER_TWEET_VALIDATION_MODAL'
+    }
+  } else {
+    openNotification('success', successMessages[localStorage.getItem('i18nextLng')][data.msg])
+    return {
+      type: 'SET_ACTION_VALIDATION_STATUS',
+      data: 'twitter_tweet_validation',
+      confirmed_participation: data.confirmed_participation
+    }
+  }
+}
+/////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_TWITTER_TWEET_VALIDATION_ACTION
+export function campaignParticipateTwitterTweetValidation(params) {
+  return apiAction({
+    url: APIROUTE + "campaign/participate/twitter/tweet/validation/",
+    method: 'POST',
+    data: qs.stringify(params),
+    accessToken: localStorage.getItem('token'),
+    onSuccess: onSuccessCampaignParticipateTwitterTweetValidation,
+    onFailure: onFailed,
+    label: 'CAMPAIGN_PARTICIPATE_TWITTER_TWEET_VALIDATION',
+    requireErrorMessage: true
+  });
+}
+function onSuccessCampaignParticipateTwitterTweetValidation(data) {
+  openNotification('success', successMessages[localStorage.getItem('i18nextLng')].success)
+  return {
+    type: 'SET_ACTION_VALIDATION_STATUS',
+    data: 'twitter_tweet_validation',
+    entries: data.entries,
+    remaining_actions: data.remaining_actions,
+    confirmed_participation: data.confirmed_participation
+  }
+}
 /////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_TWITTER_COMMENT_ACTION
 export function campaignParticipateTwitterComment(params) {
   return apiAction({
-    url: APIROUTE + "campaign/participate/twitter/tweet/",
+    url: APIROUTE + "campaign/participate/twitter/tweet/comment/",
     method: 'POST',
     data: qs.stringify(params),
     accessToken: localStorage.getItem('token'),
@@ -508,7 +560,7 @@ function onSuccessCampaignParticipateTwitterComment(data) {
     openNotification('success', successMessages[localStorage.getItem('i18nextLng')][data.msg])
     return {
       type: 'SET_ACTION_VALIDATION_STATUS',
-      data: 'twitter_comment_validation',
+      data: 'twitter_comment_tweet_validation',
       confirmed_participation: data.confirmed_participation
     }
   }
@@ -516,7 +568,7 @@ function onSuccessCampaignParticipateTwitterComment(data) {
 /////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_TWITTER_COMMENT_VALIDATION_ACTION
 export function campaignParticipateTwitterCommentValidation(params) {
   return apiAction({
-    url: APIROUTE + "campaign/participate/twitter/tweet/validation/",
+    url: APIROUTE + "campaign/participate/twitter/tweet/comment/validation/",
     method: 'POST',
     data: qs.stringify(params),
     accessToken: localStorage.getItem('token'),
@@ -530,7 +582,7 @@ function onSuccessCampaignParticipateTwitterCommentValidation(data) {
   openNotification('success', successMessages[localStorage.getItem('i18nextLng')].success)
   return {
     type: 'SET_ACTION_VALIDATION_STATUS',
-    data: 'twitter_comment_validation',
+    data: 'twitter_comment_tweet_validation',
     entries: data.entries,
     remaining_actions: data.remaining_actions,
     confirmed_participation: data.confirmed_participation
@@ -956,6 +1008,24 @@ function onSuccessSaveCampaign(data) {
   openNotification('success', successMessages[localStorage.getItem('i18nextLng')].saveCampaign)
   return {
     type: '',
+  }
+}
+/////////////////////////////////////////////// GET_CAMPAIGN_RULES_ACTION
+export function getCampaignRules(id) {
+  return apiAction({
+    url: APIROUTE + `campaign/${id}/rules/`,
+    accessToken: localStorage.getItem('token'),
+    onSuccess: onSuccessGetCampaignRules,
+    onFailure: onFailed,
+    label: 'GET_CAMPAIGN_RULES',
+    requireErrorMessage: true
+
+  });
+}
+function onSuccessGetCampaignRules(data) {
+  return {
+    type: 'SET_CAMPAIGN_RULES',
+    data: data.result_data
   }
 }
 

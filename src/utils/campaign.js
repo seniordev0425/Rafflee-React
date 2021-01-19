@@ -42,6 +42,9 @@ export const getTotalEntries = (campaignData) => {
   if (campaignData.action_participate[0]?.social_action[3].twitter_retweet) {
     totalTemp += campaignData.action_participate[0].social_action[3].twitter_retweet_entries
   }
+  if (campaignData.action_participate[0]?.social_action[3].twitter_comment_tweet) {
+    totalTemp += campaignData.action_participate[0].social_action[3].twitter_comment_tweet_entries
+  }
 
   if (campaignData.action_participate[0]?.social_action[4].twitch_follow) {
     totalTemp += campaignData.action_participate[0].social_action[4].twitch_follow_entries
@@ -99,6 +102,9 @@ export const getTotalEntriesOfPreviewSection = (params) => {
     }
     if (params.twitter.retweet) {
       totalTemp += parseInt(params.twitter.retweet_entries) || 1
+    }
+    if (params.twitter.tweet) {
+      totalTemp += parseInt(params.twitter.tweet_entries) || 1
     }
 
     if (params.youtube.like) {

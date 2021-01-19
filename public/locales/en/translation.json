@@ -250,6 +250,10 @@
       "title": "Twitter Tweet",
       "text": "Tweet the text to validate the action and increase your chances of winning the giveaway!"
     },
+    "twitter_comment": {
+      "title": "Twitter Comment",
+      "text": "Tweet the text to validate the action and increase your chances of winning the giveaway!"
+    },
     "twitter_retweet": {
       "title": "Twitter Retweet",
       "text": "Retweet the tweet to validate the action and increase your chances of winning the giveaway!"
@@ -432,6 +436,7 @@
     "like": "LIKE",
     "follow": "FOLLOW",
     "retweet": "RETWEET",
+    "tweet": "TWEET",
     "comment": "COMMENT",
     "share": "SHARE",
     "post": "POST",
@@ -471,7 +476,8 @@
     "options": "Options",
     "like_tweet": "Like",
     "follow_tweet": "Follow",
-    "comment_tweet": "Tweet",
+    "comment_tweet": "Comment",
+    "tweet_tweet": "Tweet",
     "retweet_tweet": "Retweet",
     "mandatory": "Mandatory",
     "tweet_id": "Tweet ID",
@@ -518,7 +524,10 @@
     "published_at": "Published at",
     "channel_title": "Channel Title",
     "comment_model":"Enter Comment Model",
-    "twitter_follow_id": "Follow ID:"
+    "twitter_follow_id": "Follow ID:",
+    "rules": "Rules",
+    "loading": "Loading...",
+    "created_at": "Created At"
   },
   "business_create_page": {
     "entity_name": "Entity name",

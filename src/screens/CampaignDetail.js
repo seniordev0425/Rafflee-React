@@ -16,6 +16,7 @@ import VideoPlayerModal from '../components/modals/VideoPlayerModal'
 import ParticipateConfirmModal from '../components/modals/ParticipateConfirmModal'
 import TwitterLikeValidationModal from '../components/modals/ActionValidationModals/TwitterLikeValidationModal'
 import TwitterRetweetValidationModal from '../components/modals/ActionValidationModals/TwitterRetweetValidationModal'
+import TwitterTweetValidationModal from '../components/modals/ActionValidationModals/TwitterTweetValidationModal'
 import TwitterCommentValidationModal from '../components/modals/ActionValidationModals/TwitterCommentValidationModal'
 import TwitterFollowValidationModal from '../components/modals/ActionValidationModals/TwitterFollowValidationModal'
 import TwitchFollowValidationModal from '../components/modals/ActionValidationModals/TwitchFollowValidationModal'
@@ -37,6 +38,7 @@ import {
   campaignParticipateTwitterLike,
   campaignParticipateTwitterRetweet,
   campaignParticipateTwitterComment,
+  campaignParticipateTwitterTweet,
   campaignParticipateTwitterFollow,
   campaignParticipateTwitchFollow,
   campaignParticipateVideo,
@@ -48,11 +50,13 @@ import {
   campaignParticipateTiktokPublication,
   campaignParticipateFacebookPage,
   campaignParticipateFacebookPost,
-  campaignParticipateFacebookUrl
+  campaignParticipateFacebookUrl,
+  getCampaignRules
 } from '../actions/campaign'
 
 import { twitterConnectStep1, youtubeConnectStep1 } from '../actions/userInfo'
 
+import { printPreview } from '../utils/pdf'
 import { getTotalEntries } from '../utils/campaign'
 import {
   TWITCH_OAUTH_TOKEN_URL_FOR_COMPANY,
@@ -79,11 +83,15 @@ function CampaignDetail(props) {
   const GET_CAMPAIGN_DATA_PROCESS = useSelector(state => state.userInfo.GET_CAMPAIGN_DATA)
   const CAMPAIGN_PARTICIPATE_PROCESS = useSelector(state => state.userInfo.CAMPAIGN_PARTICIPATE)
   const CAMPAIGN_PARTICIPATE_SUCCESS = useSelector(state => state.userInfo.SUCCESS_CAMPAIGN_PARTICIPATE)
+  const GET_CAMPAIGN_RULES_SUCCESS = useSelector(state => state.userInfo.SUCCESS_GET_CAMPAIGN_RULES)
+  const GET_CAMPAIGN_RULES_PROCESS = useSelector(state => state.userInfo.GET_CAMPAIGN_RULES)
+  const campaignRules = useSelector(state => state.campaign.campaignRules)
 
   const OPEN_TWITTER_LIKE_VALIDATION_MODAL = useSelector(state => state.userInfo.OPEN_TWITTER_LIKE_VALIDATION_MODAL)
   const OPEN_TWITTER_RETWEET_VALIDATION_MODAL = useSelector(state => state.userInfo.OPEN_TWITTER_RETWEET_VALIDATION_MODAL)
   const OPEN_TWITTER_COMMENT_VALIDATION_MODAL = useSelector(state => state.userInfo.OPEN_TWITTER_COMMENT_VALIDATION_MODAL)
   const OPEN_TWITTER_FOLLOW_VALIDATION_MODAL = useSelector(state => state.userInfo.OPEN_TWITTER_FOLLOW_VALIDATION_MODAL)
+  const OPEN_TWITTER_TWEET_VALIDATION_MODAL = useSelector(state => state.userInfo.OPEN_TWITTER_TWEET_VALIDATION_MODAL)
   const OPEN_TWITCH_FOLLOW_VALIDATION_MODAL = useSelector(state => state.userInfo.OPEN_TWITCH_FOLLOW_VALIDATION_MODAL)
   const OPEN_YOUTUBE_LIKE_VALIDATION_MODAL = useSelector(state => state.userInfo.OPEN_YOUTUBE_LIKE_VALIDATION_MODAL)
   const OPEN_YOUTUBE_COMMENT_VALIDATION_MODAL = useSelector(state => state.userInfo.OPEN_YOUTUBE_COMMENT_VALIDATION_MODAL)
@@ -108,6 +116,7 @@ function CampaignDetail(props) {
   const [openTwitterLikeModal, setOpenTwitterLikeModal] = useState(false)
   const [openTwitterRetweetModal, setOpenTwitterRetweetModal] = useState(false)
   const [openTwitterCommentModal, setOpenTwitterCommentModal] = useState(false)
+  const [openTwitterTweetModal, setOpenTwitterTweetModal] = useState(false)
   const [openTwitterFollowModal, setOpenTwitterFollowModal] = useState(false)
   const [openTwitchFollowModal, setOpenTwitchFollowModal] = useState(false)
   const [openYoutubeLikeModal, setOpenYoutubeLikeModal] = useState(false)
@@ -199,6 +208,13 @@ function CampaignDetail(props) {
   }, [confirmed_participation])
 
   useEffect(() => {
+    if (GET_CAMPAIGN_RULES_SUCCESS) {
+      dispatch({ type: 'INIT_STATE', state: 'SUCCESS_GET_CAMPAIGN_RULES', data: false })
+      printPreview(campaignRules)
+    }
+  }, [GET_CAMPAIGN_RULES_SUCCESS])
+
+  useEffect(() => {
     // Open social actions validation modal after click on social actions button
     if (OPEN_TWITTER_LIKE_VALIDATION_MODAL) {
       dispatch({ type: 'INIT_STATE', state: 'OPEN_TWITTER_LIKE_VALIDATION_MODAL', data: false })
@@ -211,6 +227,10 @@ function CampaignDetail(props) {
     if (OPEN_TWITTER_COMMENT_VALIDATION_MODAL) {
       dispatch({ type: 'INIT_STATE', state: 'OPEN_TWITTER_COMMENT_VALIDATION_MODAL', data: false })
       setOpenTwitterCommentModal(true)
+    }
+    if (OPEN_TWITTER_TWEET_VALIDATION_MODAL) {
+      dispatch({ type: 'INIT_STATE', state: 'OPEN_TWITTER_TWEET_VALIDATION_MODAL', data: false })
+      setOpenTwitterTweetModal(true)
     }
     if (OPEN_TWITTER_FOLLOW_VALIDATION_MODAL) {
       dispatch({ type: 'INIT_STATE', state: 'OPEN_TWITTER_FOLLOW_VALIDATION_MODAL', data: false })
@@ -236,6 +256,7 @@ function CampaignDetail(props) {
     OPEN_TWITTER_LIKE_VALIDATION_MODAL,
     OPEN_TWITTER_RETWEET_VALIDATION_MODAL,
     OPEN_TWITTER_COMMENT_VALIDATION_MODAL,
+    OPEN_TWITTER_TWEET_VALIDATION_MODAL,
     OPEN_TWITTER_FOLLOW_VALIDATION_MODAL,
     OPEN_TWITCH_FOLLOW_VALIDATION_MODAL,
     OPEN_YOUTUBE_LIKE_VALIDATION_MODAL,
@@ -293,8 +314,11 @@ function CampaignDetail(props) {
     else if (socialName === 'twitter' && actionType === 'retweet') {
       dispatch(campaignParticipateTwitterRetweet({ promotion_id: campaignData.pk }))
     }
-    else if (socialName === 'twitter' && actionType === 'comment') {
+    else if (socialName === 'twitter' && actionType === 'comment_tweet') {
       dispatch(campaignParticipateTwitterComment({ promotion_id: campaignData.pk }))
+    }
+    else if (socialName === 'twitter' && actionType === 'tweet') {
+      dispatch(campaignParticipateTwitterTweet({ promotion_id: campaignData.pk }))
     }
     else if (socialName === 'twitter' && actionType === 'follow') {
       dispatch(campaignParticipateTwitterFollow({ promotion_id: campaignData.pk }))
@@ -433,6 +457,14 @@ function CampaignDetail(props) {
                 <div className="color-blue font-size-14 font-weight-bold">{t('campaign_detail_page.the_prize')}</div>
                 <div className="mt-3 color-gray font-size-11">{t('campaign_detail_page.prize_description')}</div>
                 {renderWinnings()}
+                <div className="mt-3 color-blue font-size-11">
+                  <span
+                    className="pointer"
+                    onClick={() => dispatch(getCampaignRules(campaignData.pk))}
+                  >
+                    {GET_CAMPAIGN_RULES_PROCESS ? t('create_campaign_page.loading') : t('create_campaign_page.rules')}
+                  </span>
+                </div>
               </div>
             </Col>
           </Row>
@@ -653,7 +685,7 @@ function CampaignDetail(props) {
                   title={t('campaign_detail_page.twitter_tweet.title')}
                   text={t('campaign_detail_page.twitter_tweet.text')}
                   socialName="twitter"
-                  actionType="comment"
+                  actionType="tweet"
                   mandatory={action.social_action[3].twitter_tweet_mandatory}
                   entries={action.social_action[3].twitter_tweet_entries}
                   didAction={(campaignData.user_actions || {}).twitter_tweet}
@@ -673,6 +705,22 @@ function CampaignDetail(props) {
                   mandatory={action.social_action[3].twitter_retweet_mandatory}
                   entries={action.social_action[3].twitter_retweet_entries}
                   didAction={(campaignData.user_actions || {}).twitter_retweet}
+                  tryToOpenValidationModal={tryToOpenValidationModal}
+                />
+              </Col>
+            </Row>
+          }
+          {(action.social_action?.[3].twitter_comment_tweet) &&
+            <Row className="mb-4 mt-4">
+              <Col style={{ paddingLeft: 40 }}>
+                <CustomCollapsePanel
+                  title={t('campaign_detail_page.twitter_comment.title')}
+                  text={t('campaign_detail_page.twitter_comment.text')}
+                  socialName="twitter"
+                  actionType="comment_tweet"
+                  mandatory={action.social_action[3].twitter_comment_tweet_mandatory}
+                  entries={action.social_action[3].twitter_comment_tweet_entries}
+                  didAction={(campaignData.user_actions || {}).twitter_comment_tweet}
                   tryToOpenValidationModal={tryToOpenValidationModal}
                 />
               </Col>
@@ -827,6 +875,12 @@ function CampaignDetail(props) {
         open={openTwitterRetweetModal}
         onToggle={() => setOpenTwitterRetweetModal(!openTwitterRetweetModal)}
         closeModal={() => setOpenTwitterRetweetModal(false)}
+        promotion_id={campaignData.pk}
+      />
+      <TwitterTweetValidationModal
+        open={openTwitterTweetModal}
+        onToggle={() => setOpenTwitterTweetModal(!openTwitterTweetModal)}
+        closeModal={() => setOpenTwitterTweetModal(false)}
         promotion_id={campaignData.pk}
       />
       <TwitterCommentValidationModal

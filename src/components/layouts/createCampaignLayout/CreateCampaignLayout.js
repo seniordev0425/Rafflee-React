@@ -72,23 +72,52 @@ function CreateCampaignLayout() {
       page_share: false
     },
     twitter: {
-      comment: false,
-      comment_model: '',
-      comment_entries: '',
-      comment_mandatory: false,
+      tweet: false,
+      tweet_model: '',
+      tweet_entries: '',
+      tweet_mandatory: false,
       like: false,
       like_id: '',
       like_entries: '',
       like_mandatory: false,
+      like_text: '',
+      like_like: '',
+      like_retweet: '',
+      like_created_at: '',
+      like_name: '',
+      like_verified: false,
+      like_profile_img: '',
       retweet: false,
       retweet_id: '',
       retweet_entries: '',
       retweet_mandatory: false,
+      retweet_text: '',
+      retweet_like: '',
+      retweet_retweet: '',
+      retweet_created_at: '',
+      retweet_name: '',
+      retweet_verified: false,
+      retweet_profile_img: '',
       follow: false,
       follow_type: 'screen_name',
       follow_id: '',
       follow_entries: '',
-      follow_mandatory: false
+      follow_mandatory: false,
+      follow_profile_image_url: '',
+      follow_followers_count: '',
+      follow_screen_name: '',
+      follow_verified: false,
+      comment: false,
+      comment_model: '',
+      comment_entries: '',
+      comment_mandatory: false,
+      comment_text: '',
+      comment_like: '',
+      comment_retweet: '',
+      comment_created_at: '',
+      comment_name: '',
+      comment_verified: false,
+      comment_profile_img: ''
     },
     youtube: {
       like: false,
@@ -238,23 +267,52 @@ function CreateCampaignLayout() {
           video_mandatory: beingCreatedCampaign.action_participate[0].social_action[1]?.youtube_video_mandatory || false,
         },
         twitter: {
-          comment: beingCreatedCampaign.action_participate[0].social_action[3].twitter_tweet,
-          comment_model: beingCreatedCampaign.action_participate[0].social_action[3]?.twitter_tweet_model || '',
-          comment_entries: beingCreatedCampaign.action_participate[0].social_action[3]?.twitter_tweet_entries || '',
-          comment_mandatory: beingCreatedCampaign.action_participate[0].social_action[3]?.twitter_tweet_mandatory || false,
+          tweet: beingCreatedCampaign.action_participate[0].social_action[3].twitter_tweet,
+          tweet_model: beingCreatedCampaign.action_participate[0].social_action[3]?.twitter_tweet_model || '',
+          tweet_entries: beingCreatedCampaign.action_participate[0].social_action[3]?.twitter_tweet_entries || '',
+          tweet_mandatory: beingCreatedCampaign.action_participate[0].social_action[3]?.twitter_tweet_mandatory || false,
+          comment: beingCreatedCampaign.action_participate[0].social_action[3].twitter_comment_tweet,
+          comment_model: beingCreatedCampaign.action_participate[0].social_action[3]?.twitter_comment_tweet_model || '',
+          comment_entries: beingCreatedCampaign.action_participate[0].social_action[3]?.twitter_comment_tweet_entries || '',
+          comment_mandatory: beingCreatedCampaign.action_participate[0].social_action[3]?.twitter_comment_tweet_mandatory || false,
+          comment_text: beingCreatedCampaign.action_participate[0].social_action[3]?.twitter_comment_tweet_text || '',
+          comment_like: beingCreatedCampaign.action_participate[0].social_action[3]?.twitter_comment_tweet_like || '',
+          comment_retweet: beingCreatedCampaign.action_participate[0].social_action[3]?.twitter_comment_tweet_retweet || '',
+          comment_created_at: beingCreatedCampaign.action_participate[0].social_action[3]?.twitter_comment_tweet_created_at || '',
+          comment_name: beingCreatedCampaign.action_participate[0].social_action[3]?.twitter_comment_tweet_name || '',
+          comment_verified: beingCreatedCampaign.action_participate[0].social_action[3]?.twitter_comment_tweet_verified || false,
+          comment_profile_img: beingCreatedCampaign.action_participate[0].social_action[3]?.twitter_comment_tweet_profile_img || '',
           like: beingCreatedCampaign.action_participate[0].social_action[3].twitter_like,
           like_id: beingCreatedCampaign.action_participate[0].social_action[3]?.twitter_like_id || '',
           like_entries: beingCreatedCampaign.action_participate[0].social_action[3]?.twitter_like_entries || '',
           like_mandatory: beingCreatedCampaign.action_participate[0].social_action[3]?.twitter_like_mandatory || false,
+          like_text: beingCreatedCampaign.action_participate[0].social_action[3]?.twitter_like_text || '',
+          like_like: beingCreatedCampaign.action_participate[0].social_action[3]?.twitter_like_like || '',
+          like_retweet: beingCreatedCampaign.action_participate[0].social_action[3]?.twitter_like_retweet || '',
+          like_created_at: beingCreatedCampaign.action_participate[0].social_action[3]?.twitter_like_created_at || '',
+          like_name: beingCreatedCampaign.action_participate[0].social_action[3]?.twitter_like_name || '',
+          like_verified: beingCreatedCampaign.action_participate[0].social_action[3]?.twitter_like_verified || false,
+          like_profile_img: beingCreatedCampaign.action_participate[0].social_action[3]?.twitter_like_profile_img || '',
           retweet: beingCreatedCampaign.action_participate[0].social_action[3].twitter_retweet,
           retweet_id: beingCreatedCampaign.action_participate[0].social_action[3]?.twitter_retweet_id || '',
           retweet_entries: beingCreatedCampaign.action_participate[0].social_action[3]?.twitter_retweet_entries || '',
           retweet_mandatory: beingCreatedCampaign.action_participate[0].social_action[3]?.twitter_retweet_mandatory || false,
+          retweet_text: beingCreatedCampaign.action_participate[0].social_action[3]?.twitter_retweet_text || '',
+          retweet_like: beingCreatedCampaign.action_participate[0].social_action[3]?.twitter_retweet_like || '',
+          retweet_retweet: beingCreatedCampaign.action_participate[0].social_action[3]?.twitter_retweet_retweet || '',
+          retweet_created_at: beingCreatedCampaign.action_participate[0].social_action[3]?.twitter_retweet_created_at || '',
+          retweet_name: beingCreatedCampaign.action_participate[0].social_action[3]?.twitter_retweet_name || '',
+          retweet_verified: beingCreatedCampaign.action_participate[0].social_action[3]?.twitter_retweet_verified || false,
+          retweet_profile_img: beingCreatedCampaign.action_participate[0].social_action[3]?.twitter_retweet_profile_img || '',
           follow: beingCreatedCampaign.action_participate[0].social_action[3].twitter_follow,
           follow_type: beingCreatedCampaign.action_participate[0].social_action[3]?.twitter_follow_type || 'screen_name',
           follow_id: beingCreatedCampaign.action_participate[0].social_action[3]?.twitter_follow_id || '',
           follow_entries: beingCreatedCampaign.action_participate[0].social_action[3]?.twitter_follow_entries || '',
           follow_mandatory: beingCreatedCampaign.action_participate[0].social_action[3]?.twitter_follow_mandatory || false,
+          follow_profile_image_url: beingCreatedCampaign.action_participate[0].social_action[3]?.twitter_follow_profile_img || '',
+          follow_followers_count: beingCreatedCampaign.action_participate[0].social_action[3]?.twitter_follow_followers_count || '',
+          follow_screen_name: beingCreatedCampaign.action_participate[0].social_action[3]?.twitter_follow_screen_name || '',
+          follow_verified: beingCreatedCampaign.action_participate[0].social_action[3]?.twitter_follow_verified || false,
         },
         instagram: {
           publication: beingCreatedCampaign.action_participate[0].social_action[2].instagram_publication,
@@ -376,16 +434,70 @@ function CreateCampaignLayout() {
     // Make twitter action para
     let twitter = []
     if (params.twitter.comment) {
-      twitter.push({ action: 'tweet', model: params.twitter.comment_model, entries: params.twitter.comment_entries || 1, mandatory: params.twitter.comment_mandatory })
+      twitter.push({
+        action: 'comment',
+        model: params.twitter.comment_model,
+        entries: params.twitter.comment_entries || 1,
+        mandatory: params.twitter.comment_mandatory,
+        text: params.twitter.comment_text,
+        like: params.twitter.comment_like,
+        retweet: params.twitter.comment_retweet,
+        created_at: params.twitter.comment_created_at,
+        name: params.twitter.comment_name,
+        verified: params.twitter.comment_verified,
+        profile_img: params.twitter.comment_profile_img
+      })
     }
     if (params.twitter.like) {
-      twitter.push({ action: 'like', id: params.twitter.like_id, entries: params.twitter.like_entries || 1, mandatory: params.twitter.like_mandatory })
+      twitter.push({
+        action: 'like',
+        id: params.twitter.like_id,
+        entries: params.twitter.like_entries || 1,
+        mandatory: params.twitter.like_mandatory,
+        text: params.twitter.like_text,
+        like: params.twitter.like_like,
+        retweet: params.twitter.like_retweet,
+        created_at: params.twitter.like_created_at,
+        name: params.twitter.like_name,
+        verified: params.twitter.like_verified,
+        profile_img: params.twitter.like_profile_img
+      })
     }
     if (params.twitter.retweet) {
-      twitter.push({ action: 'retweet', id: params.twitter.retweet_id, entries: params.twitter.retweet_entries || 1, mandatory: params.twitter.retweet_mandatory })
+      twitter.push({
+        action: 'retweet',
+        id: params.twitter.retweet_id,
+        entries: params.twitter.retweet_entries || 1,
+        mandatory: params.twitter.retweet_mandatory,
+        text: params.twitter.retweet_text,
+        like: params.twitter.retweet_like,
+        retweet: params.twitter.retweet_retweet,
+        created_at: params.twitter.retweet_created_at,
+        name: params.twitter.retweet_name,
+        verified: params.twitter.retweet_verified,
+        profile_img: params.twitter.retweet_profile_img
+      })
     }
     if (params.twitter.follow) {
-      twitter.push({ action: 'follow', type: params.twitter.follow_type, id: params.twitter.follow_id, entries: params.twitter.follow_entries || 1, mandatory: params.twitter.follow_mandatory })
+      twitter.push({
+        action: 'follow',
+        type: 'screen_name',
+        id: params.twitter.follow_id,
+        entries: params.twitter.follow_entries || 1,
+        mandatory: params.twitter.follow_mandatory,
+        profile_img_url: params.twitter.follow_profile_image_url,
+        followers_count: params.twitter.follow_followers_count,
+        screen_name: params.twitter.follow_screen_name,
+        verified: params.twitter.follow_verified,
+      })
+    }
+    if (params.twitter.tweet) {
+      twitter.push({
+        action: 'tweet',
+        model: params.twitter.tweet_model,
+        entries: params.twitter.tweet_entries || 1,
+        mandatory: params.twitter.tweet_mandatory
+      })
     }
 
     // Make youtube action para

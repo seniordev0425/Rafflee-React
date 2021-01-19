@@ -46,7 +46,8 @@ const initialFeedState = {
   beingCreatedCampaigns: [],
   beingCreatedCampaign: null,
 
-  confirmed_participation: false
+  confirmed_participation: false,
+  campaignRules: '' //pdf base64 data
 }
 
 function Campaign(state = initialFeedState, action) {
@@ -111,7 +112,7 @@ function Campaign(state = initialFeedState, action) {
     case 'UPDATE_PARTICIPATION_VALIDATED':
       return {
         ...state,
-        campaignData: {...state.campaignData, participation_validated: true}
+        campaignData: { ...state.campaignData, participation_validated: true }
       }
     case 'SET_BEING_CREATED_CAMPAIGNS':
       return {
@@ -127,6 +128,11 @@ function Campaign(state = initialFeedState, action) {
       return {
         ...state,
         beingCreatedCampaigns: state.beingCreatedCampaigns.filter(campaign => campaign.pk !== action.data)
+      }
+    case 'SET_CAMPAIGN_RULES':
+      return {
+        ...state,
+        campaignRules: action.data
       }
     default:
       return state

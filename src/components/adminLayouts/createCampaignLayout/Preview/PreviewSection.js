@@ -162,16 +162,70 @@ function PreviewSection(props) {
     // Make twitter action para
     let twitter = []
     if (params.twitter.comment) {
-      twitter.push({ action: 'tweet', model: params.twitter.comment_model, entries: params.twitter.comment_entries || 1, mandatory: params.twitter.comment_mandatory })
+      twitter.push({
+        action: 'comment',
+        model: params.twitter.comment_model,
+        entries: params.twitter.comment_entries || 1,
+        mandatory: params.twitter.comment_mandatory,
+        text: params.twitter.comment_text,
+        like: params.twitter.comment_like,
+        retweet: params.twitter.comment_retweet,
+        created_at: params.twitter.comment_created_at,
+        name: params.twitter.comment_name,
+        verified: params.twitter.comment_verified,
+        profile_img: params.twitter.comment_profile_img
+      })
     }
     if (params.twitter.like) {
-      twitter.push({ action: 'like', id: params.twitter.like_id, entries: params.twitter.like_entries || 1, mandatory: params.twitter.like_mandatory })
+      twitter.push({
+        action: 'like',
+        id: params.twitter.like_id,
+        entries: params.twitter.like_entries || 1,
+        mandatory: params.twitter.like_mandatory,
+        text: params.twitter.like_text,
+        like: params.twitter.like_like,
+        retweet: params.twitter.like_retweet,
+        created_at: params.twitter.like_created_at,
+        name: params.twitter.like_name,
+        verified: params.twitter.like_verified,
+        profile_img: params.twitter.like_profile_img
+      })
     }
     if (params.twitter.retweet) {
-      twitter.push({ action: 'retweet', id: params.twitter.retweet_id, entries: params.twitter.retweet_entries || 1, mandatory: params.twitter.retweet_mandatory })
+      twitter.push({
+        action: 'retweet',
+        id: params.twitter.retweet_id,
+        entries: params.twitter.retweet_entries || 1,
+        mandatory: params.twitter.retweet_mandatory,
+        text: params.twitter.retweet_text,
+        like: params.twitter.retweet_like,
+        retweet: params.twitter.retweet_retweet,
+        created_at: params.twitter.retweet_created_at,
+        name: params.twitter.retweet_name,
+        verified: params.twitter.retweet_verified,
+        profile_img: params.twitter.retweet_profile_img
+      })
     }
     if (params.twitter.follow) {
-      twitter.push({ action: 'follow', type: params.twitter.follow_type, id: params.twitter.follow_id, entries: params.twitter.follow_entries || 1, mandatory: params.twitter.follow_mandatory })
+      twitter.push({
+        action: 'follow',
+        type: 'screen_name',
+        id: params.twitter.follow_id,
+        entries: params.twitter.follow_entries || 1,
+        mandatory: params.twitter.follow_mandatory,
+        profile_img_url: params.twitter.follow_profile_image_url,
+        followers_count: params.twitter.follow_followers_count,
+        screen_name: params.twitter.follow_screen_name,
+        verified: params.twitter.follow_verified,
+      })
+    }
+    if (params.twitter.tweet) {
+      twitter.push({
+        action: 'tweet',
+        model: params.twitter.tweet_model,
+        entries: params.twitter.tweet_entries || 1,
+        mandatory: params.twitter.tweet_mandatory
+      })
     }
 
     // Make instagram action para

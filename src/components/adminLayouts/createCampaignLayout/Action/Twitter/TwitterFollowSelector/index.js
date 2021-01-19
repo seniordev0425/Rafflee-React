@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { Select, Spin } from 'antd'
 import debounce from 'lodash/debounce'
-import { openNotification } from '../../../../../utils/notification'
-import images from '../../../../../utils/images'
-import { APIROUTE } from '../../../../../utils/constants'
+import { openNotification } from '../../../../../../utils/notification'
+import images from '../../../../../../utils/images'
+import { APIROUTE } from '../../../../../../utils/constants'
 
 import { useTranslation } from 'react-i18next'
 
@@ -39,6 +39,7 @@ function TwitterFollowScreenName(props) {
       .then(response => response.json())
       .then(result => {
         if (result.status === 200) {
+          console.log('search:', result.search)
           const data = result.search.map((user, index) => ({
             id: index,
             profile_image_url: user.profile_image_url,
@@ -58,10 +59,14 @@ function TwitterFollowScreenName(props) {
   }
 
   const handleChange = value => {
-    setData([])
     setValue(value)
     setFetching(false)
-    setAction('twitter', 'follow_id', value.length > 0 ? value[0].value : '')
+    setAction('twitter', 'follow_id', value.length > 0 ? 'id' : '')
+    setAction('twitter', 'follow_profile_image_url', value.length > 0 ? data[value[0].value].profile_image_url : '')
+    setAction('twitter', 'follow_followers_count', value.length > 0 ? data[value[0].value].followers_count : '')
+    setAction('twitter', 'follow_screen_name', value.length > 0 ? data[value[0].value].screen_name : '')
+    setAction('twitter', 'follow_verified', value.length > 0 ? data[value[0].value].verified : false)
+    setData([])
   }
 
   return (
@@ -79,7 +84,7 @@ function TwitterFollowScreenName(props) {
       size='large'
     >
       {data.map(d => (
-        <Option key={d.id} value={d.screen_name}>
+        <Option key={d.id} value={d.id}>
           <img src={d.profile_image_url} width={25} height={25} className="rounded-circle" alt="" />
           <span className="ml-2 font-weight-bold">{d.screen_name}</span>
           {d.verified &&

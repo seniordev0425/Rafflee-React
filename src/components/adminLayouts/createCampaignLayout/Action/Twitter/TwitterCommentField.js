@@ -1,11 +1,13 @@
 import React from 'react'
 import { Row, Col, Input } from 'reactstrap'
 import { Tooltip, Checkbox } from 'antd'
-import TwitterFollowSelector from './TwitterFollowSelector'
+import TwitterCommentSelector from './TwitterCommentSelector'
 import images from '../../../../../utils/images'
+
+import moment from 'moment'
 import { useTranslation } from 'react-i18next'
 
-function TwitterFollowField(props) {
+function TwitterCommentField(props) {
   const { t } = useTranslation()
 
   const { params, setAction } = props
@@ -18,15 +20,15 @@ function TwitterFollowField(props) {
       >
         <div>
           <img src={images.twitter_action_icon} width={18} height={16} alt="" />
-          <span className="ml-3">{t('create_campaign_page.follow_tweet')}</span>
+          <span className="ml-3">{t('create_campaign_page.comment_tweet')}</span>
         </div>
         <div>
-          <Tooltip title={t('tooltips.twitter_follow')}>
+          <Tooltip title={t('tooltips.twitter_like')}>
             <img src={images.question_mark_white_icon} width={22} alt="" />
           </Tooltip>
           <span
             className="ml-3 pointer"
-            onClick={() => setAction('twitter', 'follow', false)}
+            onClick={() => setAction('twitter', 'comment', false)}
           >
             {t('button_group.remove')}
           </span>
@@ -37,16 +39,15 @@ function TwitterFollowField(props) {
         style={{ borderColor: '#E6ECEE', borderWidth: 1, borderStyle: 'solid', borderBottomLeftRadius: 6, borderBottomRightRadius: 6 }}
       >
         <Row>
-          <Col xs="12" sm="6" className="p-0 d-flex align-items-center">
-            <span className="prefix-at mr-2">@</span>
-            <TwitterFollowSelector setAction={setAction} />
+          <Col xs="12" sm="6" className="p-0">
+            <TwitterCommentSelector setAction={setAction} />
           </Col>
           <Col size="12" className="p-0 justify-content-end align-items-center mt-3 mt-sm-0">
             <Row>
               <Col xs="12" sm="6" className="p-0">
                 <Input
-                  value={params.twitter.follow_entries}
-                  onChange={(e) => setAction('twitter', 'follow_entries', e.target.value)}
+                  value={params.twitter.comment_entries}
+                  onChange={(e) => setAction('twitter', 'comment_entries', e.target.value)}
                   className="custom-form-control ml-0 ml-sm-4 w-100"
                   type="number"
                   placeholder={t('create_campaign_page.entries')}
@@ -54,16 +55,16 @@ function TwitterFollowField(props) {
                 />
               </Col>
               <Col xs="12" sm="6" className="p-0 d-flex align-items-center justify-content-end mt-3 mt-sm-0">
-                <Checkbox checked={params.twitter.follow_mandatory} onChange={(e) => setAction('twitter', 'follow_mandatory', e.target.checked)} />
+                <Checkbox checked={params.twitter.comment_mandatory} onChange={(e) => setAction('twitter', 'comment_mandatory', e.target.checked)} />
                 <span className="ml-3 footer-link">{t('create_campaign_page.mandatory')}</span>
               </Col>
             </Row>
           </Col>
         </Row>
-        {params.twitter.follow_profile_image_url &&
+        {params.twitter.comment_profile_img &&
           <div className="mt-4 d-flex">
             <img
-              src={params.twitter.follow_profile_image_url}
+              src={params.twitter.comment_profile_img}
               width={50}
               height={50}
               className="rounded-circle"
@@ -71,19 +72,44 @@ function TwitterFollowField(props) {
             />
             <div className="ml-4 color-gray font-size-12">
               <div>
-                <span className="font-weight-bold">{t('twitter_follow_modal.screen_name')}</span>
+                <span className="font-weight-bold">{t('create_campaign_page.name')}</span>
                 <span className="ml-3">
-                  {params.twitter.follow_screen_name}
+                  {params.twitter.comment_name}
                 </span>
-                {params.twitter.follow_verified &&
+                {params.twitter.comment_verified &&
                   <img src={images.verified_icon} width={15} height={15} className="ml-2" alt="" />
                 }
               </div>
               <div className="mt-4">
-                <span className="font-weight-bold">{t('my_circle_page.followers')}: </span>
+                <span className="font-weight-bold">{t('create_campaign_page.like')}: </span>
                 <span className="ml-2">
-                  {`${params.twitter.follow_followers_count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")}`}
+                  {params.twitter.comment_like}
                 </span>
+                <span className="font-weight-bold ml-3">{t('create_campaign_page.retweet')}: </span>
+                <span className="ml-2">
+                  {params.twitter.comment_retweet}
+                </span>
+              </div>
+              <div className="mt-4">
+                <span className="font-weight-bold">{t('create_campaign_page.tweet')}</span>
+                <span className="ml-3">
+                  {params.twitter.comment_text}
+                </span>
+              </div>
+              <div className="mt-4">
+                <span className="font-weight-bold">{t('create_campaign_page.created_at')}</span>
+                <span className="ml-3">
+                  {moment(params.twitter.comment_created_at).format('YYYY-MM-DD')}
+                </span>
+              </div>
+              <div className="mt-4">
+                <Input
+                  type="text"
+                  className="custom-form-control"
+                  placeholder={t('create_campaign_page.comment_model')}
+                  value={params.twitter.comment_model}
+                  onChange={(e) => setAction('twitter', 'comment_model', e.target.value)}
+                />
               </div>
             </div>
           </div>
@@ -93,4 +119,4 @@ function TwitterFollowField(props) {
   )
 }
 
-export default TwitterFollowField
+export default TwitterCommentField
