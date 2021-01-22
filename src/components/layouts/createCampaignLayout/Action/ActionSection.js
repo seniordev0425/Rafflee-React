@@ -95,22 +95,22 @@ function ActionSection(props) {
               <span className="ml-3 font-size-12" style={{ color: 'red', verticalAlign: 'sub' }}>*</span>
             </div>
             <div className="mt-3 d-flex flex-wrap font-size-9 color-white">
-              <Dropdown overlay={<FacebookActionMenu params={params} setAction={setAction} />} placement="bottomLeft">
+              <Dropdown overlay={<FacebookActionMenu params={params} setParams={setParams} />} placement="bottomLeft">
                 <FacebookActionButton />
               </Dropdown>
-              <Dropdown overlay={<TwitterActionMenu params={params} setAction={setAction} />} placement="bottomLeft">
+              <Dropdown overlay={<TwitterActionMenu params={params} setParams={setParams} />} placement="bottomLeft">
                 <TwitterActionButton />
               </Dropdown>
-              <Dropdown overlay={<YoutubeActionMenu params={params} setAction={setAction} />} placement="bottomLeft">
+              <Dropdown overlay={<YoutubeActionMenu params={params} setParams={setParams} />} placement="bottomLeft">
                 <YoutubeActionButton />
               </Dropdown>
-              <Dropdown overlay={<InstagramActionMenu params={params} setAction={setAction} />} placement="bottomLeft">
+              <Dropdown overlay={<InstagramActionMenu params={params} setParams={setParams} />} placement="bottomLeft">
                 <InstagramActionButton />
               </Dropdown>
-              <Dropdown overlay={<TwitchActionMenu params={params} setAction={setAction} />} placement="bottomLeft">
+              <Dropdown overlay={<TwitchActionMenu params={params} setParams={setParams} />} placement="bottomLeft">
                 <TwitchActionButton />
               </Dropdown>
-              <Dropdown overlay={<TiktokActionMenu params={params} setAction={setAction} />} placement="bottomLeft">
+              <Dropdown overlay={<TiktokActionMenu params={params} setParams={setParams} />} placement="bottomLeft">
                 <TiktokActionButton />
               </Dropdown>
               <Dropdown overlay={menu} placement="bottomLeft" disabled>
@@ -134,13 +134,10 @@ function ActionSection(props) {
               <Dropdown overlay={<PollActionMenu params={params} setParams={setParams} />} placement="bottomLeft">
                 <PollActionButton />
               </Dropdown>
-              <Dropdown overlay={<VideoActionMenu params={params} setAction={setAction} />} placement="bottomLeft">
-                <VideoActionButton />
-              </Dropdown>
               <Dropdown overlay={menu} placement="bottomLeft" disabled>
                 <SteamActionButton />
               </Dropdown>
-              <Dropdown overlay={<WebsiteActionMenu params={params} setAction={setAction} />} placement="bottomLeft">
+              <Dropdown overlay={<WebsiteActionMenu params={params} setParams={setParams} />} placement="bottomLeft">
                 <WebsiteActionButton />
               </Dropdown>
               <Dropdown overlay={menu} placement="bottomLeft" disabled>
@@ -153,66 +150,195 @@ function ActionSection(props) {
       <Row>
         <Col sm={{ size: "10", offset: "1" }} xs="12" className="padding-x font-size-9 color-white">
           <div className="mx-3">
-            {params.facebook.post &&
-              <FacebookPostField params={params} setAction={setAction} />
-            }
-            {params.facebook.url &&
-              <FacebookLikeShareUrlField params={params} setAction={setAction} />
-            }
-            {params.facebook.page &&
-              <FacebookPageField params={params} setAction={setAction} />
-            }
-            {params.twitter.like &&
-              <TwitterLikeField params={params} setAction={setAction} />
-            }
-            {params.twitter.follow &&
-              <TwitterFollowField params={params} setAction={setAction} />
-            }
-            {params.twitter.tweet &&
-              <TwitterTweetField params={params} setAction={setAction} />
-            }
-            {params.twitter.comment &&
-              <TwitterCommentField params={params} setAction={setAction} />
-            }
-            {params.twitter.retweet &&
-              <TwitterRetweetField params={params} setAction={setAction} />
-            }
-            {params.youtube.like &&
-              <YoutubeLikeField params={params} setAction={setAction} />
-            }
-            {params.youtube.follow &&
-              <YoutubeFollowField params={params} setAction={setAction} />
-            }
-            {params.youtube.comment &&
-              <YoutubeCommentField params={params} setAction={setAction} />
-            }
-            {params.youtube.video &&
-              <YoutubeVideoField params={params} setAction={setAction} />
-            }
-            {params.instagram.profile &&
-              <InstagramProfileField params={params} setAction={setAction} />
-            }
-            {params.instagram.publication &&
-              <InstagramPublicationField params={params} setAction={setAction} />
-            }
-            {params.twitch.follow &&
-              <TwitchFollowField params={params} setAction={setAction} />
-            }
-            {params.tiktok.profile &&
-              <TiktokProfileField params={params} setAction={setAction} />
-            }
-            {params.tiktok.publication &&
-              <TiktokPublicationField params={params} setAction={setAction} />
-            }
-            {params.poll !== 'false' &&
-              <PollField params={params} setParams={setParams} setAction={setAction} />
-            }
-            {params.url_video.video &&
-              <VideoField params={params} setAction={setAction} />
-            }
-            {params.url_website.website &&
-              <WebsiteField params={params} setAction={setAction} />
-            }
+            {params.facebook.map((action, id) => {
+              if (action.type === 'post') {
+                return <FacebookPostField
+                  key={id}
+                  action={action}
+                  setAction={setAction}
+                  params={params}
+                  setParams={setParams}
+                />
+              }
+              if (action.type === 'url') {
+                return <FacebookLikeShareUrlField
+                  key={id}
+                  action={action}
+                  setAction={setAction}
+                  params={params}
+                  setParams={setParams}
+                />
+              }
+              if (action.type === 'page') {
+                return <FacebookPageField
+                  key={id}
+                  action={action}
+                  setAction={setAction}
+                  params={params}
+                  setParams={setParams}
+                />
+              }
+            })}
+
+            {params.twitter.map((action, id) => {
+              if (action.type === 'like') {
+                return <TwitterLikeField
+                  key={id}
+                  action={action}
+                  setAction={setAction}
+                  params={params}
+                  setParams={setParams}
+                />
+              }
+              if (action.type === 'follow') {
+                return <TwitterFollowField
+                  key={id}
+                  action={action}
+                  setAction={setAction}
+                  params={params}
+                  setParams={setParams}
+                />
+              }
+              if (action.type === 'comment') {
+                return <TwitterCommentField
+                  key={id}
+                  action={action}
+                  setAction={setAction}
+                  params={params}
+                  setParams={setParams}
+                />
+              }
+              if (action.type === 'tweet') {
+                return <TwitterTweetField
+                  key={id}
+                  action={action}
+                  setAction={setAction}
+                  params={params}
+                  setParams={setParams}
+                />
+              }
+              if (action.type === 'retweet') {
+                return <TwitterRetweetField
+                  key={id}
+                  action={action}
+                  setAction={setAction}
+                  params={params}
+                  setParams={setParams}
+                />
+              }
+            })}
+
+            {params.youtube.map((action, id) => {
+              if (action.type === 'like') {
+                return <YoutubeLikeField
+                  key={id}
+                  action={action}
+                  setAction={setAction}
+                  params={params}
+                  setParams={setParams}
+                />
+              }
+              if (action.type === 'follow') {
+                return <YoutubeFollowField
+                  key={id}
+                  action={action}
+                  setAction={setAction}
+                  params={params}
+                  setParams={setParams}
+                />
+              }
+              if (action.type === 'comment') {
+                return <YoutubeCommentField
+                  key={id}
+                  action={action}
+                  setAction={setAction}
+                  params={params}
+                  setParams={setParams}
+                />
+              }
+              if (action.type === 'video') {
+                return <YoutubeVideoField
+                  key={id}
+                  action={action}
+                  setAction={setAction}
+                  params={params}
+                  setParams={setParams}
+                />
+              }
+            })}
+
+            {params.instagram.map((action, id) => {
+              if (action.type === 'like') {
+                return <InstagramPublicationField
+                  key={id}
+                  action={action}
+                  setAction={setAction}
+                  params={params}
+                  setParams={setParams}
+                />
+              }
+              if (action.type === 'follow') {
+                return <InstagramProfileField
+                  key={id}
+                  action={action}
+                  setAction={setAction}
+                  params={params}
+                  setParams={setParams}
+                />
+              }
+            })}
+
+            {params.twitch.map((action, id) => {
+              return <TwitchFollowField
+                key={id}
+                action={action}
+                setAction={setAction}
+                params={params}
+                setParams={setParams}
+              />
+            })}
+
+            {params.tiktok.map((action, id) => {
+              if (action.type === 'like') {
+                return <TiktokPublicationField
+                  key={id}
+                  action={action}
+                  setAction={setAction}
+                  params={params}
+                  setParams={setParams}
+                />
+              }
+              if (action.type === 'follow') {
+                return <TiktokProfileField
+                  key={id}
+                  action={action}
+                  setAction={setAction}
+                  params={params}
+                  setParams={setParams}
+                />
+              }
+            })}
+
+            {params.poll.map((action, id) => {
+              return <PollField
+                key={id}
+                action={action}
+                setAction={setAction}
+                params={params}
+                setParams={setParams}
+              />
+            })}
+
+            {params.url_website.map((action, id) => {
+              return <WebsiteField
+                key={id}
+                action={action}
+                setAction={setAction}
+                params={params}
+                setParams={setParams}
+              />
+            })}
+
             <div className="d-flex justify-content-between">
               <Button
                 type="primary"

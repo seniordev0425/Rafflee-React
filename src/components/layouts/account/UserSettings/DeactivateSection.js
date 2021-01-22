@@ -37,14 +37,16 @@ function DeactivateSection() {
         onSubmit={onSubmit}
         render={({ handleSubmit }) => (
           <Form onSubmit={handleSubmit}>
-            <Button
-              htmlType="submit"
-              type="danger"
-              className="ant-red-btn mt-4"
-              loading={ACCOUNT_DELETE_EMAIL_PROCESS}
-            >
-              {!ACCOUNT_DELETE_EMAIL_PROCESS && t('button_group.delete_account')}
-            </Button>
+            {!ACCOUNT_DELETE_EMAIL_SUCCESS &&
+              <Button
+                htmlType="submit"
+                type="danger"
+                className="ant-red-btn mt-4"
+                loading={ACCOUNT_DELETE_EMAIL_PROCESS}
+              >
+                {!ACCOUNT_DELETE_EMAIL_PROCESS && t('button_group.delete_account')}
+              </Button>
+            }
           </Form>
         )}
       />
@@ -53,7 +55,7 @@ function DeactivateSection() {
           onSubmit={onValidate}
           render={({ handleSubmit }) => (
             <Form onSubmit={handleSubmit}>
-              <div className="color-gray font-size-12 font-weight-bold my-4">
+              <div className="color-gray font-size-12 font-weight-bold my-4 text-center">
                 {t('user_settings_page.enter_token')}
               </div>
               <Field

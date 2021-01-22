@@ -13,7 +13,7 @@ const { Option } = Select
 function YoutubeVideoSelect(props) {
   const { t } = useTranslation()
 
-  const { setAction } = props
+  const { action, setAction } = props
 
   const [videos, setVideos] = useState([])
   const [value, setValue] = useState([])
@@ -71,12 +71,14 @@ function YoutubeVideoSelect(props) {
         comment_channel_title: commentData.channelTitle
       }
     }
-    setAction('youtube', 'comment_id', commentData.comment_id)
-    setAction('youtube', 'comment_url_img', commentData.comment_url_img)
-    setAction('youtube', 'comment_video_title', commentData.comment_video_title)
-    setAction('youtube', 'comment_published_at', commentData.comment_published_at)
-    setAction('youtube', 'comment_channel_title', commentData.comment_channel_title)
-
+    setAction('youtube', action.id, {
+      ...action,
+      comment_id: commentData.comment_id,
+      comment_url_img: commentData.comment_url_img,
+      comment_video_title: commentData.comment_video_title,
+      comment_published_at: commentData.comment_published_at,
+      comment_channel_title: commentData.comment_channel_title
+    })
   }
 
   return (

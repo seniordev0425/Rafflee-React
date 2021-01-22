@@ -11,7 +11,12 @@ const { Option } = Select
 function FacebookPageField(props) {
   const { t } = useTranslation()
 
-  const { params, setAction } = props
+  const {
+    action,
+    setAction,
+    params,
+    setParams
+  } = props
 
   // Following Redux states are defined in reducer with comments
   const facebookPages = useSelector(state => state.social.facebookPages)
@@ -19,9 +24,9 @@ function FacebookPageField(props) {
   useEffect(() => {
     // Set default facebook page
     if (facebookPages.length) {
-      if (params.facebook.page_page_id === '') {
-        setAction('facebook', 'page_page_id', facebookPages[0].id)
-        setAction('facebook', 'page_page_name', facebookPages[0].name)
+      if (action.page_page_id === '') {
+        setAction('facebook', action.id, { ...action, page_page_id: facebookPages[0].id })
+        setAction('facebook', action.id, { ...action, page_page_name: facebookPages[0].name })
       }
     }
   }, [facebookPages])
@@ -30,8 +35,8 @@ function FacebookPageField(props) {
   const updatePage = (id) => {
     facebookPages.forEach((page) => {
       if (page.id === id) {
-        setAction('facebook', 'page_page_id', id)
-        setAction('facebook', 'page_page_name', page.name)
+        setAction('facebook', action.id, { ...action, page_page_id: id })
+        setAction('facebook', action.id, { ...action, page_page_name: page.name })
       }
     })
   }
@@ -52,7 +57,7 @@ function FacebookPageField(props) {
           </Tooltip>
           <span
             className="ml-3 pointer"
-            onClick={() => setAction('facebook', 'page', false)}
+            onClick={() => setParams('facebook', params.facebook.filter(item => item.id !== action.id))}
           >
             {t('button_group.remove')}
           </span>
@@ -65,7 +70,7 @@ function FacebookPageField(props) {
         <Row>
           <Col xs="12" sm="6" className="p-0 pr-sm-2">
             <Select
-              value={params.facebook.page_page_id}
+              value={action.page_page_id}
               className="w-100"
               placeholder={t('create_campaign_page.select_page')}
               onChange={(id) => updatePage(id)}
@@ -82,14 +87,14 @@ function FacebookPageField(props) {
         <Row className="mt-3">
           <div>
             <Checkbox
-              checked={params.facebook.page_follow}
-              onChange={(e) => setAction('facebook', 'page_follow', e.target.checked)}
+              checked={action.page_follow}
+              onChange={(e) => setAction('facebook', action.id, { ...action, page_follow: e.target.checked })}
             >
               {t('create_campaign_page.follow')}
             </Checkbox>
             <Checkbox
-              checked={params.facebook.page_share}
-              onChange={(e) => setAction('facebook', 'page_share', e.target.checked)}
+              checked={action.page_share}
+              onChange={(e) => setAction('facebook', action.id, { ...action, page_share: e.target.checked })}
             >
               {t('create_campaign_page.share')}
             </Checkbox>
@@ -98,8 +103,8 @@ function FacebookPageField(props) {
         <Row className="mt-5">
           <Col xs="12" sm="6" className="p-0 pr-sm-2">
             <Input
-              value={params.facebook.page_entries}
-              onChange={(e) => setAction('facebook', 'page_entries', e.target.value)}
+              value={action.page_entries}
+              onChange={(e) => setAction('facebook', action.id, { ...action, page_entries: e.target.value })}
               className="custom-form-control w-100"
               type="number"
               placeholder={t('create_campaign_page.entries')}
@@ -107,7 +112,7 @@ function FacebookPageField(props) {
             />
           </Col>
           <Col xs="12" sm="6" className="p-0 d-flex align-items-center justify-content-end mt-3 mt-sm-0">
-            <Checkbox checked={params.facebook.page_mandatory} onChange={(e) => setAction('facebook', 'page_mandatory', e.target.checked)} />
+            <Checkbox checked={action.page_mandatory} onChange={(e) => setAction('facebook', action.id, { ...action, page_mandatory: e.target.checked })} />
             <span className="ml-3 footer-link">{t('create_campaign_page.mandatory')}</span>
           </Col>
         </Row>

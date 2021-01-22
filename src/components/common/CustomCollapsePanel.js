@@ -21,6 +21,7 @@ function CustomCollapsePanel(props) {
   const { t } = useTranslation()
 
   const {
+    pk,                           // campaign action id
     title,                        // campaign action title (string)
     text,                         // campaign action description (string)
     socialName,                   // campaign action name (facebook, twitter, etc.)
@@ -40,13 +41,13 @@ function CustomCollapsePanel(props) {
   const company = useSelector(state => state.userInfo.company)
 
   // action validation result. Redux state (boolean)
-  const validation = useSelector(state => state.campaign[`${socialName}_${actionType}_validation`])
+  const validation = useSelector(state => state.campaign[`${socialName}_${actionType}_validation_${pk}`])
   const dispatch = useDispatch()
 
   const youtubePlayer = useRef(null)
 
   useEffect(() => {
-    dispatch({ type: 'CAMPAIGN_INIT_STATE', state: `${socialName}_${actionType}_validation`, data: false })
+    dispatch({ type: 'CAMPAIGN_INIT_STATE', state: `${socialName}_${actionType}_validation_${pk}`, data: false })
 
     window.addEventListener('blur', () => handleYoutubePlaying(false))
     window.addEventListener('focus', () => handleYoutubePlaying(true))
@@ -165,7 +166,7 @@ function CustomCollapsePanel(props) {
                   style={{ width: 100 }}
                   type="primary"
                   className="ant-blue-btn"
-                  onClick={() => tryToOpenValidationModal(socialName, actionType)}
+                  onClick={() => tryToOpenValidationModal(props)}
                 >
                   {(didAction || validation) ? t('button_group.validated') : t('button_group.validate')}
                 </Button>
@@ -177,7 +178,7 @@ function CustomCollapsePanel(props) {
                       videoId={youtubeVideoId}
                       opts={{ width: '100%', playerVars: { autoplay: 1 } }}
                       onReady={event => { youtubePlayer.current = event.target }}
-                      onEnd={onYoutubeVideoEnded}
+                      onEnd={() => onYoutubeVideoEnded(pk)}
                     />
                   </div>
                 </div>

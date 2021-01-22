@@ -9,7 +9,12 @@ import { useTranslation } from 'react-i18next'
 function YoutubeFollowField(props) {
   const { t } = useTranslation()
 
-  const { params, setAction } = props
+  const {
+    action,
+    setAction,
+    params,
+    setParams
+  } = props
 
   return (
     <div className="mt-3 mt-sm-5">
@@ -27,7 +32,7 @@ function YoutubeFollowField(props) {
           </Tooltip>
           <span
             className="ml-3 pointer"
-            onClick={() => setAction('youtube', 'follow', false)}
+            onClick={() => setParams('youtube', params.youtube.filter(item => item.id !== action.id))}
           >
             {t('button_group.remove')}
           </span>
@@ -46,7 +51,7 @@ function YoutubeFollowField(props) {
         <Row>
           <Col xs="12" sm="6" className="p-0 d-flex align-items-center">
             <span className="prefix-at mr-2">@</span>
-            <YoutubeUserSelect setAction={setAction} />
+            <YoutubeUserSelect action={action} setAction={setAction} />
           </Col>
           <Col size="12" className="p-0 justify-content-between align-items-center mt-3 mt-sm-0">
             <Row>
@@ -54,8 +59,8 @@ function YoutubeFollowField(props) {
                 <Row>
                   <Col className="p-0 px-sm-4">
                     <Input
-                      value={params.youtube.follow_entries}
-                      onChange={(e) => setAction('youtube', 'follow_entries', e.target.value)}
+                      value={action.follow_entries}
+                      onChange={(e) => setAction('youtube', action.id, { ...action, follow_entries: e.target.value })}
                       className="custom-form-control"
                       type="number"
                       placeholder={t('create_campaign_page.entries')}
@@ -66,18 +71,18 @@ function YoutubeFollowField(props) {
               </Col>
               <Col xs="12" sm="4" className="p-0 d-flex align-items-center justify-content-end mt-3 mt-sm-0">
                 <Checkbox
-                  checked={params.youtube.follow_mandatory}
-                  onChange={(e) => setAction('youtube', 'follow_mandatory', e.target.checked)}
+                  checked={action.follow_mandatory}
+                  onChange={(e) => setAction('youtube', action.id, { ...action, follow_mandatory: e.target.checked })}
                 />
                 <span className="ml-3 footer-link">{t('create_campaign_page.mandatory')}</span>
               </Col>
             </Row>
           </Col>
         </Row>
-        {params.youtube.follow_url_img &&
+        {action.follow_url_img &&
           <div className="mt-4 d-flex">
             <img
-              src={params.youtube.follow_url_img}
+              src={action.follow_url_img}
               width={50}
               height={50}
               className="rounded-circle"
@@ -87,7 +92,7 @@ function YoutubeFollowField(props) {
               <div>
                 <span className="font-weight-bold">{t('create_campaign_page.channel_title')}</span>
                 <span className="ml-3">
-                  {params.youtube.follow_channel_title}
+                  {action.follow_channel_title}
                 </span>
               </div>
             </div>

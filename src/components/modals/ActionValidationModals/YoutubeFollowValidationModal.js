@@ -7,7 +7,7 @@ import { campaignParticipateYoutubeFollowValidation } from '../../../actions/cam
 
 function YoutubeFollowValidationModal(props) {
   const { t } = useTranslation()
-  const { open, onToggle, promotion_id, closeModal } = props
+  const { pk, open, onToggle, promotion_id, closeModal } = props
 
   const CAMPAIGN_PARTICIPATE_YOUTUBE_FOLLOW_VALIDATION_PROCESS = useSelector(state => state.userInfo.CAMPAIGN_PARTICIPATE_YOUTUBE_FOLLOW_VALIDATION)
   const youtube_follow_validation = useSelector(state => state.campaign.youtube_follow_validation)
@@ -30,7 +30,7 @@ function YoutubeFollowValidationModal(props) {
   }, [youtube_follow_validation])
 
   const onSubmit = () => {
-    dispatch(campaignParticipateYoutubeFollowValidation({ promotion_id: promotion_id }))
+    dispatch(campaignParticipateYoutubeFollowValidation({ promotion_id: promotion_id }, pk))
   }
 
   return (

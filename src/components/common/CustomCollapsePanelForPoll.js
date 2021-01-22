@@ -16,6 +16,7 @@ function CustomCollapsePanelForPoll(props) {
   const { t } = useTranslation()
 
   const {
+    pk,
     title,
     text,
     multiple_choice,
@@ -56,7 +57,7 @@ function CustomCollapsePanelForPoll(props) {
       openNotification('warning', t('campaign_detail_page.select_answer'))
       return
     }
-    participatePoll(answers)
+    participatePoll(answers, pk)
   }
 
   return (

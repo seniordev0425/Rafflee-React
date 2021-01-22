@@ -7,7 +7,7 @@ import { campaignParticipateTwitchFollowValidation } from '../../../actions/camp
 
 function TwitchFollowValidationModal(props) {
   const { t } = useTranslation()
-  const { open, onToggle, promotion_id, closeModal } = props
+  const { pk, open, onToggle, promotion_id, closeModal } = props
 
   const CAMPAIGN_PARTICIPATE_TWITCH_FOLLOW_VALIDATION_PROCESS = useSelector(state => state.userInfo.CAMPAIGN_PARTICIPATE_TWITCH_FOLLOW_VALIDATION)
   const twitch_follow_validation = useSelector(state => state.campaign.twitch_follow_validation)
@@ -30,7 +30,7 @@ function TwitchFollowValidationModal(props) {
   }, [twitch_follow_validation])
 
   const onSubmit = () => {
-    dispatch(campaignParticipateTwitchFollowValidation({ promotion_id: promotion_id }))
+    dispatch(campaignParticipateTwitchFollowValidation({ promotion_id: promotion_id }, pk))
   }
 
   return (

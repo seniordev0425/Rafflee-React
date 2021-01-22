@@ -599,7 +599,7 @@
     "show_twitter": "Twitter Wall",
     "show_instagram": "Instagram Wall",
     "show_facebook": "Facebook Wall",
-    "enter_token": "Enter the token sended by email"
+    "enter_token": "Entrez le token reçu par email"
   },
   "about_page": {
     "join_us": "Rejoignez nous",
@@ -757,7 +757,7 @@
     "delete_account": "Désactiver le compte",
     "password": "Mot de passe",
     "password_required": "Mot de passe obligatoire",
-    "confirm_text": "Are you sur you want to delete your account ? All information relating to your account will be deleted and it will no longer be possible for us to recover them."
+    "confirm_text": "Êtes-vous sûr de vouloir supprimer votre compte? Toutes les informations relatives à votre compte seront supprimées et il ne nous sera plus possible de les récupérer."
   },
   "congratulation_modal": {
     "congratulations": "Félicitations!",

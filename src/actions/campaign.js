@@ -21,7 +21,7 @@ function onFailed(error) {
   else if (error === 'MSG_ERROR_USER_NOT_CONNECTED_TO_INSTAGRAM') {
     return { type: 'INSTAGRAM_DIRECT_CONNECT', data: true }
   }
-  
+
   return {
     type: 'API_FAILED',
     error: error
@@ -202,19 +202,19 @@ function onSuccessCreateCampaign(data) {
   }
 }
 /////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_YOUTUBE_LIKE_ACTION
-export function campaignParticipateYoutubeLike(params) {
+export function campaignParticipateYoutubeLike(params, pk) {
   return apiAction({
-    url: APIROUTE + "campaign/participate/youtube/like/",
+    url: APIROUTE + `campaign/participate/youtube/like/${pk}/`,
     method: 'POST',
     data: qs.stringify(params),
     accessToken: localStorage.getItem('token'),
-    onSuccess: onSuccessCampaignParticipateYoutubeLike,
+    onSuccess: (data) => onSuccessCampaignParticipateYoutubeLike(data, pk),
     onFailure: onFailed,
     label: 'CAMPAIGN_PARTICIPATE_YOUTUBE_LIKE',
     requireErrorMessage: true
   });
 }
-function onSuccessCampaignParticipateYoutubeLike(data) {
+function onSuccessCampaignParticipateYoutubeLike(data, pk) {
   if (data.msg === 'MSG_ACTION_EXIST') {
     return {
       type: 'SET_TEMP_ACTION_DATA',
@@ -225,48 +225,48 @@ function onSuccessCampaignParticipateYoutubeLike(data) {
     openNotification('success', successMessages[localStorage.getItem('i18nextLng')][data.msg])
     return {
       type: 'SET_ACTION_VALIDATION_STATUS',
-      data: 'youtube_like_validation',
+      data: `youtube_like_validation_${pk}`,
       confirmed_participation: data.confirmed_participation
     }
   }
 }
 /////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_YOUTUBE_LIKE_VALIDATION_ACTION
-export function campaignParticipateYoutubeLikeValidation(params) {
+export function campaignParticipateYoutubeLikeValidation(params, pk) {
   return apiAction({
-    url: APIROUTE + "campaign/participate/youtube/like/validation/",
+    url: APIROUTE + `campaign/participate/youtube/like/validation/${pk}/`,
     method: 'POST',
     data: qs.stringify(params),
     accessToken: localStorage.getItem('token'),
-    onSuccess: onSuccessCampaignParticipateYoutubeLikeValidation,
+    onSuccess: (data) => onSuccessCampaignParticipateYoutubeLikeValidation(data, pk),
     onFailure: onFailed,
     label: 'CAMPAIGN_PARTICIPATE_YOUTUBE_LIKE_VALIDATION',
     requireErrorMessage: true
   });
 }
-function onSuccessCampaignParticipateYoutubeLikeValidation(data) {
+function onSuccessCampaignParticipateYoutubeLikeValidation(data, pk) {
   openNotification('success', successMessages[localStorage.getItem('i18nextLng')].success)
   return {
     type: 'SET_ACTION_VALIDATION_STATUS',
-    data: 'youtube_like_validation',
+    data: `youtube_like_validation_${pk}`,
     entries: data.entries,
     remaining_actions: data.remaining_actions,
     confirmed_participation: data.confirmed_participation
   }
 }
 /////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_YOUTUBE_COMMENT_ACTION
-export function campaignParticipateYoutubeComment(params) {
+export function campaignParticipateYoutubeComment(params, pk) {
   return apiAction({
-    url: APIROUTE + "campaign/participate/youtube/comment/",
+    url: APIROUTE + `campaign/participate/youtube/comment/${pk}/`,
     method: 'POST',
     data: qs.stringify(params),
     accessToken: localStorage.getItem('token'),
-    onSuccess: onSuccessCampaignParticipateYoutubeComment,
+    onSuccess: (data) => onSuccessCampaignParticipateYoutubeComment(data, pk),
     onFailure: onFailed,
     label: 'CAMPAIGN_PARTICIPATE_YOUTUBE_COMMENT',
     requireErrorMessage: true
   });
 }
-function onSuccessCampaignParticipateYoutubeComment(data) {
+function onSuccessCampaignParticipateYoutubeComment(data, pk) {
   if (data.msg === 'MSG_ACTION_EXIST') {
     return {
       type: 'SET_TEMP_ACTION_DATA',
@@ -277,48 +277,48 @@ function onSuccessCampaignParticipateYoutubeComment(data) {
     openNotification('success', successMessages[localStorage.getItem('i18nextLng')][data.msg])
     return {
       type: 'SET_ACTION_VALIDATION_STATUS',
-      data: 'youtube_comment_validation',
+      data: `youtube_comment_validation_${pk}`,
       confirmed_participation: data.confirmed_participation
     }
   }
 }
 /////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_YOUTUBE_COMMENT_VALIDATION_ACTION
-export function campaignParticipateYoutubeCommentValidation(params) {
+export function campaignParticipateYoutubeCommentValidation(params, pk) {
   return apiAction({
-    url: APIROUTE + "campaign/participate/youtube/comment/validation/",
+    url: APIROUTE + `campaign/participate/youtube/comment/validation/${pk}/`,
     method: 'POST',
     data: qs.stringify(params),
     accessToken: localStorage.getItem('token'),
-    onSuccess: onSuccessCampaignParticipateYoutubeCommentValidation,
+    onSuccess: (data) => onSuccessCampaignParticipateYoutubeCommentValidation(data, pk),
     onFailure: onFailed,
     label: 'CAMPAIGN_PARTICIPATE_YOUTUBE_COMMENT_VALIDATION',
     requireErrorMessage: true
   });
 }
-function onSuccessCampaignParticipateYoutubeCommentValidation(data) {
+function onSuccessCampaignParticipateYoutubeCommentValidation(data, pk) {
   openNotification('success', successMessages[localStorage.getItem('i18nextLng')].success)
   return {
     type: 'SET_ACTION_VALIDATION_STATUS',
-    data: 'youtube_comment_validation',
+    data: `youtube_comment_validation_${pk}`,
     entries: data.entries,
     remaining_actions: data.remaining_actions,
     confirmed_participation: data.confirmed_participation
   }
 }
 /////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_YOUTUBE_FOLLOW_ACTION
-export function campaignParticipateYoutubeFollow(params) {
+export function campaignParticipateYoutubeFollow(params, pk) {
   return apiAction({
-    url: APIROUTE + "campaign/participate/youtube/follow/",
+    url: APIROUTE + `campaign/participate/youtube/follow/${pk}/`,
     method: 'POST',
     data: qs.stringify(params),
     accessToken: localStorage.getItem('token'),
-    onSuccess: onSuccessCampaignParticipateYoutubeFollow,
+    onSuccess: (data) => onSuccessCampaignParticipateYoutubeFollow(data, pk),
     onFailure: onFailed,
     label: 'CAMPAIGN_PARTICIPATE_YOUTUBE_COMMENT',
     requireErrorMessage: true
   });
 }
-function onSuccessCampaignParticipateYoutubeFollow(data) {
+function onSuccessCampaignParticipateYoutubeFollow(data, pk) {
   if (data.msg === 'MSG_ACTION_EXIST') {
     return {
       type: 'SET_TEMP_ACTION_DATA',
@@ -329,71 +329,71 @@ function onSuccessCampaignParticipateYoutubeFollow(data) {
     openNotification('success', successMessages[localStorage.getItem('i18nextLng')][data.msg])
     return {
       type: 'SET_ACTION_VALIDATION_STATUS',
-      data: 'youtube_follow_validation',
+      data: `youtube_follow_validation_${pk}`,
       confirmed_participation: data.confirmed_participation
     }
   }
 }
 /////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_YOUTUBE_FOLLOW_VALIDATION_ACTION
-export function campaignParticipateYoutubeFollowValidation(params) {
+export function campaignParticipateYoutubeFollowValidation(params, pk) {
   return apiAction({
-    url: APIROUTE + "campaign/participate/youtube/follow/validation/",
+    url: APIROUTE + `campaign/participate/youtube/follow/validation/${pk}/`,
     method: 'POST',
     data: qs.stringify(params),
     accessToken: localStorage.getItem('token'),
-    onSuccess: onSuccessCampaignParticipateYoutubeFollowValidation,
+    onSuccess: (data) => onSuccessCampaignParticipateYoutubeFollowValidation(data, pk),
     onFailure: onFailed,
     label: 'CAMPAIGN_PARTICIPATE_YOUTUBE_FOLLOW_VALIDATION',
     requireErrorMessage: true
   });
 }
-function onSuccessCampaignParticipateYoutubeFollowValidation(data) {
+function onSuccessCampaignParticipateYoutubeFollowValidation(data, pk) {
   openNotification('success', successMessages[localStorage.getItem('i18nextLng')].success)
   return {
     type: 'SET_ACTION_VALIDATION_STATUS',
-    data: 'youtube_follow_validation',
+    data: `youtube_follow_validation_${pk}`,
     entries: data.entries,
     remaining_actions: data.remaining_actions,
     confirmed_participation: data.confirmed_participation
   }
 }
 /////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_YOUTUBE_VIDEO_VALIDATION_ACTION
-export function campaignParticipateYoutubeVideoValidation(params) {
+export function campaignParticipateYoutubeVideoValidation(params, pk) {
   return apiAction({
-    url: APIROUTE + "campaign/participate/youtube/video/validation/",
+    url: APIROUTE + `campaign/participate/youtube/video/validation/${pk}/`,
     method: 'POST',
     data: qs.stringify(params),
     accessToken: localStorage.getItem('token'),
-    onSuccess: onSuccessCampaignParticipateYoutubeVideoValidation,
+    onSuccess: (data) => onSuccessCampaignParticipateYoutubeVideoValidation(data, pk),
     onFailure: onFailed,
     label: 'CAMPAIGN_PARTICIPATE_YOUTUBE_VIDEO_VALIDATION',
     requireErrorMessage: true
   });
 }
-function onSuccessCampaignParticipateYoutubeVideoValidation(data) {
+function onSuccessCampaignParticipateYoutubeVideoValidation(data, pk) {
   openNotification('success', successMessages[localStorage.getItem('i18nextLng')].success)
   return {
     type: 'SET_ACTION_VALIDATION_STATUS',
-    data: 'youtube_video_validation',
+    data: `youtube_video_validation_${pk}`,
     entries: data.entries,
     remaining_actions: data.remaining_actions,
     confirmed_participation: data.confirmed_participation
   }
 }
 /////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_TWITTER_LIKE_ACTION
-export function campaignParticipateTwitterLike(params) {
+export function campaignParticipateTwitterLike(params, pk) {
   return apiAction({
-    url: APIROUTE + "campaign/participate/twitter/like/",
+    url: APIROUTE + `campaign/participate/twitter/like/${pk}/`,
     method: 'POST',
     data: qs.stringify(params),
     accessToken: localStorage.getItem('token'),
-    onSuccess: onSuccessCampaignParticipateTwitterLike,
+    onSuccess: (data) => onSuccessCampaignParticipateTwitterLike(data, pk),
     onFailure: onFailed,
     label: 'CAMPAIGN_PARTICIPATE_TWITTER_LIKE',
     requireErrorMessage: true
   });
 }
-function onSuccessCampaignParticipateTwitterLike(data) {
+function onSuccessCampaignParticipateTwitterLike(data, pk) {
   if (data.msg === 'MSG_LIKE_VALIDATED') {
     return {
       type: 'SET_TEMP_ACTION_DATA',
@@ -404,48 +404,48 @@ function onSuccessCampaignParticipateTwitterLike(data) {
     openNotification('success', successMessages[localStorage.getItem('i18nextLng')][data.msg])
     return {
       type: 'SET_ACTION_VALIDATION_STATUS',
-      data: 'twitter_like_validation',
+      data: `twitter_like_validation_${pk}`,
       confirmed_participation: data.confirmed_participation
     }
   }
 }
 /////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_TWITTER_LIKE_VALIDATION_ACTION
-export function campaignParticipateTwitterLikeValidation(params) {
+export function campaignParticipateTwitterLikeValidation(params, pk) {
   return apiAction({
-    url: APIROUTE + "campaign/participate/twitter/like/validation/",
+    url: APIROUTE + `campaign/participate/twitter/like/validation/${pk}/`,
     method: 'POST',
     data: qs.stringify(params),
     accessToken: localStorage.getItem('token'),
-    onSuccess: onSuccessCampaignParticipateTwitterLikeValidation,
+    onSuccess: (data) => onSuccessCampaignParticipateTwitterLikeValidation(data, pk),
     onFailure: onFailed,
     label: 'CAMPAIGN_PARTICIPATE_TWITTER_LIKE_VALIDATION',
     requireErrorMessage: true
   });
 }
-function onSuccessCampaignParticipateTwitterLikeValidation(data) {
+function onSuccessCampaignParticipateTwitterLikeValidation(data, pk) {
   openNotification('success', successMessages[localStorage.getItem('i18nextLng')].success)
   return {
     type: 'SET_ACTION_VALIDATION_STATUS',
-    data: 'twitter_like_validation',
+    data: `twitter_like_validation_${pk}`,
     entries: data.entries,
     remaining_actions: data.remaining_actions,
     confirmed_participation: data.confirmed_participation
   }
 }
 /////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_TWITTER_RETWEET_ACTION
-export function campaignParticipateTwitterRetweet(params) {
+export function campaignParticipateTwitterRetweet(params, pk) {
   return apiAction({
-    url: APIROUTE + "campaign/participate/twitter/retweet/",
+    url: APIROUTE + `campaign/participate/twitter/retweet/${pk}/`,
     method: 'POST',
     data: qs.stringify(params),
     accessToken: localStorage.getItem('token'),
-    onSuccess: onSuccessCampaignParticipateTwitterRetweet,
+    onSuccess: (data) => onSuccessCampaignParticipateTwitterRetweet(data, pk),
     onFailure: onFailed,
     label: 'CAMPAIGN_PARTICIPATE_TWITTER_RETWEET',
     requireErrorMessage: true
   });
 }
-function onSuccessCampaignParticipateTwitterRetweet(data) {
+function onSuccessCampaignParticipateTwitterRetweet(data, pk) {
   if (data.msg === 'MSG_ACTION_EXIST') {
     return {
       type: 'SET_TEMP_ACTION_DATA',
@@ -456,48 +456,48 @@ function onSuccessCampaignParticipateTwitterRetweet(data) {
     openNotification('success', successMessages[localStorage.getItem('i18nextLng')][data.msg])
     return {
       type: 'SET_ACTION_VALIDATION_STATUS',
-      data: 'twitter_retweet_validation',
+      data: `twitter_retweet_validation_${pk}`,
       confirmed_participation: data.confirmed_participation
     }
   }
 }
 /////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_TWITTER_RETWEET_VALIDATION_ACTION
-export function campaignParticipateTwitterRetweetValidation(params) {
+export function campaignParticipateTwitterRetweetValidation(params, pk) {
   return apiAction({
-    url: APIROUTE + "campaign/participate/twitter/retweet/validation/",
+    url: APIROUTE + `campaign/participate/twitter/retweet/validation/${pk}/`,
     method: 'POST',
     data: qs.stringify(params),
     accessToken: localStorage.getItem('token'),
-    onSuccess: onSuccessCampaignParticipateTwitterRetweetValidation,
+    onSuccess: (data) => onSuccessCampaignParticipateTwitterRetweetValidation(data, pk),
     onFailure: onFailed,
     label: 'CAMPAIGN_PARTICIPATE_TWITTER_RETWEET_VALIDATION',
     requireErrorMessage: true
   });
 }
-function onSuccessCampaignParticipateTwitterRetweetValidation(data) {
+function onSuccessCampaignParticipateTwitterRetweetValidation(data, pk) {
   openNotification('success', successMessages[localStorage.getItem('i18nextLng')].success)
   return {
     type: 'SET_ACTION_VALIDATION_STATUS',
-    data: 'twitter_retweet_validation',
+    data: `twitter_retweet_validation_${pk}`,
     entries: data.entries,
     remaining_actions: data.remaining_actions,
     confirmed_participation: data.confirmed_participation
   }
 }
 /////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_TWITTER_TWEET_ACTION
-export function campaignParticipateTwitterTweet(params) {
+export function campaignParticipateTwitterTweet(params, pk) {
   return apiAction({
-    url: APIROUTE + "campaign/participate/twitter/tweet/",
+    url: APIROUTE + `campaign/participate/twitter/tweet/${pk}/`,
     method: 'POST',
     data: qs.stringify(params),
     accessToken: localStorage.getItem('token'),
-    onSuccess: onSuccessCampaignParticipateTwitterTweet,
+    onSuccess: (data) => onSuccessCampaignParticipateTwitterTweet(data, pk),
     onFailure: onFailed,
     label: 'CAMPAIGN_PARTICIPATE_TWITTER_TWEET',
     requireErrorMessage: true
   });
 }
-function onSuccessCampaignParticipateTwitterTweet(data) {
+function onSuccessCampaignParticipateTwitterTweet(data, pk) {
   if (data.msg === 'MSG_ACTION_EXIST') {
     return {
       type: 'SET_TEMP_ACTION_DATA',
@@ -508,48 +508,48 @@ function onSuccessCampaignParticipateTwitterTweet(data) {
     openNotification('success', successMessages[localStorage.getItem('i18nextLng')][data.msg])
     return {
       type: 'SET_ACTION_VALIDATION_STATUS',
-      data: 'twitter_tweet_validation',
+      data: `twitter_tweet_validation_${pk}`,
       confirmed_participation: data.confirmed_participation
     }
   }
 }
 /////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_TWITTER_TWEET_VALIDATION_ACTION
-export function campaignParticipateTwitterTweetValidation(params) {
+export function campaignParticipateTwitterTweetValidation(params, pk) {
   return apiAction({
-    url: APIROUTE + "campaign/participate/twitter/tweet/validation/",
+    url: APIROUTE + `campaign/participate/twitter/tweet/validation/${pk}/`,
     method: 'POST',
     data: qs.stringify(params),
     accessToken: localStorage.getItem('token'),
-    onSuccess: onSuccessCampaignParticipateTwitterTweetValidation,
+    onSuccess: (data) => onSuccessCampaignParticipateTwitterTweetValidation(data, pk),
     onFailure: onFailed,
     label: 'CAMPAIGN_PARTICIPATE_TWITTER_TWEET_VALIDATION',
     requireErrorMessage: true
   });
 }
-function onSuccessCampaignParticipateTwitterTweetValidation(data) {
+function onSuccessCampaignParticipateTwitterTweetValidation(data, pk) {
   openNotification('success', successMessages[localStorage.getItem('i18nextLng')].success)
   return {
     type: 'SET_ACTION_VALIDATION_STATUS',
-    data: 'twitter_tweet_validation',
+    data: `twitter_tweet_validation_${pk}`,
     entries: data.entries,
     remaining_actions: data.remaining_actions,
     confirmed_participation: data.confirmed_participation
   }
 }
 /////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_TWITTER_COMMENT_ACTION
-export function campaignParticipateTwitterComment(params) {
+export function campaignParticipateTwitterComment(params, pk) {
   return apiAction({
-    url: APIROUTE + "campaign/participate/twitter/tweet/comment/",
+    url: APIROUTE + `campaign/participate/twitter/tweet/comment/${pk}/`,
     method: 'POST',
     data: qs.stringify(params),
     accessToken: localStorage.getItem('token'),
-    onSuccess: onSuccessCampaignParticipateTwitterComment,
+    onSuccess: (data) => onSuccessCampaignParticipateTwitterComment(data, pk),
     onFailure: onFailed,
     label: 'CAMPAIGN_PARTICIPATE_TWITTER_COMMENT',
     requireErrorMessage: true
   });
 }
-function onSuccessCampaignParticipateTwitterComment(data) {
+function onSuccessCampaignParticipateTwitterComment(data, pk) {
   if (data.msg === 'MSG_ACTION_EXIST') {
     return {
       type: 'SET_TEMP_ACTION_DATA',
@@ -560,48 +560,48 @@ function onSuccessCampaignParticipateTwitterComment(data) {
     openNotification('success', successMessages[localStorage.getItem('i18nextLng')][data.msg])
     return {
       type: 'SET_ACTION_VALIDATION_STATUS',
-      data: 'twitter_comment_tweet_validation',
+      data: `twitter_comment_tweet_validation_${pk}`,
       confirmed_participation: data.confirmed_participation
     }
   }
 }
 /////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_TWITTER_COMMENT_VALIDATION_ACTION
-export function campaignParticipateTwitterCommentValidation(params) {
+export function campaignParticipateTwitterCommentValidation(params, pk) {
   return apiAction({
-    url: APIROUTE + "campaign/participate/twitter/tweet/comment/validation/",
+    url: APIROUTE + `campaign/participate/twitter/tweet/comment/validation/${pk}/`,
     method: 'POST',
     data: qs.stringify(params),
     accessToken: localStorage.getItem('token'),
-    onSuccess: onSuccessCampaignParticipateTwitterCommentValidation,
+    onSuccess: (data) => onSuccessCampaignParticipateTwitterCommentValidation(data, pk),
     onFailure: onFailed,
     label: 'CAMPAIGN_PARTICIPATE_TWITTER_COMMENT_VALIDATION',
     requireErrorMessage: true
   });
 }
-function onSuccessCampaignParticipateTwitterCommentValidation(data) {
+function onSuccessCampaignParticipateTwitterCommentValidation(data, pk) {
   openNotification('success', successMessages[localStorage.getItem('i18nextLng')].success)
   return {
     type: 'SET_ACTION_VALIDATION_STATUS',
-    data: 'twitter_comment_tweet_validation',
+    data: `twitter_comment_tweet_validation_${pk}`,
     entries: data.entries,
     remaining_actions: data.remaining_actions,
     confirmed_participation: data.confirmed_participation
   }
 }
 /////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_TWITTER_FOLLOW_ACTION
-export function campaignParticipateTwitterFollow(params) {
+export function campaignParticipateTwitterFollow(params, pk) {
   return apiAction({
-    url: APIROUTE + "campaign/participate/twitter/follow/",
+    url: APIROUTE + `campaign/participate/twitter/follow/${pk}/`,
     method: 'POST',
     data: qs.stringify(params),
     accessToken: localStorage.getItem('token'),
-    onSuccess: onSuccessCampaignParticipateTwitterFollow,
+    onSuccess: (data) => onSuccessCampaignParticipateTwitterFollow(data, pk),
     onFailure: onFailed,
     label: 'CAMPAIGN_PARTICIPATE_TWITTER_FOLLOW',
     requireErrorMessage: true
   });
 }
-function onSuccessCampaignParticipateTwitterFollow(data) {
+function onSuccessCampaignParticipateTwitterFollow(data, pk) {
   if (data.msg === 'MSG_ACTION_EXIST') {
     return {
       type: 'SET_TEMP_ACTION_DATA',
@@ -612,48 +612,48 @@ function onSuccessCampaignParticipateTwitterFollow(data) {
     openNotification('success', successMessages[localStorage.getItem('i18nextLng')][data.msg])
     return {
       type: 'SET_ACTION_VALIDATION_STATUS',
-      data: 'twitter_follow_validation',
+      data: `twitter_follow_validation_${pk}`,
       confirmed_participation: data.confirmed_participation
     }
   }
 }
 /////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_TWITTER_FOLLOW_VALIDATION_ACTION
-export function campaignParticipateTwitterFollowValidation(params) {
+export function campaignParticipateTwitterFollowValidation(params, pk) {
   return apiAction({
-    url: APIROUTE + "campaign/participate/twitter/follow/validation/",
+    url: APIROUTE + `campaign/participate/twitter/follow/validation/${pk}/`,
     method: 'POST',
     data: qs.stringify(params),
     accessToken: localStorage.getItem('token'),
-    onSuccess: onSuccessCampaignParticipateTwitterFollowValidation,
+    onSuccess: (data) => onSuccessCampaignParticipateTwitterFollowValidation(data, pk),
     onFailure: onFailed,
     label: 'CAMPAIGN_PARTICIPATE_TWITTER_FOLLOW_VALIDATION',
     requireErrorMessage: true
   });
 }
-function onSuccessCampaignParticipateTwitterFollowValidation(data) {
+function onSuccessCampaignParticipateTwitterFollowValidation(data, pk) {
   openNotification('success', successMessages[localStorage.getItem('i18nextLng')].success)
   return {
     type: 'SET_ACTION_VALIDATION_STATUS',
-    data: 'twitter_follow_validation',
+    data: `twitter_follow_validation_${pk}`,
     entries: data.entries,
     remaining_actions: data.remaining_actions,
     confirmed_participation: data.confirmed_participation
   }
 }
 /////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_TWITCH_FOLLOW_ACTION
-export function campaignParticipateTwitchFollow(params) {
+export function campaignParticipateTwitchFollow(params, pk) {
   return apiAction({
-    url: APIROUTE + "campaign/participate/twitch/follow/",
+    url: APIROUTE + `campaign/participate/twitch/follow/${pk}/`,
     method: 'POST',
     data: qs.stringify(params),
     accessToken: localStorage.getItem('token'),
-    onSuccess: onSuccessCampaignParticipateTwitchFollow,
+    onSuccess: (data) => onSuccessCampaignParticipateTwitchFollow(data, pk),
     onFailure: onFailed,
     label: 'CAMPAIGN_PARTICIPATE_TWITCH_FOLLOW',
     requireErrorMessage: true
   });
 }
-function onSuccessCampaignParticipateTwitchFollow(data) {
+function onSuccessCampaignParticipateTwitchFollow(data, pk) {
   if (data.msg === 'MSG_ACTION_EXIST') {
     return {
       type: 'SET_TEMP_ACTION_DATA',
@@ -664,141 +664,143 @@ function onSuccessCampaignParticipateTwitchFollow(data) {
     openNotification('success', successMessages[localStorage.getItem('i18nextLng')][data.msg])
     return {
       type: 'SET_ACTION_VALIDATION_STATUS',
-      data: 'twitch_follow_validation',
+      data: `twitch_follow_validation_${pk}`,
       confirmed_participation: data.confirmed_participation
     }
   }
 }
 /////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_TWITCH_FOLLOW_VALIDATION_ACTION
-export function campaignParticipateTwitchFollowValidation(params) {
+export function campaignParticipateTwitchFollowValidation(params, pk) {
   return apiAction({
-    url: APIROUTE + "campaign/participate/twitch/follow/validation/",
+    url: APIROUTE + `campaign/participate/twitch/follow/validation/${pk}/`,
     method: 'POST',
     data: qs.stringify(params),
     accessToken: localStorage.getItem('token'),
-    onSuccess: onSuccessCampaignParticipateTwitchFollowValidation,
+    onSuccess: (data) => onSuccessCampaignParticipateTwitchFollowValidation(data, pk),
     onFailure: onFailed,
     label: 'CAMPAIGN_PARTICIPATE_TWITCH_FOLLOW_VALIDATION',
     requireErrorMessage: true
   });
 }
-function onSuccessCampaignParticipateTwitchFollowValidation(data) {
+function onSuccessCampaignParticipateTwitchFollowValidation(data, pk) {
   openNotification('success', successMessages[localStorage.getItem('i18nextLng')].success)
   return {
     type: 'SET_ACTION_VALIDATION_STATUS',
-    data: 'twitch_follow_validation',
+    data: `twitch_follow_validation_${pk}`,
     entries: data.entries,
     remaining_actions: data.remaining_actions,
     confirmed_participation: data.confirmed_participation
   }
 }
 /////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_VIDEO_ACTION
-export function campaignParticipateVideo(params) {
+export function campaignParticipateVideo(params, pk) {
   return apiAction({
-    url: APIROUTE + "campaign/participate/url_video/",
+    url: APIROUTE + `campaign/participate/url_video/${pk}/`,
     method: 'POST',
     data: qs.stringify(params),
     accessToken: localStorage.getItem('token'),
-    onSuccess: onSuccessCampaignParticipateVideo,
+    onSuccess: (data) => onSuccessCampaignParticipateVideo(data, pk),
     onFailure: onFailed,
     label: 'CAMPAIGN_PARTICIPATE_VIDEO',
     requireErrorMessage: true
   });
 }
-function onSuccessCampaignParticipateVideo(data) {
+function onSuccessCampaignParticipateVideo(data, pk) {
   openNotification('success', successMessages[localStorage.getItem('i18nextLng')].completeToWatchVideo)
   return {
     type: 'SET_ACTION_VALIDATION_STATUS',
-    data: 'video_watch_validation',
+    data: `video_watch_validation_${pk}`,
     entries: data.entries,
     remaining_actions: data.remaining_actions,
     confirmed_participation: data.confirmed_participation
   }
 }
 /////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_POLL_ACTION
-export function campaignParticipatePoll(params) {
+export function campaignParticipatePoll(params, pk) {
   return apiAction({
-    url: APIROUTE + "campaign/participate/poll/",
+    url: APIROUTE + `campaign/participate/poll/${pk}/`,
     method: 'POST',
     data: qs.stringify(params),
     accessToken: localStorage.getItem('token'),
-    onSuccess: onSuccessCampaignParticipatePoll,
+    onSuccess: (data) => onSuccessCampaignParticipatePoll(data, pk),
     onFailure: onFailed,
     label: 'CAMPAIGN_PARTICIPATE_POLL',
     requireErrorMessage: true
   });
 }
-function onSuccessCampaignParticipatePoll(data) {
+function onSuccessCampaignParticipatePoll(data, pk) {
   openNotification('success', successMessages[localStorage.getItem('i18nextLng')].completeToSubmitPoll)
   return {
     type: 'SET_ACTION_VALIDATION_STATUS',
-    data: 'poll_action_validation',
+    data: `poll_action_validation_${pk}`,
     entries: data.entries,
     remaining_actions: data.remaining_actions,
     confirmed_participation: data.confirmed_participation
   }
 }
 /////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_WEBSITE_ACTION
-export function campaignParticipateWebsite(params) {
+export function campaignParticipateWebsite(params, pk) {
   return apiAction({
-    url: APIROUTE + "campaign/participate/url_website/",
+    url: APIROUTE + `campaign/participate/url_website/${pk}/`,
     method: 'POST',
     data: qs.stringify(params),
     accessToken: localStorage.getItem('token'),
-    onSuccess: onSuccessCampaignParticipateWebsite,
+    onSuccess: (data) => onSuccessCampaignParticipateWebsite(data, pk),
     onFailure: onFailed,
     label: 'CAMPAIGN_PARTICIPATE_WEBSITE',
     requireErrorMessage: true
   });
 }
-function onSuccessCampaignParticipateWebsite(data) {
+function onSuccessCampaignParticipateWebsite(data, pk) {
   return {
     type: 'SET_ACTION_VALIDATION_STATUS',
-    data: 'website_visit_validation',
+    data: `website_visit_validation_${pk}`,
     entries: data.entries,
     remaining_actions: data.remaining_actions,
     confirmed_participation: data.confirmed_participation
   }
 }
 /////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_INSTAGRAM_PROFILE_ACTION
-export function campaignParticipateInstagramProfile(params) {
+export function campaignParticipateInstagramProfile(params, pk, instagram_follow_url) {
   return apiAction({
-    url: APIROUTE + "campaign/participate/instagram/profile/",
+    url: APIROUTE + `campaign/participate/instagram/follow/${pk}/`,
     method: 'POST',
     data: qs.stringify(params),
     accessToken: localStorage.getItem('token'),
-    onSuccess: onSuccessCampaignParticipateInstagramProfile,
+    onSuccess: (data) => onSuccessCampaignParticipateInstagramProfile(data, pk, instagram_follow_url),
     onFailure: onFailed,
     label: 'CAMPAIGN_PARTICIPATE_INSTAGRAM_PROFILE',
     requireErrorMessage: true
   });
 }
-function onSuccessCampaignParticipateInstagramProfile(data) {
+function onSuccessCampaignParticipateInstagramProfile(data, pk, instagram_follow_url) {
+  window.open(instagram_follow_url, '_blank')
   return {
     type: 'SET_ACTION_VALIDATION_STATUS',
-    data: 'instagram_follow_validation',
+    data: `instagram_follow_validation_${pk}`,
     entries: data.entries,
     remaining_actions: data.remaining_actions,
     confirmed_participation: data.confirmed_participation
   }
 }
 /////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_INSTAGRAM_PUBLICATION_ACTION
-export function campaignParticipateInstagramPublication(params) {
+export function campaignParticipateInstagramPublication(params, pk, instagram_like_url) {
   return apiAction({
-    url: APIROUTE + "campaign/participate/instagram/publication/",
+    url: APIROUTE + `campaign/participate/instagram/like/${pk}/`,
     method: 'POST',
     data: qs.stringify(params),
     accessToken: localStorage.getItem('token'),
-    onSuccess: onSuccessCampaignParticipateInstagramPublication,
+    onSuccess: (data) => onSuccessCampaignParticipateInstagramPublication(data, pk, instagram_like_url),
     onFailure: onFailed,
     label: 'CAMPAIGN_PARTICIPATE_INSTAGRAM_PUBLICATION',
     requireErrorMessage: true
   });
 }
-function onSuccessCampaignParticipateInstagramPublication(data) {
+function onSuccessCampaignParticipateInstagramPublication(data, pk, instagram_like_url) {
+  window.open(instagram_like_url, '_blank')
   return {
     type: 'SET_ACTION_VALIDATION_STATUS',
-    data: 'instagram_like_validation',
+    data: `instagram_like_validation_${pk}`,
     entries: data.entries,
     remaining_actions: data.remaining_actions,
     confirmed_participation: data.confirmed_participation
@@ -808,110 +810,110 @@ function onSuccessCampaignParticipateInstagramPublication(data) {
 
 
 /////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_TIKTOK_PROFILE_ACTION
-export function campaignParticipateTiktokProfile(params) {
+export function campaignParticipateTiktokProfile(params, pk) {
   return apiAction({
-    url: APIROUTE + "campaign/participate/tiktok/profile/",
+    url: APIROUTE + `campaign/participate/tiktok/follow/${pk}/`,
     method: 'POST',
     data: qs.stringify(params),
     accessToken: localStorage.getItem('token'),
-    onSuccess: onSuccessCampaignParticipateTiktokProfile,
+    onSuccess: (data) => onSuccessCampaignParticipateTiktokProfile(data, pk),
     onFailure: onFailed,
     label: 'CAMPAIGN_PARTICIPATE_TIKTOK_PROFILE',
     requireErrorMessage: true
   });
 }
-function onSuccessCampaignParticipateTiktokProfile(data) {
+function onSuccessCampaignParticipateTiktokProfile(data, pk) {
   return {
     type: 'SET_ACTION_VALIDATION_STATUS',
-    data: 'tiktok_follow_validation',
+    data: `tiktok_follow_validation_${pk}`,
     entries: data.entries,
     remaining_actions: data.remaining_actions,
     confirmed_participation: data.confirmed_participation
   }
 }
 /////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_INSTAGRAM_PUBLICATION_ACTION
-export function campaignParticipateTiktokPublication(params) {
+export function campaignParticipateTiktokPublication(params, pk) {
   return apiAction({
-    url: APIROUTE + "campaign/participate/tiktok/publication/",
+    url: APIROUTE + `campaign/participate/tiktok/like/${pk}`,
     method: 'POST',
     data: qs.stringify(params),
     accessToken: localStorage.getItem('token'),
-    onSuccess: onSuccessCampaignParticipateTiktokPublication,
+    onSuccess: (data) => onSuccessCampaignParticipateTiktokPublication(data, pk),
     onFailure: onFailed,
     label: 'CAMPAIGN_PARTICIPATE_TIKTOK_PUBLICATION',
     requireErrorMessage: true
   });
 }
-function onSuccessCampaignParticipateTiktokPublication(data) {
+function onSuccessCampaignParticipateTiktokPublication(data, pk) {
   return {
     type: 'SET_ACTION_VALIDATION_STATUS',
-    data: 'tiktok_like_validation',
+    data: `tiktok_like_validation_${pk}`,
     entries: data.entries,
     remaining_actions: data.remaining_actions,
     confirmed_participation: data.confirmed_participation
   }
 }
 /////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_FACEBOOK_PAGE_ACTION
-export function campaignParticipateFacebookPage(params) {
+export function campaignParticipateFacebookPage(params, pk) {
   return apiAction({
-    url: APIROUTE + "campaign/participate/facebook/page/",
+    url: APIROUTE + `campaign/participate/facebook/page/${pk}/`,
     method: 'POST',
     data: qs.stringify(params),
     accessToken: localStorage.getItem('token'),
-    onSuccess: onSuccessCampaignParticipateFacebookPage,
+    onSuccess: (data) => onSuccessCampaignParticipateFacebookPage(data, pk),
     onFailure: onFailed,
     label: 'CAMPAIGN_PARTICIPATE_FACEBOOK_PAGE',
     requireErrorMessage: true
   });
 }
-function onSuccessCampaignParticipateFacebookPage(data) {
+function onSuccessCampaignParticipateFacebookPage(data, pk) {
   return {
     type: 'SET_ACTION_VALIDATION_STATUS',
-    data: 'facebook_page_validation',
+    data: `facebook_page_validation_${pk}`,
     entries: data.entries,
     remaining_actions: data.remaining_actions,
     confirmed_participation: data.confirmed_participation
   }
 }
 /////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_FACEBOOK_URL_ACTION
-export function campaignParticipateFacebookUrl(params) {
+export function campaignParticipateFacebookUrl(params, pk) {
   return apiAction({
-    url: APIROUTE + "campaign/participate/facebook/url/",
+    url: APIROUTE + `campaign/participate/facebook/url/${pk}/`,
     method: 'POST',
     data: qs.stringify(params),
     accessToken: localStorage.getItem('token'),
-    onSuccess: onSuccessCampaignParticipateFacebookUrl,
+    onSuccess: (data) => onSuccessCampaignParticipateFacebookUrl(data, pk),
     onFailure: onFailed,
     label: 'CAMPAIGN_PARTICIPATE_FACEBOOK_URL',
     requireErrorMessage: true
   });
 }
-function onSuccessCampaignParticipateFacebookUrl(data) {
+function onSuccessCampaignParticipateFacebookUrl(data, pk) {
   return {
     type: 'SET_ACTION_VALIDATION_STATUS',
-    data: 'facebook_url_validation',
+    data: `facebook_url_validation_${pk}`,
     entries: data.entries,
     remaining_actions: data.remaining_actions,
     confirmed_participation: data.confirmed_participation
   }
 }
 /////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_FACEBOOK_POST_ACTION
-export function campaignParticipateFacebookPost(params) {
+export function campaignParticipateFacebookPost(params, pk) {
   return apiAction({
-    url: APIROUTE + "campaign/participate/facebook/post/",
+    url: APIROUTE + `campaign/participate/facebook/post/${pk}/`,
     method: 'POST',
     data: qs.stringify(params),
     accessToken: localStorage.getItem('token'),
-    onSuccess: onSuccessCampaignParticipateFacebookPost,
+    onSuccess: (data) => onSuccessCampaignParticipateFacebookPost(data, pk),
     onFailure: onFailed,
     label: 'CAMPAIGN_PARTICIPATE_FACEBOOK_POST',
     requireErrorMessage: true
   });
 }
-function onSuccessCampaignParticipateFacebookPost(data) {
+function onSuccessCampaignParticipateFacebookPost(data, pk) {
   return {
     type: 'SET_ACTION_VALIDATION_STATUS',
-    data: 'facebook_post_validation',
+    data: `facebook_post_validation_${pk}`,
     entries: data.entries,
     remaining_actions: data.remaining_actions,
     confirmed_participation: data.confirmed_participation

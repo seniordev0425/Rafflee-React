@@ -7,7 +7,7 @@ import { campaignParticipateTwitterTweetValidation } from '../../../actions/camp
 
 function TwitterTweetValidationModal(props) {
   const { t } = useTranslation()
-  const { open, onToggle, promotion_id, closeModal } = props
+  const { pk, open, onToggle, promotion_id, closeModal } = props
 
   const CAMPAIGN_PARTICIPATE_TWITTER_TWEET_VALIDATION_PROCESS = useSelector(state => state.userInfo.CAMPAIGN_PARTICIPATE_TWITTER_TWEET_VALIDATION)
   const twitter_tweet_validation = useSelector(state => state.campaign.twitter_tweet_validation)
@@ -32,7 +32,7 @@ function TwitterTweetValidationModal(props) {
   }, [twitter_tweet_validation])
 
   const onSubmit = () => {
-    dispatch(campaignParticipateTwitterTweetValidation({ promotion_id: promotion_id }))
+    dispatch(campaignParticipateTwitterTweetValidation({ promotion_id: promotion_id }, pk))
   }
 
   return (

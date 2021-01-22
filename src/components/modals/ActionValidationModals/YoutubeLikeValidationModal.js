@@ -8,7 +8,7 @@ import { campaignParticipateYoutubeLikeValidation } from '../../../actions/campa
 
 function YoutubeLikeValidationModal(props) {
   const { t } = useTranslation()
-  const { open, onToggle, promotion_id, closeModal } = props
+  const { pk, open, onToggle, promotion_id, closeModal } = props
 
   const CAMPAIGN_PARTICIPATE_YOUTUBE_LIKE_VALIDATION_PROCESS = useSelector(state => state.userInfo.CAMPAIGN_PARTICIPATE_YOUTUBE_LIKE_VALIDATION)
   const youtube_like_validation = useSelector(state => state.campaign.youtube_like_validation)
@@ -31,7 +31,7 @@ function YoutubeLikeValidationModal(props) {
   }, [youtube_like_validation])
 
   const onSubmit = () => {
-    dispatch(campaignParticipateYoutubeLikeValidation({ promotion_id: promotion_id }))
+    dispatch(campaignParticipateYoutubeLikeValidation({ promotion_id: promotion_id }, pk))
   }
 
   return (

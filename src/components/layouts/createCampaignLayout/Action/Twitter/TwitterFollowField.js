@@ -8,7 +8,12 @@ import { useTranslation } from 'react-i18next'
 function TwitterFollowField(props) {
   const { t } = useTranslation()
 
-  const { params, setAction } = props
+  const {
+    action,
+    setAction,
+    params,
+    setParams
+  } = props
 
   return (
     <div className="mt-3 mt-sm-5">
@@ -26,7 +31,7 @@ function TwitterFollowField(props) {
           </Tooltip>
           <span
             className="ml-3 pointer"
-            onClick={() => setAction('twitter', 'follow', false)}
+            onClick={() => setParams('twitter', params.twitter.filter(item => item.id !== action.id))}
           >
             {t('button_group.remove')}
           </span>
@@ -39,14 +44,14 @@ function TwitterFollowField(props) {
         <Row>
           <Col xs="12" sm="6" className="p-0 d-flex align-items-center">
             <span className="prefix-at mr-2">@</span>
-            <TwitterFollowSelector setAction={setAction} />
+            <TwitterFollowSelector action={action} setAction={setAction} />
           </Col>
           <Col size="12" className="p-0 justify-content-end align-items-center mt-3 mt-sm-0">
             <Row>
               <Col xs="12" sm="6" className="p-0">
                 <Input
-                  value={params.twitter.follow_entries}
-                  onChange={(e) => setAction('twitter', 'follow_entries', e.target.value)}
+                  value={action.follow_entries}
+                  onChange={(e) => setAction('twitter', action.id, { ...action, follow_entries: e.target.value })}
                   className="custom-form-control ml-0 ml-sm-4 w-100"
                   type="number"
                   placeholder={t('create_campaign_page.entries')}
@@ -54,16 +59,16 @@ function TwitterFollowField(props) {
                 />
               </Col>
               <Col xs="12" sm="6" className="p-0 d-flex align-items-center justify-content-end mt-3 mt-sm-0">
-                <Checkbox checked={params.twitter.follow_mandatory} onChange={(e) => setAction('twitter', 'follow_mandatory', e.target.checked)} />
+                <Checkbox checked={action.follow_mandatory} onChange={(e) => setAction('twitter', action.id, { ...action, follow_mandatory: e.target.checked })} />
                 <span className="ml-3 footer-link">{t('create_campaign_page.mandatory')}</span>
               </Col>
             </Row>
           </Col>
         </Row>
-        {params.twitter.follow_profile_image_url &&
+        {action.follow_profile_image_url &&
           <div className="mt-4 d-flex">
             <img
-              src={params.twitter.follow_profile_image_url}
+              src={action.follow_profile_image_url}
               width={50}
               height={50}
               className="rounded-circle"
@@ -73,16 +78,16 @@ function TwitterFollowField(props) {
               <div>
                 <span className="font-weight-bold">{t('twitter_follow_modal.screen_name')}</span>
                 <span className="ml-3">
-                  {params.twitter.follow_screen_name}
+                  {action.follow_screen_name}
                 </span>
-                {params.twitter.follow_verified &&
+                {action.follow_verified &&
                   <img src={images.verified_icon} width={15} height={15} className="ml-2" alt="" />
                 }
               </div>
               <div className="mt-4">
                 <span className="font-weight-bold">{t('my_circle_page.followers')}: </span>
                 <span className="ml-2">
-                  {`${params.twitter.follow_followers_count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")}`}
+                  {`${action.follow_followers_count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")}`}
                 </span>
               </div>
             </div>

@@ -8,7 +8,12 @@ import { useTranslation } from 'react-i18next'
 function InstagramPublicationField(props) {
   const { t } = useTranslation()
 
-  const { params, setAction } = props
+  const {
+    action,
+    setAction,
+    params,
+    setParams
+  } = props
 
   return (
     <div className="mt-3 mt-sm-5">
@@ -26,7 +31,7 @@ function InstagramPublicationField(props) {
           </Tooltip>
           <span
             className="ml-3 pointer"
-            onClick={() => setAction('instagram', 'publication', false)}
+            onClick={() => setParams('instagram', params.instagram.filter(item => item.id !== action.id))}
           >
             {t('button_group.remove')}
           </span>
@@ -42,16 +47,16 @@ function InstagramPublicationField(props) {
               type="text"
               className="custom-form-control"
               placeholder={t('create_campaign_page.instagram_publication_url')}
-              value={params.instagram.publication_url}
-              onChange={(e) => setAction('instagram', 'publication_url', e.target.value)}
+              value={action.like_url}
+              onChange={(e) => setAction('instagram', action.id, { ...action, like_url: e.target.value })}
             />
           </Col>
           <Col size="12" className="p-0 justify-content-end align-items-center mt-3 mt-sm-0">
             <Row>
               <Col xs="12" sm="6" className="p-0">
                 <Input
-                  value={params.instagram.publication_entries}
-                  onChange={(e) => setAction('instagram', 'publication_entries', e.target.value)}
+                  value={action.like_entries}
+                  onChange={(e) => setAction('instagram', action.id, { ...action, like_entries: e.target.value })}
                   className="custom-form-control ml-0 ml-sm-4 w-100"
                   type="number"
                   placeholder={t('create_campaign_page.entries')}
@@ -59,7 +64,7 @@ function InstagramPublicationField(props) {
                 />
               </Col>
               <Col xs="12" sm="6" className="p-0 d-flex align-items-center justify-content-end mt-3 mt-sm-0">
-                <Checkbox checked={params.instagram.publication_mandatory} onChange={(e) => setAction('instagram', 'publication_mandatory', e.target.checked)} />
+                <Checkbox checked={action.like_mandatory} onChange={(e) => setAction('instagram', action.id, { ...action, like_mandatory: e.target.checked })} />
                 <span className="ml-3 footer-link">{t('create_campaign_page.mandatory')}</span>
               </Col>
             </Row>

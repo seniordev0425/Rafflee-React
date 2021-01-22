@@ -11,7 +11,12 @@ import { useTranslation } from 'react-i18next'
 function YoutubeCommentField(props) {
   const { t } = useTranslation()
 
-  const { params, setAction } = props
+  const {
+    action,
+    setAction,
+    params,
+    setParams
+  } = props
 
   return (
     <div className="mt-3 mt-sm-5">
@@ -29,7 +34,7 @@ function YoutubeCommentField(props) {
           </Tooltip>
           <span
             className="ml-3 pointer"
-            onClick={() => setAction('youtube', 'comment', false)}
+            onClick={() => setParams('youtube', params.youtube.filter(item => item.id !== action.id))}
           >
             {t('button_group.remove')}
           </span>
@@ -47,7 +52,7 @@ function YoutubeCommentField(props) {
       >
         <Row>
           <Col xs="12" sm="6" className="p-0">
-            <YoutubeVideoSelect setAction={setAction} />
+            <YoutubeVideoSelect action={action} setAction={setAction} />
           </Col>
           <Col size="12" className="p-0 justify-content-between align-items-center mt-3 mt-sm-0">
             <Row>
@@ -55,8 +60,8 @@ function YoutubeCommentField(props) {
                 <Row>
                   <Col className="p-0 px-sm-4">
                     <Input
-                      value={params.youtube.comment_entries}
-                      onChange={(e) => setAction('youtube', 'comment_entries', e.target.value)}
+                      value={action.comment_entries}
+                      onChange={(e) => setAction('youtube', action.id, { ...action, comment_entries: e.target.value })}
                       className="custom-form-control"
                       type="number"
                       placeholder={t('create_campaign_page.entries')}
@@ -67,18 +72,18 @@ function YoutubeCommentField(props) {
               </Col>
               <Col xs="12" sm="4" className="p-0 d-flex align-items-center justify-content-end mt-3 mt-sm-0">
                 <Checkbox
-                  checked={params.youtube.comment_mandatory}
-                  onChange={(e) => setAction('youtube', 'comment_mandatory', e.target.checked)}
+                  checked={action.comment_mandatory}
+                  onChange={(e) => setAction('youtube', action.id, { ...action, comment_mandatory: e.target.checked })}
                 />
                 <span className="ml-3 footer-link">{t('create_campaign_page.mandatory')}</span>
               </Col>
             </Row>
           </Col>
         </Row>
-        {params.youtube.comment_url_img &&
+        {action.comment_url_img &&
           <div className="mt-4 d-flex">
             <img
-              src={params.youtube.comment_url_img}
+              src={action.comment_url_img}
               width={50}
               height={50}
               className="rounded-circle"
@@ -88,19 +93,19 @@ function YoutubeCommentField(props) {
               <div>
                 <span className="font-weight-bold">{t('create_campaign_page.video_title')}</span>
                 <span className="ml-3">
-                  {params.youtube.comment_video_title}
+                  {action.comment_video_title}
                 </span>
               </div>
               <div className="mt-4">
                 <span className="font-weight-bold">{t('create_campaign_page.channel_title')}</span>
                 <span className="ml-3">
-                  {params.youtube.comment_channel_title}
+                  {action.comment_channel_title}
                 </span>
               </div>
               <div className="mt-4">
                 <span className="font-weight-bold">{t('create_campaign_page.published_at')}</span>
                 <span className="ml-3">
-                  {moment(params.youtube.comment_published_at).format('YYYY-MM-DD')}
+                  {moment(action.comment_published_at).format('YYYY-MM-DD')}
                 </span>
               </div>
               <div className="mt-4">
@@ -108,8 +113,8 @@ function YoutubeCommentField(props) {
                   type="text"
                   className="custom-form-control"
                   placeholder={t('create_campaign_page.comment_model')}
-                  value={params.youtube.comment_model}
-                  onChange={(e) => setAction('youtube', 'comment_model', e.target.value)}
+                  value={action.comment_model}
+                  onChange={(e) => setAction('youtube', action.id, { ...action, comment_model: e.target.value })}
                 />
               </div>
             </div>

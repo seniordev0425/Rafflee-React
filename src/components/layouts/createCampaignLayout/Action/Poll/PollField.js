@@ -10,30 +10,34 @@ import { useTranslation } from 'react-i18next'
 function PollField(props) {
   const { t } = useTranslation()
 
-  const { params, setAction, setParams } = props
+  const {
+    action,
+    setAction,
+    params,
+    setParams
+  } = props
 
   const renderAnswerItems = () => {
     return (
-      params.poll.response.map((item, id) =>
+      action.response.map((item, id) =>
         <AnswerItem key={id} id={id} item={item} removeAnswer={removeAnswer} setAnswerVal={setAnswerVal} />
       )
     )
   }
 
   const setAnswerVal = (e, id) => {
-    let newArr = [...params.poll.response]
+    let newArr = [...action.response]
     newArr[id] = e.target.value
-    setAction('poll', 'response', newArr)
+    setAction('poll', action.id, { ...action, response: newArr })
   }
 
   const addAnswer = () => {
-    setAction('poll', 'response', [...params.poll.response, ""])
+    setAction('poll', action.id, { ...action, response: [...action.response, ""] })
   }
 
   const removeAnswer = (id) => {
-    if (params.poll.response.length === 1)
-      openNotification('warning', t('create_campaign_page.must_have_one_at_least'))
-    else setAction('poll', 'response', params.poll.response.filter((item, i) => i !== id))
+    if (action.response.length === 1) openNotification('warning', t('create_campaign_page.must_have_one_at_least'))
+    else setAction('poll', action.id, { ...action, response: action.response.filter((item, i) => i !== id) })
   }
 
 
@@ -54,7 +58,7 @@ function PollField(props) {
           </Tooltip>
           <span
             className="ml-3 pointer"
-            onClick={() => setParams('poll', 'false')}
+            onClick={() => setParams('poll', params.poll.filter(item => item.id !== action.id))}
           >
             {t('button_group.remove')}
           </span>
@@ -72,8 +76,8 @@ function PollField(props) {
                 type="text"
                 className="custom-form-control"
                 placeholder={t('create_campaign_page.type_here')}
-                value={params.poll.question}
-                onChange={(e) => setAction('poll', 'question', e.target.value)}
+                value={action.question}
+                onChange={(e) => setAction('poll', action.id, { ...action, question: e.target.value })}
               />
             </FormGroup>
           </div>
@@ -101,8 +105,8 @@ function PollField(props) {
 
         <Row className="mt-3">
           <Checkbox
-            onChange={e => setAction('poll', 'multiples_choices', e.target.checked)}
-            checked={params.poll.multiples_choices}
+            onChange={e => setAction('poll', action.id, { ...action, multiples_choices: e.target.checked })}
+            checked={action.multiples_choices}
           >
             {t('create_campaign_page.allow_multiple_choices')}
           </Checkbox>
@@ -113,8 +117,8 @@ function PollField(props) {
         <Row className="mt-5 justify-content-between">
           <div style={{ width: 200 }}>
             <Input
-              value={params.poll.entries}
-              onChange={(e) => setAction('poll', 'entries', e.target.value)}
+              value={action.entries}
+              onChange={(e) => setAction('poll', action.id, { ...action, entries: e.target.value })}
               className="custom-form-control"
               type="number"
               placeholder={t('create_campaign_page.entries')}
@@ -122,7 +126,7 @@ function PollField(props) {
             />
           </div>
           <div>
-            <Checkbox checked={params.poll.mandatory} onChange={(e) => setAction('poll', 'mandatory', e.target.checked)} />
+            <Checkbox checked={action.mandatory} onChange={(e) => setAction('poll', action.id, { ...action, mandatory: e.target.checked })} />
             <span className="ml-3 footer-link">{t('create_campaign_page.mandatory')}</span>
           </div>
         </Row>

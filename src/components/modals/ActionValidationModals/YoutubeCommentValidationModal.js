@@ -8,7 +8,7 @@ import { campaignParticipateYoutubeCommentValidation } from '../../../actions/ca
 
 function YoutubeCommentValidationModal(props) {
   const { t } = useTranslation()
-  const { open, onToggle, promotion_id, closeModal } = props
+  const { pk, open, onToggle, promotion_id, closeModal } = props
 
   const CAMPAIGN_PARTICIPATE_YOUTUBE_COMMENT_VALIDATION_PROCESS = useSelector(state => state.userInfo.CAMPAIGN_PARTICIPATE_YOUTUBE_COMMENT_VALIDATION)
   const youtube_comment_validation = useSelector(state => state.campaign.youtube_comment_validation)
@@ -31,7 +31,7 @@ function YoutubeCommentValidationModal(props) {
   }, [youtube_comment_validation])
 
   const onSubmit = () => {
-    dispatch(campaignParticipateYoutubeCommentValidation({ promotion_id: promotion_id }))
+    dispatch(campaignParticipateYoutubeCommentValidation({ promotion_id: promotion_id }, pk))
   }
 
   return (

@@ -7,7 +7,7 @@ import { campaignParticipateTwitterFollowValidation } from '../../../actions/cam
 
 function TwitterFollowValidationModal(props) {
   const { t } = useTranslation()
-  const { open, onToggle, promotion_id, closeModal } = props
+  const { pk, open, onToggle, promotion_id, closeModal } = props
 
   const CAMPAIGN_PARTICIPATE_TWITTER_FOLLOW_VALIDATION_PROCESS = useSelector(state => state.userInfo.CAMPAIGN_PARTICIPATE_TWITTER_FOLLOW_VALIDATION)
   const twitter_follow_validation = useSelector(state => state.campaign.twitter_follow_validation)
@@ -30,7 +30,7 @@ function TwitterFollowValidationModal(props) {
   }, [twitter_follow_validation])
 
   const onSubmit = () => {
-    dispatch(campaignParticipateTwitterFollowValidation({ promotion_id: promotion_id }))
+    dispatch(campaignParticipateTwitterFollowValidation({ promotion_id: promotion_id }, pk))
   }
 
   return (

@@ -14,7 +14,7 @@ const initialFeedState = {
     favorite: false,
     campaign_image: '',
     poll: {},
-    action_participate: [],
+    action_participate: {},
     user_actions: {},
     remaining_actions: {},
     participation_validated: false

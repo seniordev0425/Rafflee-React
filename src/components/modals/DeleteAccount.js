@@ -56,7 +56,7 @@ function DeleteAccount(props) {
         onSubmit={onSubmit}
         render={({ handleSubmit }) => (
           <Form onSubmit={handleSubmit}>
-            <div className="color-gray font-size-12 font-weight-bold mb-4">
+            <div className="color-gray font-size-12 font-weight-bold mb-4 text-center">
               {t('delete_account_modal.confirm_text')}
             </div>
             <Button

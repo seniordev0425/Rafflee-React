@@ -8,7 +8,7 @@ import { campaignParticipateTwitterRetweetValidation } from '../../../actions/ca
 
 function TwitterRetweetValidationModal(props) {
   const { t } = useTranslation()
-  const { open, onToggle, promotion_id, closeModal } = props
+  const { pk, open, onToggle, promotion_id, closeModal } = props
 
   const CAMPAIGN_PARTICIPATE_TWITTER_RETWEET_VALIDATION_PROCESS = useSelector(state => state.userInfo.CAMPAIGN_PARTICIPATE_TWITTER_RETWEET_VALIDATION)
   const twitter_retweet_validation = useSelector(state => state.userInfo.twitter_retweet_validation)
@@ -31,7 +31,7 @@ function TwitterRetweetValidationModal(props) {
   }, [twitter_retweet_validation])
 
   const onSubmit = () => {
-    dispatch(campaignParticipateTwitterRetweetValidation({ promotion_id: promotion_id }))
+    dispatch(campaignParticipateTwitterRetweetValidation({ promotion_id: promotion_id }, pk))
   }
 
   return (
