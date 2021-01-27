@@ -894,6 +894,7 @@
     "youtube_follow": "This action allows to select a youtube account that the user must follow.",
     "youtube_comment": "This action allows you to select a comment template that the user will comment on a video.",
     "youtube_video": "This action allows you to select a video for the user to watch.",
-    "user_points": "Les points sont l'accumulation des actions effectuées sur les differentes campagnes, ils serviront a participer a des campagnes speciales ou a obtenir des produits particuliers"
+    "user_points": "Les points sont l'accumulation des actions effectuées sur les differentes campagnes, ils serviront a participer a des campagnes speciales ou a obtenir des produits particuliers",
+    "instagram_comment_is_in_progress": "Votre commentaire est en cours de révision, veuillez vérifier qu'il existe bien"
   }
 }

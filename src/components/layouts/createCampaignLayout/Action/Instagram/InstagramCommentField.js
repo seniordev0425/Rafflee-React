@@ -2,7 +2,9 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { Row, Col, Input } from 'reactstrap'
 import { Tooltip, Checkbox, Select } from 'antd'
+import ReactPlayer from 'react-player'
 import * as _ from 'lodash'
+import moment from 'moment'
 import images from '../../../../../utils/images'
 
 import { useTranslation } from 'react-i18next'
@@ -23,7 +25,16 @@ function InstagramCommentField(props) {
 
   const updatePublication = (id) => {
     let publication = _.find(instagramPublications, { id: id })
-    setAction('instagram', action.id, { ...action, comment_id: publication.id, comment_url: publication.media_url })
+    setAction('instagram', action.id, {
+      ...action,
+      comment_id: publication.id,
+      comment_url: publication.media_url,
+      comment_caption: publication.caption,
+      comment_like_count: publication.like_count,
+      comment_created_at: publication.timestamp,
+      comment_media_type: publication.media_type,
+      comment_permalink: publication.permalink
+    })
   }
 
   return (
@@ -63,7 +74,7 @@ function InstagramCommentField(props) {
             >
               {instagramPublications.map((publication) => (
                 <Option key={publication.id} value={publication.id}>
-                  {publication.id}
+                  {publication.caption}
                 </Option>
               ))}
             </Select>
@@ -87,6 +98,37 @@ function InstagramCommentField(props) {
             </Row>
           </Col>
         </Row>
+        {action.comment_id &&
+          <div className="mt-4 color-gray font-size-12">
+            <div>
+              <span className="font-weight-bold">{t('create_campaign_page.name')}</span>
+              <span className="ml-3">
+                {action.comment_caption}
+              </span>
+              <span className="font-weight-bold ml-4">{t('create_campaign_page.like')}:</span>
+              <span className="ml-2">{action.comment_like_count}</span>
+            </div>
+            <div className="mt-4">
+              <span className="font-weight-bold">{t('create_campaign_page.created_at')}</span>
+              <span className="ml-3">
+                {moment(action.comment_created_at).format('YYYY-MM-DD')}
+              </span>
+            </div>
+            <div className="d-flex justify-content-center">
+              {action.comment_media_type === 'IMAGE' &&
+                <img src={action.comment_url} className="instagram-wall-img" alt="" />
+              }
+              {action.comment_media_type === 'VIDEO' &&
+                <ReactPlayer
+                  loop
+                  playing
+                  url={action.comment_url}
+                  style={{ borderRadius: 10, maxHeight: 400 }}
+                />
+              }
+            </div>
+          </div>
+        }
       </div>
     </div>
   )

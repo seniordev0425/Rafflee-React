@@ -913,6 +913,7 @@
     "youtube_follow": "Tooltip for youtube follow",
     "youtube_comment": "Tooltip for youtube comment",
     "youtube_video": "Tooltip for youtube video",
-    "user_points": "Points are the accumulation of actions carried out on different campaigns, they will be used to participate in special campaigns or to obtain particular products."
+    "user_points": "Points are the accumulation of actions carried out on different campaigns, they will be used to participate in special campaigns or to obtain particular products.",
+    "instagram_comment_is_in_progress": "Your comment is in review, please check that your comment exists"
   }
 }

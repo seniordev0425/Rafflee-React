@@ -807,22 +807,23 @@ function onSuccessCampaignParticipateInstagramPublication(data, pk, instagram_li
   }
 }
 /////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_INSTAGRAM_COMMENT_ACTION
-export function campaignParticipateInstagramComment(params, pk) {
+export function campaignParticipateInstagramComment(params, pk, instagram_comment_url) {
   return apiAction({
     url: APIROUTE + `campaign/participate/instagram/comment/${pk}/`,
     method: 'POST',
     data: qs.stringify(params),
     accessToken: localStorage.getItem('token'),
-    onSuccess: (data) => onSuccessCampaignParticipateInstagramComment(data, pk),
+    onSuccess: (data) => onSuccessCampaignParticipateInstagramComment(data, pk, instagram_comment_url),
     onFailure: onFailed,
     label: 'CAMPAIGN_PARTICIPATE_INSTAGRAM_COMMENT',
     requireErrorMessage: true
   });
 }
-function onSuccessCampaignParticipateInstagramComment(data, pk) {
+function onSuccessCampaignParticipateInstagramComment(data, pk, instagram_comment_url) {
+  if (data.status !== 201 && data?.in_progress !== true) window.open(instagram_comment_url, '_blank')
   return {
     type: 'SET_ACTION_VALIDATION_STATUS',
-    data: `instagram_comment_validation_${pk}`,
+    data: (data.status === 201 || data.in_progress) ? `instagram_comment_in_progress_${pk}` : `instagram_comment_validation_${pk}`,
     entries: data.entries,
     remaining_actions: data.remaining_actions,
     confirmed_participation: data.confirmed_participation

@@ -277,9 +277,11 @@ function PreviewSection(props) {
           pk: action.pk,
           action: 'comment',
           id: action.comment_id,
-          url: action.comment_url,
+          image_url: action.comment_url,
+          url: action.comment_permalink,
           entries: action.comment_entries || 1,
-          mandatory: action.comment_mandatory
+          mandatory: action.comment_mandatory,
+          caption: action.comment_caption
         })
       }
     })

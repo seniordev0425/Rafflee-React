@@ -83,6 +83,7 @@ const images = {
   google_signin_icon: require('../assets/image/google_signin_icon.png'),
   ic_plus_gray: require('../assets/image/ic_plus_gray.png'),
   ic_minus_gray: require('../assets/image/ic_minus_gray.png'),
+  ic_in_progress: require('../assets/image/in_progress_icon.svg'),
 }
 
 export default images;

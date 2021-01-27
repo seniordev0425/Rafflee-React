@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react'
-import { Button } from 'antd'
+import { Button, Tooltip } from 'antd'
 import { useSelector, useDispatch } from 'react-redux'
 import ExpansionPanel from '@material-ui/core/ExpansionPanel'
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary'
@@ -8,7 +8,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import {
   FacebookProvider,
   EmbeddedPost,
-  Like 
+  Like
 } from 'react-facebook'
 import YouTube from 'react-youtube'
 import { isMobile } from 'react-device-detect'
@@ -33,7 +33,8 @@ function CustomCollapsePanel(props) {
     facebookActionUrl,
     youtubeVideoId,
     isYoutubeVideoClicked,
-    onYoutubeVideoEnded
+    onYoutubeVideoEnded,
+    is_instagram_comment_in_progress
   } = props
 
   const userProfile = useSelector(state => state.userInfo.userProfile)
@@ -42,6 +43,7 @@ function CustomCollapsePanel(props) {
 
   // action validation result. Redux state (boolean)
   const validation = useSelector(state => state.campaign[`${socialName}_${actionType}_validation_${pk}`])
+  const instagram_comment_in_progress = useSelector(state => state.campaign[`instagram_comment_in_progress_${pk}`])
   const dispatch = useDispatch()
 
   const youtubePlayer = useRef(null)
@@ -189,13 +191,19 @@ function CustomCollapsePanel(props) {
           }
         </ExpansionPanelDetails>
       </ExpansionPanel>
-      {(didAction || validation)
+      { (is_instagram_comment_in_progress || instagram_comment_in_progress)
         ?
-        <img src={images.verified_icon} width={40} height={40} alt="" />
+        <Tooltip title={t('tooltips.instagram_comment_is_in_progress')}>
+        <img src={images.ic_in_progress} width={40} height={40} alt="" />
+        </Tooltip>
         :
-        <div className="d-flex align-items-center justify-content-center campaign-detail-entries-container">
-          {`+${entries}`}
-        </div>
+        (didAction || validation)
+          ?
+          <img src={images.verified_icon} width={40} height={40} alt="" />
+          :
+          <div className="d-flex align-items-center justify-content-center campaign-detail-entries-container">
+            {`+${entries}`}
+          </div>
       }
       {renderIcons()}
     </div>

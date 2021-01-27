@@ -294,7 +294,8 @@ function CampaignDetail(props) {
       dispatch(campaignParticipateInstagramPublication({ promotion_id: campaignData.pk }, pk, instagram_like_url))
     }
     else if (socialName === 'instagram' && actionType === 'comment') {
-      dispatch(campaignParticipateInstagramComment({ promotion_id: campaignData.pk }, pk))
+      const { instagram_comment_url } = props
+      dispatch(campaignParticipateInstagramComment({ promotion_id: campaignData.pk }, pk, instagram_comment_url))
     }
     else if (socialName === 'tiktok' && actionType === 'follow') {
       const { tiktok_follow_url } = props
@@ -654,8 +655,9 @@ function CampaignDetail(props) {
                           actionType="comment"
                           mandatory={action.instagram_comment_mandatory}
                           entries={action.instagram_comment_entries}
-                          // instagram_like_url={`https://instagram.com/p/${action.instagram_like_url}`}
-                          didAction={getSocialUserActions(campaignData.user_actions, 'instagram', action.pk, 'instagram_comment')}
+                          instagram_comment_url={action.instagram_comment_publication_url}
+                          didAction={getSocialUserActions(campaignData.user_actions, 'instagram_comment', action.pk, 'action_validated')}
+                          is_instagram_comment_in_progress={getSocialUserActions(campaignData.user_actions, 'instagram_comment', action.pk, 'in_progress')}
                           tryToOpenValidationModal={tryToOpenValidationModal}
                         />
                       </Col>

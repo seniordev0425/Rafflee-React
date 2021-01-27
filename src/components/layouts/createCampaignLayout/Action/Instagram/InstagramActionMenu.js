@@ -40,7 +40,12 @@ function InstagramActionMenu(props) {
       comment_entries: '',
       comment_mandatory: false,
       comment_url: '',
-      comment_id: ''
+      comment_id: '',
+      comment_caption: '',
+      comment_like_count: '',
+      comment_created_at: '',
+      comment_media_type: '',
+      comment_permalink: ''
     }
     setParams('instagram', [...params.instagram, newAction])
   }
