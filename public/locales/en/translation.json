@@ -286,6 +286,10 @@
       "title": "Instagram Follow",
       "text": "Follow the account to complete the action and increase your chances of winning the giveaway!"
     },
+    "instagram_comment": {
+      "title": "Instagram Comment",
+      "text": "Follow the account to complete the action and increase your chances of winning the giveaway!"
+    },
     "tiktok_like": {
       "title": "Tiktok Like",
       "text": "Like the post to validate the action!"
@@ -488,6 +492,7 @@
     "tiktok_publication_url": "https://www.tiktok.com/@username/video/id",
     "instagram_profile": "FOLLOW",
     "instagram_publication": "LIKE",
+    "instagram_comment": "COMMENT",
     "twitch_follow_name": "Follow Name",
     "create_video_action": "VIDEO ACTION",
     "create_website_action": "WEBSITE ACTION",

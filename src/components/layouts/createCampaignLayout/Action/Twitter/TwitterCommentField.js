@@ -75,7 +75,7 @@ function TwitterCommentField(props) {
               className="rounded-circle"
               alt="avatar"
             />
-            <div className="ml-4 color-gray font-size-12">
+            <div className="ml-4 color-gray font-size-12 w-100">
               <div>
                 <span className="font-weight-bold">{t('create_campaign_page.name')}</span>
                 <span className="ml-3">

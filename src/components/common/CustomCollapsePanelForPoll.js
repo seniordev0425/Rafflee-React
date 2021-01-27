@@ -33,7 +33,8 @@ function CustomCollapsePanelForPoll(props) {
   const company = useSelector(state => state.userInfo.company)
 
   const CAMPAIGN_PARTICIPATE_POLL_PROCESS = useSelector(state => state.userInfo.CAMPAIGN_PARTICIPATE_POLL)
-  const validation = useSelector(state => state.userInfo.poll_action_validation)
+  const validation = useSelector(state => state.campaign[`poll_action_validation_${pk}`])
+
   const dispatch = useDispatch()
 
   const [answers, setAnswers] = useState(null)

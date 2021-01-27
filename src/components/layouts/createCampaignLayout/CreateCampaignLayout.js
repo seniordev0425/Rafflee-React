@@ -321,6 +321,16 @@ function CreateCampaignLayout() {
           mandatory: action.like_mandatory
         })
       }
+      if (action.type === 'comment') {
+        instagram.push({
+          pk: action.pk,
+          action: 'comment',
+          id: action.comment_id,
+          url: action.comment_url,
+          entries: action.comment_entries || 1,
+          mandatory: action.comment_mandatory
+        })
+      }
     })
 
     // Make tiktok action para

@@ -44,6 +44,7 @@ import {
   campaignParticipateWebsite,
   campaignParticipateInstagramProfile,
   campaignParticipateInstagramPublication,
+  campaignParticipateInstagramComment,
   campaignParticipateTiktokProfile,
   campaignParticipateTiktokPublication,
   campaignParticipateFacebookPage,
@@ -55,7 +56,7 @@ import {
 import { twitterConnectStep1, youtubeConnectStep1 } from '../actions/userInfo'
 
 import { printPreview } from '../utils/pdf'
-import { getTotalEntries } from '../utils/campaign'
+import { getTotalEntries, getSocialUserActions } from '../utils/campaign'
 import {
   TWITCH_OAUTH_TOKEN_URL_FOR_COMPANY,
   TWITCH_OAUTH_TOKEN_URL_FOR_USER,
@@ -292,6 +293,9 @@ function CampaignDetail(props) {
       const { instagram_like_url } = props
       dispatch(campaignParticipateInstagramPublication({ promotion_id: campaignData.pk }, pk, instagram_like_url))
     }
+    else if (socialName === 'instagram' && actionType === 'comment') {
+      dispatch(campaignParticipateInstagramComment({ promotion_id: campaignData.pk }, pk))
+    }
     else if (socialName === 'tiktok' && actionType === 'follow') {
       const { tiktok_follow_url } = props
       window.open(tiktok_follow_url, '_blank')
@@ -474,7 +478,7 @@ function CampaignDetail(props) {
                           actionType="page"
                           mandatory={action.facebook_page_mandatory}
                           entries={action.facebook_page_entries}
-                          didAction={(campaignData.user_actions || {}).facebook_page}
+                          didAction={getSocialUserActions(campaignData.user_actions, 'facebook', action.pk, 'facebook_page')}
                           tryToOpenValidationModal={tryToOpenValidationModal}
                           facebookActionUrl={action.facebook_page_url}
                         />
@@ -493,7 +497,7 @@ function CampaignDetail(props) {
                           actionType="post"
                           mandatory={action.facebook_post_mandatory}
                           entries={action.facebook_post_entries}
-                          didAction={(campaignData.user_actions || {}).facebook_post}
+                          didAction={getSocialUserActions(campaignData.user_actions, 'facebook', action.pk, 'facebook_post')}
                           tryToOpenValidationModal={tryToOpenValidationModal}
                           facebookActionUrl={action.facebook_post_url}
                         />
@@ -512,7 +516,7 @@ function CampaignDetail(props) {
                           actionType="url"
                           mandatory={action.facebook_url_mandatory}
                           entries={action.facebook_url_entries}
-                          didAction={(campaignData.user_actions || {}).facebook_url}
+                          didAction={getSocialUserActions(campaignData.user_actions, 'facebook', action.pk, 'facebook_url')}
                           tryToOpenValidationModal={tryToOpenValidationModal}
                           facebookActionUrl={action.facebook_url_url}
                         />
@@ -534,7 +538,7 @@ function CampaignDetail(props) {
                           actionType="like"
                           mandatory={action.youtube_like_mandatory}
                           entries={action.youtube_like_entries}
-                          didAction={(campaignData.user_actions || {}).youtube_like}
+                          didAction={getSocialUserActions(campaignData.user_actions, 'youtube', action.pk, 'youtube_like')}
                           tryToOpenValidationModal={tryToOpenValidationModal}
                         />
                       </Col>
@@ -552,7 +556,7 @@ function CampaignDetail(props) {
                           actionType="follow"
                           mandatory={action.youtube_follow_mandatory}
                           entries={action.youtube_follow_entries}
-                          didAction={(campaignData.user_actions || {}).youtube_follow}
+                          didAction={getSocialUserActions(campaignData.user_actions, 'youtube', action.pk, 'youtube_follow')}
                           tryToOpenValidationModal={tryToOpenValidationModal}
                         />
                       </Col>
@@ -570,7 +574,7 @@ function CampaignDetail(props) {
                           actionType="comment"
                           mandatory={action.youtube_comment_mandatory}
                           entries={action.youtube_comment_entries}
-                          didAction={(campaignData.user_actions || {}).youtube_comment}
+                          didAction={getSocialUserActions(campaignData.user_actions, 'youtube', action.pk, 'youtube_comment')}
                           tryToOpenValidationModal={tryToOpenValidationModal}
                         />
                       </Col>
@@ -588,7 +592,7 @@ function CampaignDetail(props) {
                           actionType="video"
                           mandatory={action.youtube_video_mandatory}
                           entries={action.youtube_video_entries}
-                          didAction={(campaignData.user_actions || {}).youtube_video}
+                          didAction={getSocialUserActions(campaignData.user_actions, 'youtube', action.pk, 'youtube_video')}
                           tryToOpenValidationModal={tryToOpenValidationModal}
                           youtubeVideoId={action.youtube_video_id}
                           isYoutubeVideoClicked={isYoutubeVideoClicked}
@@ -613,13 +617,13 @@ function CampaignDetail(props) {
                           mandatory={action.instagram_follow_mandatory}
                           entries={action.instagram_follow_entries}
                           instagram_follow_url={`https://instagram.com/${action.instagram_follow_url}`}
-                          didAction={(campaignData.user_actions || {}).instagram_profile}
+                          didAction={getSocialUserActions(campaignData.user_actions, 'instagram', action.pk, 'instagram_follow')}
                           tryToOpenValidationModal={tryToOpenValidationModal}
                         />
                       </Col>
                     </Row>
                   )
-                } else {
+                } else if (action.instagram_like) {
                   return (
                     <Row key={`instagram-${action.pk}`} className="mb-4 mt-4">
                       <Col style={{ paddingLeft: 40 }}>
@@ -632,7 +636,26 @@ function CampaignDetail(props) {
                           mandatory={action.instagram_like_mandatory}
                           entries={action.instagram_like_entries}
                           instagram_like_url={`https://instagram.com/p/${action.instagram_like_url}`}
-                          didAction={(campaignData.user_actions || {}).instagram_publication}
+                          didAction={getSocialUserActions(campaignData.user_actions, 'instagram', action.pk, 'instagram_like')}
+                          tryToOpenValidationModal={tryToOpenValidationModal}
+                        />
+                      </Col>
+                    </Row>
+                  )
+                } else {
+                  return (
+                    <Row key={`instagram-${action.pk}`} className="mb-4 mt-4">
+                      <Col style={{ paddingLeft: 40 }}>
+                        <CustomCollapsePanel
+                          pk={action.pk}
+                          title={t('campaign_detail_page.instagram_comment.title')}
+                          text={t('campaign_detail_page.instagram_comment.text')}
+                          socialName="instagram"
+                          actionType="comment"
+                          mandatory={action.instagram_comment_mandatory}
+                          entries={action.instagram_comment_entries}
+                          // instagram_like_url={`https://instagram.com/p/${action.instagram_like_url}`}
+                          didAction={getSocialUserActions(campaignData.user_actions, 'instagram', action.pk, 'instagram_comment')}
                           tryToOpenValidationModal={tryToOpenValidationModal}
                         />
                       </Col>
@@ -653,7 +676,7 @@ function CampaignDetail(props) {
                           actionType="like"
                           mandatory={action.twitter_like_mandatory}
                           entries={action.twitter_like_entries}
-                          didAction={(campaignData.user_actions || {}).twitter_like}
+                          didAction={getSocialUserActions(campaignData.user_actions, 'twitter', action.pk, 'twitter_like')}
                           tryToOpenValidationModal={tryToOpenValidationModal}
                         />
                       </Col>
@@ -671,7 +694,7 @@ function CampaignDetail(props) {
                           actionType="follow"
                           mandatory={action.twitter_follow_mandatory}
                           entries={action.twitter_follow_entries}
-                          didAction={(campaignData.user_actions || {}).twitter_follow}
+                          didAction={getSocialUserActions(campaignData.user_actions, 'twitter', action.pk, 'twitter_follow')}
                           tryToOpenValidationModal={tryToOpenValidationModal}
                         />
                       </Col>
@@ -689,7 +712,7 @@ function CampaignDetail(props) {
                           actionType="tweet"
                           mandatory={action.twitter_tweet_mandatory}
                           entries={action.twitter_tweet_entries}
-                          didAction={(campaignData.user_actions || {}).twitter_tweet}
+                          didAction={getSocialUserActions(campaignData.user_actions, 'twitter', action.pk, 'twitter_tweet')}
                           tryToOpenValidationModal={tryToOpenValidationModal}
                         />
                       </Col>
@@ -707,7 +730,7 @@ function CampaignDetail(props) {
                           actionType="retweet"
                           mandatory={action.twitter_retweet_mandatory}
                           entries={action.twitter_retweet_entries}
-                          didAction={(campaignData.user_actions || {}).twitter_retweet}
+                          didAction={getSocialUserActions(campaignData.user_actions, 'twitter', action.pk, 'twitter_retweet')}
                           tryToOpenValidationModal={tryToOpenValidationModal}
                         />
                       </Col>
@@ -725,7 +748,7 @@ function CampaignDetail(props) {
                           actionType="comment_tweet"
                           mandatory={action.twitter_comment_tweet_mandatory}
                           entries={action.twitter_comment_tweet_entries}
-                          didAction={(campaignData.user_actions || {}).twitter_comment_tweet}
+                          didAction={getSocialUserActions(campaignData.user_actions, 'twitter', action.pk, 'twitter_comment_tweet')}
                           tryToOpenValidationModal={tryToOpenValidationModal}
                         />
                       </Col>
@@ -744,7 +767,7 @@ function CampaignDetail(props) {
                       actionType="follow"
                       mandatory={action.twitch_follow_mandatory}
                       entries={action.twitch_follow_entries}
-                      didAction={(campaignData.user_actions || {}).twitch_follow}
+                      didAction={getSocialUserActions(campaignData.user_actions, 'twitch', action.pk, 'twitch_follow')}
                       tryToOpenValidationModal={tryToOpenValidationModal}
                     />
                   </Col>
@@ -764,7 +787,7 @@ function CampaignDetail(props) {
                           mandatory={action.tiktok_like_mandatory}
                           entries={action.tiktok_like_entries}
                           tiktok_like_url={action.tiktok_like_url}
-                          didAction={(campaignData.user_actions || {}).tiktok_publication}
+                          didAction={getSocialUserActions(campaignData.user_actions, 'tiktok', action.pk, 'tiktok_like')}
                           tryToOpenValidationModal={tryToOpenValidationModal}
                         />
                       </Col>
@@ -783,7 +806,7 @@ function CampaignDetail(props) {
                           mandatory={action.tiktok_follow_mandatory}
                           entries={action.tiktok_follow_entries}
                           tiktok_follow_url={action.tiktok_follow_url}
-                          didAction={(campaignData.user_actions || {}).tiktok_profile}
+                          didAction={getSocialUserActions(campaignData.user_actions, 'tiktok', action.pk, 'tiktok_follow')}
                           tryToOpenValidationModal={tryToOpenValidationModal}
                         />
                       </Col>
@@ -803,7 +826,7 @@ function CampaignDetail(props) {
                       mandatory={action.mandatory}
                       entries={action.entries}
                       website_url={action.url}
-                      didAction={(campaignData.user_actions || {}).website}
+                      didAction={getSocialUserActions(campaignData.user_actions, 'website', action.pk, 'website')}
                       tryToOpenValidationModal={tryToOpenValidationModal}
                     />
                   </Col>
@@ -820,7 +843,7 @@ function CampaignDetail(props) {
                       responses={action.responses}
                       mandatory={action.mandatory}
                       entries={action.entries}
-                      didAction={(campaignData.user_actions || {}).poll}
+                      didAction={getSocialUserActions(campaignData.user_actions, 'poll', action.pk, 'poll')}
                       participatePoll={participatePoll}
                     />
                   </Col>

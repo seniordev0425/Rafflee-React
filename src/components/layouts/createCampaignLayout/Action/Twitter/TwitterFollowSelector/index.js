@@ -64,7 +64,7 @@ function TwitterFollowScreenName(props) {
       ...action,
       follow_id: value.length > 0 ? data[value[0].value].id : '',
       follow_profile_image_url: value.length > 0 ? data[value[0].value].profile_image_url : '',
-      follow_followers_count: value.length > 0 ? data[value[0].value].followers_count : '',
+      follow_followers_count: value.length > 0 ? data[value[0].value].followers_count : 0,
       follow_screen_name: value.length > 0 ? data[value[0].value].screen_name : '',
       follow_verified: value.length > 0 ? data[value[0].value].verified : false
     })

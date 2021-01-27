@@ -272,6 +272,16 @@ function PreviewSection(props) {
           mandatory: action.like_mandatory
         })
       }
+      if (action.type === 'comment') {
+        instagram.push({
+          pk: action.pk,
+          action: 'comment',
+          id: action.comment_id,
+          url: action.comment_url,
+          entries: action.comment_entries || 1,
+          mandatory: action.comment_mandatory
+        })
+      }
     })
 
     // Make tiktok action para
@@ -510,7 +520,7 @@ function PreviewSection(props) {
                   />
                 </Col>
               </Row>
-            } else {
+            } else if (action.type === 'like') {
               return <Row key={action.id} className="mb-4 mt-4">
                 <Col style={{ paddingLeft: 40 }}>
                   <PreviewCustomCollapsePanel
@@ -519,6 +529,18 @@ function PreviewSection(props) {
                     socialName="instagram"
                     mandatory={action.like_mandatory}
                     entries={action.like_entries}
+                  />
+                </Col>
+              </Row>
+            } else {
+              return <Row key={action.id} className="mb-4 mt-4">
+                <Col style={{ paddingLeft: 40 }}>
+                  <PreviewCustomCollapsePanel
+                    title={t('campaign_detail_page.instagram_comment.title')}
+                    text={t('campaign_detail_page.instagram_comment.text')}
+                    socialName="instagram"
+                    mandatory={action.comment_mandatory}
+                    entries={action.comment_entries}
                   />
                 </Col>
               </Row>

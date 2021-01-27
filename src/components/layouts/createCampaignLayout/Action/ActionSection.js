@@ -15,7 +15,6 @@ import TypeFormActionButton from './TypeForm/TypeFormActionButton'
 import VimeoActionButton from './Vimeo/VimeoActionButton'
 import SpotifyActionButton from './Spotify/SpotifyActionButton'
 import PollActionButton from './Poll/PollActionButton'
-import VideoActionButton from './Video/VideoActionButton'
 import SteamActionButton from './Steam/SteamActionButton'
 import WebsiteActionButton from './Website/WebsiteActionButton'
 import SoundcloudActionButton from './Soundcloud/SoundcloudActionButton'
@@ -26,7 +25,6 @@ import YoutubeActionMenu from './Youtube/YoutubeActionMenu'
 import InstagramActionMenu from './Instagram/InstagramActionMenu'
 import TwitchActionMenu from './Twitch/TwitchActionMenu'
 import PollActionMenu from './Poll/PollActionMenu'
-import VideoActionMenu from './Video/VideoActionMenu'
 import WebsiteActionMenu from './Website/WebsiteActionMenu'
 import TiktokActionMenu from './Tiktok/TiktokActionMenu'
 
@@ -44,14 +42,14 @@ import YoutubeCommentField from './Youtube/YoutubeCommentField/YoutubeCommentFie
 import YoutubeVideoField from './Youtube/YoutubeVideoField/YoutubeVideoField'
 import InstagramProfileField from './Instagram/InstagramProfileField'
 import InstagramPublicationField from './Instagram/InstagramPublicationField'
+import InstagramCommentField from './Instagram/InstagramCommentField'
 import TwitchFollowField from './Twitch/TwitchFollowField'
 import TiktokProfileField from './Tiktok/TiktokProfileField'
 import TiktokPublicationField from './Tiktok/TiktokPublicationField'
 import PollField from './Poll/PollField'
-import VideoField from './Video/VideoField'
 import WebsiteField from './Website/WebsiteField'
 
-import { getFacebookPages } from '../../../../actions/social'
+import { getFacebookPages, getInstagramPublications } from '../../../../actions/social'
 
 import { useTranslation } from 'react-i18next'
 
@@ -72,6 +70,7 @@ function ActionSection(props) {
 
   useEffect(() => {
     dispatch(getFacebookPages())
+    dispatch(getInstagramPublications())
   }, [])
 
   const menu = (
@@ -279,6 +278,15 @@ function ActionSection(props) {
               }
               if (action.type === 'follow') {
                 return <InstagramProfileField
+                  key={id}
+                  action={action}
+                  setAction={setAction}
+                  params={params}
+                  setParams={setParams}
+                />
+              }
+              if (action.type === 'comment') {
+                return <InstagramCommentField
                   key={id}
                   action={action}
                   setAction={setAction}

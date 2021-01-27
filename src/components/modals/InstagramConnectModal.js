@@ -13,8 +13,8 @@ import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props
 import images from '../../utils/images'
 import { FACEBOOK_APP_ID } from '../../utils/constants'
 import {
-  instagramBusinessConnect,
-  instagramBusinessConnectValidation
+  instagramBusinessConnect1,
+  instagramBusinessConnect2
 } from '../../actions/social'
 import { useTranslation } from 'react-i18next'
 import { openNotification } from '../../utils/notification'
@@ -52,7 +52,7 @@ function InstagramConnectModal(props) {
     var body = {
       token: response.accessToken
     }
-    dispatch(instagramBusinessConnect(body))
+    dispatch(instagramBusinessConnect1(body))
   }
 
   const validateInstagramBusinessConnect = () => {
@@ -64,7 +64,7 @@ function InstagramConnectModal(props) {
     var body = {
       id: selectedPageId
     }
-    dispatch(instagramBusinessConnectValidation(body))
+    dispatch(instagramBusinessConnect2(body))
   }
 
   return (
@@ -78,7 +78,7 @@ function InstagramConnectModal(props) {
         <div style={{ width: 320 }}>
           <FacebookLogin
             appId={FACEBOOK_APP_ID}
-            fields="instagram_basic,pages_show_list"
+            fields="instagram_basic,pages_show_list,business_management,pages_read_engagement"
             callback={getInstagramBusinessPages}
             render={renderProps => (
               <div onClick={renderProps.onClick}><CustomButton /></div>

@@ -32,6 +32,19 @@ function InstagramActionMenu(props) {
     setParams('instagram', [...params.instagram, newAction])
   }
 
+  const addInstagramCommentAction = () => {
+    let newAction = {
+      id: uuid(),
+      pk: '',
+      type: 'comment',
+      comment_entries: '',
+      comment_mandatory: false,
+      comment_url: '',
+      comment_id: ''
+    }
+    setParams('instagram', [...params.instagram, newAction])
+  }
+
   return (
     <div className="action-list-container">
       <div className="action-list-item">
@@ -49,6 +62,15 @@ function InstagramActionMenu(props) {
           src={images.ic_plus_gray}
           style={{ width: 15, height: 15, cursor: 'pointer' }}
           onClick={addInstagramLikeAction}
+          alt="plus"
+        />
+      </div>
+      <div className="action-list-item">
+        <label>{t('create_campaign_page.instagram_comment')}</label>
+        <img
+          src={images.ic_plus_gray}
+          style={{ width: 15, height: 15, cursor: 'pointer' }}
+          onClick={addInstagramCommentAction}
           alt="plus"
         />
       </div>

@@ -25,8 +25,7 @@ function FacebookPageField(props) {
     // Set default facebook page
     if (facebookPages.length) {
       if (action.page_page_id === '') {
-        setAction('facebook', action.id, { ...action, page_page_id: facebookPages[0].id })
-        setAction('facebook', action.id, { ...action, page_page_name: facebookPages[0].name })
+        setAction('facebook', action.id, { ...action, page_page_id: facebookPages[0].id, page_page_name: facebookPages[0].name })
       }
     }
   }, [facebookPages])
@@ -35,8 +34,7 @@ function FacebookPageField(props) {
   const updatePage = (id) => {
     facebookPages.forEach((page) => {
       if (page.id === id) {
-        setAction('facebook', action.id, { ...action, page_page_id: id })
-        setAction('facebook', action.id, { ...action, page_page_name: page.name })
+        setAction('facebook', action.id, { ...action, page_page_id: id, page_page_name: page.name })
       }
     })
   }

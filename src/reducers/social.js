@@ -6,7 +6,8 @@ const initialFeedState = {
   facebookPublications: [],
 
   ///////////////////////////////////////////// This state is an available instagram pages of account
-  instagramBusinessPages: []
+  instagramBusinessPages: [],
+  instagramPublications: []
 }
 
 function Social(state = initialFeedState, action) {
@@ -25,6 +26,11 @@ function Social(state = initialFeedState, action) {
       return {
         ...state,
         instagramBusinessPages: action.data
+      }
+    case 'SET_INSTAGRAM_PUBLICATIONS':
+      return {
+        ...state,
+        instagramPublications: action.data
       }
     default:
       return state

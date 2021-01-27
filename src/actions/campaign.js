@@ -806,7 +806,28 @@ function onSuccessCampaignParticipateInstagramPublication(data, pk, instagram_li
     confirmed_participation: data.confirmed_participation
   }
 }
-
+/////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_INSTAGRAM_COMMENT_ACTION
+export function campaignParticipateInstagramComment(params, pk) {
+  return apiAction({
+    url: APIROUTE + `campaign/participate/instagram/comment/${pk}/`,
+    method: 'POST',
+    data: qs.stringify(params),
+    accessToken: localStorage.getItem('token'),
+    onSuccess: (data) => onSuccessCampaignParticipateInstagramComment(data, pk),
+    onFailure: onFailed,
+    label: 'CAMPAIGN_PARTICIPATE_INSTAGRAM_COMMENT',
+    requireErrorMessage: true
+  });
+}
+function onSuccessCampaignParticipateInstagramComment(data, pk) {
+  return {
+    type: 'SET_ACTION_VALIDATION_STATUS',
+    data: `instagram_comment_validation_${pk}`,
+    entries: data.entries,
+    remaining_actions: data.remaining_actions,
+    confirmed_participation: data.confirmed_participation
+  }
+}
 
 
 /////////////////////////////////////////////// CAMPAIGN_PARTICIPATE_TIKTOK_PROFILE_ACTION

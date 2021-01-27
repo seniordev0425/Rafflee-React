@@ -1,4 +1,4 @@
-import { isEmpty } from 'lodash'
+import { isEmpty, find } from 'lodash'
 
 export const getTotalEntries = (params) => {
   let totalTemp = 0
@@ -22,6 +22,9 @@ export const getTotalEntries = (params) => {
     }
     if (action.instagram_follow) {
       totalTemp += parseInt(action.instagram_follow_entries) || 1
+    }
+    if (action.instagram_comment) {
+      totalTemp += parseInt(action.instagram_comment_entries) || 1
     }
   })
 
@@ -103,6 +106,9 @@ export const getTotalEntriesOfPreviewSection = (params) => {
     if (action.type === 'follow') {
       totalTemp += parseInt(action.follow_entries) || 1
     }
+    if (action.type === 'comment') {
+      totalTemp += parseInt(action.comment_entries) || 1
+    }
   })
 
   params.twitter.forEach(action => {
@@ -162,4 +168,13 @@ export const getTotalEntriesOfPreviewSection = (params) => {
   })
 
   return totalTemp
+}
+
+export const getSocialUserActions = (userActions, socialName, pk, actionType) => {
+  if (!userActions) return false
+  let userAction = find(userActions[socialName], { pk: pk })
+  if (userAction) {
+    return userAction[actionType]
+  }
+  return false
 }

@@ -68,7 +68,7 @@ function PromotionListItem(props) {
                 </Link>
                 {token && !company &&
                   <div className="color-gray font-size-10 ml-1">
-                    {`${item.user_actions?.entries_user || 0}/${getTotalEntries(item)}  ${t('create_campaign_page.entries')}`}
+                    {`${item.user_actions?.entries_user || 0}/${getTotalEntries(item.action_participate)}  ${t('create_campaign_page.entries')}`}
                   </div>
                 }
               </div>

@@ -48,27 +48,27 @@ function onSuccessGetFacebookPublications(data) {
   }
 }
 /////////////////////////////////////////////// GET_INSTAGRAM_BUSINESS_PAGES
-export function instagramBusinessConnect(params) {
+export function instagramBusinessConnect1(params) {
   return apiAction({
-    url: APIROUTE + `facebook/connect/instagram_business/`,
+    url: APIROUTE + `instagram/business/connect/1/`,
     method: 'POST',
     data: qs.stringify(params),
     accessToken: localStorage.getItem('token'),
-    onSuccess: onSuccessInstagramBusinessConnect,
+    onSuccess: onSuccessInstagramBusinessConnect1,
     onFailure: onFailed,
     label: 'GET_INSTAGRAM_BUSINESS_PAGES'
   });
 }
-function onSuccessInstagramBusinessConnect(data) {
+function onSuccessInstagramBusinessConnect1(data) {
   return {
     type: 'SET_INSTAGRAM_BUSINESS_PAGES',
-    data: data.business_pages
+    data: data.pages
   }
 }
 /////////////////////////////////////////////// INSTAGRAM_BUSINESS_CONNECT_VALIDATION
-export function instagramBusinessConnectValidation(params) {
+export function instagramBusinessConnect2(params) {
   return apiAction({
-    url: APIROUTE + `facebook/connect/instagram_business/validation/`,
+    url: APIROUTE + `instagram/business/connect/2/`,
     method: 'POST',
     data: qs.stringify(params),
     accessToken: localStorage.getItem('token'),
@@ -82,6 +82,23 @@ function onSuccessInstagramBusinessConnectValidation(data) {
   return {
     type: '',
     data: ''
+  }
+}
+/////////////////////////////////////////////// GET-INSTAGRAM-PUBLICATIONS-ACTION
+export function getInstagramPublications() {
+  return apiAction({
+    url: APIROUTE + `instagram/publication/search/`,
+    method: 'GET',
+    accessToken: localStorage.getItem('token'),
+    onSuccess: onSuccessGetInstagramPublications,
+    onFailure: onFailed,
+    label: 'GET_INSTAGRAM_PUBLICATIONS'
+  });
+}
+function onSuccessGetInstagramPublications(data) {
+  return {
+    type: 'SET_INSTAGRAM_PUBLICATIONS',
+    data: data.publication
   }
 }
 
