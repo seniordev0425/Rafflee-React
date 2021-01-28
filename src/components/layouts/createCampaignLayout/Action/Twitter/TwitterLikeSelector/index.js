@@ -30,7 +30,6 @@ function TwitterLikeSelector(props) {
       .then(response => response.json())
       .then(result => {
         if (result.status === 200) {
-          console.log(result)
           setAction('twitter', action.id, {
             ...action,
             like_id: tweetId,
