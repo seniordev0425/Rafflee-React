@@ -11,7 +11,7 @@ function TwitterLikeValidationModal(props) {
   const { open, onToggle, promotion_id, closeModal, pk } = props
 
   const CAMPAIGN_PARTICIPATE_TWITTER_LIKE_VALIDATION_PROCESS = useSelector(state => state.userInfo.CAMPAIGN_PARTICIPATE_TWITTER_LIKE_VALIDATION)
-  const twitter_like_validation = useSelector(state => state.campaign.twitter_like_validation)
+  const twitter_like_validation = useSelector(state => state.campaign[`twitter_like_validation_${pk}`])
 
   const tempActionData = useSelector(state => state.userInfo.tempActionData)
   const dispatch = useDispatch()

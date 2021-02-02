@@ -11,7 +11,7 @@ function TwitterRetweetValidationModal(props) {
   const { pk, open, onToggle, promotion_id, closeModal } = props
 
   const CAMPAIGN_PARTICIPATE_TWITTER_RETWEET_VALIDATION_PROCESS = useSelector(state => state.userInfo.CAMPAIGN_PARTICIPATE_TWITTER_RETWEET_VALIDATION)
-  const twitter_retweet_validation = useSelector(state => state.userInfo.twitter_retweet_validation)
+  const twitter_retweet_validation = useSelector(state => state.campaign[`twitter_retweet_validation_${pk}`])
 
   const tempActionData = useSelector(state => state.userInfo.tempActionData)
   const dispatch = useDispatch()

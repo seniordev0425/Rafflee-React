@@ -514,7 +514,7 @@ function PreviewSection(props) {
               return <Row key={action.id} className="mb-4 mt-4">
                 <Col style={{ paddingLeft: 40 }}>
                   <PreviewCustomCollapsePanel
-                    title={t('campaign_detail_page.instagram_follow.title')}
+                    title={t('campaign_detail_page.instagram_follow.title')}  
                     text={t('campaign_detail_page.instagram_follow.text')}
                     socialName="instagram"
                     mandatory={action.follow_mandatory}

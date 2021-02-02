@@ -10,7 +10,7 @@ function TwitchFollowValidationModal(props) {
   const { pk, open, onToggle, promotion_id, closeModal } = props
 
   const CAMPAIGN_PARTICIPATE_TWITCH_FOLLOW_VALIDATION_PROCESS = useSelector(state => state.userInfo.CAMPAIGN_PARTICIPATE_TWITCH_FOLLOW_VALIDATION)
-  const twitch_follow_validation = useSelector(state => state.campaign.twitch_follow_validation)
+  const twitch_follow_validation = useSelector(state => state.campaign[`twitch_follow_validation_${pk}`])
 
   const tempActionData = useSelector(state => state.userInfo.tempActionData)
   const dispatch = useDispatch()

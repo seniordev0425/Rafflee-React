@@ -11,7 +11,7 @@ function YoutubeLikeValidationModal(props) {
   const { pk, open, onToggle, promotion_id, closeModal } = props
 
   const CAMPAIGN_PARTICIPATE_YOUTUBE_LIKE_VALIDATION_PROCESS = useSelector(state => state.userInfo.CAMPAIGN_PARTICIPATE_YOUTUBE_LIKE_VALIDATION)
-  const youtube_like_validation = useSelector(state => state.campaign.youtube_like_validation)
+  const youtube_like_validation = useSelector(state => state.campaign[`youtube_like_validation_${pk}`])
 
   const tempActionData = useSelector(state => state.userInfo.tempActionData)
   const dispatch = useDispatch()

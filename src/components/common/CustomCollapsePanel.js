@@ -194,7 +194,7 @@ function CustomCollapsePanel(props) {
       { (is_instagram_comment_in_progress || instagram_comment_in_progress)
         ?
         <Tooltip title={t('tooltips.instagram_comment_is_in_progress')}>
-        <img src={images.ic_in_progress} width={40} height={40} alt="" />
+          <img src={images.ic_in_progress} width={40} height={40} alt="" />
         </Tooltip>
         :
         (didAction || validation)

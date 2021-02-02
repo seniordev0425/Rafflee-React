@@ -10,7 +10,7 @@ function TwitterTweetValidationModal(props) {
   const { pk, open, onToggle, promotion_id, closeModal } = props
 
   const CAMPAIGN_PARTICIPATE_TWITTER_TWEET_VALIDATION_PROCESS = useSelector(state => state.userInfo.CAMPAIGN_PARTICIPATE_TWITTER_TWEET_VALIDATION)
-  const twitter_tweet_validation = useSelector(state => state.campaign.twitter_tweet_validation)
+  const twitter_tweet_validation = useSelector(state => state.campaign[`twitter_tweet_validation_${pk}`])
 
   const tempActionData = useSelector(state => state.userInfo.tempActionData)
   const dispatch = useDispatch()

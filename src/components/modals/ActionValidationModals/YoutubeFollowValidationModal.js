@@ -10,7 +10,7 @@ function YoutubeFollowValidationModal(props) {
   const { pk, open, onToggle, promotion_id, closeModal } = props
 
   const CAMPAIGN_PARTICIPATE_YOUTUBE_FOLLOW_VALIDATION_PROCESS = useSelector(state => state.userInfo.CAMPAIGN_PARTICIPATE_YOUTUBE_FOLLOW_VALIDATION)
-  const youtube_follow_validation = useSelector(state => state.campaign.youtube_follow_validation)
+  const youtube_follow_validation = useSelector(state => state.campaign[`youtube_follow_validation_${pk}`])
 
   const tempActionData = useSelector(state => state.userInfo.tempActionData)
   const dispatch = useDispatch()

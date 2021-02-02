@@ -820,7 +820,7 @@ export function campaignParticipateInstagramComment(params, pk, instagram_commen
   });
 }
 function onSuccessCampaignParticipateInstagramComment(data, pk, instagram_comment_url) {
-  if (data.status !== 201 && data?.in_progress !== true) window.open(instagram_comment_url, '_blank')
+  if (data?.in_progress !== true) window.open(instagram_comment_url, '_blank')
   return {
     type: 'SET_ACTION_VALIDATION_STATUS',
     data: (data.status === 201 || data.in_progress) ? `instagram_comment_in_progress_${pk}` : `instagram_comment_validation_${pk}`,
