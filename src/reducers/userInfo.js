@@ -151,7 +151,9 @@ const initialFeedState = {
   },
 
   ///////////////////////////////////////////// This state is used to check available username in account page
-  usernameCheckedStatus: true
+  usernameCheckedStatus: true,
+
+  requestPhoneVerification: false
 }
 
 function UserInfo(state = initialFeedState, action) {
@@ -203,7 +205,8 @@ function UserInfo(state = initialFeedState, action) {
         ...state,
         token: action.data.token,
         company: action.data.company,
-        is_admin: action.data.is_admin
+        is_admin: action.data.is_admin,
+        requestPhoneVerification: action.data?.phone_verified === false ? true : false
       }
     case 'DELETE_ACCOUNT_SUCCESS':
       return {
@@ -441,6 +444,11 @@ function UserInfo(state = initialFeedState, action) {
           ...state,
           userProfile: { ...state.userProfile, email_verified: false, email: action.newEmail }
         }
+      }
+    case 'SET_REQUEST_PHONE_VERIFICATION':
+      return {
+        ...state,
+        requestPhoneVerification: action.data
       }
     default:
       return state

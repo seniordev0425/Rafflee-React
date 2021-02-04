@@ -21,6 +21,9 @@ function onFailed(error) {
   else if (error === 'MSG_ERROR_USER_NOT_CONNECTED_TO_INSTAGRAM') {
     return { type: 'INSTAGRAM_DIRECT_CONNECT', data: true }
   }
+  else if (error === 'MSG_PHONE_NUMBER_NOT_CONFIRMED') {
+    return { type: 'SET_REQUEST_PHONE_VERIFICATION', data: true }
+  }
 
   return {
     type: 'API_FAILED',

@@ -11,25 +11,28 @@ import { useTranslation } from 'react-i18next'
 function ProfileActivated(props) {
   const { t } = useTranslation()
 
-  const { match } = props
+  const { match, history } = props
 
-  const isLoading = useSelector(state => state.userInfo.GET_USER_INVENTORY)
+  const isLoading = useSelector(state => state.userInfo.PROFILE_ACTIVATE)
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(profileActivate(match.params.id, match.params.token))
+    dispatch(profileActivate(match.params.id, match.params.token, history))
   }, [])
 
   if (isLoading) return <LoadingPage />
 
   return (
     <AppLayout>
-      <Container fluid className="mt-5">
+      <Container fluid className="p-0 NotFound">
         <section className="py-5 px-sm-5 px-4">
-          <Row className="mt-5">
-            <Col className="text-center mx-auto">
-              <h1 className="h4 mb-4 congratulation-header">{t('profile_activated_page.successfully_activated')}</h1>
-              <Button tag={Link} to="/" color="primary" className="mt-5">{t('profile_activated_page.goto_login')}</Button>
+          <Row>
+            <Col className="text-center mx-auto" style={{ maxWidth: '35rem' }}>
+              <h1 className="h4 mb-4">{t('auth_page.something_went_wrong')}</h1>
+              <p className="mb-5">{t('auth_page.try_again_later')}</p>
+              <Button tag={Link} to='/' color="primary">
+                {t('auth_page.go_back')}
+              </Button>
             </Col>
           </Row>
         </section>

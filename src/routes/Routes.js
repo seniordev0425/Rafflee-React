@@ -32,6 +32,7 @@ import LoadingPage from '../components/common/LoadingPage'
 import ScrollToTop from '../components/common/ScrollToTop'
 import InProgress from '../screens/InProgress'
 import NotFound from '../components/common/NotFound'
+import PhoneRequestModal from '../components/modals/PhoneRequestModal'
 
 import AdminRoutes from './AdminRoutes'
 
@@ -51,8 +52,8 @@ function Routes(props) {
   const token = useSelector(state => state.userInfo.token)
   const company = useSelector(state => state.userInfo.company)
   const is_admin = useSelector(state => state.userInfo.is_admin)
-
   const AUTH_ERROR = useSelector(state => state.userInfo.AUTH_ERROR)
+  const requestPhoneVerification = useSelector(state => state.userInfo.requestPhoneVerification)
 
   const dispatch = useDispatch()
 
@@ -60,10 +61,18 @@ function Routes(props) {
   const [isFetchingIP, setIsFethingIP] = useState(false)
 
   const [online, setOnline] = useState(navigator.onLine)
-
   const handleOnline = () => setOnline(navigator.onLine)
   const handleOffline = () => setOnline(navigator.onLine)
-  
+
+  const [openPhoneNumberModal, setOpenPhoneNumberModal] = useState(false)
+
+  useEffect(() => {
+    if (requestPhoneVerification) {
+      dispatch({ type: 'INIT_STATE', state: 'requestPhoneVerification', data: false })
+      setOpenPhoneNumberModal(true)
+    }
+  }, [requestPhoneVerification])
+
   useEffect(() => {
     if (token) {
       if (company) {
@@ -244,6 +253,12 @@ function Routes(props) {
           </span>
         </Link>
       </CookieConsent>
+
+
+      <PhoneRequestModal
+        open={openPhoneNumberModal}
+        onToggle={() => setOpenPhoneNumberModal(false)}
+      />
     </ScrollToTop>
   )
 }

@@ -162,7 +162,8 @@
     "back": "Retour",
     "go_to_campaigns": "Retour",
     "open": "Ouverte",
-    "yes": "Yes"
+    "yes": "Yes",
+    "skip": "Skip"
   },
   "homepage": {
     "hot_new_contest_everyday": "Des raffles et giveaways tous les jours.",
@@ -756,7 +757,8 @@
   },
   "phone_verify_modal": {
     "enter_code": "Entre le code de vérification",
-    "resend_code": "Renvoyer le code de vérification"
+    "resend_code": "Renvoyer le code de vérification",
+    "enter_number": "Enter Phonenumber"
   },
   "delete_account_modal": {
     "delete_account": "Désactiver le compte",

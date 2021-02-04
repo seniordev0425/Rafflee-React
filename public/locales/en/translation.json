@@ -162,7 +162,8 @@
     "back": "Back",
     "go_to_campaigns": "Go to campaigns",
     "open": "Open",
-    "yes": "Yes"
+    "yes": "Yes",
+    "skip": "Skip"
   },
   "homepage": {
     "hot_new_contest_everyday": "Hot new contest everyday.",
@@ -764,7 +765,8 @@
   },
   "phone_verify_modal": {
     "enter_code": "Enter Verification Code",
-    "resend_code": "Resend verification code"
+    "resend_code": "Resend verification code",
+    "enter_number": "Enter Phonenumber"
   },
   "delete_account_modal": {
     "delete_account": "Deactivate Account",

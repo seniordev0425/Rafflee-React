@@ -57,7 +57,7 @@ export const getTotalEntries = (params) => {
       totalTemp += parseInt(action.youtube_comment_entries) || 1
     }
     if (action.action_type === 'youtube_video') {
-      totalTemp += parseInt(action.video_entries) || 1
+      totalTemp += parseInt(action.youtube_video_entries) || 1
     }
   })
 

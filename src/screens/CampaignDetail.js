@@ -656,7 +656,7 @@ function CampaignDetail(props) {
                           mandatory={action.instagram_comment_mandatory}
                           entries={action.instagram_comment_entries}
                           instagram_comment_url={action.instagram_comment_publication_url}
-                          didAction={getSocialUserActions(campaignData.user_actions, 'instagram_comment', action.pk, 'action_validated')}
+                          didAction={getSocialUserActions(campaignData.user_actions, 'instagram', action.pk, 'instagram_comment')}
                           is_instagram_comment_in_progress={getSocialUserActions(campaignData.user_actions, 'instagram_comment', action.pk, 'in_progress')}
                           tryToOpenValidationModal={tryToOpenValidationModal}
                         />

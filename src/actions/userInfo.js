@@ -56,21 +56,18 @@ export function googleLogin(params) {
     url: APIROUTE + "login/google/",
     method: 'POST',
     data: qs.stringify(params),
-    onSuccess: (data) => onSuccessLogIn(data, false),
+    onSuccess: onSuccessLogIn,
     onFailure: onFailed,
     label: 'GOOGLE_LOG_IN',
     requireErrorMessage: true
   });
 }
-function onSuccessLogIn(data, rememberMe) {
+function onSuccessLogIn(data) {
   openNotification('success', successMessages[localStorage.getItem('i18nextLng')].logIn)
   localStorage.setItem('token', data.token)
   localStorage.setItem('company', data.company)
   localStorage.setItem('is_admin', data.is_admin)
-  // if (rememberMe) {
-  //   localStorage.setItem('token', data.token)
-  //   localStorage.setItem('company', data.company)
-  // }
+
   return {
     type: 'LOG_IN_SUCCESS',
     data: data
@@ -170,7 +167,7 @@ function onSuccessSignUp(data) {
   openNotification('success', successMessages[localStorage.getItem('i18nextLng')].signUp)
   return {
     type: '',
-    data: ''  
+    data: ''
   }
 }
 /////////////////////////////////////////////// COMPANY-CONTACT-ACTION
@@ -295,7 +292,7 @@ function onSuccessResendSms(data) {
   }
 }
 /////////////////////////////////////////////// SEND-SMS-ACTION
-export function sendSms(params) {
+export function sendSms(params, label) {
   return apiAction({
     url: APIROUTE + "account/number/send-sms/",
     method: 'POST',
@@ -303,7 +300,7 @@ export function sendSms(params) {
     accessToken: localStorage.getItem('token'),
     onSuccess: onSuccessSendSms,
     onFailure: onFailed,
-    label: 'SEND_SMS',
+    label: label,
     requireErrorMessage: true
   });
 }
@@ -325,7 +322,8 @@ export function verifyPhoneNumber(params) {
     label: 'VERIFY_PHONE_NUMBER_REQUEST',
   });
 }
-function onSuccessVerifyPhoneNumber(data) {
+function onSuccessVerifyPhoneNumber() {
+  openNotification('success', successMessages[localStorage.getItem('i18nextLng')].success)
   return {
     type: 'VERIFY_PHONE_NUMBER_SUCCESS',
     flag: true
@@ -460,18 +458,28 @@ function onSuccessGetPdfInvoice(data) {
   }
 }
 /////////////////////////////////////////////// PROFILE-ACTIVATE-ACTION
-export function profileActivate(id, token) {
+export function profileActivate(id, token, history) {
   return apiAction({
     url: APIROUTE + `account/profile/activate/${id}/${token}/`,
-    onSuccess: onSuccessProfileActivate,
+    onSuccess: (data) => onSuccessProfileActivate(data, history),
     onFailure: onFailed,
-    label: 'GET_USER_INVENTORY',
+    label: 'PROFILE_ACTIVATE',
+    requireErrorMessage: true,
   });
 }
-function onSuccessProfileActivate(data) {
+function onSuccessProfileActivate(data, history) {
+  history.push('/')
+  localStorage.setItem('token', data.token)
+  localStorage.setItem('company', false)
+  localStorage.setItem('is_admin', false)
   return {
-    type: '',
-    data: ''
+    type: 'LOG_IN_SUCCESS',
+    data: {
+      token: data.token,
+      company: false,
+      is_admin: false,
+      phone_verified: false
+    }
   }
 }
 /////////////////////////////////////////////// UPDATE-DASHBOARD-FAVORITE-ACTION

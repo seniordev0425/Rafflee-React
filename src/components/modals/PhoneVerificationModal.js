@@ -12,7 +12,7 @@ import { useTranslation } from 'react-i18next'
 function PhoneVerificationModal(props) {
   const { t } = useTranslation()
 
-  const { open, onToggle, phone_number } = props
+  const { open, onToggle, onSuccess, phone_number } = props
 
   const isVerifying = useSelector(state => state.userInfo.VERIFY_PHONE_NUMBER_REQUEST)
   const isVerified = useSelector(state => state.userInfo.VERIFY_PHONE_NUMBER_SUCCESS)
@@ -23,6 +23,7 @@ function PhoneVerificationModal(props) {
 
   useEffect(() => {
     if (isVerified) {
+      onSuccess()
       onToggle()
       dispatch({ type: 'VERIFY_PHONE_NUMBER_SUCCESS', flag: false })
     }

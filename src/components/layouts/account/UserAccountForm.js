@@ -177,7 +177,7 @@ function UserAccountForm() {
       prefix: `+${verifyPhoneNumber.phone_country}`,
       number: verifyPhoneNumber.phone_number
     }
-    dispatch(sendSms(body))
+    dispatch(sendSms(body, 'SEND_SMS'))
   }
 
   const debounceCheck = debounce(username => {
@@ -564,6 +564,7 @@ function UserAccountForm() {
       <PhoneVerificationModal
         open={openVerificationModal}
         onToggle={handleVerificationModal}
+        onSuccess={() => { }}
         phone_number={verifyPhoneNumber}
       />
       <UpdateEmailModal
