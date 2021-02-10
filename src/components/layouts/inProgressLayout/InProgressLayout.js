@@ -28,9 +28,9 @@ function InProgressLayout() {
   useEffect(() => {
     // After render method, call these 4 endpoints.
     dispatch(getUserInProgress())
-    dispatch(getUserInventory())
-    dispatch(getParticipationHistory())
-    dispatch(getFollowing())
+    // dispatch(getUserInventory())
+    // dispatch(getParticipationHistory())
+    // dispatch(getFollowing())
   }, [])
 
   const handlePagination = (value) => {

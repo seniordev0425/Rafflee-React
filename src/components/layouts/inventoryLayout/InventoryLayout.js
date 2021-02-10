@@ -33,9 +33,9 @@ function InventoryLayout() {
   useEffect(() => {
     // After render method, call these 4 endpoints.
     dispatch(getUserInventory())
-    dispatch(getParticipationHistory())
-    dispatch(getUserInProgress())
-    dispatch(getFollowing())
+    // dispatch(getParticipationHistory())
+    // dispatch(getUserInProgress())
+    // dispatch(getFollowing())
   }, [])
 
   const handlePagination = (value) => {

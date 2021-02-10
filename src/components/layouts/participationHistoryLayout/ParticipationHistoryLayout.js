@@ -31,10 +31,10 @@ function ParticipationHistoryLayout(props) {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(getUserInventory())
+    // dispatch(getUserInventory())
     dispatch(getParticipationHistory())
-    dispatch(getUserInProgress())
-    dispatch(getFollowing())
+    // dispatch(getUserInProgress())
+    // dispatch(getFollowing())
   }, [])
 
   useEffect(() => {

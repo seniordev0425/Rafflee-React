@@ -25,9 +25,9 @@ function MyFollowingLayout() {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(getUserInventory())
-    dispatch(getParticipationHistory())
-    dispatch(getUserInProgress())
+    // dispatch(getUserInventory())
+    // dispatch(getParticipationHistory())
+    // dispatch(getUserInProgress())
     dispatch(getFollowing())
   }, [])
 

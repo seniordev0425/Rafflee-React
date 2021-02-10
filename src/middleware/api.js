@@ -25,7 +25,7 @@ const apiMiddleware = ({ dispatch }) => next => action => {
   axios.defaults.baseURL = process.env.REACT_APP_BASE_URL || "";
   axios.defaults.headers.common["Content-Type"] = "application/x-www-form-urlencoded";
   if (accessToken) {
-    axios.defaults.headers.common["Authorization"] = `JWT ${accessToken}`;
+    axios.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
   }
   else axios.defaults.headers.common["Authorization"] = null;
 

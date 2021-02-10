@@ -24,7 +24,7 @@ function PhoneRequestModal(props) {
 
   const dispatch = useDispatch()
 
-  const [number, setNumber] = useState(null)
+  const [number, setNumber] = useState({phone_number: '', phone_country: '+33'})
   const [openVerificationModal, setOpenVerificationModal] = useState(false)
 
   useEffect(() => {
@@ -58,6 +58,7 @@ function PhoneRequestModal(props) {
               <div style={{ width: "70%" }}>
                 <Field
                   name="phonenumber"
+                  defaultValue={number}
                   component={FormPhoneInput}
                   className="custom-form-control"
                 />
