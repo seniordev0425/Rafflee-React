@@ -998,23 +998,22 @@ function onSuccessGetBeingCreatedCampaigns(data) {
   }
 }
 /////////////////////////////////////////////// DELETE_BEING_CREATED_CAMPAIGN_ACTION
-export function deleteBeingCreatedCampaign(params) {
+export function deleteBeingCreatedCampaign(pk) {
   return apiAction({
-    url: APIROUTE + "company/campaign/being-created/delete/",
+    url: APIROUTE + `company/campaign/being-created/delete/${pk}/`,
     method: 'DELETE',
-    data: qs.stringify(params),
     accessToken: localStorage.getItem('token'),
-    onSuccess: (data) => onSuccessDeleteCampaign(data, params),
+    onSuccess: (data) => onSuccessDeleteCampaign(data, pk),
     onFailure: onFailed,
     label: 'DELETE_BEING_CREATED_CAMPAIGN',
     requireErrorMessage: true
   });
 }
-function onSuccessDeleteCampaign(data, params) {
+function onSuccessDeleteCampaign(data, pk) {
   openNotification('success', successMessages[localStorage.getItem('i18nextLng')].deleteBeingCreatedCampaign)
   return {
     type: 'DELETE_BEING_CREATED_CAMPAIGN',
-    data: params.pk
+    data: pk
   }
 }
 

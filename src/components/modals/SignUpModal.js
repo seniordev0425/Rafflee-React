@@ -6,7 +6,7 @@ import { OnChange } from 'react-final-form-listeners'
 import { Form, FormGroup } from 'reactstrap'
 import FormInput from '../common/FormInput'
 import { Switch, Button } from 'antd'
-import { signUp, verifyCaptcha } from '../../actions/userInfo'
+import { signUp, verifyCaptcha, resendValidationAccount } from '../../actions/userInfo'
 
 import {
   composeValidators,
@@ -31,7 +31,12 @@ function SignUpModal(props) {
   const VERIFY_CAPTCHA_PROCESS = useSelector(state => state.userInfo.VERIFY_CAPTCHA)
   const SIGN_UP_SUCCESS = useSelector(state => state.userInfo.SUCCESS_SIGN_UP)
 
+  const resendValidationEmail = useSelector(state => state.userInfo.resendValidationEmail)
+  const RESEND_VALIDATION_ACCOUNT_PROCESS = useSelector(state => state.userInfo.RESEND_VALIDATION_ACCOUNT)
+
   const dispatch = useDispatch()
+
+  const [email, setEmail] = useState('')
   const [agree, setAgree] = useState(false)
 
   const [containSpecial, setContainSpecial] = useState(false)
@@ -62,6 +67,10 @@ function SignUpModal(props) {
       language: LANGUAGE_NAME[i18n.language]
     }
     dispatch(verifyCaptcha({ captcha_token }, signUp(body)))
+  }
+
+  const onClickResendValidationAccount = () => {
+    dispatch(resendValidationAccount({ email }))
   }
 
   const validatePassword = (val) => {
@@ -96,6 +105,9 @@ function SignUpModal(props) {
                   isEmail(t('signin_modal.enter_valid_email'))
                 )}
               />
+              <OnChange name="email">
+                {(value) => setEmail(value)}
+              </OnChange>
             </FormGroup>
             <FormGroup>
               <Field
@@ -167,6 +179,16 @@ function SignUpModal(props) {
             >
               {!isLoading && !VERIFY_CAPTCHA_PROCESS && t('button_group.create_account')}
             </Button>
+            {resendValidationEmail &&
+              <Button
+                type="primary"
+                className="ant-blue-btn mt-4"
+                loading={RESEND_VALIDATION_ACCOUNT_PROCESS}
+                onClick={onClickResendValidationAccount}
+              >
+                {!RESEND_VALIDATION_ACCOUNT_PROCESS && t('button_group.resend_validation_email')}
+              </Button>
+            }
             <div className="company-question-button-container" onClick={() => showCompanyModal(true)}>
               <span className="company-question-button">{t('signin_modal.are_you_company')}</span>
             </div>

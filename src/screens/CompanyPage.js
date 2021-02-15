@@ -8,7 +8,7 @@ import AppLayout from '../components/layouts/AppLayout'
 import LoadingPage from '../components/common/LoadingPage'
 import CircleFollowModal from '../components/modals/CircleFollowModal'
 import CircleUnfollowModal from '../components/modals/CircleUnfollowModal'
-import { getCompanyInformation } from '../actions/userInfo'
+import { getCompanyInformation, getCompanyWall } from '../actions/userInfo'
 import images from '../utils/images'
 import moment from 'moment'
 
@@ -20,7 +20,9 @@ function CompanyPage(props) {
 
   const token = useSelector(state => state.userInfo.token)
   const companyInformation = useSelector(state => state.userInfo.companyInformation)
+  const companyWall = useSelector(state => state.userInfo.companyWall)
   const GET_COMPANY_INFORMATION_PROCESS = useSelector(state => state.userInfo.GET_COMPANY_INFORMATION)
+  const GET_COMPANY_WALL_PROCESS = useSelector(state => state.userInfo.GET_COMPANY_WALL)
   const dispatch = useDispatch()
 
   const [openFollowModal, setFollowModal] = useState(false)
@@ -34,6 +36,7 @@ function CompanyPage(props) {
     // Load company information after render
     document.title = "Company Page"
     dispatch(getCompanyInformation(id, { token: token }))
+    dispatch(getCompanyWall(id))
   }, [])
 
   const handleFollowModal = () => {
@@ -48,13 +51,13 @@ function CompanyPage(props) {
     <div className="font-size-10">
       <span>
         <span className="font-weight-bold">
-          {((companyInformation.social_wall || {}).twitter || {}).followers}
+          {companyWall?.twitter?.followers}
         </span>
         {t('my_circle_page.followers')}
       </span>
       <span className="ml-3">
         <span className="font-weight-bold">
-          {((companyInformation.social_wall || {}).twitter || {}).friends}
+          {companyWall?.twitter?.friends}
         </span>
         {t('my_circle_page.friends')}
       </span>
@@ -65,7 +68,7 @@ function CompanyPage(props) {
     <div className="font-size-10">
       <span>
         <span className="font-weight-bold">
-          {((companyInformation.social_wall.facebook || {}).page_informations || {}).fan_count}
+          {companyWall?.facebook?.page_informations?.fan_count}
         </span>
         {t('my_circle_page.fans')}
       </span>
@@ -76,15 +79,15 @@ function CompanyPage(props) {
     // Extract social wall data from company information
     let socialWalls = [];
 
-    (((companyInformation.social_wall || {}).twitter || {}).tweets || []).forEach((item) =>
+    (companyWall?.twitter?.tweets || []).forEach((item) =>
       socialWalls.push({ ...item, social_name: 'twitter' })
     );
 
-    (((companyInformation.social_wall || {}).instagram || {}).publication || []).forEach((item) =>
+    (companyWall?.instagram?.publication || []).forEach((item) =>
       socialWalls.push({ ...item, social_name: 'instagram' })
     );
 
-    (((companyInformation.social_wall || {}).facebook || {}).publication || []).forEach((item) =>
+    (companyWall?.facebook?.publication || []).forEach((item) =>
       socialWalls.push({ ...item, social_name: 'facebook' })
     );
 
@@ -111,7 +114,7 @@ function CompanyPage(props) {
               <Col xs="12" sm={{ size: 10, offset: 1 }} className="padding-x">
                 <Row>
                   <Col lg="1" md="2" sm="2" xs="3" className="company-wall-img">
-                    <img src={((companyInformation.social_wall || {}).twitter || {}).profile_image_url} alt="" />
+                    <img src={companyWall?.twitter?.profile_image_url} alt="" />
                   </Col>
                   <Col lg="11" md="10" sm="10" xs="9" className="pl-sm-5">
                     <div className="d-sm-flex">
@@ -119,7 +122,7 @@ function CompanyPage(props) {
                         <Tooltip title={twitter_tooltip}>
                           <img src={images.twitter_icon} width={22} height={20} className="pointer" alt="" />
                         </Tooltip>
-                        <span className="font-size-10 font-weight-bold color-blue ml-3">{((companyInformation.social_wall || {}).twitter || {}).name}</span>
+                        <span className="font-size-10 font-weight-bold color-blue ml-3">{companyWall?.twitter?.name}</span>
                       </div>
                     </div>
                     <div className="mt-2 font-size-9">
@@ -144,7 +147,7 @@ function CompanyPage(props) {
                         <div className="d-sm-flex">
                           <div className="d-flex align-items-center">
                             <img src={images.instagram_icon} width={20} height={20} alt="" />
-                            <span className="font-size-10 font-weight-bold color-blue ml-3">{((companyInformation.social_wall || {}).instagram || {}).name}</span>
+                            <span className="font-size-10 font-weight-bold color-blue ml-3">{companyWall?.instagram?.name}</span>
                           </div>
                         </div>
                         <div className="mt-2 font-size-9">
@@ -182,7 +185,7 @@ function CompanyPage(props) {
               <Col xs="12" sm={{ size: 10, offset: 1 }} className="padding-x">
                 <Row>
                   <Col lg="1" md="2" sm="2" xs="3" className="company-wall-img">
-                    <img src={companyInformation.social_wall.facebook.page_informations.picture.data.url || images.profile_img} alt="" />
+                    <img src={companyWall.facebook.page_informations.picture.data.url || images.profile_img} alt="" />
                   </Col>
                   <Col lg="11" md="10" sm="10" xs="9" className="pl-sm-5">
                     <Row>
@@ -192,7 +195,7 @@ function CompanyPage(props) {
                             <Tooltip title={facebook_tooltip}>
                               <img src={images.facebook_icon} width={20} height={20} alt="" />
                             </Tooltip>
-                            <span className="font-size-10 font-weight-bold color-blue ml-3">{companyInformation.social_wall.facebook.page_informations.name}</span>
+                            <span className="font-size-10 font-weight-bold color-blue ml-3">{companyWall.facebook.page_informations.name}</span>
                           </div>
                         </div>
                         <div className="mt-2 font-size-9">
@@ -218,7 +221,7 @@ function CompanyPage(props) {
     )
   }
 
-  if (GET_COMPANY_INFORMATION_PROCESS) return <LoadingPage />
+  if (GET_COMPANY_INFORMATION_PROCESS || GET_COMPANY_WALL_PROCESS) return <LoadingPage />
 
   return (
     <AppLayout>
@@ -276,7 +279,7 @@ function CompanyPage(props) {
                     </Col>
                     <Col className="d-flex align-items-center mt-3 justify-content-start justify-content-md-end px-0">
                       <div className="d-flex align-items-center">
-                        {(((companyInformation.social_wall || {}).twitter || {}).tweets || []).length > 0 &&
+                        {(companyWall?.twitter?.tweets || []).length > 0 &&
                           <div className="d-flex align-items-center justify-content-center mr-4">
                             <Checkbox
                               className="big-checkbox"
@@ -286,7 +289,7 @@ function CompanyPage(props) {
                             <img src={images.twitter_icon} width={23} height={20} className="ml-2" alt="" />
                           </div>
                         }
-                        {(((companyInformation.social_wall || {}).instagram || {}).publication || []).length > 0 &&
+                        {(companyWall?.instagram?.publication || []).length > 0 &&
                           <div className="d-flex align-items-center justify-content-center mr-4">
                             <Checkbox
                               className="big-checkbox"
@@ -296,7 +299,7 @@ function CompanyPage(props) {
                             <img src={images.instagram_icon} width={20} height={20} className="ml-2" alt="" />
                           </div>
                         }
-                        {(((companyInformation.social_wall || {}).facebook || {}).publication || []).length > 0 &&
+                        {(companyWall?.facebook?.publication || []).length > 0 &&
                           <div className="d-flex align-items-center justify-content-center mr-4">
                             <Checkbox
                               className="big-checkbox"

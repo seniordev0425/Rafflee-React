@@ -117,8 +117,7 @@ const initialFeedState = {
       type_of_account: '',
       member_since: '',
       certified: false
-    },
-    social_wall: {}
+    }
   },
 
 
@@ -153,7 +152,9 @@ const initialFeedState = {
   ///////////////////////////////////////////// This state is used to check available username in account page
   usernameCheckedStatus: true,
 
-  requestPhoneVerification: false
+  requestPhoneVerification: false,
+
+  resendValidationEmail: false
 }
 
 function UserInfo(state = initialFeedState, action) {
@@ -449,6 +450,11 @@ function UserInfo(state = initialFeedState, action) {
       return {
         ...state,
         requestPhoneVerification: action.data
+      }
+    case 'SET_RESEND_VALIDATION_EMAIL':
+      return {
+        ...state,
+        resendValidationEmail: action.data
       }
     default:
       return state

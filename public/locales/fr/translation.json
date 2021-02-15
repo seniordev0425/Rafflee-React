@@ -163,7 +163,8 @@
     "go_to_campaigns": "Retour",
     "open": "Ouverte",
     "yes": "Yes",
-    "skip": "Skip"
+    "skip": "Skip",
+    "resend_validation_email": "Resend validation email"
   },
   "homepage": {
     "hot_new_contest_everyday": "Des raffles et giveaways tous les jours.",

@@ -37,7 +37,7 @@ const BeingCreatedLayout = () => {
 
   const deleteCampaign = (pk) => {
     setBeingDeltedPK(pk)
-    dispatch(deleteBeingCreatedCampaign({ pk: pk }))
+    dispatch(deleteBeingCreatedCampaign(pk))
   }
 
   if (GET_BEING_CREATED_CAMPAIGNS_PROCESS) {

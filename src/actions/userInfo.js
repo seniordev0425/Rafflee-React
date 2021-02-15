@@ -158,7 +158,17 @@ export function signUp(params) {
     method: 'POST',
     data: qs.stringify(params),
     onSuccess: onSuccessSignUp,
-    onFailure: onFailed,
+    onFailure: (error) => {
+      openNotification('warning', errorMessages[localStorage.getItem('i18nextLng')][error])
+      if (error === 'MSG_EMAIL_ALREADY_EXIST') {
+        return {
+          type: 'SET_RESEND_VALIDATION_EMAIL',
+          data: true
+        }
+      } else {
+        return {}
+      }
+    },
     label: 'SIGN_UP',
     requireErrorMessage: true
   });
@@ -168,6 +178,25 @@ function onSuccessSignUp(data) {
   return {
     type: '',
     data: ''
+  }
+}
+/////////////////////////////////////////////// RESEND-VALIDATION-ACCOUNT-ACTION
+export function resendValidationAccount(params) {
+  return apiAction({
+    url: APIROUTE + "account/resend/validation/account/",
+    method: 'POST',
+    data: qs.stringify(params),
+    onSuccess: onSuccessResendValidationAccount,
+    onFailure: onFailed,
+    label: 'RESEND_VALIDATION_ACCOUNT',
+    requireErrorMessage: true
+  });
+}
+function onSuccessResendValidationAccount(data) {
+  openNotification('success', successMessages[localStorage.getItem('i18nextLng')].emailSended)
+  return {
+    type: 'SET_RESEND_VALIDATION_EMAIL',
+    data: false
   }
 }
 /////////////////////////////////////////////// COMPANY-CONTACT-ACTION
@@ -243,7 +272,7 @@ export function getCompanyProfile() {
 function onSuccessGetCompanyProfile(data) {
   return {
     type: 'GET_COMPANY_PROFILE_SUCCESS',
-    data: data.user_informations
+    data: data.company_information
   }
 }
 /////////////////////////////////////////////// UPDATE-COMPANY-PROFILE-ACTION
@@ -574,7 +603,7 @@ export function getCompanyInformation(id, params) {
 function onSuccessGetCompanyInformation(data) {
   return {
     type: 'SET_COMPANY_INFORMATION',
-    data: data.msg
+    data
   }
 }
 /////////////////////////////////////////////// CAMPAIGN_FOLLOW_ACTION
