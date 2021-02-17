@@ -105,7 +105,8 @@ function PreviewSection(props) {
           mandatory: action.url_mandatory,
           url: action.url_url,
           like: action.url_like,
-          share: action.url_share
+          share: action.url_share,
+          comment: action.url_comment
         })
       }
       if (action.type === 'page') {
@@ -116,7 +117,8 @@ function PreviewSection(props) {
           mandatory: action.page_mandatory,
           url: `https://www.facebook.com/${action.page_page_name}-${action.page_page_id}/`,
           follow: action.page_follow,
-          share: action.page_share
+          share: action.page_share,
+          comment: action.page_comment
         })
       }
     })
@@ -281,7 +283,10 @@ function PreviewSection(props) {
           url: action.comment_permalink,
           entries: action.comment_entries || 1,
           mandatory: action.comment_mandatory,
-          caption: action.comment_caption
+          caption: action.comment_caption,
+          media_type: action.comment_media_type,
+          like_count: action.comment_like_count,
+          timestamp: action.comment_created_at
         })
       }
     })

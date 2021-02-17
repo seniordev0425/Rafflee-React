@@ -25,7 +25,7 @@ function YoutubeVideoSelect(props) {
     setFetching(true)
 
     var myHeaders = new Headers()
-    myHeaders.append("Authorization", "JWT " + localStorage.getItem('token'))
+    myHeaders.append("Authorization", "Bearer " + localStorage.getItem('token'))
     var requestOptions = {
       method: 'GET',
       headers: myHeaders,

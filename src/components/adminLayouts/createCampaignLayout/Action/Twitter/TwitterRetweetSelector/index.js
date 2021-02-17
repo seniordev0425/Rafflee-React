@@ -19,7 +19,7 @@ function TwitterRetweetSelector(props) {
   const fetchTweet = tweetId => {
     setIsFetching(true)
     var myHeaders = new Headers()
-    myHeaders.append("Authorization", "JWT " + localStorage.getItem('token'))
+    myHeaders.append("Authorization", "Bearer " + localStorage.getItem('token'))
     var requestOptions = {
       method: 'GET',
       headers: myHeaders,

@@ -96,6 +96,12 @@ function FacebookPageField(props) {
             >
               {t('create_campaign_page.share')}
             </Checkbox>
+            <Checkbox
+              checked={action.page_comment}
+              onChange={(e) => setAction('facebook', action.id, { ...action, page_comment: e.target.checked })}
+            >
+              {t('create_campaign_page.comment')}
+            </Checkbox>
           </div>
         </Row>
         <Row className="mt-5">

@@ -8,9 +8,9 @@ export const facebookActionsMap = (action) => {
       type: 'post',
       post_entries: action.facebook_post_entries || '',
       post_mandatory: action.facebook_post_mandatory || false,
-      post_like: false,
-      post_comment: false,
-      post_share: false,
+      post_like: action.facebook_post_like || false,
+      post_comment: action.facebook_post_comment || false,
+      post_share: action.facebook_post_share || false,
       post_page_id: action.facebook_post_page_id || '',
       post_publication_id: action.facebook_post_publication_id || '',
     }
@@ -24,6 +24,7 @@ export const facebookActionsMap = (action) => {
       url_url: action.facebook_url_url || '',
       url_like: action.facebook_url_like || false,
       url_share: action.facebook_url_share || false,
+      url_comment: action.facebook_url_comment || false,
     }
   } else {
     return {
@@ -35,7 +36,8 @@ export const facebookActionsMap = (action) => {
       page_page_id: action.facebook_page_page_id || '',
       page_page_name: action.facebook_page_page_name || '',
       page_follow: action.facebook_page_follow || false,
-      page_share: action.facebook_page_share || false
+      page_share: action.facebook_page_share || false,
+      page_comment: action.facebook_page_comment || false,
     }
   }
 }

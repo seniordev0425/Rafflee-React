@@ -67,7 +67,7 @@ export const twitterActionsMap = (action) => {
       follow_id: action.twitter_follow_id || '',
       follow_entries: action.twitter_follow_entries || '',
       follow_mandatory: action.twitter_follow_mandatory || false,
-      follow_profile_image_url: action.twitter_follow_profile_img || '',
+      follow_profile_image_url: action.twitter_follow_url_img || '',
       follow_followers_count: action.twitter_follow_followers_count || '',
       follow_screen_name: action.twitter_follow_screen_name || '',
       follow_verified: action.twitter_follow_verified || false,

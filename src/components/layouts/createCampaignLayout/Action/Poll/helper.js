@@ -6,7 +6,7 @@ export const pollActionsMap = (action) => {
     pk: action.pk,
     question: action.question || '',
     response: action.responses || [""],
-    multiples_choices: action.multiples_choices || false,
+    multiples_choices: action.multiple_choices || false,
     entries: action.entries || '',
     mandatory: action.mandatory || false
   }

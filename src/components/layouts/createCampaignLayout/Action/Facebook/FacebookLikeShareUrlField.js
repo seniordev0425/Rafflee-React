@@ -67,6 +67,12 @@ function FacebookLikeShareUrl(props) {
             >
               {t('create_campaign_page.share')}
             </Checkbox>
+            <Checkbox
+              checked={action.url_comment}
+              onChange={(e) => setAction('facebook', action.id, { ...action, url_comment: e.target.checked })}
+            >
+              {t('create_campaign_page.comment')}
+            </Checkbox>
           </div>
         </Row>
         <Row className="mt-5">

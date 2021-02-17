@@ -1,7 +1,7 @@
 import uuid from 'react-uuid'
 
 export const youtubeActionsMap = (action) => {
-  if (action.action_type === 'comment') {
+  if (action.action_type === 'youtube_comment') {
     return {
       id: uuid(),
       pk: action.pk,
@@ -15,7 +15,7 @@ export const youtubeActionsMap = (action) => {
       comment_published_at: action.youtube_comment_published_at || '',
       comment_channel_title: action.youtube_comment_channel_title || '',
     }
-  } else if (action.action_type === 'like') {
+  } else if (action.action_type === 'youtube_like') {
     return {
       id: uuid(),
       pk: action.pk,
@@ -28,7 +28,7 @@ export const youtubeActionsMap = (action) => {
       like_published_at: action.youtube_like_published_at || '',
       like_channel_title: action.youtube_like_channel_title || '',
     }
-  } else if (action.action_type === 'video') {
+  } else if (action.action_type === 'youtube_video') {
     return {
       id: uuid(),
       pk: action.pk,

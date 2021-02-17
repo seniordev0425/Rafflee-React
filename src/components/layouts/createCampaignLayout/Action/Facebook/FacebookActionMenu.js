@@ -34,6 +34,7 @@ function FacebookActionMenu(props) {
       url_url: '',
       url_like: false,
       url_share: false,
+      url_comment: false,
     }
     setParams('facebook', [...params.facebook, newAction])
   }
@@ -48,7 +49,8 @@ function FacebookActionMenu(props) {
       page_page_id: '',
       page_page_name: '',
       page_follow: false,
-      page_share: false
+      page_share: false,
+      page_comment: false
     }
     setParams('facebook', [...params.facebook, newAction])
   }
