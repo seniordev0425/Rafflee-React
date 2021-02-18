@@ -84,6 +84,7 @@ const images = {
   ic_plus_gray: require('../assets/image/ic_plus_gray.png'),
   ic_minus_gray: require('../assets/image/ic_minus_gray.png'),
   ic_in_progress: require('../assets/image/in_progress_icon.svg'),
+  ic_download: require('../assets/image/download.svg'),
 }
 
 export default images;

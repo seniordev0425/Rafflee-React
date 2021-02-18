@@ -534,7 +534,8 @@
     "twitter_follow_id": "Follow ID:",
     "rules": "Rules",
     "loading": "Loading...",
-    "created_at": "Created At"
+    "created_at": "Created At",
+    "campaign_qrcode": "Campaign QRcode"
   },
   "business_create_page": {
     "entity_name": "Entity name",

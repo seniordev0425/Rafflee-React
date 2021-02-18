@@ -1,9 +1,11 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Row, Col, Input } from 'reactstrap'
+import QRCode from "react-qr-code"
 
 import { getCampaignRules } from '../../../../actions/campaign'
 
+import images from '../../../../utils/images'
 import { printPreview } from '../../../../utils/pdf'
 import { useTranslation } from 'react-i18next'
 
@@ -20,12 +22,36 @@ function ResumeSection(props) {
 
   const dispatch = useDispatch()
 
+  const [isQRcodeExpanded, setIsQRcodeExpanded] = useState(false)
+
   useEffect(() => {
     if (GET_CAMPAIGN_RULES_SUCCESS) {
       dispatch({ type: 'INIT_STATE', state: 'SUCCESS_GET_CAMPAIGN_RULES', data: false })
       printPreview(campaignRules)
     }
   }, [GET_CAMPAIGN_RULES_SUCCESS])
+
+  const downloadQR = () => {
+    const parent = document.querySelector('.qrcode');
+    const svg = parent.firstChild
+    const svgData = new XMLSerializer().serializeToString(svg);
+    const canvas = document.createElement("canvas");
+    const ctx = canvas.getContext("2d");
+    const img = new Image();
+    img.onload = function () {
+      canvas.width = img.width;
+      canvas.height = img.height;
+      ctx.drawImage(img, 0, 0);
+      const pngFile = canvas.toDataURL("image/png");
+
+      const downloadLink = document.createElement("a");
+      downloadLink.download = "qrcode";
+      downloadLink.href = `${pngFile}`;
+      downloadLink.click();
+    };
+
+    img.src = "data:image/svg+xml;base64," + btoa(svgData);
+  };
 
   return (
     <Row>
@@ -56,6 +82,32 @@ function ResumeSection(props) {
             onClick={() => dispatch(getCampaignRules(created_promotion_id))}
           >
             {GET_CAMPAIGN_RULES_PROCESS ? t('create_campaign_page.loading') : t('create_campaign_page.rules')}
+          </div>
+          <div className="footer-link-bold mt-5 mb-3">
+            <div className="d-flex align-items-center">
+              <span>{t('create_campaign_page.campaign_qrcode')}</span>
+              <div className="ml-3 pointer" onClick={() => setIsQRcodeExpanded(true)}>
+                <QRCode
+                  value={`https://rafflee.io/campaign-detail/${created_promotion_id}`}
+                  size={40}
+                />
+              </div>
+            </div>
+            {isQRcodeExpanded &&
+              <div className="d-flex justify-content-center">
+                <div className="mt-5">
+                  <div className="qrcode">
+                    <QRCode
+                      value={`https://rafflee.io/campaign-detail/${created_promotion_id}`}
+                      size={240}
+                    />
+                  </div>
+                  <div className="d-flex justify-content-center mt-3 pointer" onClick={downloadQR}>
+                    <img src={images.ic_download} width="50" height="50" alt="download" />
+                  </div>
+                </div>
+              </div>
+            }
           </div>
           <div className="footer-link-bold mt-5 mb-3">{t('create_campaign_page.add_tab_site')}</div>
           <div
