@@ -9,7 +9,8 @@ import { NUMBER_PER_PAGE } from '../../../utils/constants'
 
 import {
   getBeingCreatedCampaigns,
-  deleteBeingCreatedCampaign
+  deleteBeingCreatedCampaign,
+  getCampaignBeingCreatedImages
 } from '../../../actions/campaign'
 
 const BeingCreatedLayout = () => {
@@ -23,7 +24,8 @@ const BeingCreatedLayout = () => {
   const [maxValue, setMaxValue] = useState(NUMBER_PER_PAGE)
   const [currentPage, setCurrentPage] = useState(1)
 
-  const [beingDeletedPK, setBeingDeltedPK] = useState('')
+  const [beingDeletedPK, setBeingDeletedPK] = useState('')
+  const [beingUpdatedPK, setBeingUpdatedPK] = useState('')
 
   const handlePagination = (value) => {
     setCurrentPage(value)
@@ -36,8 +38,13 @@ const BeingCreatedLayout = () => {
   }, [])
 
   const deleteCampaign = (pk) => {
-    setBeingDeltedPK(pk)
+    setBeingDeletedPK(pk)
     dispatch(deleteBeingCreatedCampaign(pk))
+  }
+
+  const onPressUpdate = (pk) => {
+    setBeingUpdatedPK(pk)
+    dispatch(getCampaignBeingCreatedImages(pk))
   }
 
   if (GET_BEING_CREATED_CAMPAIGNS_PROCESS) {
@@ -51,7 +58,9 @@ const BeingCreatedLayout = () => {
           <BeingCreatedItem
             item={item}
             onDeleteCampaign={deleteCampaign}
+            onPressUpdate={onPressUpdate}
             beingDeletedPK={beingDeletedPK}
+            beingUpdatedPK={beingUpdatedPK}
           />
         </div>
       )}

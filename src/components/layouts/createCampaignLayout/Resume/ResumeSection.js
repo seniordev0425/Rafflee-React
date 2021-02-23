@@ -68,7 +68,7 @@ function ResumeSection(props) {
             className="px-3 py-2 mb-5 d-flex align-items-center font-size-9 color-blue"
             style={{ borderRadius: 6, border: '1px solid #DEE6E9' }}
           >
-            <a href={`https://rafflee.io/campaign-detail/${created_promotion_id}`}>{`https://rafflee.io/campaign-detail/${created_promotion_id}`}</a>
+            <a href={`${window.location.host}/campaign-detail/${created_promotion_id}`}>{`${window.location.host}/campaign-detail/${created_promotion_id}`}</a>
           </div>
           <div className="footer-link-bold mt-5 mb-3">{t('create_campaign_page.embed_page_blog_post')}</div>
           <Input
@@ -88,7 +88,7 @@ function ResumeSection(props) {
               <span>{t('create_campaign_page.campaign_qrcode')}</span>
               <div className="ml-3 pointer" onClick={() => setIsQRcodeExpanded(true)}>
                 <QRCode
-                  value={`https://rafflee.io/campaign-detail/${created_promotion_id}`}
+                  value={`${window.location.host}/campaign-detail/${created_promotion_id}`}
                   size={40}
                 />
               </div>
@@ -98,7 +98,7 @@ function ResumeSection(props) {
                 <div className="mt-5">
                   <div className="qrcode">
                     <QRCode
-                      value={`https://rafflee.io/campaign-detail/${created_promotion_id}`}
+                      value={`${window.location.host}/campaign-detail/${created_promotion_id}`}
                       size={240}
                     />
                   </div>

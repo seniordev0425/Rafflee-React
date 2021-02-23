@@ -1054,6 +1054,24 @@ function onSuccessGetCampaignRules(data) {
     data: data.result_data
   }
 }
+/////////////////////////////////////////////// GET_CAMPAIGN_BEING_CREATED_IMAGES_ACTION
+export function getCampaignBeingCreatedImages(pk) {
+  return apiAction({
+    url: APIROUTE + `company/campaign/being-created/${pk}/images/`,
+    accessToken: localStorage.getItem('token'),
+    onSuccess: onSuccessGetCampaignBeingCreatedImages,
+    onFailure: onFailed,
+    label: 'GET_CAMPAIGN_BEING_CREATED_IMAGES',
+    requireErrorMessage: true
+
+  });
+}
+function onSuccessGetCampaignBeingCreatedImages(data) {
+  return {
+    type: 'SET_CAMPAIGN_BEING_CREATED_IMAGES',
+    data: data.result_data
+  }
+}
 
 function apiAction({
   url = "",

@@ -22,6 +22,7 @@ function InstagramCommentField(props) {
   } = props
 
   const instagramPublications = useSelector(state => state.social.instagramPublications)
+  const GET_INSTAGRAM_PUBLICATIONS_PROCESS = useSelector(state => state.userInfo.GET_INSTAGRAM_PUBLICATIONS)
 
   const updatePublication = (id) => {
     let publication = _.find(instagramPublications, { id: id })
@@ -71,6 +72,7 @@ function InstagramCommentField(props) {
               placeholder={t('create_campaign_page.select_page')}
               onChange={updatePublication}
               size="large"
+              loading={GET_INSTAGRAM_PUBLICATIONS_PROCESS}
             >
               {instagramPublications.map((publication) => (
                 <Option key={publication.id} value={publication.id}>

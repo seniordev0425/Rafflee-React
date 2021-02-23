@@ -37,7 +37,7 @@ function CreateCampaignLayout() {
   const dispatch = useDispatch()
 
   // Enum (setup, campaign_type, action, preview, payment, resume)
-  const [currentSection, setCurrentSection] = useState('resume')
+  const [currentSection, setCurrentSection] = useState('setup')
 
   // This state includes all params to create campaign
   const [params, setParams] = useState({

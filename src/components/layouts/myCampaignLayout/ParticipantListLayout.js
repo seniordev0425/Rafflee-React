@@ -69,7 +69,7 @@ function ParticipantListLayout(props) {
           </Row>
         </Col>
       </Row>
-      <Row className="pt-3 pb-3" style={{ background: "rgba(191, 232, 254, 0.25)" }}>
+      {/* <Row className="pt-3 pb-3" style={{ background: "rgba(191, 232, 254, 0.25)" }}>
         <Col xs="12" sm={{ size: 10, offset: 1 }} className="padding-x responsive-font-size-11">
           <Row>
             <Col sm="5" xs="3" className="px-0" style={{ overflowWrap: 'anywhere' }}><div>{t('my_campaign_page.generated_likes')}</div></Col>
@@ -79,7 +79,7 @@ function ParticipantListLayout(props) {
             </Col>
           </Row>
         </Col>
-      </Row>
+      </Row> */}
       <Row className="mt-3 mb-3">
         <Col xs="12" sm={{ size: 10, offset: 1 }} className="padding-x">
           <div className="float-left responsive-font-size-11 font-weight-bold">{t('my_campaign_page.participants')} ({participants.length})</div>

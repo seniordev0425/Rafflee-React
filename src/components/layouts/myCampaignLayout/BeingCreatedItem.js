@@ -1,11 +1,12 @@
-import React, { useState } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Row, Col } from 'reactstrap'
 import { Button as AntdButton } from 'antd'
 import { useHistory } from "react-router-dom"
 import * as _ from 'lodash'
 
-import { imageToBase64 } from '../../../utils/others'
+import { getCampaignBeingCreatedImages } from '../../../actions/campaign'
+
 import images from '../../../utils/images'
 
 import { useTranslation } from 'react-i18next'
@@ -13,42 +14,35 @@ import { useTranslation } from 'react-i18next'
 function BeingCreatedItem(props) {
   const { t } = useTranslation()
 
-  const { item, onDeleteCampaign, beingDeletedPK } = props
+  const { 
+    item, 
+    onDeleteCampaign, 
+    onPressUpdate, 
+    beingDeletedPK, 
+    beingUpdatedPK 
+  } = props
 
   const history = useHistory()
   const DELETE_BEING_CREATED_CAMPAIGN_PROCESS = useSelector(state => state.userInfo.DELETE_BEING_CREATED_CAMPAIGN)
+  const GET_CAMPAIGN_BEING_CREATED_IMAGES_PROCESS = useSelector(state => state.userInfo.GET_CAMPAIGN_BEING_CREATED_IMAGES)
+
+  const beingCreatedCampaignImageData = useSelector(state => state.campaign.beingCreatedCampaignImageData)
+
   const dispatch = useDispatch()
 
-  const [isLoading, setIsLoading] = useState(false)
-
-
-  const goToCreateCampaignPage = async () => {
-    setIsLoading(true)
-    let promotionData = item
-    if (promotionData.campaign_image) {
-      let base64data = await imageToBase64(promotionData.campaign_image)
-      promotionData = { ...promotionData, campaign_image: base64data }
-    }
-
-    let winnings = []
-    for (let winning of promotionData.winnings) {
-      if (!_.isEmpty(winning.image)) {
-        let images = []
-        for (let image of winning.image) {
-          let base64data = await imageToBase64(image)
-          images.push(base64data)
-        }
-        winnings.push({ ...winning, image: images })
-      } else {
-        winnings.push(winning)
+  useEffect(() => {
+    if (beingCreatedCampaignImageData) {
+      let promotionData = item
+      promotionData = {
+        ...promotionData, 
+        campaign_image: beingCreatedCampaignImageData.beingCreatedCampaignImage,
+        winnings: beingCreatedCampaignImageData.beingCreatedCampaignWinnings,
       }
+      dispatch({ type: 'SET_BEING_CREATED_CAMPAIGN', data: promotionData })
+      dispatch({ type: 'CAMPAIGN_INIT_STATE', state: beingCreatedCampaignImageData, data: null })
+      history.push('/dashboard/create-campaign')
     }
-    promotionData = { ...promotionData, winnings: winnings }
-
-    setIsLoading(false)
-    dispatch({ type: 'SET_BEING_CREATED_CAMPAIGN', data: promotionData })
-    history.push('/dashboard/create-campaign')
-  }
+  }, [beingCreatedCampaignImageData])
 
   return (
     <div>
@@ -70,10 +64,10 @@ function BeingCreatedItem(props) {
                     type="primary"
                     className={"ant-blue-btn"}
                     style={{ width: 150, height: 40, padding: 0 }}
-                    loading={isLoading}
-                    onClick={goToCreateCampaignPage}
+                    loading={GET_CAMPAIGN_BEING_CREATED_IMAGES_PROCESS && beingUpdatedPK === item.pk}
+                    onClick={() => onPressUpdate(item.pk)}
                   >
-                    {!isLoading && t('button_group.update')}
+                    {!(GET_CAMPAIGN_BEING_CREATED_IMAGES_PROCESS && beingUpdatedPK) && t('button_group.update')}
                   </AntdButton>
                   <AntdButton
                     type="danger"

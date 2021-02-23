@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { isEmpty } from 'lodash'
 import { Row, Col } from 'reactstrap'
 import { Menu, Dropdown, Button, Checkbox } from 'antd'
 import FacebookActionButton from './Facebook/FacebookActionButton'
@@ -65,13 +66,19 @@ function ActionSection(props) {
   } = props
 
   const SAVE_CAMPAIGN_PROCESS = useSelector(state => state.userInfo.SAVE_CAMPAIGN)
+  const instagramPublications = useSelector(state => state.social.instagramPublications)
 
   const dispatch = useDispatch()
 
   useEffect(() => {
     dispatch(getFacebookPages())
-    dispatch(getInstagramPublications())
   }, [])
+
+  useEffect(() => {
+    if (!isEmpty(params.instagram.filter(action => action.type === 'comment')) && isEmpty(instagramPublications)) {
+      dispatch(getInstagramPublications())
+    }
+  }, [params.instagram])
 
   const menu = (
     <Menu>

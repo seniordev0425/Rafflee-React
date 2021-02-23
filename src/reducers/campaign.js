@@ -47,7 +47,9 @@ const initialFeedState = {
   beingCreatedCampaign: null,
 
   confirmed_participation: false,
-  campaignRules: '' //pdf base64 data
+  campaignRules: '', //pdf base64 data,
+
+  beingCreatedCampaignImageData: null
 }
 
 function Campaign(state = initialFeedState, action) {
@@ -133,6 +135,17 @@ function Campaign(state = initialFeedState, action) {
       return {
         ...state,
         campaignRules: action.data
+      }
+    case 'SET_CAMPAIGN_BEING_CREATED_IMAGES':
+      return {
+        ...state,
+        beingCreatedCampaignImageData: {
+          beingCreatedCampaignImage: `data:image/png;base64,${action.data.campaign_image}`,
+          beingCreatedCampaignWinnings: action.data.winnings.map(winning => ({
+            ...winning,
+            image: winning.image.map(image => `data:image/png;base64,${image}`)
+          }))
+        }
       }
     default:
       return state

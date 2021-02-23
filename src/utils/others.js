@@ -22,18 +22,37 @@ export const b64toBlob = (b64Data, contentType, sliceSize) => {
   return blob;
 }
 
-export const imageToBase64 = (url) => {
+// export const imageToBase64 = (url) => {
+//   return new Promise((res) => {
+//     const xhr = new XMLHttpRequest();
+//     xhr.onload = () => {
+//       const reader = new FileReader();
+//       reader.onloadend = () => {
+//         res(reader.result);
+//       };
+//       reader.readAsDataURL(xhr.response);
+//     };
+//     xhr.open('GET', 'https://cors-anywhere.herokuapp.com/' + url);
+//     xhr.responseType = 'blob';
+//     xhr.send();
+//   })
+// }
+
+export const imageToBase64 = (url, outputFormat='image/png') => {
   return new Promise((res) => {
-    const xhr = new XMLHttpRequest();
-    xhr.onload = () => {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        res(reader.result);
-      };
-      reader.readAsDataURL(xhr.response);
+    var img = new Image();
+    // img.crossOrigin = 'Anonymous';
+    img.onload = () => {
+        var canvas = document.createElement('CANVAS'),
+        ctx = canvas.getContext('2d'), dataURL;
+        canvas.height = img.height;
+        canvas.width = img.width;
+        ctx.drawImage(img, 0, 0);
+        dataURL = canvas.toDataURL(outputFormat);
+        res(dataURL);
+        canvas = null; 
     };
-    xhr.open('GET', 'https://cors-anywhere.herokuapp.com/' + url);
-    xhr.responseType = 'blob';
-    xhr.send();
+    img.setAttribute('crossOrigin', 'anonymous');
+    img.src = url;
   })
 }
