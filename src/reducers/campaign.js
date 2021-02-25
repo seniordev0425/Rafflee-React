@@ -47,7 +47,7 @@ const initialFeedState = {
   beingCreatedCampaign: null,
 
   confirmed_participation: false,
-  campaignRules: '', //pdf base64 data,
+  campaignRules: '', //png array,
 
   beingCreatedCampaignImageData: null
 }

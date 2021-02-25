@@ -12,6 +12,7 @@ import CustomCollapsePanel from '../components/common/CustomCollapsePanel'
 import CustomCollapsePanelForPoll from '../components/common/CustomCollapsePanelForPoll'
 
 import WinningDetailModal from '../components/modals/WinningDetailModal'
+import CampaignRulesModal from '../components/modals/CampaignRulesModal'
 import ParticipateConfirmModal from '../components/modals/ParticipateConfirmModal'
 import TwitterLikeValidationModal from '../components/modals/ActionValidationModals/TwitterLikeValidationModal'
 import TwitterRetweetValidationModal from '../components/modals/ActionValidationModals/TwitterRetweetValidationModal'
@@ -55,7 +56,6 @@ import {
 
 import { twitterConnectStep1, youtubeConnectStep1 } from '../actions/userInfo'
 
-import { printPreview } from '../utils/pdf'
 import { getTotalEntries, getSocialUserActions } from '../utils/campaign'
 import {
   TWITCH_OAUTH_TOKEN_URL_FOR_COMPANY,
@@ -103,6 +103,7 @@ function CampaignDetail(props) {
 
   const [openConfirm, setOpenConfirm] = useState(false)
   const [openWinningDetailModal, setOpenWinningDetailModal] = useState(false)
+  const [openRulesModal, setOpenRulesModal] = useState(false)
   const [openTwitterLikeModal, setOpenTwitterLikeModal] = useState(false)
   const [openTwitterRetweetModal, setOpenTwitterRetweetModal] = useState(false)
   const [openTwitterCommentModal, setOpenTwitterCommentModal] = useState(false)
@@ -176,7 +177,7 @@ function CampaignDetail(props) {
     }
     if (GET_CAMPAIGN_RULES_SUCCESS) {
       dispatch({ type: 'INIT_STATE', state: 'SUCCESS_GET_CAMPAIGN_RULES', data: false })
-      printPreview(campaignRules)
+      setOpenRulesModal(true)
     }
   }, [CAMPAIGN_PARTICIPATE_SUCCESS, confirmed_participation, GET_CAMPAIGN_RULES_SUCCESS])
 
@@ -891,6 +892,11 @@ function CampaignDetail(props) {
       <WinningDetailModal
         open={openWinningDetailModal}
         onToggle={() => setOpenWinningDetailModal(!openWinningDetailModal)}
+      />
+      <CampaignRulesModal
+        open={openRulesModal}
+        onToggle={() => setOpenRulesModal(!openRulesModal)}
+        rules={campaignRules}
       />
       <TwitterLikeValidationModal
         pk={selectedPk}

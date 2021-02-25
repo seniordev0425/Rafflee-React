@@ -5,8 +5,6 @@ import { Button as AntdButton } from 'antd'
 import { useHistory } from "react-router-dom"
 import * as _ from 'lodash'
 
-import { getCampaignBeingCreatedImages } from '../../../actions/campaign'
-
 import images from '../../../utils/images'
 
 import { useTranslation } from 'react-i18next'
@@ -14,12 +12,12 @@ import { useTranslation } from 'react-i18next'
 function BeingCreatedItem(props) {
   const { t } = useTranslation()
 
-  const { 
-    item, 
-    onDeleteCampaign, 
-    onPressUpdate, 
-    beingDeletedPK, 
-    beingUpdatedPK 
+  const {
+    item,
+    onDeleteCampaign,
+    onPressUpdate,
+    beingDeletedPK,
+    beingUpdatedPK
   } = props
 
   const history = useHistory()
@@ -34,12 +32,11 @@ function BeingCreatedItem(props) {
     if (beingCreatedCampaignImageData) {
       let promotionData = item
       promotionData = {
-        ...promotionData, 
+        ...promotionData,
         campaign_image: beingCreatedCampaignImageData.beingCreatedCampaignImage,
         winnings: beingCreatedCampaignImageData.beingCreatedCampaignWinnings,
       }
       dispatch({ type: 'SET_BEING_CREATED_CAMPAIGN', data: promotionData })
-      dispatch({ type: 'CAMPAIGN_INIT_STATE', state: beingCreatedCampaignImageData, data: null })
       history.push('/dashboard/create-campaign')
     }
   }, [beingCreatedCampaignImageData])
@@ -65,16 +62,20 @@ function BeingCreatedItem(props) {
                     className={"ant-blue-btn"}
                     style={{ width: 150, height: 40, padding: 0 }}
                     loading={GET_CAMPAIGN_BEING_CREATED_IMAGES_PROCESS && beingUpdatedPK === item.pk}
-                    onClick={() => onPressUpdate(item.pk)}
+                    onClick={() => {
+                      if (!DELETE_BEING_CREATED_CAMPAIGN_PROCESS) onPressUpdate(item.pk)
+                    }}
                   >
-                    {!(GET_CAMPAIGN_BEING_CREATED_IMAGES_PROCESS && beingUpdatedPK) && t('button_group.update')}
+                    {!(GET_CAMPAIGN_BEING_CREATED_IMAGES_PROCESS && beingUpdatedPK === item.pk) && t('button_group.update')}
                   </AntdButton>
                   <AntdButton
                     type="danger"
                     className="ant-red-btn ml-2"
                     style={{ width: 150, height: 30, padding: 0 }}
                     loading={DELETE_BEING_CREATED_CAMPAIGN_PROCESS && beingDeletedPK === item.pk}
-                    onClick={() => onDeleteCampaign(item.pk)}
+                    onClick={() => {
+                      if (!GET_CAMPAIGN_BEING_CREATED_IMAGES_PROCESS) onDeleteCampaign(item.pk)
+                    }}
                   >
                     {(!DELETE_BEING_CREATED_CAMPAIGN_PROCESS || beingDeletedPK !== item.pk) && t('button_group.delete')}
                   </AntdButton>

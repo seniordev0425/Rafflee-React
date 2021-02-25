@@ -67,18 +67,21 @@ function ActionSection(props) {
 
   const SAVE_CAMPAIGN_PROCESS = useSelector(state => state.userInfo.SAVE_CAMPAIGN)
   const instagramPublications = useSelector(state => state.social.instagramPublications)
+  const facebookPages = useSelector(state => state.social.facebookPages)
 
   const dispatch = useDispatch()
-
-  useEffect(() => {
-    dispatch(getFacebookPages())
-  }, [])
 
   useEffect(() => {
     if (!isEmpty(params.instagram.filter(action => action.type === 'comment')) && isEmpty(instagramPublications)) {
       dispatch(getInstagramPublications())
     }
   }, [params.instagram])
+
+  useEffect(() => {
+    if (!isEmpty(params.facebook) && isEmpty(facebookPages)) {
+      dispatch(getFacebookPages())
+    }
+  }, [params.facebook])
 
   const menu = (
     <Menu>

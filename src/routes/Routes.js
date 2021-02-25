@@ -3,6 +3,8 @@ import { withRouter, Link } from 'react-router-dom'
 import { useSelector, useDispatch } from "react-redux";
 import { Route, Switch, Redirect } from 'react-router-dom'
 import CookieConsent from 'react-cookie-consent'
+import { isMobile } from 'react-device-detect'
+
 import Home from '../screens/Home'
 import About from '../screens/About'
 import Deals from '../screens/Deals'
@@ -33,6 +35,7 @@ import ScrollToTop from '../components/common/ScrollToTop'
 import InProgress from '../screens/InProgress'
 import NotFound from '../components/common/NotFound'
 import PhoneRequestModal from '../components/modals/PhoneRequestModal'
+import StoreRedirectModal from '../components/modals/StoreRedirectModal'
 
 import AdminRoutes from './AdminRoutes'
 
@@ -64,6 +67,7 @@ function Routes(props) {
   const handleOnline = () => setOnline(navigator.onLine)
   const handleOffline = () => setOnline(navigator.onLine)
 
+  const [openStoreRedirectModal, setOpenStoreRedirectModal] = useState(false)
   const [openPhoneNumberModal, setOpenPhoneNumberModal] = useState(false)
 
   useEffect(() => {
@@ -84,6 +88,8 @@ function Routes(props) {
   }, [token])
 
   useEffect(() => {
+    if (isMobile) setOpenStoreRedirectModal(true)
+
     setIsFethingIP(true)
     // Fetch device ip address
     fetch(IP_ADDRESS_API, { method: 'GET', headers: {} })
@@ -258,6 +264,10 @@ function Routes(props) {
       <PhoneRequestModal
         open={openPhoneNumberModal}
         onToggle={() => setOpenPhoneNumberModal(false)}
+      />
+       <StoreRedirectModal
+        open={openStoreRedirectModal}
+        onToggle={() => setOpenStoreRedirectModal(false)}
       />
     </ScrollToTop>
   )

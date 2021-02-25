@@ -164,7 +164,8 @@
     "open": "Open",
     "yes": "Yes",
     "skip": "Skip",
-    "resend_validation_email": "Resend validation email"
+    "resend_validation_email": "Resend validation email",
+    "download": "Download"
   },
   "homepage": {
     "hot_new_contest_everyday": "Hot new contest everyday.",
@@ -831,6 +832,9 @@
     "enter_email": "Enter your email address",
     "new_email": "New email",
     "verify_email": "Verify Email"
+  },
+  "store_redirect_modal": {
+    "download_app": "Download app"
   },
   "required": "Required",
   "in_progress": "In progress",

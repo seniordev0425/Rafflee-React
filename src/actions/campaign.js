@@ -1051,7 +1051,7 @@ export function getCampaignRules(id) {
 function onSuccessGetCampaignRules(data) {
   return {
     type: 'SET_CAMPAIGN_RULES',
-    data: data.result_data
+    data: data.rules
   }
 }
 /////////////////////////////////////////////// GET_CAMPAIGN_BEING_CREATED_IMAGES_ACTION

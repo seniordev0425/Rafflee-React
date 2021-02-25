@@ -3,10 +3,11 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Row, Col, Input } from 'reactstrap'
 import QRCode from "react-qr-code"
 
+import CampaignRulesModal from '../../../modals/CampaignRulesModal'
+
 import { getCampaignRules } from '../../../../actions/campaign'
 
 import images from '../../../../utils/images'
-import { printPreview } from '../../../../utils/pdf'
 import { useTranslation } from 'react-i18next'
 
 function ResumeSection(props) {
@@ -23,11 +24,12 @@ function ResumeSection(props) {
   const dispatch = useDispatch()
 
   const [isQRcodeExpanded, setIsQRcodeExpanded] = useState(false)
+  const [openRulesModal, setOpenRulesModal] = useState(false)
 
   useEffect(() => {
     if (GET_CAMPAIGN_RULES_SUCCESS) {
       dispatch({ type: 'INIT_STATE', state: 'SUCCESS_GET_CAMPAIGN_RULES', data: false })
-      printPreview(campaignRules)
+      setOpenRulesModal(true)
     }
   }, [GET_CAMPAIGN_RULES_SUCCESS])
 
@@ -119,6 +121,12 @@ function ResumeSection(props) {
           </div>
         </div>
       </Col>
+
+      <CampaignRulesModal
+        open={openRulesModal}
+        onToggle={() => setOpenRulesModal(!openRulesModal)}
+        rules={campaignRules}
+      />
     </Row>
   )
 }

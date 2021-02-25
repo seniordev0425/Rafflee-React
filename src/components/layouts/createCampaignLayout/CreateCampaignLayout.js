@@ -97,6 +97,7 @@ function CreateCampaignLayout() {
         url_website: beingCreatedCampaign.action_participate.website.map(websiteActionsMap),
       })
       dispatch({ type: 'SET_BEING_CREATED_CAMPAIGN', data: null })
+      dispatch({ type: 'CAMPAIGN_INIT_STATE', state: 'beingCreatedCampaignImageData', data: null })
     }
   }, [beingCreatedCampaign])
 
