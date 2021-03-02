@@ -1072,6 +1072,23 @@ function onSuccessGetCampaignBeingCreatedImages(data) {
     data: data.result_data
   }
 }
+/////////////////////////////////////////////// GET_CAMPAIGN_PROBABILITIES_ACTION
+export function getCampaignProbabilities(pk) {
+  return apiAction({
+    url: APIROUTE + `campaign/${pk}/probabilities/`,
+    accessToken: localStorage.getItem('token'),
+    onSuccess: onSuccessGetCampaignProbabilities,
+    onFailure: onFailed,
+    label: 'GET_CAMPAIGN_PROBABILITIES',
+
+  });
+}
+function onSuccessGetCampaignProbabilities(data) {
+  return {
+    type: 'SET_CAMPAIGN_PROBABILITIES',
+    data: data.result
+  }
+}
 
 function apiAction({
   url = "",

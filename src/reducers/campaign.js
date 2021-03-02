@@ -49,7 +49,8 @@ const initialFeedState = {
   confirmed_participation: false,
   campaignRules: '', //png array,
 
-  beingCreatedCampaignImageData: null
+  beingCreatedCampaignImageData: null,
+  campaignProbability: 0
 }
 
 function Campaign(state = initialFeedState, action) {
@@ -107,9 +108,17 @@ function Campaign(state = initialFeedState, action) {
         confirmed_participation: action.confirmed_participation,
         campaignData: action.entries
           ?
-          { ...state.campaignData, user_actions: { ...state.campaignData.user_actions, entries_user: action.entries }, remaining_actions: action.remaining_actions }
+          {
+            ...state.campaignData,
+            user_actions: {
+              ...state.campaignData.user_actions,
+              entries_user: action.entries
+            },
+            remaining_actions: action.remaining_actions,
+            participation_validated: action.confirmed_participation
+          }
           :
-          { ...state.campaignData }
+          { ...state.campaignData, participation_validated: action.confirmed_participation }
       }
     case 'UPDATE_PARTICIPATION_VALIDATED':
       return {
@@ -146,6 +155,11 @@ function Campaign(state = initialFeedState, action) {
             image: winning.image.map(image => `data:image/png;base64,${image}`)
           }))
         }
+      }
+    case 'SET_CAMPAIGN_PROBABILITIES':
+      return {
+        ...state,
+        campaignProbability: action.data
       }
     default:
       return state

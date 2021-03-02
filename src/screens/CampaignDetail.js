@@ -29,6 +29,7 @@ import LoadingPage from '../components/common/LoadingPage'
 import {
   campaignParticipate,
   getCampaignData,
+  getCampaignProbabilities,
   getWinningData,
   updateFavorite,
   campaignParticipateYoutubeLike,
@@ -75,6 +76,7 @@ function CampaignDetail(props) {
   const company = useSelector(state => state.userInfo.company)
   const userProfile = useSelector(state => state.userInfo.userProfile)
   const confirmed_participation = useSelector(state => state.campaign.confirmed_participation)
+  const campaignProbability = useSelector(state => state.campaign.campaignProbability)
   const dispatch = useDispatch()
 
   const GET_CAMPAIGN_DATA_PROCESS = useSelector(state => state.userInfo.GET_CAMPAIGN_DATA)
@@ -126,6 +128,10 @@ function CampaignDetail(props) {
     }
     dispatch(getCampaignData(match.params.id, body))
   }, [token])
+
+  useEffect(() => {
+    dispatch(getCampaignProbabilities(campaignData.pk))
+  }, [campaignData])
 
   useEffect(() => {
     if (twitter_oauth_token) { // Redirect to twitter login after getting twitter oauth token
@@ -457,11 +463,25 @@ function CampaignDetail(props) {
                     }
                   </div>
                 </div>
-                <Progress
-                  striped
-                  animated
-                  value={campaignData.user_actions?.entries_user * 100 / getTotalEntries(campaignData.action_participate)}
-                />
+                {campaignData.participation_validated
+                  ?
+                  <Tooltip
+                    title={t('campaign_detail_page.campaign_probability_description', { probability: campaignProbability })}
+                    color='#0aa53e'
+                  >
+                    <Progress
+                      striped
+                      animated
+                      value={campaignData.user_actions?.entries_user * 100 / getTotalEntries(campaignData.action_participate)}
+                    />
+                  </Tooltip>
+                  :
+                  <Progress
+                    striped
+                    animated
+                    value={campaignData.user_actions?.entries_user * 100 / getTotalEntries(campaignData.action_participate)}
+                  />
+                }
               </Col>
             </Row>
           }

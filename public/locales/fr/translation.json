@@ -323,7 +323,8 @@
     "action_left": "ACTION RESTANTE",
     "mandatory_action_left": "ACTION OBLIGATOIRE RESTANTE",
     "participation_validated": "Vous pouvez toujours effectuer des actions celles-ci seront comptabilisé",
-    "account": "Compte:"
+    "account": "Compte:",
+    "campaign_probability_description": "félicitations, tu as optimisé à {{probability}}% tes chances de gagner/décrocher un lot"
   },
   "my_campaign_page": {
     "live_page": "Live Page",
