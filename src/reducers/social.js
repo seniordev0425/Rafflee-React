@@ -7,7 +7,7 @@ const initialFeedState = {
 
   ///////////////////////////////////////////// This state is an available instagram pages of account
   instagramBusinessPages: [],
-  instagramPublications: []
+  instagramPublications: [],
 }
 
 function Social(state = initialFeedState, action) {

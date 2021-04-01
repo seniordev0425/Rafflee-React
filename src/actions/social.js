@@ -1,6 +1,7 @@
 import { APIROUTE } from '../utils/constants'
 import { API } from "./types";
 import errorMessages from '../utils/messages/error'
+import successMessages from '../utils/messages/success'
 import { openNotification } from '../utils/notification'
 
 const qs = require('querystring')
@@ -48,40 +49,51 @@ function onSuccessGetFacebookPublications(data) {
   }
 }
 /////////////////////////////////////////////// GET_INSTAGRAM_BUSINESS_PAGES
-export function instagramBusinessConnect1(params) {
+export function instagramBusinessConnect1(params, company) {
   return apiAction({
     url: APIROUTE + `instagram/business/connect/1/`,
     method: 'POST',
     data: qs.stringify(params),
     accessToken: localStorage.getItem('token'),
-    onSuccess: onSuccessInstagramBusinessConnect1,
+    onSuccess: (data) =>  onSuccessInstagramBusinessConnect1(data, company),
     onFailure: onFailed,
-    label: 'GET_INSTAGRAM_BUSINESS_PAGES'
+    label: 'GET_INSTAGRAM_BUSINESS_PAGES',
+    requireErrorMessage: true
   });
 }
-function onSuccessInstagramBusinessConnect1(data) {
+function onSuccessInstagramBusinessConnect1(data, company) {
+  if (data.msg === 'MSG_INSTAGRAM_BUSINESS_ACCOUNT_CONNECTED') {
+    openNotification('success', successMessages[localStorage.getItem('i18nextLng')].instagramConnected)
+    return {
+      type: 'SET_USER_INSTAGRAM_BUSINESS_CONNECT',
+      company,
+      data: true
+    }
+  }
   return {
     type: 'SET_INSTAGRAM_BUSINESS_PAGES',
-    data: data.pages
+    data: data.pages || []
   }
 }
 /////////////////////////////////////////////// INSTAGRAM_BUSINESS_CONNECT_VALIDATION
-export function instagramBusinessConnect2(params) {
+export function instagramBusinessConnect2(params, company) {
   return apiAction({
     url: APIROUTE + `instagram/business/connect/2/`,
     method: 'POST',
     data: qs.stringify(params),
     accessToken: localStorage.getItem('token'),
-    onSuccess: onSuccessInstagramBusinessConnectValidation,
+    onSuccess: (data) => onSuccessInstagramBusinessConnectValidation(data, company),
     onFailure: onFailed,
     label: 'VALIDATE_INSTAGRAM_BUSINESS_CONNECT',
     requireErrorMessage: true
   });
 }
-function onSuccessInstagramBusinessConnectValidation(data) {
+function onSuccessInstagramBusinessConnectValidation(data, company) {
+  openNotification('success', successMessages[localStorage.getItem('i18nextLng')].instagramConnected)
   return {
-    type: '',
-    data: ''
+    type: 'SET_USER_INSTAGRAM_BUSINESS_CONNECT',
+    company,
+    data: true
   }
 }
 /////////////////////////////////////////////// GET-INSTAGRAM-PUBLICATIONS-ACTION

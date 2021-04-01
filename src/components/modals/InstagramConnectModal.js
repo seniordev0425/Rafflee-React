@@ -25,6 +25,7 @@ function InstagramConnectModal(props) {
   const { t } = useTranslation()
   const { open, onToggle } = props
 
+  const company = useSelector(state => state.userInfo.company)
   const GET_INSTAGRAM_BUSINESS_PAGES_PROCESS = useSelector(state => state.userInfo.GET_INSTAGRAM_BUSINESS_PAGES)
   const VALIDATE_INSTAGRAM_BUSINESS_CONNECT_PROCESS = useSelector(state => state.userInfo.VALIDATE_INSTAGRAM_BUSINESS_CONNECT)
   const instagramBusinessPages = useSelector(state => state.social.instagramBusinessPages)
@@ -52,7 +53,7 @@ function InstagramConnectModal(props) {
     var body = {
       token: response.accessToken
     }
-    dispatch(instagramBusinessConnect1(body))
+    dispatch(instagramBusinessConnect1(body, company))
   }
 
   const validateInstagramBusinessConnect = () => {
@@ -64,7 +65,7 @@ function InstagramConnectModal(props) {
     var body = {
       id: selectedPageId
     }
-    dispatch(instagramBusinessConnect2(body))
+    dispatch(instagramBusinessConnect2(body, company))
   }
 
   return (

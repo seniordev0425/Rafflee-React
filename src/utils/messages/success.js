@@ -31,7 +31,8 @@ const successMessages = {
     tagRemoved: "Tag removed",
     createRecruitment: "Recruitment created",
     updateRecruitment: "Recruitment updated",
-    emailSended: "Email Sended"
+    emailSended: "Email Sended",
+    instagramConnected: "Instagram connected"
   },
 
 
@@ -67,7 +68,8 @@ const successMessages = {
     tagRemoved: "Tag supprimé",
     createRecruitment: "Recrutement créé",
     updateRecruitment: "Recrutement mis à jour",
-    emailSended: "Email Sended"
+    emailSended: "Email Sended",
+    instagramConnected: "Instagram connected"
   }
 }
 

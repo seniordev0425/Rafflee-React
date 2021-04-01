@@ -12,21 +12,14 @@ function InstagramConnectBtn(props) {
 
   const { connected } = props
 
-  const company = useSelector(state => state.userInfo.company)
-  const VALIDATE_INSTAGRAM_BUSINESS_CONNECT_SUCCESS = useSelector(state => state.userInfo.SUCCESS_VALIDATE_INSTAGRAM_BUSINESS_CONNECT)
-  const dispatch = useDispatch()
-
   const [openModal, setOpenModal] = useState(false)
   const handleModal = () => setOpenModal(!openModal)
 
   useEffect(() => {
-    if (VALIDATE_INSTAGRAM_BUSINESS_CONNECT_SUCCESS) {
-      dispatch({ type: 'SET_USER_INSTAGRAM_BUSINESS_CONNECT', company: company, data: true })
-      dispatch({ type: 'INIT_STATE', state: 'SUCCESS_VALIDATE_INSTAGRAM_BUSINESS_CONNECT', data: false })
-      openNotification('success', t('social_oauth.instagram'))
+    if (connected) {
       setOpenModal(false)
     }
-  }, [VALIDATE_INSTAGRAM_BUSINESS_CONNECT_SUCCESS])
+  }, [connected])
 
   const openInstagramBusinessConnectModal = () => {
     if (connected) return

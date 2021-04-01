@@ -118,6 +118,7 @@ const errorMessages = {
     BOT_NOT_ALLOWED: "This is recognized as a bot action",
     MSG_ENTER_VALID_PHONE_NUMBER: "Enter a valid phone number",
     MSG_ACCOUNT_ALREADY_VALIDATED: "Account is already validated",
+    MSG_ERROR_NO_INSTAGRAM_ACCOUNT_LINKED_TO_YOUR_ACCOUNT: "No instagram account linked to your account"
   },
 
 
@@ -239,6 +240,7 @@ const errorMessages = {
     BOT_NOT_ALLOWED: "This is recognized as a bot action",
     MSG_ENTER_VALID_PHONE_NUMBER: "Entrez un numéro de téléphone valide",
     MSG_ACCOUNT_ALREADY_VALIDATED: "Account is already validated",
+    MSG_ERROR_NO_INSTAGRAM_ACCOUNT_LINKED_TO_YOUR_ACCOUNT: "No instagram account linked to your account"
   }
 }
 
