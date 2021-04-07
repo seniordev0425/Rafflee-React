@@ -16,6 +16,7 @@ function PhoneVerificationModal(props) {
 
   const isVerifying = useSelector(state => state.userInfo.VERIFY_PHONE_NUMBER_REQUEST)
   const isVerified = useSelector(state => state.userInfo.VERIFY_PHONE_NUMBER_SUCCESS)
+  const toVerification = useSelector(state => state.userInfo.toVerification)
 
   const dispatch = useDispatch()
 
@@ -32,7 +33,8 @@ function PhoneVerificationModal(props) {
   const onSubmit = () => {
     var body = {
       number: `+${phone_number.phone_country}${phone_number.phone_number}`,
-      code: verifyCode
+      code: verifyCode,
+      to: toVerification
     }
     dispatch(verifyPhoneNumber(body))
   }

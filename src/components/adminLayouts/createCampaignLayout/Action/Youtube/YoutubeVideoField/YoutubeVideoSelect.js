@@ -13,7 +13,7 @@ const { Option } = Select
 function YoutubeVideoSelect(props) {
   const { t } = useTranslation()
 
-  const { setAction } = props
+  const { action, setAction } = props
 
   const [videos, setVideos] = useState([])
   const [value, setValue] = useState([])
@@ -32,7 +32,7 @@ function YoutubeVideoSelect(props) {
       redirect: 'follow'
     }
 
-    fetch(`${APIROUTE}dashboard/youtube/video/search/?search=${value}`, requestOptions)
+    fetch(`${APIROUTE}youtube/video/search/?search=${value}`, requestOptions)
       .then(response => response.json())
       .then(result => {
         if (result.status === 200) {
@@ -56,17 +56,23 @@ function YoutubeVideoSelect(props) {
     if (_.isEmpty(value)) {
       videoData = {
         video_id: '',
-        video_url_img: ''
+        video_url_img: '',
+        video_published_at: ''
       }
     } else {
       videoData = _.find(videos, { videoId: value[0].value })
       videoData = {
         video_id: videoData.videoId,
-        video_url_img: videoData.profile_image_url.url
+        video_url_img: videoData.profile_image_url.url,
+        video_published_at: videoData.publishedAt
       }
     }
-    setAction('youtube', 'video_id', videoData.video_id)
-    setAction('youtube', 'video_url_img', videoData.video_url_img)
+    setAction('youtube', action.id, {
+      ...action,
+      video_id: videoData.video_id,
+      video_url_img: videoData.video_url_img,
+      video_published_at: videoData.video_published_at
+    })
   }
 
   return (

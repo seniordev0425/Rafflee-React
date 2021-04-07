@@ -8,7 +8,12 @@ import { useTranslation } from 'react-i18next'
 function TiktokProfileField(props) {
   const { t } = useTranslation()
 
-  const { params, setAction } = props
+  const {
+    action,
+    setAction,
+    params,
+    setParams
+  } = props
 
   return (
     <div className="mt-3 mt-sm-5">
@@ -26,7 +31,7 @@ function TiktokProfileField(props) {
           </Tooltip>
           <span
             className="ml-3 pointer"
-            onClick={() => setAction('tiktok', 'profile', false)}
+            onClick={() => setParams('tiktok', params.tiktok.filter(item => item.id !== action.id))}
           >
             {t('button_group.remove')}
           </span>
@@ -37,21 +42,23 @@ function TiktokProfileField(props) {
         style={{ borderColor: '#E6ECEE', borderWidth: 1, borderStyle: 'solid', borderBottomLeftRadius: 6, borderBottomRightRadius: 6 }}
       >
         <Row>
-          <Col xs="12" sm="6" className="p-0">
+          <Col xs="12" sm="6" className="p-0 d-flex align-items-center">
+            <span className="prefix-at">@</span>
             <Input
+              style={{ paddingLeft: '1.5rem' }}
               type="text"
               className="custom-form-control"
               placeholder={t('create_campaign_page.tiktok_profile_url')}
-              value={params.tiktok.profile_url}
-              onChange={(e) => setAction('tiktok', 'profile_url', e.target.value)}
+              value={action.follow_url}
+              onChange={(e) => setAction('tiktok', action.id, { ...action, follow_url: e.target.value })}
             />
           </Col>
           <Col size="12" className="p-0 justify-content-end align-items-center mt-3 mt-sm-0">
             <Row>
               <Col xs="12" sm="6" className="p-0">
                 <Input
-                  value={params.tiktok.profile_entries}
-                  onChange={(e) => setAction('tiktok', 'profile_entries', e.target.value)}
+                  value={action.follow_entries}
+                  onChange={(e) => setAction('tiktok', action.id, { ...action, follow_entries: e.target.value })}
                   className="custom-form-control ml-0 ml-sm-4 w-100"
                   type="number"
                   placeholder={t('create_campaign_page.entries')}
@@ -59,7 +66,7 @@ function TiktokProfileField(props) {
                 />
               </Col>
               <Col xs="12" sm="6" className="p-0 d-flex align-items-center justify-content-end mt-3 mt-sm-0">
-                <Checkbox checked={params.tiktok.profile_mandatory} onChange={(e) => setAction('tiktok', 'profile_mandatory', e.target.checked)} />
+                <Checkbox checked={action.follow_mandatory} onChange={(e) => setAction('tiktok', action.id, { ...action, follow_mandatory: e.target.checked })} />
                 <span className="ml-3 footer-link">{t('create_campaign_page.mandatory')}</span>
               </Col>
             </Row>

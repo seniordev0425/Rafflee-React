@@ -86,7 +86,13 @@ function SetupSection(props) {
   const renderWinningItems = () => {
     return (
       params.winnings.map((item, id) =>
-        <WinningItem key={id} id={id} item={item} removeWinning={removeWinning} setWinningVal={setWinningVal} />
+        <WinningItem
+          key={id}
+          id={id}
+          item={item}
+          removeWinning={removeWinning}
+          setWinningVal={setWinningVal}
+        />
       )
     )
   }
@@ -166,7 +172,7 @@ function SetupSection(props) {
             <div>
               <FormGroup>
                 <div className="footer-link-bold mb-3">
-                  <span>{`${t('create_campaign_page.short_description')}  (${params.promotion_description.length}/50)`}</span>
+                  <span>{`${t('create_campaign_page.short_description')}  (${params.promotion_description.length}/300)`}</span>
                   <span className="ml-3 font-size-12" style={{ color: 'red', verticalAlign: 'sub' }}>*</span>
                 </div>
                 <Input
@@ -174,7 +180,7 @@ function SetupSection(props) {
                   className="company-contact-form-text-area"
                   value={params.promotion_description}
                   onChange={(e) => setParams('promotion_description', e.target.value)}
-                  maxLength={50}
+                  maxLength={300}
                   rows={1}
                 />
               </FormGroup>
@@ -274,7 +280,7 @@ function SetupSection(props) {
         </Row>
         <Row>
           <Col className="d-flex justify-content-between">
-            <Button
+          <Button
               type="primary"
               className="ant-blue-btn my-5"
               style={{ width: 180 }}

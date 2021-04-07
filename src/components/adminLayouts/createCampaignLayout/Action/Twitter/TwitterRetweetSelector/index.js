@@ -13,7 +13,7 @@ const { Search } = Input
 function TwitterRetweetSelector(props) {
   const { t } = useTranslation()
 
-  const { setAction } = props
+  const { action, setAction } = props
   const [isFetching, setIsFetching] = useState(false)
 
   const fetchTweet = tweetId => {
@@ -30,14 +30,17 @@ function TwitterRetweetSelector(props) {
       .then(response => response.json())
       .then(result => {
         if (result.status === 200) {
-          setAction('twitter', 'retweet_id', tweetId)
-          setAction('twitter', 'retweet_text', (result?.text || ''))
-          setAction('twitter', 'retweet_like', (result?.like || ''))
-          setAction('twitter', 'retweet_retweet', (result?.retweet || ''))
-          setAction('twitter', 'retweet_created_at', (result?.created_at || ''))
-          setAction('twitter', 'retweet_name', (result?.name || ''))
-          setAction('twitter', 'retweet_verified', (result?.verified || false))
-          setAction('twitter', 'retweet_profile_img', (result?.profile_img || ''))
+          setAction('twitter', action.id, {
+            ...action,
+            retweet_id: tweetId,
+            retweet_text: result?.text || '',
+            retweet_like: result?.like,
+            retweet_retweet: result?.retweet,
+            retweet_created_at: result?.created_at || '',
+            retweet_name: result?.name || '',
+            retweet_verified: result?.verified,
+            retweet_profile_img: result?.profile_img || '',
+          })
         } else {
           openNotification('warning', errorMessages[localStorage.getItem('i18nextLng')][result.msg])
         }

@@ -10,7 +10,12 @@ import { useTranslation } from 'react-i18next'
 function TwitterCommentField(props) {
   const { t } = useTranslation()
 
-  const { params, setAction } = props
+  const {
+    action,
+    setAction,
+    params,
+    setParams
+  } = props
 
   return (
     <div className="mt-3 mt-sm-5">
@@ -28,7 +33,7 @@ function TwitterCommentField(props) {
           </Tooltip>
           <span
             className="ml-3 pointer"
-            onClick={() => setAction('twitter', 'comment', false)}
+            onClick={() => setParams('twitter', params.twitter.filter(item => item.id !== action.id))}
           >
             {t('button_group.remove')}
           </span>
@@ -40,14 +45,14 @@ function TwitterCommentField(props) {
       >
         <Row>
           <Col xs="12" sm="6" className="p-0">
-            <TwitterCommentSelector setAction={setAction} />
+            <TwitterCommentSelector action={action} setAction={setAction} />
           </Col>
           <Col size="12" className="p-0 justify-content-end align-items-center mt-3 mt-sm-0">
             <Row>
               <Col xs="12" sm="6" className="p-0">
                 <Input
-                  value={params.twitter.comment_entries}
-                  onChange={(e) => setAction('twitter', 'comment_entries', e.target.value)}
+                  value={action.comment_entries}
+                  onChange={(e) => setAction('twitter', action.id, { ...action, comment_entries: e.target.value })}
                   className="custom-form-control ml-0 ml-sm-4 w-100"
                   type="number"
                   placeholder={t('create_campaign_page.entries')}
@@ -55,51 +60,51 @@ function TwitterCommentField(props) {
                 />
               </Col>
               <Col xs="12" sm="6" className="p-0 d-flex align-items-center justify-content-end mt-3 mt-sm-0">
-                <Checkbox checked={params.twitter.comment_mandatory} onChange={(e) => setAction('twitter', 'comment_mandatory', e.target.checked)} />
+                <Checkbox checked={action.comment_mandatory} onChange={(e) => setAction('twitter', action.id, { ...action, comment_mandatory: e.target.checked })} />
                 <span className="ml-3 footer-link">{t('create_campaign_page.mandatory')}</span>
               </Col>
             </Row>
           </Col>
         </Row>
-        {params.twitter.comment_profile_img &&
+        {action.comment_profile_img &&
           <div className="mt-4 d-flex">
             <img
-              src={params.twitter.comment_profile_img}
+              src={action.comment_profile_img}
               width={50}
               height={50}
               className="rounded-circle"
               alt="avatar"
             />
-            <div className="ml-4 color-gray font-size-12">
+            <div className="ml-4 color-gray font-size-12 w-100">
               <div>
                 <span className="font-weight-bold">{t('create_campaign_page.name')}</span>
                 <span className="ml-3">
-                  {params.twitter.comment_name}
+                  {action.comment_name}
                 </span>
-                {params.twitter.comment_verified &&
+                {action.comment_verified &&
                   <img src={images.verified_icon} width={15} height={15} className="ml-2" alt="" />
                 }
               </div>
               <div className="mt-4">
                 <span className="font-weight-bold">{t('create_campaign_page.like')}: </span>
                 <span className="ml-2">
-                  {params.twitter.comment_like}
+                  {action.comment_like}
                 </span>
                 <span className="font-weight-bold ml-3">{t('create_campaign_page.retweet')}: </span>
                 <span className="ml-2">
-                  {params.twitter.comment_retweet}
+                  {action.comment_retweet}
                 </span>
               </div>
               <div className="mt-4">
                 <span className="font-weight-bold">{t('create_campaign_page.tweet')}</span>
                 <span className="ml-3">
-                  {params.twitter.comment_text}
+                  {action.comment_text}
                 </span>
               </div>
               <div className="mt-4">
                 <span className="font-weight-bold">{t('create_campaign_page.created_at')}</span>
                 <span className="ml-3">
-                  {moment(params.twitter.comment_created_at).format('YYYY-MM-DD')}
+                  {moment(action.comment_created_at).format('YYYY-MM-DD')}
                 </span>
               </div>
               <div className="mt-4">
@@ -107,8 +112,8 @@ function TwitterCommentField(props) {
                   type="text"
                   className="custom-form-control"
                   placeholder={t('create_campaign_page.comment_model')}
-                  value={params.twitter.comment_model}
-                  onChange={(e) => setAction('twitter', 'comment_model', e.target.value)}
+                  value={action.comment_model}
+                  onChange={(e) => setAction('twitter', action.id, { ...action, comment_model: e.target.value })}
                 />
               </div>
             </div>

@@ -13,7 +13,7 @@ const { Option } = Select
 function YoutubeUserSelect(props) {
   const { t } = useTranslation()
 
-  const { setAction } = props
+  const { action, setAction } = props
 
   const [users, setUsers] = useState([])
   const [value, setValue] = useState([])
@@ -32,7 +32,7 @@ function YoutubeUserSelect(props) {
       redirect: 'follow'
     }
 
-    fetch(`${APIROUTE}dashboard/youtube/users/search/?search=${value}`, requestOptions)
+    fetch(`${APIROUTE}youtube/users/search/?search=${value}`, requestOptions)
       .then(response => response.json())
       .then(result => {
         if (result.status === 200) {
@@ -67,9 +67,12 @@ function YoutubeUserSelect(props) {
         follow_channel_title: followData.channel_title
       }
     }
-    setAction('youtube', 'follow_id', followData.follow_id)
-    setAction('youtube', 'follow_url_img', followData.follow_url_img)
-    setAction('youtube', 'follow_channel_title', followData.follow_channel_title)
+    setAction('youtube', action.id, {
+      ...action,
+      follow_id: followData.follow_id,
+      follow_url_img: followData.follow_url_img,
+      follow_channel_title: followData.follow_channel_title
+    })
   }
 
   return (

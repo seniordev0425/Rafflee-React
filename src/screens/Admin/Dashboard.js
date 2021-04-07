@@ -8,6 +8,7 @@ import BusinessCreateLayout from '../../components/adminLayouts/Dashboard/Busine
 import CampaignLayout from '../../components/adminLayouts/Dashboard/CampaignsLayout'
 import RecruitmentLayout from '../../components/adminLayouts/Dashboard/RecruitmentLayout'
 import MessagesLayout from '../../components/adminLayouts/Dashboard/MessagesLayout'
+import PaymentLayout from '../../components/adminLayouts/Dashboard/PaymentLayout'
 
 import { useTranslation } from 'react-i18next'
 
@@ -37,6 +38,8 @@ function Dashboard(props) {
         return <RecruitmentLayout />
       case 'messages':
         return <MessagesLayout />
+      case 'payment':
+        return <PaymentLayout />
       default:
         return <BusinessCreateLayout />
     }
@@ -66,6 +69,11 @@ function Dashboard(props) {
               <Menu.Item key="messages">
                 <Link to="/admin/dashboard/messages">
                   <span> {t('menubar.messages')}</span>
+                </Link>
+              </Menu.Item>
+              <Menu.Item key="payment">
+                <Link to="/admin/dashboard/payment">
+                  <span> {t('menubar.payment')}</span>
                 </Link>
               </Menu.Item>
             </Menu>

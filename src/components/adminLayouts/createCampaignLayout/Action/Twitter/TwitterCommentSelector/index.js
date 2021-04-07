@@ -13,7 +13,7 @@ const { Search } = Input
 function TwitterCommentSelector(props) {
   const { t } = useTranslation()
 
-  const { setAction } = props
+  const { action, setAction } = props
   const [isFetching, setIsFetching] = useState(false)
 
   const fetchTweet = tweetId => {
@@ -30,13 +30,17 @@ function TwitterCommentSelector(props) {
       .then(response => response.json())
       .then(result => {
         if (result.status === 200) {
-          setAction('twitter', 'comment_text', (result?.text || ''))
-          setAction('twitter', 'comment_like', (result?.like || ''))
-          setAction('twitter', 'comment_retweet', (result?.retweet || ''))
-          setAction('twitter', 'comment_created_at', (result?.created_at || ''))
-          setAction('twitter', 'comment_name', (result?.name || ''))
-          setAction('twitter', 'comment_verified', (result?.verified || false))
-          setAction('twitter', 'comment_profile_img', (result?.profile_img || ''))
+          setAction('twitter', action.id, {
+            ...action,
+            comment_id: tweetId,
+            comment_text: result?.text,
+            comment_like: result?.like,
+            comment_retweet: result?.retweet,
+            comment_created_at: result?.created_at || '',
+            comment_name: result?.name || '',
+            comment_verified: result?.verified,
+            comment_profile_img: result?.profile_img || ''
+          })
         } else {
           openNotification('warning', errorMessages[localStorage.getItem('i18nextLng')][result.msg])
         }

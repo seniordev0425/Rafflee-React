@@ -12,7 +12,7 @@ const { Option } = Select
 function TwitterFollowScreenName(props) {
   const { t } = useTranslation()
 
-  const { setAction } = props
+  const { action, setAction } = props
 
   const [data, setData] = useState([])
   const [value, setValue] = useState([])
@@ -39,7 +39,6 @@ function TwitterFollowScreenName(props) {
       .then(response => response.json())
       .then(result => {
         if (result.status === 200) {
-          console.log('search:', result.search)
           const data = result.search.map((user, index) => ({
             id: index,
             profile_image_url: user.profile_image_url,
@@ -61,11 +60,14 @@ function TwitterFollowScreenName(props) {
   const handleChange = value => {
     setValue(value)
     setFetching(false)
-    setAction('twitter', 'follow_id', value.length > 0 ? 'id' : '')
-    setAction('twitter', 'follow_profile_image_url', value.length > 0 ? data[value[0].value].profile_image_url : '')
-    setAction('twitter', 'follow_followers_count', value.length > 0 ? data[value[0].value].followers_count : '')
-    setAction('twitter', 'follow_screen_name', value.length > 0 ? data[value[0].value].screen_name : '')
-    setAction('twitter', 'follow_verified', value.length > 0 ? data[value[0].value].verified : false)
+    setAction('twitter', action.id, {
+      ...action,
+      follow_id: value.length > 0 ? data[value[0].value].id : '',
+      follow_profile_image_url: value.length > 0 ? data[value[0].value].profile_image_url : '',
+      follow_followers_count: value.length > 0 ? data[value[0].value].followers_count : 0,
+      follow_screen_name: value.length > 0 ? data[value[0].value].screen_name : '',
+      follow_verified: value.length > 0 ? data[value[0].value].verified : false
+    })
     setData([])
   }
 

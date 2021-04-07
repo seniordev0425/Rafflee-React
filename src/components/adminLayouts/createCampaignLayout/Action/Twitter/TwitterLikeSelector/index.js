@@ -13,7 +13,7 @@ const { Search } = Input
 function TwitterLikeSelector(props) {
   const { t } = useTranslation()
 
-  const { setAction } = props
+  const { action, setAction } = props
   const [isFetching, setIsFetching] = useState(false)
 
   const fetchTweet = tweetId => {
@@ -30,14 +30,17 @@ function TwitterLikeSelector(props) {
       .then(response => response.json())
       .then(result => {
         if (result.status === 200) {
-          setAction('twitter', 'like_id', tweetId)
-          setAction('twitter', 'like_text', (result?.text || ''))
-          setAction('twitter', 'like_like', (result?.like || ''))
-          setAction('twitter', 'like_retweet', (result?.retweet || ''))
-          setAction('twitter', 'like_created_at', (result?.created_at || ''))
-          setAction('twitter', 'like_name', (result?.name || ''))
-          setAction('twitter', 'like_verified', (result?.verified || false))
-          setAction('twitter', 'like_profile_img', (result?.profile_img || ''))
+          setAction('twitter', action.id, {
+            ...action,
+            like_id: tweetId,
+            like_text: result?.text || '',
+            like_like: result?.like,
+            like_retweet: result?.retweet,
+            like_created_at: result?.created_at || '',
+            like_name: result?.name || '',
+            like_verified: result?.verified,
+            like_profile_img: result?.profile_img || '',
+          })
         } else {
           openNotification('warning', errorMessages[localStorage.getItem('i18nextLng')][result.msg])
         }

@@ -316,8 +316,8 @@ export function resendSms(params) {
 }
 function onSuccessResendSms(data) {
   return {
-    type: 'RESEND_SMS_SUCCESS',
-    data: ''
+    type: 'SET_TO_VERIFICATION',
+    data: data
   }
 }
 /////////////////////////////////////////////// SEND-SMS-ACTION
@@ -335,8 +335,8 @@ export function sendSms(params, label) {
 }
 function onSuccessSendSms(data) {
   return {
-    type: '',
-    data: ''
+    type: 'SET_TO_VERIFICATION',
+    data: data
   }
 }
 /////////////////////////////////////////////// VERIFY-PHONE-NUMBER-ACTION

@@ -10,7 +10,12 @@ import { useTranslation } from 'react-i18next'
 function TwitterLikeField(props) {
   const { t } = useTranslation()
 
-  const { params, setAction } = props
+  const {
+    action,
+    setAction,
+    params,
+    setParams
+  } = props
 
   return (
     <div className="mt-3 mt-sm-5">
@@ -28,7 +33,7 @@ function TwitterLikeField(props) {
           </Tooltip>
           <span
             className="ml-3 pointer"
-            onClick={() => setAction('twitter', 'like', false)}
+            onClick={() => setParams('twitter', params.twitter.filter(item => item.id !== action.id))}
           >
             {t('button_group.remove')}
           </span>
@@ -40,14 +45,14 @@ function TwitterLikeField(props) {
       >
         <Row>
           <Col xs="12" sm="6" className="p-0">
-            <TwitterLikeSelector setAction={setAction} />
+            <TwitterLikeSelector action={action} setAction={setAction} />
           </Col>
           <Col size="12" className="p-0 justify-content-end align-items-center mt-3 mt-sm-0">
             <Row>
               <Col xs="12" sm="6" className="p-0">
                 <Input
-                  value={params.twitter.like_entries}
-                  onChange={(e) => setAction('twitter', 'like_entries', e.target.value)}
+                  value={action.like_entries}
+                  onChange={(e) => setAction('twitter', action.id, { ...action, like_entries: e.target.value })}
                   className="custom-form-control ml-0 ml-sm-4 w-100"
                   type="number"
                   placeholder={t('create_campaign_page.entries')}
@@ -55,16 +60,16 @@ function TwitterLikeField(props) {
                 />
               </Col>
               <Col xs="12" sm="6" className="p-0 d-flex align-items-center justify-content-end mt-3 mt-sm-0">
-                <Checkbox checked={params.twitter.like_mandatory} onChange={(e) => setAction('twitter', 'like_mandatory', e.target.checked)} />
+                <Checkbox checked={action.like_mandatory} onChange={(e) => setAction('twitter', action.id, { ...action, like_mandatory: e.target.checked })} />
                 <span className="ml-3 footer-link">{t('create_campaign_page.mandatory')}</span>
               </Col>
             </Row>
           </Col>
         </Row>
-        {params.twitter.like_id &&
+        {action.like_profile_img &&
           <div className="mt-4 d-flex">
             <img
-              src={params.twitter.like_profile_img}
+              src={action.like_profile_img}
               width={50}
               height={50}
               className="rounded-circle"
@@ -74,32 +79,32 @@ function TwitterLikeField(props) {
               <div>
                 <span className="font-weight-bold">{t('create_campaign_page.name')}</span>
                 <span className="ml-3">
-                  {params.twitter.like_name}
+                  {action.like_name}
                 </span>
-                {params.twitter.like_verified &&
+                {action.like_verified &&
                   <img src={images.verified_icon} width={15} height={15} className="ml-2" alt="" />
                 }
               </div>
               <div className="mt-4">
                 <span className="font-weight-bold">{t('create_campaign_page.like')}: </span>
                 <span className="ml-2">
-                  {params.twitter.like_like}
+                  {action.like_like}
                 </span>
                 <span className="font-weight-bold ml-3">{t('create_campaign_page.retweet')}: </span>
                 <span className="ml-2">
-                  {params.twitter.like_retweet}
+                  {action.like_retweet}
                 </span>
               </div>
               <div className="mt-4">
                 <span className="font-weight-bold">{t('create_campaign_page.tweet')}</span>
                 <span className="ml-3">
-                  {params.twitter.like_text}
+                  {action.like_text}
                 </span>
               </div>
               <div className="mt-4">
                 <span className="font-weight-bold">{t('create_campaign_page.created_at')}</span>
                 <span className="ml-3">
-                  {moment(params.twitter.like_created_at).format('YYYY-MM-DD')}
+                  {moment(action.like_created_at).format('YYYY-MM-DD')}
                 </span>
               </div>
             </div>

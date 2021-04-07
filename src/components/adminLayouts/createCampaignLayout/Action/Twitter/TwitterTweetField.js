@@ -8,7 +8,12 @@ import { useTranslation } from 'react-i18next'
 function TwitterTweetField(props) {
   const { t } = useTranslation()
 
-  const { params, setAction } = props
+  const {
+    action,
+    setAction,
+    params,
+    setParams
+  } = props
 
   return (
     <div className="mt-3 mt-sm-5">
@@ -26,7 +31,7 @@ function TwitterTweetField(props) {
           </Tooltip>
           <span
             className="ml-3 pointer"
-            onClick={() => setAction('twitter', 'tweet', false)}
+            onClick={() => setParams('twitter', params.twitter.filter(item => item.id !== action.id))}
           >
             {t('button_group.remove')}
           </span>
@@ -42,16 +47,16 @@ function TwitterTweetField(props) {
               type="text"
               className="custom-form-control"
               placeholder={t('twitter_comment_modal.comment_model')}
-              value={params.twitter.tweet_model}
-              onChange={(e) => setAction('twitter', 'tweet_model', e.target.value)}
+              value={action.tweet_model}
+              onChange={(e) => setAction('twitter', action.id, { ...action, tweet_model: e.target.value })}
             />
           </Col>
           <Col size="12" className="p-0 justify-content-end align-items-center mt-3 mt-sm-0">
             <Row>
               <Col xs="12" sm="6" className="p-0">
                 <Input
-                  value={params.twitter.tweet_entries}
-                  onChange={(e) => setAction('twitter', 'tweet_entries', e.target.value)}
+                  value={action.tweet_entries}
+                  onChange={(e) => setAction('twitter', action.id, { ...action, tweet_entries: e.target.value })}
                   className="custom-form-control ml-0 ml-sm-4 w-100"
                   type="number"
                   placeholder={t('create_campaign_page.entries')}
@@ -59,7 +64,7 @@ function TwitterTweetField(props) {
                 />
               </Col>
               <Col xs="12" sm="6" className="p-0 d-flex align-items-center justify-content-end mt-3 mt-sm-0">
-                <Checkbox checked={params.twitter.tweet_mandatory} onChange={(e) => setAction('twitter', 'tweet_mandatory', e.target.checked)} />
+                <Checkbox checked={action.tweet_mandatory} onChange={(e) => setAction('twitter', action.id, { ...action, tweet_mandatory: e.target.checked })} />
                 <span className="ml-3 footer-link">{t('create_campaign_page.mandatory')}</span>
               </Col>
             </Row>

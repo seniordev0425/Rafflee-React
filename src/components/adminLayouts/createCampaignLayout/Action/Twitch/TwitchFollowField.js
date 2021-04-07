@@ -8,7 +8,12 @@ import { useTranslation } from 'react-i18next'
 function TwitchFollowField(props) {
   const { t } = useTranslation()
 
-  const { params, setAction } = props
+  const {
+    action,
+    setAction,
+    params,
+    setParams
+  } = props
 
   return (
     <div className="mt-3 mt-sm-5">
@@ -26,7 +31,7 @@ function TwitchFollowField(props) {
           </Tooltip>
           <span
             className="ml-3 pointer"
-            onClick={() => setAction('twitch', 'follow', false)}
+            onClick={() => setParams('twitch', params.twitch.filter(item => item.id !== action.id))}
           >
             {t('button_group.remove')}
           </span>
@@ -37,21 +42,23 @@ function TwitchFollowField(props) {
         style={{ borderColor: '#E6ECEE', borderWidth: 1, borderStyle: 'solid', borderBottomLeftRadius: 6, borderBottomRightRadius: 6 }}
       >
         <Row>
-          <Col xs="12" sm="6" className="p-0">
+          <Col xs="12" sm="6" className="p-0 d-flex align-items-center">
+            <span className="prefix-at">@</span>
             <Input
+              style={{ paddingLeft: '1.5rem' }}
               type="text"
               className="custom-form-control"
               placeholder={t('create_campaign_page.twitch_follow_name')}
-              value={params.twitch.follow_name}
-              onChange={(e) => setAction('twitch', 'follow_name', e.target.value)}
+              value={action.follow_name}
+              onChange={(e) => setAction('twitch', action.id, { ...action, follow_name: e.target.value })}
             />
           </Col>
           <Col size="12" className="p-0 justify-content-end align-items-center mt-3 mt-sm-0">
             <Row>
               <Col xs="12" sm="6" className="p-0">
                 <Input
-                  value={params.twitch.follow_entries}
-                  onChange={(e) => setAction('twitch', 'follow_entries', e.target.value)}
+                  value={action.follow_entries}
+                  onChange={(e) => setAction('twitch', action.id, { ...action, follow_entries: e.target.value })}
                   className="custom-form-control ml-0 ml-sm-4 w-100"
                   type="number"
                   placeholder={t('create_campaign_page.entries')}
@@ -59,7 +66,7 @@ function TwitchFollowField(props) {
                 />
               </Col>
               <Col xs="12" sm="6" className="p-0 d-flex align-items-center justify-content-end mt-3 mt-sm-0">
-                <Checkbox checked={params.twitch.follow_mandatory} onChange={(e) => setAction('twitch', 'follow_mandatory', e.target.checked)} />
+                <Checkbox checked={action.follow_mandatory} onChange={(e) => setAction('twitch', action.id, { ...action, follow_mandatory: e.target.checked })} />
                 <span className="ml-3 footer-link">{t('create_campaign_page.mandatory')}</span>
               </Col>
             </Row>

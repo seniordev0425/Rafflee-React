@@ -154,6 +154,8 @@ const initialFeedState = {
 
   requestPhoneVerification: false,
 
+  toVerification: null,
+
   resendValidationEmail: false
 }
 
@@ -450,6 +452,11 @@ function UserInfo(state = initialFeedState, action) {
       return {
         ...state,
         requestPhoneVerification: action.data
+      }
+    case 'SET_TO_VERIFICATION':
+      return {
+        ...state,
+        toVerification: action.data.to
       }
     case 'SET_RESEND_VALIDATION_EMAIL':
       return {

@@ -12,7 +12,12 @@ const { Option } = Select
 function FacebookPostField(props) {
   const { t } = useTranslation()
 
-  const { params, setAction } = props
+  const {
+    action,
+    setAction,
+    params,
+    setParams
+  } = props
 
   // Following Redux states are defined in reducer with comments
   const facebookPages = useSelector(state => state.social.facebookPages)
@@ -34,7 +39,7 @@ function FacebookPostField(props) {
 
   const updatePublicationId = (id) => {
     let str = id.toString()
-    setAction('facebook', 'post_publication_id', str.split('_')[1])
+    setAction('facebook', action.id, { ...action, post_publication_id: str.split('_')[1] })
   }
 
   return (
@@ -53,7 +58,7 @@ function FacebookPostField(props) {
           </Tooltip>
           <span
             className="ml-3 pointer"
-            onClick={() => setAction('facebook', 'post', false)}
+            onClick={() => setParams('facebook', params.facebook.filter(item => item.id !== action.id))}
           >
             {t('button_group.remove')}
           </span>
@@ -66,11 +71,11 @@ function FacebookPostField(props) {
         <Row>
           <Col xs="12" sm="6" className="p-0 pr-sm-2">
             <Select
-              defaultValue={params.facebook.post_page_id}
+              defaultValue={action.post_page_id}
               className="w-100"
               placeholder={t('create_campaign_page.select_page')}
               onChange={(id) => {
-                setAction('facebook', 'post_page_id', id)
+                setAction('facebook', action.id, { ...action, post_page_id: id })
                 fetchPublications(id)
               }}
               size="large"
@@ -84,7 +89,7 @@ function FacebookPostField(props) {
           </Col>
           <Col xs="12" sm="6" className="p-0 pl-sm-2 mt-3 mt-sm-0">
             <Select
-              defaultValue={params.facebook.post_publication_id}
+              defaultValue={action.post_publication_id}
               className="w-100"
               placeholder={t('create_campaign_page.select_publication')}
               onChange={(id) => {
@@ -103,20 +108,20 @@ function FacebookPostField(props) {
         <Row className="mt-3">
           <div>
             <Checkbox
-              checked={params.facebook.post_like}
-              onChange={(e) => setAction('facebook', 'post_like', e.target.checked)}
+              checked={action.post_like}
+              onChange={(e) => setAction('facebook', action.id, { ...action, post_like: e.target.checked })}
             >
               {t('create_campaign_page.like')}
             </Checkbox>
             <Checkbox
-              checked={params.facebook.post_comment}
-              onChange={(e) => setAction('facebook', 'post_comment', e.target.checked)}
+              checked={action.post_comment}
+              onChange={(e) => setAction('facebook', action.id, { ...action, post_comment: e.target.checked })}
             >
               {t('create_campaign_page.comment')}
             </Checkbox>
             <Checkbox
-              checked={params.facebook.post_share}
-              onChange={(e) => setAction('facebook', 'post_share', e.target.checked)}
+              checked={action.post_share}
+              onChange={(e) => setAction('facebook', action.id, { ...action, post_share: e.target.checked })}
             >
               {t('create_campaign_page.share')}
             </Checkbox>
@@ -125,8 +130,8 @@ function FacebookPostField(props) {
         <Row className="mt-5">
           <Col xs="12" sm="6" className="p-0 pr-sm-2">
             <Input
-              value={params.facebook.post_entries}
-              onChange={(e) => setAction('facebook', 'post_entries', e.target.value)}
+              value={action.post_entries}
+              onChange={(e) => setAction('facebook', action.id, { ...action, post_entries: e.target.value })}
               className="custom-form-control w-100"
               type='number'
               placeholder={t('create_campaign_page.entries')}
@@ -134,7 +139,7 @@ function FacebookPostField(props) {
             />
           </Col>
           <Col xs="12" sm="6" className="p-0 d-flex align-items-center justify-content-end mt-3 mt-sm-0">
-            <Checkbox checked={params.facebook.post_mandatory} onChange={(e) => setAction('facebook', 'post_mandatory', e.target.checked)} />
+            <Checkbox checked={action.post_mandatory} onChange={(e) => setAction('facebook', action.id, { ...action, post_mandatory: e.target.checked })} />
             <span className="ml-3 footer-link">{t('create_campaign_page.mandatory')}</span>
           </Col>
         </Row>

@@ -13,7 +13,7 @@ const { Option } = Select
 function YoutubeVideoSelect(props) {
   const { t } = useTranslation()
 
-  const { setAction } = props
+  const { action, setAction } = props
 
   const [videos, setVideos] = useState([])
   const [value, setValue] = useState([])
@@ -32,7 +32,7 @@ function YoutubeVideoSelect(props) {
       redirect: 'follow'
     }
 
-    fetch(`${APIROUTE}dashboard/youtube/video/search/?search=${value}`, requestOptions)
+    fetch(`${APIROUTE}youtube/video/search/?search=${value}`, requestOptions)
       .then(response => response.json())
       .then(result => {
         if (result.status === 200) {
@@ -71,11 +71,14 @@ function YoutubeVideoSelect(props) {
         like_channel_title: likeData.channelTitle
       }
     }
-    setAction('youtube', 'like_id', likeData.like_id)
-    setAction('youtube', 'like_url_img', likeData.like_url_img)
-    setAction('youtube', 'like_video_title', likeData.like_video_title)
-    setAction('youtube', 'like_published_at', likeData.like_published_at)
-    setAction('youtube', 'like_channel_title', likeData.like_channel_title)
+    setAction('youtube', action.id, {
+      ...action,
+      like_id: likeData.like_id,
+      like_url_img: likeData.like_url_img,
+      like_video_title: likeData.like_video_title,
+      like_published_at: likeData.like_published_at,
+      like_channel_title: likeData.like_channel_title
+    })
   }
 
   return (

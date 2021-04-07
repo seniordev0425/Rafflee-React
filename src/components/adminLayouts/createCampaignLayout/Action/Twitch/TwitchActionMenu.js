@@ -1,17 +1,35 @@
 import React from 'react'
-import { Checkbox } from 'antd'
 import { useTranslation } from 'react-i18next'
+import uuid from 'react-uuid'
+import images from '../../../../../utils/images'
 
 function TwitchActionMenu(props) {
   const { t } = useTranslation()
 
-  const { params, setAction } = props
+  const { params, setParams } = props
+
+  const addTwitchFollowAction = () => {
+    let newAction = {
+      id: uuid(),
+      pk: '',
+      type: 'follow',
+      follow_entries: '',
+      follow_mandatory: false,
+      follow_name: ''
+    }
+    setParams('twitch', [...params.twitch, newAction])
+  }
 
   return (
     <div className="action-list-container">
       <div className="action-list-item">
         <label>{t('create_campaign_page.follow')}</label>
-        <Checkbox checked={params.twitch.follow} onChange={(e) => setAction('twitch', 'follow', e.target.checked)} />
+        <img
+          src={images.ic_plus_gray}
+          style={{ width: 15, height: 15, cursor: 'pointer' }}
+          onClick={addTwitchFollowAction}
+          alt="plus"
+        />
       </div>
     </div>
   )
